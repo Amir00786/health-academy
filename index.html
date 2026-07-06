@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>iHealth Academy — Built for Healthcare Professionals</title>
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Cabinet+Grotesk:wght@300;400;500;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --black:#060608;
+  --white:#F8F6F1;
+  --teal:#00C896;
+  --teal-dim:rgba(0,200,150,0.08);
+  --teal-border:rgba(0,200,150,0.2);
+  --amber:#F5A623;
+  --blue:#4A9EFF;
+  --coral:#FF6B6B;
+  --border:rgba(255,255,255,0.07);
+  --card:#0D0D1A;
+  --mid:#0A0A14;
+  --muted:rgba(248,246,241,0.5);
+  --muted2:rgba(248,246,241,0.25);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Cabinet Grotesk',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;cursor:none}
+
+/* CURSOR */
+.cur{width:10px;height:10px;background:var(--teal);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;mix-blend-mode:difference}
+.cur-ring{width:34px;height:34px;border:1px solid rgba(0,200,150,0.4);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transition:width .2s,height .2s,border-color .2s}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:68px;border-bottom:1px solid var(--border);backdrop-filter:blur(24px);background:rgba(6,6,8,0.75)}
+.logo{font-family:'Clash Display',sans-serif;font-size:1.2rem;font-weight:700;color:var(--white);text-decoration:none;letter-spacing:-0.02em}
+.logo span{color:var(--teal)}
+.nav-links{display:flex;align-items:center;gap:2rem}
+.nav-links a{font-size:.82rem;font-weight:500;color:var(--muted);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--white)}
+.nav-right{display:flex;align-items:center;gap:.75rem}
+.lang-btn{font-family:'Clash Display',sans-serif;font-size:.72rem;font-weight:600;padding:6px 14px;border-radius:100px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:none;transition:all .2s}
+.lang-btn:hover{border-color:var(--teal);color:var(--teal)}
+.nav-cta{font-family:'Clash Display',sans-serif;font-size:.78rem;font-weight:700;padding:8px 20px;border-radius:100px;background:var(--teal);color:var(--black);border:none;cursor:none;text-decoration:none;transition:all .2s}
+.nav-cta:hover{background:var(--white);transform:scale(1.04)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 2rem 80px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 90% 70% at 50% 40%,rgba(0,200,150,0.07) 0%,transparent 65%);pointer-events:none}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:64px 64px;pointer-events:none}
+
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);border:1px solid var(--teal-border);padding:5px 16px;border-radius:100px;margin-bottom:2rem;animation:fadeUp .5s ease both}
+.hero-dot{width:5px;height:5px;border-radius:50%;background:var(--teal);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(1.6)}}
+
+h1{font-family:'Clash Display',sans-serif;font-size:clamp(2.8rem,7vw,6.5rem);font-weight:700;line-height:.95;letter-spacing:-0.04em;margin-bottom:1.5rem;animation:fadeUp .5s .1s ease both}
+h1 .line2{display:block;color:var(--teal)}
+h1 .line3{display:block;-webkit-text-stroke:1px rgba(248,246,241,0.3);color:transparent}
+
+.hero-sub{font-size:1.05rem;color:var(--muted);max-width:580px;line-height:1.85;margin:0 auto 2.5rem;font-weight:300;animation:fadeUp .5s .2s ease both}
+.hero-sub strong{color:var(--white);font-weight:500}
+
+.hero-actions{display:flex;gap:.85rem;justify-content:center;flex-wrap:wrap;animation:fadeUp .5s .3s ease both}
+.btn-main{font-family:'Clash Display',sans-serif;font-size:.92rem;font-weight:700;padding:15px 34px;border-radius:100px;background:var(--teal);color:var(--black);border:none;cursor:none;text-decoration:none;transition:all .25s;display:inline-block}
+.btn-main:hover{transform:translateY(-3px);box-shadow:0 20px 40px rgba(0,200,150,0.25)}
+.btn-ghost{font-family:'Clash Display',sans-serif;font-size:.92rem;font-weight:600;padding:15px 34px;border-radius:100px;background:transparent;color:var(--white);border:1px solid var(--border);cursor:none;text-decoration:none;transition:all .25s;display:inline-block}
+.btn-ghost:hover{border-color:rgba(255,255,255,.3);transform:translateY(-3px)}
+
+/* TRUST BAR */
+.trust-bar{display:flex;gap:2.5rem;justify-content:center;flex-wrap:wrap;margin-top:4rem;padding-top:3rem;border-top:1px solid var(--border);animation:fadeUp .5s .4s ease both}
+.trust-item{display:flex;align-items:center;gap:.6rem;font-size:.78rem;color:var(--muted)}
+.trust-ico{font-size:1rem}
+.trust-val{font-family:'Clash Display',sans-serif;font-weight:700;color:var(--white);font-size:.9rem}
+
+/* MARQUEE */
+.marquee-wrap{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:.8rem 0;overflow:hidden;background:rgba(255,255,255,.015)}
+.marquee-inner{display:flex;gap:2.5rem;animation:marquee 25s linear infinite;width:max-content}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.m-item{font-family:'Clash Display',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2);white-space:nowrap;display:flex;align-items:center;gap:.6rem}
+.m-item::after{content:'✦';color:var(--teal);font-size:.55rem}
+
+/* WHO WE SERVE */
+.serve-section{padding:100px 3rem;max-width:1200px;margin:0 auto}
+.section-label{font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:.85rem;display:block}
+.section-title{font-family:'Clash Display',sans-serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:700;letter-spacing:-0.03em;line-height:1.05;margin-bottom:.85rem}
+.section-desc{font-size:.95rem;color:var(--muted);max-width:520px;line-height:1.85;margin-bottom:3rem}
+
+.serve-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:20px;overflow:hidden}
+.serve-card{background:var(--card);padding:2rem 1.75rem;transition:background .2s;position:relative;overflow:hidden;cursor:pointer}
+.serve-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--serve-color);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.serve-card:hover{background:#101020}
+.serve-card:hover::after{transform:scaleX(1)}
+.serve-ico{font-size:2rem;margin-bottom:1.1rem;display:block}
+.serve-title{font-family:'Clash Display',sans-serif;font-size:1rem;font-weight:700;margin-bottom:.5rem;color:var(--white)}
+.serve-desc{font-size:.8rem;color:var(--muted);line-height:1.65}
+.serve-tags{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.85rem}
+.stag{font-size:.6rem;font-weight:600;padding:3px 8px;border-radius:100px;background:rgba(255,255,255,.05);color:var(--muted2);border:1px solid var(--border)}
+
+/* WHAT WE OFFER */
+.offer-section{background:var(--mid);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:100px 3rem}
+.offer-inner{max-width:1200px;margin:0 auto}
+.offer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.offer-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2rem;transition:all .25s;position:relative;overflow:hidden}
+.offer-card:hover{transform:translateY(-5px);border-color:rgba(255,255,255,.12)}
+.offer-card.highlight{border-color:var(--teal-border)}
+.offer-card.highlight::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--teal)}
+.offer-num{font-family:'Clash Display',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2);margin-bottom:1.25rem;display:block}
+.offer-ico{font-size:1.75rem;margin-bottom:.85rem;display:block}
+.offer-title{font-family:'Clash Display',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:.6rem;line-height:1.2}
+.offer-desc{font-size:.82rem;color:var(--muted);line-height:1.7}
+.offer-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.75rem;font-weight:600;color:var(--teal);margin-top:1rem;text-decoration:none;transition:gap .2s}
+.offer-link:hover{gap:.7rem}
+
+/* ECOSYSTEM PREVIEW */
+.eco-preview{padding:100px 3rem;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.eco-preview-visual{position:relative;height:380px;border-radius:24px;background:var(--card);border:1px solid var(--border);overflow:hidden;display:flex;align-items:center;justify-content:center}
+.eco-canvas{width:100%;height:100%}
+.eco-preview-label{position:absolute;bottom:1.25rem;left:50%;transform:translateX(-50%);font-size:.68rem;color:var(--muted2);white-space:nowrap;display:flex;align-items:center;gap:.4rem}
+.eco-pulse{width:5px;height:5px;border-radius:50%;background:var(--teal);animation:pulse 2s infinite}
+
+/* CV SECTION */
+.cv-section{background:var(--mid);border-top:1px solid var(--border);padding:100px 3rem}
+.cv-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.cv-free-badge{display:inline-flex;align-items:center;gap:6px;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);border:1px solid rgba(245,166,35,.25);padding:4px 12px;border-radius:100px;margin-bottom:1rem}
+.cv-builder{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:1.85rem}
+.cv-builder-hd{font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted2);margin-bottom:1.4rem}
+.cv-form{display:flex;flex-direction:column;gap:.85rem}
+.cv-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.cv-field label{font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted2);display:block;margin-bottom:5px}
+.cv-field input,.cv-field select,.cv-field textarea{width:100%;padding:9px 13px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;font-family:'Cabinet Grotesk',sans-serif;font-size:.85rem;color:var(--white);outline:none;transition:border-color .2s}
+.cv-field input:focus,.cv-field select:focus,.cv-field textarea:focus{border-color:var(--teal)}
+.cv-field select option{background:var(--black)}
+.cv-field textarea{resize:vertical;min-height:72px}
+.ats-box{background:rgba(0,200,150,.07);border:1px solid rgba(0,200,150,.18);border-radius:10px;padding:.85rem 1rem;display:none;gap:.85rem;align-items:center}
+.ats-box.show{display:flex}
+.ats-lbl{font-family:'Clash Display',sans-serif;font-size:.82rem;font-weight:700;color:var(--teal);display:block;margin-bottom:5px}
+.ats-track{flex:1;height:4px;background:rgba(0,200,150,.15);border-radius:2px;overflow:hidden}
+.ats-fill{height:100%;background:var(--teal);border-radius:2px;transition:width .5s ease;width:0%}
+.ats-hint{font-size:.68rem;color:var(--muted2);margin-top:4px}
+.cv-tips{display:flex;flex-direction:column;gap:.4rem}
+.cv-tip{display:flex;align-items:flex-start;gap:.5rem;font-size:.75rem;color:var(--muted);line-height:1.5}
+.tdot{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.tdot.g{background:#22c55e}.tdot.a{background:var(--amber)}.tdot.r{background:var(--coral)}
+.cv-gen{width:100%;font-family:'Clash Display',sans-serif;font-size:.88rem;font-weight:700;padding:13px;border-radius:12px;background:var(--teal);color:var(--black);border:none;cursor:none;transition:all .2s;margin-top:.35rem}
+.cv-gen:hover{background:var(--white);transform:translateY(-2px)}
+.cv-features{display:flex;flex-direction:column;gap:1.35rem;margin-top:1.5rem}
+.cv-feat{display:flex;align-items:flex-start;gap:.85rem}
+.cv-feat-ico{width:40px;height:40px;border-radius:10px;background:var(--teal-dim);border:1px solid var(--teal-border);display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0}
+.cv-feat-title{font-family:'Clash Display',sans-serif;font-size:.88rem;font-weight:700;margin-bottom:2px}
+.cv-feat-desc{font-size:.78rem;color:var(--muted);line-height:1.6}
+
+/* INSTRUCTOR */
+.instructor-section{padding:0 3rem 100px;max-width:1200px;margin:0 auto}
+.inst-wrap{background:linear-gradient(135deg,rgba(0,200,150,.07),rgba(0,200,150,.02));border:1px solid var(--teal-border);border-radius:24px;padding:2.75rem 3rem;display:flex;align-items:center;gap:2.5rem}
+.inst-av{width:76px;height:76px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;font-family:'Clash Display',sans-serif;font-size:1.4rem;font-weight:700;color:var(--black);flex-shrink:0}
+.inst-name{font-family:'Clash Display',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:3px}
+.inst-role{font-size:.78rem;color:var(--teal);font-weight:500;margin-bottom:.65rem}
+.inst-bio{font-size:.85rem;color:var(--muted);line-height:1.7;max-width:580px}
+.inst-badges{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.85rem}
+.ibadge{font-size:.62rem;font-weight:700;letter-spacing:.04em;padding:4px 11px;border-radius:100px;border:1px solid var(--teal-border);color:var(--teal);background:var(--teal-dim)}
+
+/* PLANS */
+.plans-section{background:var(--mid);border-top:1px solid var(--border);padding:100px 3rem}
+.plans-inner{max-width:1200px;margin:0 auto}
+.plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:3rem}
+.plan{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2rem;position:relative;transition:all .25s}
+.plan:hover{transform:translateY(-4px)}
+.plan.featured{border-color:var(--teal-border)}
+.plan-badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);font-family:'Clash Display',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.06em;padding:4px 14px;border-radius:100px;background:var(--teal);color:var(--black);white-space:nowrap}
+.plan-name{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2);margin-bottom:.5rem}
+.plan-price{font-family:'Clash Display',sans-serif;font-size:2.4rem;font-weight:700;letter-spacing:-0.04em;margin-bottom:.2rem}
+.plan-period{font-size:.72rem;color:var(--muted2);margin-bottom:1.4rem}
+.plan-feats{list-style:none;display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.6rem}
+.plan-feats li{font-size:.8rem;color:var(--muted);display:flex;gap:.5rem;align-items:flex-start;line-height:1.5}
+.plan-feats li::before{content:'→';color:var(--teal);flex-shrink:0;font-weight:700;font-size:.75rem;margin-top:1px}
+.plan-btn{width:100%;font-family:'Clash Display',sans-serif;font-size:.82rem;font-weight:700;padding:12px;border-radius:10px;border:1px solid var(--border);background:transparent;cursor:none;color:var(--white);transition:all .2s}
+.plan-btn:hover,.plan.featured .plan-btn{background:var(--teal);color:var(--black);border-color:var(--teal)}
+
+/* CTA BAND */
+.cta-band{background:var(--teal);padding:90px 3rem;text-align:center}
+.cta-band h2{font-family:'Clash Display',sans-serif;font-size:clamp(2.2rem,5vw,4rem);font-weight:700;letter-spacing:-0.04em;color:var(--black);line-height:1.05;margin-bottom:.85rem}
+.cta-band p{font-size:.95rem;color:rgba(6,6,8,.6);max-width:460px;margin:0 auto 2rem;line-height:1.8}
+.btn-dark{font-family:'Clash Display',sans-serif;font-size:.95rem;font-weight:700;padding:15px 38px;border-radius:100px;background:var(--black);color:var(--white);border:none;cursor:none;text-decoration:none;transition:all .25s;display:inline-block}
+.btn-dark:hover{transform:translateY(-3px);box-shadow:0 20px 40px rgba(0,0,0,.3)}
+
+/* FOOTER */
+footer{padding:2rem 3rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-logo{font-family:'Clash Display',sans-serif;font-size:1rem;font-weight:700;color:var(--white)}
+.footer-logo span{color:var(--teal)}
+.footer-links{display:flex;gap:1.5rem}
+.footer-links a{font-size:.75rem;color:var(--muted2);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--white)}
+.footer-copy{font-size:.7rem;color:var(--muted2)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:900px){
+  nav{padding:0 1.5rem}.nav-links{display:none}
+  .hero{padding:100px 1.5rem 60px}
+  h1{font-size:3rem}
+  .serve-grid{grid-template-columns:1fr 1fr}
+  .offer-grid{grid-template-columns:1fr}
+  .eco-preview{grid-template-columns:1fr;padding:60px 1.5rem}
+  .cv-inner{grid-template-columns:1fr;gap:3rem}
+  .cv-section{padding:60px 1.5rem}
+  .plans-grid{grid-template-columns:1fr}
+  .inst-wrap{flex-direction:column;padding:2rem}
+  .cta-band{padding:60px 1.5rem}
+  footer{flex-direction:column;text-align:center;padding:2rem 1.5rem}
+  .serve-section,.offer-section,.instructor-section,.plans-section{padding:60px 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<div class="cur" id="cur"></div>
+<div class="cur-ring" id="ring"></div>
+
+<nav>
+  <a href="#" class="logo">i<span>Health</span> Academy</a>
+  <div class="nav-links">
+    <a href="#serve">Who we serve</a>
+    <a href="#offer">What we offer</a>
+    <a href="ecosystem.html">Ecosystem</a>
+    <a href="specialty-finder.html">Specialty finder</a>
+    <a href="#cv">Free CV builder</a>
+    <a href="#plans">Plans</a>
+  </div>
+  <div class="nav-right">
+    <button class="lang-btn">عربي</button>
+    <a href="#plans" class="nav-cta">Get started free</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-eyebrow"><span class="hero-dot"></span>For every healthcare professional</div>
+  <h1>
+    Your career in healthcare.<br>
+    <span class="line2">Supported at every step.</span>
+    <span class="line3">Built to last.</span>
+  </h1>
+  <p class="hero-sub">
+    iHealth Academy gives <strong>every healthcare professional</strong> the knowledge, confidence, and tools to grow — from passing your first exam to navigating insurance, building your CV, and advancing in your career.
+  </p>
+  <div class="hero-actions">
+    <a href="#serve" class="btn-main">Find your path →</a>
+    <a href="ecosystem.html" class="btn-ghost">Explore the ecosystem</a>
+  </div>
+  <div class="trust-bar">
+    <div class="trust-item"><span class="trust-ico">🏥</span><span>Built for <span class="trust-val">all healthcare staff</span></span></div>
+    <div class="trust-item"><span class="trust-ico">🎓</span><span><span class="trust-val">5 exam</span> tracks covered</span></div>
+    <div class="trust-item"><span class="trust-ico">✅</span><span><span class="trust-val">Free</span> CV builder included</span></div>
+    <div class="trust-item"><span class="trust-ico">🌍</span><span>Valid <span class="trust-val">globally</span></span></div>
+    <div class="trust-item"><span class="trust-ico">⭐</span><span><span class="trust-val">7+ years</span> real experience</span></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-inner">
+    <span class="m-item">Radiology</span><span class="m-item">Pre-authorization</span><span class="m-item">FRCR prep</span><span class="m-item">Arab Board</span><span class="m-item">Saudi Board</span><span class="m-item">Insurance literacy</span><span class="m-item">CV builder</span><span class="m-item">CHI compliance</span><span class="m-item">AI in healthcare</span><span class="m-item">Medical research</span><span class="m-item">Career development</span><span class="m-item">Pharmacy</span><span class="m-item">Dentistry</span><span class="m-item">Nursing</span>
+    <span class="m-item">Radiology</span><span class="m-item">Pre-authorization</span><span class="m-item">FRCR prep</span><span class="m-item">Arab Board</span><span class="m-item">Saudi Board</span><span class="m-item">Insurance literacy</span><span class="m-item">CV builder</span><span class="m-item">CHI compliance</span><span class="m-item">AI in healthcare</span><span class="m-item">Medical research</span><span class="m-item">Career development</span><span class="m-item">Pharmacy</span><span class="m-item">Dentistry</span><span class="m-item">Nursing</span>
+  </div>
+</div>
+
+<!-- WHO WE SERVE -->
+<section class="serve-section reveal" id="serve">
+  <span class="section-label">Who we serve</span>
+  <h2 class="section-title">Built for everyone<br>in healthcare.</h2>
+  <p class="section-desc">Whether you are a student, a resident, a specialist, or an insurance professional — iHealth Academy has a path for you. Pick your role and start from there.</p>
+  <div class="serve-grid">
+    <div class="serve-card" style="--serve-color:#00C896" onclick="window.location='radiology-dept.html'">
+      <span class="serve-ico">🩻</span>
+      <div class="serve-title">Radiologists</div>
+      <div class="serve-desc">Exams, pre-auth, report writing, RIS/PACS, and AI. The complete clinical and administrative toolkit.</div>
+      <div class="serve-tags"><span class="stag">FRCR</span><span class="stag">Arab Board</span><span class="stag">Pre-auth cert</span></div>
+    </div>
+    <div class="serve-card" style="--serve-color:#4A9EFF">
+      <span class="serve-ico">🛡️</span>
+      <div class="serve-title">Insurance professionals</div>
+      <div class="serve-desc">Understand radiology from the clinical side. Make faster, more confident approval decisions.</div>
+      <div class="serve-tags"><span class="stag">Pre-auth</span><span class="stag">Claims</span><span class="stag">ضمان</span></div>
+    </div>
+    <div class="serve-card" style="--serve-color:#A78BFA">
+      <span class="serve-ico">👩‍⚕️</span>
+      <div class="serve-title">All healthcare staff</div>
+      <div class="serve-desc">Nurses, pharmacists, dentists, lab technicians, physiotherapists — every specialty is covered or coming soon.</div>
+      <div class="serve-tags"><span class="stag">Pharmacy</span><span class="stag">Dentistry</span><span class="stag">Nursing</span></div>
+    </div>
+    <div class="serve-card" style="--serve-color:#F5A623">
+      <span class="serve-ico">🧑‍💼</span>
+      <div class="serve-title">Healthcare managers</div>
+      <div class="serve-desc">Hospital administration, patient relations, and healthcare economics — for those who run the system.</div>
+      <div class="serve-tags"><span class="stag">Administration</span><span class="stag">Patient rights</span><span class="stag">Coming soon</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE OFFER -->
+<div class="offer-section reveal" id="offer">
+  <div class="offer-inner">
+    <span class="section-label">What we offer</span>
+    <h2 class="section-title">Everything you need.<br>In one place.</h2>
+    <p class="section-desc">Not just courses. A complete support system for your career — from your first lesson to your next job.</p>
+    <div class="offer-grid">
+      <div class="offer-card highlight">
+        <span class="offer-num">01 — Core</span>
+        <span class="offer-ico">🎓</span>
+        <div class="offer-title">Structured learning — module by module</div>
+        <p class="offer-desc">Every specialty has a clear curriculum. Start from the basics. Advance at your pace. Each module builds on the last so nothing feels disconnected.</p>
+        <a href="radiology-dept.html" class="offer-link">Start with radiology →</a>
+      </div>
+      <div class="offer-card">
+        <span class="offer-num">02 — Exams</span>
+        <span class="offer-ico">📋</span>
+        <div class="offer-title">Board exam preparation that actually works</div>
+        <p class="offer-desc">FRCR, Arab Board, Saudi Board, ABR — structured study plans, not just question banks. Built for people with real clinical workloads.</p>
+        <a href="radiology-dept.html" class="offer-link">See exam tracks →</a>
+      </div>
+      <div class="offer-card">
+        <span class="offer-num">03 — Career</span>
+        <span class="offer-ico">📄</span>
+        <div class="offer-title">Free ATS-optimized CV builder</div>
+        <p class="offer-desc">Most medical CVs are filtered out before a human reads them. Our free builder fixes that — optimized for every country, every specialty.</p>
+        <a href="#cv" class="offer-link">Build your CV free →</a>
+      </div>
+      <div class="offer-card">
+        <span class="offer-num">04 — Insurance</span>
+        <span class="offer-ico">✅</span>
+        <div class="offer-title">Pre-authorization mastery</div>
+        <p class="offer-desc">The skill no medical school teaches. Learn to write requests that get approved, handle denials, and earn a certificate that sets you apart.</p>
+        <a href="radiology-dept.html" class="offer-link">Start pre-auth track →</a>
+      </div>
+      <div class="offer-card">
+        <span class="offer-num">05 — Ecosystem</span>
+        <span class="offer-ico">🪐</span>
+        <div class="offer-title">Interactive healthcare ecosystem map</div>
+        <p class="offer-desc">Explore the full radiology and insurance world visually — click any entity to go deep into its role, rules, and what you need to know.</p>
+        <a href="ecosystem.html" class="offer-link">Explore the ecosystem →</a>
+      </div>
+      <div class="offer-card">
+        <span class="offer-num">06 — Research</span>
+        <span class="offer-ico">🔬</span>
+        <div class="offer-title">Medical research — for every level</div>
+        <p class="offer-desc">From reading your first study to publishing your first paper. Organized by training level so it is always relevant to where you are right now.</p>
+        <a href="specialty-finder.html" class="offer-link">Find your specialty →</a>
+      </div>
+      <div class="offer-card">
+        <span class="offer-num">07 — Tools</span>
+        <span class="offer-ico">🧭</span>
+        <div class="offer-title">Medical specialty finder</div>
+        <p class="offer-desc">Not sure which specialty is right for you? Answer 10 questions and get your top 3 matches with full explanation, strengths, risks, and learning path.</p>
+        <a href="specialty-finder.html" class="offer-link">Find your specialty →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ECOSYSTEM PREVIEW -->
+<section class="eco-preview reveal">
+  <div>
+    <span class="section-label">The ecosystem</span>
+    <h2 class="section-title">See the full picture.<br>Not just your part.</h2>
+    <p class="section-desc" style="margin-bottom:2rem">The best healthcare professionals understand the whole system — not just their department. Our interactive map shows how every entity connects.</p>
+    <a href="ecosystem.html" class="btn-main" style="font-size:.85rem;padding:12px 26px">Explore the ecosystem →</a>
+  </div>
+  <div class="eco-preview-visual">
+    <canvas class="eco-canvas" id="miniEco"></canvas>
+    <div class="eco-preview-label"><span class="eco-pulse"></span>Click to explore full interactive map</div>
+  </div>
+</section>
+
+<!-- CV BUILDER -->
+<div class="cv-section reveal" id="cv">
+  <div class="cv-inner">
+    <div>
+      <div class="cv-free-badge">✦ 100% Free — always</div>
+      <span class="section-label">CV builder</span>
+      <h2 class="section-title">A CV that opens<br>doors for you.</h2>
+      <p class="section-desc" style="margin-bottom:2rem">Most healthcare CVs never reach a human reviewer. ATS software filters them out first. Our builder fixes that — structured for every healthcare role, every country.</p>
+      <div class="cv-features">
+        <div class="cv-feat"><div class="cv-feat-ico">🎯</div><div><div class="cv-feat-title">ATS-optimized by default</div><div class="cv-feat-desc">Built so tracking systems read every line. No tables or graphics that confuse the software.</div></div></div>
+        <div class="cv-feat"><div class="cv-feat-ico">🩺</div><div><div class="cv-feat-title">Built for healthcare professionals</div><div class="cv-feat-desc">Sections, keywords, and formatting that hospitals and health institutions actually look for.</div></div></div>
+        <div class="cv-feat"><div class="cv-feat-ico">🌍</div><div><div class="cv-feat-title">Works for any country</div><div class="cv-feat-desc">Saudi Arabia, UK, UAE, Egypt, USA — each market expects something different. We guide you.</div></div></div>
+      </div>
+    </div>
+    <div>
+      <div class="cv-builder">
+        <div class="cv-builder-hd">Build your CV — live ATS score</div>
+        <div class="cv-form">
+          <div class="cv-row">
+            <div class="cv-field"><label>Full name</label><input type="text" id="cvn" placeholder="Dr. Ahmed..." oninput="cvScore()"/></div>
+            <div class="cv-field"><label>Specialty</label>
+              <select id="cvs" onchange="cvScore()">
+                <option value="">Select</option>
+                <option>Diagnostic Radiology</option><option>Interventional Radiology</option>
+                <option>Nuclear Medicine</option><option>Pharmacy</option>
+                <option>Dentistry</option><option>Nursing</option>
+                <option>Physiotherapy</option><option>Lab Medicine</option>
+                <option>General Medicine</option><option>Insurance / Pre-auth</option>
+                <option>Hospital Administration</option>
+              </select>
+            </div>
+          </div>
+          <div class="cv-row">
+            <div class="cv-field"><label>Level</label>
+              <select id="cvl" onchange="cvScore()">
+                <option value="">Select</option>
+                <option>Medical Student</option><option>Intern</option>
+                <option>R1 Resident</option><option>R2 Resident</option>
+                <option>R3 Resident</option><option>R4 / Fellow</option>
+                <option>Consultant</option><option>Manager</option>
+              </select>
+            </div>
+            <div class="cv-field"><label>Target country</label>
+              <select id="cvc" onchange="cvScore()">
+                <option value="">Select</option>
+                <option>Saudi Arabia</option><option>UAE</option>
+                <option>United Kingdom</option><option>United States</option>
+                <option>Egypt</option><option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="cv-field"><label>Key skills & certifications</label><input type="text" id="cvsk" placeholder="e.g. FRCR, MRI, CT, pre-authorization, PACS..." oninput="cvScore()"/></div>
+          <div class="cv-field"><label>Professional summary</label><textarea id="cvsu" placeholder="2-3 sentences about your experience and goals..." oninput="cvScore()"></textarea></div>
+          <div class="ats-box" id="atsBox">
+            <div style="flex:1">
+              <span class="ats-lbl" id="atsLbl">ATS score: 0%</span>
+              <div class="ats-track"><div class="ats-fill" id="atsFill"></div></div>
+              <div class="ats-hint" id="atsHint">Fill in your details to improve your score</div>
+            </div>
+          </div>
+          <div class="cv-tips" id="cvTips"></div>
+          <button class="cv-gen" onclick="genCV()">Generate my ATS CV — free ↓</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PLANS -->
+<div class="plans-section reveal" id="plans">
+  <div class="plans-inner">
+    <span class="section-label">Pricing</span>
+    <h2 class="section-title">Start free.<br>Grow at your pace.</h2>
+    <p class="section-desc">No hidden fees. No confusing tiers. Pick what works for where you are right now.</p>
+    <div class="plans-grid">
+      <div class="plan">
+        <div class="plan-name">Free</div>
+        <div class="plan-price">$0</div>
+        <div class="plan-period">forever — no card needed</div>
+        <ul class="plan-feats">
+          <li>Free ATS CV builder</li>
+          <li>Ecosystem interactive map</li>
+          <li>3 free lessons per module</li>
+          <li>Insurance basics course</li>
+          <li>Community access</li>
+        </ul>
+        <button class="plan-btn">Get started free</button>
+      </div>
+      <div class="plan featured">
+        <div class="plan-badge">Most popular</div>
+        <div class="plan-name">Pro</div>
+        <div class="plan-price" style="font-size:1.6rem">Coming soon</div>
+        <div class="plan-period">pricing to be announced</div>
+        <ul class="plan-feats">
+          <li>Everything in Free</li>
+          <li>All modules — all specialties</li>
+          <li>Full exam prep — FRCR, Arab Board, Saudi Board, ABR</li>
+          <li>Full pre-auth masterclass</li>
+          <li>Pre-auth certificate</li>
+          <li>200+ case bank</li>
+          <li>New content every week</li>
+        </ul>
+        <button class="plan-btn">Start 7-day free trial</button>
+      </div>
+      <div class="plan">
+        <div class="plan-name">Institution</div>
+        <div class="plan-price">Custom</div>
+        <div class="plan-period">for hospitals & teams</div>
+        <ul class="plan-feats">
+          <li>Everything in Pro</li>
+          <li>Team dashboard & tracking</li>
+          <li>Custom learning paths</li>
+          <li>Department-level analytics</li>
+          <li>Dedicated support</li>
+        </ul>
+        <button class="plan-btn">Contact us</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-band reveal">
+  <h2>Your career deserves<br>better support.</h2>
+  <p>Join healthcare professionals from around the world who are learning, growing, and building with iHealth Academy.</p>
+  <a href="#plans" class="btn-dark">Start for free today →</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">i<span>Health</span> Academy</div>
+  <div class="footer-links">
+    <a href="#">About</a>
+    <a href="ecosystem.html">Ecosystem</a>
+    <a href="radiology-dept.html">Radiology</a>
+    <a href="#">Privacy policy</a>
+    <a href="#">Terms of use</a>
+    <a href="#">Contact & support</a>
+  </div>
+  <div class="footer-copy">© 2026 iHealth Academy. All rights reserved.</div>
+</footer>
+
+<script>
+// CURSOR
+const cur=document.getElementById('cur'),ring=document.getElementById('ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.transform=`translate(${mx-5}px,${my-5}px)`});
+(function ar(){rx+=(mx-rx-17)*.1;ry+=(my-ry-17)*.1;ring.style.transform=`translate(${rx}px,${ry}px)`;requestAnimationFrame(ar)})();
+document.querySelectorAll('a,button,.serve-card,.offer-card,.plan').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{ring.style.width='52px';ring.style.height='52px';ring.style.borderColor='rgba(0,200,150,.7)'});
+  el.addEventListener('mouseleave',()=>{ring.style.width='34px';ring.style.height='34px';ring.style.borderColor='rgba(0,200,150,.4)'});
+});
+
+// SCROLL REVEAL
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:.08});
+document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
+
+// MINI ECOSYSTEM CANVAS
+const mc=document.getElementById('miniEco');
+const mctx=mc.getContext('2d');
+let mw,mh,mt=0;
+function resizeMC(){mw=mc.width=mc.offsetWidth;mh=mc.height=mc.offsetHeight}
+resizeMC();window.addEventListener('resize',resizeMC);
+const mplanets=[
+  {color:'#A78BFA',orbit:.32,speed:.0004,angle:0.5,r:14,label:'Regulator'},
+  {color:'#00C896',orbit:.42,speed:.0003,angle:2.1,r:18,label:'Provider'},
+  {color:'#4A9EFF',orbit:.52,speed:.00022,angle:3.8,r:17,label:'Insurance'},
+  {color:'#FF6B6B',orbit:.62,speed:.00016,angle:1.2,r:13,label:'Cycle'},
+];
+(function animMC(){
+  mt+=1;
+  mctx.clearRect(0,0,mw,mh);
+  const cx=mw/2,cy=mh/2;
+  // Stars
+  if(!animMC.stars){animMC.stars=Array.from({length:60},()=>({x:Math.random()*800,y:Math.random()*500,r:Math.random()+.3,o:Math.random()*.5+.1}))}
+  animMC.stars.forEach(s=>{mctx.beginPath();mctx.arc(s.x%mw,s.y%mh,s.r,0,Math.PI*2);mctx.fillStyle=`rgba(248,246,241,${s.o})`;mctx.fill()});
+  // Sun glow
+  const g=mctx.createRadialGradient(cx,cy,0,cx,cy,40);
+  g.addColorStop(0,'rgba(0,200,150,0.2)');g.addColorStop(1,'rgba(0,200,150,0)');
+  mctx.beginPath();mctx.arc(cx,cy,40,0,Math.PI*2);mctx.fillStyle=g;mctx.fill();
+  mctx.beginPath();mctx.arc(cx,cy,18,0,Math.PI*2);mctx.fillStyle='rgba(13,13,26,1)';mctx.fill();
+  mctx.beginPath();mctx.arc(cx,cy,18,0,Math.PI*2);mctx.strokeStyle='rgba(0,200,150,0.5)';mctx.lineWidth=1;mctx.stroke();
+  mctx.font='600 7px Cabinet Grotesk,sans-serif';mctx.fillStyle='rgba(0,200,150,0.8)';mctx.textAlign='center';mctx.textBaseline='middle';
+  mctx.fillText('iHealth',cx,cy);
+  mplanets.forEach(p=>{
+    p.angle+=p.speed;
+    const or=Math.min(mw,mh)*p.orbit;
+    const px=cx+Math.cos(p.angle)*or,py=cy+Math.sin(p.angle)*or*.5;
+    mctx.beginPath();mctx.ellipse(cx,cy,or,or*.5,0,0,Math.PI*2);
+    mctx.strokeStyle='rgba(255,255,255,0.04)';mctx.lineWidth=1;mctx.stroke();
+    mctx.beginPath();mctx.arc(px,py,p.r,0,Math.PI*2);mctx.fillStyle=p.color+'CC';mctx.fill();
+    mctx.font=`600 8px Cabinet Grotesk,sans-serif`;mctx.fillStyle='rgba(248,246,241,0.6)';mctx.textAlign='center';mctx.textBaseline='top';
+    mctx.fillText(p.label,px,py+p.r+3);
+  });
+  requestAnimationFrame(animMC);
+})();
+document.querySelector('.eco-preview-visual').addEventListener('click',()=>window.location='ecosystem.html');
+
+// CV BUILDER
+function cvScore(){
+  const n=document.getElementById('cvn').value.trim();
+  const s=document.getElementById('cvs').value;
+  const l=document.getElementById('cvl').value;
+  const c=document.getElementById('cvc').value;
+  const sk=document.getElementById('cvsk').value.trim();
+  const su=document.getElementById('cvsu').value.trim();
+  let sc=0;const tips=[];
+  if(n.length>3){sc+=20}else{tips.push({c:'r',t:'Add your full name — ATS needs it at the top.'})}
+  if(s){sc+=15}else{tips.push({c:'a',t:'Select your specialty to match the right roles.'})}
+  if(l){sc+=10}else{tips.push({c:'a',t:'Your training level helps employers filter correctly.'})}
+  if(c){sc+=10}else{tips.push({c:'a',t:'Target country changes your CV format — select yours.'})}
+  if(sk.length>10){
+    sc+=25;
+    const kw=['mri','ct','frcr','pre-auth','pacs','ris','ultrasound','arab board','saudi board','abr','nursing','pharmacy','dentist'];
+    const m=kw.filter(k=>sk.toLowerCase().includes(k));
+    if(m.length>=2){tips.push({c:'g',t:`Good keywords found: ${m.slice(0,3).join(', ')}.`})}
+    else{tips.push({c:'a',t:'Add specific skills: FRCR, MRI, CT, pre-authorization, PACS...'})}
+  }else{tips.push({c:'r',t:'Skills are the most important ATS field — add at least 5.'})}
+  if(su.length>60){sc+=20;tips.push({c:'g',t:'Good summary length. Keep it under 3 clear sentences.'})}
+  else if(su.length>0){tips.push({c:'a',t:'Summary is short — aim for 2-3 sentences.'})}
+  else{tips.push({c:'r',t:'Add a professional summary — first thing ATS and humans read.'})}
+  const box=document.getElementById('atsBox');
+  if(n||s||l)box.classList.add('show');
+  document.getElementById('atsFill').style.width=sc+'%';
+  document.getElementById('atsLbl').textContent='ATS score: '+sc+'%';
+  const hint=document.getElementById('atsHint');
+  if(sc>=80)hint.textContent='Excellent — your CV will pass most ATS filters.';
+  else if(sc>=50)hint.textContent='Good start — a few more details will help.';
+  else hint.textContent='Keep filling — your score rises with each field.';
+  document.getElementById('cvTips').innerHTML=tips.slice(0,3).map(t=>`<div class="cv-tip"><div class="tdot ${t.c}"></div><span>${t.t}</span></div>`).join('');
+}
+
+function genCV(){
+  const n=document.getElementById('cvn').value.trim()||'Your Name';
+  const s=document.getElementById('cvs').value||'Healthcare';
+  const l=document.getElementById('cvl').value||'Professional';
+  const c=document.getElementById('cvc').value||'International';
+  const sk=document.getElementById('cvsk').value.trim()||'Clinical skills, Patient care';
+  const su=document.getElementById('cvsu').value.trim()||'Dedicated healthcare professional committed to excellence.';
+  const cv=`${n}\n${s} | ${l} | ${c}\n\nPROFESSIONAL SUMMARY\n${su}\n\nKEY SKILLS\n${sk.split(',').map(x=>'• '+x.trim()).join('\n')}\n\nEDUCATION\n[Add your degree — University, Year]\n[Add specialty training — Hospital, Years]\n\nEXPERIENCE\n[Most recent role — Title, Institution, Dates]\n[Responsibilities using action verbs]\n\nCERTIFICATIONS & LICENSES\n[Add: FRCR / Arab Board / Saudi Board / License number]\n\nLANGUAGES\n[Arabic — Native, English — Fluent]\n\nREFERENCES\nAvailable upon request\n\n---\nATS-optimized CV generated by iHealth Academy\nihealthacademy.com`;
+  const b=new Blob([cv],{type:'text/plain'});
+  const u=URL.createObjectURL(b);
+  const a=document.createElement('a');
+  a.href=u;a.download=n.replace(/\s+/g,'_')+'_CV_iHealthAcademy.txt';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(u);
+}
+</script>
+</body>
+</html>

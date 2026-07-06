@@ -1,0 +1,14 @@
+[[redirects]]
+  from = "/ecosystem"
+  to = "/ecosystem.html"
+  status = 200
+
+[[redirects]]
+  from = "/radiology-dept"
+  to = "/radiology-dept.html"
+  status = 200
+
+[[redirects]]
+  from = "/specialty-finder"
+  to = "/specialty-finder.html"
+  status = 200
