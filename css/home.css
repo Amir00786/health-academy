@@ -360,7 +360,8 @@ h1 .line3 {
   gap: 1.25rem;
   width: 100%;
   margin-top: 4rem;
-  padding-top: 3rem;
+  padding-bottom: 1.5rem;
+  padding-top: 2rem;
   border-top: 1px solid var(--border);
   animation: fadeUp 0.5s 0.4s ease both;
 }
