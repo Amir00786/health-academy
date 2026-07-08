@@ -1,3 +1,15 @@
+// PAGE LOADER
+const pageLoader = document.getElementById('pageLoader');
+if (pageLoader) {
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      pageLoader.classList.add('hide');
+      document.documentElement.classList.remove('is-loading');
+      setTimeout(() => pageLoader.remove(), 600);
+    }, 500);
+  });
+}
+
 // CURSOR
 const cur = document.getElementById('cur');
 const ring = document.getElementById('ring');
