@@ -1348,6 +1348,10 @@ footer {
     grid-template-columns: 1fr 1fr;
   }
 
+  .trust-val {
+    font-size: 16px;
+  }
+
   .offer-grid {
     grid-template-columns: 1fr;
   }
