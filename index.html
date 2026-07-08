@@ -16,13 +16,21 @@
 <body>
 
   <div class="page-loader" id="pageLoader">
-    <div class="loader">
-      <div class="loader__bar"></div>
-      <div class="loader__bar"></div>
-      <div class="loader__bar"></div>
-      <div class="loader__bar"></div>
-      <div class="loader__bar"></div>
-      <div class="loader__ball"></div>
+    <div class="ecg">
+      <svg class="ecg-svg" viewBox="0 0 600 120" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="ecgFade" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" style="stop-color:var(--teal); stop-opacity:0" />
+            <stop offset="18%" style="stop-color:var(--teal); stop-opacity:1" />
+            <stop offset="82%" style="stop-color:var(--teal); stop-opacity:1" />
+            <stop offset="100%" style="stop-color:var(--teal); stop-opacity:0" />
+          </linearGradient>
+        </defs>
+        <path class="ecg-track"
+          d="M0,60 L60,60 L72,50 L84,60 L100,60 L108,66 L114,10 L120,92 L128,60 L145,60 L162,48 L178,60 L200,60 L260,60 L272,50 L284,60 L300,60 L308,66 L314,10 L320,92 L328,60 L345,60 L362,48 L378,60 L400,60 L460,60 L472,50 L484,60 L500,60 L508,66 L514,10 L520,92 L528,60 L545,60 L562,48 L578,60 L600,60" />
+        <path class="ecg-pulse" pathLength="100"
+          d="M0,60 L60,60 L72,50 L84,60 L100,60 L108,66 L114,10 L120,92 L128,60 L145,60 L162,48 L178,60 L200,60 L260,60 L272,50 L284,60 L300,60 L308,66 L314,10 L320,92 L328,60 L345,60 L362,48 L378,60 L400,60 L460,60 L472,50 L484,60 L500,60 L508,66 L514,10 L520,92 L528,60 L545,60 L562,48 L578,60 L600,60" />
+      </svg>
     </div>
   </div>
 
