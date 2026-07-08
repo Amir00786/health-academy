@@ -1602,8 +1602,8 @@ html.is-loading body {
 }
 
 .ecg {
-  width: 260px;
-  height: 70px;
+  width: 380px;
+  height: 100px;
 }
 
 .ecg-svg {
@@ -1627,7 +1627,7 @@ html.is-loading body {
   stroke-linejoin: round;
   stroke-dasharray: 22 78;
   stroke-dashoffset: 0;
-  animation: ecgSweep 1.8s linear infinite;
+  animation: ecgSweep 3s linear infinite;
   filter: drop-shadow(0 0 6px rgba(0, 200, 150, 0.6));
 }
 
