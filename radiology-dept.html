@@ -1,226 +1,28 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Radiology Department — iHealth Academy</title>
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Cabinet+Grotesk:wght@300;400;500;700;800&display=swap" rel="stylesheet"/>
-<style>
-:root{
-  --black:#060608;
-  --white:#F8F6F1;
-  --teal:#00C896;
-  --teal-dim:rgba(0,200,150,0.1);
-  --teal-border:rgba(0,200,150,0.25);
-  --amber:#F5A623;
-  --blue:#4A9EFF;
-  --border:rgba(255,255,255,0.07);
-  --card:#0D0D1A;
-  --muted:rgba(248,246,241,0.45);
-  --muted2:rgba(248,246,241,0.25);
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'Cabinet Grotesk',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden}
-
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:64px;border-bottom:1px solid var(--border);backdrop-filter:blur(20px);background:rgba(6,6,8,0.8)}
-.logo{font-family:'Clash Display',sans-serif;font-size:1.1rem;font-weight:700;color:var(--white);text-decoration:none}
-.logo span{color:var(--teal)}
-.breadcrumb{display:flex;align-items:center;gap:.5rem;font-size:.78rem;color:var(--muted)}
-.breadcrumb a{color:var(--muted);text-decoration:none;transition:color .2s}
-.breadcrumb a:hover{color:var(--white)}
-.breadcrumb span{color:var(--teal)}
-.nav-cta{font-family:'Clash Display',sans-serif;font-size:.78rem;font-weight:600;padding:7px 18px;border-radius:100px;background:var(--teal);color:var(--black);border:none;cursor:pointer;text-decoration:none;transition:all .2s}
-.nav-cta:hover{background:var(--white)}
-
-/* HERO */
-.dept-hero{
-  padding:100px 3rem 60px;
-  max-width:1200px;margin:0 auto;
-  display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:end;
-}
-.dept-tag{display:inline-flex;align-items:center;gap:8px;font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);border:1px solid var(--teal-border);padding:4px 14px;border-radius:100px;margin-bottom:1.25rem}
-.dept-tag-dot{width:5px;height:5px;border-radius:50%;background:var(--teal);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.5)}}
-.dept-hero h1{font-family:'Clash Display',sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);font-weight:700;letter-spacing:-0.04em;line-height:1;margin-bottom:.85rem}
-.dept-hero h1 span{color:var(--teal)}
-.dept-desc{font-size:.95rem;color:var(--muted);line-height:1.8;max-width:560px;margin-bottom:1.75rem}
-.dept-stats{display:flex;gap:2rem}
-.dept-stat-val{font-family:'Clash Display',sans-serif;font-size:1.8rem;font-weight:700;display:block;color:var(--white)}
-.dept-stat-lbl{font-size:.72rem;color:var(--muted);margin-top:2px;letter-spacing:.04em}
-.dept-hero-right{text-align:right}
-.dept-badge{
-  display:inline-flex;flex-direction:column;align-items:center;
-  background:var(--card);border:1px solid var(--teal-border);
-  border-radius:20px;padding:1.5rem 2rem;gap:.35rem;
-}
-.badge-ico{font-size:2.5rem}
-.badge-txt{font-family:'Clash Display',sans-serif;font-size:.75rem;font-weight:700;color:var(--teal);letter-spacing:.06em;text-transform:uppercase}
-.badge-sub{font-size:.65rem;color:var(--muted)}
-
-/* PROGRESS BAR */
-.progress-bar{background:rgba(255,255,255,.04);border-bottom:1px solid var(--border);padding:.75rem 3rem;display:flex;align-items:center;gap:1.5rem;position:sticky;top:64px;z-index:100;backdrop-filter:blur(20px)}
-.prog-label{font-size:.72rem;color:var(--muted);white-space:nowrap}
-.prog-track{flex:1;height:3px;background:rgba(255,255,255,.08);border-radius:2px;max-width:300px}
-.prog-fill{height:100%;background:var(--teal);border-radius:2px;width:0%;transition:width .5s ease}
-.prog-pct{font-family:'Clash Display',sans-serif;font-size:.72rem;font-weight:700;color:var(--teal)}
-.prog-modules{display:flex;gap:.4rem;margin-left:auto}
-.prog-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.1);transition:background .3s;cursor:pointer}
-.prog-dot.done{background:var(--teal)}
-.prog-dot.active{background:var(--amber);box-shadow:0 0 6px var(--amber)}
-
-/* LAYOUT */
-.dept-layout{display:grid;grid-template-columns:280px 1fr;gap:0;max-width:1200px;margin:0 auto;min-height:80vh}
-
-/* SIDEBAR */
-.sidebar{border-right:1px solid var(--border);padding:2rem 0;position:sticky;top:120px;height:calc(100vh - 120px);overflow-y:auto}
-.sidebar::-webkit-scrollbar{width:3px}
-.sidebar::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:2px}
-.sidebar-section{margin-bottom:.25rem}
-.sidebar-track{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:.6rem 1.5rem;cursor:pointer;
-  font-family:'Clash Display',sans-serif;font-size:.78rem;font-weight:700;
-  color:var(--muted);letter-spacing:.03em;
-  transition:color .2s;user-select:none;
-}
-.sidebar-track:hover{color:var(--white)}
-.sidebar-track.active-track{color:var(--white)}
-.track-arrow{font-size:.6rem;transition:transform .2s;color:var(--muted2)}
-.sidebar-track.active-track .track-arrow{transform:rotate(90deg);color:var(--teal)}
-.sidebar-lessons{display:none;padding:0 1.5rem .5rem}
-.sidebar-track.active-track + .sidebar-lessons{display:block}
-.lesson-link{
-  display:flex;align-items:center;gap:.65rem;
-  padding:.55rem .75rem;border-radius:8px;
-  font-size:.78rem;color:var(--muted);
-  cursor:pointer;transition:all .2s;margin-bottom:.15rem;
-}
-.lesson-link:hover{background:rgba(255,255,255,.04);color:var(--white)}
-.lesson-link.active-lesson{background:var(--teal-dim);color:var(--white);border:1px solid var(--teal-border)}
-.lesson-link.done-lesson .lesson-num{background:var(--teal);color:var(--black)}
-.lesson-num{
-  width:20px;height:20px;border-radius:50%;
-  background:rgba(255,255,255,.06);
-  display:flex;align-items:center;justify-content:center;
-  font-size:.58rem;font-weight:700;flex-shrink:0;
-  font-family:'Clash Display',sans-serif;
-}
-.lesson-title{line-height:1.3;flex:1}
-.lesson-dur{font-size:.62rem;color:var(--muted2);flex-shrink:0}
-.sidebar-divider{height:1px;background:var(--border);margin:.75rem 1.5rem}
-
-/* MAIN CONTENT */
-.main-content{padding:2.5rem 3rem}
-.module-header{margin-bottom:2rem}
-.module-num{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:.5rem}
-.module-title{font-family:'Clash Display',sans-serif;font-size:2rem;font-weight:700;letter-spacing:-0.03em;line-height:1.1;margin-bottom:.75rem}
-.module-desc{font-size:.92rem;color:var(--muted);line-height:1.8;max-width:620px;margin-bottom:1.5rem}
-.module-meta{display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:2rem}
-.meta-item{display:flex;align-items:center;gap:.4rem;font-size:.75rem;color:var(--muted)}
-.meta-ico{font-size:.85rem}
-
-/* LESSON CARD */
-.lessons-list{display:flex;flex-direction:column;gap:1rem}
-.lesson-card{
-  background:var(--card);border:1px solid var(--border);
-  border-radius:16px;overflow:hidden;
-  transition:all .25s;cursor:pointer;
-}
-.lesson-card:hover{border-color:rgba(255,255,255,.15);transform:translateX(4px)}
-.lesson-card.locked{opacity:.5;cursor:not-allowed}
-.lesson-card.locked:hover{transform:none;border-color:var(--border)}
-.lesson-card.featured{border-color:var(--teal-border)}
-.lesson-card-inner{display:flex;align-items:center;gap:1.25rem;padding:1.25rem 1.5rem}
-.lesson-card-num{
-  width:44px;height:44px;border-radius:12px;
-  background:rgba(255,255,255,.04);border:1px solid var(--border);
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Clash Display',sans-serif;font-size:.85rem;font-weight:700;
-  color:var(--muted);flex-shrink:0;
-}
-.lesson-card.featured .lesson-card-num{background:var(--teal-dim);border-color:var(--teal-border);color:var(--teal)}
-.lesson-card-body{flex:1}
-.lesson-card-title{font-family:'Clash Display',sans-serif;font-size:.95rem;font-weight:700;margin-bottom:3px}
-.lesson-card-desc{font-size:.78rem;color:var(--muted);line-height:1.5}
-.lesson-card-right{display:flex;align-items:center;gap:.75rem;flex-shrink:0}
-.lesson-dur-tag{font-size:.65rem;color:var(--muted2)}
-.lesson-tag{font-size:.6rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:100px}
-.tag-free{background:rgba(0,200,150,.12);color:var(--teal);border:1px solid var(--teal-border)}
-.tag-pro{background:rgba(245,166,35,.1);color:var(--amber);border:1px solid rgba(245,166,35,.25)}
-.tag-new{background:rgba(74,158,255,.1);color:var(--blue);border:1px solid rgba(74,158,255,.25)}
-.lesson-arrow{color:var(--muted2);font-size:.8rem;transition:transform .2s}
-.lesson-card:hover .lesson-arrow{transform:translateX(4px);color:var(--white)}
-.lock-ico{font-size:.85rem;color:var(--muted2)}
-
-/* EXAM TRACK BOX */
-.exam-track-box{
-  background:linear-gradient(135deg,rgba(0,200,150,.08),rgba(0,200,150,.02));
-  border:1px solid var(--teal-border);border-radius:16px;
-  padding:1.5rem 2rem;margin-bottom:1.25rem;
-  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;
-}
-.exam-left{display:flex;align-items:center;gap:1rem}
-.exam-ico{font-size:1.75rem}
-.exam-name{font-family:'Clash Display',sans-serif;font-size:1rem;font-weight:700;margin-bottom:2px}
-.exam-info{font-size:.75rem;color:var(--muted)}
-.exam-badges{display:flex;gap:.4rem;flex-wrap:wrap}
-.exam-badge{font-size:.62rem;font-weight:700;padding:3px 9px;border-radius:100px;background:rgba(255,255,255,.06);color:var(--muted);border:1px solid var(--border)}
-.exam-btn{font-family:'Clash Display',sans-serif;font-size:.78rem;font-weight:700;padding:9px 20px;border-radius:100px;background:var(--teal);color:var(--black);border:none;cursor:pointer;transition:all .2s}
-.exam-btn:hover{background:var(--white)}
-
-/* MODULE SELECTOR TABS */
-.module-tabs{display:flex;gap:.4rem;margin-bottom:2.5rem;flex-wrap:wrap}
-.mod-tab{
-  font-family:'Clash Display',sans-serif;font-size:.75rem;font-weight:600;
-  padding:7px 16px;border-radius:100px;
-  border:1px solid var(--border);color:var(--muted);
-  background:transparent;cursor:pointer;transition:all .2s;
-}
-.mod-tab:hover{border-color:rgba(255,255,255,.2);color:var(--white)}
-.mod-tab.active-tab{background:var(--teal);border-color:var(--teal);color:var(--black)}
-
-/* SECTION DIVIDER */
-.section-divider{display:flex;align-items:center;gap:1rem;margin:2rem 0 1.25rem}
-.section-divider-label{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2);white-space:nowrap}
-.section-divider-line{flex:1;height:1px;background:var(--border)}
-
-/* FREE CTA */
-.free-cta{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-top:2rem}
-.free-cta-txt{font-family:'Clash Display',sans-serif;font-size:.95rem;font-weight:700}
-.free-cta-sub{font-size:.78rem;color:var(--muted);margin-top:3px}
-.free-cta-btn{font-family:'Clash Display',sans-serif;font-size:.82rem;font-weight:700;padding:10px 22px;border-radius:100px;background:var(--teal);color:var(--black);border:none;cursor:pointer;transition:all .2s}
-.free-cta-btn:hover{background:var(--white)}
-
-@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-.lesson-card{animation:fadeUp .4s ease both}
-.lesson-card:nth-child(2){animation-delay:.05s}
-.lesson-card:nth-child(3){animation-delay:.1s}
-.lesson-card:nth-child(4){animation-delay:.15s}
-.lesson-card:nth-child(5){animation-delay:.2s}
-
-@media(max-width:900px){
-  .dept-layout{grid-template-columns:1fr}
-  .sidebar{display:none}
-  .main-content{padding:1.5rem}
-  .dept-hero{grid-template-columns:1fr;padding:90px 1.5rem 40px}
-  .dept-hero-right{display:none}
-  .progress-bar{padding:.75rem 1.5rem}
-}
-</style>
+<link href="css/radiology-dept.css" rel="stylesheet"/>
 </head>
 <body>
 
 <nav>
   <a href="index.html" class="logo">i<span>Health</span> Academy</a>
-  <div class="breadcrumb">
-    <a href="index.html">Home</a> ›
-    <a href="ecosystem.html">Ecosystem</a> ›
-    <a href="#">Provider</a> ›
-    <span>Radiology</span>
+  <div class="breadcrumb" id="navMenu">
+    <span class="crumb"><a href="index.html">Home</a> ›</span>
+    <span class="crumb"><a href="ecosystem.html">Ecosystem</a> ›</span>
+    <span class="crumb"><a href="#">Provider</a> ›</span>
+    <span class="crumb current">Radiology</span>
   </div>
-  <a href="#" class="nav-cta">Enroll free</a>
+  <div class="nav-right">
+    <a href="#" class="nav-cta">Enroll free</a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -441,6 +243,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
   </div>
 </div>
 
+<script src="js/nav.js"></script>
 <script>
 const modules={
   foundations:{
