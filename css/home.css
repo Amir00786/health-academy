@@ -191,13 +191,13 @@ nav {
 
 /* HERO */
 .hero {
-  min-height: 100vh;
+  min-height: 93vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 120px 2rem 80px;
+  padding: 120px 2rem 0;
   position: relative;
   overflow: hidden;
 }
@@ -312,13 +312,25 @@ h1 .line3 {
   border: none;
   cursor: none;
   text-decoration: none;
-  transition: all 0.25s;
-  display: inline-block;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .btn-main:hover {
   transform: translateY(-3px);
   box-shadow: 0 20px 40px rgba(0, 200, 150, 0.25);
+}
+
+.btn-main i {
+  display: inline-flex;
+  transition: transform 0.35s ease;
+  will-change: transform;
+}
+
+.btn-main:hover i {
+  transform: translateX(8px);
 }
 
 .btn-ghost {
@@ -343,11 +355,10 @@ h1 .line3 {
 
 /* TRUST BAR */
 .trust-bar {
-  display: flex;
-  gap: 100px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 1.25rem;
   width: 100%;
-  justify-content: center;
-  flex-wrap: wrap;
   margin-top: 4rem;
   padding-top: 3rem;
   border-top: 1px solid var(--border);
@@ -355,50 +366,68 @@ h1 .line3 {
 }
 
 .trust-item {
-  display: flex;
-  align-items: center;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 1.5rem;
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.trust-item:hover {
+  border-color: var(--teal-border);
+  transform: translateY(-4px);
 }
 
 .trust-item-inner {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.4rem;
+  gap: 0.5rem;
 }
 
 .trust-hd {
   display: flex;
-  align-items: center;
-  gap: 0.55rem;
-  margin-bottom: 0.2rem;
-}
-
-.trust-hd strong {
-  font-family: 'Clash Display', sans-serif;
-  font-size: 24px;
-  font-weight: 700;
-  color: var(--white);
-  letter-spacing: -0.01em;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.85rem;
 }
 
 .trust-ico {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--teal-dim);
+  border: 1px solid var(--teal-border);
   color: var(--teal);
-  font-size: 26px;
+  font-size: 20px;
   flex-shrink: 0;
 }
 
 .trust-ico i {
   display: flex;
-  width: 26px;
-  height: 26px;
+  width: 20px;
+  height: 20px;
+}
+
+.trust-hd strong {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.01em;
 }
 
 .trust-val {
-  font-size: 18px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: normal;
   color: var(--muted);
-  text-transform: uppercase;
+  text-transform: none;
+  line-height: 1.5;
+  text-transform: capitalize;
 }
 
 /* MARQUEE */
@@ -429,7 +458,7 @@ h1 .line3 {
 
 .m-item {
   font-family: 'Clash Display', sans-serif;
-  font-size: 0.72rem;
+  font-size: 40px;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -443,7 +472,8 @@ h1 .line3 {
 .m-item::after {
   content: '✦';
   color: var(--teal);
-  font-size: 0.55rem;
+  font-size: 40px;
+  margin-left: 1.5rem;
 }
 
 /* WHO WE SERVE */
@@ -1415,26 +1445,14 @@ footer {
   }
 
   .trust-bar {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
+    grid-template-columns: 1fr;
+    gap: 1rem;
     margin-top: 2.5rem;
-    padding-top: 0.5rem;
+    padding-top: 2rem;
   }
 
   .trust-item {
-    width: 100%;
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .trust-item:last-child {
-    border-bottom: none;
-  }
-
-  .trust-item-inner {
-    width: 100%;
-    align-items: center;
+    padding: 1.25rem;
   }
 
   .serve-section,
