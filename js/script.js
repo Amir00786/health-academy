@@ -272,3 +272,18 @@ function genCV() {
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
 }
+
+// OFFER CAROUSEL
+const offerGrid = document.getElementById('offerGrid');
+const offerPrev = document.querySelector('.offer-arrow--prev');
+const offerNext = document.querySelector('.offer-arrow--next');
+
+if (offerGrid && offerPrev && offerNext) {
+  const scrollStep = () => {
+    const card = offerGrid.querySelector('.offer-card');
+    const gap = parseFloat(getComputedStyle(offerGrid).gap) || 0;
+    return card ? card.getBoundingClientRect().width + gap : offerGrid.clientWidth;
+  };
+  offerPrev.addEventListener('click', () => offerGrid.scrollBy({ left: -scrollStep(), behavior: 'smooth' }));
+  offerNext.addEventListener('click', () => offerGrid.scrollBy({ left: scrollStep(), behavior: 'smooth' }));
+}
