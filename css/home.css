@@ -350,6 +350,7 @@ h1 .line3 {
   transition: transform 0.25s ease, box-shadow 0.25s ease;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
 }
 
@@ -753,6 +754,7 @@ h1 .line3 {
 
 .offer-heading-wrap .section-title {
   color: var(--white);
+  text-align: center;
 }
 
 .offer-heading-wrap .section-desc {
@@ -767,6 +769,7 @@ h1 .line3 {
   color: var(--teal);
   margin-bottom: 0.85rem;
   display: block;
+  text-align: center;
 }
 
 .offer-section {
@@ -1666,7 +1669,6 @@ footer {
 
   .trust-item {
     min-width: 160px;
-    padding: 0 1rem;
   }
 
   .offer-card {
@@ -1720,6 +1722,10 @@ footer {
     padding: 0;
   }
 
+  .m-item {
+    font-size: 22px;
+  }
+
   nav {
     height: 60px;
     padding: 0 1rem;
@@ -1740,6 +1746,7 @@ footer {
   }
 
   .hero {
+    min-height: 70vh;
     padding: 90px 1rem 50px;
   }
 
@@ -1780,6 +1787,7 @@ footer {
 
   .section-title {
     font-size: 1.7rem;
+    text-align: center;
   }
 
   .section-desc {
@@ -1789,6 +1797,10 @@ footer {
 
   .serve-card {
     padding: 1.5rem;
+  }
+
+  .serve-desc {
+    font-size: 14px;
   }
 
   .offer-card {
