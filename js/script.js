@@ -112,7 +112,7 @@ const miniPlanets = [
   animateMiniEcosystem.stars.forEach((s) => {
     miniCtx.beginPath();
     miniCtx.arc(s.x % miniWidth, s.y % miniHeight, s.r, 0, Math.PI * 2);
-    miniCtx.fillStyle = `rgba(248,246,241,${s.o})`;
+    miniCtx.fillStyle = `rgba(6,6,8,${s.o * 0.5})`;
     miniCtx.fill();
   });
 
@@ -150,7 +150,7 @@ const miniPlanets = [
 
     miniCtx.beginPath();
     miniCtx.ellipse(cx, cy, orbitR, orbitR * 0.5, 0, 0, Math.PI * 2);
-    miniCtx.strokeStyle = 'rgba(255,255,255,0.04)';
+    miniCtx.strokeStyle = 'rgba(6,6,8,0.09)';
     miniCtx.lineWidth = 1;
     miniCtx.stroke();
 
@@ -160,7 +160,7 @@ const miniPlanets = [
     miniCtx.fill();
 
     miniCtx.font = '600 8px Cabinet Grotesk,sans-serif';
-    miniCtx.fillStyle = 'rgba(248,246,241,0.6)';
+    miniCtx.fillStyle = 'rgba(6,6,8,0.6)';
     miniCtx.textAlign = 'center';
     miniCtx.textBaseline = 'top';
     miniCtx.fillText(p.label, px, py + p.r + 3);

@@ -19,7 +19,7 @@ body {
   height: 100%;
   overflow: hidden;
   font-family: 'Cabinet Grotesk', sans-serif;
-  background: var(--black);
+  background: #EFF8F4;
   color: var(--white);
 }
 
@@ -73,6 +73,24 @@ nav {
 
 .nav-link:hover {
   color: var(--white);
+}
+
+.nav-home {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 7px 16px;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--white);
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.nav-home:hover {
+  border-color: var(--teal);
+  color: var(--teal);
+  background: rgba(0, 200, 150, 0.08);
 }
 
 .nav-cta {
@@ -136,7 +154,7 @@ nav {
   left: 50%;
   transform: translateX(-50%);
   font-size: 0.72rem;
-  color: var(--muted);
+  color: rgba(6, 6, 8, 0.55);
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -409,6 +427,20 @@ nav {
     font-size: 1rem;
     border-bottom: 1px solid var(--border);
     width: 100%;
+  }
+
+  .nav-menu .nav-home {
+    border: none;
+    border-bottom: 1px solid var(--border);
+    border-radius: 0;
+    background: none;
+    padding: 1rem 0;
+    font-size: 1rem;
+    width: 100%;
+  }
+
+  .nav-menu .nav-home:hover {
+    background: none;
   }
 }
 
