@@ -29,9 +29,9 @@
   <button class="start-btn" onclick="startQuiz()">Start the finder →</button>
   <div class="landing-note">Takes about 3 minutes · Results are instant · Free forever</div>
   <div class="landing-stats">
-    <div><span class="ls-val">40+</span><div class="ls-lbl">Specialties ranked</div></div>
-    <div><span class="ls-val">10</span><div class="ls-lbl">Questions</div></div>
-    <div><span class="ls-val">100%</span><div class="ls-lbl">Free</div></div>
+    <div><span class="ls-val"><span class="counter" data-target="40">0</span>+</span><div class="ls-lbl">Specialties ranked</div></div>
+    <div><span class="ls-val"><span class="counter" data-target="10">0</span></span><div class="ls-lbl">Questions</div></div>
+    <div><span class="ls-val"><span class="counter" data-target="100">0</span>%</span><div class="ls-lbl">Free</div></div>
   </div>
 </div>
 
@@ -68,6 +68,32 @@
 
 <script src="js/nav.js"></script>
 <script>
+// COUNTER
+function animateCounter(el) {
+  const target = parseInt(el.dataset.target, 10);
+  const duration = 1200;
+  const start = performance.now();
+
+  function step(now) {
+    const progress = Math.min((now - start) / duration, 1);
+    el.textContent = Math.round(progress * target);
+    if (progress < 1) requestAnimationFrame(step);
+  }
+
+  requestAnimationFrame(step);
+}
+
+const counterObserver = new IntersectionObserver(
+  (entries) => entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      animateCounter(entry.target);
+      counterObserver.unobserve(entry.target);
+    }
+  }),
+  { threshold: 0.5 }
+);
+document.querySelectorAll('.counter').forEach((el) => counterObserver.observe(el));
+
 const questions=[
   {
     num:'01',text:'How do you prefer to interact with patients?',sub:'Think about your ideal daily patient experience.',
