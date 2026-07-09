@@ -1,359 +1,443 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Radiology Department — iHealth Academy</title>
-<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Cabinet+Grotesk:wght@300;400;500;700;800&display=swap" rel="stylesheet"/>
-<link href="css/radiology-dept.css" rel="stylesheet"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Radiology Department — iHealth Academy</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Cabinet+Grotesk:wght@300;400;500;700;800&display=swap"
+    rel="stylesheet" />
+  <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-bold-rounded/css/uicons-bold-rounded.css" rel="stylesheet" />
+  <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css"
+    rel="stylesheet" />
+  <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-thin-rounded/css/uicons-thin-rounded.css" rel="stylesheet" />
+  <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css" rel="stylesheet" />
+  <link href="css/radiology-dept.css" rel="stylesheet" />
 </head>
+
 <body>
 
-<nav>
-  <a href="index.html" class="logo">i<span>Health</span> Academy</a>
-  <div class="breadcrumb" id="navMenu">
-    <span class="crumb"><a href="index.html">Home</a> ›</span>
-    <span class="crumb"><a href="ecosystem.html">Ecosystem</a> ›</span>
-    <span class="crumb"><a href="#">Provider</a> ›</span>
-    <span class="crumb current">Radiology</span>
-  </div>
-  <div class="nav-right">
-    <a href="#" class="nav-cta">Enroll free</a>
-    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
+  <div id="wrapper">
 
-<!-- HERO -->
-<div class="dept-hero">
-  <div>
-    <div class="dept-tag"><span class="dept-tag-dot"></span>Provider — Radiology department</div>
-    <h1>Radiology.<br><span>Done right.</span></h1>
-    <p class="dept-desc">Everything a radiologist needs — from your first scan to passing your board exam to writing pre-auth requests that never get rejected. Structured. Practical. Built from 7 years of real experience.</p>
-    <div class="dept-stats">
-      <div>
-        <span class="dept-stat-val">6</span>
-        <div class="dept-stat-lbl">Learning tracks</div>
+    <nav>
+      <a href="index.html" class="logo">i<span>Health</span> Academy</a>
+      <div class="breadcrumb" id="navMenu">
+        <span class="crumb">
+          <a href="index.html">Home</a>
+          <span><i class="fi fi-sr-angle-small-right"></i></span>
+        </span>
+        <span class="crumb"><a href="ecosystem.html">Ecosystem</a>
+          <span><i class="fi fi-sr-angle-small-right"></i></span>
+        </span>
+        <span class="crumb"><a href="#">Provider</a>
+          <span><i class="fi fi-sr-angle-small-right"></i></span>
+        </span>
+        <span class="crumb current">Radiology</span>
+        <a href="#" class="nav-cta nav-cta--menu">Enroll free</a>
       </div>
-      <div>
-        <span class="dept-stat-val">48</span>
-        <div class="dept-stat-lbl">Lessons</div>
+      <div class="nav-right">
+        <a href="#" class="nav-cta">Enroll free</a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
       </div>
-      <div>
-        <span class="dept-stat-val">5</span>
-        <div class="dept-stat-lbl">Exam tracks</div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="dept-hero-wrap">
+      <div class="dept-hero">
+        <div>
+          <div class="dept-tag"><span class="dept-tag-dot"></span>Provider — Radiology department</div>
+          <h1>Radiology.<br><span>Done right.</span></h1>
+          <p class="dept-desc">Everything a radiologist needs — from your first scan to passing your board exam to
+            writing
+            pre-auth requests that never get rejected. Structured. Practical. Built from 7 years of real experience.</p>
+          <div class="dept-stats">
+            <div>
+              <span class="dept-stat-val counter" data-target="6">0</span>
+              <div class="dept-stat-lbl">Learning tracks</div>
+            </div>
+            <div>
+              <span class="dept-stat-val counter" data-target="48">0</span>
+              <div class="dept-stat-lbl">Lessons</div>
+            </div>
+            <div>
+              <span class="dept-stat-val counter" data-target="5">0</span>
+              <div class="dept-stat-lbl">Exam tracks</div>
+            </div>
+            <div>
+              <span class="dept-stat-val">Free</span>
+              <div class="dept-stat-lbl">To start</div>
+            </div>
+          </div>
+        </div>
+        <div class="dept-hero-right">
+          <div class="dept-badge">
+            <div class="badge-caption">
+              <span class="badge-txt">Radiology dept</span>
+              <span class="badge-sub">iHealth Academy</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <div>
-        <span class="dept-stat-val">Free</span>
-        <div class="dept-stat-lbl">To start</div>
+    </div>
+
+    <!-- PROGRESS -->
+    <div class="progress-bar">
+      <span class="prog-label">Your progress</span>
+      <div class="prog-track-wrap">
+        <div class="prog-track">
+          <div class="prog-fill" id="progFill"></div>
+        </div>
+        <span class="prog-pct" id="progPct">0%</span>
+      </div>
+      <div class="prog-modules" id="progDots"></div>
+    </div>
+
+    <!-- LAYOUT -->
+    <div class="dept-layout-wrap">
+      <div class="dept-layout">
+
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+          <div class="sidebar-section">
+            <div class="sidebar-track active-track" onclick="toggleTrack(this)">
+              <span class="track-label"><i class="fi fi-br-building"></i> Foundations</span><span class="track-arrow"><i
+                  class="fi fi-sr-angle-small-right"></i></span>
+            </div>
+            <div class="sidebar-lessons">
+              <div class="lesson-link active-lesson" onclick="loadModule('foundations')">
+                <div class="lesson-num">1</div>
+                <span class="lesson-title">What is radiology?</span>
+                <span class="lesson-dur">5m</span>
+              </div>
+              <div class="lesson-link" onclick="loadModule('foundations')">
+                <div class="lesson-num">2</div>
+                <span class="lesson-title">How imaging works</span>
+                <span class="lesson-dur">8m</span>
+              </div>
+              <div class="lesson-link" onclick="loadModule('foundations')">
+                <div class="lesson-num">3</div>
+                <span class="lesson-title">X-ray basics</span>
+                <span class="lesson-dur">10m</span>
+              </div>
+              <div class="lesson-link" onclick="loadModule('foundations')">
+                <div class="lesson-num">4</div>
+                <span class="lesson-title">CT explained simply</span>
+                <span class="lesson-dur">12m</span>
+              </div>
+              <div class="lesson-link" onclick="loadModule('foundations')">
+                <div class="lesson-num">5</div>
+                <span class="lesson-title">MRI — when and why</span>
+                <span class="lesson-dur">12m</span>
+              </div>
+              <div class="lesson-link" onclick="loadModule('foundations')">
+                <div class="lesson-num">6</div>
+                <span class="lesson-title">Ultrasound & nuclear</span>
+                <span class="lesson-dur">10m</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="sidebar-divider"></div>
+
+          <div class="sidebar-section">
+            <div class="sidebar-track" onclick="toggleTrack(this)">
+              <span class="track-label"><i class="fi fi-sr-document"></i> Report writing</span><span
+                class="track-arrow"><i class="fi fi-sr-angle-small-right"></i></span>
+            </div>
+            <div class="sidebar-lessons">
+              <div class="lesson-link" onclick="loadModule('reports')">
+                <div class="lesson-num">1</div><span class="lesson-title">Structure of a good report</span><span
+                  class="lesson-dur">10m</span>
+              </div>
+              <div class="lesson-link" onclick="loadModule('reports')">
+                <div class="lesson-num">2</div><span class="lesson-title">Language & clarity</span><span
+                  class="lesson-dur">8m</span>
+              </div>
+              <div class="lesson-link" onclick="loadModule('reports')">
+                <div class="lesson-num">3</div><span class="lesson-title">Common findings — how to describe</span><span
+                  class="lesson-dur">15m</span>
+              </div>
+              <div class="lesson-link" onclick="loadModule('reports')">
+                <div class="lesson-num">4</div><span class="lesson-title">Critical findings & communication</span><span
+                  class="lesson-dur">10m</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="sidebar-divider"></div>
+
+          <div class="sidebar-section">
+            <div class="sidebar-track" onclick="toggleTrack(this)">
+              <span class="track-label"><i class="fi fi-sr-copyright"></i> Pre-authorization</span><span
+                class="track-arrow"><i class="fi fi-sr-angle-small-right"></i></span>
+            </div>
+            <div class="sidebar-lessons">
+              <div class="lesson-link" onclick="loadModule('preauth')">
+                <div class="lesson-num">1</div><span class="lesson-title">What is pre-auth?</span><span
+                  class="lesson-dur">6m</span>
+              </div>
+              <div class="lesson-link" onclick="loadModule('preauth')">
+                <div class="lesson-num">2</div><span class="lesson-title">Writing requests that get approved</span><span
+                  class="lesson-dur">15m</span>
+              </div>
+              <div class="lesson-link" onclick="loadModule('preauth')">
+                <div class="lesson-num">3</div><span class="lesson-title">Denial management</span><span
+                  class="lesson-dur">12m</span>
+              </div>
+              <div class="lesson-link" onclick="loadModule('preauth')">
+                <div class="lesson-num">4</div><span class="lesson-title">Appeals step by step</span><span
+                  class="lesson-dur">10m</span>
+              </div>
+              <div class="lesson-link" onclick="loadModule('preauth')">
+                <div class="lesson-num">5</div><span class="lesson-title">ICD & CPT coding for radiology</span><span
+                  class="lesson-dur">18m</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="sidebar-divider"></div>
+
+          <div class="sidebar-section">
+            <div class="sidebar-track" onclick="toggleTrack(this)">
+              <span class="track-label"><i class="fi fi-sr-test"></i> Exam preparation</span><span
+                class="track-arrow"><i class="fi fi-sr-angle-small-right"></i></span>
+            </div>
+            <div class="sidebar-lessons">
+              <div class="lesson-link" onclick="loadModule('exams')">
+                <div class="lesson-num">1</div><span class="lesson-title">FRCR Part 1 — study plan</span><span
+                  class="lesson-dur">20m</span>
+              </div>
+              <div class="lesson-link" onclick="loadModule('exams')">
+                <div class="lesson-num">2</div><span class="lesson-title">FRCR Part 2B — rapid reporting</span><span
+                  class="lesson-dur">25m</span>
+              </div>
+              <div class="lesson-link" onclick="loadModule('exams')">
+                <div class="lesson-num">3</div><span class="lesson-title">Arab Board — what to expect</span><span
+                  class="lesson-dur">15m</span>
+              </div>
+              <div class="lesson-link" onclick="loadModule('exams')">
+                <div class="lesson-num">4</div><span class="lesson-title">Saudi Board — full guide</span><span
+                  class="lesson-dur">15m</span>
+              </div>
+              <div class="lesson-link" onclick="loadModule('exams')">
+                <div class="lesson-num">5</div><span class="lesson-title">ABR — for those targeting the US</span><span
+                  class="lesson-dur">15m</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="sidebar-divider"></div>
+
+          <div class="sidebar-section">
+            <div class="sidebar-track" onclick="toggleTrack(this)">
+              <span class="track-label"><i class="fi fi-sr-computer"></i> Systems & tech</span><span
+                class="track-arrow"><i class="fi fi-sr-angle-small-right"></i></span>
+            </div>
+            <div class="sidebar-lessons">
+              <div class="lesson-link" onclick="loadModule('systems')">
+                <div class="lesson-num">1</div><span class="lesson-title">RIS & PACS — what they do</span><span
+                  class="lesson-dur">8m</span>
+              </div>
+              <div class="lesson-link" onclick="loadModule('systems')">
+                <div class="lesson-num">2</div><span class="lesson-title">NPHIES for radiologists</span><span
+                  class="lesson-dur">10m</span>
+              </div>
+              <div class="lesson-link" onclick="loadModule('systems')">
+                <div class="lesson-num">3</div><span class="lesson-title">AI tools in radiology today</span><span
+                  class="lesson-dur">12m</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="sidebar-divider"></div>
+
+          <div class="sidebar-section">
+            <div class="sidebar-track" onclick="toggleTrack(this)">
+              <span class="track-label"><i class="fi fi-brands-visual-basic"></i> Research basics</span><span
+                class="track-arrow"><i class="fi fi-sr-angle-small-right"></i></span>
+            </div>
+            <div class="sidebar-lessons">
+              <div class="lesson-link" onclick="loadModule('research')">
+                <div class="lesson-num">1</div><span class="lesson-title">How to read a study</span><span
+                  class="lesson-dur">12m</span>
+              </div>
+              <div class="lesson-link" onclick="loadModule('research')">
+                <div class="lesson-num">2</div><span class="lesson-title">Writing your first case report</span><span
+                  class="lesson-dur">15m</span>
+              </div>
+              <div class="lesson-link" onclick="loadModule('research')">
+                <div class="lesson-num">3</div><span class="lesson-title">Evidence-based radiology</span><span
+                  class="lesson-dur">10m</span>
+              </div>
+              <div class="lesson-link" onclick="loadModule('research')">
+                <div class="lesson-num">4</div><span class="lesson-title">Publishing your first paper</span><span
+                  class="lesson-dur">15m</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MAIN -->
+        <div class="main-content" id="mainContent">
+
+          <!-- MODULE TABS -->
+          <div class="module-tabs">
+            <button class="mod-tab active-tab" onclick="loadModule('foundations',this)">Foundations</button>
+            <button class="mod-tab" onclick="loadModule('reports',this)">Reports</button>
+            <button class="mod-tab" onclick="loadModule('preauth',this)">Pre-auth</button>
+            <button class="mod-tab" onclick="loadModule('exams',this)">Exams</button>
+            <button class="mod-tab" onclick="loadModule('systems',this)">Systems</button>
+            <button class="mod-tab" onclick="loadModule('research',this)">Research</button>
+          </div>
+
+          <!-- CONTENT AREA -->
+          <div id="contentArea"></div>
+
+        </div>
       </div>
     </div>
   </div>
-  <div class="dept-hero-right">
-    <div class="dept-badge">
-      <span class="badge-ico">🩻</span>
-      <span class="badge-txt">Radiology dept</span>
-      <span class="badge-sub">iHealth Academy</span>
-    </div>
-  </div>
-</div>
 
-<!-- PROGRESS -->
-<div class="progress-bar">
-  <span class="prog-label">Your progress</span>
-  <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
-  <span class="prog-pct" id="progPct">0%</span>
-  <div class="prog-modules" id="progDots"></div>
-</div>
+  <script src="js/nav.js"></script>
+  <script>
+    // COUNTER
+    function animateCounter(el) {
+      const target = parseInt(el.dataset.target, 10);
+      const duration = 1200;
+      const start = performance.now();
 
-<!-- LAYOUT -->
-<div class="dept-layout">
+      function step(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        el.textContent = Math.round(progress * target);
+        if (progress < 1) requestAnimationFrame(step);
+      }
 
-  <!-- SIDEBAR -->
-  <div class="sidebar">
-    <div class="sidebar-section">
-      <div class="sidebar-track active-track" onclick="toggleTrack(this)">
-        <span>🩻 Foundations</span><span class="track-arrow">›</span>
-      </div>
-      <div class="sidebar-lessons">
-        <div class="lesson-link active-lesson" onclick="loadModule('foundations')">
-          <div class="lesson-num">1</div>
-          <span class="lesson-title">What is radiology?</span>
-          <span class="lesson-dur">5m</span>
-        </div>
-        <div class="lesson-link" onclick="loadModule('foundations')">
-          <div class="lesson-num">2</div>
-          <span class="lesson-title">How imaging works</span>
-          <span class="lesson-dur">8m</span>
-        </div>
-        <div class="lesson-link" onclick="loadModule('foundations')">
-          <div class="lesson-num">3</div>
-          <span class="lesson-title">X-ray basics</span>
-          <span class="lesson-dur">10m</span>
-        </div>
-        <div class="lesson-link" onclick="loadModule('foundations')">
-          <div class="lesson-num">4</div>
-          <span class="lesson-title">CT explained simply</span>
-          <span class="lesson-dur">12m</span>
-        </div>
-        <div class="lesson-link" onclick="loadModule('foundations')">
-          <div class="lesson-num">5</div>
-          <span class="lesson-title">MRI — when and why</span>
-          <span class="lesson-dur">12m</span>
-        </div>
-        <div class="lesson-link" onclick="loadModule('foundations')">
-          <div class="lesson-num">6</div>
-          <span class="lesson-title">Ultrasound & nuclear</span>
-          <span class="lesson-dur">10m</span>
-        </div>
-      </div>
-    </div>
+      requestAnimationFrame(step);
+    }
 
-    <div class="sidebar-divider"></div>
+    const counterObserver = new IntersectionObserver(
+      (entries) => entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          counterObserver.unobserve(entry.target);
+        }
+      }),
+      { threshold: 0.5 }
+    );
+    document.querySelectorAll('.counter').forEach((el) => counterObserver.observe(el));
 
-    <div class="sidebar-section">
-      <div class="sidebar-track" onclick="toggleTrack(this)">
-        <span>📋 Report writing</span><span class="track-arrow">›</span>
-      </div>
-      <div class="sidebar-lessons">
-        <div class="lesson-link" onclick="loadModule('reports')">
-          <div class="lesson-num">1</div><span class="lesson-title">Structure of a good report</span><span class="lesson-dur">10m</span>
-        </div>
-        <div class="lesson-link" onclick="loadModule('reports')">
-          <div class="lesson-num">2</div><span class="lesson-title">Language & clarity</span><span class="lesson-dur">8m</span>
-        </div>
-        <div class="lesson-link" onclick="loadModule('reports')">
-          <div class="lesson-num">3</div><span class="lesson-title">Common findings — how to describe</span><span class="lesson-dur">15m</span>
-        </div>
-        <div class="lesson-link" onclick="loadModule('reports')">
-          <div class="lesson-num">4</div><span class="lesson-title">Critical findings & communication</span><span class="lesson-dur">10m</span>
-        </div>
-      </div>
-    </div>
+    const modules = {
+      foundations: {
+        num: 'Module 01',
+        title: 'Radiology foundations — start here.',
+        desc: 'Before anything else, you need to understand what radiology is, how each imaging modality works, and when to use which. These lessons are written for everyone — from medical students to senior residents who want to fill in the gaps.',
+        meta: [{ ico: '<i class="fi fi-sr-alarm-clock"></i>', txt: '~57 min total' }, { ico: '<i class="fi fi-sr-user-graduate"></i>', txt: 'All levels' }, { ico: '<i class="fi fi-sr-lock-open-alt"></i>', txt: 'Free to access' }],
+        exams: [],
+        lessons: [
+          { num: '01', title: 'What is radiology?', desc: 'The role of the radiologist in modern medicine — clinical, administrative, and consultative.', dur: '5 min', tag: 'free', featured: true, locked: false },
+          { num: '02', title: 'How imaging works', desc: 'The physics behind every modality — explained simply without heavy math.', dur: '8 min', tag: 'free', featured: false, locked: false },
+          { num: '03', title: 'X-ray — the foundation of everything', desc: 'How X-rays are produced, what they show, and how to read a chest X-ray step by step.', dur: '10 min', tag: 'free', featured: false, locked: false },
+          { num: '04', title: 'CT scan — when and how', desc: 'How CT works, why it is requested, and what the numbers mean.', dur: '12 min', tag: 'pro', featured: false, locked: true },
+          { num: '05', title: 'MRI — the most powerful tool', desc: 'When MRI beats CT, sequences explained, and how to avoid common mistakes.', dur: '12 min', tag: 'pro', featured: false, locked: true },
+          { num: '06', title: 'Ultrasound & nuclear medicine', desc: 'The role of US and nuclear in modern practice — including PET/CT basics.', dur: '10 min', tag: 'pro', featured: false, locked: true },
+        ]
+      },
+      reports: {
+        num: 'Module 02',
+        title: 'Report writing — your voice as a radiologist.',
+        desc: 'A radiology report is a medical-legal document. Every word matters. This module teaches you to write reports that are clear, clinically useful, and impossible to misinterpret. Based on real cases and international standards.',
+        meta: [{ ico: '<i class="fi fi-sr-alarm-clock"></i>', txt: '~43 min total' }, { ico: '<i class="fi fi-sr-graduation-cap"></i>', txt: 'R1 and above' }, { ico: '<i class="fi fi-sr-comet"></i>', txt: 'High impact' }],
+        exams: [],
+        lessons: [
+          { num: '01', title: 'Structure of a good report', desc: 'The four parts every radiology report must have — and why most reports fail at part three.', dur: '10 min', tag: 'free', featured: true, locked: false },
+          { num: '02', title: 'Language & clarity', desc: 'How to write so the referring doctor understands — and takes action.', dur: '8 min', tag: 'free', featured: false, locked: false },
+          { num: '03', title: 'Describing common findings', desc: 'Standard language for the 20 most common findings in chest, abdomen, and brain.', dur: '15 min', tag: 'pro', featured: false, locked: true },
+          { num: '04', title: 'Critical findings & communication', desc: 'What to do when you find something urgent — legally, clinically, and practically.', dur: '10 min', tag: 'pro', featured: false, locked: true },
+        ]
+      },
+      preauth: {
+        num: 'Module 03',
+        title: 'Pre-authorization — your most practical skill.',
+        desc: 'This is the module most junior radiologists need most — and no medical school teaches it. Built from 7 years of real pre-authorization experience. After this module, you will never write a weak request again.',
+        meta: [{ ico: '<i class="fi fi-sr-alarm-clock"></i>', txt: '~61 min total' }, { ico: '<i class="fi fi-sr-skill"></i>', txt: 'Core skill' }, { ico: '<i class="fi fi-sr-badge"></i>', txt: 'Certificate available' }],
+        exams: [
+          { ico: '📜', name: 'Pre-auth certificate', info: 'Complete all 5 lessons + assessment', badges: ['Unique to iHealth', 'Globally recognized', 'Employer-ready'] }
+        ],
+        lessons: [
+          { num: '01', title: 'What is pre-authorization and why it exists', desc: 'The purpose of pre-auth, who is involved, and how it protects both patient and provider.', dur: '6 min', tag: 'free', featured: false, locked: false },
+          { num: '02', title: 'Writing requests that get approved', desc: 'The exact structure, language, and clinical criteria that make insurers say yes.', dur: '15 min', tag: 'free', featured: true, locked: false },
+          { num: '03', title: 'Why requests get denied — and how to prevent it', desc: 'The 7 most common reasons for denial and how to fix them before you submit.', dur: '12 min', tag: 'pro', featured: false, locked: true },
+          { num: '04', title: 'The appeals process — step by step', desc: 'How to write an appeal that overturns a denial. Templates and real examples.', dur: '10 min', tag: 'pro', featured: false, locked: true },
+          { num: '05', title: 'ICD & CPT coding for radiology', desc: 'The codes that determine whether your request is paid. The 50 codes every radiologist must know.', dur: '18 min', tag: 'pro', featured: false, locked: true },
+        ]
+      },
+      exams: {
+        num: 'Module 04',
+        title: 'Exam preparation — pass on your first attempt.',
+        desc: 'Structured study plans for every major radiology board exam. Not just question banks — actual strategies, timelines, and the specific topics that appear most in each exam. Built for people with real clinical workloads.',
+        meta: [{ ico: '<i class="fi fi-sr-alarm-clock"></i>', txt: '~90 min total' }, { ico: '<i class="fi fi-sr-graduation-cap"></i>', txt: 'R2 and above' }, { ico: '<i class="fi fi-sr-track"></i>', txt: '5 exam tracks' }],
+        exams: [
+          { ico: '<img src="images/uk.webp" alt="UK">', name: 'FRCR Part 1 & 2B', info: 'UK Royal College — most internationally recognized', badges: ['Physics', 'Anatomy', 'Rapid reporting'] },
+          { ico: '🌍', name: 'Arab Board of Radiology', info: 'Arab countries — structured written & clinical', badges: ['Written exam', 'Clinical cases', 'Oral prep'] },
+          { ico: '<img src="images/saudi.jpg" alt="Saudi Arabia">', name: 'Saudi Board', info: 'Saudi Arabia — full residency board exam', badges: ['All modalities', 'Case-based', 'Viva prep'] },
+          { ico: '<img src="images/us.webp" alt="United States">', name: 'ABR — American Board', info: 'For those targeting the United States', badges: ['Core exam', 'Certifying exam', 'Physics'] },
+        ],
+        lessons: [
+          { num: '01', title: 'FRCR Part 1 — the complete study plan', desc: 'Physics, anatomy, and how to pass in 90 days with a full-time clinical schedule.', dur: '20 min', tag: 'pro', featured: true, locked: true },
+          { num: '02', title: 'FRCR Part 2B — rapid reporting mastered', desc: 'The technique, the common cases, and how to avoid the most common mistakes.', dur: '25 min', tag: 'pro', featured: false, locked: true },
+          { num: '03', title: 'Arab Board — structure and strategy', desc: 'What the exam tests, how to prepare, and what most candidates get wrong.', dur: '15 min', tag: 'pro', featured: false, locked: true },
+          { num: '04', title: 'Saudi Board — the complete guide', desc: 'All modalities, case formats, viva preparation, and the topics that repeat every year.', dur: '15 min', tag: 'pro', featured: false, locked: true },
+          { num: '05', title: 'ABR — for those targeting the United States', desc: 'Core exam structure, certifying exam strategy, and physics review.', dur: '15 min', tag: 'pro', featured: false, locked: true },
+        ]
+      },
+      systems: {
+        num: 'Module 05',
+        title: 'Systems & technology — what every radiologist must know.',
+        desc: 'RIS, PACS, NPHIES, and AI tools are part of your daily work. This module explains what each system does, how they connect, and how to use them efficiently.',
+        meta: [{ ico: '<i class="fi fi-sr-alarm-clock"></i>', txt: '~30 min total' }, { ico: '<i class="fi fi-sr-graduation-cap"></i>', txt: 'All levels' }, { ico: '<i class="fi fi-sr-calendar"></i>', txt: 'Updated 2026' }],
+        exams: [],
+        lessons: [
+          { num: '01', title: 'RIS & PACS — what they do and why they matter', desc: 'The two systems behind every scan — from order entry to report delivery.', dur: '8 min', tag: 'free', featured: false, locked: false },
+          { num: '02', title: 'NPHIES for radiologists', desc: 'Saudi Arabia\'s national health data platform — what you must know to submit correctly.', dur: '10 min', tag: 'free', featured: true, locked: false },
+          { num: '03', title: 'AI tools in radiology today', desc: 'What AI is actually doing in radiology right now — triage, detection, and reporting.', dur: '12 min', tag: 'pro', featured: false, locked: true },
+        ]
+      },
+      research: {
+        num: 'Module 06',
+        title: 'Research basics — build your academic profile.',
+        desc: 'Research is not just for professors. Every level of training benefits from understanding how to read studies, write case reports, and contribute to the literature. This module makes it practical and achievable.',
+        meta: [{ ico: '<i class="fi fi-sr-alarm-clock"></i>', txt: '~52 min total' }, { ico: '<i class="fi fi-sr-graduation-cap"></i>', txt: 'All levels' }, { ico: '<i class="fi fi-sr-train-track"></i>', txt: 'Academic track' }],
+        exams: [],
+        lessons: [
+          { num: '01', title: 'How to read a radiology study', desc: 'The five questions to ask before trusting any paper. Critical appraisal made simple.', dur: '12 min', tag: 'free', featured: true, locked: false },
+          { num: '02', title: 'Writing your first case report', desc: 'Structure, language, and where to submit. Everything you need to publish your first paper.', dur: '15 min', tag: 'free', featured: false, locked: false },
+          { num: '03', title: 'Evidence-based radiology in practice', desc: 'How to find, evaluate, and apply the best evidence to clinical decisions.', dur: '10 min', tag: 'pro', featured: false, locked: true },
+          { num: '04', title: 'Publishing your first paper — a step by step guide', desc: 'From idea to acceptance. Journal selection, submission, and responding to reviewers.', dur: '15 min', tag: 'pro', featured: false, locked: true },
+        ]
+      }
+    };
 
-    <div class="sidebar-divider"></div>
+    let progress = {};
+    let currentModule = 'foundations';
 
-    <div class="sidebar-section">
-      <div class="sidebar-track" onclick="toggleTrack(this)">
-        <span>✅ Pre-authorization</span><span class="track-arrow">›</span>
-      </div>
-      <div class="sidebar-lessons">
-        <div class="lesson-link" onclick="loadModule('preauth')">
-          <div class="lesson-num">1</div><span class="lesson-title">What is pre-auth?</span><span class="lesson-dur">6m</span>
-        </div>
-        <div class="lesson-link" onclick="loadModule('preauth')">
-          <div class="lesson-num">2</div><span class="lesson-title">Writing requests that get approved</span><span class="lesson-dur">15m</span>
-        </div>
-        <div class="lesson-link" onclick="loadModule('preauth')">
-          <div class="lesson-num">3</div><span class="lesson-title">Denial management</span><span class="lesson-dur">12m</span>
-        </div>
-        <div class="lesson-link" onclick="loadModule('preauth')">
-          <div class="lesson-num">4</div><span class="lesson-title">Appeals step by step</span><span class="lesson-dur">10m</span>
-        </div>
-        <div class="lesson-link" onclick="loadModule('preauth')">
-          <div class="lesson-num">5</div><span class="lesson-title">ICD & CPT coding for radiology</span><span class="lesson-dur">18m</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="sidebar-divider"></div>
-
-    <div class="sidebar-section">
-      <div class="sidebar-track" onclick="toggleTrack(this)">
-        <span>🎓 Exam preparation</span><span class="track-arrow">›</span>
-      </div>
-      <div class="sidebar-lessons">
-        <div class="lesson-link" onclick="loadModule('exams')">
-          <div class="lesson-num">1</div><span class="lesson-title">FRCR Part 1 — study plan</span><span class="lesson-dur">20m</span>
-        </div>
-        <div class="lesson-link" onclick="loadModule('exams')">
-          <div class="lesson-num">2</div><span class="lesson-title">FRCR Part 2B — rapid reporting</span><span class="lesson-dur">25m</span>
-        </div>
-        <div class="lesson-link" onclick="loadModule('exams')">
-          <div class="lesson-num">3</div><span class="lesson-title">Arab Board — what to expect</span><span class="lesson-dur">15m</span>
-        </div>
-        <div class="lesson-link" onclick="loadModule('exams')">
-          <div class="lesson-num">4</div><span class="lesson-title">Saudi Board — full guide</span><span class="lesson-dur">15m</span>
-        </div>
-        <div class="lesson-link" onclick="loadModule('exams')">
-          <div class="lesson-num">5</div><span class="lesson-title">ABR — for those targeting the US</span><span class="lesson-dur">15m</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="sidebar-divider"></div>
-
-    <div class="sidebar-section">
-      <div class="sidebar-track" onclick="toggleTrack(this)">
-        <span>🖥️ Systems & tech</span><span class="track-arrow">›</span>
-      </div>
-      <div class="sidebar-lessons">
-        <div class="lesson-link" onclick="loadModule('systems')">
-          <div class="lesson-num">1</div><span class="lesson-title">RIS & PACS — what they do</span><span class="lesson-dur">8m</span>
-        </div>
-        <div class="lesson-link" onclick="loadModule('systems')">
-          <div class="lesson-num">2</div><span class="lesson-title">NPHIES for radiologists</span><span class="lesson-dur">10m</span>
-        </div>
-        <div class="lesson-link" onclick="loadModule('systems')">
-          <div class="lesson-num">3</div><span class="lesson-title">AI tools in radiology today</span><span class="lesson-dur">12m</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="sidebar-divider"></div>
-
-    <div class="sidebar-section">
-      <div class="sidebar-track" onclick="toggleTrack(this)">
-        <span>🔬 Research basics</span><span class="track-arrow">›</span>
-      </div>
-      <div class="sidebar-lessons">
-        <div class="lesson-link" onclick="loadModule('research')">
-          <div class="lesson-num">1</div><span class="lesson-title">How to read a study</span><span class="lesson-dur">12m</span>
-        </div>
-        <div class="lesson-link" onclick="loadModule('research')">
-          <div class="lesson-num">2</div><span class="lesson-title">Writing your first case report</span><span class="lesson-dur">15m</span>
-        </div>
-        <div class="lesson-link" onclick="loadModule('research')">
-          <div class="lesson-num">3</div><span class="lesson-title">Evidence-based radiology</span><span class="lesson-dur">10m</span>
-        </div>
-        <div class="lesson-link" onclick="loadModule('research')">
-          <div class="lesson-num">4</div><span class="lesson-title">Publishing your first paper</span><span class="lesson-dur">15m</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- MAIN -->
-  <div class="main-content" id="mainContent">
-
-    <!-- MODULE TABS -->
-    <div class="module-tabs">
-      <button class="mod-tab active-tab" onclick="loadModule('foundations',this)">Foundations</button>
-      <button class="mod-tab" onclick="loadModule('reports',this)">Reports</button>
-      <button class="mod-tab" onclick="loadModule('preauth',this)">Pre-auth</button>
-      <button class="mod-tab" onclick="loadModule('exams',this)">Exams</button>
-      <button class="mod-tab" onclick="loadModule('systems',this)">Systems</button>
-      <button class="mod-tab" onclick="loadModule('research',this)">Research</button>
-    </div>
-
-    <!-- CONTENT AREA -->
-    <div id="contentArea"></div>
-
-  </div>
-</div>
-
-<script src="js/nav.js"></script>
-<script>
-const modules={
-  foundations:{
-    num:'Module 01',
-    title:'Radiology foundations — start here.',
-    desc:'Before anything else, you need to understand what radiology is, how each imaging modality works, and when to use which. These lessons are written for everyone — from medical students to senior residents who want to fill in the gaps.',
-    meta:[{ico:'⏱️',txt:'~57 min total'},{ico:'🎓',txt:'All levels'},{ico:'🔓',txt:'Free to access'}],
-    exams:[],
-    lessons:[
-      {num:'01',title:'What is radiology?',desc:'The role of the radiologist in modern medicine — clinical, administrative, and consultative.',dur:'5 min',tag:'free',featured:true,locked:false},
-      {num:'02',title:'How imaging works',desc:'The physics behind every modality — explained simply without heavy math.',dur:'8 min',tag:'free',featured:false,locked:false},
-      {num:'03',title:'X-ray — the foundation of everything',desc:'How X-rays are produced, what they show, and how to read a chest X-ray step by step.',dur:'10 min',tag:'free',featured:false,locked:false},
-      {num:'04',title:'CT scan — when and how',desc:'How CT works, why it is requested, and what the numbers mean.',dur:'12 min',tag:'pro',featured:false,locked:true},
-      {num:'05',title:'MRI — the most powerful tool',desc:'When MRI beats CT, sequences explained, and how to avoid common mistakes.',dur:'12 min',tag:'pro',featured:false,locked:true},
-      {num:'06',title:'Ultrasound & nuclear medicine',desc:'The role of US and nuclear in modern practice — including PET/CT basics.',dur:'10 min',tag:'pro',featured:false,locked:true},
-    ]
-  },
-  reports:{
-    num:'Module 02',
-    title:'Report writing — your voice as a radiologist.',
-    desc:'A radiology report is a medical-legal document. Every word matters. This module teaches you to write reports that are clear, clinically useful, and impossible to misinterpret. Based on real cases and international standards.',
-    meta:[{ico:'⏱️',txt:'~43 min total'},{ico:'🎓',txt:'R1 and above'},{ico:'⭐',txt:'High impact'}],
-    exams:[],
-    lessons:[
-      {num:'01',title:'Structure of a good report',desc:'The four parts every radiology report must have — and why most reports fail at part three.',dur:'10 min',tag:'free',featured:true,locked:false},
-      {num:'02',title:'Language & clarity',desc:'How to write so the referring doctor understands — and takes action.',dur:'8 min',tag:'free',featured:false,locked:false},
-      {num:'03',title:'Describing common findings',desc:'Standard language for the 20 most common findings in chest, abdomen, and brain.',dur:'15 min',tag:'pro',featured:false,locked:true},
-      {num:'04',title:'Critical findings & communication',desc:'What to do when you find something urgent — legally, clinically, and practically.',dur:'10 min',tag:'pro',featured:false,locked:true},
-    ]
-  },
-  preauth:{
-    num:'Module 03',
-    title:'Pre-authorization — your most practical skill.',
-    desc:'This is the module most junior radiologists need most — and no medical school teaches it. Built from 7 years of real pre-authorization experience. After this module, you will never write a weak request again.',
-    meta:[{ico:'⏱️',txt:'~61 min total'},{ico:'⭐',txt:'Core skill'},{ico:'🏆',txt:'Certificate available'}],
-    exams:[
-      {ico:'📜',name:'Pre-auth certificate',info:'Complete all 5 lessons + assessment',badges:['Unique to iHealth','Globally recognized','Employer-ready']}
-    ],
-    lessons:[
-      {num:'01',title:'What is pre-authorization and why it exists',desc:'The purpose of pre-auth, who is involved, and how it protects both patient and provider.',dur:'6 min',tag:'free',featured:false,locked:false},
-      {num:'02',title:'Writing requests that get approved',desc:'The exact structure, language, and clinical criteria that make insurers say yes.',dur:'15 min',tag:'free',featured:true,locked:false},
-      {num:'03',title:'Why requests get denied — and how to prevent it',desc:'The 7 most common reasons for denial and how to fix them before you submit.',dur:'12 min',tag:'pro',featured:false,locked:true},
-      {num:'04',title:'The appeals process — step by step',desc:'How to write an appeal that overturns a denial. Templates and real examples.',dur:'10 min',tag:'pro',featured:false,locked:true},
-      {num:'05',title:'ICD & CPT coding for radiology',desc:'The codes that determine whether your request is paid. The 50 codes every radiologist must know.',dur:'18 min',tag:'pro',featured:false,locked:true},
-    ]
-  },
-  exams:{
-    num:'Module 04',
-    title:'Exam preparation — pass on your first attempt.',
-    desc:'Structured study plans for every major radiology board exam. Not just question banks — actual strategies, timelines, and the specific topics that appear most in each exam. Built for people with real clinical workloads.',
-    meta:[{ico:'⏱️',txt:'~90 min total'},{ico:'🎓',txt:'R2 and above'},{ico:'🏆',txt:'5 exam tracks'}],
-    exams:[
-      {ico:'🇬🇧',name:'FRCR Part 1 & 2B',info:'UK Royal College — most internationally recognized',badges:['Physics','Anatomy','Rapid reporting']},
-      {ico:'🌍',name:'Arab Board of Radiology',info:'Arab countries — structured written & clinical',badges:['Written exam','Clinical cases','Oral prep']},
-      {ico:'🇸🇦',name:'Saudi Board',info:'Saudi Arabia — full residency board exam',badges:['All modalities','Case-based','Viva prep']},
-      {ico:'🇺🇸',name:'ABR — American Board',info:'For those targeting the United States',badges:['Core exam','Certifying exam','Physics']},
-    ],
-    lessons:[
-      {num:'01',title:'FRCR Part 1 — the complete study plan',desc:'Physics, anatomy, and how to pass in 90 days with a full-time clinical schedule.',dur:'20 min',tag:'pro',featured:true,locked:true},
-      {num:'02',title:'FRCR Part 2B — rapid reporting mastered',desc:'The technique, the common cases, and how to avoid the most common mistakes.',dur:'25 min',tag:'pro',featured:false,locked:true},
-      {num:'03',title:'Arab Board — structure and strategy',desc:'What the exam tests, how to prepare, and what most candidates get wrong.',dur:'15 min',tag:'pro',featured:false,locked:true},
-      {num:'04',title:'Saudi Board — the complete guide',desc:'All modalities, case formats, viva preparation, and the topics that repeat every year.',dur:'15 min',tag:'pro',featured:false,locked:true},
-      {num:'05',title:'ABR — for those targeting the United States',desc:'Core exam structure, certifying exam strategy, and physics review.',dur:'15 min',tag:'pro',featured:false,locked:true},
-    ]
-  },
-  systems:{
-    num:'Module 05',
-    title:'Systems & technology — what every radiologist must know.',
-    desc:'RIS, PACS, NPHIES, and AI tools are part of your daily work. This module explains what each system does, how they connect, and how to use them efficiently.',
-    meta:[{ico:'⏱️',txt:'~30 min total'},{ico:'🎓',txt:'All levels'},{ico:'🆕',txt:'Updated 2026'}],
-    exams:[],
-    lessons:[
-      {num:'01',title:'RIS & PACS — what they do and why they matter',desc:'The two systems behind every scan — from order entry to report delivery.',dur:'8 min',tag:'free',featured:false,locked:false},
-      {num:'02',title:'NPHIES for radiologists',desc:'Saudi Arabia\'s national health data platform — what you must know to submit correctly.',dur:'10 min',tag:'free',featured:true,locked:false},
-      {num:'03',title:'AI tools in radiology today',desc:'What AI is actually doing in radiology right now — triage, detection, and reporting.',dur:'12 min',tag:'pro',featured:false,locked:true},
-    ]
-  },
-  research:{
-    num:'Module 06',
-    title:'Research basics — build your academic profile.',
-    desc:'Research is not just for professors. Every level of training benefits from understanding how to read studies, write case reports, and contribute to the literature. This module makes it practical and achievable.',
-    meta:[{ico:'⏱️',txt:'~52 min total'},{ico:'🎓',txt:'All levels'},{ico:'🔬',txt:'Academic track'}],
-    exams:[],
-    lessons:[
-      {num:'01',title:'How to read a radiology study',desc:'The five questions to ask before trusting any paper. Critical appraisal made simple.',dur:'12 min',tag:'free',featured:true,locked:false},
-      {num:'02',title:'Writing your first case report',desc:'Structure, language, and where to submit. Everything you need to publish your first paper.',dur:'15 min',tag:'free',featured:false,locked:false},
-      {num:'03',title:'Evidence-based radiology in practice',desc:'How to find, evaluate, and apply the best evidence to clinical decisions.',dur:'10 min',tag:'pro',featured:false,locked:true},
-      {num:'04',title:'Publishing your first paper — a step by step guide',desc:'From idea to acceptance. Journal selection, submission, and responding to reviewers.',dur:'15 min',tag:'pro',featured:false,locked:true},
-    ]
-  }
-};
-
-let progress={};
-let currentModule='foundations';
-
-function renderModule(id){
-  const m=modules[id];
-  if(!m)return;
-  currentModule=id;
-  let html=`
+    function renderModule(id) {
+      const m = modules[id];
+      if (!m) return;
+      currentModule = id;
+      let html = `
     <div class="module-header">
       <div class="module-num">${m.num}</div>
       <div class="module-title">${m.title}</div>
       <p class="module-desc">${m.desc}</p>
-      <div class="module-meta">${m.meta.map(x=>`<div class="meta-item"><span class="meta-ico">${x.ico}</span>${x.txt}</div>`).join('')}</div>
+      <div class="module-meta">${m.meta.map(x => `<div class="meta-item"><span class="meta-ico">${x.ico}</span><span class="meta-txt">${x.txt}</span></div>`).join('')}</div>
     </div>
   `;
-  if(m.exams&&m.exams.length){
-    m.exams.forEach(ex=>{
-      html+=`<div class="exam-track-box">
+      if (m.exams && m.exams.length) {
+        m.exams.forEach(ex => {
+          html += `<div class="exam-track-box">
         <div class="exam-left">
           <div class="exam-ico">${ex.ico}</div>
           <div>
@@ -361,18 +445,18 @@ function renderModule(id){
             <div class="exam-info">${ex.info}</div>
           </div>
         </div>
-        <div class="exam-badges">${ex.badges.map(b=>`<span class="exam-badge">${b}</span>`).join('')}</div>
+        <div class="exam-badges">${ex.badges.map(b => `<span class="exam-badge">${b}</span>`).join('')}</div>
         <button class="exam-btn">Start track →</button>
       </div>`;
-    });
-    html+=`<div class="section-divider"><div class="section-divider-line"></div><span class="section-divider-label">All lessons</span><div class="section-divider-line"></div></div>`;
-  }
-  html+=`<div class="lessons-list">`;
-  m.lessons.forEach((l,i)=>{
-    const tagClass=l.tag==='free'?'tag-free':l.tag==='new'?'tag-new':'tag-pro';
-    const tagTxt=l.tag==='free'?'Free':l.tag==='new'?'New':'Pro';
-    html+=`
-      <div class="lesson-card${l.featured?' featured':''}${l.locked?' locked':''}" onclick="${l.locked?`showUpgrade()`:`markDone(${i},'${id}')`}">
+        });
+        html += `<div class="section-divider"><div class="section-divider-line"></div><span class="section-divider-label">All lessons</span><div class="section-divider-line"></div></div>`;
+      }
+      html += `<div class="lessons-list">`;
+      m.lessons.forEach((l, i) => {
+        const tagClass = l.tag === 'free' ? 'tag-free' : l.tag === 'new' ? 'tag-new' : 'tag-pro';
+        const tagTxt = l.tag === 'free' ? 'Free' : l.tag === 'new' ? 'New' : 'Pro';
+        html += `
+      <div class="lesson-card${l.featured ? ' featured' : ''}${l.locked ? ' locked' : ''}" onclick="${l.locked ? `showUpgrade()` : `markDone(${i},'${id}',this)`}">
         <div class="lesson-card-inner">
           <div class="lesson-card-num">${l.num}</div>
           <div class="lesson-card-body">
@@ -382,64 +466,66 @@ function renderModule(id){
           <div class="lesson-card-right">
             <span class="lesson-dur-tag">${l.dur}</span>
             <span class="lesson-tag ${tagClass}">${tagTxt}</span>
-            ${l.locked?'<span class="lock-ico">🔒</span>':'<span class="lesson-arrow">→</span>'}
+            ${l.locked ? '<span class="lock-ico"><i class="fi fi-sr-lock"></i></span>' : '<span class="lesson-arrow"><i class="fi fi-br-arrow-right"></i></span>'}
           </div>
         </div>
       </div>`;
-  });
-  html+=`</div>`;
-  html+=`<div class="free-cta">
+      });
+      html += `</div>`;
+      html += `<div class="free-cta">
     <div>
       <div class="free-cta-txt">Ready to unlock everything?</div>
       <div class="free-cta-sub">Get full access to all lessons, exams, and your pre-auth certificate.</div>
     </div>
     <button class="free-cta-btn">Start Pro — 7 days free →</button>
   </div>`;
-  document.getElementById('contentArea').innerHTML=html;
-  updateProgress();
-}
+      document.getElementById('contentArea').innerHTML = html;
+      updateProgress();
+    }
 
-function loadModule(id,btn){
-  renderModule(id);
-  if(btn){
-    document.querySelectorAll('.mod-tab').forEach(t=>t.classList.remove('active-tab'));
-    btn.classList.add('active-tab');
-  }
-}
+    function loadModule(id, btn) {
+      renderModule(id);
+      if (btn) {
+        document.querySelectorAll('.mod-tab').forEach(t => t.classList.remove('active-tab'));
+        btn.classList.add('active-tab');
+      }
+    }
 
-function toggleTrack(el){
-  document.querySelectorAll('.sidebar-track').forEach(t=>{if(t!==el)t.classList.remove('active-track')});
-  el.classList.toggle('active-track');
-}
+    function toggleTrack(el) {
+      document.querySelectorAll('.sidebar-track').forEach(t => { if (t !== el) t.classList.remove('active-track') });
+      el.classList.toggle('active-track');
+    }
 
-function markDone(idx,modId){
-  if(!progress[modId])progress[modId]=new Set();
-  progress[modId].add(idx);
-  updateProgress();
-}
+    function markDone(idx, modId, el) {
+      if (!progress[modId]) progress[modId] = new Set();
+      progress[modId].add(idx);
+      if (el) el.classList.add('done');
+      updateProgress();
+    }
 
-function updateProgress(){
-  let total=0,done=0;
-  Object.keys(modules).forEach(k=>{
-    const unlocked=modules[k].lessons.filter(l=>!l.locked).length;
-    total+=unlocked;
-    if(progress[k])done+=progress[k].size;
-  });
-  const pct=total?Math.round(done/total*100):0;
-  document.getElementById('progFill').style.width=pct+'%';
-  document.getElementById('progPct').textContent=pct+'%';
-  const dots=document.getElementById('progDots');
-  dots.innerHTML=Object.keys(modules).map((k,i)=>{
-    const cls=progress[k]&&progress[k].size>0?'done':'';
-    return `<div class="prog-dot ${cls}" onclick="loadModule('${k}',document.querySelectorAll('.mod-tab')[${i}])"></div>`;
-  }).join('');
-}
+    function updateProgress() {
+      let total = 0, done = 0;
+      Object.keys(modules).forEach(k => {
+        const unlocked = modules[k].lessons.filter(l => !l.locked).length;
+        total += unlocked;
+        if (progress[k]) done += progress[k].size;
+      });
+      const pct = total ? Math.round(done / total * 100) : 0;
+      document.getElementById('progFill').style.width = pct + '%';
+      document.getElementById('progPct').textContent = pct + '%';
+      const dots = document.getElementById('progDots');
+      dots.innerHTML = Object.keys(modules).map((k, i) => {
+        const cls = progress[k] && progress[k].size > 0 ? 'done' : '';
+        return `<div class="prog-dot ${cls}" onclick="loadModule('${k}',document.querySelectorAll('.mod-tab')[${i}])"></div>`;
+      }).join('');
+    }
 
-function showUpgrade(){
-  alert('🔒 This lesson is part of iHealth Academy Pro.\n\nStart your 7-day free trial to unlock all lessons, exam tracks, and your pre-auth certificate.');
-}
+    function showUpgrade() {
+      alert('🔒 This lesson is part of iHealth Academy Pro.\n\nStart your 7-day free trial to unlock all lessons, exam tracks, and your pre-auth certificate.');
+    }
 
-renderModule('foundations');
-</script>
+    renderModule('foundations');
+  </script>
 </body>
+
 </html>
