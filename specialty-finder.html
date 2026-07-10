@@ -1,281 +1,301 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Medical Specialty Finder — iHealth Academy</title>
-<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Cabinet+Grotesk:wght@300;400;500;700;800&display=swap" rel="stylesheet"/>
-<link href="css/specialty-finder.css" rel="stylesheet"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Medical Specialty Finder — iHealth Academy</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Cabinet+Grotesk:wght@300;400;500;700;800&display=swap"
+    rel="stylesheet" />
+  <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css"
+    rel="stylesheet" />
+  <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-bold-rounded/css/uicons-bold-rounded.css"
+    rel="stylesheet" />
+  <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-bold-straight/css/uicons-bold-straight.css"
+    rel="stylesheet" />
+  <link href="css/specialty-finder.css" rel="stylesheet" />
 </head>
+
 <body>
-<nav>
-  <a href="index.html" class="logo">i<span>Health</span> Academy</a>
-  <div class="nav-menu" id="navMenu">
-    <a href="index.html" class="back">← Back to home</a>
-  </div>
-  <div class="nav-right">
-    <a href="#" class="nav-cta">Get started free</a>
-    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
-
-<!-- LANDING -->
-<div class="landing" id="landing">
-  <div class="landing-tag">✦ Free tool — no sign up needed</div>
-  <h1>Find your<br><span>medical specialty.</span></h1>
-  <p>Not sure which specialty is right for you? Answer 10 questions about your personality, strengths, and goals — and we will show you your top matches with a full explanation.</p>
-  <button class="start-btn" onclick="startQuiz()">Start the finder →</button>
-  <div class="landing-note">Takes about 3 minutes · Results are instant · Free forever</div>
-  <div class="landing-stats">
-    <div><span class="ls-val"><span class="counter" data-target="40">0</span>+</span><div class="ls-lbl">Specialties ranked</div></div>
-    <div><span class="ls-val"><span class="counter" data-target="10">0</span></span><div class="ls-lbl">Questions</div></div>
-    <div><span class="ls-val"><span class="counter" data-target="100">0</span>%</span><div class="ls-lbl">Free</div></div>
-  </div>
-</div>
-
-<!-- QUIZ -->
-<div class="quiz-wrap" id="quizWrap">
-  <div class="quiz-container">
-    <div class="quiz-progress">
-      <div class="quiz-step-label"><span id="stepLabel">Question 1 of 10</span><span id="stepPct">0%</span></div>
-      <div class="quiz-track"><div class="quiz-fill" id="quizFill"></div></div>
+  <nav>
+    <a href="index.html" class="logo">i<span>Health</span> Academy</a>
+    <div class="nav-menu" id="navMenu">
+      <a href="index.html" class="back"><i class="fi fi-sr-arrow-small-left"></i> Back to home</a>
     </div>
-    <div class="question-card" id="questionCard"></div>
-    <div class="quiz-nav">
-      <button class="q-back" id="backBtn" onclick="prevQ()">← Back</button>
-      <button class="q-next" id="nextBtn" onclick="nextQ()" disabled>Continue →</button>
+    <div class="nav-right">
+      <a href="#" class="nav-cta">Get started free</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- LANDING -->
+  <div class="landing" id="landing">
+    <div class="landing-tag">✦ Free tool — no sign up needed</div>
+    <h1>Find your<br><span>medical specialty.</span></h1>
+    <p>Not sure which specialty is right for you? Answer 10 questions about your personality, strengths, and goals — and
+      we will show you your top matches with a full explanation.</p>
+    <button class="start-btn" onclick="startQuiz()">Start the finder <i class="fi fi-sr-arrow-small-right"></i></button>
+    <div class="landing-note">Takes about 3 minutes · Results are instant · Free forever</div>
+    <div class="landing-stats">
+      <div class="stats-wrap"><span class="ls-val"><span class="counter" data-target="40">0</span>+</span>
+        <div class="ls-lbl">Specialties ranked</div>
+      </div>
+      <div class="stats-wrap"><span class="ls-val"><span class="counter" data-target="10">0</span></span>
+        <div class="ls-lbl">Questions</div>
+      </div>
+      <div class="stats-wrap"><span class="ls-val"><span class="counter" data-target="100">0</span>%</span>
+        <div class="ls-lbl">Free</div>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- RESULTS -->
-<div class="results-wrap" id="resultsWrap">
-  <div class="results-inner">
-    <div class="results-hero">
-      <div class="results-tag">✦ Your specialty matches</div>
-      <h2>Here are your<br>top 3 matches.</h2>
-      <p>Based on your answers, these specialties align best with your personality, strengths, and goals.</p>
-    </div>
-    <div class="spec-cards" id="specCards"></div>
-    <div class="results-actions">
-      <button class="redo-btn" onclick="restart()">← Retake the finder</button>
-      <a href="index.html" class="explore-btn">Explore learning paths →</a>
+  <!-- QUIZ -->
+  <div class="quiz-wrap" id="quizWrap">
+    <div class="quiz-container">
+      <div class="quiz-progress">
+        <div class="quiz-step-label"><span id="stepLabel">Question 1 of 10</span><span id="stepPct">0%</span></div>
+        <div class="quiz-track">
+          <div class="quiz-fill" id="quizFill"></div>
+        </div>
+      </div>
+      <div class="question-card" id="questionCard"></div>
+      <div class="quiz-nav">
+        <button class="q-back" id="backBtn" onclick="prevQ()"><i class="fi fi-sr-arrow-small-left"></i> Back</button>
+        <button class="q-next" id="nextBtn" onclick="nextQ()" disabled>Continue <i
+            class="fi fi-sr-arrow-small-right"></i></button>
+      </div>
     </div>
   </div>
-</div>
 
-<script src="js/nav.js"></script>
-<script>
-// COUNTER
-function animateCounter(el) {
-  const target = parseInt(el.dataset.target, 10);
-  const duration = 1200;
-  const start = performance.now();
+  <!-- RESULTS -->
+  <div class="results-wrap" id="resultsWrap">
+    <div class="results-inner">
+      <div class="results-hero">
+        <div class="results-tag">✦ Your specialty matches</div>
+        <h2>Here are your<br>top 3 matches.</h2>
+        <p>Based on your answers, these specialties align best with your personality, strengths, and goals.</p>
+      </div>
+      <div class="spec-cards" id="specCards"></div>
+      <div class="results-actions">
+        <button class="redo-btn" onclick="restart()">← Retake the finder</button>
+        <a href="index.html" class="explore-btn">Explore learning paths →</a>
+      </div>
+    </div>
+  </div>
 
-  function step(now) {
-    const progress = Math.min((now - start) / duration, 1);
-    el.textContent = Math.round(progress * target);
-    if (progress < 1) requestAnimationFrame(step);
-  }
+  <script src="js/nav.js"></script>
+  <script>
+    // COUNTER
+    function animateCounter(el) {
+      const target = parseInt(el.dataset.target, 10);
+      const duration = 1200;
+      const start = performance.now();
 
-  requestAnimationFrame(step);
-}
+      function step(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        el.textContent = Math.round(progress * target);
+        if (progress < 1) requestAnimationFrame(step);
+      }
 
-const counterObserver = new IntersectionObserver(
-  (entries) => entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      animateCounter(entry.target);
-      counterObserver.unobserve(entry.target);
+      requestAnimationFrame(step);
     }
-  }),
-  { threshold: 0.5 }
-);
-document.querySelectorAll('.counter').forEach((el) => counterObserver.observe(el));
 
-const questions=[
-  {
-    num:'01',text:'How do you prefer to interact with patients?',sub:'Think about your ideal daily patient experience.',
-    options:[
-      {label:'A',text:'Brief and focused — I like solving the diagnostic puzzle, less bedside time.',tags:{radiology:3,pathology:3,anesthesia:1}},
-      {label:'B',text:'Long-term relationships — I want to follow patients over years.',tags:{gp:3,psychiatry:2,pediatrics:2}},
-      {label:'C',text:'High-intensity, short bursts — emergency situations energize me.',tags:{emergency:3,icu:2,surgery:1}},
-      {label:'D',text:'Moderate — I like a mix of brief and deeper interactions.',tags:{internal:2,dermatology:2,ophthalmology:2}},
-    ]
-  },
-  {
-    num:'02',text:'How do you handle high-pressure, life-or-death situations?',sub:'Be honest — there is no wrong answer here.',
-    options:[
-      {label:'A',text:'I thrive under pressure. Adrenaline helps me focus.',tags:{emergency:3,surgery:3,icu:3}},
-      {label:'B',text:'I manage well but prefer controlled, planned environments.',tags:{radiology:2,dermatology:2,psychiatry:2}},
-      {label:'C',text:'I prefer to avoid it — I do better with time to think.',tags:{pathology:3,radiology:2,research:3}},
-      {label:'D',text:'It depends — I can handle it but need recovery time.',tags:{internal:2,gp:2,pediatrics:2}},
-    ]
-  },
-  {
-    num:'03',text:'Are you drawn to procedures and hands-on technical work?',sub:'Scalpels, scopes, catheters — or more thinking and analyzing?',
-    options:[
-      {label:'A',text:'Yes — I love working with my hands and learning technical skills.',tags:{surgery:3,interventional:3,orthopedics:3}},
-      {label:'B',text:'Somewhat — I like some procedures but not all day.',tags:{radiology:2,emergency:2,ophthalmology:2}},
-      {label:'C',text:'Not really — I prefer diagnosis, management, and communication.',tags:{internal:3,psychiatry:2,gp:3}},
-      {label:'D',text:'No — I prefer analytical, image-based, or lab work.',tags:{radiology:3,pathology:3,nuclear:2}},
-    ]
-  },
-  {
-    num:'04',text:'What is your relationship with technology and AI?',sub:'Healthcare is changing fast — how do you feel about that?',
-    options:[
-      {label:'A',text:'I am excited by it — I want to be at the frontier of tech in medicine.',tags:{radiology:3,nuclear:2,research:3}},
-      {label:'B',text:'I appreciate it as a tool but prefer human connection.',tags:{gp:2,psychiatry:3,pediatrics:2}},
-      {label:'C',text:'I am neutral — I will use whatever helps patients.',tags:{internal:2,surgery:2,emergency:2}},
-      {label:'D',text:'I prefer traditional medicine and direct clinical work.',tags:{surgery:2,orthopedics:2,dermatology:1}},
-    ]
-  },
-  {
-    num:'05',text:'How do you feel about night shifts and irregular hours?',sub:'Some specialties demand it more than others.',
-    options:[
-      {label:'A',text:'Fine with it — I adapt easily to any schedule.',tags:{emergency:3,icu:3,surgery:2}},
-      {label:'B',text:'Acceptable early in my career, but I want balance long-term.',tags:{internal:2,radiology:2,gp:2}},
-      {label:'C',text:'I prefer predictable hours and work-life balance.',tags:{dermatology:3,psychiatry:3,radiology:2}},
-      {label:'D',text:'Flexible — depends on the role and compensation.',tags:{anesthesia:2,orthopedics:2,ophthalmology:2}},
-    ]
-  },
-  {
-    num:'06',text:'What drives you most in your career?',sub:'Your core motivation shapes your specialty fit.',
-    options:[
-      {label:'A',text:'Intellectual challenge — I want to solve complex diagnostic puzzles.',tags:{radiology:3,internal:3,pathology:3}},
-      {label:'B',text:'Direct patient impact — I want to see the difference I make.',tags:{surgery:3,pediatrics:3,emergency:2}},
-      {label:'C',text:'Research and advancing medicine — I want to contribute to knowledge.',tags:{research:3,radiology:2,pathology:2}},
-      {label:'D',text:'Financial stability and lifestyle — a good balance of both.',tags:{dermatology:3,radiology:2,ophthalmology:3}},
-    ]
-  },
-  {
-    num:'07',text:'Where do you see yourself academically?',sub:'Research, teaching, or pure clinical practice?',
-    options:[
-      {label:'A',text:'Academic — I want to publish, teach, and contribute to research.',tags:{research:3,radiology:2,pathology:2}},
-      {label:'B',text:'Clinical — I want to focus entirely on patient care.',tags:{gp:3,emergency:2,surgery:2}},
-      {label:'C',text:'Mixed — some clinical work with occasional research.',tags:{internal:3,radiology:2,pediatrics:2}},
-      {label:'D',text:'Private practice — I want to run my own practice eventually.',tags:{dermatology:3,ophthalmology:3,orthopedics:2}},
-    ]
-  },
-  {
-    num:'08',text:'How do you feel about mental and emotional demands?',sub:'Some specialties carry heavier emotional loads.',
-    options:[
-      {label:'A',text:'I am emotionally resilient — heavy cases do not follow me home.',tags:{surgery:3,icu:3,emergency:3}},
-      {label:'B',text:'I empathize deeply — I want to support patients emotionally too.',tags:{psychiatry:3,pediatrics:3,gp:2}},
-      {label:'C',text:'I prefer emotional distance — I want to stay objective.',tags:{radiology:3,pathology:3,anesthesia:2}},
-      {label:'D',text:'I manage it but need clear boundaries.',tags:{internal:2,dermatology:2,ophthalmology:2}},
-    ]
-  },
-  {
-    num:'09',text:'What type of problems excite you most?',sub:'Think about the cases that would keep you engaged for decades.',
-    options:[
-      {label:'A',text:'Imaging and visual diagnosis — patterns, anatomy, finding the hidden.',tags:{radiology:3,nuclear:3,ophthalmology:2}},
-      {label:'B',text:'Systems and physiology — understanding the body as a whole.',tags:{internal:3,icu:3,research:2}},
-      {label:'C',text:'Surgical problems — fixing what is broken, restoring function.',tags:{surgery:3,orthopedics:3,interventional:3}},
-      {label:'D',text:'Skin, mind, eyes, teeth — specific organ systems.',tags:{dermatology:3,psychiatry:3,ophthalmology:3}},
-    ]
-  },
-  {
-    num:'10',text:'Finally — what matters most to you in your future career?',sub:'Pick the one that resonates most honestly.',
-    options:[
-      {label:'A',text:'Being the best diagnostician — the one everyone calls when it is difficult.',tags:{radiology:3,internal:3,pathology:2}},
-      {label:'B',text:'Saving lives directly — in the room, in the moment.',tags:{surgery:3,emergency:3,icu:3}},
-      {label:'C',text:'Quality of life — meaningful work with time for myself and family.',tags:{dermatology:3,psychiatry:2,gp:3,radiology:2}},
-      {label:'D',text:'Global impact — advancing medicine beyond my own patients.',tags:{research:3,radiology:2,nuclear:2}},
-    ]
-  },
-];
+    const counterObserver = new IntersectionObserver(
+      (entries) => entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          counterObserver.unobserve(entry.target);
+        }
+      }),
+      { threshold: 0.5 }
+    );
+    document.querySelectorAll('.counter').forEach((el) => counterObserver.observe(el));
 
-const specialties={
-  radiology:{name:'Diagnostic Radiology',ico:'🩻',color:'#00C896',desc:'You interpret medical images — X-rays, CT, MRI, ultrasound — and guide clinical decisions without direct patient contact. A highly intellectual, technology-driven specialty with excellent lifestyle balance. Rapidly evolving with AI.',strengths:['Strong work-life balance','High intellectual demand','AI and technology frontier','No night calls in many settings'],risks:['Limited direct patient contact','Long training pathway','Heavily affected by AI in future'],path:['FRCR / Arab Board / Saudi Board','Pre-authorization certificate','RIS & PACS proficiency','AI in radiology module']},
-  surgery:{name:'General Surgery',ico:'🔪',color:'#FF6B6B',desc:'You operate. You fix what is broken. High-pressure, technically demanding, and directly impactful. Surgery is one of the most respected and challenging specialties — requiring stamina, precision, and emotional resilience.',strengths:['Direct, visible patient impact','High respect and autonomy','Technical mastery','Subspecialty options'],risks:['Demanding lifestyle and hours','Long training','High stress and burnout risk'],path:['Basic surgical skills training','MRCS / Arab Board Surgery','Fellowship in subspecialty','Simulation-based learning']},
-  emergency:{name:'Emergency Medicine',ico:'🚨',color:'#FF6B6B',desc:'Every shift is different. You stabilize, diagnose, and decide fast — across every specialty simultaneously. Emergency medicine rewards adaptability, rapid thinking, and composure under pressure.',strengths:['Variety every single day','Direct impact','No long follow-ups','Strong team environment'],risks:['Irregular hours and night shifts','Emotional burnout','High litigation risk'],path:['MRCEM / Arab Board EM','Advanced life support (ALS, ATLS)','Ultrasound certification','Triage and systems training']},
-  internal:{name:'Internal Medicine',ico:'🫀',color:'#4A9EFF',desc:'The core of hospital medicine. You manage complex, multi-system cases and are the physician other doctors consult. A strong foundation for any subspecialty and highly respected academically.',strengths:['Intellectual depth','Gateway to all subspecialties','Strong research base','Respected academically'],risks:['Heavy workload','Less procedural income','Complex cases'],path:['MRCP / Arab Board Internal Med','Subspecialty fellowship','Research and publication','CME and board recertification']},
-  dermatology:{name:'Dermatology',ico:'🧴',color:'#A78BFA',desc:'One of the best lifestyles in medicine. Visual diagnosis, procedural options, and a growing aesthetic branch. Highly competitive to enter but rewards those who get in with excellent quality of life.',strengths:['Best lifestyle in medicine','High income potential','Visual and procedural','Aesthetic subspecialty option'],risks:['Extremely competitive entry','Mostly outpatient (some prefer hospital)','Less acute drama'],path:['Dermatology board exam','Dermoscopy certification','Aesthetic procedures training','Private practice setup']},
-  psychiatry:{name:'Psychiatry',ico:'🧠',color:'#A78BFA',desc:'You treat the mind. Long-term relationships with complex patients, high emotional intelligence required, and a field finally getting the attention it deserves globally. Growing rapidly with mental health awareness.',strengths:['Deep patient relationships','Growing demand globally','Good lifestyle','Research opportunities'],risks:['Emotional weight','Slower visible outcomes','Stigma in some cultures'],path:['MRCPsych / Arab Board Psychiatry','CBT and therapy training','Mental health system navigation','Liaison psychiatry subspecialty']},
-  pediatrics:{name:'Pediatrics',ico:'👶',color:'#F5A623',desc:'You care for children from newborns to adolescents. Highly rewarding, emotionally rich, and demanding in equal measure. Families trust you completely — a huge responsibility and privilege.',strengths:['Deeply rewarding','Variety of conditions','Strong community','Family-centered care'],risks:['Emotional difficulty with sick children','Long training','Lower income than some specialties'],path:['Arab Board Pediatrics / DCH / MRCPCH','Neonatal training','Subspecialty fellowship','Communication and family skills']},
-  pathology:{name:'Pathology',ico:'🔬',color:'#00C896',desc:'You are the doctor\'s doctor. You analyze tissue, blood, and cells to provide the definitive diagnosis. Minimal patient contact, strong academic orientation, and critical to every clinical decision.',strengths:['Intellectual and academic','No night calls typically','Critical to all clinical decisions','Research opportunities'],risks:['Limited direct patient interaction','Less visible role','Long training for subspecialties'],path:['FRCPath / Arab Board Pathology','Lab management training','Molecular pathology subspecialty','Research and publication']},
-  gp:{name:'General Practice / Family Medicine',ico:'🏡',color:'#F5A623',desc:'You are the first line of care. You see everything, build long-term relationships, and are the backbone of any healthcare system. Excellent lifestyle, strong community connection, and growing importance globally.',strengths:['Long-term patient relationships','Excellent work-life balance','Variety of presentations','Community impact'],risks:['Less specialist respect in some cultures','Complex administrative burden','Jack of all trades challenge'],path:['MRCGP / Arab Board Family Med','Chronic disease management','Preventive medicine certification','Practice management skills']},
-  interventional:{name:'Interventional Radiology',ico:'🫀',color:'#00C896',desc:'The best of both worlds — imaging and procedures. You perform minimally invasive procedures guided by imaging. Growing rapidly and increasingly replacing open surgery in many areas.',strengths:['Highly technical and procedural','Growing rapidly','Less invasive than surgery','High demand'],risks:['Radiation exposure','Long and demanding training','High technical skill requirement'],path:['FRCR plus interventional fellowship','Vascular and non-vascular procedures','IR board certification','Pre-auth for IR procedures']},
-  anesthesia:{name:'Anesthesiology',ico:'💉',color:'#4A9EFF',desc:'You keep patients alive during surgery. High technical skill, rapid decision-making, and critical care expertise. Excellent pay, some lifestyle flexibility, and essential to every surgical team.',strengths:['Essential to every surgical team','High income','Strong ICU crossover','Some lifestyle flexibility'],risks:['Stress in critical moments','Limited long-term patient relationships','Medicolegal exposure'],path:['FRCA / Arab Board Anesthesia','Critical care subspecialty','Pain management fellowship','Advanced airway certification']},
-  ophthalmology:{name:'Ophthalmology',ico:'👁️',color:'#4A9EFF',desc:'You specialize in the eye — one of the most complex organs. Highly technical, procedural, and with excellent lifestyle and income. Also one of the most satisfying when you restore someone\'s sight.',strengths:['Excellent lifestyle','High income','Highly technical','Deeply satisfying outcomes'],risks:['Competitive entry','Microscope-dependent skills','Narrow subspecialty'],path:['MRCOphth / Arab Board Ophthalmology','Surgical skills simulation','Subspecialty: retina, glaucoma, cornea','Private practice development']},
-  research:{name:'Academic Medicine & Research',ico:'📚',color:'#A78BFA',desc:'Your impact is measured in papers, not patients. You advance medicine for everyone. Any specialty can lead to academic medicine — but if research excites you more than clinical work, this path is your calling.',strengths:['Global impact','Intellectual freedom','Teaching and mentoring','Grant funding opportunities'],risks:['Lower income in many settings','Slow career progression','Publishing pressure'],path:['PhD or research fellowship','Grant writing skills','Statistical analysis training','Academic networking and publishing']},
-  icu:{name:'Intensive Care / Critical Care',ico:'⚠️',color:'#FF6B6B',desc:'You manage the sickest patients in the hospital. Multi-organ failure, ventilators, complex pharmacology — all at once. High intensity, deeply technical, and profoundly impactful.',strengths:['High intensity and impact','Multi-system expertise','Team leadership','Strong research base'],risks:['Extremely demanding emotionally','Night calls and irregular hours','High burnout rate'],path:['FFICM / Critical care fellowship','Ventilator and ECMO training','Point-of-care ultrasound','Palliative care communication']},
-  nuclear:{name:'Nuclear Medicine',ico:'☢️',color:'#00C896',desc:'You use radioactive materials to diagnose and treat disease. Growing rapidly with PET/CT and theranostics. Combines physics, pharmacology, and imaging — a niche but increasingly important specialty.',strengths:['Technology frontier','Growing with theranostics','Good lifestyle','Strong academic base'],risks:['Radiation safety requirements','Niche specialty','Smaller job market'],path:['Arab Board Nuclear Medicine','PET/CT reporting certification','Theranostics training','Radiation safety certification']},
-  orthopedics:{name:'Orthopedic Surgery',ico:'🦴',color:'#F5A623',desc:'You fix bones, joints, and the musculoskeletal system. Highly procedural, physically demanding, and rewarding when you restore mobility. High income and strong private practice potential.',strengths:['High income potential','Clear outcomes','Strong private practice','Physical and technical'],risks:['Physically demanding long-term','High litigation','Demanding training'],path:['FRCS Ortho / Arab Board Orthopedics','Subspecialty fellowship','Arthroscopy and joint replacement','Trauma and spine training']},
-};
+    const questions = [
+      {
+        num: '01', text: 'How do you prefer to interact with patients?', sub: 'Think about your ideal daily patient experience.',
+        options: [
+          { label: 'A', text: 'Brief and focused — I like solving the diagnostic puzzle, less bedside time.', tags: { radiology: 3, pathology: 3, anesthesia: 1 } },
+          { label: 'B', text: 'Long-term relationships — I want to follow patients over years.', tags: { gp: 3, psychiatry: 2, pediatrics: 2 } },
+          { label: 'C', text: 'High-intensity, short bursts — emergency situations energize me.', tags: { emergency: 3, icu: 2, surgery: 1 } },
+          { label: 'D', text: 'Moderate — I like a mix of brief and deeper interactions.', tags: { internal: 2, dermatology: 2, ophthalmology: 2 } },
+        ]
+      },
+      {
+        num: '02', text: 'How do you handle high-pressure, life-or-death situations?', sub: 'Be honest — there is no wrong answer here.',
+        options: [
+          { label: 'A', text: 'I thrive under pressure. Adrenaline helps me focus.', tags: { emergency: 3, surgery: 3, icu: 3 } },
+          { label: 'B', text: 'I manage well but prefer controlled, planned environments.', tags: { radiology: 2, dermatology: 2, psychiatry: 2 } },
+          { label: 'C', text: 'I prefer to avoid it — I do better with time to think.', tags: { pathology: 3, radiology: 2, research: 3 } },
+          { label: 'D', text: 'It depends — I can handle it but need recovery time.', tags: { internal: 2, gp: 2, pediatrics: 2 } },
+        ]
+      },
+      {
+        num: '03', text: 'Are you drawn to procedures and hands-on technical work?', sub: 'Scalpels, scopes, catheters — or more thinking and analyzing?',
+        options: [
+          { label: 'A', text: 'Yes — I love working with my hands and learning technical skills.', tags: { surgery: 3, interventional: 3, orthopedics: 3 } },
+          { label: 'B', text: 'Somewhat — I like some procedures but not all day.', tags: { radiology: 2, emergency: 2, ophthalmology: 2 } },
+          { label: 'C', text: 'Not really — I prefer diagnosis, management, and communication.', tags: { internal: 3, psychiatry: 2, gp: 3 } },
+          { label: 'D', text: 'No — I prefer analytical, image-based, or lab work.', tags: { radiology: 3, pathology: 3, nuclear: 2 } },
+        ]
+      },
+      {
+        num: '04', text: 'What is your relationship with technology and AI?', sub: 'Healthcare is changing fast — how do you feel about that?',
+        options: [
+          { label: 'A', text: 'I am excited by it — I want to be at the frontier of tech in medicine.', tags: { radiology: 3, nuclear: 2, research: 3 } },
+          { label: 'B', text: 'I appreciate it as a tool but prefer human connection.', tags: { gp: 2, psychiatry: 3, pediatrics: 2 } },
+          { label: 'C', text: 'I am neutral — I will use whatever helps patients.', tags: { internal: 2, surgery: 2, emergency: 2 } },
+          { label: 'D', text: 'I prefer traditional medicine and direct clinical work.', tags: { surgery: 2, orthopedics: 2, dermatology: 1 } },
+        ]
+      },
+      {
+        num: '05', text: 'How do you feel about night shifts and irregular hours?', sub: 'Some specialties demand it more than others.',
+        options: [
+          { label: 'A', text: 'Fine with it — I adapt easily to any schedule.', tags: { emergency: 3, icu: 3, surgery: 2 } },
+          { label: 'B', text: 'Acceptable early in my career, but I want balance long-term.', tags: { internal: 2, radiology: 2, gp: 2 } },
+          { label: 'C', text: 'I prefer predictable hours and work-life balance.', tags: { dermatology: 3, psychiatry: 3, radiology: 2 } },
+          { label: 'D', text: 'Flexible — depends on the role and compensation.', tags: { anesthesia: 2, orthopedics: 2, ophthalmology: 2 } },
+        ]
+      },
+      {
+        num: '06', text: 'What drives you most in your career?', sub: 'Your core motivation shapes your specialty fit.',
+        options: [
+          { label: 'A', text: 'Intellectual challenge — I want to solve complex diagnostic puzzles.', tags: { radiology: 3, internal: 3, pathology: 3 } },
+          { label: 'B', text: 'Direct patient impact — I want to see the difference I make.', tags: { surgery: 3, pediatrics: 3, emergency: 2 } },
+          { label: 'C', text: 'Research and advancing medicine — I want to contribute to knowledge.', tags: { research: 3, radiology: 2, pathology: 2 } },
+          { label: 'D', text: 'Financial stability and lifestyle — a good balance of both.', tags: { dermatology: 3, radiology: 2, ophthalmology: 3 } },
+        ]
+      },
+      {
+        num: '07', text: 'Where do you see yourself academically?', sub: 'Research, teaching, or pure clinical practice?',
+        options: [
+          { label: 'A', text: 'Academic — I want to publish, teach, and contribute to research.', tags: { research: 3, radiology: 2, pathology: 2 } },
+          { label: 'B', text: 'Clinical — I want to focus entirely on patient care.', tags: { gp: 3, emergency: 2, surgery: 2 } },
+          { label: 'C', text: 'Mixed — some clinical work with occasional research.', tags: { internal: 3, radiology: 2, pediatrics: 2 } },
+          { label: 'D', text: 'Private practice — I want to run my own practice eventually.', tags: { dermatology: 3, ophthalmology: 3, orthopedics: 2 } },
+        ]
+      },
+      {
+        num: '08', text: 'How do you feel about mental and emotional demands?', sub: 'Some specialties carry heavier emotional loads.',
+        options: [
+          { label: 'A', text: 'I am emotionally resilient — heavy cases do not follow me home.', tags: { surgery: 3, icu: 3, emergency: 3 } },
+          { label: 'B', text: 'I empathize deeply — I want to support patients emotionally too.', tags: { psychiatry: 3, pediatrics: 3, gp: 2 } },
+          { label: 'C', text: 'I prefer emotional distance — I want to stay objective.', tags: { radiology: 3, pathology: 3, anesthesia: 2 } },
+          { label: 'D', text: 'I manage it but need clear boundaries.', tags: { internal: 2, dermatology: 2, ophthalmology: 2 } },
+        ]
+      },
+      {
+        num: '09', text: 'What type of problems excite you most?', sub: 'Think about the cases that would keep you engaged for decades.',
+        options: [
+          { label: 'A', text: 'Imaging and visual diagnosis — patterns, anatomy, finding the hidden.', tags: { radiology: 3, nuclear: 3, ophthalmology: 2 } },
+          { label: 'B', text: 'Systems and physiology — understanding the body as a whole.', tags: { internal: 3, icu: 3, research: 2 } },
+          { label: 'C', text: 'Surgical problems — fixing what is broken, restoring function.', tags: { surgery: 3, orthopedics: 3, interventional: 3 } },
+          { label: 'D', text: 'Skin, mind, eyes, teeth — specific organ systems.', tags: { dermatology: 3, psychiatry: 3, ophthalmology: 3 } },
+        ]
+      },
+      {
+        num: '10', text: 'Finally — what matters most to you in your future career?', sub: 'Pick the one that resonates most honestly.',
+        options: [
+          { label: 'A', text: 'Being the best diagnostician — the one everyone calls when it is difficult.', tags: { radiology: 3, internal: 3, pathology: 2 } },
+          { label: 'B', text: 'Saving lives directly — in the room, in the moment.', tags: { surgery: 3, emergency: 3, icu: 3 } },
+          { label: 'C', text: 'Quality of life — meaningful work with time for myself and family.', tags: { dermatology: 3, psychiatry: 2, gp: 3, radiology: 2 } },
+          { label: 'D', text: 'Global impact — advancing medicine beyond my own patients.', tags: { research: 3, radiology: 2, nuclear: 2 } },
+        ]
+      },
+    ];
 
-let current=0;
-const answers={};
+    const specialties = {
+      radiology: { name: 'Diagnostic Radiology', ico: '🩻', color: '#00C896', desc: 'You interpret medical images — X-rays, CT, MRI, ultrasound — and guide clinical decisions without direct patient contact. A highly intellectual, technology-driven specialty with excellent lifestyle balance. Rapidly evolving with AI.', strengths: ['Strong work-life balance', 'High intellectual demand', 'AI and technology frontier', 'No night calls in many settings'], risks: ['Limited direct patient contact', 'Long training pathway', 'Heavily affected by AI in future'], path: ['FRCR / Arab Board / Saudi Board', 'Pre-authorization certificate', 'RIS & PACS proficiency', 'AI in radiology module'] },
+      surgery: { name: 'General Surgery', ico: '🔪', color: '#FF6B6B', desc: 'You operate. You fix what is broken. High-pressure, technically demanding, and directly impactful. Surgery is one of the most respected and challenging specialties — requiring stamina, precision, and emotional resilience.', strengths: ['Direct, visible patient impact', 'High respect and autonomy', 'Technical mastery', 'Subspecialty options'], risks: ['Demanding lifestyle and hours', 'Long training', 'High stress and burnout risk'], path: ['Basic surgical skills training', 'MRCS / Arab Board Surgery', 'Fellowship in subspecialty', 'Simulation-based learning'] },
+      emergency: { name: 'Emergency Medicine', ico: '🚨', color: '#FF6B6B', desc: 'Every shift is different. You stabilize, diagnose, and decide fast — across every specialty simultaneously. Emergency medicine rewards adaptability, rapid thinking, and composure under pressure.', strengths: ['Variety every single day', 'Direct impact', 'No long follow-ups', 'Strong team environment'], risks: ['Irregular hours and night shifts', 'Emotional burnout', 'High litigation risk'], path: ['MRCEM / Arab Board EM', 'Advanced life support (ALS, ATLS)', 'Ultrasound certification', 'Triage and systems training'] },
+      internal: { name: 'Internal Medicine', ico: '🫀', color: '#4A9EFF', desc: 'The core of hospital medicine. You manage complex, multi-system cases and are the physician other doctors consult. A strong foundation for any subspecialty and highly respected academically.', strengths: ['Intellectual depth', 'Gateway to all subspecialties', 'Strong research base', 'Respected academically'], risks: ['Heavy workload', 'Less procedural income', 'Complex cases'], path: ['MRCP / Arab Board Internal Med', 'Subspecialty fellowship', 'Research and publication', 'CME and board recertification'] },
+      dermatology: { name: 'Dermatology', ico: '🧴', color: '#A78BFA', desc: 'One of the best lifestyles in medicine. Visual diagnosis, procedural options, and a growing aesthetic branch. Highly competitive to enter but rewards those who get in with excellent quality of life.', strengths: ['Best lifestyle in medicine', 'High income potential', 'Visual and procedural', 'Aesthetic subspecialty option'], risks: ['Extremely competitive entry', 'Mostly outpatient (some prefer hospital)', 'Less acute drama'], path: ['Dermatology board exam', 'Dermoscopy certification', 'Aesthetic procedures training', 'Private practice setup'] },
+      psychiatry: { name: 'Psychiatry', ico: '🧠', color: '#A78BFA', desc: 'You treat the mind. Long-term relationships with complex patients, high emotional intelligence required, and a field finally getting the attention it deserves globally. Growing rapidly with mental health awareness.', strengths: ['Deep patient relationships', 'Growing demand globally', 'Good lifestyle', 'Research opportunities'], risks: ['Emotional weight', 'Slower visible outcomes', 'Stigma in some cultures'], path: ['MRCPsych / Arab Board Psychiatry', 'CBT and therapy training', 'Mental health system navigation', 'Liaison psychiatry subspecialty'] },
+      pediatrics: { name: 'Pediatrics', ico: '👶', color: '#F5A623', desc: 'You care for children from newborns to adolescents. Highly rewarding, emotionally rich, and demanding in equal measure. Families trust you completely — a huge responsibility and privilege.', strengths: ['Deeply rewarding', 'Variety of conditions', 'Strong community', 'Family-centered care'], risks: ['Emotional difficulty with sick children', 'Long training', 'Lower income than some specialties'], path: ['Arab Board Pediatrics / DCH / MRCPCH', 'Neonatal training', 'Subspecialty fellowship', 'Communication and family skills'] },
+      pathology: { name: 'Pathology', ico: '🔬', color: '#00C896', desc: 'You are the doctor\'s doctor. You analyze tissue, blood, and cells to provide the definitive diagnosis. Minimal patient contact, strong academic orientation, and critical to every clinical decision.', strengths: ['Intellectual and academic', 'No night calls typically', 'Critical to all clinical decisions', 'Research opportunities'], risks: ['Limited direct patient interaction', 'Less visible role', 'Long training for subspecialties'], path: ['FRCPath / Arab Board Pathology', 'Lab management training', 'Molecular pathology subspecialty', 'Research and publication'] },
+      gp: { name: 'General Practice / Family Medicine', ico: '🏡', color: '#F5A623', desc: 'You are the first line of care. You see everything, build long-term relationships, and are the backbone of any healthcare system. Excellent lifestyle, strong community connection, and growing importance globally.', strengths: ['Long-term patient relationships', 'Excellent work-life balance', 'Variety of presentations', 'Community impact'], risks: ['Less specialist respect in some cultures', 'Complex administrative burden', 'Jack of all trades challenge'], path: ['MRCGP / Arab Board Family Med', 'Chronic disease management', 'Preventive medicine certification', 'Practice management skills'] },
+      interventional: { name: 'Interventional Radiology', ico: '🫀', color: '#00C896', desc: 'The best of both worlds — imaging and procedures. You perform minimally invasive procedures guided by imaging. Growing rapidly and increasingly replacing open surgery in many areas.', strengths: ['Highly technical and procedural', 'Growing rapidly', 'Less invasive than surgery', 'High demand'], risks: ['Radiation exposure', 'Long and demanding training', 'High technical skill requirement'], path: ['FRCR plus interventional fellowship', 'Vascular and non-vascular procedures', 'IR board certification', 'Pre-auth for IR procedures'] },
+      anesthesia: { name: 'Anesthesiology', ico: '💉', color: '#4A9EFF', desc: 'You keep patients alive during surgery. High technical skill, rapid decision-making, and critical care expertise. Excellent pay, some lifestyle flexibility, and essential to every surgical team.', strengths: ['Essential to every surgical team', 'High income', 'Strong ICU crossover', 'Some lifestyle flexibility'], risks: ['Stress in critical moments', 'Limited long-term patient relationships', 'Medicolegal exposure'], path: ['FRCA / Arab Board Anesthesia', 'Critical care subspecialty', 'Pain management fellowship', 'Advanced airway certification'] },
+      ophthalmology: { name: 'Ophthalmology', ico: '👁️', color: '#4A9EFF', desc: 'You specialize in the eye — one of the most complex organs. Highly technical, procedural, and with excellent lifestyle and income. Also one of the most satisfying when you restore someone\'s sight.', strengths: ['Excellent lifestyle', 'High income', 'Highly technical', 'Deeply satisfying outcomes'], risks: ['Competitive entry', 'Microscope-dependent skills', 'Narrow subspecialty'], path: ['MRCOphth / Arab Board Ophthalmology', 'Surgical skills simulation', 'Subspecialty: retina, glaucoma, cornea', 'Private practice development'] },
+      research: { name: 'Academic Medicine & Research', ico: '📚', color: '#A78BFA', desc: 'Your impact is measured in papers, not patients. You advance medicine for everyone. Any specialty can lead to academic medicine — but if research excites you more than clinical work, this path is your calling.', strengths: ['Global impact', 'Intellectual freedom', 'Teaching and mentoring', 'Grant funding opportunities'], risks: ['Lower income in many settings', 'Slow career progression', 'Publishing pressure'], path: ['PhD or research fellowship', 'Grant writing skills', 'Statistical analysis training', 'Academic networking and publishing'] },
+      icu: { name: 'Intensive Care / Critical Care', ico: '⚠️', color: '#FF6B6B', desc: 'You manage the sickest patients in the hospital. Multi-organ failure, ventilators, complex pharmacology — all at once. High intensity, deeply technical, and profoundly impactful.', strengths: ['High intensity and impact', 'Multi-system expertise', 'Team leadership', 'Strong research base'], risks: ['Extremely demanding emotionally', 'Night calls and irregular hours', 'High burnout rate'], path: ['FFICM / Critical care fellowship', 'Ventilator and ECMO training', 'Point-of-care ultrasound', 'Palliative care communication'] },
+      nuclear: { name: 'Nuclear Medicine', ico: '☢️', color: '#00C896', desc: 'You use radioactive materials to diagnose and treat disease. Growing rapidly with PET/CT and theranostics. Combines physics, pharmacology, and imaging — a niche but increasingly important specialty.', strengths: ['Technology frontier', 'Growing with theranostics', 'Good lifestyle', 'Strong academic base'], risks: ['Radiation safety requirements', 'Niche specialty', 'Smaller job market'], path: ['Arab Board Nuclear Medicine', 'PET/CT reporting certification', 'Theranostics training', 'Radiation safety certification'] },
+      orthopedics: { name: 'Orthopedic Surgery', ico: '🦴', color: '#F5A623', desc: 'You fix bones, joints, and the musculoskeletal system. Highly procedural, physically demanding, and rewarding when you restore mobility. High income and strong private practice potential.', strengths: ['High income potential', 'Clear outcomes', 'Strong private practice', 'Physical and technical'], risks: ['Physically demanding long-term', 'High litigation', 'Demanding training'], path: ['FRCS Ortho / Arab Board Orthopedics', 'Subspecialty fellowship', 'Arthroscopy and joint replacement', 'Trauma and spine training'] },
+    };
 
-function startQuiz(){
-  document.getElementById('landing').style.display='none';
-  document.getElementById('quizWrap').classList.add('show');
-  renderQ();
-}
+    let current = 0;
+    const answers = {};
 
-function renderQ(){
-  const q=questions[current];
-  const pct=Math.round(current/questions.length*100);
-  document.getElementById('stepLabel').textContent=`Question ${current+1} of ${questions.length}`;
-  document.getElementById('stepPct').textContent=pct+'%';
-  document.getElementById('quizFill').style.width=pct+'%';
-  document.getElementById('backBtn').style.opacity=current===0?'0.3':'1';
-  document.getElementById('backBtn').disabled=current===0;
-  const sel=answers[current];
-  document.getElementById('nextBtn').disabled=sel===undefined;
-  document.getElementById('nextBtn').textContent=current===questions.length-1?'See my results →':'Continue →';
-  document.getElementById('questionCard').innerHTML=`
+    function startQuiz() {
+      document.getElementById('landing').style.display = 'none';
+      document.getElementById('quizWrap').classList.add('show');
+      renderQ();
+    }
+
+    function renderQ() {
+      const q = questions[current];
+      const pct = Math.round(current / questions.length * 100);
+      document.getElementById('stepLabel').textContent = `Question ${current + 1} of ${questions.length}`;
+      document.getElementById('stepPct').textContent = pct + '%';
+      document.getElementById('quizFill').style.width = pct + '%';
+      document.getElementById('backBtn').style.opacity = current === 0 ? '0.3' : '1';
+      document.getElementById('backBtn').disabled = current === 0;
+      const sel = answers[current];
+      document.getElementById('nextBtn').disabled = sel === undefined;
+      document.getElementById('nextBtn').innerHTML = current === questions.length - 1 ? 'See my results <i class="fi fi-sr-arrow-small-right"></i>' : 'Continue <i class="fi fi-sr-arrow-small-right"></i>';
+      document.getElementById('questionCard').innerHTML = `
     <span class="q-num">Question ${q.num}</span>
     <div class="q-text">${q.text}</div>
     <div class="q-sub">${q.sub}</div>
     <div class="options">
-      ${q.options.map((o,i)=>`
-        <div class="opt${sel===i?' selected':''}" onclick="selectOpt(${i})">
+      ${q.options.map((o, i) => `
+        <div class="opt${sel === i ? ' selected' : ''}" onclick="selectOpt(${i})">
           <div class="opt-label">${o.label}</div>
           <div class="opt-text">${o.text}</div>
         </div>`).join('')}
     </div>`;
-}
+    }
 
-function selectOpt(i){
-  answers[current]=i;
-  document.getElementById('nextBtn').disabled=false;
-  renderQ();
-}
+    function selectOpt(i) {
+      answers[current] = i;
+      document.getElementById('nextBtn').disabled = false;
+      renderQ();
+    }
 
-function nextQ(){
-  if(current<questions.length-1){current++;renderQ();}
-  else showResults();
-}
+    function nextQ() {
+      if (current < questions.length - 1) { current++; renderQ(); }
+      else showResults();
+    }
 
-function prevQ(){
-  if(current>0){current--;renderQ();}
-}
+    function prevQ() {
+      if (current > 0) { current--; renderQ(); }
+    }
 
-function showResults(){
-  document.getElementById('quizWrap').classList.remove('show');
-  const scores={};
-  questions.forEach((q,qi)=>{
-    const ans=answers[qi];
-    if(ans===undefined)return;
-    const tags=q.options[ans].tags;
-    Object.entries(tags).forEach(([k,v])=>{scores[k]=(scores[k]||0)+v});
-  });
-  const sorted=Object.entries(scores).sort((a,b)=>b[1]-a[1]);
-  const maxScore=sorted[0]?sorted[0][1]:1;
-  const top3=sorted.slice(0,3);
-  const rankClass=['rank-1','rank-2','rank-3'];
-  const rankLabel=['#1 Best match','#2 Strong match','#3 Good match'];
-  const barColors=['#00C896','#4A9EFF','#F5A623'];
-  document.getElementById('specCards').innerHTML=top3.map((s,i)=>{
-    const spec=specialties[s[0]];
-    if(!spec)return'';
-    const pct=Math.round(s[1]/maxScore*100);
-    return`<div class="spec-card${i===0?' top':''}">
+    function showResults() {
+      document.getElementById('quizWrap').classList.remove('show');
+      const scores = {};
+      questions.forEach((q, qi) => {
+        const ans = answers[qi];
+        if (ans === undefined) return;
+        const tags = q.options[ans].tags;
+        Object.entries(tags).forEach(([k, v]) => { scores[k] = (scores[k] || 0) + v });
+      });
+      const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+      const maxScore = sorted[0] ? sorted[0][1] : 1;
+      const top3 = sorted.slice(0, 3);
+      const rankClass = ['rank-1', 'rank-2', 'rank-3'];
+      const rankLabel = ['#1 Best match', '#2 Strong match', '#3 Good match'];
+      const barColors = ['#00C896', '#4A9EFF', '#F5A623'];
+      document.getElementById('specCards').innerHTML = top3.map((s, i) => {
+        const spec = specialties[s[0]];
+        if (!spec) return '';
+        const pct = Math.round(s[1] / maxScore * 100);
+        return `<div class="spec-card${i === 0 ? ' top' : ''}">
       <div class="spec-card-header">
-        <div class="spec-rank ${rankClass[i]}">${i+1}</div>
+        <div class="spec-rank ${rankClass[i]}">${i + 1}</div>
         <div class="spec-info">
           <div class="spec-name">${spec.ico} ${spec.name}</div>
           <div class="spec-match">${rankLabel[i]} — ${pct}% alignment with your profile</div>
@@ -285,32 +305,36 @@ function showResults(){
       <div class="spec-desc">${spec.desc}</div>
       <div class="spec-grid">
         <div class="spec-box">
-          <div class="spec-box-title">✅ Strengths</div>
-          <div class="spec-box-items">${spec.strengths.map(x=>`<div class="spec-box-item">${x}</div>`).join('')}</div>
+          <div class="spec-box-ico"><i class="fi fi-br-badge-check"></i></div>
+          <div class="spec-box-title">Strengths</div>
+          <div class="spec-box-items">${spec.strengths.map(x => `<div class="spec-box-item">${x}</div>`).join('')}</div>
         </div>
         <div class="spec-box">
-          <div class="spec-box-title">⚠️ Consider</div>
-          <div class="spec-box-items">${spec.risks.map(x=>`<div class="spec-box-item">${x}</div>`).join('')}</div>
+          <div class="spec-box-ico"><i class="fi fi-sr-choose"></i></div>
+          <div class="spec-box-title">Consider</div>
+          <div class="spec-box-items">${spec.risks.map(x => `<div class="spec-box-item">${x}</div>`).join('')}</div>
         </div>
         <div class="spec-box">
-          <div class="spec-box-title">📚 Learning path</div>
-          <div class="spec-box-items">${spec.path.slice(0,3).map(x=>`<div class="spec-box-item">${x}</div>`).join('')}</div>
+          <div class="spec-box-ico"><i class="fi fi-bs-code-compare"></i></div>
+          <div class="spec-box-title">Learning path</div>
+          <div class="spec-box-items">${spec.path.slice(0, 3).map(x => `<div class="spec-box-item">${x}</div>`).join('')}</div>
         </div>
       </div>
     </div>`;
-  }).join('');
-  document.getElementById('resultsWrap').classList.add('show');
-  setTimeout(()=>{document.querySelectorAll('.spec-bar').forEach(b=>{b.style.width=b.dataset.w+'%'})},200);
-  window.scrollTo({top:0,behavior:'smooth'});
-}
+      }).join('');
+      document.getElementById('resultsWrap').classList.add('show');
+      setTimeout(() => { document.querySelectorAll('.spec-bar').forEach(b => { b.style.width = b.dataset.w + '%' }) }, 200);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
-function restart(){
-  Object.keys(answers).forEach(k=>delete answers[k]);
-  current=0;
-  document.getElementById('resultsWrap').classList.remove('show');
-  document.getElementById('landing').style.display='';
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-</script>
+    function restart() {
+      Object.keys(answers).forEach(k => delete answers[k]);
+      current = 0;
+      document.getElementById('resultsWrap').classList.remove('show');
+      document.getElementById('landing').style.display = '';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
 </body>
+
 </html>
