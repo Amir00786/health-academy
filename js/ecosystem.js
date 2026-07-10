@@ -29,9 +29,10 @@ const planets=[
     id:'regulator',
     name:'Regulatory body',
     short:'CHI',
-    ico:'🏛️',
+    ico:String.fromCodePoint(0xe37e),
+    icoFont:'uicons-solid-rounded',
     color:'#A78BFA',
-    radius:36,
+    radius:28,
     orbit:180,
     speed:0.0003,
     angle:Math.PI*0.1,
@@ -49,9 +50,10 @@ const planets=[
     id:'provider',
     name:'Provider',
     short:'Hospital & clinics',
-    ico:'🏥',
+    ico: String.fromCodePoint(0xe182),
+    icoFont: 'uicons-solid-straight',
     color:'#00C896',
-    radius:44,
+    radius:34,
     orbit:280,
     speed:0.00022,
     angle:Math.PI*0.85,
@@ -70,9 +72,10 @@ const planets=[
     id:'insurance',
     name:'Insurance company',
     short:'Payer & gatekeeper',
-    ico:'🛡️',
+    ico:String.fromCodePoint(0xe8e7),
+    icoFont:'uicons-solid-straight',
     color:'#4A9EFF',
-    radius:42,
+    radius:32,
     orbit:390,
     speed:0.00016,
     angle:Math.PI*1.5,
@@ -91,9 +94,10 @@ const planets=[
     id:'cycle',
     name:'Care cycle',
     short:'How it all connects',
-    ico:'🔄',
+    ico:String.fromCodePoint(0xe2c9),
+    icoFont:'uicons-bold-rounded',
     color:'#FF6B6B',
-    radius:34,
+    radius:26,
     orbit:490,
     speed:0.0001,
     angle:Math.PI*0.4,
@@ -111,10 +115,10 @@ const planets=[
 
 // MOONS (smaller satellites)
 const moons=[
-  {parentId:'provider', name:'AI in radiology', ico:'🧠', color:'#A78BFA', radius:18, orbitRadius:80, speed:0.0008, angle:0},
-  {parentId:'insurance', name:'Patient rights', ico:'🧑‍⚕️', color:'#4A9EFF', radius:16, orbitRadius:72, speed:0.0007, angle:2.1},
-  {parentId:'regulator', name:'Updates & news', ico:'📰', color:'#F5A623', radius:16, orbitRadius:68, speed:0.0009, angle:1.2},
-  {parentId:'cycle', name:'Research hub', ico:'🔬', color:'#00C896', radius:15, orbitRadius:65, speed:0.00075, angle:3.5},
+  {parentId:'provider', name:'AI in radiology', ico:'🧠', color:'#A78BFA', radius:14, orbitRadius:80, speed:0.0008, angle:0},
+  {parentId:'insurance', name:'Patient rights', ico:'🧑‍⚕️', color:'#4A9EFF', radius:13, orbitRadius:72, speed:0.0007, angle:2.1},
+  {parentId:'regulator', name:'Updates & news', ico:'📰', color:'#F5A623', radius:13, orbitRadius:68, speed:0.0009, angle:1.2},
+  {parentId:'cycle', name:'Research hub', ico:'🔬', color:'#00C896', radius:12, orbitRadius:65, speed:0.00075, angle:3.5},
 ];
 
 // STAR FIELD
@@ -217,8 +221,10 @@ function drawPlanet(p){
     ctx.strokeStyle=p.color+'50';ctx.lineWidth=2*scale;ctx.stroke();
   }
   // Icon
-  ctx.font=`${Math.max(12,p.radius*scale*0.8)}px serif`;
+  const icoSize=Math.max(12,p.radius*scale*0.8);
+  ctx.font=p.icoFont?`${icoSize}px '${p.icoFont}'`:`${icoSize}px serif`;
   ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.fillStyle=p.icoFont?'#fff':ctx.fillStyle;
   ctx.fillText(p.ico,pos.x,pos.y);
   // Name label
   ctx.font=`600 ${Math.max(9,11*scale)}px 'Cabinet Grotesk'`;
@@ -332,7 +338,10 @@ C.addEventListener('wheel',e=>{
 // PANEL
 function openPanel(p){
   panelOpen=true;
-  document.getElementById('p-ico').textContent=p.ico;
+  const picoEl=document.getElementById('p-ico');
+  picoEl.textContent=p.ico;
+  picoEl.style.fontFamily=p.icoFont||'';
+  picoEl.style.color='#060608';
   const tag=document.getElementById('p-tag');
   tag.textContent=p.tag;
   tag.style.background=p.color+'18';

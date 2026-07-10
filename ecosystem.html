@@ -1,53 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>iHealth Academy — Ecosystem</title>
-<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Cabinet+Grotesk:wght@300;400;500;700;800&display=swap" rel="stylesheet"/>
-<link href="css/ecosystem.css" rel="stylesheet"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>iHealth Academy — Ecosystem</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Cabinet+Grotesk:wght@300;400;500;700;800&display=swap"
+    rel="stylesheet" />
+  <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css"
+    rel="stylesheet" />
+  <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-straight/css/uicons-solid-straight.css"
+    rel="stylesheet" />
+  <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-bold-rounded/css/uicons-bold-rounded.css"
+    rel="stylesheet" />
+  <link href="css/ecosystem.css" rel="stylesheet" />
 </head>
+
 <body>
 
-<div class="cursor" id="cur"></div>
-<div class="cursor-ring" id="ring"></div>
+  <div class="cursor" id="cur"></div>
+  <div class="cursor-ring" id="ring"></div>
 
-<nav>
-  <a href="index.html" class="logo">i<span>Health</span> Academy</a>
-  <div class="nav-menu" id="navMenu">
-    <a href="index.html" class="nav-link nav-home"><i class="fi fi-rr-arrow-left"></i> Home</a>
+  <nav>
+    <a href="index.html" class="logo">i<span>Health</span> Academy</a>
+    <div class="nav-menu" id="navMenu">
+      <a href="index.html" class="nav-link nav-home">
+        <i class="fi fi-sr-arrow-small-left"></i> Home
+      </a>
+    </div>
+    <div class="nav-right">
+      <a href="#" class="nav-cta">Get started</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <canvas id="solarCanvas"></canvas>
+
+  <div class="hint-bar" id="hintBar">
+    <div class="hint-pulse"></div>
+    Click any planet to explore · Scroll to zoom
   </div>
-  <div class="nav-right">
-    <a href="#" class="nav-cta">Get started</a>
+
+  <div class="detail-panel" id="panel">
+    <div class="panel-close" onclick="closePanel()">✕</div>
+    <div class="panel-inner">
+      <span class="panel-planet-ico" id="p-ico"></span>
+      <div class="panel-tag" id="p-tag"></div>
+      <div class="panel-title" id="p-title"></div>
+      <p class="panel-desc" id="p-desc"></p>
+      <div class="subs-title">Explore inside</div>
+      <div class="subs-list" id="p-subs"></div>
+      <a href="#" class="panel-btn" id="p-btn">Open full section →</a>
+    </div>
   </div>
-  <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
 
-<canvas id="solarCanvas"></canvas>
+  <div class="moon-tip" id="moonTip"></div>
 
-<div class="hint-bar" id="hintBar">
-  <div class="hint-pulse"></div>
-  Click any planet to explore · Scroll to zoom
-</div>
-
-<div class="detail-panel" id="panel">
-  <div class="panel-close" onclick="closePanel()">✕</div>
-  <div class="panel-inner">
-    <span class="panel-planet-ico" id="p-ico"></span>
-    <div class="panel-tag" id="p-tag"></div>
-    <div class="panel-title" id="p-title"></div>
-    <p class="panel-desc" id="p-desc"></p>
-    <div class="subs-title">Explore inside</div>
-    <div class="subs-list" id="p-subs"></div>
-    <a href="#" class="panel-btn" id="p-btn">Open full section →</a>
-  </div>
-</div>
-
-<div class="moon-tip" id="moonTip"></div>
-
-<script src="js/nav.js"></script>
-<script src="js/ecosystem.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/ecosystem.js"></script>
 </body>
+
 </html>
