@@ -10,6 +10,8 @@
   --card: #0D0D1A;
   --muted: rgba(248, 246, 241, 0.5);
   --muted2: rgba(248, 246, 241, 0.25);
+  --teal-deep: #0E5D4F;
+  --util-bg: #0B2436;
 }
 
 * {
@@ -23,150 +25,10 @@ html {
 }
 
 body {
-  font-family: 'Cabinet Grotesk', sans-serif;
+  font-family: 'Roboto', sans-serif;
   background: var(--black);
   color: var(--white);
   min-height: 100vh;
-}
-
-/* NAV */
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 2.5rem;
-  height: 64px;
-  border-bottom: 1px solid var(--border);
-  backdrop-filter: blur(20px);
-  background: var(--black);
-}
-
-.logo {
-  font-family: 'Clash Display', sans-serif;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--white);
-  text-decoration: none;
-}
-
-.logo span {
-  color: var(--teal);
-}
-
-.back {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 18px;
-  min-width: 120px;
-  padding: 7px 16px;
-  border-radius: 100px;
-  border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--white);
-  text-decoration: none;
-  transition: border-color 0.2s, color 0.2s, background 0.2s;
-}
-
-.back i {
-  display: flex;
-  font-size: 26px;
-  transition: transform 0.2s;
-}
-
-.back:hover {
-  border-color: var(--teal);
-  color: var(--teal);
-  background: rgba(0, 200, 150, 0.08);
-}
-
-.back:hover i {
-  transform: translateX(-4px);
-}
-
-.nav-cta {
-  font-family: 'Clash Display', sans-serif;
-  font-size: 18px;
-  font-weight: 600;
-  padding: 8px 18px;
-  border-radius: 100px;
-  background: var(--teal);
-  color: var(--black);
-  min-width: 150px;
-  text-align: center;
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
-  transition: all 0.2s;
-}
-
-.nav-cta:hover {
-  background: var(--white);
-}
-
-.nav-cta--menu {
-  display: none;
-}
-
-.nav-close {
-  display: none;
-}
-
-.nav-menu {
-  display: flex;
-  align-items: center;
-}
-
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-/* HAMBURGER */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  gap: 5px;
-  width: 32px;
-  height: 32px;
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  z-index: 150;
-}
-
-.hamburger span {
-  display: block;
-  width: 100%;
-  height: 2px;
-  background: var(--white);
-  border-radius: 2px;
-  transition: transform 0.25s ease, opacity 0.25s ease;
-}
-
-.hamburger.active span:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
-}
-
-.hamburger.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger.active span:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
-}
-
-.hamburger.active {
-  opacity: 0;
-  pointer-events: none;
 }
 
 /* LANDING */
@@ -177,7 +39,7 @@ nav {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 100px 2rem 60px;
+  padding: 30px 2rem 60px;
   position: relative;
   overflow: hidden;
   background: #EFF8F4;
@@ -207,7 +69,7 @@ nav {
 }
 
 .landing h1 {
-  font-family: 'Clash Display', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: clamp(2.5rem, 7vw, 5.5rem);
   font-weight: 700;
   letter-spacing: -0.04em;
@@ -229,7 +91,7 @@ nav {
 }
 
 .start-btn {
-  font-family: 'Clash Display', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 18px;
   font-weight: 700;
   padding: 16px 40px;
@@ -286,7 +148,7 @@ nav {
 }
 
 .ls-val {
-  font-family: 'Clash Display', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 60px;
   font-weight: 700;
   display: block;
@@ -391,7 +253,7 @@ nav {
 }
 
 .q-text {
-  font-family: 'Clash Display', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 1.35rem;
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -449,7 +311,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Clash Display', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 0.85rem;
   font-weight: 700;
   flex-shrink: 0;
@@ -477,7 +339,7 @@ nav {
 
 .q-back,
 .q-next {
-  font-family: 'Clash Display', sans-serif;
+  font-family: 'Roboto', sans-serif;
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -570,7 +432,7 @@ nav {
 }
 
 .results-hero h2 {
-  font-family: 'Clash Display', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 700;
   letter-spacing: -0.03em;
@@ -620,7 +482,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Clash Display', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 1.1rem;
   font-weight: 700;
   flex-shrink: 0;
@@ -649,7 +511,7 @@ nav {
 }
 
 .spec-name {
-  font-family: 'Clash Display', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 1.3rem;
   font-weight: 700;
   margin-bottom: 4px;
@@ -763,7 +625,7 @@ nav {
 .spec-box-title {
   position: relative;
   z-index: 1;
-  font-family: 'Clash Display', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 18px;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -852,7 +714,7 @@ nav {
 
 .redo-btn,
 .explore-btn {
-  font-family: 'Clash Display', sans-serif;
+  font-family: 'Roboto', sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -904,98 +766,6 @@ nav {
   transform: translateX(4px);
 }
 
-/* RESPONSIVE — nav collapses into hamburger menu */
-@media (max-width: 1024px) {
-  .hamburger {
-    display: flex;
-  }
-
-  /* backdrop-filter on nav creates a containing block for position:fixed
-     children, which breaks the full-screen mobile menu sizing below */
-  nav {
-    backdrop-filter: none;
-  }
-
-  .nav-menu {
-    display: flex;
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 100vh;
-    width: min(300px, 80vw);
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-    padding: 90px 2rem 2rem;
-    background: var(--white);
-    backdrop-filter: blur(20px);
-    border-left: 1px solid rgba(6, 6, 8, 0.08);
-    box-shadow: -20px 0 50px rgba(6, 6, 8, 0.1);
-    overflow-y: auto;
-    z-index: 99;
-    transform: translateX(100%);
-    transition: transform 0.35s ease;
-  }
-
-  .nav-close {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 24px;
-    right: 24px;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border: 1px solid rgba(6, 6, 8, 0.1);
-    background: rgba(6, 6, 8, 0.04);
-    color: var(--black);
-    cursor: pointer;
-    transition: border-color 0.2s, color 0.2s, background 0.2s;
-  }
-
-  .nav-close i {
-    display: flex;
-    font-size: 16px;
-  }
-
-  .nav-close:hover {
-    border-color: var(--teal);
-    color: var(--teal);
-    background: rgba(0, 200, 150, 0.08);
-  }
-
-  .nav-menu.open {
-    transform: translateX(0);
-  }
-
-  .nav-menu .back {
-    border: none;
-    border-bottom: 1px solid rgba(6, 6, 8, 0.08);
-    border-radius: 0;
-    background: none;
-    padding: 1rem 0;
-    font-size: 1rem;
-    width: 100%;
-    color: var(--black);
-  }
-
-  .nav-menu .back:hover {
-    background: none;
-    color: var(--teal);
-  }
-
-  .nav-cta--menu {
-    display: block;
-    width: 100%;
-    margin-top: 1.5rem;
-  }
-
-  .nav-right > .nav-cta {
-    display: none;
-  }
-}
-
 /* RESPONSIVE — tablet */
 @media (max-width: 900px) {
   .spec-grid {
@@ -1009,27 +779,8 @@ nav {
 
 /* RESPONSIVE — mobile */
 @media (max-width: 600px) {
-  nav {
-    padding: 0 1rem;
-    height: 56px;
-  }
-
-  .logo {
-    font-size: 1rem;
-  }
-
-  .nav-menu {
-    width: min(260px, 82vw);
-    padding: 82px 1.5rem 1.5rem;
-  }
-
-  .nav-cta {
-    padding: 6px 14px;
-    font-size: 0.7rem;
-  }
-
   .landing {
-    padding: 90px 1.25rem 50px;
+    padding: 20px 1.25rem 50px;
   }
 
   .landing p {

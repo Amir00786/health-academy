@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Medical Specialty Finder — iHealth Academy</title>
   <link
-    href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Cabinet+Grotesk:wght@300;400;500;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;800;900&display=swap"
     rel="stylesheet" />
   <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css"
     rel="stylesheet" />
@@ -15,8 +15,12 @@
     rel="stylesheet" />
   <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-straight/css/uicons-solid-straight.css"
     rel="stylesheet" />
+  <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css" rel="stylesheet" />
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="css/specialty-finder.css" rel="stylesheet" />
+  <link href="css/nav-v2.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -40,20 +44,76 @@
     </div>
   </div>
 
-  <nav>
-    <a href="index.html" class="logo">i<span>Health</span> Academy</a>
-    <div class="nav-menu" id="navMenu">
-      <button class="nav-close" id="navClose" aria-label="Close menu"><i class="fi fi-sr-cross"></i></button>
-      <a href="index.html" class="back"><i class="fi fi-sr-arrow-small-left"></i> Back to home</a>
-      <a href="#" class="nav-cta nav-cta--menu">Get started free</a>
+  <div id="topbar">
+    <div class="topbar-wrap">
+      <div class="social-row">
+        <a class="social-chip" href="#" title="WhatsApp" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5.1-.1.2-.3.4-.4.1-.1.2-.2.2-.4.1-.1 0-.3 0-.4 0-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.3c.1.2 1.6 2.5 3.9 3.4.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg></a>
+        <a class="social-chip" href="#" title="Facebook" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 22v-8h2.7l.4-3.1h-3.1V9c0-.9.2-1.5 1.6-1.5h1.6V4.7c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.3H8v3.1h2.5V22h3Z"/></svg></a>
+        <a class="social-chip" href="#" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2 2 0 1 1 0 4 2 2 0 0 1 0-4ZM3 9h4v12H3V9Zm6.5 0h3.8v1.7h.1c.5-.9 1.8-1.9 3.7-1.9 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-2.9-1.8-2.9-1.8 0-2.1 1.4-2.1 2.8V21h-4V9Z"/></svg></a>
+        <a class="social-chip" href="#" title="X (Twitter)" aria-label="X (Twitter)"><svg viewBox="0 0 24 24"><path d="M4 4l16 16M20 4 4 20" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" fill="none"/></svg></a>
+        <a class="social-chip" href="#" title="Instagram" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor"/></svg></a>
+        <a class="social-chip" href="#" title="YouTube" aria-label="YouTube"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10 9l6 3-6 3V9Z" fill="currentColor"/></svg></a>
+      </div>
+      <div class="right-links">
+        <a href="#">عربي</a>
+        <a href="#">Help</a>
+      </div>
     </div>
-    <div class="nav-right">
-      <a href="#" class="nav-cta">Get started free</a>
-      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+  </div>
+
+  <header id="mainnav">
+    <div class="mainnav-wrap">
+      <a class="logo" href="index.html"><span class="mark">iH</span> iHealth Academy</a>
+
+      <nav class="nav-links" id="navLinks">
+        <div class="nav-item"><a class="nav-link" href="index.html">Home</a></div>
+        <div class="nav-item"><a class="nav-link" href="find-your-path.html">Find Your Path</a></div>
+
+        <div class="nav-item" id="academyDropdown">
+          <button type="button" class="nav-link" id="academyBtn">iHealthAcademy <span class="caret">▾</span></button>
+          <div class="dropdown">
+            <a class="ddi" href="find-your-path.html" style="background:var(--primary-tint); margin-bottom:6px;">
+              <div><div class="ddi-title">🧭 Find Your Path</div><div class="ddi-sub">Not sure yet? Take the 2-minute quiz</div></div>
+              <span class="badge live">LIVE</span>
+            </a>
+            <a class="ddi ddi-disabled" href="#">
+              <div><div class="ddi-title">Insurance Industry</div><div class="ddi-sub">Become a Pre-Auth Specialist</div></div>
+              <span class="badge soon">COMING SOON</span>
+            </a>
+            <div class="ddi ddi-disabled">
+              <div><div class="ddi-title">Managers Professional</div><div class="ddi-sub">Leadership track for health managers</div></div>
+              <span class="badge soon">COMING SOON</span>
+            </div>
+            <a class="ddi" href="radiology-dept.html">
+              <div><div class="ddi-title">Medical Specialties</div><div class="ddi-sub">Radiology</div></div>
+              <span class="badge live">LIVE</span>
+            </a>
+            <div class="ddi ddi-disabled">
+              <div><div class="ddi-title">Mentorships</div><div class="ddi-sub">1:1 guidance from practicing professionals</div></div>
+              <span class="badge soon">COMING SOON</span>
+            </div>
+            <div class="ddi ddi-disabled">
+              <div><div class="ddi-title">Supporters</div><div class="ddi-sub">Volunteering, teaching &amp; side-missions — earn a certificate</div></div>
+              <span class="badge soon">COMING SOON</span>
+            </div>
+            <div class="ddi ddi-disabled">
+              <div><div class="ddi-title">Co-Founders</div><div class="ddi-sub">Join the founding team</div></div>
+              <span class="badge soon">COMING SOON</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav-item"><a class="nav-link" href="#">Connections</a></div>
+        <div class="nav-item"><a class="nav-link" href="#">Contact Us</a></div>
+      </nav>
+
+      <div class="auth-actions">
+        <a href="#" class="btn btn-ghost nav-signin">Sign in</a>
+        <a href="#" class="btn btn-primary nav-signup">Sign up</a>
+        <button type="button" class="hamburger btn btn-ghost" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false">☰</button>
+      </div>
     </div>
-  </nav>
+  </header>
 
   <!-- LANDING -->
   <div class="landing" id="landing">
@@ -117,6 +177,7 @@
   </div>
 
   <script src="js/nav.js"></script>
+  <script src="js/nav-v2.js"></script>
   <script>
     // COUNTER
     function animateCounter(el) {

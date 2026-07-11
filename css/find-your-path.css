@@ -1,0 +1,805 @@
+:root {
+  --black: #060608;
+  --white: #F8F6F1;
+  --teal: #00C896;
+  --teal-dim: rgba(0, 200, 150, 0.08);
+  --teal-border: rgba(0, 200, 150, 0.2);
+  --amber: #F5A623;
+  --blue: #4A9EFF;
+  --border: rgba(255, 255, 255, 0.07);
+  --card: #0D0D1A;
+  --muted: rgba(248, 246, 241, 0.5);
+  --muted2: rgba(248, 246, 241, 0.25);
+  --teal-deep: #0E5D4F;
+  --util-bg: #0B2436;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: var(--black);
+  color: var(--white);
+  min-height: 100vh;
+}
+
+/* FIND YOUR PATH — HERO */
+.fyp-hero-wrap {
+  background: #EFF8F4;
+  min-height: 100vh;
+}
+
+.fyp-hero {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 50px 2.5rem 100px;
+}
+
+.fyp-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--teal-deep);
+  margin-bottom: 1rem;
+}
+
+.fyp-title {
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  font-weight: 800;
+  color: var(--black);
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  margin-bottom: 1.25rem;
+}
+
+.fyp-desc {
+  max-width: 640px;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: rgba(6, 6, 8, 0.6);
+  margin-bottom: 3rem;
+}
+
+.fyp-stages {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 4rem;
+}
+
+.fyp-stage-card {
+  display: block;
+  width: 100%;
+  background: var(--white);
+  border: 1px solid rgba(6, 6, 8, 0.08);
+  border-radius: 20px;
+  padding: 2rem;
+  text-decoration: none;
+  text-align: left;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.fyp-stage-card:hover {
+  border-color: var(--teal-border);
+  transform: translateY(-3px);
+  box-shadow: 0 20px 40px rgba(6, 6, 8, 0.08);
+}
+
+.fyp-stage-tag {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--teal-deep);
+  margin-bottom: 0.75rem;
+}
+
+.fyp-stage-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--black);
+  margin-bottom: 0.6rem;
+}
+
+.fyp-stage-desc {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: rgba(6, 6, 8, 0.55);
+  margin-bottom: 1.25rem;
+}
+
+.fyp-stage-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--amber);
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* FIND YOUR PATH — compass (step 1) */
+.fp-compass-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 36px;
+}
+
+#fpCompassSvg {
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+  overflow: visible;
+}
+
+.fp-c-ring {
+  fill: none;
+  stroke: rgba(6, 6, 8, 0.1);
+  stroke-width: 1;
+}
+
+.fp-c-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 8px;
+  fill: rgba(6, 6, 8, 0.45);
+  text-anchor: middle;
+}
+
+.fp-c-needle {
+  transform-origin: 160px 160px;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fp-c-progress {
+  fill: none;
+  stroke: var(--teal-deep);
+  stroke-width: 3;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.5s ease;
+}
+
+.fp-c-core {
+  fill: rgba(0, 200, 150, 0.1);
+  stroke: var(--teal-deep);
+  stroke-width: 1.5;
+}
+
+.fp-c-pct {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 18px;
+  fill: var(--black);
+  text-anchor: middle;
+  font-weight: 500;
+}
+
+.fp-c-pct-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 8px;
+  fill: var(--amber);
+  text-anchor: middle;
+  letter-spacing: 0.1em;
+}
+
+/* FIND YOUR PATH — quiz (step 2) */
+.fp-quiz-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.fp-track-pill {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--amber);
+  border: 1px solid rgba(245, 166, 35, 0.3);
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: rgba(245, 166, 35, 0.08);
+}
+
+.fp-dim-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--teal-deep);
+  border: 1px solid var(--teal-border);
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--teal-dim);
+  margin-left: 8px;
+}
+
+.fp-q-count {
+  font-family: 'IBM Plex Mono', monospace;
+  color: rgba(6, 6, 8, 0.5);
+  font-size: 13px;
+}
+
+.fp-qcard {
+  background: var(--white);
+  border: 1px solid rgba(6, 6, 8, 0.08);
+  border-radius: 20px;
+  padding: 32px 30px;
+  animation: fpFadeUp 0.35s ease;
+}
+
+@keyframes fpFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fp-qcard h3 {
+  font-size: 21px;
+  max-width: 38ch;
+  font-weight: 600;
+  color: var(--black);
+}
+
+.fp-scale {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin-top: 26px;
+}
+
+.fp-scale button {
+  font-family: 'Roboto', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(6, 6, 8, 0.55);
+  background: #EFF8F4;
+  border: 1px solid rgba(6, 6, 8, 0.08);
+  border-radius: 10px;
+  padding: 14px 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.fp-scale button .fp-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid rgba(6, 6, 8, 0.3);
+}
+
+.fp-scale button:hover {
+  border-color: var(--teal-deep);
+  color: var(--black);
+}
+
+.fp-scale button:hover .fp-dot {
+  border-color: var(--teal-deep);
+}
+
+.fp-scale button.selected {
+  border-color: var(--teal-deep);
+  background: var(--teal-dim);
+  color: var(--teal-deep);
+}
+
+.fp-scale button.selected .fp-dot {
+  background: var(--teal-deep);
+  border-color: var(--teal-deep);
+}
+
+.fp-quiz-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 22px;
+}
+
+.btn-ghost {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 999px;
+  padding: 10px 18px;
+  border: 1px solid rgba(6, 6, 8, 0.14);
+  background: none;
+  color: var(--black);
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-ghost:hover {
+  border-color: var(--teal);
+  color: var(--teal-deep);
+}
+
+.btn-primary {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 999px;
+  padding: 10px 18px;
+  border: none;
+  background: var(--teal-deep);
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-primary:hover {
+  background: var(--black);
+}
+
+/* FIND YOUR PATH — results (step 3) */
+.fp-results-title {
+  font-size: 30px;
+  color: var(--black);
+  margin-top: 10px;
+}
+
+.fp-results-sub {
+  color: rgba(6, 6, 8, 0.6);
+  max-width: 62ch;
+  margin-top: 0.5rem;
+}
+
+.fp-radar-panel {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 30px;
+  align-items: center;
+  background: var(--white);
+  border: 1px solid rgba(6, 6, 8, 0.08);
+  border-radius: 20px;
+  padding: 26px;
+  margin: 26px 0 36px;
+}
+
+.fp-profile-title {
+  font-size: 15px;
+  color: var(--black);
+}
+
+.fp-radar-legend div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: rgba(6, 6, 8, 0.6);
+  margin-bottom: 8px;
+}
+
+.fp-swatch {
+  width: 11px;
+  height: 11px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.fp-rank-card {
+  display: grid;
+  grid-template-columns: 46px 1fr auto;
+  gap: 16px;
+  align-items: center;
+  background: var(--white);
+  border: 1px solid rgba(6, 6, 8, 0.08);
+  border-radius: 20px;
+  padding: 18px 22px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: 0.15s ease;
+}
+
+.fp-rank-card:hover {
+  border-color: var(--teal-deep);
+}
+
+.fp-rank-num {
+  font-size: 24px;
+  color: var(--teal-deep);
+  font-weight: 800;
+}
+
+.fp-rank-name {
+  font-size: 16.5px;
+  font-weight: 700;
+  color: var(--black);
+}
+
+.fp-rank-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  color: rgba(6, 6, 8, 0.5);
+  margin-top: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.fp-rank-match {
+  text-align: right;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.fp-rank-match b {
+  font-size: 20px;
+  color: var(--amber);
+  display: block;
+}
+
+.fp-rank-match span {
+  font-size: 10px;
+  color: rgba(6, 6, 8, 0.5);
+  text-transform: uppercase;
+}
+
+.fp-rank-detail {
+  max-height: 0;
+  overflow: hidden;
+  grid-column: 1 / -1;
+  transition: max-height 0.3s ease;
+}
+
+.fp-rank-card.open .fp-rank-detail {
+  max-height: 460px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(6, 6, 8, 0.08);
+}
+
+.fp-rank-detail p {
+  color: rgba(6, 6, 8, 0.6);
+  font-size: 13.5px;
+  margin: 0 0 9px;
+}
+
+.fp-rank-detail .fp-why {
+  font-size: 13px;
+  color: var(--black);
+}
+
+.fp-rank-detail .fp-ai-note {
+  font-size: 12.5px;
+  color: var(--teal-deep);
+  border-left: 2px solid var(--teal-deep);
+  padding-left: 10px;
+  margin: 10px 0;
+}
+
+.fp-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+}
+
+.fp-bar-row .fp-lbl {
+  width: 105px;
+  color: rgba(6, 6, 8, 0.5);
+  flex-shrink: 0;
+}
+
+.fp-bar-track {
+  flex: 1;
+  height: 6px;
+  background: #EFF8F4;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.fp-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+}
+
+.fp-results-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+
+/* FIND YOUR PATH — journey (step 4) */
+.fp-journey {
+  border-top: 1px solid rgba(6, 6, 8, 0.08);
+  margin-top: 20px;
+  padding-top: 20px;
+}
+
+.fp-journey-title {
+  font-size: 22px;
+  color: var(--black);
+  margin-top: 10px;
+}
+
+.fp-journey-sub {
+  color: rgba(6, 6, 8, 0.6);
+  max-width: 60ch;
+  margin-bottom: 6px;
+}
+
+.fp-journey-entry {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(6, 6, 8, 0.08);
+  flex-wrap: wrap;
+}
+
+.fp-je-date {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11.5px;
+  color: rgba(6, 6, 8, 0.5);
+}
+
+.fp-je-track {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.fp-je-pick {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--teal-deep);
+}
+
+.fp-empty-note {
+  color: rgba(6, 6, 8, 0.5);
+  font-size: 14px;
+  font-style: italic;
+}
+
+@media (max-width: 760px) {
+  .fp-radar-panel {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .fp-scale {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .fp-scale button:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+/* FOOTER */
+footer {
+  background: var(--black);
+  border-top: 1px solid var(--border);
+  padding: 4.5rem 3rem 0;
+}
+
+.footer-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 3rem;
+  padding-bottom: 3.5rem;
+  flex-wrap: wrap;
+}
+
+.footer-brand {
+  max-width: 320px;
+}
+
+.footer-logo {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.footer-logo span {
+  color: var(--teal);
+}
+
+.footer-tagline {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-top: 0.9rem;
+}
+
+.footer-cols {
+  display: flex;
+  gap: 3.5rem;
+  flex-wrap: wrap;
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.footer-col-title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 0.3rem;
+}
+
+.footer-col a {
+  font-size: 0.82rem;
+  color: var(--muted);
+  text-decoration: none;
+  width: fit-content;
+  transition: color 0.2s;
+}
+
+.footer-col a:hover {
+  color: var(--teal);
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding: 1.5rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-copy {
+  font-size: 0.7rem;
+  color: var(--muted2);
+}
+
+/* PAGE LOADER */
+html.is-loading,
+html.is-loading body {
+  overflow: hidden;
+  height: 100%;
+}
+
+.page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--black);
+  transition: opacity .5s ease, visibility .5s ease;
+}
+
+.page-loader.hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.ecg {
+  width: 380px;
+  height: 100px;
+}
+
+.ecg-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.ecg-track {
+  fill: none;
+  stroke: rgba(248, 246, 241, 0.1);
+  stroke-width: 3;
+  stroke-linejoin: round;
+}
+
+.ecg-pulse {
+  fill: none;
+  stroke: url(#ecgFade);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 22 78;
+  stroke-dashoffset: 0;
+  animation: ecgSweep 3s linear infinite;
+  filter: drop-shadow(0 0 6px rgba(0, 200, 150, 0.6));
+}
+
+@keyframes ecgSweep {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+/* RESPONSIVE — tablet */
+@media (max-width: 1280px) {
+  .fyp-hero {
+    padding-top: 30px;
+  }
+}
+
+/* RESPONSIVE — tablet */
+@media (max-width: 900px) {
+  .fyp-stages {
+    grid-template-columns: 1fr;
+  }
+
+  footer {
+    padding: 3.5rem 1.5rem 0;
+  }
+
+  .footer-top {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-brand {
+    max-width: none;
+  }
+
+  .footer-cols {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .footer-col {
+    align-items: center;
+  }
+
+  .footer-bottom {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+/* RESPONSIVE — mobile */
+@media (max-width: 600px) {
+  .fyp-hero {
+    padding: 20px 1.25rem 60px;
+  }
+
+  .fyp-desc {
+    font-size: 0.9rem;
+  }
+}

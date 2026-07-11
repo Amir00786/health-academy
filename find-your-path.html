@@ -4,21 +4,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>iHealth Academy — Ecosystem</title>
+  <title>Find Your Path — iHealth Academy</title>
   <link
     href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;800;900&display=swap"
     rel="stylesheet" />
   <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css"
     rel="stylesheet" />
-  <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-straight/css/uicons-solid-straight.css"
+  <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-bold-rounded/css/uicons-bold-rounded.css" rel="stylesheet" />
+  <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-bold-straight/css/uicons-bold-straight.css"
     rel="stylesheet" />
-  <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-bold-rounded/css/uicons-bold-rounded.css"
+  <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-straight/css/uicons-solid-straight.css"
     rel="stylesheet" />
   <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css" rel="stylesheet" />
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="css/ecosystem.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="css/find-your-path.css" rel="stylesheet" />
   <link href="css/nav-v2.css" rel="stylesheet" />
 </head>
 
@@ -43,9 +44,6 @@
     </div>
   </div>
 
-  <div class="cursor" id="cur"></div>
-  <div class="cursor-ring" id="ring"></div>
-
   <div id="topbar">
     <div class="topbar-wrap">
       <div class="social-row">
@@ -69,7 +67,7 @@
 
       <nav class="nav-links" id="navLinks">
         <div class="nav-item"><a class="nav-link" href="index.html">Home</a></div>
-        <div class="nav-item"><a class="nav-link" href="find-your-path.html">Find Your Path</a></div>
+        <div class="nav-item"><a class="nav-link active" href="find-your-path.html">Find Your Path</a></div>
 
         <div class="nav-item" id="academyDropdown">
           <button type="button" class="nav-link" id="academyBtn">iHealthAcademy <span class="caret">▾</span></button>
@@ -117,38 +115,153 @@
     </div>
   </header>
 
-  <canvas id="solarCanvas"></canvas>
+  <!-- FIND YOUR PATH -->
+  <section class="fyp-hero-wrap">
+  <div class="fyp-hero">
 
-  <div class="hint-bar" id="hintBar">
-    <div class="hint-pulse"></div>
-    Click any planet to explore · Scroll to zoom
-  </div>
+    <!-- Step 1: intro / track select -->
+    <div id="fpIntro">
+      <div class="fyp-tag" data-aos="fade-up">Find your path</div>
+      <h1 class="fyp-title" data-aos="fade-up" data-aos-delay="50">Two moments,<br>one quiz.</h1>
+      <p class="fyp-desc" data-aos="fade-up" data-aos-delay="100">Whether you're deciding if — and how — to enter
+        medicine, or you're already an intern ranking residency programs, this short quiz scores your answers against
+        real iHealthAcademy tracks and specialties, not just a general list.</p>
 
-  <div class="detail-panel" id="panel">
-    <div class="panel-close" onclick="closePanel()">✕</div>
-    <div class="panel-inner">
-      <span class="panel-planet-ico" id="p-ico"></span>
-      <div class="panel-tag" id="p-tag"></div>
-      <div class="panel-title" id="p-title"></div>
-      <p class="panel-desc" id="p-desc"></p>
-      <div class="subs-title">Explore inside</div>
-      <div class="subs-list" id="p-subs"></div>
-      <a href="#" class="panel-btn" id="p-btn">Open full section →</a>
+      <div class="fyp-stages">
+        <button type="button" class="fyp-stage-card" id="fpCardPremed" data-aos="fade-up">
+          <span class="fyp-stage-tag">Stage 01</span>
+          <h3 class="fyp-stage-title">Before Medical School</h3>
+          <p class="fyp-stage-desc">Secondary school or pre-med undergrad, deciding whether medicine is right for you
+            — and which path in health care actually fits.</p>
+          <span class="fyp-stage-meta">28 questions <i class="fi fi-rr-arrow-small-right"></i> top 10 health paths
+            <i class="fi fi-rr-arrow-small-right"></i></span>
+        </button>
+        <button type="button" class="fyp-stage-card" id="fpCardResidency" data-aos="fade-up" data-aos-delay="100">
+          <span class="fyp-stage-tag">Stage 02</span>
+          <h3 class="fyp-stage-title">After Medical School</h3>
+          <p class="fyp-stage-desc">Intern or final-year student ranking residency programs — which specialty you'll
+            spend the next thirty years inside.</p>
+          <span class="fyp-stage-meta">28 questions <i class="fi fi-rr-arrow-small-right"></i> top 10 specialties
+            <i class="fi fi-rr-arrow-small-right"></i></span>
+        </button>
+      </div>
+
+      <div class="fp-compass-wrap" data-aos="fade-up">
+        <svg id="fpCompassSvg" viewBox="0 0 320 320">
+          <circle class="fp-c-ring" cx="160" cy="160" r="140"></circle>
+          <circle class="fp-c-ring" cx="160" cy="160" r="112"></circle>
+          <g id="fpTicks"></g>
+          <g id="fpDimLabels"></g>
+          <circle id="fpProgressRing" class="fp-c-progress" cx="160" cy="160" r="128" stroke-dasharray="804" stroke-dashoffset="804" transform="rotate(-90 160 160)"></circle>
+          <g class="fp-c-needle" id="fpNeedle">
+            <polygon points="160,58 168,160 160,175 152,160" fill="#0B7A75"></polygon>
+            <polygon points="160,262 168,160 160,145 152,160" fill="#E8A33D"></polygon>
+          </g>
+          <circle class="fp-c-core" cx="160" cy="160" r="34"></circle>
+          <text class="fp-c-pct" x="160" y="156" id="fpPctText">0%</text>
+          <text class="fp-c-pct-label" x="160" y="172" id="fpPctLabel">READY</text>
+        </svg>
+      </div>
     </div>
-  </div>
 
-  <div class="moon-tip" id="moonTip"></div>
+    <!-- Step 2: quiz -->
+    <div id="fpQuiz" class="hidden">
+      <div class="fp-quiz-top">
+        <div>
+          <span class="fp-track-pill" id="fpTrackPill">—</span>
+          <span class="fp-dim-tag" id="fpDimTag">● —</span>
+        </div>
+        <span class="fp-q-count" id="fpQCount">Question 1 of 28</span>
+      </div>
+      <div class="fp-qcard" id="fpQcard">
+        <h3 id="fpQText">—</h3>
+        <div class="fp-scale" id="fpScale"></div>
+      </div>
+      <div class="fp-quiz-nav">
+        <button class="btn-ghost" id="fpBackBtn" type="button">← Back</button>
+        <button class="btn-ghost" id="fpSkipBtn" type="button">Skip question</button>
+      </div>
+    </div>
+
+    <!-- Step 3: results -->
+    <div id="fpResults" class="hidden">
+      <div class="fyp-tag" id="fpResultsEyebrow">YOUR RESULT</div>
+      <h2 class="fp-results-title" id="fpResultsTitle">Your top ten</h2>
+      <p class="fp-results-sub" id="fpResultsSub">Ranked by how closely your answers align with each path's demands.
+        Tap a card for why it's on your list.</p>
+
+      <div class="fp-radar-panel">
+        <svg id="fpRadarSvg" viewBox="0 0 320 320" style="width:100%; height:auto;"></svg>
+        <div>
+          <h3 class="fp-profile-title">Your profile</h3>
+          <div class="fp-radar-legend" id="fpRadarLegend"></div>
+        </div>
+      </div>
+
+      <div id="fpRankList"></div>
+
+      <div class="fp-results-actions">
+        <button class="btn-primary" id="fpSaveJourneyBtn" type="button">Save to my journey</button>
+        <button class="btn-ghost" id="fpRetakeBtn" type="button">Retake this survey</button>
+        <button class="btn-ghost" id="fpSwitchTrackBtn" type="button">Try the other stage</button>
+      </div>
+    </div>
+
+    <!-- Step 4: journey -->
+    <div id="fpJourney" class="hidden fp-journey">
+      <div class="fyp-tag">YOUR JOURNEY</div>
+      <h2 class="fp-journey-title">Every bearing you've taken</h2>
+      <p class="fp-journey-sub">Saved on this device, across both stages. Retake after a rotation or shadowing
+        experience and watch whether your top pick holds.</p>
+      <div id="fpJourneyList"></div>
+    </div>
+
+  </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">i<span>Health</span> Academy</div>
+          <p class="footer-tagline">Career support for healthcare professionals — CV tools, exam prep, and career
+            growth, all in one place.</p>
+        </div>
+        <div class="footer-cols">
+          <div class="footer-col">
+            <div class="footer-col-title">Product</div>
+            <a href="ecosystem.html">Ecosystem</a>
+            <a href="radiology-dept.html">Radiology</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Company</div>
+            <a href="#">About</a>
+            <a href="#">Contact & support</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Legal</div>
+            <a href="#">Privacy policy</a>
+            <a href="#">Terms of use</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2026 iHealth Academy. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
 
   <script src="js/nav.js"></script>
   <script src="js/nav-v2.js"></script>
-  <script src="js/ecosystem.js"></script>
+  <script src="js/find-your-path.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init({
       duration: 700,
       easing: 'ease',
       once: true,
-      offset: 80
+      offset: 80,
     });
   </script>
 </body>

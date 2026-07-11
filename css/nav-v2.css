@@ -1,0 +1,469 @@
+/* ============================================================
+   NAV V2 — shared topbar + main nav (from ihealth-academy-v2 mockup)
+   Variables are scoped to #topbar/#mainnav only, so they don't
+   collide with each page's own design tokens of the same name.
+   ============================================================ */
+#topbar,
+#mainnav {
+  --bg: #F6F9F8;
+  --surface: #FFFFFF;
+  --ink: #0F2B2A;
+  --ink-dim: #5B6B69;
+  --primary: #0B7A75;
+  --primary-dark: #095F5B;
+  --primary-tint: #E6F3F2;
+  --accent: #E8A33D;
+  --live: #1F9D55;
+  --live-tint: #E7F7EC;
+  --soon: #8B9694;
+  --soon-tint: #EEF1F0;
+  --border: #E3EAE9;
+  --ceo: #142C3C;
+  --radius: 14px;
+  --heading: "Plus Jakarta Sans", sans-serif;
+  --sans-v2: "Inter", sans-serif;
+}
+
+/* TOP UTILITY BAR */
+#topbar {
+  background: var(--ceo);
+  color: #CFE3DF;
+  font-size: 12.5px;
+}
+
+#topbar .topbar-wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 24px;
+}
+
+.social-row {
+  display: flex;
+  gap: 10px;
+}
+
+.social-chip {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #CFE3DF;
+  transition: .15s ease;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.social-chip svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+.social-chip:hover {
+  background: var(--accent);
+  color: var(--ceo);
+}
+
+#topbar .right-links {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  color: #B9CBC7;
+}
+
+#topbar .right-links a {
+  color: inherit;
+  text-decoration: none;
+  background: none;
+  border: none;
+  font-size: inherit;
+  font-family: var(--sans-v2);
+  cursor: pointer;
+}
+
+#topbar .right-links a:hover {
+  color: #fff;
+}
+
+/* MAIN NAV */
+#mainnav {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 500;
+}
+
+#mainnav .mainnav-wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  gap: 20px;
+}
+
+#mainnav .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--heading);
+  font-weight: 800;
+  font-size: 19px;
+  color: var(--primary-dark);
+  text-decoration: none;
+}
+
+#mainnav .logo .mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: var(--primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+#mainnav .nav-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+#mainnav .nav-item {
+  position: relative;
+}
+
+#mainnav .nav-link {
+  padding: 10px 14px;
+  border-radius: 9px;
+  font-weight: 600;
+  font-size: 14.5px;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  background: none;
+  text-decoration: none;
+  font-family: var(--sans-v2);
+  cursor: pointer;
+}
+
+#mainnav .nav-link:hover,
+#mainnav .nav-link.active {
+  background: var(--primary-tint);
+  color: var(--primary-dark);
+}
+
+#mainnav .caret {
+  font-size: 10px;
+  transition: transform .2s ease;
+}
+
+#mainnav .nav-item.open .caret {
+  transform: rotate(180deg);
+}
+
+#mainnav .dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  width: 340px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 18px 40px -18px rgba(15, 43, 42, 0.25);
+  padding: 10px;
+  display: none;
+  z-index: 50;
+}
+
+#mainnav .nav-item.open .dropdown {
+  display: block;
+}
+
+#mainnav .ddi {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 12px;
+  border-radius: 10px;
+  transition: .15s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+#mainnav .ddi:hover {
+  background: var(--bg);
+}
+
+#mainnav .ddi-title {
+  font-weight: 600;
+  font-size: 14px;
+  font-family: var(--sans-v2);
+}
+
+#mainnav .ddi-sub {
+  font-size: 12px;
+  color: var(--ink-dim);
+  margin-top: 2px;
+  font-family: var(--sans-v2);
+}
+
+#mainnav .badge {
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 4px 9px;
+  border-radius: 999px;
+  white-space: nowrap;
+  letter-spacing: .02em;
+}
+
+#mainnav .badge.live {
+  background: var(--live-tint);
+  color: var(--live);
+}
+
+#mainnav .badge.soon {
+  background: var(--soon-tint);
+  color: var(--soon);
+}
+
+#mainnav .ddi-disabled {
+  opacity: .55;
+  cursor: not-allowed;
+}
+
+#mainnav .ddi-disabled:hover {
+  background: none;
+}
+
+#mainnav .auth-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#mainnav .btn {
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 999px;
+  padding: 10px 18px;
+  border: 1px solid transparent;
+  font-family: var(--sans-v2);
+  text-decoration: none;
+  display: inline-block;
+}
+
+#mainnav .btn-ghost {
+  background: none;
+  border-color: var(--border);
+  color: var(--ink);
+}
+
+#mainnav .btn-ghost:hover {
+  border-color: var(--primary);
+  color: var(--primary-dark);
+}
+
+#mainnav .btn-primary {
+  background: var(--primary);
+  color: #fff;
+}
+
+#mainnav .btn-primary:hover {
+  background: var(--primary-dark);
+}
+
+#mainnav .hamburger {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  #topbar {
+    display: none;
+  }
+
+  #mainnav .nav-links {
+    display: none;
+  }
+
+  #mainnav .hamburger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+#mainnav .nav-links.open {
+  display: flex !important;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  flex-direction: column;
+  align-items: stretch;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 10px;
+  gap: 2px;
+  box-shadow: 0 18px 40px -18px rgba(15, 43, 42, 0.25);
+  z-index: 60;
+}
+
+#mainnav .nav-links.open .nav-item {
+  width: 100%;
+}
+
+#mainnav .nav-links.open .dropdown {
+  position: static;
+  width: 100%;
+  box-shadow: none;
+  margin-top: 6px;
+}
+
+/* ============================================================
+   AUTH MODAL (Sign in / Sign up) — from ihealth-academy-v2 mockup
+   ============================================================ */
+.modal-overlay {
+  --bg: #F6F9F8;
+  --surface: #FFFFFF;
+  --ink: #0F2B2A;
+  --ink-dim: #5B6B69;
+  --primary: #0B7A75;
+  --primary-dark: #095F5B;
+  --border: #E3EAE9;
+  --heading: "Plus Jakarta Sans", sans-serif;
+  --sans-v2: "Inter", sans-serif;
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 43, 42, 0.45);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 20px;
+}
+
+.modal-overlay.open {
+  display: flex;
+}
+
+.modal-overlay .modal {
+  background: var(--surface);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 420px;
+  padding: 28px;
+  position: relative;
+  font-family: var(--sans-v2);
+}
+
+.modal-overlay .modal h2 {
+  font-family: var(--heading);
+  font-size: 20px;
+  margin: 0;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.modal-overlay .modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: var(--ink-dim);
+  cursor: pointer;
+}
+
+.modal-overlay .role-tabs {
+  display: flex;
+  background: var(--bg);
+  border-radius: 999px;
+  padding: 4px;
+  margin: 18px 0 20px;
+}
+
+.modal-overlay .role-tab {
+  flex: 1;
+  text-align: center;
+  padding: 9px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 13.5px;
+  border: none;
+  background: none;
+  color: var(--ink-dim);
+  font-family: var(--sans-v2);
+  cursor: pointer;
+}
+
+.modal-overlay .role-tab.active {
+  background: var(--primary);
+  color: #fff;
+}
+
+.modal-overlay .field {
+  margin-bottom: 12px;
+}
+
+.modal-overlay .field label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink-dim);
+  display: block;
+  margin-bottom: 5px;
+  font-family: var(--sans-v2);
+}
+
+.modal-overlay .field input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 10px 12px;
+  font-size: 14px;
+  font-family: var(--sans-v2);
+}
+
+.modal-overlay .field input:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 1px;
+  border-color: var(--primary);
+}
+
+.modal-overlay .modal .btn-primary {
+  width: 100%;
+  padding: 12px;
+  margin-top: 6px;
+  border: none;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 14px;
+  background: var(--primary);
+  color: #fff;
+  cursor: pointer;
+  font-family: var(--sans-v2);
+}
+
+.modal-overlay .modal .btn-primary:hover {
+  background: var(--primary-dark);
+}
+
+.modal-overlay .modal-note {
+  font-size: 12px;
+  color: var(--ink-dim);
+  text-align: center;
+  margin-top: 14px;
+}
