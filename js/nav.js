@@ -1,6 +1,20 @@
+// PAGE LOADER
+(function () {
+  const pageLoader = document.getElementById('pageLoader');
+  if (!pageLoader) return;
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      pageLoader.classList.add('hide');
+      document.documentElement.classList.remove('is-loading');
+      setTimeout(() => pageLoader.remove(), 600);
+    }, 500);
+  });
+})();
+
 (function () {
   const hamburger = document.getElementById('hamburger');
   const navMenu = document.getElementById('navMenu');
+  const navClose = document.getElementById('navClose');
   if (!hamburger || !navMenu) return;
 
   function closeMenu() {
@@ -18,6 +32,7 @@
   }
 
   hamburger.addEventListener('click', toggleMenu);
+  if (navClose) navClose.addEventListener('click', closeMenu);
   navMenu.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
   window.addEventListener('resize', () => {
     if (window.innerWidth > 1280) closeMenu();

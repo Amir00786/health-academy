@@ -1,5 +1,5 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="is-loading">
 
 <head>
   <meta charset="UTF-8" />
@@ -10,18 +10,42 @@
     rel="stylesheet" />
   <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css"
     rel="stylesheet" />
-  <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-bold-rounded/css/uicons-bold-rounded.css"
-    rel="stylesheet" />
+  <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-bold-rounded/css/uicons-bold-rounded.css" rel="stylesheet" />
   <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-bold-straight/css/uicons-bold-straight.css"
     rel="stylesheet" />
+  <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-straight/css/uicons-solid-straight.css"
+    rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <link href="css/specialty-finder.css" rel="stylesheet" />
 </head>
 
 <body>
+
+  <div class="page-loader" id="pageLoader">
+    <div class="ecg">
+      <svg class="ecg-svg" viewBox="0 0 600 120" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="ecgFade" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" style="stop-color:var(--teal); stop-opacity:0" />
+            <stop offset="18%" style="stop-color:var(--teal); stop-opacity:1" />
+            <stop offset="82%" style="stop-color:var(--teal); stop-opacity:1" />
+            <stop offset="100%" style="stop-color:var(--teal); stop-opacity:0" />
+          </linearGradient>
+        </defs>
+        <path class="ecg-track"
+          d="M0,60 L60,60 L72,50 L84,60 L100,60 L108,66 L114,10 L120,92 L128,60 L145,60 L162,48 L178,60 L200,60 L260,60 L272,50 L284,60 L300,60 L308,66 L314,10 L320,92 L328,60 L345,60 L362,48 L378,60 L400,60 L460,60 L472,50 L484,60 L500,60 L508,66 L514,10 L520,92 L528,60 L545,60 L562,48 L578,60 L600,60" />
+        <path class="ecg-pulse" pathLength="100"
+          d="M0,60 L60,60 L72,50 L84,60 L100,60 L108,66 L114,10 L120,92 L128,60 L145,60 L162,48 L178,60 L200,60 L260,60 L272,50 L284,60 L300,60 L308,66 L314,10 L320,92 L328,60 L345,60 L362,48 L378,60 L400,60 L460,60 L472,50 L484,60 L500,60 L508,66 L514,10 L520,92 L528,60 L545,60 L562,48 L578,60 L600,60" />
+      </svg>
+    </div>
+  </div>
+
   <nav>
     <a href="index.html" class="logo">i<span>Health</span> Academy</a>
     <div class="nav-menu" id="navMenu">
+      <button class="nav-close" id="navClose" aria-label="Close menu"><i class="fi fi-sr-cross"></i></button>
       <a href="index.html" class="back"><i class="fi fi-sr-arrow-small-left"></i> Back to home</a>
+      <a href="#" class="nav-cta nav-cta--menu">Get started free</a>
     </div>
     <div class="nav-right">
       <a href="#" class="nav-cta">Get started free</a>
@@ -33,20 +57,26 @@
 
   <!-- LANDING -->
   <div class="landing" id="landing">
-    <div class="landing-tag">✦ Free tool — no sign up needed</div>
-    <h1>Find your<br><span>medical specialty.</span></h1>
-    <p>Not sure which specialty is right for you? Answer 10 questions about your personality, strengths, and goals — and
+    <div class="landing-tag" data-aos="fade-up">✦ Free tool — no sign up needed</div>
+    <h1 data-aos="fade-up" data-aos-delay="50">Find your<br><span>medical specialty.</span></h1>
+    <p data-aos="fade-up" data-aos-delay="100">Not sure which specialty is right for you? Answer 10 questions about your personality, strengths, and goals — and
       we will show you your top matches with a full explanation.</p>
-    <button class="start-btn" onclick="startQuiz()">Start the finder <i class="fi fi-sr-arrow-small-right"></i></button>
-    <div class="landing-note">Takes about 3 minutes · Results are instant · Free forever</div>
+    <button class="start-btn" onclick="startQuiz()" data-aos="fade-up" data-aos-delay="150">Start the finder <i class="fi fi-sr-arrow-small-right"></i></button>
+    <div class="landing-note" data-aos="fade-up" data-aos-delay="200">Takes about 3 minutes · Results are instant · Free forever</div>
     <div class="landing-stats">
-      <div class="stats-wrap"><span class="ls-val"><span class="counter" data-target="40">0</span>+</span>
+      <div class="stats-wrap" data-aos="fade-up" data-aos-delay="50">
+        <span class="ls-ico"><i class="fi fi-sr-stethoscope"></i></span>
+        <span class="ls-val"><span class="counter" data-target="40">0</span>+</span>
         <div class="ls-lbl">Specialties ranked</div>
       </div>
-      <div class="stats-wrap"><span class="ls-val"><span class="counter" data-target="10">0</span></span>
+      <div class="stats-wrap" data-aos="fade-up" data-aos-delay="100">
+        <span class="ls-ico"><i class="fi fi-sr-book-font"></i></span>
+        <span class="ls-val"><span class="counter" data-target="10">0</span></span>
         <div class="ls-lbl">Questions</div>
       </div>
-      <div class="stats-wrap"><span class="ls-val"><span class="counter" data-target="100">0</span>%</span>
+      <div class="stats-wrap" data-aos="fade-up" data-aos-delay="150">
+        <span class="ls-ico"><i class="fi fi-ss-gift"></i></span>
+        <span class="ls-val"><span class="counter" data-target="100">0</span>%</span>
         <div class="ls-lbl">Free</div>
       </div>
     </div>
@@ -61,7 +91,7 @@
           <div class="quiz-fill" id="quizFill"></div>
         </div>
       </div>
-      <div class="question-card" id="questionCard"></div>
+      <div class="question-card" id="questionCard" data-aos="fade-up"></div>
       <div class="quiz-nav">
         <button class="q-back" id="backBtn" onclick="prevQ()"><i class="fi fi-sr-arrow-small-left"></i> Back</button>
         <button class="q-next" id="nextBtn" onclick="nextQ()" disabled>Continue <i
@@ -73,15 +103,15 @@
   <!-- RESULTS -->
   <div class="results-wrap" id="resultsWrap">
     <div class="results-inner">
-      <div class="results-hero">
+      <div class="results-hero" data-aos="fade-up">
         <div class="results-tag">✦ Your specialty matches</div>
         <h2>Here are your<br>top 3 matches.</h2>
         <p>Based on your answers, these specialties align best with your personality, strengths, and goals.</p>
       </div>
       <div class="spec-cards" id="specCards"></div>
       <div class="results-actions">
-        <button class="redo-btn" onclick="restart()">← Retake the finder</button>
-        <a href="index.html" class="explore-btn">Explore learning paths →</a>
+        <button class="redo-btn" onclick="restart()"><i class="fi fi-sr-arrow-small-left"></i> Retake the finder</button>
+        <a href="index.html" class="explore-btn">Explore learning paths <i class="fi fi-sr-arrow-small-right"></i></a>
       </div>
     </div>
   </div>
@@ -208,18 +238,18 @@
     ];
 
     const specialties = {
-      radiology: { name: 'Diagnostic Radiology', ico: '🩻', color: '#00C896', desc: 'You interpret medical images — X-rays, CT, MRI, ultrasound — and guide clinical decisions without direct patient contact. A highly intellectual, technology-driven specialty with excellent lifestyle balance. Rapidly evolving with AI.', strengths: ['Strong work-life balance', 'High intellectual demand', 'AI and technology frontier', 'No night calls in many settings'], risks: ['Limited direct patient contact', 'Long training pathway', 'Heavily affected by AI in future'], path: ['FRCR / Arab Board / Saudi Board', 'Pre-authorization certificate', 'RIS & PACS proficiency', 'AI in radiology module'] },
+      radiology: { name: 'Diagnostic Radiology', ico: '<i class="fi fi-sr-x-ray"></i>', color: '#00C896', desc: 'You interpret medical images — X-rays, CT, MRI, ultrasound — and guide clinical decisions without direct patient contact. A highly intellectual, technology-driven specialty with excellent lifestyle balance. Rapidly evolving with AI.', strengths: ['Strong work-life balance', 'High intellectual demand', 'AI and technology frontier', 'No night calls in many settings'], risks: ['Limited direct patient contact', 'Long training pathway', 'Heavily affected by AI in future'], path: ['FRCR / Arab Board / Saudi Board', 'Pre-authorization certificate', 'RIS & PACS proficiency', 'AI in radiology module'] },
       surgery: { name: 'General Surgery', ico: '🔪', color: '#FF6B6B', desc: 'You operate. You fix what is broken. High-pressure, technically demanding, and directly impactful. Surgery is one of the most respected and challenging specialties — requiring stamina, precision, and emotional resilience.', strengths: ['Direct, visible patient impact', 'High respect and autonomy', 'Technical mastery', 'Subspecialty options'], risks: ['Demanding lifestyle and hours', 'Long training', 'High stress and burnout risk'], path: ['Basic surgical skills training', 'MRCS / Arab Board Surgery', 'Fellowship in subspecialty', 'Simulation-based learning'] },
       emergency: { name: 'Emergency Medicine', ico: '🚨', color: '#FF6B6B', desc: 'Every shift is different. You stabilize, diagnose, and decide fast — across every specialty simultaneously. Emergency medicine rewards adaptability, rapid thinking, and composure under pressure.', strengths: ['Variety every single day', 'Direct impact', 'No long follow-ups', 'Strong team environment'], risks: ['Irregular hours and night shifts', 'Emotional burnout', 'High litigation risk'], path: ['MRCEM / Arab Board EM', 'Advanced life support (ALS, ATLS)', 'Ultrasound certification', 'Triage and systems training'] },
       internal: { name: 'Internal Medicine', ico: '🫀', color: '#4A9EFF', desc: 'The core of hospital medicine. You manage complex, multi-system cases and are the physician other doctors consult. A strong foundation for any subspecialty and highly respected academically.', strengths: ['Intellectual depth', 'Gateway to all subspecialties', 'Strong research base', 'Respected academically'], risks: ['Heavy workload', 'Less procedural income', 'Complex cases'], path: ['MRCP / Arab Board Internal Med', 'Subspecialty fellowship', 'Research and publication', 'CME and board recertification'] },
-      dermatology: { name: 'Dermatology', ico: '🧴', color: '#A78BFA', desc: 'One of the best lifestyles in medicine. Visual diagnosis, procedural options, and a growing aesthetic branch. Highly competitive to enter but rewards those who get in with excellent quality of life.', strengths: ['Best lifestyle in medicine', 'High income potential', 'Visual and procedural', 'Aesthetic subspecialty option'], risks: ['Extremely competitive entry', 'Mostly outpatient (some prefer hospital)', 'Less acute drama'], path: ['Dermatology board exam', 'Dermoscopy certification', 'Aesthetic procedures training', 'Private practice setup'] },
+      dermatology: { name: 'Dermatology', ico: '<i class="fi fi-sr-skin"></i>', color: '#A78BFA', desc: 'One of the best lifestyles in medicine. Visual diagnosis, procedural options, and a growing aesthetic branch. Highly competitive to enter but rewards those who get in with excellent quality of life.', strengths: ['Best lifestyle in medicine', 'High income potential', 'Visual and procedural', 'Aesthetic subspecialty option'], risks: ['Extremely competitive entry', 'Mostly outpatient (some prefer hospital)', 'Less acute drama'], path: ['Dermatology board exam', 'Dermoscopy certification', 'Aesthetic procedures training', 'Private practice setup'] },
       psychiatry: { name: 'Psychiatry', ico: '🧠', color: '#A78BFA', desc: 'You treat the mind. Long-term relationships with complex patients, high emotional intelligence required, and a field finally getting the attention it deserves globally. Growing rapidly with mental health awareness.', strengths: ['Deep patient relationships', 'Growing demand globally', 'Good lifestyle', 'Research opportunities'], risks: ['Emotional weight', 'Slower visible outcomes', 'Stigma in some cultures'], path: ['MRCPsych / Arab Board Psychiatry', 'CBT and therapy training', 'Mental health system navigation', 'Liaison psychiatry subspecialty'] },
       pediatrics: { name: 'Pediatrics', ico: '👶', color: '#F5A623', desc: 'You care for children from newborns to adolescents. Highly rewarding, emotionally rich, and demanding in equal measure. Families trust you completely — a huge responsibility and privilege.', strengths: ['Deeply rewarding', 'Variety of conditions', 'Strong community', 'Family-centered care'], risks: ['Emotional difficulty with sick children', 'Long training', 'Lower income than some specialties'], path: ['Arab Board Pediatrics / DCH / MRCPCH', 'Neonatal training', 'Subspecialty fellowship', 'Communication and family skills'] },
       pathology: { name: 'Pathology', ico: '🔬', color: '#00C896', desc: 'You are the doctor\'s doctor. You analyze tissue, blood, and cells to provide the definitive diagnosis. Minimal patient contact, strong academic orientation, and critical to every clinical decision.', strengths: ['Intellectual and academic', 'No night calls typically', 'Critical to all clinical decisions', 'Research opportunities'], risks: ['Limited direct patient interaction', 'Less visible role', 'Long training for subspecialties'], path: ['FRCPath / Arab Board Pathology', 'Lab management training', 'Molecular pathology subspecialty', 'Research and publication'] },
       gp: { name: 'General Practice / Family Medicine', ico: '🏡', color: '#F5A623', desc: 'You are the first line of care. You see everything, build long-term relationships, and are the backbone of any healthcare system. Excellent lifestyle, strong community connection, and growing importance globally.', strengths: ['Long-term patient relationships', 'Excellent work-life balance', 'Variety of presentations', 'Community impact'], risks: ['Less specialist respect in some cultures', 'Complex administrative burden', 'Jack of all trades challenge'], path: ['MRCGP / Arab Board Family Med', 'Chronic disease management', 'Preventive medicine certification', 'Practice management skills'] },
-      interventional: { name: 'Interventional Radiology', ico: '🫀', color: '#00C896', desc: 'The best of both worlds — imaging and procedures. You perform minimally invasive procedures guided by imaging. Growing rapidly and increasingly replacing open surgery in many areas.', strengths: ['Highly technical and procedural', 'Growing rapidly', 'Less invasive than surgery', 'High demand'], risks: ['Radiation exposure', 'Long and demanding training', 'High technical skill requirement'], path: ['FRCR plus interventional fellowship', 'Vascular and non-vascular procedures', 'IR board certification', 'Pre-auth for IR procedures'] },
+      interventional: { name: 'Interventional Radiology', ico: '<i class="fi fi-sr-x-ray"></i>', color: '#00C896', desc: 'The best of both worlds — imaging and procedures. You perform minimally invasive procedures guided by imaging. Growing rapidly and increasingly replacing open surgery in many areas.', strengths: ['Highly technical and procedural', 'Growing rapidly', 'Less invasive than surgery', 'High demand'], risks: ['Radiation exposure', 'Long and demanding training', 'High technical skill requirement'], path: ['FRCR plus interventional fellowship', 'Vascular and non-vascular procedures', 'IR board certification', 'Pre-auth for IR procedures'] },
       anesthesia: { name: 'Anesthesiology', ico: '💉', color: '#4A9EFF', desc: 'You keep patients alive during surgery. High technical skill, rapid decision-making, and critical care expertise. Excellent pay, some lifestyle flexibility, and essential to every surgical team.', strengths: ['Essential to every surgical team', 'High income', 'Strong ICU crossover', 'Some lifestyle flexibility'], risks: ['Stress in critical moments', 'Limited long-term patient relationships', 'Medicolegal exposure'], path: ['FRCA / Arab Board Anesthesia', 'Critical care subspecialty', 'Pain management fellowship', 'Advanced airway certification'] },
-      ophthalmology: { name: 'Ophthalmology', ico: '👁️', color: '#4A9EFF', desc: 'You specialize in the eye — one of the most complex organs. Highly technical, procedural, and with excellent lifestyle and income. Also one of the most satisfying when you restore someone\'s sight.', strengths: ['Excellent lifestyle', 'High income', 'Highly technical', 'Deeply satisfying outcomes'], risks: ['Competitive entry', 'Microscope-dependent skills', 'Narrow subspecialty'], path: ['MRCOphth / Arab Board Ophthalmology', 'Surgical skills simulation', 'Subspecialty: retina, glaucoma, cornea', 'Private practice development'] },
+      ophthalmology: { name: 'Ophthalmology', ico: '<i class="fi fi-sr-eye"></i>', color: '#4A9EFF', desc: 'You specialize in the eye — one of the most complex organs. Highly technical, procedural, and with excellent lifestyle and income. Also one of the most satisfying when you restore someone\'s sight.', strengths: ['Excellent lifestyle', 'High income', 'Highly technical', 'Deeply satisfying outcomes'], risks: ['Competitive entry', 'Microscope-dependent skills', 'Narrow subspecialty'], path: ['MRCOphth / Arab Board Ophthalmology', 'Surgical skills simulation', 'Subspecialty: retina, glaucoma, cornea', 'Private practice development'] },
       research: { name: 'Academic Medicine & Research', ico: '📚', color: '#A78BFA', desc: 'Your impact is measured in papers, not patients. You advance medicine for everyone. Any specialty can lead to academic medicine — but if research excites you more than clinical work, this path is your calling.', strengths: ['Global impact', 'Intellectual freedom', 'Teaching and mentoring', 'Grant funding opportunities'], risks: ['Lower income in many settings', 'Slow career progression', 'Publishing pressure'], path: ['PhD or research fellowship', 'Grant writing skills', 'Statistical analysis training', 'Academic networking and publishing'] },
       icu: { name: 'Intensive Care / Critical Care', ico: '⚠️', color: '#FF6B6B', desc: 'You manage the sickest patients in the hospital. Multi-organ failure, ventilators, complex pharmacology — all at once. High intensity, deeply technical, and profoundly impactful.', strengths: ['High intensity and impact', 'Multi-system expertise', 'Team leadership', 'Strong research base'], risks: ['Extremely demanding emotionally', 'Night calls and irregular hours', 'High burnout rate'], path: ['FFICM / Critical care fellowship', 'Ventilator and ECMO training', 'Point-of-care ultrasound', 'Palliative care communication'] },
       nuclear: { name: 'Nuclear Medicine', ico: '☢️', color: '#00C896', desc: 'You use radioactive materials to diagnose and treat disease. Growing rapidly with PET/CT and theranostics. Combines physics, pharmacology, and imaging — a niche but increasingly important specialty.', strengths: ['Technology frontier', 'Growing with theranostics', 'Good lifestyle', 'Strong academic base'], risks: ['Radiation safety requirements', 'Niche specialty', 'Smaller job market'], path: ['Arab Board Nuclear Medicine', 'PET/CT reporting certification', 'Theranostics training', 'Radiation safety certification'] },
@@ -233,6 +263,7 @@
       document.getElementById('landing').style.display = 'none';
       document.getElementById('quizWrap').classList.add('show');
       renderQ();
+      if (window.AOS) AOS.refreshHard();
     }
 
     function renderQ() {
@@ -293,7 +324,7 @@
         const spec = specialties[s[0]];
         if (!spec) return '';
         const pct = Math.round(s[1] / maxScore * 100);
-        return `<div class="spec-card${i === 0 ? ' top' : ''}">
+        return `<div class="spec-card${i === 0 ? ' top' : ''}" data-aos="fade-up" data-aos-delay="${i * 100}">
       <div class="spec-card-header">
         <div class="spec-rank ${rankClass[i]}">${i + 1}</div>
         <div class="spec-info">
@@ -305,18 +336,26 @@
       <div class="spec-desc">${spec.desc}</div>
       <div class="spec-grid">
         <div class="spec-box">
-          <div class="spec-box-ico"><i class="fi fi-br-badge-check"></i></div>
+        <div class='spec-title-wrap'>
+            <div class="spec-box-ico">
+            <i class="fi fi-br-badge-check"></i>
+            </div>
           <div class="spec-box-title">Strengths</div>
+          </div>
           <div class="spec-box-items">${spec.strengths.map(x => `<div class="spec-box-item">${x}</div>`).join('')}</div>
         </div>
         <div class="spec-box">
-          <div class="spec-box-ico"><i class="fi fi-sr-choose"></i></div>
+        <div class="spec-title-wrap">
+            <div class="spec-box-ico"><i class="fi fi-sr-choose"></i></div>
           <div class="spec-box-title">Consider</div>
+          </div>
           <div class="spec-box-items">${spec.risks.map(x => `<div class="spec-box-item">${x}</div>`).join('')}</div>
         </div>
         <div class="spec-box">
-          <div class="spec-box-ico"><i class="fi fi-bs-code-compare"></i></div>
+          <div class='spec-title-wrap'>
+            <div class="spec-box-ico"><i class="fi fi-bs-code-compare"></i></div>
           <div class="spec-box-title">Learning path</div>
+          </div>
           <div class="spec-box-items">${spec.path.slice(0, 3).map(x => `<div class="spec-box-item">${x}</div>`).join('')}</div>
         </div>
       </div>
@@ -325,6 +364,7 @@
       document.getElementById('resultsWrap').classList.add('show');
       setTimeout(() => { document.querySelectorAll('.spec-bar').forEach(b => { b.style.width = b.dataset.w + '%' }) }, 200);
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (window.AOS) AOS.refreshHard();
     }
 
     function restart() {
@@ -333,7 +373,17 @@
       document.getElementById('resultsWrap').classList.remove('show');
       document.getElementById('landing').style.display = '';
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (window.AOS) AOS.refreshHard();
     }
+  </script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 700,
+      easing: 'ease',
+      once: true,
+      offset: 80
+    });
   </script>
 </body>
 

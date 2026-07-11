@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="is-loading">
 
 <head>
   <meta charset="UTF-8" />
@@ -13,16 +13,37 @@
     rel="stylesheet" />
   <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-thin-rounded/css/uicons-thin-rounded.css" rel="stylesheet" />
   <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <link href="css/radiology-dept.css" rel="stylesheet" />
 </head>
 
 <body>
+
+  <div class="page-loader" id="pageLoader">
+    <div class="ecg">
+      <svg class="ecg-svg" viewBox="0 0 600 120" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="ecgFade" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" style="stop-color:var(--teal); stop-opacity:0" />
+            <stop offset="18%" style="stop-color:var(--teal); stop-opacity:1" />
+            <stop offset="82%" style="stop-color:var(--teal); stop-opacity:1" />
+            <stop offset="100%" style="stop-color:var(--teal); stop-opacity:0" />
+          </linearGradient>
+        </defs>
+        <path class="ecg-track"
+          d="M0,60 L60,60 L72,50 L84,60 L100,60 L108,66 L114,10 L120,92 L128,60 L145,60 L162,48 L178,60 L200,60 L260,60 L272,50 L284,60 L300,60 L308,66 L314,10 L320,92 L328,60 L345,60 L362,48 L378,60 L400,60 L460,60 L472,50 L484,60 L500,60 L508,66 L514,10 L520,92 L528,60 L545,60 L562,48 L578,60 L600,60" />
+        <path class="ecg-pulse" pathLength="100"
+          d="M0,60 L60,60 L72,50 L84,60 L100,60 L108,66 L114,10 L120,92 L128,60 L145,60 L162,48 L178,60 L200,60 L260,60 L272,50 L284,60 L300,60 L308,66 L314,10 L320,92 L328,60 L345,60 L362,48 L378,60 L400,60 L460,60 L472,50 L484,60 L500,60 L508,66 L514,10 L520,92 L528,60 L545,60 L562,48 L578,60 L600,60" />
+      </svg>
+    </div>
+  </div>
 
   <div id="wrapper">
 
     <nav>
       <a href="index.html" class="logo">i<span>Health</span> Academy</a>
       <div class="breadcrumb" id="navMenu">
+        <button class="nav-close" id="navClose" aria-label="Close menu"><i class="fi fi-sr-cross"></i></button>
         <span class="crumb">
           <a href="index.html">Home</a>
           <span><i class="fi fi-sr-angle-small-right"></i></span>
@@ -48,12 +69,12 @@
     <div class="dept-hero-wrap">
       <div class="dept-hero">
         <div>
-          <div class="dept-tag"><span class="dept-tag-dot"></span>Provider — Radiology department</div>
-          <h1>Radiology.<br><span>Done right.</span></h1>
-          <p class="dept-desc">Everything a radiologist needs — from your first scan to passing your board exam to
+          <div class="dept-tag" data-aos="fade-up"><span class="dept-tag-dot"></span>Provider — Radiology department</div>
+          <h1 data-aos="fade-up" data-aos-delay="50">Radiology.<br><span>Done right.</span></h1>
+          <p class="dept-desc" data-aos="fade-up" data-aos-delay="100">Everything a radiologist needs — from your first scan to passing your board exam to
             writing
             pre-auth requests that never get rejected. Structured. Practical. Built from 7 years of real experience.</p>
-          <div class="dept-stats">
+          <div class="dept-stats" data-aos="fade-up" data-aos-delay="150">
             <div>
               <span class="dept-stat-val counter" data-target="6">0</span>
               <div class="dept-stat-lbl">Learning tracks</div>
@@ -73,7 +94,7 @@
           </div>
         </div>
         <div class="dept-hero-right">
-          <div class="dept-badge">
+          <div class="dept-badge" data-aos="fade-up" data-aos-delay="100">
             <div class="badge-caption">
               <span class="badge-txt">Radiology dept</span>
               <span class="badge-sub">iHealth Academy</span>
@@ -428,7 +449,7 @@
       if (!m) return;
       currentModule = id;
       let html = `
-    <div class="module-header">
+    <div class="module-header" data-aos="fade-up">
       <div class="module-num">${m.num}</div>
       <div class="module-title">${m.title}</div>
       <p class="module-desc">${m.desc}</p>
@@ -436,8 +457,8 @@
     </div>
   `;
       if (m.exams && m.exams.length) {
-        m.exams.forEach(ex => {
-          html += `<div class="exam-track-box">
+        m.exams.forEach((ex, ei) => {
+          html += `<div class="exam-track-box" data-aos="fade-up" data-aos-delay="${50 + ei * 50}">
         <div class="exam-left">
           <div class="exam-ico">${ex.ico}</div>
           <div>
@@ -456,7 +477,7 @@
         const tagClass = l.tag === 'free' ? 'tag-free' : l.tag === 'new' ? 'tag-new' : 'tag-pro';
         const tagTxt = l.tag === 'free' ? 'Free' : l.tag === 'new' ? 'New' : 'Pro';
         html += `
-      <div class="lesson-card${l.featured ? ' featured' : ''}${l.locked ? ' locked' : ''}" onclick="${l.locked ? `showUpgrade()` : `markDone(${i},'${id}',this)`}">
+      <div class="lesson-card${l.featured ? ' featured' : ''}${l.locked ? ' locked' : ''}" onclick="${l.locked ? `showUpgrade()` : `markDone(${i},'${id}',this)`}" data-aos="fade-up" data-aos-delay="${Math.min(i, 6) * 50}">
         <div class="lesson-card-inner">
           <div class="lesson-card-num">${l.num}</div>
           <div class="lesson-card-body">
@@ -472,7 +493,7 @@
       </div>`;
       });
       html += `</div>`;
-      html += `<div class="free-cta">
+      html += `<div class="free-cta" data-aos="fade-up">
     <div>
       <div class="free-cta-txt">Ready to unlock everything?</div>
       <div class="free-cta-sub">Get full access to all lessons, exams, and your pre-auth certificate.</div>
@@ -481,6 +502,7 @@
   </div>`;
       document.getElementById('contentArea').innerHTML = html;
       updateProgress();
+      if (window.AOS) AOS.refreshHard();
     }
 
     function loadModule(id, btn) {
@@ -525,6 +547,15 @@
     }
 
     renderModule('foundations');
+  </script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 700,
+      easing: 'ease',
+      once: true,
+      offset: 80
+    });
   </script>
 </body>
 

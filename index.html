@@ -13,6 +13,7 @@
   <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-bold-rounded/css/uicons-bold-rounded.css" rel="stylesheet" />
   <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css"
     rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <link href="css/home.css" rel="stylesheet" />
 </head>
 
@@ -43,6 +44,7 @@
   <nav>
     <a href="#" class="logo">i<span>Health</span> Academy</a>
     <div class="nav-links" id="navMenu">
+      <button class="nav-close" id="navClose" aria-label="Close menu"><i class="fi fi-sr-cross"></i></button>
       <a href="#serve">Who we serve</a>
       <a href="#offer">What we offer</a>
       <a href="ecosystem.html">Ecosystem</a>
@@ -218,8 +220,8 @@
 
   <!-- WHO WE SERVE -->
   <div class="serve-section-wrap">
-    <section class="serve-section reveal" id="serve">
-      <div class="serve-heading-wrap">
+    <section class="serve-section" id="serve">
+      <div class="serve-heading-wrap" data-aos="fade-up">
         <span class="section-label">Who we serve</span>
         <h2 class="section-title">Built for everyone in healthcare.</h2>
         <p class="section-desc">Whether you are a student, a resident, a specialist, or an insurance professional —
@@ -227,7 +229,8 @@
           Academy has a path for you. Pick your role and start from there.</p>
       </div>
       <div class="serve-grid">
-        <div class="serve-card" style="--serve-color:#00C896" onclick="window.location='radiology-dept.html'">
+        <div class="serve-card" style="--serve-color:#00C896" onclick="window.location='radiology-dept.html'"
+          data-aos="fade-up">
           <div class="serve-ico"><img class="serve-img" src="images/radiologists.jfif" alt="Radiologists"></div>
           <div class="serve-title">Radiologists</div>
           <div class="serve-desc">A complete clinical and administrative toolkit for radiologists. Master exam
@@ -236,7 +239,7 @@
           <div class="serve-tags"><span class="stag">FRCR</span><span class="stag">Arab Board</span><span
               class="stag">Pre-auth cert</span></div>
         </div>
-        <div class="serve-card" style="--serve-color:#4A9EFF">
+        <div class="serve-card" style="--serve-color:#4A9EFF" data-aos="fade-up" data-aos-delay="100">
           <div class="serve-ico"><img class="serve-img" src="images/insurance.jpg" alt="Insurance professionals"></div>
           <div class="serve-title">Insurance professionals</div>
           <div class="serve-desc">Understand radiology from the clinical side, not just the paperwork. Learn how
@@ -245,7 +248,7 @@
           <div class="serve-tags"><span class="stag">Pre-auth</span><span class="stag">Claims</span><span
               class="stag">ضمان</span></div>
         </div>
-        <div class="serve-card" style="--serve-color:#A78BFA">
+        <div class="serve-card" style="--serve-color:#A78BFA" data-aos="fade-up" data-aos-delay="200">
           <div class="serve-ico"><img class="serve-img" src="images/healthcare-staff.jpg" alt="All healthcare staff">
           </div>
           <div class="serve-title">All healthcare staff</div>
@@ -255,7 +258,7 @@
           <div class="serve-tags"><span class="stag">Pharmacy</span><span class="stag">Dentistry</span><span
               class="stag">Nursing</span></div>
         </div>
-        <div class="serve-card" style="--serve-color:#F5A623">
+        <div class="serve-card" style="--serve-color:#F5A623" data-aos="fade-up" data-aos-delay="300">
           <div class="serve-ico"><img class="serve-img" src="images/healthcare-manager.jpg" alt="Healthcare managers">
           </div>
           <div class="serve-title">Healthcare managers</div>
@@ -271,8 +274,8 @@
 
   <!-- WHAT WE OFFER -->
   <div class="offer-section" id="offer">
-    <div class="offer-inner reveal">
-      <div class="offer-heading-wrap">
+    <div class="offer-inner">
+      <div class="offer-heading-wrap" data-aos="fade-up">
         <span class="section-label">What we offer</span>
         <h2 class="section-title">Everything you need. In one place.</h2>
         <p class="section-desc">Not just courses. A complete support system for your career — from your first lesson to
@@ -280,7 +283,7 @@
       </div>
       <div class="offer-carousel">
         <div class="offer-grid" id="offerGrid">
-          <div class="offer-card highlight">
+          <div class="offer-card highlight" data-aos="fade-up">
             <span class="offer-ico"><i class="fi fi-sr-graduation-cap"></i></span>
             <p class="offer-num"><span class="offer-num-rank">01</span> — Core</p>
             <div class="offer-title">Structured learning — module by module</div>
@@ -289,7 +292,7 @@
             <a href="radiology-dept.html" class="offer-link">Start with radiology <span class="offer-link-arrow"><i
                   class="fi fi-rr-arrow-small-right"></i></span></a>
           </div>
-          <div class="offer-card">
+          <div class="offer-card" data-aos="fade-up" data-aos-delay="50">
             <span class="offer-ico"><i class="fi fi-sr-clipboard-list-check"></i></span>
             <p class="offer-num"><span class="offer-num-rank">02</span> — Exams</p>
             <div class="offer-title">Board exam preparation that actually works</div>
@@ -298,7 +301,7 @@
             <a href="radiology-dept.html" class="offer-link">See exam tracks <span class="offer-link-arrow"><i
                   class="fi fi-rr-arrow-small-right"></i></span></a>
           </div>
-          <div class="offer-card">
+          <div class="offer-card" data-aos="fade-up" data-aos-delay="100">
             <span class="offer-ico"><i class="fi fi-sr-career-growth"></i></span>
             <p class="offer-num"><span class="offer-num-rank">03</span> — Career</p>
             <div class="offer-title">Free ATS-optimized CV builder</div>
@@ -308,7 +311,7 @@
             <a href="#cv" class="offer-link">Build your CV free <span class="offer-link-arrow"><i
                   class="fi fi-rr-arrow-small-right"></i></span></a>
           </div>
-          <div class="offer-card">
+          <div class="offer-card" data-aos="fade-up" data-aos-delay="150">
             <span class="offer-ico"><i class="fi fi-sr-shield-check"></i></span>
             <p class="offer-num"><span class="offer-num-rank">04</span> — Insurance</p>
             <div class="offer-title">Pre-authorization mastery</div>
@@ -317,7 +320,7 @@
             <a href="radiology-dept.html" class="offer-link">Start pre-auth track <span class="offer-link-arrow"><i
                   class="fi fi-rr-arrow-small-right"></i></span></a>
           </div>
-          <div class="offer-card">
+          <div class="offer-card" data-aos="fade-up" data-aos-delay="200">
             <span class="offer-ico"><i class="fi fi-sr-chart-network"></i></span>
             <p class="offer-num"><span class="offer-num-rank">05</span> — Ecosystem</p>
             <div class="offer-title">Interactive healthcare ecosystem map</div>
@@ -326,7 +329,7 @@
             <a href="ecosystem.html" class="offer-link">Explore the ecosystem <span class="offer-link-arrow"><i
                   class="fi fi-rr-arrow-small-right"></i></span></a>
           </div>
-          <div class="offer-card">
+          <div class="offer-card" data-aos="fade-up" data-aos-delay="250">
             <span class="offer-ico"><i class="fi fi-br-search"></i></span>
             <p class="offer-num"><span class="offer-num-rank">06</span> — Research</p>
             <div class="offer-title">Medical research — for every level</div>
@@ -335,7 +338,7 @@
             <a href="specialty-finder.html" class="offer-link">Find your specialty <span class="offer-link-arrow"><i
                   class="fi fi-rr-arrow-small-right"></i></span></a>
           </div>
-          <div class="offer-card">
+          <div class="offer-card" data-aos="fade-up" data-aos-delay="300">
             <span class="offer-ico"><i class="fi fi-br-tools"></i></span>
             <p class="offer-num"><span class="offer-num-rank">07</span> — Tools</p>
             <div class="offer-title">Medical specialty finder</div>
@@ -355,9 +358,9 @@
   </div>
 
   <!-- ECOSYSTEM PREVIEW -->
-  <section class="eco-preview reveal">
+  <section class="eco-preview">
     <div class="eco-preview-inner">
-      <div class="eco-preview-copy">
+      <div class="eco-preview-copy" data-aos="fade-right">
         <span class="section-label">The ecosystem</span>
         <h2 class="section-title">See the full picture.<br>Not just your part.</h2>
         <p class="section-desc">The best healthcare professionals understand the whole system — not just their
@@ -371,7 +374,7 @@
         <a href="ecosystem.html" class="btn-main">Explore the ecosystem <span class="offer-link-arrow"><i
               class="fi fi-rr-arrow-small-right"></i></span></a>
       </div>
-      <div class="eco-preview-visual">
+      <div class="eco-preview-visual" data-aos="fade-left">
         <canvas class="eco-canvas" id="miniEco"></canvas>
         <div class="eco-preview-label"><span class="eco-pulse"></span>Click to explore full interactive map</div>
       </div>
@@ -379,20 +382,21 @@
   </section>
 
   <!-- CTA -->
-  <div class="cta-band reveal">
-    <h2>Your <span>career deserves better</span> support.</h2>
-    <p>Join healthcare professionals from around the world who are learning, growing, and building with iHealth Academy.
+  <div class="cta-band">
+    <h2 data-aos="fade-up">Your <span>career deserves better</span> support.</h2>
+    <p data-aos="fade-up" data-aos-delay="100">Join healthcare professionals from around the world who are learning,
+      growing, and building with iHealth Academy.
     </p>
-    <a href="#plans" class="btn-dark">
+    <a href="#plans" class="btn-dark" data-aos="fade-up" data-aos-delay="200">
       Start for free today <i class="fi fi-rr-arrow-small-right"></i>
     </a>
   </div>
 
   <!-- CV BUILDER -->
-  <div class="cv-section reveal" id="cv">
+  <div class="cv-section" id="cv">
     <div class="cv-inner">
       <div>
-        <div class="cv-heading-wrap">
+        <div class="cv-heading-wrap" data-aos="fade-up">
           <div class="cv-free-badge">✦ 100% Free — always</div>
           <span class="section-label">CV builder</span>
           <h2 class="section-title">A CV that opens<br>doors for you.</h2>
@@ -402,7 +406,7 @@
           </p>
         </div>
         <div class="cv-features">
-          <div class="cv-feat">
+          <div class="cv-feat" data-aos="fade-up">
             <div class="cv-feat-ico">
               <i class="fi fi-br-bullseye-arrow"></i>
             </div>
@@ -412,7 +416,7 @@
                 the software.</div>
             </div>
           </div>
-          <div class="cv-feat">
+          <div class="cv-feat" data-aos="fade-up" data-aos-delay="100">
             <div class="cv-feat-ico">
               <i class="fi fi-sr-stethoscope"></i>
             </div>
@@ -422,7 +426,7 @@
                 actually look for.</div>
             </div>
           </div>
-          <div class="cv-feat">
+          <div class="cv-feat" data-aos="fade-up" data-aos-delay="200">
             <div class="cv-feat-ico">
               <i class="fi fi-sr-earth-americas"></i>
             </div>
@@ -435,7 +439,7 @@
         </div>
       </div>
       <div>
-        <div class="cv-builder">
+        <div class="cv-builder" data-aos="fade-left">
           <div class="cv-builder-hd">Build your CV — live ATS score</div>
           <div class="cv-form">
             <div class="cv-row">
@@ -506,15 +510,15 @@
   </div>
 
   <!-- PLANS -->
-  <div class="plans-section reveal" id="plans">
+  <div class="plans-section" id="plans">
     <div class="plans-inner">
-      <div class="plans-heading-wrap">
+      <div class="plans-heading-wrap" data-aos="fade-up">
         <span class="section-label">Pricing</span>
         <h2 class="section-title">Start free.<br>Grow at your pace.</h2>
         <p class="section-desc">No hidden fees. No confusing tiers. Pick what works for where you are right now.</p>
       </div>
       <div class="plans-grid">
-        <div class="plan">
+        <div class="plan" data-aos="fade-up">
           <div class="plan-name">Free</div>
           <div class="plan-price">$0</div>
           <div class="plan-period">forever — no card needed</div>
@@ -527,7 +531,7 @@
           </ul>
           <button class="plan-btn">Get started free</button>
         </div>
-        <div class="plan featured">
+        <div class="plan featured" data-aos="fade-up" data-aos-delay="100">
           <div class="plan-badge">Most popular</div>
           <div class="plan-name">Pro</div>
           <div class="plan-price" style="font-size:1.6rem">Coming soon</div>
@@ -543,7 +547,7 @@
           </ul>
           <button class="plan-btn">Start 7-day free trial</button>
         </div>
-        <div class="plan">
+        <div class="plan" data-aos="fade-up" data-aos-delay="200">
           <div class="plan-name">Institution</div>
           <div class="plan-price">Custom</div>
           <div class="plan-period">for hospitals & teams</div>
@@ -595,6 +599,15 @@
 
   <script src="js/nav.js"></script>
   <script src="js/script.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 700,
+      easing: 'ease',
+      once: true,
+      offset: 80,
+    });
+  </script>
 </body>
 
 </html>

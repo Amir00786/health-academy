@@ -1,15 +1,3 @@
-// PAGE LOADER
-const pageLoader = document.getElementById('pageLoader');
-if (pageLoader) {
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      pageLoader.classList.add('hide');
-      document.documentElement.classList.remove('is-loading');
-      setTimeout(() => pageLoader.remove(), 600);
-    }, 500);
-  });
-}
-
 // CURSOR
 const cur = document.getElementById('cur');
 const ring = document.getElementById('ring');
@@ -40,15 +28,6 @@ document.querySelectorAll('a, button, .serve-card, .offer-card, .plan').forEach(
     ring.style.borderColor = 'rgba(0,200,150,.4)';
   });
 });
-
-// SCROLL REVEAL
-const observer = new IntersectionObserver(
-  (entries) => entries.forEach((entry) => {
-    if (entry.isIntersecting) entry.target.classList.add('visible');
-  }),
-  { threshold: 0.08 }
-);
-document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 
 // COUNTER
 function animateCounter(el) {

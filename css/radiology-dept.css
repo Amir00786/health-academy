@@ -161,6 +161,15 @@ nav {
   transform: translateY(-7px) rotate(-45deg);
 }
 
+.hamburger.active {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.nav-close {
+  display: none;
+}
+
 /* HERO */
 .dept-hero-wrap {
   background: var(--teal);
@@ -1015,6 +1024,34 @@ nav {
     transform: translateX(0);
   }
 
+  .nav-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(6, 6, 8, 0.1);
+    background: rgba(6, 6, 8, 0.04);
+    color: var(--black);
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+
+  .nav-close i {
+    display: flex;
+    font-size: 16px;
+  }
+
+  .nav-close:hover {
+    border-color: var(--teal);
+    color: var(--teal);
+    background: rgba(0, 200, 150, 0.08);
+  }
+
   .breadcrumb .crumb {
     padding: 1rem 0;
     font-size: 1rem;
@@ -1100,10 +1137,6 @@ nav {
 
   .logo {
     font-size: 1rem;
-  }
-
-  .breadcrumb {
-    top: 56px;
   }
 
   .nav-cta {
@@ -1214,5 +1247,65 @@ nav {
   .free-cta-btn {
     width: 100%;
     text-align: center;
+  }
+}
+
+/* PAGE LOADER */
+html.is-loading,
+html.is-loading body {
+  overflow: hidden;
+  height: 100%;
+}
+
+.page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--black);
+  transition: opacity .5s ease, visibility .5s ease;
+}
+
+.page-loader.hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.ecg {
+  width: 380px;
+  height: 100px;
+}
+
+.ecg-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.ecg-track {
+  fill: none;
+  stroke: rgba(248, 246, 241, 0.1);
+  stroke-width: 3;
+  stroke-linejoin: round;
+}
+
+.ecg-pulse {
+  fill: none;
+  stroke: url(#ecgFade);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 22 78;
+  stroke-dashoffset: 0;
+  animation: ecgSweep 3s linear infinite;
+  filter: drop-shadow(0 0 6px rgba(0, 200, 150, 0.6));
+}
+
+@keyframes ecgSweep {
+  to {
+    stroke-dashoffset: -100;
   }
 }
