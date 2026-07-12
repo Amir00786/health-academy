@@ -4,19 +4,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>iHealth Academy — Ecosystem</title>
+  <title>Dashboard — iHealth Academy</title>
   <link
     href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;800;900&display=swap"
     rel="stylesheet" />
   <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css"
     rel="stylesheet" />
-  <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-straight/css/uicons-solid-straight.css"
-    rel="stylesheet" />
-  <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-bold-rounded/css/uicons-bold-rounded.css"
-    rel="stylesheet" />
+  <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-bold-rounded/css/uicons-bold-rounded.css" rel="stylesheet" />
   <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css" rel="stylesheet" />
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-  <link href="css/ecosystem.css" rel="stylesheet" />
+  <link href="css/dashboard.css" rel="stylesheet" />
   <link href="css/nav-v2.css" rel="stylesheet" />
   <link href="css/livechat.css" rel="stylesheet" />
 </head>
@@ -41,9 +38,6 @@
       </svg>
     </div>
   </div>
-
-  <div class="cursor" id="cur"></div>
-  <div class="cursor-ring" id="ring"></div>
 
   <div id="topbar">
     <div class="topbar-wrap">
@@ -124,27 +118,84 @@
     </div>
   </header>
 
-  <canvas id="solarCanvas"></canvas>
+  <div class="dash-shell">
+    <aside class="dash-sidebar">
+      <button type="button" class="dash-side-btn active" title="Dashboard"><i class="fi fi-sr-apps"></i></button>
+      <a class="dash-side-btn" href="radiology-dept.html" title="Radiology"><i class="fi fi-sr-x-ray"></i></a>
+      <a class="dash-side-btn" href="insurance-dept.html" title="Pre-Auth Specialist"><i class="fi fi-sr-shield-check"></i></a>
+      <a class="dash-side-btn" href="anatomy-spotting.html" title="Anatomy Spotting"><i class="fi fi-sr-target"></i></a>
+      <button type="button" class="dash-side-btn" data-soon="Coming soon" title="Mentorship"><i class="fi fi-sr-bolt"></i></button>
+      <button type="button" class="dash-side-btn" data-soon="Coming soon" title="Support / live chat"><i class="fi fi-sr-comment-alt"></i></button>
+    </aside>
 
-  <div class="hint-bar" id="hintBar">
-    <div class="hint-pulse"></div>
-    <span data-i18n="eco.hint">Click any planet to explore · Scroll to zoom</span>
+    <main class="dash-main">
+      <div class="dash-content">
+      <div class="dash-header">
+        <div>
+          <div class="dash-title" data-i18n="dash.title">Dashboard</div>
+          <div class="dash-profile-line">
+            <span class="dash-profile-field" id="dashNameField" title="Click to edit"><span data-i18n="dash.nameLabel">Name</span>: <strong id="dashNameVal">—</strong></span>
+            <span class="dash-profile-field" id="dashSpecialtyField" title="Click to edit"><span data-i18n="dash.specialtyLabel">Speciality</span>: <strong id="dashSpecialtyVal">—</strong></span>
+          </div>
+        </div>
+        <div class="dash-icons">
+          <div class="lang-switcher">
+            <button type="button" class="dash-icon-btn lang-toggle" title="Languages"><i class="fi fi-sr-globe"></i></button>
+            <div class="lang-dropdown">
+              <a href="#" class="lang-option" data-lang="ar">عربي</a>
+              <a href="#" class="lang-option" data-lang="en">English</a>
+            </div>
+          </div>
+          <button type="button" class="dash-icon-btn" data-soon="Coming soon"><i class="fi fi-sr-bell"></i></button>
+          <button type="button" class="dash-icon-btn" data-soon="Coming soon"><i class="fi fi-sr-envelope"></i></button>
+          <div class="dash-avatar" id="dashAvatar">—</div>
+        </div>
+      </div>
+
+      <div class="dash-stat-grid">
+        <div class="dash-stat-card">
+          <div class="dash-stat-top">
+            <span class="dash-stat-label" data-i18n="dash.stat1Label">Active courses</span>
+            <span class="dash-stat-ico"><i class="fi fi-sr-book-alt"></i></span>
+          </div>
+          <div class="dash-stat-val" id="dashActiveCourses">0</div>
+          <a href="#recommended" class="dash-stat-link" data-i18n="dash.viewCourses">View →</a>
+        </div>
+        <div class="dash-stat-card">
+          <div class="dash-stat-top">
+            <span class="dash-stat-label" data-i18n="dash.stat2Label">Lessons completed</span>
+            <span class="dash-stat-ico"><i class="fi fi-sr-check"></i></span>
+          </div>
+          <div class="dash-stat-val" id="dashLessonsDone">0</div>
+        </div>
+        <div class="dash-stat-card">
+          <div class="dash-stat-top">
+            <span class="dash-stat-label" data-i18n="dash.stat3Label">Certificates</span>
+            <span class="dash-stat-ico"><i class="fi fi-sr-diploma"></i></span>
+          </div>
+          <div class="dash-stat-val" id="dashCerts">0</div>
+          <span class="dash-stat-tag" data-i18n="dash.autoTag">Updates automatically</span>
+        </div>
+        <div class="dash-stat-card">
+          <div class="dash-stat-top">
+            <span class="dash-stat-label" data-i18n="dash.stat4Label">Anatomy Spotting tier</span>
+            <span class="dash-stat-ico"><i class="fi fi-sr-trophy"></i></span>
+          </div>
+          <div class="dash-stat-val" id="dashAnatomyTier">—</div>
+          <a href="anatomy-spotting.html" class="dash-stat-link" data-i18n="dash.viewAnatomy">Practice →</a>
+        </div>
+      </div>
+
+      <div id="recommended">
+        <div class="dash-section-head">
+          <span class="dash-section-title" data-i18n="dash.recTitle">What to learn next — recommended for you</span>
+          <span class="dash-section-soon" data-i18n="dash.recSoon">(Coming soon: personalized AI recommendations — showing your in-progress courses for now)</span>
+        </div>
+        <div class="dash-course-grid" id="dashCourseGrid"></div>
+      </div>
+      </div>
+    </main>
   </div>
-
-  <div class="detail-panel" id="panel">
-    <div class="panel-close" onclick="closePanel()">✕</div>
-    <div class="panel-inner">
-      <span class="panel-planet-ico" id="p-ico"></span>
-      <div class="panel-tag" id="p-tag"></div>
-      <div class="panel-title" id="p-title"></div>
-      <p class="panel-desc" id="p-desc"></p>
-      <div class="subs-title">Explore inside</div>
-      <div class="subs-list" id="p-subs"></div>
-      <a href="#" class="panel-btn" id="p-btn">Open full section →</a>
-    </div>
-  </div>
-
-  <div class="moon-tip" id="moonTip"></div>
 
   <script src="js/nav.js"></script>
   <script src="js/nav-v2.js"></script>
@@ -152,18 +203,28 @@
   <script src="js/livechat.js"></script>
   <script>
     window.I18N_PAGE_DICT = {
-      'eco.hint': { en: 'Click any planet to explore · Scroll to zoom', ar: 'انقر على أي كوكب للاستكشاف · مرر للتكبير' },
+      'dash.title': { en: 'Dashboard', ar: 'لوحة التحكم' },
+      'dash.nameLabel': { en: 'Name', ar: 'الاسم' },
+      'dash.specialtyLabel': { en: 'Speciality', ar: 'التخصص' },
+      'dash.stat1Label': { en: 'Active courses', ar: 'الدورات النشطة' },
+      'dash.viewCourses': { en: 'View →', ar: '← عرض' },
+      'dash.stat2Label': { en: 'Lessons completed', ar: 'الدروس المكتملة' },
+      'dash.stat3Label': { en: 'Certificates', ar: 'الشهادات' },
+      'dash.autoTag': { en: 'Updates automatically', ar: 'يتحدث تلقائيًا' },
+      'dash.stat4Label': { en: 'Anatomy Spotting tier', ar: 'مستوى تحديد التشريح' },
+      'dash.viewAnatomy': { en: 'Practice →', ar: '← تدرّب' },
+      'dash.recTitle': { en: 'What to learn next — recommended for you', ar: 'ماذا تتعلم بعد ذلك — موصى به لك' },
+      'dash.recSoon': { en: '(Coming soon: personalized AI recommendations — showing your in-progress courses for now)', ar: '(قريبًا: توصيات مخصصة بالذكاء الاصطناعي — يتم حاليًا عرض دوراتك الجارية)' },
+      'dash.radiologyName': { en: 'Radiology', ar: 'الأشعة' },
+      'dash.insuranceName': { en: 'Pre-Auth Specialist', ar: 'أخصائي التصريح المسبق' },
+      'dash.continueLesson': { en: 'lessons complete', ar: 'دروس مكتملة' },
+      'dash.startCourse': { en: 'Not started yet — click to begin', ar: 'لم يبدأ بعد — انقر للبدء' },
     };
   </script>
-  <script src="js/ecosystem.js"></script>
+  <script src="js/dashboard.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    AOS.init({
-      duration: 700,
-      easing: 'ease',
-      once: true,
-      offset: 80
-    });
+    AOS.init({ duration: 700, easing: 'ease', once: true, offset: 80 });
   </script>
 </body>
 

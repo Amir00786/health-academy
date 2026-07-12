@@ -4,20 +4,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Find Your Path — iHealth Academy</title>
+  <title>Meet the Founder — iHealth Academy</title>
   <link
     href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;800;900&display=swap"
     rel="stylesheet" />
   <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css"
     rel="stylesheet" />
   <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-bold-rounded/css/uicons-bold-rounded.css" rel="stylesheet" />
-  <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-bold-straight/css/uicons-bold-straight.css"
-    rel="stylesheet" />
-  <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-straight/css/uicons-solid-straight.css"
-    rel="stylesheet" />
   <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css" rel="stylesheet" />
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-  <link href="css/find-your-path.css" rel="stylesheet" />
+  <link href="css/founder.css" rel="stylesheet" />
   <link href="css/nav-v2.css" rel="stylesheet" />
   <link href="css/livechat.css" rel="stylesheet" />
 </head>
@@ -72,7 +68,7 @@
 
       <nav class="nav-links" id="navLinks">
         <div class="nav-item"><a class="nav-link" href="index.html" data-i18n="nav.home">Home</a></div>
-        <div class="nav-item"><a class="nav-link active" href="find-your-path.html" data-i18n="nav.findPath">Find Your Path</a></div>
+        <div class="nav-item"><a class="nav-link" href="find-your-path.html" data-i18n="nav.findPath">Find Your Path</a></div>
         <div class="nav-item"><a class="nav-link" href="radiology-dept.html" data-i18n="nav.radiology">Radiology</a></div>
         <div class="nav-item"><a class="nav-link" href="dashboard.html" data-i18n="nav.dashboard">Dashboard</a></div>
 
@@ -122,108 +118,56 @@
     </div>
   </header>
 
-  <!-- FIND YOUR PATH -->
-  <section class="fyp-hero-wrap">
-  <div class="fyp-hero">
+  <!-- MEET THE FOUNDER -->
+  <section class="founder-hero-wrap">
+    <div class="founder-inner">
+      <a class="founder-back" href="index.html"><i class="fi fi-sr-arrow-small-left"></i><span data-i18n="founder.back">Back to home</span></a>
+      <div class="founder-tag" data-aos="fade-up" data-i18n="founder.tag">Meet the founder</div>
 
-    <!-- Step 1: intro / track select -->
-    <div id="fpIntro">
-      <div class="fyp-tag" data-aos="fade-up" data-i18n="fyp.tag">Find your path</div>
-      <h1 class="fyp-title" data-aos="fade-up" data-aos-delay="50" data-i18n="fyp.h1">Two moments,<br>one quiz.</h1>
-      <p class="fyp-desc" data-aos="fade-up" data-aos-delay="100" data-i18n="fyp.desc">Whether you're deciding if — and how — to enter
-        medicine, or you're already an intern ranking residency programs, this short quiz scores your answers against
-        real iHealthAcademy tracks and specialties, not just a general list.</p>
-
-      <div class="fyp-stages">
-        <button type="button" class="fyp-stage-card" id="fpCardPremed" data-aos="fade-up">
-          <span class="fyp-stage-tag" data-i18n="fyp.stage1Tag">Stage 01</span>
-          <h3 class="fyp-stage-title" data-i18n="fyp.stage1Title">Before Medical School</h3>
-          <p class="fyp-stage-desc" data-i18n="fyp.stage1Desc">Secondary school or pre-med undergrad, deciding whether medicine is right for you
-            — and which path in health care actually fits.</p>
-          <span class="fyp-stage-meta" data-i18n="fyp.stage1Meta">28 questions <i class="fi fi-sr-arrow-small-right"></i> top 10 health paths
-            <i class="fi fi-sr-arrow-small-right"></i></span>
-        </button>
-        <button type="button" class="fyp-stage-card" id="fpCardResidency" data-aos="fade-up" data-aos-delay="100">
-          <span class="fyp-stage-tag" data-i18n="fyp.stage2Tag">Stage 02</span>
-          <h3 class="fyp-stage-title" data-i18n="fyp.stage2Title">After Medical School</h3>
-          <p class="fyp-stage-desc" data-i18n="fyp.stage2Desc">Intern or final-year student ranking residency programs — which specialty you'll
-            spend the next thirty years inside.</p>
-          <span class="fyp-stage-meta" data-i18n="fyp.stage2Meta">28 questions <i class="fi fi-sr-arrow-small-right"></i> top 10 specialties
-            <i class="fi fi-sr-arrow-small-right"></i></span>
-        </button>
-      </div>
-
-      <div class="fp-compass-wrap" data-aos="fade-up">
-        <svg id="fpCompassSvg" viewBox="0 0 320 320">
-          <circle class="fp-c-ring" cx="160" cy="160" r="140"></circle>
-          <circle class="fp-c-ring" cx="160" cy="160" r="112"></circle>
-          <g id="fpTicks"></g>
-          <g id="fpDimLabels"></g>
-          <circle id="fpProgressRing" class="fp-c-progress" cx="160" cy="160" r="128" stroke-dasharray="804" stroke-dashoffset="804" transform="rotate(-90 160 160)"></circle>
-          <g class="fp-c-needle" id="fpNeedle">
-            <polygon points="160,58 168,160 160,175 152,160" fill="#0B7A75"></polygon>
-            <polygon points="160,262 168,160 160,145 152,160" fill="#E8A33D"></polygon>
-          </g>
-          <circle class="fp-c-core" cx="160" cy="160" r="34"></circle>
-          <text class="fp-c-pct" x="160" y="156" id="fpPctText">0%</text>
-          <text class="fp-c-pct-label" x="160" y="172" id="fpPctLabel">READY</text>
-        </svg>
-      </div>
-    </div>
-
-    <!-- Step 2: quiz -->
-    <div id="fpQuiz" class="hidden">
-      <div class="fp-quiz-top">
-        <div>
-          <span class="fp-track-pill" id="fpTrackPill">—</span>
-          <span class="fp-dim-tag" id="fpDimTag">● —</span>
+      <div class="founder-head" data-aos="fade-up" data-aos-delay="50">
+        <div class="founder-photo">
+          <img src="images/founder-picture.png" alt="Dr. Musab Habib">
         </div>
-        <span class="fp-q-count" id="fpQCount">Question 1 of 28</span>
-      </div>
-      <div class="fp-qcard" id="fpQcard">
-        <h3 id="fpQText">—</h3>
-        <div class="fp-scale" id="fpScale"></div>
-      </div>
-      <div class="fp-quiz-nav">
-        <button class="btn-ghost" id="fpBackBtn" type="button" data-i18n="fyp.back">← Back</button>
-        <button class="btn-ghost" id="fpSkipBtn" type="button" data-i18n="fyp.skip">Skip question</button>
-      </div>
-    </div>
-
-    <!-- Step 3: results -->
-    <div id="fpResults" class="hidden">
-      <div class="fyp-tag" id="fpResultsEyebrow">YOUR RESULT</div>
-      <h2 class="fp-results-title" id="fpResultsTitle">Your top ten</h2>
-      <p class="fp-results-sub" id="fpResultsSub">Ranked by how closely your answers align with each path's demands.
-        Tap a card for why it's on your list.</p>
-
-      <div class="fp-radar-panel">
-        <svg id="fpRadarSvg" viewBox="0 0 320 320" style="width:100%; height:auto;"></svg>
         <div>
-          <h3 class="fp-profile-title">Your profile</h3>
-          <div class="fp-radar-legend" id="fpRadarLegend"></div>
+          <h1 class="founder-name">Dr. Musab Habib</h1>
+          <div class="founder-title" data-i18n="founder.title">Founder, iHealth Academy</div>
         </div>
       </div>
 
-      <div id="fpRankList"></div>
+      <div class="founder-bio" data-aos="fade-up" data-aos-delay="100">
+        <p data-i18n="founder.bio1">Dr. Musab Habib is a physician, radiology resident, medical insurance professional, and healthcare educator committed to making high-quality medical education more practical, accessible, and future-ready.</p>
+        <p data-i18n="founder.bio2">With experience spanning diagnostic radiology, healthcare insurance, clinical decision-making, and healthcare quality, he founded iHealth Academy with one simple belief:</p>
 
-      <div class="fp-results-actions">
-        <button class="btn-primary" id="fpSaveJourneyBtn" type="button">Save to my journey</button>
-        <button class="btn-ghost" id="fpRetakeBtn" type="button">Retake this survey</button>
-        <button class="btn-ghost" id="fpSwitchTrackBtn" type="button">Try the other stage</button>
+        <div class="founder-quote" data-i18n="founder.quote">"Learning should not only help healthcare professionals pass examinations — it should help them make better decisions, provide safer patient care, and build meaningful careers."</div>
+
+        <p data-i18n="founder.bio3">At iHealth Academy, every course is designed to bridge the gap between theory and real-world practice, empowering healthcare professionals with knowledge they can apply confidently from day one.</p>
+        <p data-i18n="founder.bio4">As artificial intelligence reshapes healthcare, our commitment remains unchanged: combining human expertise with innovative technology to create a smarter, more effective learning experience — without losing the values that define great healthcare professionals.</p>
       </div>
-    </div>
 
-    <!-- Step 4: journey -->
-    <div id="fpJourney" class="hidden fp-journey">
-      <div class="fyp-tag">YOUR JOURNEY</div>
-      <h2 class="fp-journey-title">Every bearing you've taken</h2>
-      <p class="fp-journey-sub">Saved on this device, across both stages. Retake after a rotation or shadowing
-        experience and watch whether your top pick holds.</p>
-      <div id="fpJourneyList"></div>
-    </div>
+      <div class="vm-grid" data-aos="fade-up" data-aos-delay="150">
+        <div class="vm-panel">
+          <h3 data-i18n="founder.visionTitle">Our Vision</h3>
+          <p data-i18n="founder.visionDesc">To become one of the world's most trusted digital healthcare learning platforms, empowering healthcare professionals through innovation, evidence-based education, and responsible artificial intelligence.</p>
+        </div>
+        <div class="vm-panel">
+          <h3 data-i18n="founder.missionTitle">Our Mission</h3>
+          <p data-i18n="founder.missionDesc">We strive to deliver practical, high-quality healthcare education that enables professionals to learn efficiently, think critically, and excel in their careers. By integrating expert knowledge, modern technology, and AI-powered learning, we aim to make continuous professional development more accessible, engaging, and impactful for healthcare professionals worldwide.</p>
+        </div>
+      </div>
 
-  </div>
+      <div class="why-panel" data-aos="fade-up" data-aos-delay="200">
+        <h3 data-i18n="founder.whyTitle">Why iHealth Academy?</h3>
+        <ul class="why-list">
+          <li><span class="why-check">✓</span><span data-i18n="founder.why1">Evidence-based medical education</span></li>
+          <li><span class="why-check">✓</span><span data-i18n="founder.why2">Practical, career-focused learning</span></li>
+          <li><span class="why-check">✓</span><span data-i18n="founder.why3">Expert-led training and mentorship</span></li>
+          <li><span class="why-check">✓</span><span data-i18n="founder.why4">AI-enhanced learning experience</span></li>
+          <li><span class="why-check">✓</span><span data-i18n="founder.why5">Continuous innovation and lifelong professional development</span></li>
+        </ul>
+      </div>
+
+      <div class="founder-banner" data-aos="fade-up" data-i18n="founder.banner">Learn. Innovate. Transform Healthcare.</div>
+    </div>
   </section>
 
   <!-- FOOTER -->
@@ -275,30 +219,32 @@
   <script src="js/livechat.js"></script>
   <script>
     window.I18N_PAGE_DICT = {
-      'fyp.tag': { en: 'Find your path', ar: 'اكتشف مسارك' },
-      'fyp.h1': { en: 'Two moments,<br>one quiz.', ar: 'لحظتان،<br>اختبار واحد.' },
-      'fyp.desc': { en: "Whether you're deciding if — and how — to enter medicine, or you're already an intern ranking residency programs, this short quiz scores your answers against real iHealthAcademy tracks and specialties, not just a general list.", ar: 'سواء كنت تقرر إن كنت ستدخل الطب — وكيف، أو كنت متدربًا يرتب برامج الإقامة، هذا الاختبار القصير يقيّم إجاباتك مقارنة بمسارات وتخصصات حقيقية في أكاديمية آي هيلث، وليس مجرد قائمة عامة.' },
-      'fyp.stage1Tag': { en: 'Stage 01', ar: 'المرحلة 01' },
-      'fyp.stage1Title': { en: 'Before Medical School', ar: 'قبل كلية الطب' },
-      'fyp.stage1Desc': { en: 'Secondary school or pre-med undergrad, deciding whether medicine is right for you — and which path in health care actually fits.', ar: 'طالب ثانوية أو مرحلة ما قبل الطب، يقرر ما إذا كان الطب مناسبًا له — وأي مسار في الرعاية الصحية يناسبه فعلًا.' },
-      'fyp.stage1Meta': { en: '28 questions <i class="fi fi-sr-arrow-small-right"></i> top 10 health paths <i class="fi fi-sr-arrow-small-right"></i>', ar: '28 سؤالًا <i class="fi fi-sr-arrow-small-right"></i> أفضل 10 مسارات صحية <i class="fi fi-sr-arrow-small-right"></i>' },
-      'fyp.stage2Tag': { en: 'Stage 02', ar: 'المرحلة 02' },
-      'fyp.stage2Title': { en: 'After Medical School', ar: 'بعد كلية الطب' },
-      'fyp.stage2Desc': { en: "Intern or final-year student ranking residency programs — which specialty you'll spend the next thirty years inside.", ar: 'متدرب أو طالب في السنة الأخيرة يرتب برامج الإقامة — أي تخصص سيقضي فيه الثلاثين سنة القادمة.' },
-      'fyp.stage2Meta': { en: '28 questions <i class="fi fi-sr-arrow-small-right"></i> top 10 specialties <i class="fi fi-sr-arrow-small-right"></i>', ar: '28 سؤالًا <i class="fi fi-sr-arrow-small-right"></i> أفضل 10 تخصصات <i class="fi fi-sr-arrow-small-right"></i>' },
-      'fyp.back': { en: '← Back', ar: '→ رجوع' },
-      'fyp.skip': { en: 'Skip question', ar: 'تخطي السؤال' },
+      'founder.back': { en: 'Back to home', ar: 'العودة إلى الرئيسية' },
+      'founder.tag': { en: 'Meet the founder', ar: 'تعرف على المؤسس' },
+      'founder.uploadPhoto': { en: 'Upload photo', ar: 'رفع صورة' },
+      'founder.title': { en: 'Founder, iHealth Academy', ar: 'مؤسس أكاديمية آي هيلث' },
+      'founder.bio1': { en: 'Dr. Musab Habib is a physician, radiology resident, medical insurance professional, and healthcare educator committed to making high-quality medical education more practical, accessible, and future-ready.', ar: 'الدكتور مصعب حبيب طبيب ومقيم أشعة ومحترف في التأمين الطبي ومربٍ في مجال الرعاية الصحية، ملتزم بجعل التعليم الطبي عالي الجودة أكثر عملية وسهولة في الوصول ومستعدًا للمستقبل.' },
+      'founder.bio2': { en: 'With experience spanning diagnostic radiology, healthcare insurance, clinical decision-making, and healthcare quality, he founded iHealth Academy with one simple belief:', ar: 'بخبرة تمتد عبر الأشعة التشخيصية والتأمين الصحي واتخاذ القرار السريري وجودة الرعاية الصحية، أسس أكاديمية آي هيلث بناءً على قناعة بسيطة واحدة:' },
+      'founder.quote': { en: '"Learning should not only help healthcare professionals pass examinations — it should help them make better decisions, provide safer patient care, and build meaningful careers."', ar: '"يجب ألا يساعد التعلم أخصائيي الرعاية الصحية على اجتياز الامتحانات فقط — بل يجب أن يساعدهم على اتخاذ قرارات أفضل، وتقديم رعاية أكثر أمانًا للمرضى، وبناء مسيرات مهنية ذات معنى."' },
+      'founder.bio3': { en: 'At iHealth Academy, every course is designed to bridge the gap between theory and real-world practice, empowering healthcare professionals with knowledge they can apply confidently from day one.', ar: 'في أكاديمية آي هيلث، كل دورة مصممة لسد الفجوة بين النظرية والممارسة الواقعية، لتمكين أخصائيي الرعاية الصحية من معرفة يمكنهم تطبيقها بثقة منذ اليوم الأول.' },
+      'founder.bio4': { en: 'As artificial intelligence reshapes healthcare, our commitment remains unchanged: combining human expertise with innovative technology to create a smarter, more effective learning experience — without losing the values that define great healthcare professionals.', ar: 'بينما يعيد الذكاء الاصطناعي تشكيل الرعاية الصحية، يبقى التزامنا ثابتًا: الجمع بين الخبرة البشرية والتقنية المبتكرة لخلق تجربة تعلم أذكى وأكثر فعالية — دون فقدان القيم التي تُعرّف أفضل أخصائيي الرعاية الصحية.' },
+      'founder.visionTitle': { en: 'Our Vision', ar: 'رؤيتنا' },
+      'founder.visionDesc': { en: 'To become one of the world\'s most trusted digital healthcare learning platforms, empowering healthcare professionals through innovation, evidence-based education, and responsible artificial intelligence.', ar: 'أن نصبح واحدة من أكثر منصات التعلم الصحي الرقمي الموثوقة في العالم، لتمكين أخصائيي الرعاية الصحية من خلال الابتكار والتعليم القائم على الأدلة والذكاء الاصطناعي المسؤول.' },
+      'founder.missionTitle': { en: 'Our Mission', ar: 'مهمتنا' },
+      'founder.missionDesc': { en: 'We strive to deliver practical, high-quality healthcare education that enables professionals to learn efficiently, think critically, and excel in their careers. By integrating expert knowledge, modern technology, and AI-powered learning, we aim to make continuous professional development more accessible, engaging, and impactful for healthcare professionals worldwide.', ar: 'نسعى لتقديم تعليم صحي عملي وعالي الجودة يمكّن المحترفين من التعلم بكفاءة والتفكير النقدي والتفوق في مسيرتهم المهنية. من خلال دمج المعرفة الخبيرة والتقنية الحديثة والتعلم المدعوم بالذكاء الاصطناعي، نهدف إلى جعل التطوير المهني المستمر أكثر سهولة وجاذبية وتأثيرًا لأخصائيي الرعاية الصحية حول العالم.' },
+      'founder.whyTitle': { en: 'Why iHealth Academy?', ar: 'لماذا أكاديمية آي هيلث؟' },
+      'founder.why1': { en: 'Evidence-based medical education', ar: 'تعليم طبي قائم على الأدلة' },
+      'founder.why2': { en: 'Practical, career-focused learning', ar: 'تعلم عملي يركز على المسيرة المهنية' },
+      'founder.why3': { en: 'Expert-led training and mentorship', ar: 'تدريب وإرشاد بقيادة خبراء' },
+      'founder.why4': { en: 'AI-enhanced learning experience', ar: 'تجربة تعلم معززة بالذكاء الاصطناعي' },
+      'founder.why5': { en: 'Continuous innovation and lifelong professional development', ar: 'ابتكار مستمر وتطور مهني مدى الحياة' },
+      'founder.banner': { en: 'Learn. Innovate. Transform Healthcare.', ar: 'تعلّم. ابتكر. غيّر الرعاية الصحية.' },
+      'footer.meetFounder': { en: 'Meet the Founder', ar: 'تعرف على المؤسس' },
     };
   </script>
-  <script src="js/find-your-path.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    AOS.init({
-      duration: 700,
-      easing: 'ease',
-      once: true,
-      offset: 80,
-    });
+    AOS.init({ duration: 700, easing: 'ease', once: true, offset: 80 });
   </script>
 </body>
 

@@ -20,19 +20,21 @@
   --border: #E3EAE9;
   --ceo: #142C3C;
   --radius: 14px;
-  --heading: "Plus Jakarta Sans", sans-serif;
-  --sans-v2: "Inter", sans-serif;
+  --heading: "Roboto", sans-serif;
+  --sans-v2: "Roboto", sans-serif;
 }
 
 /* TOP UTILITY BAR */
 #topbar {
+  position: relative;
+  z-index: 501;
   background: var(--ceo);
   color: #CFE3DF;
   font-size: 12.5px;
 }
 
 #topbar .topbar-wrap {
-  max-width: 1120px;
+  max-width: 1440px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -90,6 +92,69 @@
   color: #fff;
 }
 
+/* LANGUAGE SWITCHER (hover dropdown, shared by topbar + dashboard icon bar) */
+.lang-switcher {
+  position: relative;
+  display: inline-flex;
+}
+
+.lang-switcher .lang-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 10px;
+  background: var(--surface, #fff);
+  border: 1px solid var(--border, #E3EAE8);
+  border-radius: 10px;
+  box-shadow: 0 14px 32px rgba(15, 43, 42, 0.16);
+  padding: 6px;
+  min-width: 108px;
+  display: none;
+  flex-direction: column;
+  gap: 2px;
+  z-index: 600;
+}
+
+.lang-switcher:hover .lang-dropdown,
+.lang-switcher.open .lang-dropdown {
+  display: flex;
+}
+
+.lang-switcher .lang-option {
+  display: block;
+  padding: 7px 10px;
+  border-radius: 6px;
+  color: var(--ink, #0F2B2A);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: var(--sans-v2);
+  cursor: pointer;
+}
+
+.lang-switcher .lang-option:hover {
+  background: var(--primary-tint, #E6F4F1);
+  color: var(--primary, #0B7A75);
+  font-weight: 700;
+}
+
+.lang-switcher .lang-option.active {
+  font-weight: 700;
+  color: var(--primary, #0B7A75);
+  background: var(--primary-tint, #E6F4F1);
+}
+
+/* #topbar .right-links a sets color:inherit with an ID selector, which
+   otherwise outranks the class-only rules above — reassert explicitly. */
+#topbar .lang-switcher .lang-option {
+  color: var(--ink, #0F2B2A);
+}
+
+#topbar .lang-switcher .lang-option.active,
+#topbar .lang-switcher .lang-option:hover {
+  color: var(--primary, #0B7A75);
+}
+
 /* MAIN NAV */
 #mainnav {
   background: var(--surface);
@@ -100,7 +165,7 @@
 }
 
 #mainnav .mainnav-wrap {
-  max-width: 1120px;
+  max-width: 1440px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -121,15 +186,23 @@
 }
 
 #mainnav .logo .mark {
-  width: 34px;
-  height: 34px;
-  border-radius: 9px;
-  background: var(--primary);
-  color: #fff;
+  width: 44px;
+  height: 44px;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
+  flex-shrink: 0;
+}
+
+#mainnav .logo .mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transform: scale(1.5);
+  transform-origin: 50% 0%;
+  display: block;
 }
 
 #mainnav .nav-links {
@@ -211,6 +284,7 @@
   font-weight: 600;
   font-size: 14px;
   font-family: var(--sans-v2);
+  color: var(--black);
 }
 
 #mainnav .ddi-sub {
@@ -343,8 +417,8 @@
   --primary: #0B7A75;
   --primary-dark: #095F5B;
   --border: #E3EAE9;
-  --heading: "Plus Jakarta Sans", sans-serif;
-  --sans-v2: "Inter", sans-serif;
+  --heading: "Roboto", sans-serif;
+  --sans-v2: "Roboto", sans-serif;
   position: fixed;
   inset: 0;
   background: rgba(15, 43, 42, 0.45);

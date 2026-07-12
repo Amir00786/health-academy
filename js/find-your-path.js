@@ -18,6 +18,116 @@
     },
   };
 
+  // Quiz UI + question text translations. Looked up by exact English string so
+  // the TRACKS data below (question banks, dimension labels) didn't need to be
+  // restructured — tr(s) returns the Arabic match when Arabic is active.
+  const QUIZ_AR = {
+    'Before Medical School': 'قبل كلية الطب',
+    'After Medical School': 'بعد كلية الطب',
+    'Strongly disagree': 'أرفض بشدة',
+    'Disagree': 'أرفض',
+    'Neutral': 'محايد',
+    'Agree': 'أوافق',
+    'Strongly agree': 'أوافق بشدة',
+
+    'Scientific & Analytical Aptitude': 'القدرة العلمية والتحليلية',
+    'Hands-On / Procedural Drive': 'الميل العملي / الإجرائي',
+    'People & Bedside Orientation': 'التوجه نحو الناس ورعاية المريض',
+    'Resilience & Stamina': 'الصمود والتحمل',
+    'Financial Realism': 'الواقعية المالية',
+    'Ethics & Service Drive': 'الأخلاق والدافع للخدمة',
+    'Future & AI-Era Readiness': 'الاستعداد لعصر الذكاء الاصطناعي',
+
+    'Procedural & Surgical Drive': 'الميل الإجرائي والجراحي',
+    'Diagnostic Puzzle-Solving': 'حل الألغاز التشخيصية',
+    'Continuity of Care': 'استمرارية الرعاية',
+    'Emotional & Acute Intensity Tolerance': 'تحمل الشدة العاطفية والحادة',
+    'Controllable Lifestyle Priority': 'أولوية نمط حياة يمكن التحكم به',
+    'Income Ambition': 'الطموح المادي',
+    'AI-Era Exposure Comfort': 'الارتياح للتعامل مع الذكاء الاصطناعي',
+
+    'You retained chemistry and biology concepts more easily than most of your classmates.': 'استوعبت مفاهيم الكيمياء والأحياء بسهولة أكبر من معظم زملائك.',
+    'You like knowing the exact mechanism behind why something happens in the body, not just that it does.': 'تحب معرفة الآلية الدقيقة وراء حدوث شيء في الجسم، وليس فقط أنه يحدث.',
+    "Standardized science exams and long prep don't scare you off — you find a way to grind through them.": 'الامتحانات العلمية الموحدة والتحضير الطويل لا تخيفك — تجد طريقة لتجتازها.',
+    "You'd rather read a real research paper than a simplified summary of it.": 'تفضل قراءة بحث علمي حقيقي على قراءة ملخص مبسط له.',
+
+    "You'd rather perform a physical procedure yourself than direct someone else through it.": 'تفضل تنفيذ الإجراء الجسدي بنفسك على توجيه شخص آخر لتنفيذه.',
+    'Fine motor tasks — stitching, building, precise repetitive movement — come naturally to you.': 'المهام الحركية الدقيقة — الخياطة، البناء، الحركة المتكررة الدقيقة — تأتي بشكل طبيعي لك.',
+    'You get more satisfaction from a visible, immediate physical fix than a long-term management plan.': 'تشعر برضا أكبر من إصلاح جسدي فوري وملموس أكثر من خطة علاج طويلة الأمد.',
+    'Labs, clinics, or operating rooms with hands-on equipment appeal to you more than a desk.': 'المختبرات أو العيادات أو غرف العمليات ذات المعدات العملية تجذبك أكثر من مكتب.',
+
+    'You want a career built around one-on-one conversations with people who are scared or in pain.': 'تريد مسيرة مهنية مبنية على محادثات فردية مع أشخاص خائفين أو يعانون من الألم.',
+    "You're comfortable delivering difficult news calmly and staying present afterward.": 'تشعر بالارتياح عند إيصال أخبار صعبة بهدوء والبقاء حاضرًا بعدها.',
+    'Long-term relationships with the same patients over years sound rewarding, not repetitive.': 'العلاقات طويلة الأمد مع نفس المرضى عبر سنوات تبدو مجزية وليست مملة.',
+    "You read people's emotional state quickly, even when they don't say it directly.": 'تقرأ الحالة العاطفية للناس بسرعة، حتى عندما لا يصرحون بها مباشرة.',
+
+    'You can function and think clearly after a night of interrupted sleep.': 'يمكنك العمل والتفكير بوضوح بعد ليلة من النوم المتقطع.',
+    "You're willing to commit 7+ years of intense training before your income reflects your effort.": 'أنت مستعد للالتزام بأكثر من 7 سنوات من التدريب المكثف قبل أن يعكس دخلك جهدك.',
+    "Seeing suffering repeatedly wouldn't erode your motivation to keep showing up.": 'رؤية المعاناة بشكل متكرر لن تُضعف دافعك للاستمرار.',
+    'You handle high-stakes pressure, where a mistake has real consequences, without shutting down.': 'تتعامل مع الضغط عالي المخاطر، حيث للخطأ عواقب حقيقية، دون أن تنهار.',
+
+    "Earning potential is a real factor in which health path you'd choose, not just passion.": 'إمكانية الكسب عامل حقيقي في اختيار مسارك الصحي، وليس الشغف فقط.',
+    "You're prepared to take on significant training debt for a payoff many years away.": 'أنت مستعد لتحمل ديون تدريب كبيرة مقابل عائد بعد سنوات عديدة.',
+    'A high-ceiling path with years of low pay upfront appeals to you more than steady moderate pay sooner.': 'مسار ذو سقف مرتفع مع سنوات من الأجر المنخفض في البداية يجذبك أكثر من أجر معتدل وثابت مبكرًا.',
+    "You've already thought about which health fields have stronger long-term earning potential.": 'لقد فكرت بالفعل في أي المجالات الصحية لديها إمكانية كسب أقوى على المدى الطويل.',
+
+    "You feel a pull toward serving people who can't easily access good healthcare.": 'تشعر بانجذاب نحو خدمة الأشخاص الذين لا يستطيعون الوصول بسهولة إلى رعاية صحية جيدة.',
+    "You'd choose the path that does more good over the one that pays better, if forced to pick.": 'ستختار المسار الذي يحقق خيرًا أكبر على المسار الذي يدفع أكثر، إذا اضطررت للاختيار.',
+    'Fairness in how patients are treated regardless of background matters deeply to you.': 'العدالة في معاملة المرضى بغض النظر عن خلفيتهم أمر يهمك بعمق.',
+    'You measure a good career partly by lives changed, not just income or prestige.': 'تقيس المسيرة المهنية الجيدة جزئيًا بعدد الحياة التي غيّرتها، وليس فقط بالدخل أو المكانة.',
+
+    "You're curious about how AI is already changing diagnosis and treatment, not threatened by it.": 'أنت فضولي حول كيفية تغيير الذكاء الاصطناعي للتشخيص والعلاج، ولا تشعر بالتهديد منه.',
+    'You want a role where human judgment stays central even as AI tools keep improving.': 'تريد دورًا يبقى فيه الحكم البشري محوريًا حتى مع استمرار تحسن أدوات الذكاء الاصطناعي.',
+    "You already use, or want to learn, AI and health-tech tools as part of how you study or plan to work.": 'أنت بالفعل تستخدم، أو تريد تعلم، أدوات الذكاء الاصطناعي والتقنية الصحية كجزء من طريقة دراستك أو عملك المستقبلي.',
+    "You're drawn to a field being actively reshaped by technology right now, not one that feels settled.": 'أنت منجذب إلى مجال تعيد التقنية تشكيله بنشاط الآن، وليس مجالًا يبدو مستقرًا.',
+
+    "You'd rather be the one performing a procedure than managing a condition with medication alone.": 'تفضل أن تكون من يقوم بالإجراء بدلاً من إدارة الحالة بالأدوية فقط.',
+    'Working with your hands under time pressure energizes you rather than drains you.': 'العمل بيديك تحت ضغط الوقت يمنحك طاقة بدلاً من أن يستنزفك.',
+    'You want to see the direct physical result of your work within minutes or hours, not months.': 'تريد رؤية النتيجة الجسدية المباشرة لعملك خلال دقائق أو ساعات، وليس أشهرًا.',
+    "Long stretches of standing, focus, and precision during a procedure don't wear you down the way they might others.": 'فترات طويلة من الوقوف والتركيز والدقة أثناء الإجراء لا تُنهكك كما قد تُنهك الآخرين.',
+
+    'You enjoy chasing an unclear diagnosis through a long list of possibilities more than treating a known one.': 'تستمتع بملاحقة تشخيص غير واضح عبر قائمة طويلة من الاحتمالات أكثر من علاج حالة معروفة.',
+    "You'd rather reason broadly across systems — labs, imaging, history — than specialize narrowly on one organ.": 'تفضل التفكير بشكل واسع عبر الأنظمة — المختبرات، التصوير، التاريخ المرضي — على التخصص الضيق في عضو واحد.',
+    "Ambiguous cases that don't fit a textbook pattern excite you rather than frustrate you.": 'الحالات الغامضة التي لا تتناسب مع نمط الكتب الدراسية تُثيرك بدلاً من أن تُحبطك.',
+    "You like being the doctor other doctors call when they're stuck.": 'تحب أن تكون الطبيب الذي يتصل به الأطباء الآخرون عندما يعلقون.',
+
+    "You want to know your patients well enough to remember their kids' names and life events.": 'تريد معرفة مرضاك جيدًا بما يكفي لتتذكر أسماء أطفالهم وأحداث حياتهم.',
+    'Managing a chronic condition over years, adjusting slowly, sounds more satisfying than one decisive intervention.': 'إدارة حالة مزمنة عبر سنوات، مع تعديلات تدريجية، تبدو أكثر إرضاءً من تدخل حاسم واحد.',
+    "You'd rather build trust over many visits than resolve something in a single encounter.": 'تفضل بناء الثقة عبر زيارات عديدة على حل شيء ما في لقاء واحد.',
+    'Preventive care and long-term relationship-building matter more to you than acute crisis response.': 'الرعاية الوقائية وبناء العلاقات طويلة الأمد تهمك أكثر من الاستجابة للأزمات الحادة.',
+
+    'You can stay emotionally steady around death, terminal diagnoses, or pediatric suffering without it eroding you over time.': 'يمكنك البقاء مستقرًا عاطفيًا حول الموت، أو التشخيصات النهائية، أو معاناة الأطفال دون أن يُنهكك ذلك مع الوقت.',
+    'High-stakes, rapid-decision environments, where seconds matter, bring out your best performance.': 'البيئات عالية المخاطر وسريعة القرار، حيث تهم الثواني، تُخرج أفضل أدائك.',
+    "You'd rather work unpredictable, high-adrenaline shifts than a calm, scheduled clinic day.": 'تفضل العمل في نوبات غير متوقعة وعالية الأدرينالين على يوم عيادة هادئ ومجدول.',
+    "Delivering devastating news is something you could do regularly without it wearing you down.": 'إيصال أخبار مدمرة هو أمر يمكنك القيام به بانتظام دون أن يُنهكك.',
+
+    'Predictable hours and a controllable schedule matter more to you than being at the center of the action.': 'الساعات المتوقعة والجدول القابل للتحكم يهمانك أكثر من أن تكون في مركز الحدث.',
+    "You want a specialty where overnight call is the exception, not the norm.": 'تريد تخصصًا تكون فيه المناوبة الليلية استثناءً، وليست القاعدة.',
+    'Protecting time for family, hobbies, or a second interest outside medicine is a real priority for you.': 'حماية الوقت للعائلة أو الهوايات أو اهتمام آخر خارج الطب أولوية حقيقية بالنسبة لك.',
+    "You'd trade some prestige or income for a schedule you can actually plan your life around.": 'ستتنازل عن بعض المكانة أو الدخل مقابل جدول يمكنك التخطيط لحياتك حوله فعليًا.',
+
+    "Earning potential is a real factor in which specialty you'd rank first, not an afterthought.": 'إمكانية الكسب عامل حقيقي في ترتيب التخصص الأول لديك، وليس فكرة ثانوية.',
+    "You're willing to do an extra 1-2 years of fellowship if it meaningfully raises your ceiling.": 'أنت مستعد لقضاء 1-2 سنة إضافية من الزمالة إذا رفعت سقفك بشكل ملموس.',
+    'A demanding schedule is worth it to you if the compensation reflects that demand.': 'الجدول الشاق يستحق العناء بالنسبة لك إذا كان التعويض يعكس ذلك الجهد.',
+    "You've already looked into which specialties tend to pay more, and it influences your ranking.": 'لقد بحثت بالفعل عن التخصصات التي تدفع أكثر، وهذا يؤثر على ترتيبك.',
+
+    "You're comfortable in a specialty where AI already reads images or flags findings alongside you.": 'أنت مرتاح في تخصص يقرأ فيه الذكاء الاصطناعي الصور بالفعل أو يُشير إلى النتائج بجانبك.',
+    "You'd rather be augmented by powerful diagnostic AI than avoid a field because of it.": 'تفضل أن يُعزز عملك ذكاء اصطناعي تشخيصي قوي على تجنب مجال بسببه.',
+    'You want your specialty to still need a human at the center of it in 30 years, even if AI handles more of the routine work.': 'تريد أن يظل تخصصك بحاجة إلى إنسان في مركزه بعد 30 عامًا، حتى لو تولى الذكاء الاصطناعي المزيد من العمل الروتيني.',
+    "You're excited to learn AI-assisted tools — image analysis, robotic assistance, predictive models — as part of your specialty, not reluctant.": 'أنت متحمس لتعلم أدوات مدعومة بالذكاء الاصطناعي — تحليل الصور، المساعدة الروبوتية، النماذج التنبؤية — كجزء من تخصصك، وليس مترددًا.',
+  };
+
+  function fpLang() {
+    return (window.I18N && window.I18N.currentLang) ? window.I18N.currentLang() : 'en';
+  }
+  function tr(s) {
+    if (fpLang() !== 'ar') return s;
+    return QUIZ_AR[s] || s;
+  }
+  function fpQuestionCounter(n, total) {
+    return fpLang() === 'ar' ? `السؤال ${n} من ${total}` : `Question ${n} of ${total}`;
+  }
+
   const TRACKS = {
     premed: {
       label: 'Pre-Medical',
@@ -213,13 +323,20 @@
     document.getElementById('fpQuiz').classList.remove('hidden');
     document.getElementById('fpResults').classList.add('hidden');
     document.getElementById('fpJourney').classList.add('hidden');
-    document.getElementById('fpTrackPill').textContent = track.heroNote;
+    document.getElementById('fpTrackPill').textContent = tr(track.heroNote);
     fpBuildCompassLabels();
     fpRenderQuestion();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
   document.getElementById('fpCardPremed').addEventListener('click', () => fpStartTrack('premed'));
   document.getElementById('fpCardResidency').addEventListener('click', () => fpStartTrack('residency'));
+
+  document.addEventListener('ih:langchange', () => {
+    if (track && !document.getElementById('fpQuiz').classList.contains('hidden')) {
+      document.getElementById('fpTrackPill').textContent = tr(track.heroNote);
+      fpRenderQuestion();
+    }
+  });
 
   function fpBuildCompassLabels() {
     const ticksG = document.getElementById('fpTicks');
@@ -281,9 +398,9 @@
   function fpRenderQuestion() {
     const q = order[current];
     const dim = track.dims[q.dimIdx];
-    document.getElementById('fpDimTag').textContent = '● ' + dim.label;
-    document.getElementById('fpQCount').textContent = 'Question ' + (current + 1) + ' of ' + order.length;
-    document.getElementById('fpQText').textContent = q.text;
+    document.getElementById('fpDimTag').textContent = '● ' + tr(dim.label);
+    document.getElementById('fpQCount').textContent = fpQuestionCounter(current + 1, order.length);
+    document.getElementById('fpQText').textContent = tr(q.text);
 
     const scale = document.getElementById('fpScale');
     scale.innerHTML = '';
@@ -292,7 +409,7 @@
       const val = idx + 1;
       const btn = document.createElement('button');
       btn.type = 'button';
-      btn.innerHTML = '<span class="fp-dot"></span>' + lbl;
+      btn.innerHTML = '<span class="fp-dot"></span>' + tr(lbl);
       if (answers[current] === val) btn.classList.add('selected');
       btn.addEventListener('click', () => {
         answers[current] = val;
@@ -382,7 +499,7 @@
       const t = document.createElementNS(fpSvgNS, 'text');
       t.setAttribute('x', lx); t.setAttribute('y', ly + 3);
       t.setAttribute('text-anchor', 'middle');
-      t.setAttribute('font-family', 'IBM Plex Mono, monospace');
+      t.setAttribute('font-family', 'Roboto, sans-serif');
       t.setAttribute('font-size', '7.5');
       t.setAttribute('fill', '#5B6B69');
       t.textContent = dims[i].short;

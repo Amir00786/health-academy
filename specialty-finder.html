@@ -17,10 +17,9 @@
     rel="stylesheet" />
   <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css" rel="stylesheet" />
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="css/specialty-finder.css" rel="stylesheet" />
   <link href="css/nav-v2.css" rel="stylesheet" />
+  <link href="css/livechat.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -55,61 +54,69 @@
         <a class="social-chip" href="#" title="YouTube" aria-label="YouTube"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10 9l6 3-6 3V9Z" fill="currentColor"/></svg></a>
       </div>
       <div class="right-links">
-        <a href="#">عربي</a>
-        <a href="#">Help</a>
+        <div class="lang-switcher">
+          <a href="#" class="lang-toggle" data-i18n="nav.languages">Languages</a>
+          <div class="lang-dropdown">
+            <a href="#" class="lang-option" data-lang="ar">عربي</a>
+            <a href="#" class="lang-option" data-lang="en">English</a>
+          </div>
+        </div>
+        <a href="#" class="help-link" data-i18n="nav.help">Help</a>
       </div>
     </div>
   </div>
 
   <header id="mainnav">
     <div class="mainnav-wrap">
-      <a class="logo" href="index.html"><span class="mark">iH</span> iHealth Academy</a>
+      <a class="logo" href="index.html"><span class="mark"><img src="images/ih-logo.png" alt="iHealth Academy"></span></a>
 
       <nav class="nav-links" id="navLinks">
-        <div class="nav-item"><a class="nav-link" href="index.html">Home</a></div>
-        <div class="nav-item"><a class="nav-link" href="find-your-path.html">Find Your Path</a></div>
+        <div class="nav-item"><a class="nav-link" href="index.html" data-i18n="nav.home">Home</a></div>
+        <div class="nav-item"><a class="nav-link" href="find-your-path.html" data-i18n="nav.findPath">Find Your Path</a></div>
+        <div class="nav-item"><a class="nav-link" href="radiology-dept.html" data-i18n="nav.radiology">Radiology</a></div>
+        <div class="nav-item"><a class="nav-link" href="dashboard.html" data-i18n="nav.dashboard">Dashboard</a></div>
 
         <div class="nav-item" id="academyDropdown">
-          <button type="button" class="nav-link" id="academyBtn">iHealthAcademy <span class="caret">▾</span></button>
+          <button type="button" class="nav-link" id="academyBtn"><span data-i18n="nav.academy">iHealthAcademy</span> <span class="caret">▾</span></button>
           <div class="dropdown">
             <a class="ddi" href="find-your-path.html" style="background:var(--primary-tint); margin-bottom:6px;">
-              <div><div class="ddi-title">🧭 Find Your Path</div><div class="ddi-sub">Not sure yet? Take the 2-minute quiz</div></div>
-              <span class="badge live">LIVE</span>
+              <div><div class="ddi-title" data-i18n="nav.dd.findpath.title">🧭 Find Your Path</div><div class="ddi-sub" data-i18n="nav.dd.findpath.sub">Not sure yet? Take the 2-minute quiz</div></div>
+              <span class="badge live" data-i18n="badge.live">LIVE</span>
             </a>
-            <a class="ddi ddi-disabled" href="#">
-              <div><div class="ddi-title">Insurance Industry</div><div class="ddi-sub">Become a Pre-Auth Specialist</div></div>
-              <span class="badge soon">COMING SOON</span>
+            <a class="ddi" href="insurance-dept.html">
+              <div><div class="ddi-title" data-i18n="nav.dd.insurance.title">Insurance Industry</div><div class="ddi-sub" data-i18n="nav.dd.insurance.sub">Become a Pre-Auth Specialist</div></div>
+              <span class="badge live" data-i18n="badge.live">LIVE</span>
             </a>
             <div class="ddi ddi-disabled">
-              <div><div class="ddi-title">Managers Professional</div><div class="ddi-sub">Leadership track for health managers</div></div>
-              <span class="badge soon">COMING SOON</span>
+              <div><div class="ddi-title" data-i18n="nav.dd.managers.title">Managers Professional</div><div class="ddi-sub" data-i18n="nav.dd.managers.sub">Leadership track for health managers</div></div>
+              <span class="badge soon" data-i18n="badge.soon">COMING SOON</span>
             </div>
             <a class="ddi" href="radiology-dept.html">
-              <div><div class="ddi-title">Medical Specialties</div><div class="ddi-sub">Radiology</div></div>
-              <span class="badge live">LIVE</span>
+              <div><div class="ddi-title" data-i18n="nav.dd.specialties.title">Medical Specialties</div><div class="ddi-sub" data-i18n="nav.dd.specialties.sub">Radiology</div></div>
+              <span class="badge live" data-i18n="badge.live">LIVE</span>
             </a>
             <div class="ddi ddi-disabled">
-              <div><div class="ddi-title">Mentorships</div><div class="ddi-sub">1:1 guidance from practicing professionals</div></div>
-              <span class="badge soon">COMING SOON</span>
+              <div><div class="ddi-title" data-i18n="nav.dd.mentor.title">Mentorships</div><div class="ddi-sub" data-i18n="nav.dd.mentor.sub">1:1 guidance from practicing professionals</div></div>
+              <span class="badge soon" data-i18n="badge.soon">COMING SOON</span>
             </div>
             <div class="ddi ddi-disabled">
-              <div><div class="ddi-title">Supporters</div><div class="ddi-sub">Volunteering, teaching &amp; side-missions — earn a certificate</div></div>
-              <span class="badge soon">COMING SOON</span>
+              <div><div class="ddi-title" data-i18n="nav.dd.supporters.title">Supporters</div><div class="ddi-sub" data-i18n="nav.dd.supporters.sub">Volunteering, teaching &amp; side-missions — earn a certificate</div></div>
+              <span class="badge soon" data-i18n="badge.soon">COMING SOON</span>
             </div>
             <div class="ddi ddi-disabled">
-              <div><div class="ddi-title">Co-Founders</div><div class="ddi-sub">Join the founding team</div></div>
-              <span class="badge soon">COMING SOON</span>
+              <div><div class="ddi-title" data-i18n="nav.dd.cofounders.title">Co-Founders</div><div class="ddi-sub" data-i18n="nav.dd.cofounders.sub">Join the founding team</div></div>
+              <span class="badge soon" data-i18n="badge.soon">COMING SOON</span>
             </div>
           </div>
         </div>
 
-        <div class="nav-item"><a class="nav-link" href="#">Connections</a></div>
-        <div class="nav-item"><a class="nav-link" href="#">Contact Us</a></div>
+        <div class="nav-item"><a class="nav-link" href="#" data-i18n="nav.connections">Connections</a></div>
+        <div class="nav-item"><a class="nav-link" href="#" data-i18n="nav.contact">Contact Us</a></div>
       </nav>
 
       <div class="auth-actions">
-        <a href="#" class="btn btn-ghost nav-signin">Sign in</a>
-        <a href="#" class="btn btn-primary nav-signup">Sign up</a>
+        <a href="#" class="btn btn-ghost nav-signin" data-i18n="nav.signin">Sign in</a>
+        <a href="#" class="btn btn-primary nav-signup" data-i18n="nav.signup">Sign up</a>
         <button type="button" class="hamburger btn btn-ghost" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false">☰</button>
       </div>
     </div>
@@ -117,27 +124,27 @@
 
   <!-- LANDING -->
   <div class="landing" id="landing">
-    <div class="landing-tag" data-aos="fade-up">✦ Free tool — no sign up needed</div>
-    <h1 data-aos="fade-up" data-aos-delay="50">Find your<br><span>medical specialty.</span></h1>
-    <p data-aos="fade-up" data-aos-delay="100">Not sure which specialty is right for you? Answer 10 questions about your personality, strengths, and goals — and
+    <div class="landing-tag" data-aos="fade-up" data-i18n="spec.tag">✦ Free tool — no sign up needed</div>
+    <h1 data-aos="fade-up" data-aos-delay="50" data-i18n="spec.h1">Find your<br><span>medical specialty.</span></h1>
+    <p data-aos="fade-up" data-aos-delay="100" data-i18n="spec.desc">Not sure which specialty is right for you? Answer 10 questions about your personality, strengths, and goals — and
       we will show you your top matches with a full explanation.</p>
-    <button class="start-btn" onclick="startQuiz()" data-aos="fade-up" data-aos-delay="150">Start the finder <i class="fi fi-sr-arrow-small-right"></i></button>
-    <div class="landing-note" data-aos="fade-up" data-aos-delay="200">Takes about 3 minutes · Results are instant · Free forever</div>
+    <button class="start-btn" onclick="startQuiz()" data-aos="fade-up" data-aos-delay="150"><span data-i18n="spec.startBtn">Start the finder</span> <i class="fi fi-sr-arrow-small-right"></i></button>
+    <div class="landing-note" data-aos="fade-up" data-aos-delay="200" data-i18n="spec.note">Takes about 3 minutes · Results are instant · Free forever</div>
     <div class="landing-stats">
       <div class="stats-wrap" data-aos="fade-up" data-aos-delay="50">
         <span class="ls-ico"><i class="fi fi-sr-stethoscope"></i></span>
         <span class="ls-val"><span class="counter" data-target="40">0</span>+</span>
-        <div class="ls-lbl">Specialties ranked</div>
+        <div class="ls-lbl" data-i18n="spec.stat1">Specialties ranked</div>
       </div>
       <div class="stats-wrap" data-aos="fade-up" data-aos-delay="100">
         <span class="ls-ico"><i class="fi fi-sr-book-font"></i></span>
         <span class="ls-val"><span class="counter" data-target="10">0</span></span>
-        <div class="ls-lbl">Questions</div>
+        <div class="ls-lbl" data-i18n="spec.stat2">Questions</div>
       </div>
       <div class="stats-wrap" data-aos="fade-up" data-aos-delay="150">
         <span class="ls-ico"><i class="fi fi-ss-gift"></i></span>
         <span class="ls-val"><span class="counter" data-target="100">0</span>%</span>
-        <div class="ls-lbl">Free</div>
+        <div class="ls-lbl" data-i18n="spec.stat3">Free</div>
       </div>
     </div>
   </div>
@@ -178,6 +185,20 @@
 
   <script src="js/nav.js"></script>
   <script src="js/nav-v2.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/livechat.js"></script>
+  <script>
+    window.I18N_PAGE_DICT = {
+      'spec.tag': { en: '✦ Free tool — no sign up needed', ar: '✦ أداة مجانية — لا حاجة للتسجيل' },
+      'spec.h1': { en: 'Find your<br><span>medical specialty.</span>', ar: 'اكتشف<br><span>تخصصك الطبي.</span>' },
+      'spec.desc': { en: 'Not sure which specialty is right for you? Answer 10 questions about your personality, strengths, and goals — and we will show you your top matches with a full explanation.', ar: 'لست متأكدًا من التخصص المناسب لك؟ أجب عن 10 أسئلة حول شخصيتك ونقاط قوتك وأهدافك — وسنعرض لك أفضل التخصصات المطابقة مع شرح كامل.' },
+      'spec.startBtn': { en: 'Start the finder', ar: 'ابدأ الاختبار' },
+      'spec.note': { en: 'Takes about 3 minutes · Results are instant · Free forever', ar: 'يستغرق حوالي 3 دقائق · النتائج فورية · مجاني دائمًا' },
+      'spec.stat1': { en: 'Specialties ranked', ar: 'تخصص مرتب' },
+      'spec.stat2': { en: 'Questions', ar: 'أسئلة' },
+      'spec.stat3': { en: 'Free', ar: 'مجاني' },
+    };
+  </script>
   <script>
     // COUNTER
     function animateCounter(el) {

@@ -4,21 +4,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>iHealth Academy — Ecosystem</title>
+  <title>Anatomy Spotting — iHealth Academy</title>
   <link
     href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;800;900&display=swap"
     rel="stylesheet" />
+  <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-bold-rounded/css/uicons-bold-rounded.css" rel="stylesheet" />
   <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css"
-    rel="stylesheet" />
-  <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-straight/css/uicons-solid-straight.css"
-    rel="stylesheet" />
-  <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-bold-rounded/css/uicons-bold-rounded.css"
     rel="stylesheet" />
   <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css" rel="stylesheet" />
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-  <link href="css/ecosystem.css" rel="stylesheet" />
+  <link href="css/radiology-dept.css" rel="stylesheet" />
   <link href="css/nav-v2.css" rel="stylesheet" />
   <link href="css/livechat.css" rel="stylesheet" />
+  <link href="css/anatomy-spotting.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -41,9 +39,6 @@
       </svg>
     </div>
   </div>
-
-  <div class="cursor" id="cur"></div>
-  <div class="cursor-ring" id="ring"></div>
 
   <div id="topbar">
     <div class="topbar-wrap">
@@ -124,27 +119,23 @@
     </div>
   </header>
 
-  <canvas id="solarCanvas"></canvas>
+  <!-- HERO -->
+  <section class="as-hero-wrap">
+    <div class="as-hero">
+      <a href="radiology-dept.html" style="font-size:0.85rem; font-weight:700; color:#0E5D4F; text-decoration:none; display:inline-block; margin-bottom:1rem;" data-i18n="as.back">← Back to Radiology</a>
+      <div class="as-tag" data-aos="fade-up" data-i18n="as.tag">Radiology · Anatomy Spotting</div>
+      <h1 class="as-title" data-aos="fade-up" data-aos-delay="50" data-i18n="as.h1">Label it. Time it. Level up.</h1>
+      <p class="as-desc" data-aos="fade-up" data-aos-delay="100" data-i18n="as.desc">Pick a system, start a mock test, and label
+        highlighted structures against a 90-minute countdown — exactly like exam day. Every correct label counts
+        toward your all-time total: 50 correct earns Hero, 100 earns Master, 150 earns Legendary.</p>
+      <p class="as-note" data-aos="fade-up" data-aos-delay="120" data-i18n="as.note">Diagrams shown are placeholder schematics — real
+        labeled imaging will replace these as content is added. The scoring and timer engine is fully live.</p>
 
-  <div class="hint-bar" id="hintBar">
-    <div class="hint-pulse"></div>
-    <span data-i18n="eco.hint">Click any planet to explore · Scroll to zoom</span>
-  </div>
+      <div class="as-tier-bar" id="asTierBar" data-aos="fade-up" data-aos-delay="150"></div>
 
-  <div class="detail-panel" id="panel">
-    <div class="panel-close" onclick="closePanel()">✕</div>
-    <div class="panel-inner">
-      <span class="panel-planet-ico" id="p-ico"></span>
-      <div class="panel-tag" id="p-tag"></div>
-      <div class="panel-title" id="p-title"></div>
-      <p class="panel-desc" id="p-desc"></p>
-      <div class="subs-title">Explore inside</div>
-      <div class="subs-list" id="p-subs"></div>
-      <a href="#" class="panel-btn" id="p-btn">Open full section →</a>
+      <div class="as-system-grid" id="asSystemGrid" data-aos="fade-up" data-aos-delay="200"></div>
     </div>
-  </div>
-
-  <div class="moon-tip" id="moonTip"></div>
+  </section>
 
   <script src="js/nav.js"></script>
   <script src="js/nav-v2.js"></script>
@@ -152,18 +143,17 @@
   <script src="js/livechat.js"></script>
   <script>
     window.I18N_PAGE_DICT = {
-      'eco.hint': { en: 'Click any planet to explore · Scroll to zoom', ar: 'انقر على أي كوكب للاستكشاف · مرر للتكبير' },
+      'as.back': { en: '← Back to Radiology', ar: '→ العودة إلى الأشعة' },
+      'as.tag': { en: 'Radiology · Anatomy Spotting', ar: 'الأشعة · تحديد التشريح' },
+      'as.h1': { en: 'Label it. Time it. Level up.', ar: 'حدّده. وقّته. ارتقِ بمستواك.' },
+      'as.desc': { en: 'Pick a system, start a mock test, and label highlighted structures against a 90-minute countdown — exactly like exam day. Every correct label counts toward your all-time total: 50 correct earns Hero, 100 earns Master, 150 earns Legendary.', ar: 'اختر جهازًا، ابدأ اختبارًا تجريبيًا، وحدّد التراكيب المُبرزة ضمن عد تنازلي مدته 90 دقيقة — تمامًا كيوم الامتحان. كل تسمية صحيحة تُحتسب ضمن رصيدك الكلي: 50 صحيحة تمنحك لقب بطل، 100 تمنحك خبير، و150 تمنحك أسطوري.' },
+      'as.note': { en: 'Diagrams shown are placeholder schematics — real labeled imaging will replace these as content is added. The scoring and timer engine is fully live.', ar: 'المخططات المعروضة هي رسوم توضيحية مؤقتة — ستُستبدل بصور طبية حقيقية مصنّفة عند إضافة المحتوى. نظام التسجيل والمؤقت يعمل فعليًا بالكامل.' },
     };
   </script>
-  <script src="js/ecosystem.js"></script>
+  <script src="js/anatomy-spotting.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    AOS.init({
-      duration: 700,
-      easing: 'ease',
-      once: true,
-      offset: 80
-    });
+    AOS.init({ duration: 700, easing: 'ease', once: true, offset: 80 });
   </script>
 </body>
 

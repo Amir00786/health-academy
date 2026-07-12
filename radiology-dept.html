@@ -14,10 +14,11 @@
   <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-thin-rounded/css/uicons-thin-rounded.css" rel="stylesheet" />
   <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css" rel="stylesheet" />
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="css/radiology-dept.css" rel="stylesheet" />
   <link href="css/nav-v2.css" rel="stylesheet" />
+  <link href="css/livechat.css" rel="stylesheet" />
+  <link href="css/lesson-viewer.css" rel="stylesheet" />
+  <link href="css/certificate.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -54,61 +55,69 @@
           <a class="social-chip" href="#" title="YouTube" aria-label="YouTube"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10 9l6 3-6 3V9Z" fill="currentColor"/></svg></a>
         </div>
         <div class="right-links">
-          <a href="#">عربي</a>
-          <a href="#">Help</a>
+          <div class="lang-switcher">
+            <a href="#" class="lang-toggle" data-i18n="nav.languages">Languages</a>
+            <div class="lang-dropdown">
+              <a href="#" class="lang-option" data-lang="ar">عربي</a>
+              <a href="#" class="lang-option" data-lang="en">English</a>
+            </div>
+          </div>
+          <a href="#" class="help-link" data-i18n="nav.help">Help</a>
         </div>
       </div>
     </div>
 
     <header id="mainnav">
       <div class="mainnav-wrap">
-        <a class="logo" href="index.html"><span class="mark">iH</span> iHealth Academy</a>
+        <a class="logo" href="index.html"><span class="mark"><img src="images/ih-logo.png" alt="iHealth Academy"></span></a>
 
         <nav class="nav-links" id="navLinks">
-          <div class="nav-item"><a class="nav-link" href="index.html">Home</a></div>
-          <div class="nav-item"><a class="nav-link" href="find-your-path.html">Find Your Path</a></div>
+          <div class="nav-item"><a class="nav-link" href="index.html" data-i18n="nav.home">Home</a></div>
+          <div class="nav-item"><a class="nav-link" href="find-your-path.html" data-i18n="nav.findPath">Find Your Path</a></div>
+          <div class="nav-item"><a class="nav-link active" href="radiology-dept.html" data-i18n="nav.radiology">Radiology</a></div>
+        <div class="nav-item"><a class="nav-link" href="dashboard.html" data-i18n="nav.dashboard">Dashboard</a></div>
 
           <div class="nav-item" id="academyDropdown">
-            <button type="button" class="nav-link" id="academyBtn">iHealthAcademy <span class="caret">▾</span></button>
+            <button type="button" class="nav-link" id="academyBtn"><span data-i18n="nav.academy">iHealthAcademy</span> <span class="caret">▾</span></button>
             <div class="dropdown">
               <a class="ddi" href="find-your-path.html" style="background:var(--primary-tint); margin-bottom:6px;">
-                <div><div class="ddi-title">🧭 Find Your Path</div><div class="ddi-sub">Not sure yet? Take the 2-minute quiz</div></div>
-                <span class="badge live">LIVE</span>
+                <div><div class="ddi-title" data-i18n="nav.dd.findpath.title">🧭 Find Your Path</div><div class="ddi-sub" data-i18n="nav.dd.findpath.sub">Not sure yet? Take the 2-minute quiz</div></div>
+                <span class="badge live" data-i18n="badge.live">LIVE</span>
               </a>
-              <a class="ddi ddi-disabled" href="#">
-                <div><div class="ddi-title">Insurance Industry</div><div class="ddi-sub">Become a Pre-Auth Specialist</div></div>
-                <span class="badge soon">COMING SOON</span>
+              <a class="ddi" href="insurance-dept.html">
+                <div><div class="ddi-title" data-i18n="nav.dd.insurance.title">Insurance Industry</div><div class="ddi-sub" data-i18n="nav.dd.insurance.sub">Become a Pre-Auth Specialist</div></div>
+                <span class="badge live" data-i18n="badge.live">LIVE</span>
               </a>
               <div class="ddi ddi-disabled">
-                <div><div class="ddi-title">Managers Professional</div><div class="ddi-sub">Leadership track for health managers</div></div>
-                <span class="badge soon">COMING SOON</span>
+                <div><div class="ddi-title" data-i18n="nav.dd.managers.title">Managers Professional</div><div class="ddi-sub" data-i18n="nav.dd.managers.sub">Leadership track for health managers</div></div>
+                <span class="badge soon" data-i18n="badge.soon">COMING SOON</span>
               </div>
               <a class="ddi" href="radiology-dept.html">
-                <div><div class="ddi-title">Medical Specialties</div><div class="ddi-sub">Radiology</div></div>
-                <span class="badge live">LIVE</span>
+                <div><div class="ddi-title" data-i18n="nav.dd.specialties.title">Medical Specialties</div><div class="ddi-sub" data-i18n="nav.dd.specialties.sub">Radiology</div></div>
+                <span class="badge live" data-i18n="badge.live">LIVE</span>
               </a>
               <div class="ddi ddi-disabled">
-                <div><div class="ddi-title">Mentorships</div><div class="ddi-sub">1:1 guidance from practicing professionals</div></div>
-                <span class="badge soon">COMING SOON</span>
+                <div><div class="ddi-title" data-i18n="nav.dd.mentor.title">Mentorships</div><div class="ddi-sub" data-i18n="nav.dd.mentor.sub">1:1 guidance from practicing professionals</div></div>
+                <span class="badge soon" data-i18n="badge.soon">COMING SOON</span>
               </div>
               <div class="ddi ddi-disabled">
-                <div><div class="ddi-title">Supporters</div><div class="ddi-sub">Volunteering, teaching &amp; side-missions — earn a certificate</div></div>
-                <span class="badge soon">COMING SOON</span>
+                <div><div class="ddi-title" data-i18n="nav.dd.supporters.title">Supporters</div><div class="ddi-sub" data-i18n="nav.dd.supporters.sub">Volunteering, teaching &amp; side-missions — earn a certificate</div></div>
+                <span class="badge soon" data-i18n="badge.soon">COMING SOON</span>
               </div>
               <div class="ddi ddi-disabled">
-                <div><div class="ddi-title">Co-Founders</div><div class="ddi-sub">Join the founding team</div></div>
-                <span class="badge soon">COMING SOON</span>
+                <div><div class="ddi-title" data-i18n="nav.dd.cofounders.title">Co-Founders</div><div class="ddi-sub" data-i18n="nav.dd.cofounders.sub">Join the founding team</div></div>
+                <span class="badge soon" data-i18n="badge.soon">COMING SOON</span>
               </div>
             </div>
           </div>
 
-          <div class="nav-item"><a class="nav-link" href="#">Connections</a></div>
-          <div class="nav-item"><a class="nav-link" href="#">Contact Us</a></div>
+          <div class="nav-item"><a class="nav-link" href="#" data-i18n="nav.connections">Connections</a></div>
+          <div class="nav-item"><a class="nav-link" href="#" data-i18n="nav.contact">Contact Us</a></div>
         </nav>
 
         <div class="auth-actions">
-          <a href="#" class="btn btn-ghost nav-signin">Sign in</a>
-          <a href="#" class="btn btn-primary nav-signup">Sign up</a>
+          <a href="#" class="btn btn-ghost nav-signin" data-i18n="nav.signin">Sign in</a>
+          <a href="#" class="btn btn-primary nav-signup" data-i18n="nav.signup">Sign up</a>
           <button type="button" class="hamburger btn btn-ghost" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false">☰</button>
         </div>
       </div>
@@ -118,29 +127,30 @@
     <div class="dept-hero-wrap">
       <div class="dept-hero">
         <div>
-          <div class="dept-tag" data-aos="fade-up"><span class="dept-tag-dot"></span>Provider — Radiology department</div>
-          <h1 data-aos="fade-up" data-aos-delay="50">Radiology.<br><span>Done right.</span></h1>
-          <p class="dept-desc" data-aos="fade-up" data-aos-delay="100">Everything a radiologist needs — from your first scan to passing your board exam to
+          <div class="dept-tag" data-aos="fade-up"><span class="dept-tag-dot"></span><span data-i18n="rad.tag">Provider — Radiology department</span></div>
+          <h1 data-aos="fade-up" data-aos-delay="50" data-i18n="rad.h1">Radiology.<br><span>Done right.</span></h1>
+          <p class="dept-desc" data-aos="fade-up" data-aos-delay="100" data-i18n="rad.desc">Everything a radiologist needs — from your first scan to passing your board exam to
             writing
             pre-auth requests that never get rejected. Structured. Practical. Built from 7 years of real experience.</p>
           <div class="dept-stats" data-aos="fade-up" data-aos-delay="150">
             <div>
               <span class="dept-stat-val counter" data-target="6">0</span>
-              <div class="dept-stat-lbl">Learning tracks</div>
+              <div class="dept-stat-lbl" data-i18n="rad.stat1">Learning tracks</div>
             </div>
             <div>
               <span class="dept-stat-val counter" data-target="48">0</span>
-              <div class="dept-stat-lbl">Lessons</div>
+              <div class="dept-stat-lbl" data-i18n="rad.stat2">Lessons</div>
             </div>
             <div>
               <span class="dept-stat-val counter" data-target="5">0</span>
-              <div class="dept-stat-lbl">Exam tracks</div>
+              <div class="dept-stat-lbl" data-i18n="rad.stat3">Exam tracks</div>
             </div>
             <div>
-              <span class="dept-stat-val">Free</span>
-              <div class="dept-stat-lbl">To start</div>
+              <span class="dept-stat-val" data-i18n="rad.stat4val">Free</span>
+              <div class="dept-stat-lbl" data-i18n="rad.stat4">To start</div>
             </div>
           </div>
+          <a href="anatomy-spotting.html" class="exam-btn" style="display:inline-flex; align-items:center; gap:8px; margin-top:1.5rem; text-decoration:none; width:auto;" data-aos="fade-up" data-aos-delay="200" data-i18n="rad.anatomyBtn">🩻 Try Anatomy Spotting — timed mock test →</a>
         </div>
         <div class="dept-hero-right">
           <div class="dept-badge" data-aos="fade-up" data-aos-delay="100">
@@ -209,145 +219,6 @@
               </div>
             </div>
           </div>
-
-          <div class="sidebar-divider"></div>
-
-          <div class="sidebar-section">
-            <div class="sidebar-track" onclick="toggleTrack(this)">
-              <span class="track-label"><i class="fi fi-sr-document"></i> Report writing</span><span
-                class="track-arrow"><i class="fi fi-sr-angle-small-right"></i></span>
-            </div>
-            <div class="sidebar-lessons">
-              <div class="lesson-link" onclick="loadModule('reports')">
-                <div class="lesson-num">1</div><span class="lesson-title">Structure of a good report</span><span
-                  class="lesson-dur">10m</span>
-              </div>
-              <div class="lesson-link" onclick="loadModule('reports')">
-                <div class="lesson-num">2</div><span class="lesson-title">Language & clarity</span><span
-                  class="lesson-dur">8m</span>
-              </div>
-              <div class="lesson-link" onclick="loadModule('reports')">
-                <div class="lesson-num">3</div><span class="lesson-title">Common findings — how to describe</span><span
-                  class="lesson-dur">15m</span>
-              </div>
-              <div class="lesson-link" onclick="loadModule('reports')">
-                <div class="lesson-num">4</div><span class="lesson-title">Critical findings & communication</span><span
-                  class="lesson-dur">10m</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="sidebar-divider"></div>
-
-          <div class="sidebar-section">
-            <div class="sidebar-track" onclick="toggleTrack(this)">
-              <span class="track-label"><i class="fi fi-sr-copyright"></i> Pre-authorization</span><span
-                class="track-arrow"><i class="fi fi-sr-angle-small-right"></i></span>
-            </div>
-            <div class="sidebar-lessons">
-              <div class="lesson-link" onclick="loadModule('preauth')">
-                <div class="lesson-num">1</div><span class="lesson-title">What is pre-auth?</span><span
-                  class="lesson-dur">6m</span>
-              </div>
-              <div class="lesson-link" onclick="loadModule('preauth')">
-                <div class="lesson-num">2</div><span class="lesson-title">Writing requests that get approved</span><span
-                  class="lesson-dur">15m</span>
-              </div>
-              <div class="lesson-link" onclick="loadModule('preauth')">
-                <div class="lesson-num">3</div><span class="lesson-title">Denial management</span><span
-                  class="lesson-dur">12m</span>
-              </div>
-              <div class="lesson-link" onclick="loadModule('preauth')">
-                <div class="lesson-num">4</div><span class="lesson-title">Appeals step by step</span><span
-                  class="lesson-dur">10m</span>
-              </div>
-              <div class="lesson-link" onclick="loadModule('preauth')">
-                <div class="lesson-num">5</div><span class="lesson-title">ICD & CPT coding for radiology</span><span
-                  class="lesson-dur">18m</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="sidebar-divider"></div>
-
-          <div class="sidebar-section">
-            <div class="sidebar-track" onclick="toggleTrack(this)">
-              <span class="track-label"><i class="fi fi-sr-test"></i> Exam preparation</span><span
-                class="track-arrow"><i class="fi fi-sr-angle-small-right"></i></span>
-            </div>
-            <div class="sidebar-lessons">
-              <div class="lesson-link" onclick="loadModule('exams')">
-                <div class="lesson-num">1</div><span class="lesson-title">FRCR Part 1 — study plan</span><span
-                  class="lesson-dur">20m</span>
-              </div>
-              <div class="lesson-link" onclick="loadModule('exams')">
-                <div class="lesson-num">2</div><span class="lesson-title">FRCR Part 2B — rapid reporting</span><span
-                  class="lesson-dur">25m</span>
-              </div>
-              <div class="lesson-link" onclick="loadModule('exams')">
-                <div class="lesson-num">3</div><span class="lesson-title">Arab Board — what to expect</span><span
-                  class="lesson-dur">15m</span>
-              </div>
-              <div class="lesson-link" onclick="loadModule('exams')">
-                <div class="lesson-num">4</div><span class="lesson-title">Saudi Board — full guide</span><span
-                  class="lesson-dur">15m</span>
-              </div>
-              <div class="lesson-link" onclick="loadModule('exams')">
-                <div class="lesson-num">5</div><span class="lesson-title">ABR — for those targeting the US</span><span
-                  class="lesson-dur">15m</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="sidebar-divider"></div>
-
-          <div class="sidebar-section">
-            <div class="sidebar-track" onclick="toggleTrack(this)">
-              <span class="track-label"><i class="fi fi-sr-computer"></i> Systems & tech</span><span
-                class="track-arrow"><i class="fi fi-sr-angle-small-right"></i></span>
-            </div>
-            <div class="sidebar-lessons">
-              <div class="lesson-link" onclick="loadModule('systems')">
-                <div class="lesson-num">1</div><span class="lesson-title">RIS & PACS — what they do</span><span
-                  class="lesson-dur">8m</span>
-              </div>
-              <div class="lesson-link" onclick="loadModule('systems')">
-                <div class="lesson-num">2</div><span class="lesson-title">NPHIES for radiologists</span><span
-                  class="lesson-dur">10m</span>
-              </div>
-              <div class="lesson-link" onclick="loadModule('systems')">
-                <div class="lesson-num">3</div><span class="lesson-title">AI tools in radiology today</span><span
-                  class="lesson-dur">12m</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="sidebar-divider"></div>
-
-          <div class="sidebar-section">
-            <div class="sidebar-track" onclick="toggleTrack(this)">
-              <span class="track-label"><i class="fi fi-brands-visual-basic"></i> Research basics</span><span
-                class="track-arrow"><i class="fi fi-sr-angle-small-right"></i></span>
-            </div>
-            <div class="sidebar-lessons">
-              <div class="lesson-link" onclick="loadModule('research')">
-                <div class="lesson-num">1</div><span class="lesson-title">How to read a study</span><span
-                  class="lesson-dur">12m</span>
-              </div>
-              <div class="lesson-link" onclick="loadModule('research')">
-                <div class="lesson-num">2</div><span class="lesson-title">Writing your first case report</span><span
-                  class="lesson-dur">15m</span>
-              </div>
-              <div class="lesson-link" onclick="loadModule('research')">
-                <div class="lesson-num">3</div><span class="lesson-title">Evidence-based radiology</span><span
-                  class="lesson-dur">10m</span>
-              </div>
-              <div class="lesson-link" onclick="loadModule('research')">
-                <div class="lesson-num">4</div><span class="lesson-title">Publishing your first paper</span><span
-                  class="lesson-dur">15m</span>
-              </div>
-            </div>
-          </div>
         </div>
 
         <!-- MAIN -->
@@ -356,11 +227,10 @@
           <!-- MODULE TABS -->
           <div class="module-tabs">
             <button class="mod-tab active-tab" onclick="loadModule('foundations',this)">Foundations</button>
-            <button class="mod-tab" onclick="loadModule('reports',this)">Reports</button>
-            <button class="mod-tab" onclick="loadModule('preauth',this)">Pre-auth</button>
-            <button class="mod-tab" onclick="loadModule('exams',this)">Exams</button>
             <button class="mod-tab" onclick="loadModule('systems',this)">Systems</button>
+            <button class="mod-tab" onclick="loadModule('reports',this)">Reports</button>
             <button class="mod-tab" onclick="loadModule('research',this)">Research</button>
+            <button class="mod-tab" onclick="loadModule('exams',this)">Exams</button>
           </div>
 
           <!-- CONTENT AREA -->
@@ -373,6 +243,23 @@
 
   <script src="js/nav.js"></script>
   <script src="js/nav-v2.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/livechat.js"></script>
+  <script>
+    window.I18N_PAGE_DICT = {
+      'rad.tag': { en: 'Provider — Radiology department', ar: 'مقدم الخدمة — قسم الأشعة' },
+      'rad.h1': { en: 'Radiology.<br><span>Done right.</span>', ar: 'الأشعة.<br><span>بالطريقة الصحيحة.</span>' },
+      'rad.desc': { en: 'Everything a radiologist needs — from your first scan to passing your board exam to writing pre-auth requests that never get rejected. Structured. Practical. Built from 7 years of real experience.', ar: 'كل ما يحتاجه أخصائي الأشعة — من أول فحص إلى اجتياز اختبار البورد إلى كتابة طلبات تصريح مسبق لا تُرفض أبدًا. منظم وعملي، ومبني على 7 سنوات من الخبرة الحقيقية.' },
+      'rad.stat1': { en: 'Learning tracks', ar: 'مسارات تعليمية' },
+      'rad.stat2': { en: 'Lessons', ar: 'دروس' },
+      'rad.stat3': { en: 'Exam tracks', ar: 'مسارات امتحانات' },
+      'rad.stat4val': { en: 'Free', ar: 'مجاني' },
+      'rad.stat4': { en: 'To start', ar: 'للبدء' },
+      'rad.anatomyBtn': { en: '🩻 Try Anatomy Spotting — timed mock test →', ar: '🩻 جرّب تحديد التشريح — اختبار تجريبي محدد بوقت ←' },
+    };
+  </script>
+  <script src="js/lesson-viewer.js"></script>
+  <script src="js/certificate.js"></script>
   <script>
     // COUNTER
     function animateCounter(el) {
@@ -408,9 +295,21 @@
         meta: [{ ico: '<i class="fi fi-sr-alarm-clock"></i>', txt: '~57 min total' }, { ico: '<i class="fi fi-sr-user-graduate"></i>', txt: 'All levels' }, { ico: '<i class="fi fi-sr-lock-open-alt"></i>', txt: 'Free to access' }],
         exams: [],
         lessons: [
-          { num: '01', title: 'What is radiology?', desc: 'The role of the radiologist in modern medicine — clinical, administrative, and consultative.', dur: '5 min', tag: 'free', featured: true, locked: false },
-          { num: '02', title: 'How imaging works', desc: 'The physics behind every modality — explained simply without heavy math.', dur: '8 min', tag: 'free', featured: false, locked: false },
-          { num: '03', title: 'X-ray — the foundation of everything', desc: 'How X-rays are produced, what they show, and how to read a chest X-ray step by step.', dur: '10 min', tag: 'free', featured: false, locked: false },
+          { num: '01', title: 'What is radiology?', desc: 'The role of the radiologist in modern medicine — clinical, administrative, and consultative.', dur: '5 min', tag: 'free', featured: true, locked: false,
+            quiz: [
+              { q: 'A radiologist\'s role is best described as:', options: ['Purely administrative', 'Clinical, administrative, and consultative', 'Only performing surgery'], correct: 1 },
+              { q: 'Radiology sits at the center of modern medicine mainly because it:', options: ['Informs diagnosis and treatment decisions across specialties', 'Replaces the need for physical exams', 'Is only used in emergencies'], correct: 0 },
+            ] },
+          { num: '02', title: 'How imaging works', desc: 'The physics behind every modality — explained simply without heavy math.', dur: '8 min', tag: 'free', featured: false, locked: false,
+            quiz: [
+              { q: 'Different imaging modalities (X-ray, CT, MRI, ultrasound) mainly differ by:', options: ['The physical principle used to create the image', 'The color of the machine', 'The size of the hospital'], correct: 0 },
+              { q: 'Understanding the physics behind imaging helps a radiologist:', options: ['Choose the right modality and interpret images correctly', 'Skip clinical training', 'Avoid talking to referring doctors'], correct: 0 },
+            ] },
+          { num: '03', title: 'X-ray — the foundation of everything', desc: 'How X-rays are produced, what they show, and how to read a chest X-ray step by step.', dur: '10 min', tag: 'free', featured: false, locked: false,
+            quiz: [
+              { q: 'X-ray is often called the foundation of imaging because it is:', options: ['The oldest and most widely used modality', 'Never used anymore', 'Only used for bones'], correct: 0 },
+              { q: 'Reading a chest X-ray step by step means:', options: ['Following a consistent, systematic review pattern', 'Guessing based on the first thing you notice', 'Only checking the corners of the image'], correct: 0 },
+            ] },
           { num: '04', title: 'CT scan — when and how', desc: 'How CT works, why it is requested, and what the numbers mean.', dur: '12 min', tag: 'pro', featured: false, locked: true },
           { num: '05', title: 'MRI — the most powerful tool', desc: 'When MRI beats CT, sequences explained, and how to avoid common mistakes.', dur: '12 min', tag: 'pro', featured: false, locked: true },
           { num: '06', title: 'Ultrasound & nuclear medicine', desc: 'The role of US and nuclear in modern practice — including PET/CT basics.', dur: '10 min', tag: 'pro', featured: false, locked: true },
@@ -423,26 +322,18 @@
         meta: [{ ico: '<i class="fi fi-sr-alarm-clock"></i>', txt: '~43 min total' }, { ico: '<i class="fi fi-sr-graduation-cap"></i>', txt: 'R1 and above' }, { ico: '<i class="fi fi-sr-comet"></i>', txt: 'High impact' }],
         exams: [],
         lessons: [
-          { num: '01', title: 'Structure of a good report', desc: 'The four parts every radiology report must have — and why most reports fail at part three.', dur: '10 min', tag: 'free', featured: true, locked: false },
-          { num: '02', title: 'Language & clarity', desc: 'How to write so the referring doctor understands — and takes action.', dur: '8 min', tag: 'free', featured: false, locked: false },
+          { num: '01', title: 'Structure of a good report', desc: 'The four parts every radiology report must have — and why most reports fail at part three.', dur: '10 min', tag: 'free', featured: true, locked: false,
+            quiz: [
+              { q: 'A radiology report is best described as:', options: ['A casual note', 'A medical-legal document', 'An optional summary'], correct: 1 },
+              { q: 'Most weak reports fail specifically at:', options: ['The findings/impression section', 'The patient name field', 'The date field'], correct: 0 },
+            ] },
+          { num: '02', title: 'Language & clarity', desc: 'How to write so the referring doctor understands — and takes action.', dur: '8 min', tag: 'free', featured: false, locked: false,
+            quiz: [
+              { q: 'The main goal of clear report language is to:', options: ['Impress other radiologists', 'Help the referring doctor understand and act', 'Use as much medical jargon as possible'], correct: 1 },
+              { q: 'A report that is technically correct but confusing is:', options: ['Still a good report', 'Not clinically useful', 'Always the referring doctor\'s fault'], correct: 1 },
+            ] },
           { num: '03', title: 'Describing common findings', desc: 'Standard language for the 20 most common findings in chest, abdomen, and brain.', dur: '15 min', tag: 'pro', featured: false, locked: true },
           { num: '04', title: 'Critical findings & communication', desc: 'What to do when you find something urgent — legally, clinically, and practically.', dur: '10 min', tag: 'pro', featured: false, locked: true },
-        ]
-      },
-      preauth: {
-        num: 'Module 03',
-        title: 'Pre-authorization — your most practical skill.',
-        desc: 'This is the module most junior radiologists need most — and no medical school teaches it. Built from 7 years of real pre-authorization experience. After this module, you will never write a weak request again.',
-        meta: [{ ico: '<i class="fi fi-sr-alarm-clock"></i>', txt: '~61 min total' }, { ico: '<i class="fi fi-sr-skill"></i>', txt: 'Core skill' }, { ico: '<i class="fi fi-sr-badge"></i>', txt: 'Certificate available' }],
-        exams: [
-          { ico: '📜', name: 'Pre-auth certificate', info: 'Complete all 5 lessons + assessment', badges: ['Unique to iHealth', 'Globally recognized', 'Employer-ready'] }
-        ],
-        lessons: [
-          { num: '01', title: 'What is pre-authorization and why it exists', desc: 'The purpose of pre-auth, who is involved, and how it protects both patient and provider.', dur: '6 min', tag: 'free', featured: false, locked: false },
-          { num: '02', title: 'Writing requests that get approved', desc: 'The exact structure, language, and clinical criteria that make insurers say yes.', dur: '15 min', tag: 'free', featured: true, locked: false },
-          { num: '03', title: 'Why requests get denied — and how to prevent it', desc: 'The 7 most common reasons for denial and how to fix them before you submit.', dur: '12 min', tag: 'pro', featured: false, locked: true },
-          { num: '04', title: 'The appeals process — step by step', desc: 'How to write an appeal that overturns a denial. Templates and real examples.', dur: '10 min', tag: 'pro', featured: false, locked: true },
-          { num: '05', title: 'ICD & CPT coding for radiology', desc: 'The codes that determine whether your request is paid. The 50 codes every radiologist must know.', dur: '18 min', tag: 'pro', featured: false, locked: true },
         ]
       },
       exams: {
@@ -471,8 +362,16 @@
         meta: [{ ico: '<i class="fi fi-sr-alarm-clock"></i>', txt: '~30 min total' }, { ico: '<i class="fi fi-sr-graduation-cap"></i>', txt: 'All levels' }, { ico: '<i class="fi fi-sr-calendar"></i>', txt: 'Updated 2026' }],
         exams: [],
         lessons: [
-          { num: '01', title: 'RIS & PACS — what they do and why they matter', desc: 'The two systems behind every scan — from order entry to report delivery.', dur: '8 min', tag: 'free', featured: false, locked: false },
-          { num: '02', title: 'NPHIES for radiologists', desc: 'Saudi Arabia\'s national health data platform — what you must know to submit correctly.', dur: '10 min', tag: 'free', featured: true, locked: false },
+          { num: '01', title: 'RIS & PACS — what they do and why they matter', desc: 'The two systems behind every scan — from order entry to report delivery.', dur: '8 min', tag: 'free', featured: false, locked: false,
+            quiz: [
+              { q: 'RIS and PACS together handle:', options: ['Order entry through report/image delivery', 'Only billing', 'Only patient parking'], correct: 0 },
+              { q: 'Knowing these systems well helps a radiologist:', options: ['Work more efficiently day to day', 'Avoid learning imaging physics', 'Skip writing reports'], correct: 0 },
+            ] },
+          { num: '02', title: 'NPHIES for radiologists', desc: 'Saudi Arabia\'s national health data platform — what you must know to submit correctly.', dur: '10 min', tag: 'free', featured: true, locked: false,
+            quiz: [
+              { q: 'NPHIES is:', options: ['Saudi Arabia\'s national health data exchange platform', 'A private imaging brand', 'An international exam board'], correct: 0 },
+              { q: 'Submitting correctly through NPHIES mainly affects:', options: ['Claims and pre-auth processing', 'Image resolution', 'Report font size'], correct: 0 },
+            ] },
           { num: '03', title: 'AI tools in radiology today', desc: 'What AI is actually doing in radiology right now — triage, detection, and reporting.', dur: '12 min', tag: 'pro', featured: false, locked: true },
         ]
       },
@@ -483,8 +382,16 @@
         meta: [{ ico: '<i class="fi fi-sr-alarm-clock"></i>', txt: '~52 min total' }, { ico: '<i class="fi fi-sr-graduation-cap"></i>', txt: 'All levels' }, { ico: '<i class="fi fi-sr-train-track"></i>', txt: 'Academic track' }],
         exams: [],
         lessons: [
-          { num: '01', title: 'How to read a radiology study', desc: 'The five questions to ask before trusting any paper. Critical appraisal made simple.', dur: '12 min', tag: 'free', featured: true, locked: false },
-          { num: '02', title: 'Writing your first case report', desc: 'Structure, language, and where to submit. Everything you need to publish your first paper.', dur: '15 min', tag: 'free', featured: false, locked: false },
+          { num: '01', title: 'How to read a radiology study', desc: 'The five questions to ask before trusting any paper. Critical appraisal made simple.', dur: '12 min', tag: 'free', featured: true, locked: false,
+            quiz: [
+              { q: 'Critical appraisal of a study means:', options: ['Judging its methods before trusting its conclusions', 'Accepting every published paper as fact', 'Only reading the abstract'], correct: 0 },
+              { q: 'Asking structured questions before trusting a paper helps you:', options: ['Avoid basing decisions on weak evidence', 'Read faster with no comprehension', 'Skip the discussion section entirely'], correct: 0 },
+            ] },
+          { num: '02', title: 'Writing your first case report', desc: 'Structure, language, and where to submit. Everything you need to publish your first paper.', dur: '15 min', tag: 'free', featured: false, locked: false,
+            quiz: [
+              { q: 'A case report is typically written to:', options: ['Describe an unusual or instructive clinical case', 'Replace a full research study', 'Avoid peer review'], correct: 0 },
+              { q: 'Before submitting a case report you should:', options: ['Follow the target journal\'s structure and guidelines', 'Ignore formatting requirements', 'Submit to as many journals at once as possible'], correct: 0 },
+            ] },
           { num: '03', title: 'Evidence-based radiology in practice', desc: 'How to find, evaluate, and apply the best evidence to clinical decisions.', dur: '10 min', tag: 'pro', featured: false, locked: true },
           { num: '04', title: 'Publishing your first paper — a step by step guide', desc: 'From idea to acceptance. Journal selection, submission, and responding to reviewers.', dur: '15 min', tag: 'pro', featured: false, locked: true },
         ]
@@ -517,7 +424,7 @@
           </div>
         </div>
         <div class="exam-badges">${ex.badges.map(b => `<span class="exam-badge">${b}</span>`).join('')}</div>
-        <button class="exam-btn">Start track →</button>
+        <button class="exam-btn" id="examBtn-${id}" onclick="document.querySelector('.lessons-list').scrollIntoView({behavior:'smooth'})">Start track →</button>
       </div>`;
         });
         html += `<div class="section-divider"><div class="section-divider-line"></div><span class="section-divider-label">All lessons</span><div class="section-divider-line"></div></div>`;
@@ -525,9 +432,10 @@
       html += `<div class="lessons-list">`;
       m.lessons.forEach((l, i) => {
         const tagClass = l.tag === 'free' ? 'tag-free' : l.tag === 'new' ? 'tag-new' : 'tag-pro';
-        const tagTxt = l.tag === 'free' ? 'Free' : l.tag === 'new' ? 'New' : 'Pro';
+        const tagTxt = l.tag === 'free' ? 'Video' : l.tag === 'new' ? 'New' : 'Pro';
+        const isDone = progress[id] && progress[id].has(i);
         html += `
-      <div class="lesson-card${l.featured ? ' featured' : ''}${l.locked ? ' locked' : ''}" onclick="${l.locked ? `showUpgrade()` : `markDone(${i},'${id}',this)`}" data-aos="fade-up" data-aos-delay="${Math.min(i, 6) * 50}">
+      <div class="lesson-card${l.featured ? ' featured' : ''}${l.locked ? ' locked' : ''}${isDone ? ' done' : ''}" onclick="${l.locked ? `showUpgrade()` : `openLesson(${i},'${id}',this)`}" data-aos="fade-up" data-aos-delay="${Math.min(i, 6) * 50}">
         <div class="lesson-card-inner">
           <div class="lesson-card-num">${l.num}</div>
           <div class="lesson-card-body">
@@ -552,6 +460,7 @@
   </div>`;
       document.getElementById('contentArea').innerHTML = html;
       updateProgress();
+      updateCertButton(id);
       if (window.AOS) AOS.refreshHard();
     }
 
@@ -568,11 +477,50 @@
       el.classList.toggle('active-track');
     }
 
+    function openLesson(idx, modId, el) {
+      const lesson = modules[modId].lessons[idx];
+      LessonViewer.open(lesson, () => markDone(idx, modId, el));
+    }
+
     function markDone(idx, modId, el) {
       if (!progress[modId]) progress[modId] = new Set();
       progress[modId].add(idx);
       if (el) el.classList.add('done');
       updateProgress();
+      updateCertButton(modId);
+      saveProgress();
+    }
+
+    function updateCertButton(modId) {
+      const m = modules[modId];
+      if (!m || !m.exams || !m.exams.length) return;
+      const unlockedLessons = m.lessons.filter(l => !l.locked);
+      const doneCount = progress[modId] ? progress[modId].size : 0;
+      const allDone = unlockedLessons.length > 0 && doneCount >= unlockedLessons.length;
+      const btn = document.getElementById('examBtn-' + modId);
+      if (!btn) return;
+      if (allDone) {
+        btn.textContent = 'Download certificate →';
+        btn.onclick = () => Certificate.generate(m.exams[0].name);
+      } else {
+        btn.textContent = 'Start track →';
+        btn.onclick = () => document.querySelector('.lessons-list').scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function saveProgress() {
+      const plain = {};
+      Object.keys(progress).forEach((k) => { plain[k] = Array.from(progress[k]); });
+      localStorage.setItem('ih-radiology-progress', JSON.stringify(plain));
+    }
+
+    function loadProgress() {
+      try {
+        const raw = localStorage.getItem('ih-radiology-progress');
+        if (!raw) return;
+        const plain = JSON.parse(raw);
+        Object.keys(plain).forEach((k) => { progress[k] = new Set(plain[k]); });
+      } catch (e) { /* ignore corrupt data */ }
     }
 
     function updateProgress() {
@@ -596,6 +544,7 @@
       alert('🔒 This lesson is part of iHealth Academy Pro.\n\nStart your 7-day free trial to unlock all lessons, exam tracks, and your pre-auth certificate.');
     }
 
+    loadProgress();
     renderModule('foundations');
   </script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

@@ -38,7 +38,7 @@ body {
 }
 
 .fyp-hero {
-  max-width: 1180px;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 50px 2.5rem 100px;
 }
@@ -154,7 +154,7 @@ body {
 }
 
 .fp-c-label {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Roboto', sans-serif;
   font-size: 8px;
   fill: rgba(6, 6, 8, 0.45);
   text-anchor: middle;
@@ -180,7 +180,7 @@ body {
 }
 
 .fp-c-pct {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Roboto', sans-serif;
   font-size: 18px;
   fill: var(--black);
   text-anchor: middle;
@@ -188,7 +188,7 @@ body {
 }
 
 .fp-c-pct-label {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Roboto', sans-serif;
   font-size: 8px;
   fill: var(--amber);
   text-anchor: middle;
@@ -206,7 +206,7 @@ body {
 }
 
 .fp-track-pill {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Roboto', sans-serif;
   font-size: 11px;
   color: var(--amber);
   border: 1px solid rgba(245, 166, 35, 0.3);
@@ -219,7 +219,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Roboto', sans-serif;
   font-size: 12px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -232,7 +232,7 @@ body {
 }
 
 .fp-q-count {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Roboto', sans-serif;
   color: rgba(6, 6, 8, 0.5);
   font-size: 13px;
 }
@@ -437,7 +437,7 @@ body {
 }
 
 .fp-rank-meta {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Roboto', sans-serif;
   font-size: 10.5px;
   color: rgba(6, 6, 8, 0.5);
   margin-top: 3px;
@@ -447,7 +447,7 @@ body {
 
 .fp-rank-match {
   text-align: right;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Roboto', sans-serif;
 }
 
 .fp-rank-match b {
@@ -500,7 +500,7 @@ body {
   align-items: center;
   gap: 10px;
   margin-bottom: 6px;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Roboto', sans-serif;
   font-size: 10.5px;
 }
 
@@ -560,13 +560,13 @@ body {
 }
 
 .fp-je-date {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Roboto', sans-serif;
   font-size: 11.5px;
   color: rgba(6, 6, 8, 0.5);
 }
 
 .fp-je-track {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Roboto', sans-serif;
   font-size: 10px;
   color: var(--amber);
   text-transform: uppercase;
@@ -609,7 +609,7 @@ footer {
 }
 
 .footer-inner {
-  max-width: 1300px;
+  max-width: 1440px;
   margin: 0 auto;
 }
 
@@ -690,6 +690,37 @@ footer {
 .footer-copy {
   font-size: 0.7rem;
   color: var(--muted2);
+}
+
+.footer-paypal-form {
+  display: inline-block;
+}
+
+.footer-paypal-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--white);
+  border: none;
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--black);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.footer-paypal-btn img {
+  height: 16px;
+  width: auto;
+  display: block;
+}
+
+.footer-paypal-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.12);
 }
 
 /* PAGE LOADER */

@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node test-i18n.js)",
+      "Bash(npm install *)"
+    ]
+  }
+}

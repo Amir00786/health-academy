@@ -1,0 +1,392 @@
+:root {
+  --teal: #00C896;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+/* PAGE LOADER */
+html.is-loading,
+html.is-loading body {
+  overflow: hidden;
+  height: 100%;
+}
+
+.page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #060608;
+  transition: opacity .5s ease, visibility .5s ease;
+}
+
+.page-loader.hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.ecg {
+  width: 380px;
+  height: 100px;
+}
+
+.ecg-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.ecg-track {
+  fill: none;
+  stroke: rgba(248, 246, 241, 0.1);
+  stroke-width: 3;
+  stroke-linejoin: round;
+}
+
+.ecg-pulse {
+  fill: none;
+  stroke: url(#ecgFade);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 22 78;
+  stroke-dashoffset: 0;
+  animation: ecgSweep 3s linear infinite;
+  filter: drop-shadow(0 0 6px rgba(0, 200, 150, 0.6));
+}
+
+@keyframes ecgSweep {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+/* USER DASHBOARD */
+.dash-shell {
+  display: flex;
+  align-items: stretch;
+  min-height: calc(100vh - 98px);
+  background: #F6F9F8;
+}
+
+.dash-sidebar {
+  width: 76px;
+  flex-shrink: 0;
+  background: #0E5D4F;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 24px 0;
+  position: sticky;
+  top: 0;
+  align-self: stretch;
+}
+
+.dash-side-btn {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 19px;
+  text-decoration: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.dash-side-btn:hover,
+.dash-side-btn.active {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.dash-side-btn[data-soon]:hover::after {
+  content: attr(data-soon);
+  position: absolute;
+  left: 56px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #060608;
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 8px;
+  white-space: nowrap;
+  z-index: 20;
+}
+
+.dash-main {
+  flex: 1;
+  margin-left: 76px;
+  padding: 28px 3rem 60px;
+}
+
+.dash-content {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.dash-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 1.75rem;
+}
+
+.dash-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #060608;
+}
+
+.dash-profile-line {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.dash-profile-field {
+  font-size: 0.85rem;
+  color: rgba(6, 6, 8, 0.6);
+  cursor: pointer;
+  border-bottom: 1px dashed rgba(6, 6, 8, 0.25);
+  padding-bottom: 1px;
+}
+
+.dash-profile-field strong {
+  color: #060608;
+  font-weight: 700;
+}
+
+.dash-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dash-icon-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(6, 6, 8, 0.1);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #060608;
+  font-size: 15px;
+  cursor: pointer;
+  position: relative;
+}
+
+.dash-icon-btn:hover {
+  border-color: #00C896;
+  color: #0E5D4F;
+}
+
+.dash-icon-btn[data-soon]:hover::after {
+  content: attr(data-soon);
+  position: absolute;
+  top: 46px;
+  right: 0;
+  background: #060608;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 5px 9px;
+  border-radius: 7px;
+  white-space: nowrap;
+  z-index: 20;
+}
+
+.dash-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #F5A623;
+  color: #060608;
+  font-weight: 800;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dash-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 2.5rem;
+}
+
+@media (max-width: 900px) {
+  .dash-stat-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.dash-stat-card {
+  background: #fff;
+  border: 1px solid rgba(6, 6, 8, 0.08);
+  border-radius: 16px;
+  padding: 1.4rem;
+}
+
+.dash-stat-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.dash-stat-label {
+  font-size: 0.85rem;
+  color: rgba(6, 6, 8, 0.55);
+  font-weight: 600;
+}
+
+.dash-stat-ico {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: rgba(0, 200, 150, 0.1);
+  color: #0E5D4F;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+}
+
+.dash-stat-val {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #060608;
+  margin-top: 0.6rem;
+}
+
+.dash-stat-tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(245, 166, 35, 0.12);
+  color: #8A5A0E;
+  margin-top: 0.5rem;
+}
+
+.dash-stat-link {
+  display: block;
+  margin-top: 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #0E5D4F;
+  text-decoration: none;
+}
+
+.dash-section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.dash-section-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #060608;
+}
+
+.dash-section-soon {
+  font-size: 0.75rem;
+  color: rgba(6, 6, 8, 0.4);
+  font-style: italic;
+}
+
+.dash-course-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 700px) {
+  .dash-course-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dash-course-card {
+  background: #fff;
+  border: 1px solid rgba(6, 6, 8, 0.08);
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-decoration: none;
+  display: block;
+}
+
+.dash-course-card:hover {
+  border-color: #00C896;
+}
+
+.dash-course-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #060608;
+  margin-bottom: 0.3rem;
+}
+
+.dash-course-meta {
+  font-size: 0.8rem;
+  color: rgba(6, 6, 8, 0.5);
+  margin-bottom: 0.75rem;
+}
+
+.dash-progress-track {
+  height: 7px;
+  background: #EFF8F4;
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.dash-progress-fill {
+  height: 100%;
+  background: #00C896;
+  border-radius: 99px;
+}
+
+@media (max-width: 640px) {
+  .dash-sidebar {
+    width: 60px;
+  }
+
+  .dash-main {
+    margin-left: 60px;
+    padding: 24px 1.25rem 50px;
+  }
+
+  .dash-side-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
+  }
+}

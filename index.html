@@ -15,10 +15,9 @@
     rel="stylesheet" />
   <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css" rel="stylesheet" />
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="css/home.css" rel="stylesheet" />
   <link href="css/nav-v2.css" rel="stylesheet" />
+  <link href="css/livechat.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -56,61 +55,69 @@
         <a class="social-chip" href="#" title="YouTube" aria-label="YouTube"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10 9l6 3-6 3V9Z" fill="currentColor"/></svg></a>
       </div>
       <div class="right-links">
-        <a href="#">عربي</a>
-        <a href="#">Help</a>
+        <div class="lang-switcher">
+          <a href="#" class="lang-toggle" data-i18n="nav.languages">Languages</a>
+          <div class="lang-dropdown">
+            <a href="#" class="lang-option" data-lang="ar">عربي</a>
+            <a href="#" class="lang-option" data-lang="en">English</a>
+          </div>
+        </div>
+        <a href="#" class="help-link" data-i18n="nav.help">Help</a>
       </div>
     </div>
   </div>
 
   <header id="mainnav">
     <div class="mainnav-wrap">
-      <a class="logo" href="index.html"><span class="mark">iH</span> iHealth Academy</a>
+      <a class="logo" href="index.html"><span class="mark"><img src="images/ih-logo.png" alt="iHealth Academy"></span></a>
 
       <nav class="nav-links" id="navLinks">
-        <div class="nav-item"><a class="nav-link active" href="index.html">Home</a></div>
-        <div class="nav-item"><a class="nav-link" href="find-your-path.html">Find Your Path</a></div>
+        <div class="nav-item"><a class="nav-link active" href="index.html" data-i18n="nav.home">Home</a></div>
+        <div class="nav-item"><a class="nav-link" href="find-your-path.html" data-i18n="nav.findPath">Find Your Path</a></div>
+        <div class="nav-item"><a class="nav-link" href="radiology-dept.html" data-i18n="nav.radiology">Radiology</a></div>
+        <div class="nav-item"><a class="nav-link" href="dashboard.html" data-i18n="nav.dashboard">Dashboard</a></div>
 
         <div class="nav-item" id="academyDropdown">
-          <button type="button" class="nav-link" id="academyBtn">iHealthAcademy <span class="caret">▾</span></button>
+          <button type="button" class="nav-link" id="academyBtn"><span data-i18n="nav.academy">iHealthAcademy</span> <span class="caret">▾</span></button>
           <div class="dropdown">
             <a class="ddi" href="find-your-path.html" style="background:var(--primary-tint); margin-bottom:6px;">
-              <div><div class="ddi-title">🧭 Find Your Path</div><div class="ddi-sub">Not sure yet? Take the 2-minute quiz</div></div>
-              <span class="badge live">LIVE</span>
+              <div><div class="ddi-title" data-i18n="nav.dd.findpath.title">🧭 Find Your Path</div><div class="ddi-sub" data-i18n="nav.dd.findpath.sub">Not sure yet? Take the 2-minute quiz</div></div>
+              <span class="badge live" data-i18n="badge.live">LIVE</span>
             </a>
-            <a class="ddi ddi-disabled" href="#">
-              <div><div class="ddi-title">Insurance Industry</div><div class="ddi-sub">Become a Pre-Auth Specialist</div></div>
-              <span class="badge soon">COMING SOON</span>
+            <a class="ddi" href="insurance-dept.html">
+              <div><div class="ddi-title" data-i18n="nav.dd.insurance.title">Insurance Industry</div><div class="ddi-sub" data-i18n="nav.dd.insurance.sub">Become a Pre-Auth Specialist</div></div>
+              <span class="badge live" data-i18n="badge.live">LIVE</span>
             </a>
             <div class="ddi ddi-disabled">
-              <div><div class="ddi-title">Managers Professional</div><div class="ddi-sub">Leadership track for health managers</div></div>
-              <span class="badge soon">COMING SOON</span>
+              <div><div class="ddi-title" data-i18n="nav.dd.managers.title">Managers Professional</div><div class="ddi-sub" data-i18n="nav.dd.managers.sub">Leadership track for health managers</div></div>
+              <span class="badge soon" data-i18n="badge.soon">COMING SOON</span>
             </div>
             <a class="ddi" href="radiology-dept.html">
-              <div><div class="ddi-title">Medical Specialties</div><div class="ddi-sub">Radiology</div></div>
-              <span class="badge live">LIVE</span>
+              <div><div class="ddi-title" data-i18n="nav.dd.specialties.title">Medical Specialties</div><div class="ddi-sub" data-i18n="nav.dd.specialties.sub">Radiology</div></div>
+              <span class="badge live" data-i18n="badge.live">LIVE</span>
             </a>
             <div class="ddi ddi-disabled">
-              <div><div class="ddi-title">Mentorships</div><div class="ddi-sub">1:1 guidance from practicing professionals</div></div>
-              <span class="badge soon">COMING SOON</span>
+              <div><div class="ddi-title" data-i18n="nav.dd.mentor.title">Mentorships</div><div class="ddi-sub" data-i18n="nav.dd.mentor.sub">1:1 guidance from practicing professionals</div></div>
+              <span class="badge soon" data-i18n="badge.soon">COMING SOON</span>
             </div>
             <div class="ddi ddi-disabled">
-              <div><div class="ddi-title">Supporters</div><div class="ddi-sub">Volunteering, teaching &amp; side-missions — earn a certificate</div></div>
-              <span class="badge soon">COMING SOON</span>
+              <div><div class="ddi-title" data-i18n="nav.dd.supporters.title">Supporters</div><div class="ddi-sub" data-i18n="nav.dd.supporters.sub">Volunteering, teaching &amp; side-missions — earn a certificate</div></div>
+              <span class="badge soon" data-i18n="badge.soon">COMING SOON</span>
             </div>
             <div class="ddi ddi-disabled">
-              <div><div class="ddi-title">Co-Founders</div><div class="ddi-sub">Join the founding team</div></div>
-              <span class="badge soon">COMING SOON</span>
+              <div><div class="ddi-title" data-i18n="nav.dd.cofounders.title">Co-Founders</div><div class="ddi-sub" data-i18n="nav.dd.cofounders.sub">Join the founding team</div></div>
+              <span class="badge soon" data-i18n="badge.soon">COMING SOON</span>
             </div>
           </div>
         </div>
 
-        <div class="nav-item"><a class="nav-link" href="#">Connections</a></div>
-        <div class="nav-item"><a class="nav-link" href="#">Contact Us</a></div>
+        <div class="nav-item"><a class="nav-link" href="#" data-i18n="nav.connections">Connections</a></div>
+        <div class="nav-item"><a class="nav-link" href="#" data-i18n="nav.contact">Contact Us</a></div>
       </nav>
 
       <div class="auth-actions">
-        <a href="#" class="btn btn-ghost nav-signin">Sign in</a>
-        <a href="#" class="btn btn-primary nav-signup">Sign up</a>
+        <a href="#" class="btn btn-ghost nav-signin" data-i18n="nav.signin">Sign in</a>
+        <a href="#" class="btn btn-primary nav-signup" data-i18n="nav.signup">Sign up</a>
         <button type="button" class="hamburger btn btn-ghost" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false">☰</button>
       </div>
     </div>
@@ -120,19 +127,19 @@
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-grid"></div>
-    <div class="hero-eyebrow"><span class="hero-dot"></span>For every healthcare professional</div>
+    <div class="hero-eyebrow"><span class="hero-dot"></span><span data-i18n="home.eyebrow">For every healthcare professional</span></div>
     <h1>
-      Your career in healthcare.<br>
-      <span class="line2">Supported at every step.</span>
-      <span class="line3">Built to last.</span>
+      <span data-i18n="home.h1a">Your career in healthcare.</span><br>
+      <span class="line2" data-i18n="home.h1b">Supported at every step.</span>
+      <span class="line3" data-i18n="home.h1c">Built to last.</span>
     </h1>
-    <p class="hero-sub">
+    <p class="hero-sub" data-i18n="home.heroSub">
       iHealth Academy gives <strong>every healthcare professional</strong> the knowledge, confidence, and tools to grow
       — from passing your first exam to navigating insurance, building your CV, and advancing in your career.
     </p>
     <div class="hero-actions">
-      <a href="find-your-path.html" class="btn-main">Find your path <i class="fi fi-rr-arrow-small-right"></i></a>
-      <a href="ecosystem.html" class="btn-ghost">Explore the ecosystem</a>
+      <a href="find-your-path.html" class="btn-main"><span data-i18n="home.findPathBtn">Find your path</span> <i class="fi fi-rr-arrow-small-right"></i></a>
+      <a href="ecosystem.html" class="btn-ghost" data-i18n="home.exploreBtn">Explore the ecosystem</a>
     </div>
     <div class="trust-bar-wrap trust-bar-wrap--top">
       <div class="trust-bar">
@@ -142,8 +149,8 @@
               <i class="fi fi-sr-build-alt"></i>
             </span>
             <div class="trust-text">
-              <strong>Built for</strong>
-              <span class="trust-val">all healthcare staff</span>
+              <strong data-i18n="home.stat1Label">Built for</strong>
+              <span class="trust-val" data-i18n="home.stat1Value">all healthcare staff</span>
             </div>
           </div>
         </div>
@@ -153,8 +160,8 @@
               <i class="fi fi-sr-graduation-cap"></i>
             </span>
             <div class="trust-text">
-              <strong>5 exam</strong>
-              <span class="trust-val">tracks covered</span>
+              <strong><span class="counter" data-target="12">0</span>+</strong>
+              <span class="trust-val" data-i18n="home.stat2Value">Courses & Exams</span>
             </div>
           </div>
         </div>
@@ -164,19 +171,19 @@
               <i class="fi fi-sr-resume"></i>
             </span>
             <div class="trust-text">
-              <strong>Free</strong>
-              <span class="trust-val">CV Builder Included</span>
+              <strong data-i18n="home.stat3Label">Free</strong>
+              <span class="trust-val" data-i18n="home.stat3Value">CV Builder Included</span>
             </div>
           </div>
         </div>
         <div class="trust-item">
           <div class="trust-item-inner">
             <span class="trust-ico">
-              <i class="fi fi-sr-earth-americas"></i>
+              <i class="fi fi-sr-users"></i>
             </span>
             <div class="trust-text">
-              <strong>Valid</strong>
-              <span class="trust-val">Globally</span>
+              <strong><span class="counter" data-target="500">0</span>+</strong>
+              <span class="trust-val" data-i18n="home.stat4Value">Joining member</span>
             </div>
           </div>
         </div>
@@ -186,33 +193,14 @@
               <i class="fi fi-sr-user-md"></i>
             </span>
             <div class="trust-text">
-              <strong><span class="counter" data-target="7">0</span>+ Years</strong>
-              <span class="trust-val">Real Experience</span>
+              <strong><span class="counter" data-target="50">0</span>+</strong>
+              <span class="trust-val" data-i18n="home.stat5Value">Experienced Personnel</span>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- MARQUEE -->
-  <div class="marquee-wrap">
-    <div class="marquee-inner">
-      <span class="m-item">Radiology</span><span class="m-item">Pre-authorization</span><span class="m-item">FRCR
-        prep</span><span class="m-item">Arab Board</span><span class="m-item">Saudi Board</span><span
-        class="m-item">Insurance literacy</span><span class="m-item">CV builder</span><span class="m-item">CHI
-        compliance</span><span class="m-item">AI in healthcare</span><span class="m-item">Medical research</span><span
-        class="m-item">Career development</span><span class="m-item">Pharmacy</span><span
-        class="m-item">Dentistry</span><span class="m-item">Nursing</span>
-      <span class="m-item">Radiology</span><span class="m-item">Pre-authorization</span><span class="m-item">FRCR
-        prep</span><span class="m-item">Arab Board</span><span class="m-item">Saudi Board</span><span
-        class="m-item">Insurance literacy</span><span class="m-item">CV builder</span><span class="m-item">CHI
-        compliance</span><span class="m-item">AI in healthcare</span><span class="m-item">Medical research</span><span
-        class="m-item">Career development</span><span class="m-item">Pharmacy</span><span
-        class="m-item">Dentistry</span><span class="m-item">Nursing</span>
-    </div>
-  </div>
-
   <div class="trust-bar-wrap trust-bar-wrap--bottom">
     <div class="trust-bar">
       <div class="trust-item">
@@ -221,8 +209,8 @@
             <i class="fi fi-sr-build-alt"></i>
           </span>
           <div class="trust-text">
-            <strong>Built for</strong>
-            <span class="trust-val">all healthcare staff</span>
+            <strong data-i18n="home.stat1Label">Built for</strong>
+            <span class="trust-val" data-i18n="home.stat1Value">all healthcare staff</span>
           </div>
         </div>
       </div>
@@ -232,8 +220,8 @@
             <i class="fi fi-sr-graduation-cap"></i>
           </span>
           <div class="trust-text">
-            <strong>5 exam</strong>
-            <span class="trust-val">tracks covered</span>
+            <strong><span class="counter" data-target="12">0</span>+</strong>
+            <span class="trust-val" data-i18n="home.stat2Value">Courses & Exams</span>
           </div>
         </div>
       </div>
@@ -243,19 +231,19 @@
             <i class="fi fi-sr-resume"></i>
           </span>
           <div class="trust-text">
-            <strong>Free</strong>
-            <span class="trust-val">CV Builder Included</span>
+            <strong data-i18n="home.stat3Label">Free</strong>
+            <span class="trust-val" data-i18n="home.stat3Value">CV Builder Included</span>
           </div>
         </div>
       </div>
       <div class="trust-item">
         <div class="trust-item-inner">
           <span class="trust-ico">
-            <i class="fi fi-sr-earth-americas"></i>
+            <i class="fi fi-sr-users"></i>
           </span>
           <div class="trust-text">
-            <strong>Valid</strong>
-            <span class="trust-val">Globally</span>
+            <strong><span class="counter" data-target="500">0</span>+</strong>
+            <span class="trust-val" data-i18n="home.stat4Value">Joining member</span>
           </div>
         </div>
       </div>
@@ -265,8 +253,8 @@
             <i class="fi fi-sr-user-md"></i>
           </span>
           <div class="trust-text">
-            <strong><span class="counter" data-target="7">0</span>+ Years</strong>
-            <span class="trust-val">Real Experience</span>
+            <strong><span class="counter" data-target="50">0</span>+</strong>
+            <span class="trust-val" data-i18n="home.stat5Value">Experienced Personnel</span>
           </div>
         </div>
       </div>
@@ -277,9 +265,9 @@
   <div class="serve-section-wrap">
     <section class="serve-section" id="serve">
       <div class="serve-heading-wrap" data-aos="fade-up">
-        <span class="section-label">Who we serve</span>
-        <h2 class="section-title">Built for everyone in healthcare.</h2>
-        <p class="section-desc">Whether you are a student, a resident, a specialist, or an insurance professional —
+        <span class="section-label" data-i18n="home.serveLabel">Who we serve</span>
+        <h2 class="section-title" data-i18n="home.serveTitle">Built for everyone in healthcare.</h2>
+        <p class="section-desc" data-i18n="home.serveDesc">Whether you are a student, a resident, a specialist, or an insurance professional —
           iHealth
           Academy has a path for you. Pick your role and start from there.</p>
       </div>
@@ -287,8 +275,8 @@
         <div class="serve-card" style="--serve-color:#00C896" onclick="window.location='radiology-dept.html'"
           data-aos="fade-up">
           <div class="serve-ico"><img class="serve-img" src="images/radiologists.jfif" alt="Radiologists"></div>
-          <div class="serve-title">Radiologists</div>
-          <div class="serve-desc">A complete clinical and administrative toolkit for radiologists. Master exam
+          <div class="serve-title" data-i18n="home.serve1Title">Radiologists</div>
+          <div class="serve-desc" data-i18n="home.serve1Desc">A complete clinical and administrative toolkit for radiologists. Master exam
             protocols, pre-authorization workflows, and structured report writing. Build hands-on RIS/PACS skills and
             apply AI confidently in real diagnostic practice.</div>
           <div class="serve-tags"><span class="stag">FRCR</span><span class="stag">Arab Board</span><span
@@ -296,8 +284,8 @@
         </div>
         <div class="serve-card" style="--serve-color:#4A9EFF" data-aos="fade-up" data-aos-delay="100">
           <div class="serve-ico"><img class="serve-img" src="images/insurance.jpg" alt="Insurance professionals"></div>
-          <div class="serve-title">Insurance professionals</div>
-          <div class="serve-desc">Understand radiology from the clinical side, not just the paperwork. Learn how
+          <div class="serve-title" data-i18n="home.serve2Title">Insurance professionals</div>
+          <div class="serve-desc" data-i18n="home.serve2Desc">Understand radiology from the clinical side, not just the paperwork. Learn how
             exams, reports, and pre-authorization requests actually work. Make faster, more confident approval
             decisions with real clinical context.</div>
           <div class="serve-tags"><span class="stag">Pre-auth</span><span class="stag">Claims</span><span
@@ -306,8 +294,8 @@
         <div class="serve-card" style="--serve-color:#A78BFA" data-aos="fade-up" data-aos-delay="200">
           <div class="serve-ico"><img class="serve-img" src="images/healthcare-staff.jpg" alt="All healthcare staff">
           </div>
-          <div class="serve-title">All healthcare staff</div>
-          <div class="serve-desc">Nurses, pharmacists, dentists, lab technicians, physiotherapists — every specialty
+          <div class="serve-title" data-i18n="home.serve3Title">All healthcare staff</div>
+          <div class="serve-desc" data-i18n="home.serve3Desc">Nurses, pharmacists, dentists, lab technicians, physiotherapists — every specialty
             has a home here. Practical, role-specific training built around real day-to-day clinical work, with new
             specialties added regularly.</div>
           <div class="serve-tags"><span class="stag">Pharmacy</span><span class="stag">Dentistry</span><span
@@ -316,8 +304,8 @@
         <div class="serve-card" style="--serve-color:#F5A623" data-aos="fade-up" data-aos-delay="300">
           <div class="serve-ico"><img class="serve-img" src="images/healthcare-manager.jpg" alt="Healthcare managers">
           </div>
-          <div class="serve-title">Healthcare managers</div>
-          <div class="serve-desc">Hospital administration, patient relations, and healthcare economics — for those
+          <div class="serve-title" data-i18n="home.serve4Title">Healthcare managers</div>
+          <div class="serve-desc" data-i18n="home.serve4Desc">Hospital administration, patient relations, and healthcare economics — for those
             who run the system, not just work within it. Build the operational and leadership skills needed to manage
             teams and processes effectively.</div>
           <div class="serve-tags"><span class="stag">Administration</span><span class="stag">Patient rights</span><span
@@ -327,123 +315,71 @@
     </section>
   </div>
 
-  <!-- WHAT WE OFFER -->
-  <div class="offer-section" id="offer">
-    <div class="offer-inner">
-      <div class="offer-heading-wrap" data-aos="fade-up">
-        <span class="section-label">What we offer</span>
-        <h2 class="section-title">Everything you need. In one place.</h2>
-        <p class="section-desc">Not just courses. A complete support system for your career — from your first lesson to
-          your next job.</p>
+  <!-- ABOUT US -->
+  <section class="about-section" id="about">
+    <div class="about-inner">
+      <div class="about-heading-wrap" data-aos="fade-up">
+        <span class="section-label" data-i18n="home.aboutLabel">Who we are</span>
+        <h2 class="section-title" data-i18n="home.aboutTitle">A career deserves a companion,<br>not a course catalog.</h2>
+        <p class="section-desc" data-i18n="home.aboutDesc">For twenty years, healthcare education treated a career like a single test — pass
+          the exam, get the license, you're done. That was never quite true, and it's even less true now. A
+          radiologist choosing a subspecialty, a nurse preparing for NP boards, an intern realizing
+          pre-authorization paperwork will shape half her working week — these are different problems that show up
+          at different moments, and most platforms are only ever built to solve one of them. iHealth Academy exists
+          to meet more of them, in the order you actually run into them.</p>
       </div>
-      <div class="offer-carousel">
-        <div class="offer-grid" id="offerGrid">
-          <div class="offer-card highlight" data-aos="fade-up">
-            <span class="offer-ico"><i class="fi fi-sr-graduation-cap"></i></span>
-            <p class="offer-num"><span class="offer-num-rank">01</span> — Core</p>
-            <div class="offer-title">Structured learning — module by module</div>
-            <p class="offer-desc">Every specialty has a clear curriculum. Start from the basics. Advance at your pace.
-              Each module builds on the last so nothing feels disconnected.</p>
-            <a href="radiology-dept.html" class="offer-link">Start with radiology <span class="offer-link-arrow"><i
-                  class="fi fi-rr-arrow-small-right"></i></span></a>
-          </div>
-          <div class="offer-card" data-aos="fade-up" data-aos-delay="50">
-            <span class="offer-ico"><i class="fi fi-sr-clipboard-list-check"></i></span>
-            <p class="offer-num"><span class="offer-num-rank">02</span> — Exams</p>
-            <div class="offer-title">Board exam preparation that actually works</div>
-            <p class="offer-desc">FRCR, Arab Board, Saudi Board, ABR — structured study plans, not just question banks.
-              Built for people with real clinical workloads.</p>
-            <a href="radiology-dept.html" class="offer-link">See exam tracks <span class="offer-link-arrow"><i
-                  class="fi fi-rr-arrow-small-right"></i></span></a>
-          </div>
-          <div class="offer-card" data-aos="fade-up" data-aos-delay="100">
-            <span class="offer-ico"><i class="fi fi-sr-career-growth"></i></span>
-            <p class="offer-num"><span class="offer-num-rank">03</span> — Career</p>
-            <div class="offer-title">Free ATS-optimized CV builder</div>
-            <p class="offer-desc">Most medical CVs are filtered out before a human reads them. Our free builder fixes
-              that
-              — optimized for every country, every specialty.</p>
-            <a href="#cv" class="offer-link">Build your CV free <span class="offer-link-arrow"><i
-                  class="fi fi-rr-arrow-small-right"></i></span></a>
-          </div>
-          <div class="offer-card" data-aos="fade-up" data-aos-delay="150">
-            <span class="offer-ico"><i class="fi fi-sr-shield-check"></i></span>
-            <p class="offer-num"><span class="offer-num-rank">04</span> — Insurance</p>
-            <div class="offer-title">Pre-authorization mastery</div>
-            <p class="offer-desc">The skill no medical school teaches. Learn to write requests that get approved, handle
-              denials, and earn a certificate that sets you apart.</p>
-            <a href="radiology-dept.html" class="offer-link">Start pre-auth track <span class="offer-link-arrow"><i
-                  class="fi fi-rr-arrow-small-right"></i></span></a>
-          </div>
-          <div class="offer-card" data-aos="fade-up" data-aos-delay="200">
-            <span class="offer-ico"><i class="fi fi-sr-chart-network"></i></span>
-            <p class="offer-num"><span class="offer-num-rank">05</span> — Ecosystem</p>
-            <div class="offer-title">Interactive healthcare ecosystem map</div>
-            <p class="offer-desc">Explore the full radiology and insurance world visually — click any entity to go deep
-              into its role, rules, and what you need to know.</p>
-            <a href="ecosystem.html" class="offer-link">Explore the ecosystem <span class="offer-link-arrow"><i
-                  class="fi fi-rr-arrow-small-right"></i></span></a>
-          </div>
-          <div class="offer-card" data-aos="fade-up" data-aos-delay="250">
-            <span class="offer-ico"><i class="fi fi-br-search"></i></span>
-            <p class="offer-num"><span class="offer-num-rank">06</span> — Research</p>
-            <div class="offer-title">Medical research — for every level</div>
-            <p class="offer-desc">From reading your first study to publishing your first paper. Organized by training
-              level so it is always relevant to where you are right now.</p>
-            <a href="specialty-finder.html" class="offer-link">Find your specialty <span class="offer-link-arrow"><i
-                  class="fi fi-rr-arrow-small-right"></i></span></a>
-          </div>
-          <div class="offer-card" data-aos="fade-up" data-aos-delay="300">
-            <span class="offer-ico"><i class="fi fi-br-tools"></i></span>
-            <p class="offer-num"><span class="offer-num-rank">07</span> — Tools</p>
-            <div class="offer-title">Medical specialty finder</div>
-            <p class="offer-desc">Not sure which specialty is right for you? Answer 10 questions and get your top 3
-              matches with full explanation, strengths, risks, and learning path.</p>
-            <a href="specialty-finder.html" class="offer-link">Find your specialty <span class="offer-link-arrow"><i
-                  class="fi fi-rr-arrow-small-right"></i></span></a>
-          </div>
+      <div class="about-grid">
+        <div class="about-card" data-aos="fade-up">
+          <div class="about-card-title" data-i18n="home.about1Title">Built for real stages</div>
+          <p class="about-card-desc" data-i18n="home.about1Desc">Not a syllabus. Content built around actual moments — choosing a specialty,
+            prepping for boards, learning the insurance systems nobody explains in school.</p>
         </div>
-        <div class="offer-carousel-controls">
-          <button class="offer-arrow offer-arrow--prev" aria-label="Previous"><i
-              class="fi fi-rr-arrow-small-left"></i></button>
-          <button class="offer-arrow offer-arrow--next" aria-label="Next"><i class="fi fi-rr-arrow-small-right"></i></button>
+        <div class="about-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="about-card-title" data-i18n="home.about2Title">AI-era from day one</div>
+          <p class="about-card-desc" data-i18n="home.about2Desc">The next thirty years of medicine will be shaped by AI as much as by anatomy.
+            We build every track with that already assumed, not bolted on later.</p>
+        </div>
+        <div class="about-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="about-card-title" data-i18n="home.about3Title">Made by people who've been there</div>
+          <p class="about-card-desc" data-i18n="home.about3Desc">Every track starts with someone who actually worked the job — not a curriculum
+            written at a distance from the work it's meant to prepare you for.</p>
         </div>
       </div>
+      <a href="founder.html" class="about-founder-link"><span data-i18n="home.meetFounder">Meet the founder</span> <i class="fi fi-rr-arrow-small-right"></i></a>
     </div>
-  </div>
+  </section>
 
   <!-- ECOSYSTEM PREVIEW -->
   <section class="eco-preview">
     <div class="eco-preview-inner">
       <div class="eco-preview-copy" data-aos="fade-right">
-        <span class="section-label">The ecosystem</span>
-        <h2 class="section-title">See the full picture.<br>Not just your part.</h2>
-        <p class="section-desc">The best healthcare professionals understand the whole system — not just their
+        <span class="section-label" data-i18n="home.ecoLabel">The ecosystem</span>
+        <h2 class="section-title" data-i18n="home.ecoTitle">See the full picture.<br>Not just your part.</h2>
+        <p class="section-desc" data-i18n="home.ecoDesc">The best healthcare professionals understand the whole system — not just their
           department. Our interactive map shows how every entity connects.</p>
         <div class="eco-legend">
-          <div class="eco-legend-item"><span class="eco-dot" style="background:#A78BFA"></span>Regulators</div>
-          <div class="eco-legend-item"><span class="eco-dot" style="background:#00C896"></span>Providers</div>
-          <div class="eco-legend-item"><span class="eco-dot" style="background:#4A9EFF"></span>Insurance</div>
-          <div class="eco-legend-item"><span class="eco-dot" style="background:#FF6B6B"></span>Referral cycle</div>
+          <div class="eco-legend-item"><span class="eco-dot" style="background:#A78BFA"></span><span data-i18n="home.ecoRegulators">Regulators</span></div>
+          <div class="eco-legend-item"><span class="eco-dot" style="background:#00C896"></span><span data-i18n="home.ecoProviders">Providers</span></div>
+          <div class="eco-legend-item"><span class="eco-dot" style="background:#4A9EFF"></span><span data-i18n="home.ecoInsurance">Insurance</span></div>
+          <div class="eco-legend-item"><span class="eco-dot" style="background:#FF6B6B"></span><span data-i18n="home.ecoReferral">Referral cycle</span></div>
         </div>
-        <a href="ecosystem.html" class="btn-main">Explore the ecosystem <span class="offer-link-arrow"><i
-              class="fi fi-rr-arrow-small-right"></i></span></a>
+        <a href="ecosystem.html" class="btn-main"><span data-i18n="home.ecoBtn">Explore the ecosystem</span> <i class="fi fi-rr-arrow-small-right"></i></a>
       </div>
       <div class="eco-preview-visual" data-aos="fade-left">
         <canvas class="eco-canvas" id="miniEco"></canvas>
-        <div class="eco-preview-label"><span class="eco-pulse"></span>Click to explore full interactive map</div>
+        <div class="eco-preview-label"><span class="eco-pulse"></span><span data-i18n="home.ecoClickMap">Click to explore full interactive map</span></div>
       </div>
     </div>
   </section>
 
   <!-- CTA -->
   <div class="cta-band">
-    <h2 data-aos="fade-up">Your <span>career deserves better</span> support.</h2>
-    <p data-aos="fade-up" data-aos-delay="100">Join healthcare professionals from around the world who are learning,
+    <h2 data-aos="fade-up" data-i18n="home.ctaTitle">Your <span>career deserves better</span> support.</h2>
+    <p data-aos="fade-up" data-aos-delay="100" data-i18n="home.ctaDesc">Join healthcare professionals from around the world who are learning,
       growing, and building with iHealth Academy.
     </p>
     <a href="#plans" class="btn-dark" data-aos="fade-up" data-aos-delay="200">
-      Start for free today <i class="fi fi-rr-arrow-small-right"></i>
+      <span data-i18n="home.ctaBtn">Start for free today</span> <i class="fi fi-rr-arrow-small-right"></i>
     </a>
   </div>
 
@@ -452,10 +388,10 @@
     <div class="cv-inner">
       <div>
         <div class="cv-heading-wrap" data-aos="fade-up">
-          <div class="cv-free-badge">✦ 100% Free — always</div>
-          <span class="section-label">CV builder</span>
-          <h2 class="section-title">A CV that opens<br>doors for you.</h2>
-          <p class="section-desc">Most healthcare CVs never reach a human reviewer. ATS
+          <div class="cv-free-badge" data-i18n="home.cvBadge">✦ 100% Free — always</div>
+          <span class="section-label" data-i18n="home.cvLabel">CV builder</span>
+          <h2 class="section-title" data-i18n="home.cvTitle">A CV that opens<br>doors for you.</h2>
+          <p class="section-desc" data-i18n="home.cvDesc">Most healthcare CVs never reach a human reviewer. ATS
             software filters them out first. Our builder fixes that — structured for every healthcare role, every
             country.
           </p>
@@ -466,8 +402,8 @@
               <i class="fi fi-br-bullseye-arrow"></i>
             </div>
             <div>
-              <div class="cv-feat-title">ATS-optimized by default</div>
-              <div class="cv-feat-desc">Built so tracking systems read every line. No tables or graphics that confuse
+              <div class="cv-feat-title" data-i18n="home.cvFeat1Title">ATS-optimized by default</div>
+              <div class="cv-feat-desc" data-i18n="home.cvFeat1Desc">Built so tracking systems read every line. No tables or graphics that confuse
                 the software.</div>
             </div>
           </div>
@@ -476,8 +412,8 @@
               <i class="fi fi-sr-stethoscope"></i>
             </div>
             <div>
-              <div class="cv-feat-title">Built for healthcare professionals</div>
-              <div class="cv-feat-desc">Sections, keywords, and formatting that hospitals and health institutions
+              <div class="cv-feat-title" data-i18n="home.cvFeat2Title">Built for healthcare professionals</div>
+              <div class="cv-feat-desc" data-i18n="home.cvFeat2Desc">Sections, keywords, and formatting that hospitals and health institutions
                 actually look for.</div>
             </div>
           </div>
@@ -486,8 +422,8 @@
               <i class="fi fi-sr-earth-americas"></i>
             </div>
             <div>
-              <div class="cv-feat-title">Works for any country</div>
-              <div class="cv-feat-desc">Saudi Arabia, UK, UAE, Egypt, USA — each market expects something different. We
+              <div class="cv-feat-title" data-i18n="home.cvFeat3Title">Works for any country</div>
+              <div class="cv-feat-desc" data-i18n="home.cvFeat3Desc">Saudi Arabia, UK, UAE, Egypt, USA — each market expects something different. We
                 guide you.</div>
             </div>
           </div>
@@ -495,7 +431,7 @@
       </div>
       <div>
         <div class="cv-builder" data-aos="fade-left">
-          <div class="cv-builder-hd">Build your CV — live ATS score</div>
+          <div class="cv-builder-hd" data-i18n="home.cvBuilderHd">Build your CV — live ATS score</div>
           <div class="cv-form">
             <div class="cv-row">
               <div class="cv-field"><label>Full name</label><input type="text" id="cvn" placeholder="Dr. Ahmed..."
@@ -568,52 +504,52 @@
   <div class="plans-section" id="plans">
     <div class="plans-inner">
       <div class="plans-heading-wrap" data-aos="fade-up">
-        <span class="section-label">Pricing</span>
-        <h2 class="section-title">Start free.<br>Grow at your pace.</h2>
-        <p class="section-desc">No hidden fees. No confusing tiers. Pick what works for where you are right now.</p>
+        <span class="section-label" data-i18n="home.plansLabel">Pricing</span>
+        <h2 class="section-title" data-i18n="home.plansTitle">Start free.<br>Grow at your pace.</h2>
+        <p class="section-desc" data-i18n="home.plansDesc">No hidden fees. No confusing tiers. Pick what works for where you are right now.</p>
       </div>
       <div class="plans-grid">
         <div class="plan" data-aos="fade-up">
-          <div class="plan-name">Free</div>
+          <div class="plan-name" data-i18n="home.plan1Name">Free</div>
           <div class="plan-price">$0</div>
-          <div class="plan-period">forever — no card needed</div>
+          <div class="plan-period" data-i18n="home.plan1Period">forever — no card needed</div>
           <ul class="plan-feats">
-            <li>Free ATS CV builder</li>
-            <li>Ecosystem interactive map</li>
-            <li>3 free lessons per module</li>
-            <li>Insurance basics course</li>
-            <li>Community access</li>
+            <li data-i18n="home.plan1Feat1">Free ATS CV builder</li>
+            <li data-i18n="home.plan1Feat2">Ecosystem interactive map</li>
+            <li data-i18n="home.plan1Feat3">3 free lessons per module</li>
+            <li data-i18n="home.plan1Feat4">Insurance basics course</li>
+            <li data-i18n="home.plan1Feat5">Community access</li>
           </ul>
-          <button class="plan-btn">Get started free</button>
+          <button class="plan-btn" data-i18n="home.plan1Btn">Get started free</button>
         </div>
         <div class="plan featured" data-aos="fade-up" data-aos-delay="100">
-          <div class="plan-badge">Most popular</div>
-          <div class="plan-name">Pro</div>
-          <div class="plan-price" style="font-size:1.6rem">Coming soon</div>
-          <div class="plan-period">pricing to be announced</div>
+          <div class="plan-badge" data-i18n="home.plan2Badge">Most popular</div>
+          <div class="plan-name" data-i18n="home.plan2Name">Pro</div>
+          <div class="plan-price" style="font-size:1.6rem" data-i18n="home.plan2Price">Coming soon</div>
+          <div class="plan-period" data-i18n="home.plan2Period">pricing to be announced</div>
           <ul class="plan-feats">
-            <li>Everything in Free</li>
-            <li>All modules — all specialties</li>
-            <li>Full exam prep — FRCR, Arab Board, Saudi Board, ABR</li>
-            <li>Full pre-auth masterclass</li>
-            <li>Pre-auth certificate</li>
-            <li>200+ case bank</li>
-            <li>New content every week</li>
+            <li data-i18n="home.plan2Feat1">Everything in Free</li>
+            <li data-i18n="home.plan2Feat2">All modules — all specialties</li>
+            <li data-i18n="home.plan2Feat3">Full exam prep — FRCR, Arab Board, Saudi Board, ABR</li>
+            <li data-i18n="home.plan2Feat4">Full pre-auth masterclass</li>
+            <li data-i18n="home.plan2Feat5">Pre-auth certificate</li>
+            <li data-i18n="home.plan2Feat6">200+ case bank</li>
+            <li data-i18n="home.plan2Feat7">New content every week</li>
           </ul>
-          <button class="plan-btn">Start 7-day free trial</button>
+          <button class="plan-btn" data-i18n="home.plan2Btn">Start 7-day free trial</button>
         </div>
         <div class="plan" data-aos="fade-up" data-aos-delay="200">
-          <div class="plan-name">Institution</div>
-          <div class="plan-price">Custom</div>
-          <div class="plan-period">for hospitals & teams</div>
+          <div class="plan-name" data-i18n="home.plan3Name">Institution</div>
+          <div class="plan-price" data-i18n="home.plan3Price">Custom</div>
+          <div class="plan-period" data-i18n="home.plan3Period">for hospitals & teams</div>
           <ul class="plan-feats">
-            <li>Everything in Pro</li>
-            <li>Team dashboard & tracking</li>
-            <li>Custom learning paths</li>
-            <li>Department-level analytics</li>
-            <li>Dedicated support</li>
+            <li data-i18n="home.plan3Feat1">Everything in Pro</li>
+            <li data-i18n="home.plan3Feat2">Team dashboard & tracking</li>
+            <li data-i18n="home.plan3Feat3">Custom learning paths</li>
+            <li data-i18n="home.plan3Feat4">Department-level analytics</li>
+            <li data-i18n="home.plan3Feat5">Dedicated support</li>
           </ul>
-          <button class="plan-btn">Contact us</button>
+          <button class="plan-btn" data-i18n="home.plan3Btn">Contact us</button>
         </div>
       </div>
     </div>
@@ -625,35 +561,145 @@
       <div class="footer-top">
         <div class="footer-brand">
           <div class="footer-logo">i<span>Health</span> Academy</div>
-          <p class="footer-tagline">Career support for healthcare professionals — CV tools, exam prep, and career
+          <p class="footer-tagline" data-i18n="footer.brandTagline">Career support for healthcare professionals — CV tools, exam prep, and career
             growth, all in one place.</p>
         </div>
         <div class="footer-cols">
           <div class="footer-col">
-            <div class="footer-col-title">Product</div>
-            <a href="ecosystem.html">Ecosystem</a>
-            <a href="radiology-dept.html">Radiology</a>
+            <div class="footer-col-title" data-i18n="footer.product">Product</div>
+            <a href="ecosystem.html" data-i18n="footer.ecosystem">Ecosystem</a>
+            <a href="radiology-dept.html" data-i18n="footer.radiology">Radiology</a>
           </div>
           <div class="footer-col">
-            <div class="footer-col-title">Company</div>
-            <a href="#">About</a>
-            <a href="#">Contact & support</a>
+            <div class="footer-col-title" data-i18n="footer.company">Company</div>
+            <a href="founder.html" data-i18n="footer.meetFounder">Meet the Founder</a>
+            <a href="#" data-i18n="footer.contactSupport">Contact & support</a>
           </div>
           <div class="footer-col">
-            <div class="footer-col-title">Legal</div>
-            <a href="#">Privacy policy</a>
-            <a href="#">Terms of use</a>
+            <div class="footer-col-title" data-i18n="footer.legal">Legal</div>
+            <a href="#" data-i18n="footer.privacy">Privacy policy</a>
+            <a href="#" data-i18n="footer.terms">Terms of use</a>
           </div>
         </div>
       </div>
       <div class="footer-bottom">
-        <div class="footer-copy">© 2026 iHealth Academy. All rights reserved.</div>
+        <div class="footer-copy" data-i18n="footer.copy">© 2026 iHealth Academy. All rights reserved.</div>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" rel="noopener" class="footer-paypal-form">
+          <input type="hidden" name="cmd" value="_donations" />
+          <input type="hidden" name="business" value="saoopy90@gmail.com" />
+          <input type="hidden" name="currency_code" value="USD" />
+          <input type="hidden" name="item_name" value="Support iHealth Academy" />
+          <button type="submit" class="footer-paypal-btn">
+            <img src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png" alt="PayPal">
+            <span data-i18n="footer.paypalBtn">Support us</span>
+          </button>
+        </form>
       </div>
     </div>
   </footer>
 
   <script src="js/nav.js"></script>
   <script src="js/nav-v2.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/livechat.js"></script>
+  <script>
+    window.I18N_PAGE_DICT = {
+      'home.eyebrow': { en: 'For every healthcare professional', ar: 'لكل أخصائي رعاية صحية' },
+      'home.h1a': { en: 'Your career in healthcare.', ar: 'مسيرتك المهنية في الرعاية الصحية.' },
+      'home.h1b': { en: 'Supported at every step.', ar: 'مدعومة في كل خطوة.' },
+      'home.h1c': { en: 'Built to last.', ar: 'مبنية لتدوم.' },
+      'home.heroSub': { en: 'iHealth Academy gives <strong>every healthcare professional</strong> the knowledge, confidence, and tools to grow — from passing your first exam to navigating insurance, building your CV, and advancing in your career.', ar: 'تمنح أكاديمية آي هيلث <strong>كل أخصائي رعاية صحية</strong> المعرفة والثقة والأدوات للنمو — من اجتياز أول امتحان إلى فهم التأمين وبناء سيرتك الذاتية وتطوير مسيرتك المهنية.' },
+      'home.findPathBtn': { en: 'Find your path', ar: 'اكتشف مسارك' },
+      'home.exploreBtn': { en: 'Explore the ecosystem', ar: 'استكشف المنظومة' },
+      'home.stat1Label': { en: 'Built for', ar: 'مصمم لـ' },
+      'home.stat1Value': { en: 'all healthcare staff', ar: 'جميع الكوادر الصحية' },
+      'home.stat2Value': { en: 'Courses & Exams', ar: 'دورات وامتحانات' },
+      'home.stat3Label': { en: 'Free', ar: 'مجاني' },
+      'home.stat3Value': { en: 'CV Builder Included', ar: 'يشمل أداة بناء السيرة الذاتية' },
+      'home.stat4Value': { en: 'Joining member', ar: 'عضو منضم' },
+      'home.stat5Value': { en: 'Experienced Personnel', ar: 'كادر ذو خبرة' },
+      'home.serveLabel': { en: 'Who we serve', ar: 'من نخدم' },
+      'home.serveTitle': { en: 'Built for everyone in healthcare.', ar: 'مصمم لكل من يعمل في الرعاية الصحية.' },
+      'home.serveDesc': { en: 'Whether you are a student, a resident, a specialist, or an insurance professional — iHealth Academy has a path for you. Pick your role and start from there.', ar: 'سواء كنت طالبًا أو مقيمًا أو أخصائيًا أو محترفًا في التأمين — لدى أكاديمية آي هيلث مسار لك. اختر دورك وابدأ من هناك.' },
+      'home.serve1Title': { en: 'Radiologists', ar: 'أخصائيو الأشعة' },
+      'home.serve1Desc': { en: 'A complete clinical and administrative toolkit for radiologists. Master exam protocols, pre-authorization workflows, and structured report writing. Build hands-on RIS/PACS skills and apply AI confidently in real diagnostic practice.', ar: 'مجموعة أدوات سريرية وإدارية كاملة لأخصائيي الأشعة. أتقن بروتوكولات الامتحانات، وسير عمل التصريح المسبق، وكتابة التقارير المنظمة. ابنِ مهارات عملية في RIS/PACS وطبّق الذكاء الاصطناعي بثقة في الممارسة التشخيصية الحقيقية.' },
+      'home.serve2Title': { en: 'Insurance professionals', ar: 'محترفو التأمين' },
+      'home.serve2Desc': { en: 'Understand radiology from the clinical side, not just the paperwork. Learn how exams, reports, and pre-authorization requests actually work. Make faster, more confident approval decisions with real clinical context.', ar: 'افهم الأشعة من الجانب السريري وليس فقط الأوراق. تعلّم كيف تعمل الفحوصات والتقارير وطلبات التصريح المسبق فعليًا. اتخذ قرارات موافقة أسرع وأكثر ثقة بسياق سريري حقيقي.' },
+      'home.serve3Title': { en: 'All healthcare staff', ar: 'جميع الكوادر الصحية' },
+      'home.serve3Desc': { en: 'Nurses, pharmacists, dentists, lab technicians, physiotherapists — every specialty has a home here. Practical, role-specific training built around real day-to-day clinical work, with new specialties added regularly.', ar: 'الممرضون والصيادلة وأطباء الأسنان وفنيو المختبرات وأخصائيو العلاج الطبيعي — كل تخصص له مكان هنا. تدريب عملي مخصص لكل دور، مبني على العمل السريري اليومي الحقيقي، مع إضافة تخصصات جديدة باستمرار.' },
+      'home.serve4Title': { en: 'Healthcare managers', ar: 'مدراء الرعاية الصحية' },
+      'home.serve4Desc': { en: 'Hospital administration, patient relations, and healthcare economics — for those who run the system, not just work within it. Build the operational and leadership skills needed to manage teams and processes effectively.', ar: 'إدارة المستشفيات، وعلاقات المرضى، واقتصاديات الرعاية الصحية — لمن يديرون النظام وليس فقط يعملون ضمنه. ابنِ المهارات التشغيلية والقيادية اللازمة لإدارة الفرق والعمليات بفعالية.' },
+      'home.aboutLabel': { en: 'Who we are', ar: 'من نحن' },
+      'home.aboutTitle': { en: 'A career deserves a companion,<br>not a course catalog.', ar: 'المسيرة المهنية تستحق رفيقًا،<br>لا مجرد كتالوج دورات.' },
+      'home.aboutDesc': { en: "For twenty years, healthcare education treated a career like a single test — pass the exam, get the license, you're done. That was never quite true, and it's even less true now. A radiologist choosing a subspecialty, a nurse preparing for NP boards, an intern realizing pre-authorization paperwork will shape half her working week — these are different problems that show up at different moments, and most platforms are only ever built to solve one of them. iHealth Academy exists to meet more of them, in the order you actually run into them.", ar: 'لعشرين عامًا، تعاملت التعليم الصحي مع المسيرة المهنية كاختبار واحد — اجتز الامتحان، احصل على الترخيص، وانتهى الأمر. لم يكن هذا صحيحًا تمامًا، وهو أقل صحة الآن. أخصائي أشعة يختار تخصصًا فرعيًا، ممرضة تستعد لاختبارات الممارسة المتقدمة، متدربة تدرك أن أوراق التصريح المسبق ستشكل نصف أسبوع عملها — هذه مشكلات مختلفة تظهر في لحظات مختلفة، ومعظم المنصات مبنية لحل واحدة منها فقط. أكاديمية آي هيلث موجودة لتلبية المزيد منها، بالترتيب الذي تواجهه فعليًا.' },
+      'home.about1Title': { en: 'Built for real stages', ar: 'مصمم لمراحل حقيقية' },
+      'home.about1Desc': { en: 'Not a syllabus. Content built around actual moments — choosing a specialty, prepping for boards, learning the insurance systems nobody explains in school.', ar: 'ليس منهجًا دراسيًا. محتوى مبني حول لحظات حقيقية — اختيار تخصص، التحضير للبورد، وتعلّم أنظمة التأمين التي لا يشرحها أحد في المدرسة.' },
+      'home.about2Title': { en: 'AI-era from day one', ar: 'عصر الذكاء الاصطناعي منذ اليوم الأول' },
+      'home.about2Desc': { en: 'The next thirty years of medicine will be shaped by AI as much as by anatomy. We build every track with that already assumed, not bolted on later.', ar: 'ستشكّل الذكاء الاصطناعي السنوات الثلاثين القادمة من الطب بقدر ما يشكّلها التشريح. نبني كل مسار مع افتراض ذلك مسبقًا، لا كإضافة لاحقة.' },
+      'home.about3Title': { en: "Made by people who've been there", ar: 'صُنع بواسطة من عاشوا التجربة' },
+      'home.about3Desc': { en: 'Every track starts with someone who actually worked the job — not a curriculum written at a distance from the work it\'s meant to prepare you for.', ar: 'كل مسار يبدأ بشخص عمل فعليًا في هذا المجال — وليس منهجًا كُتب بمعزل عن العمل الذي يُفترض أن يُعدّك له.' },
+      'home.meetFounder': { en: 'Meet the founder', ar: 'تعرف على المؤسس' },
+
+      'home.ecoLabel': { en: 'The ecosystem', ar: 'المنظومة' },
+      'home.ecoTitle': { en: 'See the full picture.<br>Not just your part.', ar: 'شاهد الصورة الكاملة.<br>وليس جزءك فقط.' },
+      'home.ecoDesc': { en: 'The best healthcare professionals understand the whole system — not just their department. Our interactive map shows how every entity connects.', ar: 'أفضل أخصائيي الرعاية الصحية يفهمون النظام بأكمله — وليس قسمهم فقط. خريطتنا التفاعلية تُظهر كيف يتصل كل كيان بالآخر.' },
+      'home.ecoRegulators': { en: 'Regulators', ar: 'الجهات التنظيمية' },
+      'home.ecoProviders': { en: 'Providers', ar: 'مقدمو الخدمة' },
+      'home.ecoInsurance': { en: 'Insurance', ar: 'التأمين' },
+      'home.ecoReferral': { en: 'Referral cycle', ar: 'دورة الإحالة' },
+      'home.ecoBtn': { en: 'Explore the ecosystem', ar: 'استكشف المنظومة' },
+      'home.ecoClickMap': { en: 'Click to explore full interactive map', ar: 'انقر لاستكشاف الخريطة التفاعلية الكاملة' },
+
+      'home.ctaTitle': { en: 'Your <span>career deserves better</span> support.', ar: '<span>مسيرتك المهنية تستحق دعمًا</span> أفضل.' },
+      'home.ctaDesc': { en: 'Join healthcare professionals from around the world who are learning, growing, and building with iHealth Academy.', ar: 'انضم إلى أخصائيي الرعاية الصحية حول العالم الذين يتعلمون وينمون ويبنون مسيرتهم مع أكاديمية آي هيلث.' },
+      'home.ctaBtn': { en: 'Start for free today', ar: 'ابدأ مجانًا اليوم' },
+
+      'home.cvBadge': { en: '✦ 100% Free — always', ar: '✦ مجاني 100٪ — دائمًا' },
+      'home.cvLabel': { en: 'CV builder', ar: 'بناء السيرة الذاتية' },
+      'home.cvTitle': { en: 'A CV that opens<br>doors for you.', ar: 'سيرة ذاتية تفتح<br>لك الأبواب.' },
+      'home.cvDesc': { en: 'Most healthcare CVs never reach a human reviewer. ATS software filters them out first. Our builder fixes that — structured for every healthcare role, every country.', ar: 'معظم السير الذاتية الصحية لا تصل أبدًا إلى مراجع بشري. برامج ATS تستبعدها أولًا. أداتنا تحل هذه المشكلة — مصممة لكل دور صحي وكل دولة.' },
+      'home.cvFeat1Title': { en: 'ATS-optimized by default', ar: 'محسّنة لأنظمة ATS تلقائيًا' },
+      'home.cvFeat1Desc': { en: 'Built so tracking systems read every line. No tables or graphics that confuse the software.', ar: 'مصممة بحيث تقرأ أنظمة التتبع كل سطر. بدون جداول أو رسومات تربك البرنامج.' },
+      'home.cvFeat2Title': { en: 'Built for healthcare professionals', ar: 'مصممة لأخصائيي الرعاية الصحية' },
+      'home.cvFeat2Desc': { en: 'Sections, keywords, and formatting that hospitals and health institutions actually look for.', ar: 'أقسام وكلمات مفتاحية وتنسيق تبحث عنه المستشفيات والمؤسسات الصحية فعليًا.' },
+      'home.cvFeat3Title': { en: 'Works for any country', ar: 'تعمل لأي دولة' },
+      'home.cvFeat3Desc': { en: 'Saudi Arabia, UK, UAE, Egypt, USA — each market expects something different. We guide you.', ar: 'السعودية، بريطانيا، الإمارات، مصر، أمريكا — كل سوق يتوقع شيئًا مختلفًا. نحن نرشدك.' },
+      'home.cvBuilderHd': { en: 'Build your CV — live ATS score', ar: 'ابنِ سيرتك الذاتية — درجة ATS مباشرة' },
+
+      'home.plansLabel': { en: 'Pricing', ar: 'الأسعار' },
+      'home.plansTitle': { en: 'Start free.<br>Grow at your pace.', ar: 'ابدأ مجانًا.<br>انمُ بوتيرتك الخاصة.' },
+      'home.plansDesc': { en: 'No hidden fees. No confusing tiers. Pick what works for where you are right now.', ar: 'بدون رسوم خفية. بدون مستويات معقدة. اختر ما يناسب مرحلتك الحالية.' },
+      'home.plan1Name': { en: 'Free', ar: 'مجاني' },
+      'home.plan1Period': { en: 'forever — no card needed', ar: 'إلى الأبد — بدون بطاقة' },
+      'home.plan1Feat1': { en: 'Free ATS CV builder', ar: 'أداة سيرة ذاتية مجانية متوافقة مع ATS' },
+      'home.plan1Feat2': { en: 'Ecosystem interactive map', ar: 'خريطة المنظومة التفاعلية' },
+      'home.plan1Feat3': { en: '3 free lessons per module', ar: '3 دروس مجانية لكل وحدة' },
+      'home.plan1Feat4': { en: 'Insurance basics course', ar: 'دورة أساسيات التأمين' },
+      'home.plan1Feat5': { en: 'Community access', ar: 'الوصول إلى المجتمع' },
+      'home.plan1Btn': { en: 'Get started free', ar: 'ابدأ مجانًا' },
+      'home.plan2Badge': { en: 'Most popular', ar: 'الأكثر شيوعًا' },
+      'home.plan2Name': { en: 'Pro', ar: 'برو' },
+      'home.plan2Price': { en: 'Coming soon', ar: 'قريبًا' },
+      'home.plan2Period': { en: 'pricing to be announced', ar: 'سيتم الإعلان عن السعر لاحقًا' },
+      'home.plan2Feat1': { en: 'Everything in Free', ar: 'كل ما في الخطة المجانية' },
+      'home.plan2Feat2': { en: 'All modules — all specialties', ar: 'كل الوحدات — كل التخصصات' },
+      'home.plan2Feat3': { en: 'Full exam prep — FRCR, Arab Board, Saudi Board, ABR', ar: 'تحضير كامل للامتحانات — FRCR، البورد العربي، البورد السعودي، ABR' },
+      'home.plan2Feat4': { en: 'Full pre-auth masterclass', ar: 'دورة احترافية كاملة في التصريح المسبق' },
+      'home.plan2Feat5': { en: 'Pre-auth certificate', ar: 'شهادة التصريح المسبق' },
+      'home.plan2Feat6': { en: '200+ case bank', ar: 'أكثر من 200 حالة دراسية' },
+      'home.plan2Feat7': { en: 'New content every week', ar: 'محتوى جديد كل أسبوع' },
+      'home.plan2Btn': { en: 'Start 7-day free trial', ar: 'ابدأ تجربة مجانية لمدة 7 أيام' },
+      'home.plan3Name': { en: 'Institution', ar: 'مؤسسي' },
+      'home.plan3Price': { en: 'Custom', ar: 'مخصص' },
+      'home.plan3Period': { en: 'for hospitals & teams', ar: 'للمستشفيات والفرق' },
+      'home.plan3Feat1': { en: 'Everything in Pro', ar: 'كل ما في خطة برو' },
+      'home.plan3Feat2': { en: 'Team dashboard & tracking', ar: 'لوحة تحكم وتتبع الفريق' },
+      'home.plan3Feat3': { en: 'Custom learning paths', ar: 'مسارات تعلم مخصصة' },
+      'home.plan3Feat4': { en: 'Department-level analytics', ar: 'تحليلات على مستوى القسم' },
+      'home.plan3Feat5': { en: 'Dedicated support', ar: 'دعم مخصص' },
+      'home.plan3Btn': { en: 'Contact us', ar: 'تواصل معنا' },
+    };
+  </script>
   <script src="js/script.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>

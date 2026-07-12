@@ -43,7 +43,7 @@
     '<button class="role-tab active" data-role="student" type="button">As Student</button>' +
     '<button class="role-tab" data-role="mentor" type="button">As Mentor</button>' +
     '</div>' +
-    '<div class="field"><label>Full name</label><input type="text" placeholder="e.g. Sara Ahmed"></div>' +
+    '<div class="field"><label>Full name</label><input type="text" id="modalNameInput" placeholder="e.g. Sara Ahmed"></div>' +
     '<div class="field"><label>Email</label><input type="email" placeholder="you@example.com"></div>' +
     '<div class="field"><label>Password</label><input type="password" placeholder="••••••••"></div>' +
     '<button class="btn-primary" id="modalSubmit" type="button">Continue as Student</button>' +
@@ -54,6 +54,7 @@
   var modalTitle = overlay.querySelector('#modalTitle');
   var modalSubmit = overlay.querySelector('#modalSubmit');
   var modalClose = overlay.querySelector('#modalClose');
+  var modalNameInput = overlay.querySelector('#modalNameInput');
   var selectedRole = 'student';
 
   function updateSubmitLabel() {
@@ -89,6 +90,10 @@
   });
 
   modalSubmit.addEventListener('click', function () {
+    var name = (modalNameInput.value || '').trim();
+    if (name) localStorage.setItem('ih-student-name', name);
+    localStorage.setItem('ih-student-role', selectedRole);
     closeModal();
+    window.location.href = 'dashboard.html';
   });
 })();

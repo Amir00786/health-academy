@@ -1,0 +1,216 @@
+/* LESSON VIEWER — dark-theme video-gated quiz modal, shared across course pages */
+.lv-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10001;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.75);
+  padding: 20px;
+}
+
+.lv-overlay.open {
+  display: flex;
+}
+
+.lv-modal {
+  position: relative;
+  width: 760px;
+  max-width: 100%;
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  background: #101014;
+  border-radius: 14px;
+  font-family: 'Roboto', sans-serif;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+  transition: width 0.25s ease, max-height 0.25s ease;
+}
+
+.lv-modal.lv-expanded {
+  width: 96vw;
+  max-height: 96vh;
+}
+
+.lv-modal.lv-expanded .lv-video {
+  max-height: 70vh;
+}
+
+.lv-hidden {
+  display: none !important;
+}
+
+/* HEADER */
+.lv-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.lv-header-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.lv-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.lv-discussions {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  padding: 6px 12px;
+}
+
+.lv-icon-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.lv-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+/* VIDEO STEP */
+.lv-video {
+  width: 100%;
+  display: block;
+  background: #000;
+  max-height: 420px;
+}
+
+.lv-footer {
+  padding: 16px 20px;
+}
+
+.lv-btn {
+  display: block;
+  width: 100%;
+  border: none;
+  border-radius: 999px;
+  padding: 13px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.lv-btn-primary {
+  background: #00C896;
+  color: #060608;
+}
+
+.lv-btn-primary:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.lv-btn-ghost {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  margin-top: 10px;
+}
+
+/* QUIZ STEP */
+.lv-quiz-body {
+  padding: 24px 24px 28px;
+}
+
+.lv-eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #00C896;
+  margin-bottom: 0.4rem;
+}
+
+.lv-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.lv-question {
+  margin-bottom: 1.25rem;
+}
+
+.lv-q-text {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #fff;
+  margin-bottom: 0.6rem;
+}
+
+.lv-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.lv-option {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.75);
+  padding: 10px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.lv-option:hover {
+  border-color: rgba(0, 200, 150, 0.4);
+}
+
+.lv-option:has(input:checked) {
+  border-color: #00C896;
+  background: rgba(0, 200, 150, 0.1);
+  color: #fff;
+}
+
+.lv-quiz-result {
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.lv-result-pass {
+  background: rgba(0, 200, 150, 0.14);
+  color: #4FE0BB;
+}
+
+.lv-result-fail {
+  background: rgba(255, 107, 107, 0.14);
+  color: #FF8C82;
+}

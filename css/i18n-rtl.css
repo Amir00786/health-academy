@@ -1,0 +1,60 @@
+/* I18N RTL — mirrors layout when <html dir="rtl">. Flexbox/grid main-axis
+   ordering already flips automatically with `dir`; these rules cover the
+   things that don't (explicit text-align, absolute-positioned dropdowns,
+   directional icons). Highly visual/graphic widgets (radar charts, the
+   ecosystem orbital map, timers, anatomy diagrams) are left as-is since
+   mirroring them has no semantic meaning. */
+
+html[dir="rtl"] body {
+  text-align: right;
+}
+
+html[dir="rtl"] .section-desc,
+html[dir="rtl"] .hero p,
+html[dir="rtl"] .dept-desc,
+html[dir="rtl"] .about-heading-wrap .section-title,
+html[dir="rtl"] .about-heading-wrap .section-desc,
+html[dir="rtl"] .cv-heading-wrap .section-title,
+html[dir="rtl"] .cv-heading-wrap .section-desc,
+html[dir="rtl"] .eco-preview-copy .section-title,
+html[dir="rtl"] .eco-preview-copy .section-desc,
+html[dir="rtl"] .fyp-desc,
+html[dir="rtl"] .as-desc {
+  text-align: right;
+}
+
+html[dir="rtl"] .hero,
+html[dir="rtl"] .landing,
+html[dir="rtl"] .serve-heading-wrap,
+html[dir="rtl"] .plans-heading-wrap {
+  text-align: center;
+}
+
+/* Nav dropdown is positioned from the left by default; flip to the right. */
+html[dir="rtl"] #mainnav .dropdown {
+  left: auto;
+  right: 0;
+}
+
+/* Directional arrow icons should point the way text now flows. */
+html[dir="rtl"] i[class*="arrow-small-right"],
+html[dir="rtl"] i[class*="arrow-right"],
+html[dir="rtl"] i[class*="arrow-small-left"],
+html[dir="rtl"] i[class*="arrow-left"] {
+  display: inline-block;
+  transform: scaleX(-1);
+}
+
+/* Mobile nav-links panel slides from the left instead of the right. */
+html[dir="rtl"] #mainnav .nav-links {
+  right: auto;
+  left: 0;
+}
+
+html[dir="rtl"] #mainnav .nav-links {
+  transform: translateX(-100%);
+}
+
+html[dir="rtl"] #mainnav .nav-links.open {
+  transform: translateX(0);
+}
