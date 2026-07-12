@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Owner Console — iHealth Academy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;800;900&display=swap"
+    rel="stylesheet" />
+  <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css"
+    rel="stylesheet" />
+  <link href="css/admin.css" rel="stylesheet" />
+</head>
+
+<body>
+
+  <!-- ================= LOCK SCREEN ================= -->
+  <div class="admin-lock" id="adminLock">
+    <div class="admin-lock-card">
+      <div class="admin-lock-icon"><i class="fi fi-sr-lock"></i></div>
+      <h1>Owner Console</h1>
+      <p>Enter the owner passcode to continue.</p>
+      <div class="admin-lock-error" id="adminLockError"></div>
+      <input type="password" id="adminPasscode" placeholder="Passcode" autocomplete="off" />
+      <button type="button" id="adminUnlockBtn">Unlock</button>
+      <div class="admin-lock-note">
+        This is a basic client-side passcode, not real authentication — anyone who inspects the page source can
+        bypass it. Add a real server-side login before relying on this to keep the console private.
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CONSOLE ================= -->
+  <div id="adminConsole" hidden>
+    <div class="dash-topbar">
+      <div class="wrap">
+        <div>
+          <strong>Owner Console</strong>
+          <span class="dash-role">CEO</span>
+        </div>
+        <a class="back-link" href="index.html">← Exit to public site</a>
+      </div>
+    </div>
+
+    <div class="dash-body wrap">
+
+      <div class="demo-banner">
+        <strong>Demo data.</strong> This console isn't connected to a real analytics or payments backend yet, so
+        visitor counts, sign-ups, revenue, and traffic sources below show as empty until that's wired up. The
+        Trust &amp; Safety and Mentor review sections below use sample entries to demonstrate the workflow — but the
+        Review / Approve / Reject / Suspend buttons are fully functional and their state is saved in this browser.
+      </div>
+
+      <!-- AI briefing -->
+      <div class="briefing-panel">
+        <div class="briefing-head">
+          <h3>🧭 This week's briefing</h3>
+        </div>
+        <div class="briefing-empty">No briefing yet — this section will summarize real activity once analytics
+          and the moderation/mentor pipelines are connected to a backend.</div>
+      </div>
+
+      <!-- top-line KPIs -->
+      <div class="metric-grid section-gap">
+        <div class="metric"><b>—</b><span>Visitors (30d)</span></div>
+        <div class="metric"><b>—</b><span>Sign-ups (30d)</span></div>
+        <div class="metric"><b>—</b><span>Paid members</span></div>
+        <div class="metric"><b>—</b><span>MRR</span></div>
+      </div>
+
+      <!-- funnel -->
+      <div class="panel section-gap">
+        <h3>Visitor → paid funnel (30d)</h3>
+        <div class="funnel-row">
+          <span class="funnel-label">Visitors</span>
+          <div class="funnel-bar-track"><div class="funnel-bar-fill" style="width:100%;">—</div></div>
+          <span class="funnel-pct">—</span>
+        </div>
+        <div class="funnel-row">
+          <span class="funnel-label">Signed up</span>
+          <div class="funnel-bar-track"><div class="funnel-bar-fill" style="width:100%;">—</div></div>
+          <span class="funnel-pct">—</span>
+        </div>
+        <div class="funnel-row">
+          <span class="funnel-label">Activated<br><span style="font-weight:400; font-size:11px; color:var(--ink-dim);">(1+ module done)</span></span>
+          <div class="funnel-bar-track"><div class="funnel-bar-fill" style="width:100%;">—</div></div>
+          <span class="funnel-pct">—</span>
+        </div>
+        <div class="funnel-row">
+          <span class="funnel-label">Paid</span>
+          <div class="funnel-bar-track"><div class="funnel-bar-fill" style="width:100%;">—</div></div>
+          <span class="funnel-pct">—</span>
+        </div>
+        <p class="panel-note">Not yet connected to live data.</p>
+      </div>
+
+      <div class="dash-grid section-gap">
+        <div class="panel">
+          <h3>Track engagement</h3>
+          <div class="bar-chart">
+            <div class="bar" style="height:4px;"><span>—</span></div>
+            <div class="bar" style="height:4px;"><span>—</span></div>
+          </div>
+          <div class="bar-labels"><span>Pre-Auth Specialist</span><span>Radiology</span></div>
+          <p class="panel-note">Not yet connected to live data.</p>
+        </div>
+        <div class="panel">
+          <h3>Revenue by plan</h3>
+          <div class="waitlist-row"><span>Free</span><span>—</span></div>
+          <div class="waitlist-row"><span>Pro</span><span>—</span></div>
+          <div class="waitlist-row"><span>Institution</span><span>—</span></div>
+          <p class="panel-note">Not yet connected to a payments backend.</p>
+        </div>
+      </div>
+
+      <div class="dash-grid section-gap">
+        <div class="panel">
+          <h3>⚠️ Trust &amp; Safety queue</h3>
+          <div id="modQueueList"></div>
+          <p class="panel-note">Sample entries — connect a real reporting/moderation backend to see live reports.</p>
+        </div>
+
+        <div class="panel">
+          <h3>👥 Mentor operations</h3>
+          <div class="metric-grid" style="grid-template-columns:repeat(3,1fr); margin-bottom:16px;">
+            <div class="metric" style="padding:14px;"><b style="font-size:20px;">—</b><span>Active mentors</span></div>
+            <div class="metric" style="padding:14px;" id="mentorPendingMetric"><b style="font-size:20px;">0</b><span>Pending review</span></div>
+            <div class="metric" style="padding:14px;"><b style="font-size:20px;">—</b><span>Avg. rating</span></div>
+          </div>
+          <div id="mentorQueueList"></div>
+          <p class="panel-note">Sample applicants — connect a real mentor application form to see live submissions.</p>
+        </div>
+      </div>
+
+      <div class="dash-grid section-gap">
+        <div class="panel">
+          <h3>Waitlist demand</h3>
+          <div class="waitlist-row"><span>Mentorships</span><span>—</span></div>
+          <div class="waitlist-row"><span>Managers Professional</span><span>—</span></div>
+          <div class="waitlist-row"><span>Supporters</span><span>—</span></div>
+          <div class="waitlist-row"><span>Co-Founders</span><span>—</span></div>
+          <p class="panel-note">There's no waitlist-capture form behind these "Coming soon" nav items yet — add
+            one to start collecting real demand data here.</p>
+        </div>
+        <div class="panel">
+          <h3>Where sign-ups come from</h3>
+          <div class="source-row"><span class="source-label">Instagram</span><div class="source-track"><div class="source-fill" style="width:0%;"></div></div><span class="source-pct">—</span></div>
+          <div class="source-row"><span class="source-label">WhatsApp</span><div class="source-track"><div class="source-fill" style="width:0%;"></div></div><span class="source-pct">—</span></div>
+          <div class="source-row"><span class="source-label">Direct</span><div class="source-track"><div class="source-fill" style="width:0%;"></div></div><span class="source-pct">—</span></div>
+          <div class="source-row"><span class="source-label">X / Twitter</span><div class="source-track"><div class="source-fill" style="width:0%;"></div></div><span class="source-pct">—</span></div>
+          <div class="source-row"><span class="source-label">LinkedIn</span><div class="source-track"><div class="source-fill" style="width:0%;"></div></div><span class="source-pct">—</span></div>
+          <p class="panel-note">Not yet connected to a real analytics source.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="js/mentors.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+
+</html>

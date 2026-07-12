@@ -60,6 +60,11 @@
     'chat.reply.technical': { en: "Thanks for flagging this — please describe what happened (page, browser, and what you expected vs. what you saw) and our team will investigate.", ar: 'شكرًا لإبلاغنا. يرجى وصف ما حدث (الصفحة والمتصفح وما توقعته مقابل ما رأيته) وسيقوم فريقنا بالتحقيق.' },
     'chat.reply.human': { en: 'Sure — you can reach our team directly at <a href="mailto:saoopy90@gmail.com">saoopy90@gmail.com</a> and we\'ll get back to you personally.', ar: 'بالتأكيد — يمكنك التواصل مع فريقنا مباشرة عبر <a href="mailto:saoopy90@gmail.com">saoopy90@gmail.com</a> وسنرد عليك شخصيًا.' },
     'chat.reply.fallback': { en: 'Thanks for your message — our team will review it and get back to you soon. For a faster reply, email us at <a href="mailto:saoopy90@gmail.com">saoopy90@gmail.com</a>.', ar: 'شكرًا على رسالتك — سيقوم فريقنا بمراجعتها والرد عليك قريبًا. للحصول على رد أسرع، راسلنا عبر <a href="mailto:saoopy90@gmail.com">saoopy90@gmail.com</a>.' },
+    'chat.reply.voice': { en: 'Thanks for the voice note — our team will listen to it and follow up by email at <a href="mailto:saoopy90@gmail.com">saoopy90@gmail.com</a>.', ar: 'شكرًا على الرسالة الصوتية — سيستمع فريقنا إليها ويتابع عبر البريد الإلكتروني على <a href="mailto:saoopy90@gmail.com">saoopy90@gmail.com</a>.' },
+    'chat.micDenied': { en: 'Microphone access was denied — please allow microphone permission to record a voice message.', ar: 'تم رفض الوصول إلى الميكروفون — يرجى السماح بإذن الميكروفون لتسجيل رسالة صوتية.' },
+    'chat.newConversation': { en: 'New conversation', ar: 'محادثة جديدة' },
+    'chat.downloadTranscript': { en: 'Download transcript', ar: 'تحميل نسخة المحادثة' },
+    'chat.today': { en: 'Today', ar: 'اليوم' },
   };
 
   // Page-specific dictionaries are often defined in an inline <script> further

@@ -83,15 +83,74 @@
   margin-top: 2px;
 }
 
-.ih-chat-close {
+.ih-chat-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.ih-chat-close,
+.ih-chat-more {
   background: none;
   border: none;
   color: #fff;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1;
   cursor: pointer;
-  padding: 2px 4px;
+  padding: 4px;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+}
+
+.ih-chat-close:hover,
+.ih-chat-more:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.ih-chat-more-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 30px;
+  background: #fff;
+  border: 1px solid #E3EAE9;
+  border-radius: 10px;
+  box-shadow: 0 14px 32px rgba(15, 43, 42, 0.2);
+  padding: 6px;
+  min-width: 170px;
+  display: none;
+  flex-direction: column;
+  gap: 2px;
+  z-index: 9002;
+}
+
+.ih-chat-more-menu.open {
+  display: flex;
+}
+
+.ih-chat-more-menu button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: none;
+  background: none;
+  color: #0F2B2A;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: 'Roboto', sans-serif;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+}
+
+.ih-chat-more-menu button:hover {
+  background: #E6F3F2;
 }
 
 .ih-chat-body {
@@ -104,12 +163,26 @@
   background: #F6F9F8;
 }
 
+.ih-chat-date-divider {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: #8B9694;
+  margin: 4px 0;
+}
+
 .ih-chat-msg {
   display: flex;
+  flex-direction: column;
+  gap: 3px;
 }
 
 .ih-chat-msg.user {
-  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.ih-chat-msg.bot {
+  align-items: flex-start;
 }
 
 .ih-chat-bubble {
@@ -119,6 +192,12 @@
   font-size: 13.5px;
   line-height: 1.5;
   word-wrap: break-word;
+}
+
+.ih-chat-timestamp {
+  font-size: 10.5px;
+  color: #8B9694;
+  padding: 0 4px;
 }
 
 .ih-chat-msg.bot .ih-chat-bubble {
@@ -205,32 +284,133 @@
   color: #fff;
 }
 
-.ih-chat-inputrow {
-  display: flex;
-  gap: 8px;
-  padding: 12px 14px;
+.ih-chat-composer {
   border-top: 1px solid #E3EAE9;
+  padding: 10px 14px 12px;
   flex-shrink: 0;
 }
 
 .ih-chat-input {
-  flex: 1;
-  min-width: 0;
+  width: 100%;
   border: 1px solid #E3EAE9;
-  border-radius: 999px;
-  padding: 9px 14px;
+  border-radius: 14px;
+  padding: 10px 12px;
   font-size: 13.5px;
   font-family: 'Roboto', sans-serif;
   outline: none;
+  resize: none;
+  min-height: 40px;
+  max-height: 90px;
+  line-height: 1.4;
+  display: block;
 }
 
 .ih-chat-input:focus {
   border-color: #0B7A75;
 }
 
+.ih-chat-tools {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.ih-chat-tools-spacer {
+  flex: 1;
+}
+
+.ih-chat-tool-btn {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #5B6B69;
+  font-size: 16px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.ih-chat-tool-btn:hover {
+  background: #E6F3F2;
+  color: #0B7A75;
+}
+
+.ih-chat-tool-btn.recording {
+  color: #E14141;
+  background: #FDEAEA;
+}
+
+.ih-chat-tool-btn.recording i {
+  animation: ihChatMicPulse 1s infinite;
+}
+
+@keyframes ihChatMicPulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.ih-chat-rec-timer {
+  font-size: 12px;
+  font-weight: 700;
+  color: #E14141;
+  font-family: 'Roboto', sans-serif;
+}
+
+.ih-chat-emoji-wrap {
+  position: relative;
+  display: flex;
+}
+
+.ih-chat-emoji-picker {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 0;
+  background: #fff;
+  border: 1px solid #E3EAE9;
+  border-radius: 12px;
+  box-shadow: 0 14px 32px rgba(15, 43, 42, 0.2);
+  padding: 8px;
+  display: none;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 2px;
+  width: 244px;
+  z-index: 9002;
+}
+
+.ih-chat-emoji-picker.open {
+  display: grid;
+}
+
+.ih-chat-emoji-picker button {
+  border: none;
+  background: none;
+  font-size: 18px;
+  padding: 5px;
+  border-radius: 6px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.ih-chat-emoji-picker button:hover {
+  background: #E6F3F2;
+}
+
 .ih-chat-send {
-  width: 38px;
-  height: 38px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   background: #0B7A75;
   color: #fff;
@@ -240,11 +420,16 @@
   justify-content: center;
   cursor: pointer;
   flex-shrink: 0;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .ih-chat-send:hover {
   background: #095F5B;
+}
+
+.ih-chat-audio-bubble audio {
+  max-width: 220px;
+  height: 36px;
 }
 
 @media (max-width: 480px) {

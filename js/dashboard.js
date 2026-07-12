@@ -122,10 +122,92 @@
       courseCard('dash.insuranceName', 'insurance-dept.html', ins);
   }
 
+  function initials(fullName) {
+    const parts = (fullName || '').trim().split(/\s+/).filter(Boolean);
+    if (!parts.length) return '?';
+    return (parts[0][0] + (parts[1] ? parts[1][0] : '')).toUpperCase();
+  }
+
+  const FAVORITE_COURSES = [
+    { id: 'radiology', key: 'course.radiology', icon: 'fi-sr-x-ray' },
+    { id: 'preauth', key: 'course.preauth', icon: 'fi-sr-shield-check' },
+  ];
+
+  function t(key, fallback) {
+    const dict = (window.I18N && window.I18N.dict) ? window.I18N.dict() : {};
+    return dict[key] ? (dict[key][lang()] || dict[key].en) : fallback;
+  }
+
+  function renderFavoriteCourse() {
+    const row = document.getElementById('favoriteCourseRow');
+    if (!row) return;
+    const current = localStorage.getItem('ih-favorite-course') || '';
+    row.innerHTML = FAVORITE_COURSES.map((c) =>
+      `<button type="button" class="favorite-course-btn${c.id === current ? ' active' : ''}" data-course="${c.id}">
+        <i class="fi ${c.icon}"></i><i class="fi fi-sr-star"></i> ${t(c.key, c.id)}
+      </button>`
+    ).join('');
+    row.querySelectorAll('.favorite-course-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const id = btn.getAttribute('data-course');
+        const already = localStorage.getItem('ih-favorite-course') === id;
+        if (already) localStorage.removeItem('ih-favorite-course');
+        else localStorage.setItem('ih-favorite-course', id);
+        renderFavoriteCourse();
+      });
+    });
+  }
+
+  function trackLabelFor(track) {
+    if (track === 'radiology') return t('course.radiology', 'Radiology');
+    if (track === 'preauth') return t('course.preauth', 'Pre-Auth Specialist');
+    return t('mentor.trackBoth', 'Both');
+  }
+
+  function renderMentorDirectory() {
+    const list = document.getElementById('mentorDirectoryList');
+    if (!list || !window.IH_MENTORS) return;
+    const mentors = window.IH_MENTORS.getDirectory();
+    const selection = window.IH_MENTORS.getSelection();
+    if (!mentors.length) {
+      list.innerHTML = `<p class="mentee-empty">${t('mentor.noMentors', 'No mentors available yet.')}</p>`;
+      return;
+    }
+    list.innerHTML = mentors.map((m) => {
+      const isSelected = selection && selection.mentorId === m.id;
+      return `
+        <div class="mentor-directory-card">
+          <div class="mentee-avatar">${initials(m.name)}</div>
+          <div class="mentor-directory-info">
+            <div class="mentor-directory-name">${m.name}</div>
+            <div class="mentor-directory-meta">${trackLabelFor(m.track)}${m.experience ? ' · ' + m.experience : ''}</div>
+            ${m.bio ? `<div class="mentor-directory-bio">${m.bio}</div>` : ''}
+          </div>
+          <button type="button" class="mentor-select-btn${isSelected ? ' selected' : ''}" data-mentor-id="${m.id}" data-mentor-name="${m.name}">
+            ${isSelected ? t('mentor.selected', 'Selected ✓') : t('mentor.select', 'Select')}
+          </button>
+        </div>
+      `;
+    }).join('');
+
+    list.querySelectorAll('.mentor-select-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const id = btn.getAttribute('data-mentor-id');
+        const name = btn.getAttribute('data-mentor-name');
+        const current = window.IH_MENTORS.getSelection();
+        if (current && current.mentorId === id) window.IH_MENTORS.clearSelection();
+        else window.IH_MENTORS.selectMentor({ id, name });
+        renderMentorDirectory();
+      });
+    });
+  }
+
   function renderAll() {
     renderProfile();
     renderStats();
     renderCourses();
+    renderFavoriteCourse();
+    renderMentorDirectory();
   }
 
   renderAll();

@@ -239,6 +239,10 @@ html.is-loading body {
   margin-bottom: 2.5rem;
 }
 
+.dash-stat-grid[hidden] {
+  display: none;
+}
+
 @media (max-width: 900px) {
   .dash-stat-grid {
     grid-template-columns: 1fr 1fr;

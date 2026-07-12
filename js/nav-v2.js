@@ -1,5 +1,12 @@
 // NAV V2 — iHealthAcademy dropdown + mobile hamburger toggle
 (function () {
+  // Send mentors to their own dashboard wherever the shared nav's "Dashboard" link appears.
+  if (localStorage.getItem('ih-student-role') === 'mentor') {
+    document.querySelectorAll('a[data-i18n="nav.dashboard"]').forEach(function (link) {
+      link.setAttribute('href', 'mentor-dashboard.html');
+    });
+  }
+
   var academyDropdown = document.getElementById('academyDropdown');
   if (academyDropdown) {
     var academyBtn = document.getElementById('academyBtn');
@@ -94,6 +101,6 @@
     if (name) localStorage.setItem('ih-student-name', name);
     localStorage.setItem('ih-student-role', selectedRole);
     closeModal();
-    window.location.href = 'dashboard.html';
+    window.location.href = selectedRole === 'mentor' ? 'mentor-dashboard.html' : 'dashboard.html';
   });
 })();
