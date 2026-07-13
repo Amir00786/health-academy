@@ -77,6 +77,25 @@
   resize: vertical;
 }
 
+/* .btn/.btn-primary from nav-v2.css are scoped to #mainnav only — restyle here
+   since this button sits inside the dashboard body, not the header. */
+.mentor-form .btn-primary {
+  display: inline-block;
+  padding: 11px 22px;
+  border: none;
+  border-radius: 999px;
+  background: #00C896;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  cursor: pointer;
+}
+
+.mentor-form .btn-primary:hover {
+  background: #00b085;
+}
+
 .mentee-row {
   display: flex;
   align-items: center;
