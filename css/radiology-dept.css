@@ -1075,3 +1075,138 @@ html.is-loading body {
     stroke-dashoffset: -100;
   }
 }
+
+/* INSURANCE — bonus module pricing tiers (insurance-dept.html) */
+.bonus-pricing {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+}
+
+.bonus-pricing-head {
+  margin-bottom: 1.5rem;
+}
+
+.bonus-pricing-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.4rem;
+}
+
+.bonus-pricing-desc {
+  font-size: 0.85rem;
+  color: rgba(248, 246, 241, 0.55);
+  line-height: 1.6;
+}
+
+.bonus-tiers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+@media (max-width: 700px) {
+  .bonus-tiers {
+    grid-template-columns: 1fr;
+  }
+}
+
+.bonus-tier-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.5rem;
+}
+
+.bonus-tier-card.featured {
+  border-color: var(--teal-border);
+  background: var(--teal-dim);
+}
+
+.bonus-tier-badge {
+  position: absolute;
+  top: -11px;
+  right: 1.25rem;
+  background: var(--teal);
+  color: var(--black);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.bonus-tier-name {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: rgba(248, 246, 241, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.bonus-tier-price {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--teal);
+  margin: 0.4rem 0;
+}
+
+.bonus-tier-feat {
+  font-size: 0.82rem;
+  color: rgba(248, 246, 241, 0.6);
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+}
+
+.bonus-tier-btn {
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 11px;
+  border: none;
+  border-radius: 100px;
+  background: var(--teal);
+  color: var(--black);
+  cursor: pointer;
+}
+
+.bonus-tier-btn:hover {
+  background: var(--white);
+}
+
+.bonus-upgrade-note {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1rem 1.25rem;
+  margin-top: 1.25rem;
+  font-size: 0.85rem;
+  color: rgba(248, 246, 241, 0.7);
+}
+
+.bonus-upgrade-btn {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 100px;
+  background: var(--teal);
+  color: var(--black);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.bonus-upgrade-btn:hover {
+  background: var(--white);
+}

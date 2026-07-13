@@ -1,0 +1,53 @@
+// JOIN THE FOUNDING TEAM — CV upload form, submitted via Formspree (no backend needed).
+// IMPORTANT: the form action in join-team.html still has the placeholder
+// "https://formspree.io/f/YOUR_FORM_ID" — sign up free at formspree.io, create a
+// form that delivers to info@ihealthacademy.com, and replace that URL before this goes live.
+(function () {
+  function lang() {
+    return (window.I18N && window.I18N.currentLang) ? window.I18N.currentLang() : 'en';
+  }
+
+  function t(key, fallback) {
+    const dict = (window.I18N && window.I18N.dict) ? window.I18N.dict() : {};
+    return dict[key] ? (dict[key][lang()] || dict[key].en) : fallback;
+  }
+
+  const form = document.getElementById('joinForm');
+  const status = document.getElementById('joinFormStatus');
+  const submitBtn = document.getElementById('joinSubmitBtn');
+  const success = document.getElementById('joinSuccess');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    if (form.action.indexOf('YOUR_FORM_ID') !== -1) {
+      status.textContent = 'This form is not connected yet — set up a Formspree endpoint (see js/join-team.js) before publishing.';
+      return;
+    }
+
+    submitBtn.disabled = true;
+    status.style.color = 'rgba(6, 6, 8, 0.5)';
+    status.textContent = t('join.sending', 'Sending…');
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      });
+      if (res.ok) {
+        form.hidden = true;
+        success.hidden = false;
+        success.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        status.style.color = '#C0392B';
+        status.textContent = t('join.errorMsg', 'Something went wrong — please try again, or email your CV directly to info@ihealthacademy.com.');
+        submitBtn.disabled = false;
+      }
+    } catch (err) {
+      status.style.color = '#C0392B';
+      status.textContent = t('join.errorMsg', 'Something went wrong — please try again, or email your CV directly to info@ihealthacademy.com.');
+      submitBtn.disabled = false;
+    }
+  });
+})();

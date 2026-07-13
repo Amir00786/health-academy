@@ -105,10 +105,10 @@
                 <div><div class="ddi-title" data-i18n="nav.dd.supporters.title">Supporters</div><div class="ddi-sub" data-i18n="nav.dd.supporters.sub">Volunteering, teaching &amp; side-missions — earn a certificate</div></div>
                 <span class="badge soon" data-i18n="badge.soon">COMING SOON</span>
               </div>
-              <div class="ddi ddi-disabled">
+              <a class="ddi" href="join-team.html">
                 <div><div class="ddi-title" data-i18n="nav.dd.cofounders.title">Co-Founders</div><div class="ddi-sub" data-i18n="nav.dd.cofounders.sub">Join the founding team</div></div>
-                <span class="badge soon" data-i18n="badge.soon">COMING SOON</span>
-              </div>
+                <span class="badge live" data-i18n="badge.live">LIVE</span>
+              </a>
             </div>
           </div>
 
@@ -175,6 +175,7 @@
       <div class="dept-layout" style="grid-template-columns: 1fr;">
         <div class="main-content" id="mainContent">
           <div id="contentArea"></div>
+          <div id="bonusArea"></div>
         </div>
       </div>
     </div>
@@ -362,6 +363,192 @@
 
     loadProgress();
     render();
+
+    // BONUS MODULE — "Medical Terminology Used in Insurance" — paid add-on.
+    // Real PayPal Buy Now buttons (business=saoopy90@gmail.com). PayPal Standard
+    // buttons like this have no server-side webhook here to verify the payment
+    // actually happened — access unlocks purely from the "tier" query param PayPal
+    // redirects back with, so this is a trust-based unlock, not a verified one.
+    const BONUS_TIER_KEY = 'ih-preauth-bonus-tier';
+    const bonusCourse = {
+      title: 'Medical Terminology Used in Insurance',
+      desc: 'The clinical vocabulary insurers expect to see in every request — learn it once, use it in everything you write.',
+      cert: { name: 'Medical Terminology in Insurance Certificate' },
+      lessons: [
+        {
+          title: 'Root words, prefixes & suffixes', desc: 'Decode almost any medical term by breaking it into its parts.', dur: '7 min',
+          quiz: [
+            { q: 'The prefix "hyper-" means:', options: ['Below normal', 'Above normal / excessive', 'Around'], correct: 1 },
+            { q: 'The suffix "-itis" means:', options: ['Inflammation', 'Removal', 'Enlargement'], correct: 0 },
+          ],
+        },
+        {
+          title: 'Diagnostic & procedural terms insurers look for', desc: 'The exact wording that signals medical necessity to a reviewer.', dur: '9 min',
+          quiz: [
+            { q: '"Medical necessity" in a request should be:', options: ['Implied, never stated', 'Explicitly documented with clinical terms', 'Left for the insurer to guess'], correct: 1 },
+            { q: 'Precise procedural terms matter because they:', options: ['Match the request to the correct code and coverage rule', 'Are just formatting', 'Only matter for surgery'], correct: 0 },
+          ],
+        },
+        {
+          title: 'Common abbreviations in clinical documentation', desc: 'The shorthand you will see in almost every chart note.', dur: '6 min',
+          quiz: [
+            { q: '"Hx" is the abbreviation for:', options: ['History', 'Hospital', 'Hydration'], correct: 0 },
+            { q: '"Dx" is the abbreviation for:', options: ['Diagnosis', 'Discharge', 'Dosage'], correct: 0 },
+          ],
+        },
+        {
+          title: 'Putting it together: reading a real chart note', desc: 'Walk through an annotated chart note end to end.', dur: '8 min',
+          quiz: [
+            { q: 'When reading a chart note for pre-auth, first look for:', options: ['The diagnosis and clinical justification', 'The font used', 'The page number'], correct: 0 },
+            { q: 'Terminology fluency mainly helps you:', options: ['Write faster, more precise requests', 'Impress the patient', 'Replace the doctor'], correct: 0 },
+          ],
+        },
+      ],
+    };
+
+    let bonusProgress = new Set();
+    function loadBonusProgress() {
+      try {
+        const raw = localStorage.getItem('ih-preauth-bonus-progress');
+        if (raw) bonusProgress = new Set(JSON.parse(raw));
+      } catch (e) { /* ignore corrupt data */ }
+    }
+    function saveBonusProgress() {
+      localStorage.setItem('ih-preauth-bonus-progress', JSON.stringify(Array.from(bonusProgress)));
+    }
+
+    function getBonusTier() {
+      return localStorage.getItem(BONUS_TIER_KEY);
+    }
+
+    function checkTierFromReturnUrl() {
+      const params = new URLSearchParams(location.search);
+      const tier = params.get('tier');
+      if (tier === 'basic' || tier === 'premium') {
+        localStorage.setItem(BONUS_TIER_KEY, tier);
+        params.delete('tier');
+        const clean = location.pathname + (params.toString() ? '?' + params.toString() : '') + location.hash;
+        history.replaceState({}, '', clean);
+      }
+    }
+
+    function paypalForm(itemName, amount, tier, label, btnClass) {
+      const returnUrl = location.origin + location.pathname + '?tier=' + tier;
+      return `
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" rel="noopener">
+          <input type="hidden" name="cmd" value="_xclick" />
+          <input type="hidden" name="business" value="saoopy90@gmail.com" />
+          <input type="hidden" name="item_name" value="${itemName}" />
+          <input type="hidden" name="amount" value="${amount}" />
+          <input type="hidden" name="currency_code" value="USD" />
+          <input type="hidden" name="return" value="${returnUrl}" />
+          <button type="submit" class="${btnClass}">${label}</button>
+        </form>`;
+    }
+
+    function renderBonus() {
+      const tier = getBonusTier();
+      const area = document.getElementById('bonusArea');
+      const total = bonusCourse.lessons.length;
+
+      if (!tier) {
+        area.innerHTML = `
+          <div class="section-divider"><div class="section-divider-line"></div><span class="section-divider-label">Bonus module</span><div class="section-divider-line"></div></div>
+          <div class="bonus-pricing">
+            <div class="bonus-pricing-head">
+              <div class="bonus-pricing-title">${bonusCourse.title}</div>
+              <p class="bonus-pricing-desc">${bonusCourse.desc}</p>
+            </div>
+            <div class="bonus-tiers">
+              <div class="bonus-tier-card">
+                <div class="bonus-tier-name">Basic</div>
+                <div class="bonus-tier-price">$20</div>
+                <p class="bonus-tier-feat">Full video playlist — ${total} lessons</p>
+                ${paypalForm('iHealth Academy — Medical Terminology in Insurance (Basic)', '20.00', 'basic', 'Unlock — $20', 'bonus-tier-btn')}
+              </div>
+              <div class="bonus-tier-card featured">
+                <div class="bonus-tier-badge">Best value</div>
+                <div class="bonus-tier-name">Premium</div>
+                <div class="bonus-tier-price">$100</div>
+                <p class="bonus-tier-feat">Everything in Basic + certificate of completion</p>
+                ${paypalForm('iHealth Academy — Medical Terminology in Insurance (Premium)', '100.00', 'premium', 'Unlock — $100', 'bonus-tier-btn')}
+              </div>
+            </div>
+          </div>`;
+        return;
+      }
+
+      const done = bonusProgress.size;
+      let html = `
+        <div class="section-divider"><div class="section-divider-line"></div><span class="section-divider-label">Bonus module — ${tier === 'premium' ? 'Premium' : 'Basic'}</span><div class="section-divider-line"></div></div>
+        <div class="module-header">
+          <div class="module-title">${bonusCourse.title}</div>
+          <p class="module-desc">${bonusCourse.desc}</p>
+        </div>
+        <div class="lessons-list">`;
+      bonusCourse.lessons.forEach((l, i) => {
+        const isDone = bonusProgress.has(i);
+        html += `
+          <div class="lesson-card${isDone ? ' done' : ''}" onclick="openBonusLesson(${i}, this)">
+            <div class="lesson-card-inner">
+              <div class="lesson-card-num">${String(i + 1).padStart(2, '0')}</div>
+              <div class="lesson-card-body">
+                <div class="lesson-card-title">${l.title}</div>
+                <div class="lesson-card-desc">${l.desc}</div>
+              </div>
+              <div class="lesson-card-right">
+                <span class="lesson-dur-tag">${l.dur}</span>
+                <span class="lesson-tag tag-free">Video</span>
+                <span class="lesson-arrow"><i class="fi fi-br-arrow-right"></i></span>
+              </div>
+            </div>
+          </div>`;
+      });
+      html += `</div>`;
+
+      if (tier === 'premium') {
+        html += `
+        <div class="exam-track-box" style="margin-top:1.5rem;">
+          <div class="exam-left">
+            <div class="exam-ico">📜</div>
+            <div>
+              <div class="exam-name">${bonusCourse.cert.name}</div>
+              <div class="exam-info">${done >= total ? 'Ready to download' : `Complete all ${total} lessons to unlock`}</div>
+            </div>
+          </div>
+          <button class="exam-btn" id="bonusExamBtn">${done >= total ? 'Download certificate →' : 'Keep watching'}</button>
+        </div>`;
+      } else {
+        html += `
+        <div class="bonus-upgrade-note">
+          <span>Want a certificate for this module?</span>
+          ${paypalForm('iHealth Academy — Medical Terminology in Insurance (Premium upgrade)', '80.00', 'premium', 'Upgrade — $80 more', 'bonus-upgrade-btn')}
+        </div>`;
+      }
+
+      area.innerHTML = html;
+
+      const examBtn = document.getElementById('bonusExamBtn');
+      if (examBtn) {
+        examBtn.onclick = () => {
+          if (done >= total) Certificate.generate(bonusCourse.cert.name);
+          else area.querySelector('.lessons-list').scrollIntoView({ behavior: 'smooth' });
+        };
+      }
+    }
+
+    function openBonusLesson(idx, el) {
+      LessonViewer.open(bonusCourse.lessons[idx], () => {
+        bonusProgress.add(idx);
+        if (el) el.classList.add('done');
+        saveBonusProgress();
+        renderBonus();
+      });
+    }
+
+    checkTierFromReturnUrl();
+    loadBonusProgress();
+    renderBonus();
   </script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>

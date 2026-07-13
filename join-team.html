@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Meet the Founder — iHealth Academy</title>
+  <title>Join the Founding Team — iHealth Academy</title>
   <link
     href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;800;900&display=swap"
     rel="stylesheet" />
@@ -13,7 +13,7 @@
   <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-bold-rounded/css/uicons-bold-rounded.css" rel="stylesheet" />
   <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css" rel="stylesheet" />
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-  <link href="css/founder.css" rel="stylesheet" />
+  <link href="css/join-team.css" rel="stylesheet" />
   <link href="css/nav-v2.css" rel="stylesheet" />
   <link href="css/livechat.css" rel="stylesheet" />
 </head>
@@ -119,66 +119,61 @@
     </div>
   </header>
 
-  <!-- MEET THE FOUNDER -->
-  <section class="founder-hero-wrap">
-    <div class="founder-inner">
-      <a class="founder-back" href="index.html"><i class="fi fi-sr-arrow-small-left"></i><span data-i18n="founder.back">Back to home</span></a>
-      <div class="founder-tag" data-aos="fade-up" data-i18n="founder.tag">Meet the founder</div>
+  <!-- JOIN THE FOUNDING TEAM -->
+  <section class="join-hero-wrap">
+    <div class="join-inner">
+      <a class="join-back" href="index.html"><i class="fi fi-sr-arrow-small-left"></i><span data-i18n="join.back">Back to home</span></a>
+      <div class="join-tag" data-aos="fade-up" data-i18n="join.tag">Join the founding team</div>
+      <h1 class="join-title" data-aos="fade-up" data-aos-delay="50" data-i18n="join.title">Help build iHealth Academy from the ground up.</h1>
+      <p class="join-desc" data-aos="fade-up" data-aos-delay="100" data-i18n="join.desc">We're looking for early co-founders and collaborators across clinical, content, and product roles. Tell us about yourself and attach your CV — our team reviews every submission.</p>
 
-      <div class="founder-head" data-aos="fade-up" data-aos-delay="50">
-        <div class="founder-photo">
-          <img src="images/founder-picture.png" alt="Dr. Musab Habib">
+      <form class="join-form panel" id="joinForm" data-aos="fade-up" data-aos-delay="150"
+        action="https://formspree.io/f/YOUR_FORM_ID" method="POST" enctype="multipart/form-data">
+        <div class="join-field">
+          <label data-i18n="join.nameLabel">Full name</label>
+          <input type="text" name="name" required />
         </div>
-        <div>
-          <h1 class="founder-name">Dr. Musab Habib</h1>
-          <div class="founder-title" data-i18n="founder.title">Founder, iHealth Academy</div>
+        <div class="join-field">
+          <label data-i18n="join.emailLabel">Email</label>
+          <input type="email" name="email" required />
         </div>
-      </div>
-
-      <div class="founder-bio" data-aos="fade-up" data-aos-delay="100">
-        <p data-i18n="founder.bio1">Dr. Musab Habib is a physician, radiology resident, medical insurance professional, and healthcare educator committed to making high-quality medical education more practical, accessible, and future-ready.</p>
-        <p data-i18n="founder.bio2">With experience spanning diagnostic radiology, healthcare insurance, clinical decision-making, and healthcare quality, he founded iHealth Academy with one simple belief:</p>
-
-        <div class="founder-quote" data-i18n="founder.quote">"Learning should not only help healthcare professionals pass examinations — it should help them make better decisions, provide safer patient care, and build meaningful careers."</div>
-
-        <p data-i18n="founder.bio3">At iHealth Academy, every course is designed to bridge the gap between theory and real-world practice, empowering healthcare professionals with knowledge they can apply confidently from day one.</p>
-        <p data-i18n="founder.bio4">As artificial intelligence reshapes healthcare, our commitment remains unchanged: combining human expertise with innovative technology to create a smarter, more effective learning experience — without losing the values that define great healthcare professionals.</p>
-      </div>
-
-      <div class="vm-grid" data-aos="fade-up" data-aos-delay="150">
-        <div class="vm-panel">
-          <h3 data-i18n="founder.visionTitle">Our Vision</h3>
-          <p data-i18n="founder.visionDesc">To become one of the world's most trusted digital healthcare learning platforms, empowering healthcare professionals through innovation, evidence-based education, and responsible artificial intelligence.</p>
+        <div class="join-field">
+          <label data-i18n="join.trackLabel">Which area interests you?</label>
+          <select name="track">
+            <option value="clinical" data-i18n="join.trackClinical">Clinical / Medical content</option>
+            <option value="radiology" data-i18n="nav.radiology">Radiology</option>
+            <option value="insurance" data-i18n="dash.insuranceName">Pre-Auth Specialist</option>
+            <option value="product" data-i18n="join.trackProduct">Product / Tech</option>
+            <option value="business" data-i18n="join.trackBusiness">Business / Operations</option>
+            <option value="other" data-i18n="join.trackOther">Other</option>
+          </select>
         </div>
-        <div class="vm-panel">
-          <h3 data-i18n="founder.missionTitle">Our Mission</h3>
-          <p data-i18n="founder.missionDesc">We strive to deliver practical, high-quality healthcare education that enables professionals to learn efficiently, think critically, and excel in their careers. By integrating expert knowledge, modern technology, and AI-powered learning, we aim to make continuous professional development more accessible, engaging, and impactful for healthcare professionals worldwide.</p>
+        <div class="join-field">
+          <label data-i18n="join.messageLabel">Message</label>
+          <textarea name="message" rows="4" data-i18n-ph="join.messagePlaceholder" placeholder="A little about your background and why you'd like to join"></textarea>
         </div>
-      </div>
+        <div class="join-field">
+          <label data-i18n="join.cvLabel">Upload your CV (PDF or Word)</label>
+          <input type="file" name="cv" accept=".pdf,.doc,.docx" required />
+        </div>
+        <button type="submit" class="join-submit" id="joinSubmitBtn" data-i18n="join.submitBtn">Submit application</button>
+        <p class="join-status" id="joinFormStatus"></p>
+      </form>
 
-      <div class="why-panel" data-aos="fade-up" data-aos-delay="200">
-        <h3 data-i18n="founder.whyTitle">Why iHealth Academy?</h3>
-        <ul class="why-list">
-          <li><span class="why-check">✓</span><span data-i18n="founder.why1">Evidence-based medical education</span></li>
-          <li><span class="why-check">✓</span><span data-i18n="founder.why2">Practical, career-focused learning</span></li>
-          <li><span class="why-check">✓</span><span data-i18n="founder.why3">Expert-led training and mentorship</span></li>
-          <li><span class="why-check">✓</span><span data-i18n="founder.why4">AI-enhanced learning experience</span></li>
-          <li><span class="why-check">✓</span><span data-i18n="founder.why5">Continuous innovation and lifelong professional development</span></li>
-        </ul>
+      <div class="join-success panel" id="joinSuccess" hidden data-aos="fade-up">
+        <div class="join-success-ico"><i class="fi fi-sr-check"></i></div>
+        <h3 data-i18n="join.successTitle">Application received.</h3>
+        <p data-i18n="join.successDesc">Thanks for reaching out — our team will review your CV and get back to you by email.</p>
       </div>
-
-      <div class="founder-banner" data-aos="fade-up" data-i18n="founder.banner">Learn. Innovate. Transform Healthcare.</div>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <div class="footer-inner">
       <div class="footer-top">
         <div class="footer-brand">
           <div class="footer-logo">i<span>Health</span> Academy</div>
-          <p class="footer-tagline" data-i18n="footer.brandTagline">Career support for healthcare professionals — CV tools, exam prep, and career
-            growth, all in one place.</p>
+          <p class="footer-tagline" data-i18n="footer.brandTagline">Career support for healthcare professionals — CV tools, exam prep, and career growth, all in one place.</p>
         </div>
         <div class="footer-cols">
           <div class="footer-col">
@@ -220,29 +215,29 @@
   <script src="js/livechat.js"></script>
   <script>
     window.I18N_PAGE_DICT = {
-      'founder.back': { en: 'Back to home', ar: 'العودة إلى الرئيسية' },
-      'founder.tag': { en: 'Meet the founder', ar: 'تعرف على المؤسس' },
-      'founder.uploadPhoto': { en: 'Upload photo', ar: 'رفع صورة' },
-      'founder.title': { en: 'Founder, iHealth Academy', ar: 'مؤسس أكاديمية آي هيلث' },
-      'founder.bio1': { en: 'Dr. Musab Habib is a physician, radiology resident, medical insurance professional, and healthcare educator committed to making high-quality medical education more practical, accessible, and future-ready.', ar: 'الدكتور مصعب حبيب طبيب ومقيم أشعة ومحترف في التأمين الطبي ومربٍ في مجال الرعاية الصحية، ملتزم بجعل التعليم الطبي عالي الجودة أكثر عملية وسهولة في الوصول ومستعدًا للمستقبل.' },
-      'founder.bio2': { en: 'With experience spanning diagnostic radiology, healthcare insurance, clinical decision-making, and healthcare quality, he founded iHealth Academy with one simple belief:', ar: 'بخبرة تمتد عبر الأشعة التشخيصية والتأمين الصحي واتخاذ القرار السريري وجودة الرعاية الصحية، أسس أكاديمية آي هيلث بناءً على قناعة بسيطة واحدة:' },
-      'founder.quote': { en: '"Learning should not only help healthcare professionals pass examinations — it should help them make better decisions, provide safer patient care, and build meaningful careers."', ar: '"يجب ألا يساعد التعلم أخصائيي الرعاية الصحية على اجتياز الامتحانات فقط — بل يجب أن يساعدهم على اتخاذ قرارات أفضل، وتقديم رعاية أكثر أمانًا للمرضى، وبناء مسيرات مهنية ذات معنى."' },
-      'founder.bio3': { en: 'At iHealth Academy, every course is designed to bridge the gap between theory and real-world practice, empowering healthcare professionals with knowledge they can apply confidently from day one.', ar: 'في أكاديمية آي هيلث، كل دورة مصممة لسد الفجوة بين النظرية والممارسة الواقعية، لتمكين أخصائيي الرعاية الصحية من معرفة يمكنهم تطبيقها بثقة منذ اليوم الأول.' },
-      'founder.bio4': { en: 'As artificial intelligence reshapes healthcare, our commitment remains unchanged: combining human expertise with innovative technology to create a smarter, more effective learning experience — without losing the values that define great healthcare professionals.', ar: 'بينما يعيد الذكاء الاصطناعي تشكيل الرعاية الصحية، يبقى التزامنا ثابتًا: الجمع بين الخبرة البشرية والتقنية المبتكرة لخلق تجربة تعلم أذكى وأكثر فعالية — دون فقدان القيم التي تُعرّف أفضل أخصائيي الرعاية الصحية.' },
-      'founder.visionTitle': { en: 'Our Vision', ar: 'رؤيتنا' },
-      'founder.visionDesc': { en: 'To become one of the world\'s most trusted digital healthcare learning platforms, empowering healthcare professionals through innovation, evidence-based education, and responsible artificial intelligence.', ar: 'أن نصبح واحدة من أكثر منصات التعلم الصحي الرقمي الموثوقة في العالم، لتمكين أخصائيي الرعاية الصحية من خلال الابتكار والتعليم القائم على الأدلة والذكاء الاصطناعي المسؤول.' },
-      'founder.missionTitle': { en: 'Our Mission', ar: 'مهمتنا' },
-      'founder.missionDesc': { en: 'We strive to deliver practical, high-quality healthcare education that enables professionals to learn efficiently, think critically, and excel in their careers. By integrating expert knowledge, modern technology, and AI-powered learning, we aim to make continuous professional development more accessible, engaging, and impactful for healthcare professionals worldwide.', ar: 'نسعى لتقديم تعليم صحي عملي وعالي الجودة يمكّن المحترفين من التعلم بكفاءة والتفكير النقدي والتفوق في مسيرتهم المهنية. من خلال دمج المعرفة الخبيرة والتقنية الحديثة والتعلم المدعوم بالذكاء الاصطناعي، نهدف إلى جعل التطوير المهني المستمر أكثر سهولة وجاذبية وتأثيرًا لأخصائيي الرعاية الصحية حول العالم.' },
-      'founder.whyTitle': { en: 'Why iHealth Academy?', ar: 'لماذا أكاديمية آي هيلث؟' },
-      'founder.why1': { en: 'Evidence-based medical education', ar: 'تعليم طبي قائم على الأدلة' },
-      'founder.why2': { en: 'Practical, career-focused learning', ar: 'تعلم عملي يركز على المسيرة المهنية' },
-      'founder.why3': { en: 'Expert-led training and mentorship', ar: 'تدريب وإرشاد بقيادة خبراء' },
-      'founder.why4': { en: 'AI-enhanced learning experience', ar: 'تجربة تعلم معززة بالذكاء الاصطناعي' },
-      'founder.why5': { en: 'Continuous innovation and lifelong professional development', ar: 'ابتكار مستمر وتطور مهني مدى الحياة' },
-      'founder.banner': { en: 'Learn. Innovate. Transform Healthcare.', ar: 'تعلّم. ابتكر. غيّر الرعاية الصحية.' },
-      'footer.meetFounder': { en: 'Meet the Founder', ar: 'تعرف على المؤسس' },
+      'join.back': { en: 'Back to home', ar: 'العودة إلى الرئيسية' },
+      'join.tag': { en: 'Join the founding team', ar: 'انضم إلى الفريق المؤسس' },
+      'join.title': { en: 'Help build iHealth Academy from the ground up.', ar: 'ساعد في بناء أكاديمية آي هيلث من الصفر.' },
+      'join.desc': { en: "We're looking for early co-founders and collaborators across clinical, content, and product roles. Tell us about yourself and attach your CV — our team reviews every submission.", ar: 'نبحث عن شركاء مؤسسين ومتعاونين أوائل عبر الأدوار السريرية والمحتوى والمنتج. أخبرنا عن نفسك وأرفق سيرتك الذاتية — يراجع فريقنا كل طلب.' },
+      'join.nameLabel': { en: 'Full name', ar: 'الاسم الكامل' },
+      'join.emailLabel': { en: 'Email', ar: 'البريد الإلكتروني' },
+      'join.trackLabel': { en: 'Which area interests you?', ar: 'ما المجال الذي يهمك؟' },
+      'join.trackClinical': { en: 'Clinical / Medical content', ar: 'المحتوى السريري / الطبي' },
+      'join.trackProduct': { en: 'Product / Tech', ar: 'المنتج / التقنية' },
+      'join.trackBusiness': { en: 'Business / Operations', ar: 'الأعمال / العمليات' },
+      'join.trackOther': { en: 'Other', ar: 'أخرى' },
+      'join.messageLabel': { en: 'Message', ar: 'الرسالة' },
+      'join.messagePlaceholder': { en: "A little about your background and why you'd like to join", ar: 'نبذة عن خلفيتك ولماذا ترغب في الانضمام' },
+      'join.cvLabel': { en: 'Upload your CV (PDF or Word)', ar: 'ارفع سيرتك الذاتية (PDF أو Word)' },
+      'join.submitBtn': { en: 'Submit application', ar: 'إرسال الطلب' },
+      'join.successTitle': { en: 'Application received.', ar: 'تم استلام طلبك.' },
+      'join.successDesc': { en: 'Thanks for reaching out — our team will review your CV and get back to you by email.', ar: 'شكرًا لتواصلك — سيراجع فريقنا سيرتك الذاتية ويتواصل معك عبر البريد الإلكتروني.' },
+      'join.errorMsg': { en: 'Something went wrong — please try again, or email your CV directly to info@ihealthacademy.com.', ar: 'حدث خطأ ما — يرجى المحاولة مرة أخرى، أو إرسال سيرتك الذاتية مباشرة إلى info@ihealthacademy.com.' },
+      'join.sending': { en: 'Sending…', ar: 'جارٍ الإرسال…' },
+      'dash.insuranceName': { en: 'Pre-Auth Specialist', ar: 'أخصائي التصريح المسبق' },
     };
   </script>
+  <script src="js/join-team.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init({ duration: 700, easing: 'ease', once: true, offset: 80 });
