@@ -110,6 +110,10 @@ html.is-loading body {
   position: relative;
 }
 
+.dash-side-btn i {
+  display: flex;
+}
+
 .dash-side-btn:hover,
 .dash-side-btn.active {
   background: rgba(255, 255, 255, 0.12);
@@ -409,7 +413,7 @@ html.is-loading body {
 
   .dash-sidebar {
     position: fixed;
-    top: 0;
+    top: 70px;
     left: -100px;
     height: 100vh;
     z-index: 300;
