@@ -538,3 +538,30 @@ a {
   font-size: 13px;
   color: var(--ink-dim);
 }
+
+/* meeting status badges */
+.meeting-status {
+  flex-shrink: 0;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 4px 9px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.meeting-status.status-pending {
+  background: var(--accent-tint);
+  color: #8A5A0E;
+}
+
+.meeting-status.status-accepted {
+  background: var(--live-tint);
+  color: var(--live);
+}
+
+.meeting-status.status-declined {
+  background: #FDEAEA;
+  color: #C0392B;
+}

@@ -15,6 +15,7 @@
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <link href="css/dashboard.css" rel="stylesheet" />
   <link href="css/mentor-dashboard.css" rel="stylesheet" />
+  <link href="css/forms-shared.css" rel="stylesheet" />
   <link href="css/nav-v2.css" rel="stylesheet" />
   <link href="css/livechat.css" rel="stylesheet" />
 </head>
@@ -214,6 +215,25 @@
         </div>
         <div id="mentorDirectoryList"></div>
       </div>
+
+      <div class="section-gap">
+        <div class="dash-section-head">
+          <span class="dash-section-title" data-i18n="meet.title">Meeting requests</span>
+        </div>
+        <p class="mentee-empty" id="meetingNoMentorNote" data-i18n="meet.selectMentorFirst">Select a mentor above to request a meeting.</p>
+        <div class="ih-form-panel" id="meetingRequestFormWrap" hidden>
+          <div class="ih-field">
+            <label data-i18n="meet.dateLabel">Preferred date</label>
+            <input type="date" id="meetingDateInput" />
+          </div>
+          <div class="ih-field">
+            <label data-i18n="meet.noteLabel">Note for your mentor</label>
+            <textarea id="meetingNoteInput" rows="2" data-i18n-ph="meet.notePlaceholder" placeholder="What would you like to discuss?"></textarea>
+          </div>
+          <button type="button" class="ih-submit" id="meetingRequestBtn" data-i18n="meet.requestBtn">Request a meeting</button>
+        </div>
+        <div id="meetingRequestList" class="section-gap"></div>
+      </div>
       </div>
     </main>
   </div>
@@ -250,6 +270,17 @@
       'mentor.selected': { en: 'Selected ✓', ar: 'تم الاختيار ✓' },
       'course.radiology': { en: 'Radiology', ar: 'الأشعة' },
       'course.preauth': { en: 'Pre-Auth Specialist', ar: 'أخصائي التصريح المسبق' },
+      'meet.title': { en: 'Meeting requests', ar: 'طلبات الاجتماعات' },
+      'meet.selectMentorFirst': { en: 'Select a mentor above to request a meeting.', ar: 'اختر مرشدًا أعلاه لطلب اجتماع.' },
+      'meet.dateLabel': { en: 'Preferred date', ar: 'التاريخ المفضل' },
+      'meet.noteLabel': { en: 'Note for your mentor', ar: 'ملاحظة لمرشدك' },
+      'meet.notePlaceholder': { en: 'What would you like to discuss?', ar: 'ما الذي تود مناقشته؟' },
+      'meet.requestBtn': { en: 'Request a meeting', ar: 'اطلب اجتماعًا' },
+      'meet.noneYet': { en: 'No meeting requests yet.', ar: 'لا توجد طلبات اجتماعات بعد.' },
+      'meet.noDate': { en: 'No date set', ar: 'لم يتم تحديد تاريخ' },
+      'meet.pending': { en: 'Pending', ar: 'قيد الانتظار' },
+      'meet.accepted': { en: 'Accepted', ar: 'تم القبول' },
+      'meet.declined': { en: 'Declined', ar: 'تم الرفض' },
     };
   </script>
   <script src="js/dashboard.js"></script>

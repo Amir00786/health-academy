@@ -149,7 +149,85 @@
     });
   }
 
+  function renderMeetingsOverview() {
+    const list = document.getElementById('meetingsOverviewList');
+    if (!list || !window.IH_MENTORS) return;
+    const meetings = window.IH_MENTORS.getMeetingRequests().slice().sort((a, b) => b.createdAt - a.createdAt);
+
+    document.getElementById('meetingsPendingCount').textContent = meetings.filter((m) => m.status === 'pending').length;
+    document.getElementById('meetingsAcceptedCount').textContent = meetings.filter((m) => m.status === 'accepted').length;
+    document.getElementById('meetingsDeclinedCount').textContent = meetings.filter((m) => m.status === 'declined').length;
+
+    list.innerHTML = '';
+    if (!meetings.length) {
+      list.innerHTML = '<p class="empty-note">No meeting requests yet.</p>';
+      return;
+    }
+    meetings.forEach((m) => {
+      const row = document.createElement('div');
+      row.className = 'mentor-row';
+      const label = m.status.charAt(0).toUpperCase() + m.status.slice(1);
+      row.innerHTML =
+        '<div><div class="mentor-name">' + m.studentName + ' → ' + m.mentorName + '</div>' +
+        '<div class="mentor-meta">' + (m.preferredDate || 'No date set') + (m.note ? ' · ' + m.note : '') + '</div></div>' +
+        '<span class="meeting-status status-' + m.status + '">' + label + '</span>';
+      list.appendChild(row);
+    });
+  }
+
+  // BACKUP & RESTORE — bundles every "ih-" localStorage key (student progress,
+  // mentor directory, meeting requests, admin decisions) into one JSON file.
+  function exportAllData() {
+    const data = {};
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key && key.indexOf('ih-') === 0) data[key] = localStorage.getItem(key);
+    }
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'ihealth-academy-backup-' + new Date().toISOString().slice(0, 10) + '.json';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  }
+
+  function importAllData(file) {
+    const note = document.getElementById('backupStatusNote');
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const data = JSON.parse(reader.result);
+        Object.keys(data).forEach((key) => {
+          if (key.indexOf('ih-') === 0) localStorage.setItem(key, data[key]);
+        });
+        note.textContent = 'Backup restored — reloading…';
+        location.reload();
+      } catch (e) {
+        note.textContent = 'Could not read that file — make sure it\'s a backup JSON exported from this console.';
+      }
+    };
+    reader.readAsText(file);
+  }
+
+  function initBackup() {
+    const exportBtn = document.getElementById('exportDataBtn');
+    const importBtn = document.getElementById('importDataBtn');
+    const importFile = document.getElementById('importDataFile');
+    if (exportBtn) exportBtn.addEventListener('click', exportAllData);
+    if (importBtn && importFile) {
+      importBtn.addEventListener('click', () => importFile.click());
+      importFile.addEventListener('change', () => {
+        if (importFile.files[0]) importAllData(importFile.files[0]);
+      });
+    }
+  }
+
   initLock();
   renderModQueue();
   renderMentorQueue();
+  renderMeetingsOverview();
+  initBackup();
 })();

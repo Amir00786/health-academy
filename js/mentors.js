@@ -9,6 +9,7 @@ window.IH_MENTORS = (function () {
   const DIRECTORY_KEY = 'ih-approved-mentors';
   const SELECTION_KEY = 'ih-student-mentor-selection';
   const PROFILE_KEY = 'ih-mentor-profile';
+  const MEETINGS_KEY = 'ih-meeting-requests';
 
   function getDirectory() {
     try {
@@ -62,5 +63,53 @@ window.IH_MENTORS = (function () {
     upsertMentor(Object.assign({}, profile, { source: 'self' }));
   }
 
-  return { getDirectory, upsertMentor, removeMentor, getSelection, selectMentor, clearSelection, getOwnProfile, saveOwnProfile };
+  // MEETING REQUESTS — same single-browser scope as the rest of this file.
+  function getMeetingRequests() {
+    try {
+      return JSON.parse(localStorage.getItem(MEETINGS_KEY)) || [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function saveMeetingRequests(list) {
+    localStorage.setItem(MEETINGS_KEY, JSON.stringify(list));
+  }
+
+  function requestMeeting(opts) {
+    const list = getMeetingRequests();
+    const entry = {
+      id: 'meet-' + Date.now() + '-' + Math.floor(Math.random() * 1000),
+      mentorId: opts.mentorId,
+      mentorName: opts.mentorName,
+      studentName: localStorage.getItem('ih-student-name') || 'Guest Student',
+      studentSpecialty: localStorage.getItem('ih-student-specialty') || '',
+      note: opts.note || '',
+      preferredDate: opts.preferredDate || '',
+      status: 'pending',
+      createdAt: Date.now(),
+    };
+    list.push(entry);
+    saveMeetingRequests(list);
+    return entry;
+  }
+
+  function respondToMeeting(id, status) {
+    const list = getMeetingRequests();
+    const idx = list.findIndex((m) => m.id === id);
+    if (idx >= 0) {
+      list[idx].status = status;
+      list[idx].respondedAt = Date.now();
+      saveMeetingRequests(list);
+    }
+  }
+
+  function getMeetingsForMentor(mentorId) {
+    return getMeetingRequests().filter((m) => m.mentorId === mentorId);
+  }
+
+  return {
+    getDirectory, upsertMentor, removeMentor, getSelection, selectMentor, clearSelection, getOwnProfile, saveOwnProfile,
+    getMeetingRequests, requestMeeting, respondToMeeting, getMeetingsForMentor,
+  };
 })();

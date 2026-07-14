@@ -132,6 +132,28 @@
         </div>
       </div>
 
+      <div class="panel section-gap">
+        <h3>📅 Meetings overview</h3>
+        <div class="metric-grid" style="grid-template-columns:repeat(3,1fr); margin-bottom:16px;">
+          <div class="metric" style="padding:14px;"><b style="font-size:20px;" id="meetingsPendingCount">0</b><span>Pending requests</span></div>
+          <div class="metric" style="padding:14px;"><b style="font-size:20px;" id="meetingsAcceptedCount">0</b><span>Accepted</span></div>
+          <div class="metric" style="padding:14px;"><b style="font-size:20px;" id="meetingsDeclinedCount">0</b><span>Declined</span></div>
+        </div>
+        <div id="meetingsOverviewList"></div>
+        <p class="panel-note">Reflects mentor/student meeting requests stored in this browser — connect a real backend for a cross-device view.</p>
+      </div>
+
+      <div class="panel section-gap">
+        <h3>🗂️ Backup &amp; Restore</h3>
+        <p class="panel-note" style="margin-top:0;">Export everything stored in this browser — student progress, mentor directory, meeting requests, and admin decisions — as a JSON file you can keep safe, and re-import it later to restore it or move it to another browser.</p>
+        <div class="mod-actions" style="margin-top:14px;">
+          <button type="button" class="mod-btn" id="exportDataBtn">Export data (.json)</button>
+          <button type="button" class="mod-btn" id="importDataBtn">Import data (.json)</button>
+          <input type="file" id="importDataFile" accept="application/json" hidden />
+        </div>
+        <p class="panel-note" id="backupStatusNote"></p>
+      </div>
+
       <div class="dash-grid section-gap">
         <div class="panel">
           <h3>Waitlist demand</h3>

@@ -202,3 +202,61 @@
 .favorite-course-btn.active i {
   color: #E8A33D;
 }
+
+/* MEETING REQUESTS — student-side status badge + mentor-side accept/decline actions */
+.meeting-status {
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 5px 11px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.meeting-status.status-pending {
+  background: #FBF0DD;
+  color: #8A5A0E;
+}
+
+.meeting-status.status-accepted {
+  background: #E7F7EC;
+  color: #1F9D55;
+}
+
+.meeting-status.status-declined {
+  background: #FDEAEA;
+  color: #C0392B;
+}
+
+.mod-actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.mod-btn {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 7px;
+  border: 1px solid rgba(6, 6, 8, 0.12);
+  background: #fff;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+}
+
+.mod-btn:hover {
+  border-color: #00C896;
+  color: #095F5B;
+}
+
+.mod-btn.danger {
+  color: #C0392B;
+  border-color: #F3C9C4;
+}
+
+.mod-btn.danger:hover {
+  background: #FDEAEA;
+}

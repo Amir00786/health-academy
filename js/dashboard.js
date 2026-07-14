@@ -198,7 +198,56 @@
         if (current && current.mentorId === id) window.IH_MENTORS.clearSelection();
         else window.IH_MENTORS.selectMentor({ id, name });
         renderMentorDirectory();
+        renderMeetingSection();
       });
+    });
+  }
+
+  function statusLabel(status) {
+    if (status === 'accepted') return t('meet.accepted', 'Accepted');
+    if (status === 'declined') return t('meet.declined', 'Declined');
+    return t('meet.pending', 'Pending');
+  }
+
+  function renderMeetingSection() {
+    const formWrap = document.getElementById('meetingRequestFormWrap');
+    const noMentorNote = document.getElementById('meetingNoMentorNote');
+    const list = document.getElementById('meetingRequestList');
+    if (!list || !window.IH_MENTORS) return;
+
+    const selection = window.IH_MENTORS.getSelection();
+    if (formWrap) formWrap.hidden = !selection;
+    if (noMentorNote) noMentorNote.hidden = !!selection;
+
+    const all = window.IH_MENTORS.getMeetingRequests().slice().reverse();
+    list.innerHTML = '';
+    if (!all.length) {
+      list.innerHTML = `<p class="mentee-empty">${t('meet.noneYet', 'No meeting requests yet.')}</p>`;
+      return;
+    }
+    all.forEach((m) => {
+      const row = document.createElement('div');
+      row.className = 'mentee-row';
+      row.innerHTML =
+        '<div class="mentee-avatar">' + initials(m.mentorName) + '</div>' +
+        '<div style="flex:1;"><div class="mentee-name">' + m.mentorName + '</div>' +
+        '<div class="mentee-meta">' + (m.preferredDate || t('meet.noDate', 'No date set')) + (m.note ? ' · ' + m.note : '') + '</div></div>' +
+        '<span class="meeting-status status-' + m.status + '">' + statusLabel(m.status) + '</span>';
+      list.appendChild(row);
+    });
+  }
+
+  const meetingRequestBtn = document.getElementById('meetingRequestBtn');
+  if (meetingRequestBtn) {
+    meetingRequestBtn.addEventListener('click', () => {
+      const selection = window.IH_MENTORS && window.IH_MENTORS.getSelection();
+      if (!selection) return;
+      const preferredDate = document.getElementById('meetingDateInput').value;
+      const note = document.getElementById('meetingNoteInput').value.trim();
+      window.IH_MENTORS.requestMeeting({ mentorId: selection.mentorId, mentorName: selection.mentorName, note, preferredDate });
+      document.getElementById('meetingDateInput').value = '';
+      document.getElementById('meetingNoteInput').value = '';
+      renderMeetingSection();
     });
   }
 
@@ -208,6 +257,7 @@
     renderCourses();
     renderFavoriteCourse();
     renderMentorDirectory();
+    renderMeetingSection();
   }
 
   renderAll();

@@ -49,12 +49,68 @@
     }
   }
 
+  function renderMeetings(profile) {
+    const reqSection = document.getElementById('meetingRequestsSection');
+    const reqList = document.getElementById('meetingRequestsList');
+    const upSection = document.getElementById('upcomingMeetingsSection');
+    const upList = document.getElementById('upcomingMeetingsList');
+    if (!reqSection || !window.IH_MENTORS) return;
+
+    const all = window.IH_MENTORS.getMeetingsForMentor(profile.id);
+    const pending = all.filter((m) => m.status === 'pending');
+    const accepted = all.filter((m) => m.status === 'accepted');
+
+    reqSection.hidden = false;
+    reqList.innerHTML = '';
+    if (!pending.length) {
+      reqList.innerHTML = `<p class="mentee-empty">${t('meet.noRequests', 'No pending meeting requests.')}</p>`;
+    } else {
+      pending.forEach((m) => {
+        const row = document.createElement('div');
+        row.className = 'mentee-row';
+        row.innerHTML =
+          '<div class="mentee-avatar">' + initials(m.studentName) + '</div>' +
+          '<div style="flex:1;"><div class="mentee-name">' + m.studentName + '</div>' +
+          '<div class="mentee-meta">' + (m.preferredDate || t('meet.noDate', 'No date set')) + (m.note ? ' · ' + m.note : '') + '</div></div>' +
+          '<div class="mod-actions">' +
+            '<button type="button" class="mod-btn" data-meeting="' + m.id + '" data-decision="accepted">' + t('meet.accept', 'Accept') + '</button>' +
+            '<button type="button" class="mod-btn danger" data-meeting="' + m.id + '" data-decision="declined">' + t('meet.decline', 'Decline') + '</button>' +
+          '</div>';
+        reqList.appendChild(row);
+      });
+      reqList.querySelectorAll('.mod-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          window.IH_MENTORS.respondToMeeting(btn.getAttribute('data-meeting'), btn.getAttribute('data-decision'));
+          renderMeetings(profile);
+        });
+      });
+    }
+
+    upSection.hidden = false;
+    upList.innerHTML = '';
+    if (!accepted.length) {
+      upList.innerHTML = `<p class="mentee-empty">${t('meet.noUpcoming', 'No upcoming meetings yet.')}</p>`;
+    } else {
+      accepted.forEach((m) => {
+        const row = document.createElement('div');
+        row.className = 'mentee-row';
+        row.innerHTML =
+          '<div class="mentee-avatar">' + initials(m.studentName) + '</div>' +
+          '<div><div class="mentee-name">' + m.studentName + '</div>' +
+          '<div class="mentee-meta">' + (m.preferredDate || t('meet.noDate', 'No date set')) + '</div></div>';
+        upList.appendChild(row);
+      });
+    }
+  }
+
   function renderProfile() {
     const profile = window.IH_MENTORS.getOwnProfile();
     if (!profile) {
       setupPanel.hidden = false;
       statGrid.hidden = true;
       menteesSection.hidden = true;
+      document.getElementById('meetingRequestsSection').hidden = true;
+      document.getElementById('upcomingMeetingsSection').hidden = true;
       return;
     }
     setupPanel.hidden = true;
@@ -67,6 +123,7 @@
     document.getElementById('mentorTrackStat').textContent = trackLabel(profile.track);
 
     renderMentees(profile);
+    renderMeetings(profile);
   }
 
   document.getElementById('mentorSaveBtn').addEventListener('click', () => {
