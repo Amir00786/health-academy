@@ -83,7 +83,7 @@ html.is-loading body {
 .dash-sidebar {
   width: 76px;
   flex-shrink: 0;
-  background: #0E5D4F;
+  background: #142C3C;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -101,7 +101,7 @@ html.is-loading body {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(207, 227, 223, 0.65);
   font-size: 19px;
   text-decoration: none;
   border: none;
@@ -114,6 +114,22 @@ html.is-loading body {
 .dash-side-btn.active {
   background: rgba(255, 255, 255, 0.12);
   color: #fff;
+}
+
+.dash-sidebar-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  border: 1px solid rgba(6, 6, 8, 0.12);
+  background: #fff;
+  font-size: 18px;
+  line-height: 1;
+  color: #060608;
+  cursor: pointer;
+  margin-bottom: 10px;
 }
 
 .dash-side-btn[data-soon]:hover::after {
@@ -379,18 +395,35 @@ html.is-loading body {
 }
 
 @media (max-width: 640px) {
+  .dash-sidebar-toggle {
+    display: flex;
+  }
+
+  .dash-stat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .favorite-course-row {
+    grid-template-columns: 1fr;
+  }
+
   .dash-sidebar {
-    width: 60px;
+    position: fixed;
+    top: 0;
+    left: -100px;
+    height: 100vh;
+    z-index: 300;
+    box-shadow: 4px 0 24px rgba(6, 6, 8, 0.2);
+    transition: left 0.25s ease;
+  }
+
+  .dash-sidebar.open {
+    left: 0;
   }
 
   .dash-main {
-    margin-left: 60px;
-    padding: 24px 1.25rem 50px;
-  }
-
-  .dash-side-btn {
-    width: 38px;
-    height: 38px;
-    font-size: 16px;
+    margin-left: 0;
+    width: 100%;
+    padding: 20px 1.25rem 50px;
   }
 }
