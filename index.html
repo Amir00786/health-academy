@@ -16,6 +16,7 @@
   <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css" rel="stylesheet" />
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <link href="css/home.css" rel="stylesheet" />
+  <link href="css/forms-shared.css" rel="stylesheet" />
   <link href="css/nav-v2.css" rel="stylesheet" />
   <link href="css/livechat.css" rel="stylesheet" />
 </head>
@@ -437,9 +438,9 @@
           <div class="cv-builder-hd" data-i18n="home.cvBuilderHd">Build your CV — live ATS score</div>
           <div class="cv-form">
             <div class="cv-row">
-              <div class="cv-field"><label>Full name</label><input type="text" id="cvn" placeholder="Dr. Ahmed..."
+              <div class="ih-field"><label>Full name</label><input type="text" id="cvn" placeholder="Dr. Ahmed..."
                   oninput="cvScore()" /></div>
-              <div class="cv-field"><label>Specialty</label>
+              <div class="ih-field"><label>Specialty</label>
                 <select id="cvs" onchange="cvScore()">
                   <option value="">Select</option>
                   <option>Diagnostic Radiology</option>
@@ -457,7 +458,7 @@
               </div>
             </div>
             <div class="cv-row">
-              <div class="cv-field"><label>Level</label>
+              <div class="ih-field"><label>Level</label>
                 <select id="cvl" onchange="cvScore()">
                   <option value="">Select</option>
                   <option>Medical Student</option>
@@ -470,7 +471,7 @@
                   <option>Manager</option>
                 </select>
               </div>
-              <div class="cv-field"><label>Target country</label>
+              <div class="ih-field"><label>Target country</label>
                 <select id="cvc" onchange="cvScore()">
                   <option value="">Select</option>
                   <option>Saudi Arabia</option>
@@ -482,9 +483,9 @@
                 </select>
               </div>
             </div>
-            <div class="cv-field"><label>Key skills & certifications</label><input type="text" id="cvsk"
+            <div class="ih-field"><label>Key skills & certifications</label><input type="text" id="cvsk"
                 placeholder="e.g. FRCR, MRI, CT, pre-authorization, PACS..." oninput="cvScore()" /></div>
-            <div class="cv-field"><label>Professional summary</label><textarea id="cvsu"
+            <div class="ih-field"><label>Professional summary</label><textarea id="cvsu"
                 placeholder="2-3 sentences about your experience and goals..." oninput="cvScore()"></textarea></div>
             <div class="ats-box" id="atsBox">
               <div style="flex:1">

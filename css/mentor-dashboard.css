@@ -41,42 +41,6 @@
   margin-bottom: 16px;
 }
 
-.mentor-form .field {
-  margin-bottom: 14px;
-}
-
-.mentor-form label {
-  display: block;
-  font-size: 12.5px;
-  font-weight: 700;
-  color: rgba(6, 6, 8, 0.6);
-  margin-bottom: 5px;
-}
-
-.mentor-form input,
-.mentor-form select,
-.mentor-form textarea {
-  width: 100%;
-  border: 1px solid rgba(6, 6, 8, 0.12);
-  border-radius: 9px;
-  padding: 10px 12px;
-  font-size: 14px;
-  font-family: 'Roboto', sans-serif;
-  outline: none;
-}
-
-.mentor-form input:focus,
-.mentor-form select:focus,
-.mentor-form textarea:focus {
-  border-color: #00C896;
-  outline: 2px solid rgba(0, 200, 150, 0.25);
-  outline-offset: 1px;
-}
-
-.mentor-form textarea {
-  resize: vertical;
-}
-
 /* .btn/.btn-primary from nav-v2.css are scoped to #mainnav only — restyle here
    since this button sits inside the dashboard body, not the header. */
 .mentor-form .btn-primary {

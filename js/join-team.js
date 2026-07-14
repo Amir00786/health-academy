@@ -17,6 +17,55 @@
   const submitBtn = document.getElementById('joinSubmitBtn');
   const success = document.getElementById('joinSuccess');
 
+  // CV UPLOAD DROPZONE
+  const uploadZone = document.getElementById('joinUploadZone');
+  const cvInput = document.getElementById('joinCvInput');
+  const cvFilename = document.getElementById('joinCvFilename');
+  const cvRemove = document.getElementById('joinCvRemove');
+
+  function showFile(file) {
+    if (!file) return;
+    uploadZone.classList.add('has-file');
+    cvFilename.textContent = file.name;
+  }
+
+  function clearFile() {
+    cvInput.value = '';
+    uploadZone.classList.remove('has-file');
+    cvFilename.textContent = '';
+  }
+
+  cvInput.addEventListener('change', () => showFile(cvInput.files[0]));
+
+  cvRemove.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    clearFile();
+  });
+
+  ['dragenter', 'dragover'].forEach((evt) => {
+    uploadZone.addEventListener(evt, (e) => {
+      e.preventDefault();
+      uploadZone.classList.add('drag-over');
+    });
+  });
+
+  ['dragleave', 'dragend'].forEach((evt) => {
+    uploadZone.addEventListener(evt, (e) => {
+      e.preventDefault();
+      uploadZone.classList.remove('drag-over');
+    });
+  });
+
+  uploadZone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    uploadZone.classList.remove('drag-over');
+    const file = e.dataTransfer.files[0];
+    if (!file) return;
+    cvInput.files = e.dataTransfer.files;
+    showFile(file);
+  });
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 

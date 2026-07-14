@@ -337,7 +337,6 @@
   font-family: var(--sans-v2);
   text-decoration: none;
   display: inline-block;
-  whitespace: nowrap;
 }
 
 #mainnav .btn-ghost {

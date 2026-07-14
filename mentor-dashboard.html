@@ -15,6 +15,7 @@
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <link href="css/dashboard.css" rel="stylesheet" />
   <link href="css/mentor-dashboard.css" rel="stylesheet" />
+  <link href="css/forms-shared.css" rel="stylesheet" />
   <link href="css/nav-v2.css" rel="stylesheet" />
   <link href="css/livechat.css" rel="stylesheet" />
 </head>
@@ -159,15 +160,15 @@
           <span data-i18n="mentor.demoDesc">There's no backend yet, so a "match" here only works if a student uses this same browser to select you. Connecting a real backend would make this work across everyone's own devices.</span>
         </div>
 
-        <div class="panel mentor-setup" id="mentorSetupPanel">
+        <div class="ih-form-panel panel mentor-setup" id="mentorSetupPanel">
           <h3 data-i18n="mentor.setupTitle">Set up your mentor profile</h3>
           <p class="panel-note" data-i18n="mentor.setupDesc">Students will see this profile in their "Select your mentor" list once it's saved.</p>
           <div class="mentor-form">
-            <div class="field">
+            <div class="ih-field">
               <label data-i18n="mentor.nameLabel">Name</label>
               <input type="text" id="mentorFormName" placeholder="e.g. Dr. Musab Habib" />
             </div>
-            <div class="field">
+            <div class="ih-field">
               <label data-i18n="mentor.trackLabel">Track</label>
               <select id="mentorFormTrack">
                 <option value="radiology" data-i18n="nav.radiology">Radiology</option>
@@ -175,11 +176,11 @@
                 <option value="both" data-i18n="mentor.trackBoth">Both</option>
               </select>
             </div>
-            <div class="field">
+            <div class="ih-field">
               <label data-i18n="mentor.experienceLabel">Years of experience</label>
               <input type="text" id="mentorFormExperience" placeholder="e.g. 8 yrs experience" />
             </div>
-            <div class="field">
+            <div class="ih-field">
               <label data-i18n="mentor.bioLabel">Short bio</label>
               <textarea id="mentorFormBio" rows="3" placeholder="A sentence or two students will see"></textarea>
             </div>
