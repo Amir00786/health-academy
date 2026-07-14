@@ -723,6 +723,28 @@ footer {
   box-shadow: 0 8px 20px rgba(255, 255, 255, 0.12);
 }
 
+.footer-paypal-btn-pro {
+  background: #00C896;
+  color: #060608;
+}
+
+.footer-paypal-btn-pro:hover {
+  background: #00b085;
+  box-shadow: 0 8px 20px rgba(0, 200, 150, 0.25);
+}
+
+.footer-paypal-btn-pro.is-unlocked {
+  background: rgba(0, 200, 150, 0.15);
+  color: #00C896;
+  cursor: default;
+  box-shadow: none;
+}
+
+.footer-paypal-btn-pro.is-unlocked:hover {
+  transform: none;
+  box-shadow: none;
+}
+
 /* PAGE LOADER */
 html.is-loading,
 html.is-loading body {

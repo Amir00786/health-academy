@@ -45,3 +45,35 @@
   });
 })();
 
+// PRO ACCESS CHECKOUT — real PayPal Buy Now button in the footer, separate from the
+// donate button. The `return` URL is built from the current origin so this works on
+// any domain without hardcoding one. Like the insurance bonus-tier checkout, this is a
+// trust-based unlock (no server-side payment verification) — anyone could add
+// ?pro=unlocked to the URL manually to set the flag for free.
+(function () {
+  const PRO_KEY = 'ih-pro-access';
+
+  const params = new URLSearchParams(location.search);
+  if (params.get('pro') === 'unlocked') {
+    localStorage.setItem(PRO_KEY, 'true');
+    params.delete('pro');
+    const qs = params.toString();
+    history.replaceState(null, '', location.pathname + (qs ? '?' + qs : ''));
+  }
+
+  const returnUrl = location.origin + location.pathname + '?pro=unlocked';
+  document.querySelectorAll('.pro-return-input').forEach((input) => { input.value = returnUrl; });
+
+  if (localStorage.getItem(PRO_KEY) === 'true') {
+    document.querySelectorAll('.footer-paypal-btn-pro').forEach((btn) => {
+      btn.disabled = true;
+      btn.classList.add('is-unlocked');
+      const label = btn.querySelector('[data-i18n]');
+      if (label) {
+        label.setAttribute('data-i18n', 'footer.paypalProUnlocked');
+        label.textContent = '✓ Pro unlocked';
+      }
+    });
+  }
+})();
+

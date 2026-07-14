@@ -3,6 +3,24 @@
 (function () {
   const PLACEHOLDER_VIDEO = 'https://www.w3schools.com/html/mov_bbb.mp4';
 
+  function lang() {
+    return (window.I18N && window.I18N.currentLang) ? window.I18N.currentLang() : 'en';
+  }
+
+  const STRINGS = {
+    discussions: { en: '0 Discussions', ar: '0 مناقشات' },
+    expandLabel: { en: 'Toggle fullscreen', ar: 'تبديل ملء الشاشة' },
+    closeLabel: { en: 'Close', ar: 'إغلاق' },
+    completeContinue: { en: 'Complete & Continue →', ar: '← إتمام والمتابعة' },
+    quickCheck: { en: 'Quick check', ar: 'تحقق سريع' },
+    answerToComplete: { en: 'Answer to complete this lesson', ar: 'أجب لإكمال هذا الدرس' },
+    submitAnswers: { en: 'Submit answers', ar: 'إرسال الإجابات' },
+    tryAgain: { en: 'Try again', ar: 'حاول مرة أخرى' },
+  };
+  function t(key) {
+    return STRINGS[key][lang()] || STRINGS[key].en;
+  }
+
   const overlay = document.createElement('div');
   overlay.className = 'lv-overlay';
   overlay.innerHTML = `
@@ -10,7 +28,7 @@
       <div class="lv-header">
         <span class="lv-header-title" id="lvTitle">—</span>
         <div class="lv-header-actions">
-          <span class="lv-discussions"><i class="fi fi-sr-comment-alt"></i> 0 Discussions</span>
+          <span class="lv-discussions"><i class="fi fi-sr-comment-alt"></i> <span id="lvDiscussions">0 Discussions</span></span>
           <button type="button" class="lv-icon-btn" id="lvExpand" aria-label="Toggle fullscreen"><i class="fi fi-sr-expand"></i></button>
           <button type="button" class="lv-icon-btn lv-close" aria-label="Close"><i class="fi fi-sr-cross"></i></button>
         </div>
@@ -23,7 +41,7 @@
       </div>
       <div class="lv-step lv-hidden" id="lvStepQuiz">
         <div class="lv-quiz-body">
-          <div class="lv-eyebrow">Quick check</div>
+          <div class="lv-eyebrow" id="lvEyebrow">Quick check</div>
           <h3 class="lv-title" id="lvQuizTitle">Answer to complete this lesson</h3>
           <div id="lvQuestions"></div>
           <div class="lv-quiz-result hidden" id="lvResult"></div>
@@ -34,6 +52,19 @@
     </div>
   `;
   document.body.appendChild(overlay);
+
+  function applyStaticStrings() {
+    overlay.querySelector('#lvDiscussions').textContent = t('discussions');
+    overlay.querySelector('#lvExpand').setAttribute('aria-label', t('expandLabel'));
+    overlay.querySelector('.lv-close').setAttribute('aria-label', t('closeLabel'));
+    overlay.querySelector('#lvToQuiz').textContent = t('completeContinue');
+    overlay.querySelector('#lvEyebrow').textContent = t('quickCheck');
+    overlay.querySelector('#lvQuizTitle').textContent = t('answerToComplete');
+    overlay.querySelector('#lvSubmit').textContent = t('submitAnswers');
+    overlay.querySelector('#lvRetry').textContent = t('tryAgain');
+  }
+  applyStaticStrings();
+  document.addEventListener('ih:langchange', applyStaticStrings);
 
   const els = {
     modal: overlay.querySelector('.lv-modal'),
@@ -117,13 +148,17 @@
     els.result.classList.remove('hidden');
     if (passed) {
       els.result.className = 'lv-quiz-result lv-result-pass';
-      els.result.textContent = `Nice — ${correctCount}/${quiz.length} correct. Lesson complete.`;
+      els.result.textContent = lang() === 'ar'
+        ? `رائع — ${correctCount}/${quiz.length} صحيحة. تم إكمال الدرس.`
+        : `Nice — ${correctCount}/${quiz.length} correct. Lesson complete.`;
       els.retry.classList.add('lv-hidden');
       if (currentOnComplete) currentOnComplete();
       setTimeout(close, 1100);
     } else {
       els.result.className = 'lv-quiz-result lv-result-fail';
-      els.result.textContent = `${correctCount}/${quiz.length} correct — review the video and try again.`;
+      els.result.textContent = lang() === 'ar'
+        ? `${correctCount}/${quiz.length} صحيحة — راجع الفيديو وحاول مرة أخرى.`
+        : `${correctCount}/${quiz.length} correct — review the video and try again.`;
       els.retry.classList.remove('lv-hidden');
     }
   });

@@ -77,6 +77,7 @@
         <div class="nav-item"><a class="nav-link" href="find-your-path.html" data-i18n="nav.findPath">Find Your Path</a></div>
         <div class="nav-item"><a class="nav-link" href="radiology-dept.html" data-i18n="nav.radiology">Radiology</a></div>
         <div class="nav-item"><a class="nav-link" href="dashboard.html" data-i18n="nav.dashboard">Dashboard</a></div>
+        <div class="nav-item"><a class="nav-link" href="recruit.html" data-i18n="nav.recruit">Recruit</a></div>
 
         <div class="nav-item" id="academyDropdown">
           <button type="button" class="nav-link" id="academyBtn"><span data-i18n="nav.academy">iHealthAcademy</span> <span class="caret">▾</span></button>
@@ -281,8 +282,8 @@
           <div class="serve-desc" data-i18n="home.serve1Desc">A complete clinical and administrative toolkit for radiologists. Master exam
             protocols, pre-authorization workflows, and structured report writing. Build hands-on RIS/PACS skills and
             apply AI confidently in real diagnostic practice.</div>
-          <div class="serve-tags"><span class="stag">FRCR</span><span class="stag">Arab Board</span><span
-              class="stag">Pre-auth cert</span></div>
+          <div class="serve-tags"><span class="stag" data-i18n="home.tagFRCR">FRCR</span><span class="stag" data-i18n="home.tagArabBoard">Arab Board</span><span
+              class="stag" data-i18n="home.tagPreauthCert">Pre-auth cert</span></div>
         </div>
         <div class="serve-card" style="--serve-color:#4A9EFF" data-aos="fade-up" data-aos-delay="100">
           <div class="serve-ico"><img class="serve-img" src="images/insurance.jpg" alt="Insurance professionals"></div>
@@ -290,7 +291,7 @@
           <div class="serve-desc" data-i18n="home.serve2Desc">Understand radiology from the clinical side, not just the paperwork. Learn how
             exams, reports, and pre-authorization requests actually work. Make faster, more confident approval
             decisions with real clinical context.</div>
-          <div class="serve-tags"><span class="stag">Pre-auth</span><span class="stag">Claims</span><span
+          <div class="serve-tags"><span class="stag" data-i18n="home.tagPreauth">Pre-auth</span><span class="stag" data-i18n="home.tagClaims">Claims</span><span
               class="stag">ضمان</span></div>
         </div>
         <div class="serve-card" style="--serve-color:#A78BFA" data-aos="fade-up" data-aos-delay="200">
@@ -300,8 +301,8 @@
           <div class="serve-desc" data-i18n="home.serve3Desc">Nurses, pharmacists, dentists, lab technicians, physiotherapists — every specialty
             has a home here. Practical, role-specific training built around real day-to-day clinical work, with new
             specialties added regularly.</div>
-          <div class="serve-tags"><span class="stag">Pharmacy</span><span class="stag">Dentistry</span><span
-              class="stag">Nursing</span></div>
+          <div class="serve-tags"><span class="stag" data-i18n="home.tagPharmacy">Pharmacy</span><span class="stag" data-i18n="home.tagDentistry">Dentistry</span><span
+              class="stag" data-i18n="home.tagNursing">Nursing</span></div>
         </div>
         <div class="serve-card" style="--serve-color:#F5A623" data-aos="fade-up" data-aos-delay="300">
           <div class="serve-ico"><img class="serve-img" src="images/healthcare-manager.jpg" alt="Healthcare managers">
@@ -310,8 +311,8 @@
           <div class="serve-desc" data-i18n="home.serve4Desc">Hospital administration, patient relations, and healthcare economics — for those
             who run the system, not just work within it. Build the operational and leadership skills needed to manage
             teams and processes effectively.</div>
-          <div class="serve-tags"><span class="stag">Administration</span><span class="stag">Patient rights</span><span
-              class="stag">Coming soon</span></div>
+          <div class="serve-tags"><span class="stag" data-i18n="home.tagAdministration">Administration</span><span class="stag" data-i18n="home.tagPatientRights">Patient rights</span><span
+              class="stag" data-i18n="home.tagComingSoon">Coming soon</span></div>
         </div>
       </div>
     </section>
@@ -580,7 +581,7 @@
           <div class="footer-col">
             <div class="footer-col-title" data-i18n="footer.legal">Legal</div>
             <a href="#" data-i18n="footer.privacy">Privacy policy</a>
-            <a href="#" data-i18n="footer.terms">Terms of use</a>
+            <a href="legal-center.html" data-i18n="footer.terms">Terms and conditions</a>
           </div>
         </div>
       </div>
@@ -594,6 +595,19 @@
           <button type="submit" class="footer-paypal-btn">
             <img src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png" alt="PayPal">
             <span data-i18n="footer.paypalBtn">Support us</span>
+          </button>
+        </form>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" rel="noopener" class="footer-paypal-form footer-paypal-pro-form">
+          <input type="hidden" name="cmd" value="_xclick" />
+          <input type="hidden" name="business" value="saoopy90@gmail.com" />
+          <input type="hidden" name="currency_code" value="USD" />
+          <input type="hidden" name="item_name" value="iHealth Academy — Pro Access" />
+          <input type="hidden" name="amount" value="20.00" />
+          <input type="hidden" name="return" class="pro-return-input" value="" />
+          <input type="hidden" name="rm" value="2" />
+          <button type="submit" class="footer-paypal-btn footer-paypal-btn-pro">
+            <img src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png" alt="PayPal">
+            <span data-i18n="footer.paypalProBtn">Get Pro access — $20</span>
           </button>
         </form>
       </div>
@@ -620,6 +634,17 @@
       'home.stat3Label': { en: 'Free', ar: 'مجاني' },
       'home.stat3Value': { en: 'CV Builder Included', ar: 'يشمل أداة بناء السيرة الذاتية' },
       'home.stat4Value': { en: 'Joining member', ar: 'عضو منضم' },
+      'home.tagFRCR': { en: 'FRCR', ar: 'FRCR' },
+      'home.tagArabBoard': { en: 'Arab Board', ar: 'البورد العربي' },
+      'home.tagPreauthCert': { en: 'Pre-auth cert', ar: 'شهادة التصريح المسبق' },
+      'home.tagPreauth': { en: 'Pre-auth', ar: 'التصريح المسبق' },
+      'home.tagClaims': { en: 'Claims', ar: 'المطالبات' },
+      'home.tagPharmacy': { en: 'Pharmacy', ar: 'الصيدلة' },
+      'home.tagDentistry': { en: 'Dentistry', ar: 'طب الأسنان' },
+      'home.tagNursing': { en: 'Nursing', ar: 'التمريض' },
+      'home.tagAdministration': { en: 'Administration', ar: 'الإدارة' },
+      'home.tagPatientRights': { en: 'Patient rights', ar: 'حقوق المرضى' },
+      'home.tagComingSoon': { en: 'Coming soon', ar: 'قريبًا' },
       'home.stat5Value': { en: 'Experienced Personnel', ar: 'كادر ذو خبرة' },
       'home.serveLabel': { en: 'Who we serve', ar: 'من نخدم' },
       'home.serveTitle': { en: 'Built for everyone in healthcare.', ar: 'مصمم لكل من يعمل في الرعاية الصحية.' },

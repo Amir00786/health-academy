@@ -337,6 +337,7 @@
   font-family: var(--sans-v2);
   text-decoration: none;
   display: inline-block;
+  whitespace: nowrap;
 }
 
 #mainnav .btn-ghost {
@@ -361,6 +362,8 @@
 
 #mainnav .hamburger {
   display: none;
+  border: none;
+  padding: 0;
 }
 
 @media (max-width: 1140px) {

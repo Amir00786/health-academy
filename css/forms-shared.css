@@ -1,0 +1,214 @@
+/* ============================================================
+   FORMS SHARED — one field/upload design used everywhere a real
+   form appears (CV builder, Recruit, Join the team, Mentor setup).
+   Loaded on every page with a form, same as nav-v2.css is loaded
+   on every page for the nav — so field styling never drifts again.
+   ============================================================ */
+
+.ih-form-panel {
+  background: #fff;
+  border: 1px solid #00C896;
+  border-radius: 20px;
+  padding: 1.85rem;
+}
+
+.ih-field {
+  margin-bottom: 1.1rem;
+}
+
+.ih-field label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #060608;
+  margin-bottom: 6px;
+}
+
+.ih-field input,
+.ih-field select,
+.ih-field textarea {
+  width: 100%;
+  background: #00C896;
+  border: 1px solid #00C896;
+  border-radius: 0;
+  padding: 11px 13px;
+  font-size: 0.9rem;
+  font-family: 'Roboto', sans-serif;
+  color: #fff;
+  outline: none;
+  transition: box-shadow 0.2s;
+}
+
+.ih-field input,
+.ih-field select {
+  height: 48px;
+}
+
+.ih-field input:focus,
+.ih-field select:focus,
+.ih-field textarea:focus {
+  box-shadow: 0 0 0 3px rgba(0, 200, 150, 0.25);
+}
+
+.ih-field input::placeholder,
+.ih-field select::placeholder,
+.ih-field textarea::placeholder {
+  color: rgba(6, 6, 8, 0.55);
+}
+
+.ih-field select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  padding-right: 34px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'><path d='M1 1.5L6 6.5L11 1.5' stroke='%23F8F6F1' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 13px center;
+  background-size: 12px 8px;
+}
+
+.ih-field select option {
+  background: #060608;
+  color: #fff;
+  padding: 10px 13px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.85rem;
+}
+
+.ih-field textarea {
+  resize: none;
+  min-height: 120px;
+}
+
+.ih-submit {
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: 999px;
+  background: #00C896;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  font-family: 'Roboto', sans-serif;
+  cursor: pointer;
+  margin-top: 0.4rem;
+}
+
+.ih-submit:hover {
+  background: #00b085;
+}
+
+.ih-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* CV / file upload dropzone */
+.ih-upload {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 48px;
+  padding: 14px 16px;
+  border: 2px dashed rgba(0, 200, 150, 0.45);
+  border-radius: 12px;
+  background: rgba(0, 200, 150, 0.05);
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.ih-field label.ih-upload {
+  display: flex;
+  text-transform: none;
+}
+
+.ih-upload:hover,
+.ih-upload.drag-over {
+  border-color: #00C896;
+  background: rgba(0, 200, 150, 0.1);
+}
+
+.ih-file-native {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ih-upload-ico {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #00C896;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.ih-upload-text {
+  flex: 1;
+  font-size: 0.82rem;
+  color: rgba(6, 6, 8, 0.6);
+  line-height: 1.4;
+}
+
+.ih-upload-text strong {
+  color: #095F5B;
+  font-weight: 700;
+}
+
+.ih-upload-filename {
+  display: none;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #00C896;
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ih-upload-remove {
+  display: none;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(6, 6, 8, 0.08);
+  color: rgba(6, 6, 8, 0.5);
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.ih-upload-remove:hover {
+  background: rgba(6, 6, 8, 0.15);
+  color: #060608;
+}
+
+.ih-upload.has-file {
+  border-style: solid;
+  border-color: #00C896;
+  background: rgba(0, 200, 150, 0.08);
+}
+
+.ih-upload.has-file .ih-upload-text {
+  display: none;
+}
+
+.ih-upload.has-file .ih-upload-filename,
+.ih-upload.has-file .ih-upload-remove {
+  display: flex;
+}

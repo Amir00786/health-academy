@@ -77,6 +77,7 @@
           <div class="nav-item"><a class="nav-link" href="find-your-path.html" data-i18n="nav.findPath">Find Your Path</a></div>
           <div class="nav-item"><a class="nav-link" href="radiology-dept.html" data-i18n="nav.radiology">Radiology</a></div>
         <div class="nav-item"><a class="nav-link" href="dashboard.html" data-i18n="nav.dashboard">Dashboard</a></div>
+        <div class="nav-item"><a class="nav-link" href="recruit.html" data-i18n="nav.recruit">Recruit</a></div>
 
           <div class="nav-item" id="academyDropdown">
             <button type="button" class="nav-link" id="academyBtn"><span data-i18n="nav.academy">iHealthAcademy</span> <span class="caret">▾</span></button>
@@ -161,7 +162,7 @@
 
     <!-- PROGRESS -->
     <div class="progress-bar">
-      <span class="prog-label">Your progress</span>
+      <span class="prog-label" data-i18n="ins.progressLabel">Your progress</span>
       <div class="prog-track-wrap">
         <div class="prog-track">
           <div class="prog-fill" id="progFill"></div>
@@ -195,6 +196,10 @@
       'ins.stat2': { en: 'To complete', ar: 'للإكمال' },
       'ins.stat3': { en: 'Certificate', ar: 'شهادة' },
       'ins.badgeTxt': { en: 'Pre-Auth Specialist', ar: 'أخصائي تصريح مسبق' },
+      'ins.progressLabel': { en: 'Your progress', ar: 'تقدمك' },
+      'ins.bonusModuleLabel': { en: 'Bonus module', ar: 'وحدة إضافية' },
+      'ins.bonusBasicLabel': { en: 'Basic', ar: 'أساسي' },
+      'ins.bonusPremiumLabel': { en: 'Premium', ar: 'مميز' },
     };
   </script>
   <script src="js/lesson-viewer.js"></script>
@@ -276,6 +281,70 @@
       ],
     };
 
+    // Arabic mirror of `course` — same shape/order, translated strings only.
+    const course_ar = {
+      num: 'أخصائي التصريح المسبق',
+      title: 'كن أخصائي تصريح مسبق.',
+      desc: 'كل ما تحتاجه لكتابة طلبات تصريح مسبق تُعتمد، والتعامل مع حالات الرفض، والاستئناف بفعالية — مبني على خبرة حقيقية، لا نظريات فقط.',
+      meta: [
+        { ico: '<i class="fi fi-sr-alarm-clock"></i>', txt: '~66 دقيقة إجمالاً' },
+        { ico: '<i class="fi fi-sr-user-graduate"></i>', txt: 'جميع المستويات' },
+        { ico: '<i class="fi fi-sr-badge"></i>', txt: 'شهادة عند الإتمام' },
+      ],
+      cert: { name: 'شهادة أخصائي التصريح المسبق' },
+      lessons: [
+        {
+          title: 'ما هو التصريح المسبق ولماذا يوجد', desc: 'الغرض من التصريح المسبق، الأطراف المعنية، وكيف يحمي المريض ومقدم الخدمة.', dur: '6 دقائق',
+          quiz: [
+            { q: 'يوجد التصريح المسبق أساسًا لـ:', options: ['تأكيد التغطية قبل بدء العلاج', 'تأخير كل مريض دون سبب', 'استبدال تشخيص الطبيب'], correct: 0 },
+            { q: 'يشمل التصريح المسبق عادةً:', options: ['المريض فقط', 'مقدم الخدمة وشركة التأمين، نيابة عن المريض', 'شركة التأمين فقط'], correct: 1 },
+          ],
+        },
+        {
+          title: 'من الأطراف المعنية: المريض، مقدم الخدمة، شركة التأمين', desc: 'كيف تتفاعل الأطراف الثلاثة، وأين تحدث معظم التأخيرات فعليًا.', dur: '8 دقائق',
+          quiz: [
+            { q: 'تحدث معظم تأخيرات التصريح المسبق بسبب:', options: ['معلومات سريرية ناقصة أو غير واضحة', 'عمر المريض', 'وقت السنة'], correct: 0 },
+            { q: 'دور مقدم الخدمة في التصريح المسبق هو:', options: ['اعتماد طلبه الخاص', 'تقديم تبرير سريري واضح لشركة التأمين', 'تجاهل شركة التأمين تمامًا'], correct: 1 },
+          ],
+        },
+        {
+          title: 'كتابة طلبات تُعتمد', desc: 'البنية واللغة والمعايير السريرية الدقيقة التي تجعل شركات التأمين توافق.', dur: '15 دقيقة',
+          quiz: [
+            { q: 'الطلبات التي تُعتمد بأسرع وقت عادةً:', options: ['تذكر بوضوح التبرير السريري والمعايير المستوفاة', 'تكون غامضة بقدر الإمكان', 'تتجاوز رمز التشخيص'], correct: 0 },
+            { q: 'مطابقة المعايير السريرية للطلب:', options: ['غير ذات صلة بشركات التأمين', 'تحدد مباشرة احتمال الاعتماد', 'مهمة فقط للإجراءات المكلفة'], correct: 1 },
+          ],
+        },
+        {
+          title: 'لماذا تُرفض الطلبات — وكيف تمنع ذلك', desc: 'أكثر أسباب الرفض شيوعًا وكيفية إصلاحها قبل التقديم.', dur: '12 دقيقة',
+          quiz: [
+            { q: 'السبب الأكثر شيوعًا للرفض هو:', options: ['توثيق سريري غير كافٍ', 'خطأ إملائي في اسم المريض', 'التقديم يوم الاثنين'], correct: 0 },
+            { q: 'منع الرفض يعني أساسًا:', options: ['تقديم الأدلة السريرية في مقدمة الطلب', 'التقديم بسرعة أكبر وتفاصيل أقل', 'الاتصال بشركة التأمين بشكل متكرر'], correct: 0 },
+          ],
+        },
+        {
+          title: 'عملية الاستئناف — خطوة بخطوة', desc: 'كيفية كتابة استئناف يُبطل الرفض، مع أمثلة حقيقية.', dur: '10 دقائق',
+          quiz: [
+            { q: 'الاستئناف الفعّال عادةً:', options: ['يضيف أدلة سريرية جديدة أو أكثر وضوحًا', 'يكرر الطلب الأصلي كلمة بكلمة', 'يتجاوز سبب الرفض تمامًا'], correct: 0 },
+            { q: 'يجب تقديم الاستئنافات:', options: ['خلال المدة المحددة للاستئناف من شركة التأمين', 'في أي وقت مناسب دون موعد نهائي', 'مرة واحدة فقط لكل مريض أبدًا'], correct: 0 },
+          ],
+        },
+        {
+          title: 'أساسيات ترميز ICD و CPT', desc: 'الرموز التي تحدد ما إذا كان طلبك سيُدفع — الأساسيات التي يجب أن يعرفها كل أخصائي.', dur: '15 دقيقة',
+          quiz: [
+            { q: 'رموز ICD تصف بشكل أساسي:', options: ['التشخيص', 'الإجراء المُنفَّذ', 'خطة التأمين'], correct: 0 },
+            { q: 'رموز CPT تصف بشكل أساسي:', options: ['التشخيص', 'الإجراء أو الخدمة المُنفَّذة', 'عنوان المريض'], correct: 1 },
+          ],
+        },
+      ],
+    };
+
+    function lang() {
+      return (window.I18N && window.I18N.currentLang) ? window.I18N.currentLang() : 'en';
+    }
+    function currentCourse() {
+      return lang() === 'ar' ? course_ar : course;
+    }
+
     let progress = new Set();
 
     function loadProgress() {
@@ -289,6 +358,8 @@
     }
 
     function render() {
+      const course = currentCourse();
+      const isAr = lang() === 'ar';
       let html = `
     <div class="module-header" data-aos="fade-up">
       <div class="module-num">${course.num}</div>
@@ -301,13 +372,13 @@
         <div class="exam-ico">📜</div>
         <div>
           <div class="exam-name">${course.cert.name}</div>
-          <div class="exam-info">Complete all 6 lessons to unlock</div>
+          <div class="exam-info">${isAr ? 'أكمل جميع الدروس الستة لفتح الشهادة' : 'Complete all 6 lessons to unlock'}</div>
         </div>
       </div>
-      <div class="exam-badges"><span class="exam-badge">Unique to iHealth</span><span class="exam-badge">Employer-ready</span></div>
-      <button class="exam-btn" id="examBtn">Start course →</button>
+      <div class="exam-badges"><span class="exam-badge">${isAr ? 'فريد لدى iHealth' : 'Unique to iHealth'}</span><span class="exam-badge">${isAr ? 'جاهز لسوق العمل' : 'Employer-ready'}</span></div>
+      <button class="exam-btn" id="examBtn">${isAr ? '← ابدأ الدورة' : 'Start course →'}</button>
     </div>
-    <div class="section-divider"><div class="section-divider-line"></div><span class="section-divider-label">All lessons</span><div class="section-divider-line"></div></div>
+    <div class="section-divider"><div class="section-divider-line"></div><span class="section-divider-label">${isAr ? 'جميع الدروس' : 'All lessons'}</span><div class="section-divider-line"></div></div>
     <div class="lessons-list">`;
       course.lessons.forEach((l, i) => {
         const isDone = progress.has(i);
@@ -321,7 +392,7 @@
           </div>
           <div class="lesson-card-right">
             <span class="lesson-dur-tag">${l.dur}</span>
-            <span class="lesson-tag tag-free">Video</span>
+            <span class="lesson-tag tag-free">${isAr ? 'فيديو' : 'Video'}</span>
             <span class="lesson-arrow"><i class="fi fi-br-arrow-right"></i></span>
           </div>
         </div>
@@ -334,7 +405,7 @@
     }
 
     function openLesson(idx, el) {
-      LessonViewer.open(course.lessons[idx], () => markDone(idx, el));
+      LessonViewer.open(currentCourse().lessons[idx], () => markDone(idx, el));
     }
 
     function markDone(idx, el) {
@@ -345,6 +416,7 @@
     }
 
     function updateProgress() {
+      const course = currentCourse();
       const total = course.lessons.length;
       const done = progress.size;
       const pct = total ? Math.round(done / total * 100) : 0;
@@ -353,10 +425,10 @@
       const btn = document.getElementById('examBtn');
       if (!btn) return;
       if (done >= total) {
-        btn.textContent = 'Download certificate →';
+        btn.textContent = lang() === 'ar' ? '← تحميل الشهادة' : 'Download certificate →';
         btn.onclick = () => Certificate.generate(course.cert.name);
       } else {
-        btn.textContent = 'Start course →';
+        btn.textContent = lang() === 'ar' ? '← ابدأ الدورة' : 'Start course →';
         btn.onclick = () => document.querySelector('.lessons-list').scrollIntoView({ behavior: 'smooth' });
       }
     }
@@ -406,6 +478,45 @@
       ],
     };
 
+    const bonusCourse_ar = {
+      title: 'المصطلحات الطبية المستخدمة في التأمين',
+      desc: 'المفردات السريرية التي تتوقع شركات التأمين رؤيتها في كل طلب — تعلّمها مرة واحدة واستخدمها في كل ما تكتبه.',
+      cert: { name: 'شهادة المصطلحات الطبية في التأمين' },
+      lessons: [
+        {
+          title: 'الجذور والسوابق واللواحق', desc: 'فكّ أي مصطلح طبي تقريبًا بتقسيمه إلى أجزائه.', dur: '7 دقائق',
+          quiz: [
+            { q: 'السابقة "hyper-" تعني:', options: ['أقل من الطبيعي', 'أعلى من الطبيعي / مفرط', 'حول'], correct: 1 },
+            { q: 'اللاحقة "-itis" تعني:', options: ['التهاب', 'إزالة', 'تضخم'], correct: 0 },
+          ],
+        },
+        {
+          title: 'مصطلحات التشخيص والإجراءات التي تبحث عنها شركات التأمين', desc: 'الصياغة الدقيقة التي تشير إلى الضرورة الطبية للمراجع.', dur: '9 دقائق',
+          quiz: [
+            { q: '"الضرورة الطبية" في الطلب يجب أن تكون:', options: ['ضمنية، لا تُذكر أبدًا', 'موثقة بشكل صريح بمصطلحات سريرية', 'تُترك لشركة التأمين لتخمينها'], correct: 1 },
+            { q: 'المصطلحات الإجرائية الدقيقة مهمة لأنها:', options: ['تطابق الطلب مع الرمز الصحيح وقاعدة التغطية', 'مجرد تنسيق', 'مهمة فقط للجراحة'], correct: 0 },
+          ],
+        },
+        {
+          title: 'الاختصارات الشائعة في التوثيق السريري', desc: 'الاختصارات التي ستراها في كل ملاحظة طبية تقريبًا.', dur: '6 دقائق',
+          quiz: [
+            { q: '"Hx" هي اختصار لـ:', options: ['التاريخ المرضي', 'المستشفى', 'الترطيب'], correct: 0 },
+            { q: '"Dx" هي اختصار لـ:', options: ['التشخيص', 'الخروج', 'الجرعة'], correct: 0 },
+          ],
+        },
+        {
+          title: 'تجميع كل ذلك: قراءة ملاحظة طبية حقيقية', desc: 'شرح كامل لملاحظة طبية موضحة من البداية للنهاية.', dur: '8 دقائق',
+          quiz: [
+            { q: 'عند قراءة ملاحظة طبية للتصريح المسبق، ابحث أولاً عن:', options: ['التشخيص والتبرير السريري', 'الخط المستخدم', 'رقم الصفحة'], correct: 0 },
+            { q: 'إتقان المصطلحات يساعدك أساسًا على:', options: ['كتابة طلبات أسرع وأكثر دقة', 'إثارة إعجاب المريض', 'استبدال الطبيب'], correct: 0 },
+          ],
+        },
+      ],
+    };
+    function currentBonusCourse() {
+      return lang() === 'ar' ? bonusCourse_ar : bonusCourse;
+    }
+
     let bonusProgress = new Set();
     function loadBonusProgress() {
       try {
@@ -449,11 +560,13 @@
     function renderBonus() {
       const tier = getBonusTier();
       const area = document.getElementById('bonusArea');
+      const bonusCourse = currentBonusCourse();
+      const isAr = lang() === 'ar';
       const total = bonusCourse.lessons.length;
 
       if (!tier) {
         area.innerHTML = `
-          <div class="section-divider"><div class="section-divider-line"></div><span class="section-divider-label">Bonus module</span><div class="section-divider-line"></div></div>
+          <div class="section-divider"><div class="section-divider-line"></div><span class="section-divider-label">${isAr ? 'وحدة إضافية' : 'Bonus module'}</span><div class="section-divider-line"></div></div>
           <div class="bonus-pricing">
             <div class="bonus-pricing-head">
               <div class="bonus-pricing-title">${bonusCourse.title}</div>
@@ -461,17 +574,17 @@
             </div>
             <div class="bonus-tiers">
               <div class="bonus-tier-card">
-                <div class="bonus-tier-name">Basic</div>
+                <div class="bonus-tier-name">${isAr ? 'أساسي' : 'Basic'}</div>
                 <div class="bonus-tier-price">$20</div>
-                <p class="bonus-tier-feat">Full video playlist — ${total} lessons</p>
-                ${paypalForm('iHealth Academy — Medical Terminology in Insurance (Basic)', '20.00', 'basic', 'Unlock — $20', 'bonus-tier-btn')}
+                <p class="bonus-tier-feat">${isAr ? `قائمة فيديو كاملة — ${total} دروس` : `Full video playlist — ${total} lessons`}</p>
+                ${paypalForm('iHealth Academy — Medical Terminology in Insurance (Basic)', '20.00', 'basic', isAr ? '20$ — فتح' : 'Unlock — $20', 'bonus-tier-btn')}
               </div>
               <div class="bonus-tier-card featured">
-                <div class="bonus-tier-badge">Best value</div>
-                <div class="bonus-tier-name">Premium</div>
+                <div class="bonus-tier-badge">${isAr ? 'الأفضل قيمة' : 'Best value'}</div>
+                <div class="bonus-tier-name">${isAr ? 'مميز' : 'Premium'}</div>
                 <div class="bonus-tier-price">$100</div>
-                <p class="bonus-tier-feat">Everything in Basic + certificate of completion</p>
-                ${paypalForm('iHealth Academy — Medical Terminology in Insurance (Premium)', '100.00', 'premium', 'Unlock — $100', 'bonus-tier-btn')}
+                <p class="bonus-tier-feat">${isAr ? 'كل ما في الباقة الأساسية + شهادة إتمام' : 'Everything in Basic + certificate of completion'}</p>
+                ${paypalForm('iHealth Academy — Medical Terminology in Insurance (Premium)', '100.00', 'premium', isAr ? '100$ — فتح' : 'Unlock — $100', 'bonus-tier-btn')}
               </div>
             </div>
           </div>`;
@@ -479,8 +592,9 @@
       }
 
       const done = bonusProgress.size;
+      const tierLabel = tier === 'premium' ? (isAr ? 'مميز' : 'Premium') : (isAr ? 'أساسي' : 'Basic');
       let html = `
-        <div class="section-divider"><div class="section-divider-line"></div><span class="section-divider-label">Bonus module — ${tier === 'premium' ? 'Premium' : 'Basic'}</span><div class="section-divider-line"></div></div>
+        <div class="section-divider"><div class="section-divider-line"></div><span class="section-divider-label">${isAr ? 'وحدة إضافية' : 'Bonus module'} — ${tierLabel}</span><div class="section-divider-line"></div></div>
         <div class="module-header">
           <div class="module-title">${bonusCourse.title}</div>
           <p class="module-desc">${bonusCourse.desc}</p>
@@ -498,7 +612,7 @@
               </div>
               <div class="lesson-card-right">
                 <span class="lesson-dur-tag">${l.dur}</span>
-                <span class="lesson-tag tag-free">Video</span>
+                <span class="lesson-tag tag-free">${isAr ? 'فيديو' : 'Video'}</span>
                 <span class="lesson-arrow"><i class="fi fi-br-arrow-right"></i></span>
               </div>
             </div>
@@ -513,16 +627,16 @@
             <div class="exam-ico">📜</div>
             <div>
               <div class="exam-name">${bonusCourse.cert.name}</div>
-              <div class="exam-info">${done >= total ? 'Ready to download' : `Complete all ${total} lessons to unlock`}</div>
+              <div class="exam-info">${done >= total ? (isAr ? 'جاهزة للتحميل' : 'Ready to download') : (isAr ? `أكمل جميع الدروس (${total}) لفتح الشهادة` : `Complete all ${total} lessons to unlock`)}</div>
             </div>
           </div>
-          <button class="exam-btn" id="bonusExamBtn">${done >= total ? 'Download certificate →' : 'Keep watching'}</button>
+          <button class="exam-btn" id="bonusExamBtn">${done >= total ? (isAr ? '← تحميل الشهادة' : 'Download certificate →') : (isAr ? 'استمر بالمشاهدة' : 'Keep watching')}</button>
         </div>`;
       } else {
         html += `
         <div class="bonus-upgrade-note">
-          <span>Want a certificate for this module?</span>
-          ${paypalForm('iHealth Academy — Medical Terminology in Insurance (Premium upgrade)', '80.00', 'premium', 'Upgrade — $80 more', 'bonus-upgrade-btn')}
+          <span>${isAr ? 'تريد شهادة لهذه الوحدة؟' : 'Want a certificate for this module?'}</span>
+          ${paypalForm('iHealth Academy — Medical Terminology in Insurance (Premium upgrade)', '80.00', 'premium', isAr ? '80$ إضافية — ترقية' : 'Upgrade — $80 more', 'bonus-upgrade-btn')}
         </div>`;
       }
 
@@ -538,7 +652,7 @@
     }
 
     function openBonusLesson(idx, el) {
-      LessonViewer.open(bonusCourse.lessons[idx], () => {
+      LessonViewer.open(currentBonusCourse().lessons[idx], () => {
         bonusProgress.add(idx);
         if (el) el.classList.add('done');
         saveBonusProgress();
@@ -549,6 +663,7 @@
     checkTierFromReturnUrl();
     loadBonusProgress();
     renderBonus();
+    document.addEventListener('ih:langchange', () => { render(); renderBonus(); });
   </script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>

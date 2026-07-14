@@ -14,6 +14,7 @@
   <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css" rel="stylesheet" />
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <link href="css/join-team.css" rel="stylesheet" />
+  <link href="css/forms-shared.css" rel="stylesheet" />
   <link href="css/nav-v2.css" rel="stylesheet" />
   <link href="css/livechat.css" rel="stylesheet" />
 </head>
@@ -72,6 +73,7 @@
         <div class="nav-item"><a class="nav-link" href="find-your-path.html" data-i18n="nav.findPath">Find Your Path</a></div>
         <div class="nav-item"><a class="nav-link" href="radiology-dept.html" data-i18n="nav.radiology">Radiology</a></div>
         <div class="nav-item"><a class="nav-link" href="dashboard.html" data-i18n="nav.dashboard">Dashboard</a></div>
+        <div class="nav-item"><a class="nav-link" href="recruit.html" data-i18n="nav.recruit">Recruit</a></div>
 
         <div class="nav-item" id="academyDropdown">
           <button type="button" class="nav-link" id="academyBtn"><span data-i18n="nav.academy">iHealthAcademy</span> <span class="caret">▾</span></button>
@@ -127,17 +129,17 @@
       <h1 class="join-title" data-aos="fade-up" data-aos-delay="50" data-i18n="join.title">Help build iHealth Academy from the ground up.</h1>
       <p class="join-desc" data-aos="fade-up" data-aos-delay="100" data-i18n="join.desc">We're looking for early co-founders and collaborators across clinical, content, and product roles. Tell us about yourself and attach your CV — our team reviews every submission.</p>
 
-      <form class="join-form panel" id="joinForm" data-aos="fade-up" data-aos-delay="150"
+      <form class="join-form ih-form-panel" id="joinForm" data-aos="fade-up" data-aos-delay="150"
         action="https://formspree.io/f/YOUR_FORM_ID" method="POST" enctype="multipart/form-data">
-        <div class="join-field">
+        <div class="ih-field">
           <label data-i18n="join.nameLabel">Full name</label>
           <input type="text" name="name" required />
         </div>
-        <div class="join-field">
+        <div class="ih-field">
           <label data-i18n="join.emailLabel">Email</label>
           <input type="email" name="email" required />
         </div>
-        <div class="join-field">
+        <div class="ih-field">
           <label data-i18n="join.trackLabel">Which area interests you?</label>
           <select name="track">
             <option value="clinical" data-i18n="join.trackClinical">Clinical / Medical content</option>
@@ -148,15 +150,24 @@
             <option value="other" data-i18n="join.trackOther">Other</option>
           </select>
         </div>
-        <div class="join-field">
+        <div class="ih-field">
           <label data-i18n="join.messageLabel">Message</label>
           <textarea name="message" rows="4" data-i18n-ph="join.messagePlaceholder" placeholder="A little about your background and why you'd like to join"></textarea>
         </div>
-        <div class="join-field">
+        <div class="ih-field">
           <label data-i18n="join.cvLabel">Upload your CV (PDF or Word)</label>
-          <input type="file" name="cv" accept=".pdf,.doc,.docx" required />
+          <label class="ih-upload" for="joinCvInput" id="joinUploadZone">
+            <input type="file" name="cv" id="joinCvInput" class="ih-file-native" accept=".pdf,.doc,.docx" required />
+            <span class="ih-upload-ico"><i class="fi fi-sr-cloud-upload-alt"></i></span>
+            <span class="ih-upload-text">
+              <strong data-i18n="join.uploadCta">Click to upload</strong>
+              <span data-i18n="join.uploadHint"> or drag and drop — PDF or Word, up to 10MB</span>
+            </span>
+            <span class="ih-upload-filename" id="joinCvFilename"></span>
+            <button type="button" class="ih-upload-remove" id="joinCvRemove" aria-label="Remove file"><i class="fi fi-sr-cross-small"></i></button>
+          </label>
         </div>
-        <button type="submit" class="join-submit" id="joinSubmitBtn" data-i18n="join.submitBtn">Submit application</button>
+        <button type="submit" class="ih-submit" id="joinSubmitBtn" data-i18n="join.submitBtn">Submit application</button>
         <p class="join-status" id="joinFormStatus"></p>
       </form>
 
@@ -189,7 +200,7 @@
           <div class="footer-col">
             <div class="footer-col-title" data-i18n="footer.legal">Legal</div>
             <a href="#" data-i18n="footer.privacy">Privacy policy</a>
-            <a href="#" data-i18n="footer.terms">Terms of use</a>
+            <a href="legal-center.html" data-i18n="footer.terms">Terms and conditions</a>
           </div>
         </div>
       </div>
@@ -203,6 +214,19 @@
           <button type="submit" class="footer-paypal-btn">
             <img src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png" alt="PayPal">
             <span data-i18n="footer.paypalBtn">Support us</span>
+          </button>
+        </form>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" rel="noopener" class="footer-paypal-form footer-paypal-pro-form">
+          <input type="hidden" name="cmd" value="_xclick" />
+          <input type="hidden" name="business" value="saoopy90@gmail.com" />
+          <input type="hidden" name="currency_code" value="USD" />
+          <input type="hidden" name="item_name" value="iHealth Academy — Pro Access" />
+          <input type="hidden" name="amount" value="20.00" />
+          <input type="hidden" name="return" class="pro-return-input" value="" />
+          <input type="hidden" name="rm" value="2" />
+          <button type="submit" class="footer-paypal-btn footer-paypal-btn-pro">
+            <img src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png" alt="PayPal">
+            <span data-i18n="footer.paypalProBtn">Get Pro access — $20</span>
           </button>
         </form>
       </div>

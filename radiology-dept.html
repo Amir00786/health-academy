@@ -166,7 +166,7 @@
 
     <!-- PROGRESS -->
     <div class="progress-bar">
-      <span class="prog-label">Your progress</span>
+      <span class="prog-label" data-i18n="rad.progressLabel">Your progress</span>
       <div class="prog-track-wrap">
         <div class="prog-track">
           <div class="prog-fill" id="progFill"></div>
@@ -184,38 +184,38 @@
         <div class="sidebar">
           <div class="sidebar-section">
             <div class="sidebar-track active-track" onclick="toggleTrack(this)">
-              <span class="track-label"><i class="fi fi-br-building"></i> Foundations</span><span class="track-arrow"><i
+              <span class="track-label"><i class="fi fi-br-building"></i> <span data-i18n="rad.tabFoundations">Foundations</span></span><span class="track-arrow"><i
                   class="fi fi-sr-angle-small-right"></i></span>
             </div>
             <div class="sidebar-lessons">
               <div class="lesson-link active-lesson" onclick="loadModule('foundations')">
                 <div class="lesson-num">1</div>
-                <span class="lesson-title">What is radiology?</span>
+                <span class="lesson-title" data-i18n="rad.sideL1">What is radiology?</span>
                 <span class="lesson-dur">5m</span>
               </div>
               <div class="lesson-link" onclick="loadModule('foundations')">
                 <div class="lesson-num">2</div>
-                <span class="lesson-title">How imaging works</span>
+                <span class="lesson-title" data-i18n="rad.sideL2">How imaging works</span>
                 <span class="lesson-dur">8m</span>
               </div>
               <div class="lesson-link" onclick="loadModule('foundations')">
                 <div class="lesson-num">3</div>
-                <span class="lesson-title">X-ray basics</span>
+                <span class="lesson-title" data-i18n="rad.sideL3">X-ray basics</span>
                 <span class="lesson-dur">10m</span>
               </div>
               <div class="lesson-link" onclick="loadModule('foundations')">
                 <div class="lesson-num">4</div>
-                <span class="lesson-title">CT explained simply</span>
+                <span class="lesson-title" data-i18n="rad.sideL4">CT explained simply</span>
                 <span class="lesson-dur">12m</span>
               </div>
               <div class="lesson-link" onclick="loadModule('foundations')">
                 <div class="lesson-num">5</div>
-                <span class="lesson-title">MRI — when and why</span>
+                <span class="lesson-title" data-i18n="rad.sideL5">MRI — when and why</span>
                 <span class="lesson-dur">12m</span>
               </div>
               <div class="lesson-link" onclick="loadModule('foundations')">
                 <div class="lesson-num">6</div>
-                <span class="lesson-title">Ultrasound & nuclear</span>
+                <span class="lesson-title" data-i18n="rad.sideL6">Ultrasound & nuclear</span>
                 <span class="lesson-dur">10m</span>
               </div>
             </div>
@@ -227,11 +227,11 @@
 
           <!-- MODULE TABS -->
           <div class="module-tabs">
-            <button class="mod-tab active-tab" onclick="loadModule('foundations',this)">Foundations</button>
-            <button class="mod-tab" onclick="loadModule('systems',this)">Systems</button>
-            <button class="mod-tab" onclick="loadModule('reports',this)">Reports</button>
-            <button class="mod-tab" onclick="loadModule('research',this)">Research</button>
-            <button class="mod-tab" onclick="loadModule('exams',this)">Exams</button>
+            <button class="mod-tab active-tab" onclick="loadModule('foundations',this)" data-i18n="rad.tabFoundations">Foundations</button>
+            <button class="mod-tab" onclick="loadModule('systems',this)" data-i18n="rad.tabSystems">Systems</button>
+            <button class="mod-tab" onclick="loadModule('reports',this)" data-i18n="rad.tabReports">Reports</button>
+            <button class="mod-tab" onclick="loadModule('research',this)" data-i18n="rad.tabResearch">Research</button>
+            <button class="mod-tab" onclick="loadModule('exams',this)" data-i18n="rad.tabExams">Exams</button>
           </div>
 
           <!-- CONTENT AREA -->
@@ -257,6 +257,18 @@
       'rad.stat4val': { en: 'Free', ar: 'مجاني' },
       'rad.stat4': { en: 'To start', ar: 'للبدء' },
       'rad.anatomyBtn': { en: '🩻 Try Anatomy Spotting — timed mock test →', ar: '🩻 جرّب تحديد التشريح — اختبار تجريبي محدد بوقت ←' },
+      'rad.tabFoundations': { en: 'Foundations', ar: 'الأساسيات' },
+      'rad.tabSystems': { en: 'Systems', ar: 'الأنظمة' },
+      'rad.tabReports': { en: 'Reports', ar: 'التقارير' },
+      'rad.tabResearch': { en: 'Research', ar: 'البحث العلمي' },
+      'rad.tabExams': { en: 'Exams', ar: 'الامتحانات' },
+      'rad.sideL1': { en: 'What is radiology?', ar: 'ما هي الأشعة؟' },
+      'rad.sideL2': { en: 'How imaging works', ar: 'كيف يعمل التصوير الطبي' },
+      'rad.sideL3': { en: 'X-ray basics', ar: 'أساسيات الأشعة السينية' },
+      'rad.sideL4': { en: 'CT explained simply', ar: 'التصوير المقطعي ببساطة' },
+      'rad.sideL5': { en: 'MRI — when and why', ar: 'الرنين المغناطيسي — متى ولماذا' },
+      'rad.sideL6': { en: 'Ultrasound & nuclear', ar: 'الموجات فوق الصوتية والطب النووي' },
+      'rad.progressLabel': { en: 'Your progress', ar: 'تقدمك' },
     };
   </script>
   <script src="js/lesson-viewer.js"></script>
@@ -399,11 +411,130 @@
       }
     };
 
+    // Arabic mirror of `modules` — same shape/order, translated strings only.
+    const modules_ar = {
+      foundations: {
+        num: 'الوحدة 01',
+        title: 'أساسيات الأشعة — ابدأ من هنا.',
+        desc: 'قبل أي شيء آخر، تحتاج إلى فهم ما هي الأشعة، وكيف تعمل كل وسيلة تصوير، ومتى تُستخدم كل منها. هذه الدروس مكتوبة للجميع — من طلاب الطب إلى الأطباء المقيمين المتقدمين الذين يريدون سد الثغرات.',
+        meta: [{ ico: '<i class="fi fi-sr-alarm-clock"></i>', txt: '~57 دقيقة إجمالاً' }, { ico: '<i class="fi fi-sr-user-graduate"></i>', txt: 'جميع المستويات' }, { ico: '<i class="fi fi-sr-lock-open-alt"></i>', txt: 'مجاني الوصول' }],
+        exams: [],
+        lessons: [
+          { num: '01', title: 'ما هي الأشعة؟', desc: 'دور أخصائي الأشعة في الطب الحديث — سريريًا وإداريًا واستشاريًا.', dur: '5 دقائق', tag: 'free', featured: true, locked: false,
+            quiz: [
+              { q: 'يمكن وصف دور أخصائي الأشعة بأنه:', options: ['إداري بحت', 'سريري وإداري واستشاري', 'إجراء العمليات الجراحية فقط'], correct: 1 },
+              { q: 'تحتل الأشعة مكانة محورية في الطب الحديث بشكل أساسي لأنها:', options: ['توجه قرارات التشخيص والعلاج في جميع التخصصات', 'تحل محل الحاجة للفحص السريري', 'تُستخدم فقط في الحالات الطارئة'], correct: 0 },
+            ] },
+          { num: '02', title: 'كيف يعمل التصوير الطبي', desc: 'الفيزياء الكامنة خلف كل وسيلة تصوير — موضحة ببساطة دون رياضيات معقدة.', dur: '8 دقائق', tag: 'free', featured: false, locked: false,
+            quiz: [
+              { q: 'تختلف وسائل التصوير المختلفة (الأشعة السينية، التصوير المقطعي، الرنين المغناطيسي، الموجات فوق الصوتية) بشكل أساسي في:', options: ['المبدأ الفيزيائي المستخدم لتكوين الصورة', 'لون الجهاز', 'حجم المستشفى'], correct: 0 },
+              { q: 'فهم الفيزياء الكامنة خلف التصوير يساعد أخصائي الأشعة على:', options: ['اختيار الوسيلة المناسبة وتفسير الصور بشكل صحيح', 'تجاوز التدريب السريري', 'تجنب التحدث مع الأطباء المحوِّلين'], correct: 0 },
+            ] },
+          { num: '03', title: 'الأشعة السينية — أساس كل شيء', desc: 'كيف تُنتج الأشعة السينية، وماذا تُظهر، وكيفية قراءة صورة أشعة الصدر خطوة بخطوة.', dur: '10 دقائق', tag: 'free', featured: false, locked: false,
+            quiz: [
+              { q: 'غالبًا ما تُسمى الأشعة السينية أساس التصوير لأنها:', options: ['أقدم وأكثر الوسائل استخدامًا', 'لم تعد تُستخدم أبدًا', 'تُستخدم فقط للعظام'], correct: 0 },
+              { q: 'قراءة صورة أشعة الصدر خطوة بخطوة تعني:', options: ['اتباع نمط مراجعة منظم وثابت', 'التخمين بناءً على أول ما تلاحظه', 'فحص زوايا الصورة فقط'], correct: 0 },
+            ] },
+          { num: '04', title: 'التصوير المقطعي — متى وكيف', desc: 'كيف يعمل التصوير المقطعي، ولماذا يُطلب، وماذا تعني الأرقام.', dur: '12 دقيقة', tag: 'pro', featured: false, locked: true },
+          { num: '05', title: 'الرنين المغناطيسي — الأداة الأقوى', desc: 'متى يتفوق الرنين المغناطيسي على التصوير المقطعي، وشرح التسلسلات، وكيفية تجنب الأخطاء الشائعة.', dur: '12 دقيقة', tag: 'pro', featured: false, locked: true },
+          { num: '06', title: 'الموجات فوق الصوتية والطب النووي', desc: 'دور الموجات فوق الصوتية والطب النووي في الممارسة الحديثة — بما في ذلك أساسيات PET/CT.', dur: '10 دقائق', tag: 'pro', featured: false, locked: true },
+        ]
+      },
+      reports: {
+        num: 'الوحدة 02',
+        title: 'كتابة التقارير — صوتك كأخصائي أشعة.',
+        desc: 'تقرير الأشعة هو وثيقة طبية-قانونية. كل كلمة مهمة. تُعلّمك هذه الوحدة كتابة تقارير واضحة ومفيدة سريريًا ولا يمكن إساءة تفسيرها. مبنية على حالات حقيقية ومعايير دولية.',
+        meta: [{ ico: '<i class="fi fi-sr-alarm-clock"></i>', txt: '~43 دقيقة إجمالاً' }, { ico: '<i class="fi fi-sr-graduation-cap"></i>', txt: 'من مستوى R1 وما فوق' }, { ico: '<i class="fi fi-sr-comet"></i>', txt: 'تأثير عالٍ' }],
+        exams: [],
+        lessons: [
+          { num: '01', title: 'بنية التقرير الجيد', desc: 'الأجزاء الأربعة التي يجب أن يحتويها كل تقرير أشعة — ولماذا تفشل معظم التقارير في الجزء الثالث.', dur: '10 دقائق', tag: 'free', featured: true, locked: false,
+            quiz: [
+              { q: 'يمكن وصف تقرير الأشعة بأنه:', options: ['ملاحظة عابرة', 'وثيقة طبية-قانونية', 'ملخص اختياري'], correct: 1 },
+              { q: 'تفشل معظم التقارير الضعيفة بشكل خاص في:', options: ['قسم النتائج/الانطباع', 'حقل اسم المريض', 'حقل التاريخ'], correct: 0 },
+            ] },
+          { num: '02', title: 'اللغة والوضوح', desc: 'كيف تكتب بطريقة يفهمها الطبيب المحوِّل — ويتخذ إجراءً بناءً عليها.', dur: '8 دقائق', tag: 'free', featured: false, locked: false,
+            quiz: [
+              { q: 'الهدف الأساسي من لغة التقرير الواضحة هو:', options: ['إثارة إعجاب أخصائيي الأشعة الآخرين', 'مساعدة الطبيب المحوِّل على الفهم والتصرف', 'استخدام أكبر قدر ممكن من المصطلحات الطبية المعقدة'], correct: 1 },
+              { q: 'التقرير الصحيح تقنيًا ولكن المُربك يُعتبر:', options: ['لا يزال تقريرًا جيدًا', 'غير مفيد سريريًا', 'خطأ الطبيب المحوِّل دائمًا'], correct: 1 },
+            ] },
+          { num: '03', title: 'وصف النتائج الشائعة', desc: 'لغة موحدة لأكثر 20 نتيجة شائعة في الصدر والبطن والدماغ.', dur: '15 دقيقة', tag: 'pro', featured: false, locked: true },
+          { num: '04', title: 'النتائج الحرجة والتواصل', desc: 'ما يجب فعله عند اكتشاف أمر عاجل — قانونيًا وسريريًا وعمليًا.', dur: '10 دقائق', tag: 'pro', featured: false, locked: true },
+        ]
+      },
+      exams: {
+        num: 'الوحدة 04',
+        title: 'التحضير للامتحانات — انجح من المحاولة الأولى.',
+        desc: 'خطط دراسية منظمة لكل امتحان بورد رئيسي في الأشعة. ليست مجرد بنوك أسئلة — بل استراتيجيات فعلية وجداول زمنية والمواضيع المحددة الأكثر ظهورًا في كل امتحان. مُصممة لأصحاب أعباء العمل السريري الحقيقية.',
+        meta: [{ ico: '<i class="fi fi-sr-alarm-clock"></i>', txt: '~90 دقيقة إجمالاً' }, { ico: '<i class="fi fi-sr-graduation-cap"></i>', txt: 'من مستوى R2 وما فوق' }, { ico: '<i class="fi fi-sr-track"></i>', txt: '5 مسارات امتحانات' }],
+        exams: [
+          { ico: '<img src="images/uk.webp" alt="UK">', name: 'FRCR Part 1 & 2B', info: 'الكلية الملكية البريطانية — الأكثر اعتمادًا دوليًا', badges: ['الفيزياء', 'التشريح', 'التقارير السريعة'] },
+          { ico: '🌍', name: 'البورد العربي للأشعة', info: 'الدول العربية — امتحان تحريري وسريري منظم', badges: ['امتحان تحريري', 'حالات سريرية', 'تحضير شفوي'] },
+          { ico: '<img src="images/saudi.jpg" alt="Saudi Arabia">', name: 'البورد السعودي', info: 'المملكة العربية السعودية — امتحان بورد الإقامة الكامل', badges: ['جميع الوسائل', 'قائم على الحالات', 'تحضير للمناقشة الشفوية'] },
+          { ico: '<img src="images/us.webp" alt="United States">', name: 'ABR — البورد الأمريكي', info: 'لمن يستهدف الولايات المتحدة الأمريكية', badges: ['الامتحان الأساسي', 'امتحان الشهادة', 'الفيزياء'] },
+        ],
+        lessons: [
+          { num: '01', title: 'FRCR الجزء 1 — خطة الدراسة الكاملة', desc: 'الفيزياء والتشريح وكيفية النجاح في 90 يومًا مع جدول عمل سريري كامل.', dur: '20 دقيقة', tag: 'pro', featured: true, locked: true },
+          { num: '02', title: 'FRCR الجزء 2B — احتراف التقارير السريعة', desc: 'التقنية، الحالات الشائعة، وكيفية تجنب الأخطاء الأكثر شيوعًا.', dur: '25 دقيقة', tag: 'pro', featured: false, locked: true },
+          { num: '03', title: 'البورد العربي — البنية والاستراتيجية', desc: 'ما يختبره الامتحان، وكيفية التحضير، وأكثر الأخطاء شيوعًا بين المتقدمين.', dur: '15 دقيقة', tag: 'pro', featured: false, locked: true },
+          { num: '04', title: 'البورد السعودي — الدليل الكامل', desc: 'جميع الوسائل، صيغ الحالات، التحضير للمناقشة الشفوية، والمواضيع المتكررة كل عام.', dur: '15 دقيقة', tag: 'pro', featured: false, locked: true },
+          { num: '05', title: 'ABR — لمن يستهدف الولايات المتحدة الأمريكية', desc: 'بنية الامتحان الأساسي، استراتيجية امتحان الشهادة، ومراجعة الفيزياء.', dur: '15 دقيقة', tag: 'pro', featured: false, locked: true },
+        ]
+      },
+      systems: {
+        num: 'الوحدة 05',
+        title: 'الأنظمة والتقنية — ما يجب أن يعرفه كل أخصائي أشعة.',
+        desc: 'RIS و PACS و NPHIES وأدوات الذكاء الاصطناعي جزء من عملك اليومي. تشرح هذه الوحدة وظيفة كل نظام، وكيفية ارتباطها ببعضها، وكيفية استخدامها بكفاءة.',
+        meta: [{ ico: '<i class="fi fi-sr-alarm-clock"></i>', txt: '~30 دقيقة إجمالاً' }, { ico: '<i class="fi fi-sr-graduation-cap"></i>', txt: 'جميع المستويات' }, { ico: '<i class="fi fi-sr-calendar"></i>', txt: 'مُحدَّث 2026' }],
+        exams: [],
+        lessons: [
+          { num: '01', title: 'RIS و PACS — ماذا تفعل ولماذا هي مهمة', desc: 'النظامان الكامنان خلف كل فحص — من إدخال الطلب إلى تسليم التقرير.', dur: '8 دقائق', tag: 'free', featured: false, locked: false,
+            quiz: [
+              { q: 'يتعامل RIS و PACS معًا مع:', options: ['من إدخال الطلب حتى تسليم التقرير/الصورة', 'الفوترة فقط', 'مواقف انتظار المرضى فقط'], correct: 0 },
+              { q: 'معرفة هذه الأنظمة جيدًا تساعد أخصائي الأشعة على:', options: ['العمل بكفاءة أكبر يوميًا', 'تجنب تعلم فيزياء التصوير', 'تجاوز كتابة التقارير'], correct: 0 },
+            ] },
+          { num: '02', title: 'NPHIES لأخصائيي الأشعة', desc: 'منصة البيانات الصحية الوطنية في السعودية — ما يجب معرفته للتقديم الصحيح.', dur: '10 دقائق', tag: 'free', featured: true, locked: false,
+            quiz: [
+              { q: 'NPHIES هي:', options: ['منصة تبادل البيانات الصحية الوطنية في السعودية', 'علامة تجارية خاصة للتصوير', 'هيئة امتحانات دولية'], correct: 0 },
+              { q: 'التقديم الصحيح عبر NPHIES يؤثر بشكل أساسي على:', options: ['معالجة المطالبات والتصريح المسبق', 'دقة الصورة', 'حجم خط التقرير'], correct: 0 },
+            ] },
+          { num: '03', title: 'أدوات الذكاء الاصطناعي في الأشعة اليوم', desc: 'ما يفعله الذكاء الاصطناعي فعليًا في الأشعة الآن — الفرز، الكشف، وكتابة التقارير.', dur: '12 دقيقة', tag: 'pro', featured: false, locked: true },
+        ]
+      },
+      research: {
+        num: 'الوحدة 06',
+        title: 'أساسيات البحث العلمي — بناء ملفك الأكاديمي.',
+        desc: 'البحث العلمي ليس للأساتذة فقط. تستفيد كل مستويات التدريب من فهم كيفية قراءة الدراسات، وكتابة تقارير الحالات، والمساهمة في الأدبيات الطبية. تجعل هذه الوحدة ذلك عمليًا وقابلاً للتحقيق.',
+        meta: [{ ico: '<i class="fi fi-sr-alarm-clock"></i>', txt: '~52 دقيقة إجمالاً' }, { ico: '<i class="fi fi-sr-graduation-cap"></i>', txt: 'جميع المستويات' }, { ico: '<i class="fi fi-sr-train-track"></i>', txt: 'المسار الأكاديمي' }],
+        exams: [],
+        lessons: [
+          { num: '01', title: 'كيفية قراءة دراسة في الأشعة', desc: 'خمسة أسئلة يجب طرحها قبل الوثوق بأي بحث. التقييم النقدي ببساطة.', dur: '12 دقيقة', tag: 'free', featured: true, locked: false,
+            quiz: [
+              { q: 'التقييم النقدي للدراسة يعني:', options: ['تقييم منهجيتها قبل الوثوق باستنتاجاتها', 'قبول كل بحث منشور كحقيقة', 'قراءة الملخص فقط'], correct: 0 },
+              { q: 'طرح أسئلة منظمة قبل الوثوق بالبحث يساعدك على:', options: ['تجنب اتخاذ القرارات بناءً على أدلة ضعيفة', 'القراءة بشكل أسرع دون فهم', 'تجاوز قسم النقاش بالكامل'], correct: 0 },
+            ] },
+          { num: '02', title: 'كتابة تقرير حالتك الأولى', desc: 'البنية واللغة وأين تُقدّم. كل ما تحتاجه لنشر بحثك الأول.', dur: '15 دقيقة', tag: 'free', featured: false, locked: false,
+            quiz: [
+              { q: 'يُكتب تقرير الحالة عادةً لـ:', options: ['وصف حالة سريرية غير عادية أو تعليمية', 'استبدال دراسة بحثية كاملة', 'تجنب مراجعة الأقران'], correct: 0 },
+              { q: 'قبل تقديم تقرير الحالة يجب عليك:', options: ['اتباع بنية وإرشادات المجلة المستهدفة', 'تجاهل متطلبات التنسيق', 'التقديم لأكبر عدد ممكن من المجلات في نفس الوقت'], correct: 0 },
+            ] },
+          { num: '03', title: 'الأشعة المبنية على الأدلة في الممارسة', desc: 'كيفية إيجاد وتقييم وتطبيق أفضل الأدلة في القرارات السريرية.', dur: '10 دقائق', tag: 'pro', featured: false, locked: true },
+          { num: '04', title: 'نشر بحثك الأول — دليل خطوة بخطوة', desc: 'من الفكرة إلى القبول. اختيار المجلة والتقديم والرد على المراجعين.', dur: '15 دقيقة', tag: 'pro', featured: false, locked: true },
+        ]
+      }
+    };
+
+    function lang() {
+      return (window.I18N && window.I18N.currentLang) ? window.I18N.currentLang() : 'en';
+    }
+    function currentModules() {
+      return lang() === 'ar' ? modules_ar : modules;
+    }
+
     let progress = {};
     let currentModule = 'foundations';
 
     function renderModule(id) {
-      const m = modules[id];
+      const m = currentModules()[id];
       if (!m) return;
       currentModule = id;
       let html = `
@@ -425,15 +556,15 @@
           </div>
         </div>
         <div class="exam-badges">${ex.badges.map(b => `<span class="exam-badge">${b}</span>`).join('')}</div>
-        <button class="exam-btn" id="examBtn-${id}" onclick="document.querySelector('.lessons-list').scrollIntoView({behavior:'smooth'})">Start track →</button>
+        <button class="exam-btn" id="examBtn-${id}" onclick="document.querySelector('.lessons-list').scrollIntoView({behavior:'smooth'})">${lang() === 'ar' ? '← ابدأ المسار' : 'Start track →'}</button>
       </div>`;
         });
-        html += `<div class="section-divider"><div class="section-divider-line"></div><span class="section-divider-label">All lessons</span><div class="section-divider-line"></div></div>`;
+        html += `<div class="section-divider"><div class="section-divider-line"></div><span class="section-divider-label">${lang() === 'ar' ? 'جميع الدروس' : 'All lessons'}</span><div class="section-divider-line"></div></div>`;
       }
       html += `<div class="lessons-list">`;
       m.lessons.forEach((l, i) => {
         const tagClass = l.tag === 'free' ? 'tag-free' : l.tag === 'new' ? 'tag-new' : 'tag-pro';
-        const tagTxt = l.tag === 'free' ? 'Video' : l.tag === 'new' ? 'New' : 'Pro';
+        const tagTxt = l.tag === 'free' ? (lang() === 'ar' ? 'فيديو' : 'Video') : l.tag === 'new' ? (lang() === 'ar' ? 'جديد' : 'New') : (lang() === 'ar' ? 'برو' : 'Pro');
         const isDone = progress[id] && progress[id].has(i);
         html += `
       <div class="lesson-card${l.featured ? ' featured' : ''}${l.locked ? ' locked' : ''}${isDone ? ' done' : ''}" onclick="${l.locked ? `showUpgrade()` : `openLesson(${i},'${id}',this)`}" data-aos="fade-up" data-aos-delay="${Math.min(i, 6) * 50}">
@@ -454,10 +585,10 @@
       html += `</div>`;
       html += `<div class="free-cta" data-aos="fade-up">
     <div>
-      <div class="free-cta-txt">Ready to unlock everything?</div>
-      <div class="free-cta-sub">Get full access to all lessons, exams, and your pre-auth certificate.</div>
+      <div class="free-cta-txt">${lang() === 'ar' ? 'مستعد لفتح كل شيء؟' : 'Ready to unlock everything?'}</div>
+      <div class="free-cta-sub">${lang() === 'ar' ? 'احصل على وصول كامل لجميع الدروس والامتحانات وشهادة التصريح المسبق.' : 'Get full access to all lessons, exams, and your pre-auth certificate.'}</div>
     </div>
-    <button class="free-cta-btn">Start Pro — 7 days free →</button>
+    <button class="free-cta-btn">${lang() === 'ar' ? '← ابدأ Pro — 7 أيام مجانًا' : 'Start Pro — 7 days free →'}</button>
   </div>`;
       document.getElementById('contentArea').innerHTML = html;
       updateProgress();
@@ -479,7 +610,7 @@
     }
 
     function openLesson(idx, modId, el) {
-      const lesson = modules[modId].lessons[idx];
+      const lesson = currentModules()[modId].lessons[idx];
       LessonViewer.open(lesson, () => markDone(idx, modId, el));
     }
 
@@ -493,7 +624,7 @@
     }
 
     function updateCertButton(modId) {
-      const m = modules[modId];
+      const m = currentModules()[modId];
       if (!m || !m.exams || !m.exams.length) return;
       const unlockedLessons = m.lessons.filter(l => !l.locked);
       const doneCount = progress[modId] ? progress[modId].size : 0;
@@ -501,10 +632,10 @@
       const btn = document.getElementById('examBtn-' + modId);
       if (!btn) return;
       if (allDone) {
-        btn.textContent = 'Download certificate →';
+        btn.textContent = lang() === 'ar' ? '← تحميل الشهادة' : 'Download certificate →';
         btn.onclick = () => Certificate.generate(m.exams[0].name);
       } else {
-        btn.textContent = 'Start track →';
+        btn.textContent = lang() === 'ar' ? '← ابدأ المسار' : 'Start track →';
         btn.onclick = () => document.querySelector('.lessons-list').scrollIntoView({ behavior: 'smooth' });
       }
     }
@@ -542,11 +673,14 @@
     }
 
     function showUpgrade() {
-      alert('🔒 This lesson is part of iHealth Academy Pro.\n\nStart your 7-day free trial to unlock all lessons, exam tracks, and your pre-auth certificate.');
+      alert(lang() === 'ar'
+        ? '🔒 هذا الدرس جزء من خطة iHealth Academy Pro.\n\nابدأ تجربتك المجانية لمدة 7 أيام لفتح جميع الدروس والمسارات الامتحانية وشهادة التصريح المسبق.'
+        : '🔒 This lesson is part of iHealth Academy Pro.\n\nStart your 7-day free trial to unlock all lessons, exam tracks, and your pre-auth certificate.');
     }
 
     loadProgress();
     renderModule('foundations');
+    document.addEventListener('ih:langchange', () => renderModule(currentModule));
   </script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
