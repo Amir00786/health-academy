@@ -1732,7 +1732,8 @@ footer {
   .serve-section,
   .offer-section,
   .instructor-section,
-  .plans-section {
+  .plans-section,
+  .about-section {
     padding: 50px 1rem;
   }
 

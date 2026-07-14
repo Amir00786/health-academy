@@ -359,10 +359,32 @@
   background: var(--primary-dark);
 }
 
+/* Drawn in pure CSS rather than relying on the "☰" glyph — that character's
+   rendered width varies wildly (13px–41px) across pages depending on which
+   fallback font the browser picks for it, which threw off the whole nav's
+   layout and made "Sign in"/"Sign up" wrap to two lines on some pages. */
 #mainnav .hamburger {
   display: none;
   border: none;
   padding: 0;
+  background: none;
+  position: relative;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  font-size: 0;
+  line-height: 0;
+}
+
+#mainnav .hamburger::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  right: 2px;
+  top: 6px;
+  height: 2px;
+  background: currentColor;
+  box-shadow: 0 6px 0 currentColor, 0 12px 0 currentColor;
 }
 
 @media (max-width: 1140px) {
@@ -372,6 +394,10 @@
 
   #mainnav .nav-links {
     display: none;
+  }
+
+  #mainnav .btn {
+    white-space: nowrap;
   }
 
   #mainnav .hamburger {
