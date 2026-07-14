@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Recruit — iHealth Academy</title>
+  <title>Contact Us — iHealth Academy</title>
   <link
     href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;800;900&display=swap"
     rel="stylesheet" />
@@ -13,7 +13,7 @@
   <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-bold-rounded/css/uicons-bold-rounded.css" rel="stylesheet" />
   <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css" rel="stylesheet" />
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-  <link href="css/recruit.css" rel="stylesheet" />
+  <link href="css/contact.css" rel="stylesheet" />
   <link href="css/forms-shared.css" rel="stylesheet" />
   <link href="css/nav-v2.css" rel="stylesheet" />
   <link href="css/livechat.css" rel="stylesheet" />
@@ -72,7 +72,7 @@
         <div class="nav-item"><a class="nav-link" href="index.html" data-i18n="nav.home">Home</a></div>
         <div class="nav-item"><a class="nav-link" href="find-your-path.html" data-i18n="nav.findPath">Find Your Path</a></div>
         <div class="nav-item"><a class="nav-link" href="dashboard.html" data-i18n="nav.dashboard">Dashboard</a></div>
-        <div class="nav-item"><a class="nav-link active" href="recruit.html" data-i18n="nav.recruit">Recruit</a></div>
+        <div class="nav-item"><a class="nav-link" href="recruit.html" data-i18n="nav.recruit">Recruit</a></div>
 
         <div class="nav-item" id="academyDropdown">
           <button type="button" class="nav-link" id="academyBtn"><span data-i18n="nav.academy">iHealthAcademy</span> <span class="caret">▾</span></button>
@@ -80,7 +80,7 @@
         </div>
 
         <div class="nav-item"><a class="nav-link" href="https://www.linkedin.com/in/musab-ahmed-1b1481104/" target="_blank" rel="noopener noreferrer" data-i18n="nav.connections">Connections</a></div>
-        <div class="nav-item"><a class="nav-link" href="contact.html" data-i18n="nav.contact">Contact Us</a></div>
+        <div class="nav-item"><a class="nav-link active" href="contact.html" data-i18n="nav.contact">Contact Us</a></div>
       </nav>
 
       <div class="auth-actions">
@@ -91,71 +91,42 @@
     </div>
   </header>
 
-  <!-- RECRUIT / CV DROP -->
-  <section class="recruit-hero-wrap">
-    <div class="recruit-inner">
-      <a class="recruit-back" href="index.html"><i class="fi fi-sr-arrow-small-left"></i><span data-i18n="recruit.back">Back to home</span></a>
-      <div class="recruit-tag" data-aos="fade-up" data-i18n="recruit.tag">Talent network</div>
-      <h1 class="recruit-title" data-aos="fade-up" data-aos-delay="50" data-i18n="recruit.title">Get on our radar for future roles.</h1>
-      <p class="recruit-desc" data-aos="fade-up" data-aos-delay="100" data-i18n="recruit.desc">Whatever your specialty, drop your CV and tell us where you'd like to grow. When a matching role opens up with iHealth Academy or one of our partner organizations, you'll be one of the first we reach out to.</p>
+  <!-- CONTACT US -->
+  <section class="contact-hero-wrap">
+    <div class="contact-inner">
+      <a class="contact-back" href="index.html"><i class="fi fi-sr-arrow-small-left"></i><span data-i18n="contact.back">Back to home</span></a>
+      <div class="contact-tag" data-aos="fade-up" data-i18n="contact.tag">Contact us</div>
+      <h1 class="contact-title" data-aos="fade-up" data-aos-delay="50" data-i18n="contact.title">Get in touch.</h1>
+      <p class="contact-desc" data-aos="fade-up" data-aos-delay="100" data-i18n="contact.desc">Reach us by email or start a live chat — whichever's easier for you.</p>
 
-      <form class="recruit-form ih-form-panel" id="recruitForm" data-aos="fade-up" data-aos-delay="150"
-        action="https://formspree.io/f/YOUR_FORM_ID" method="POST" enctype="multipart/form-data">
-        <div class="ih-field">
-          <label data-i18n="recruit.nameLabel">Full name</label>
-          <input type="text" name="name" required />
+      <div class="contact-methods">
+        <div class="ih-form-panel contact-panel" data-aos="fade-up" data-aos-delay="150">
+          <h3 data-i18n="contact.emailTitle">Email us</h3>
+          <p class="contact-panel-note" data-i18n="contact.emailNote">This opens your email app with everything filled in, addressed to info@ihealthacademy.com.</p>
+          <form id="contactForm">
+            <div class="ih-field">
+              <label data-i18n="contact.emailLabel">Your email *</label>
+              <input type="email" id="contactEmail" required />
+            </div>
+            <div class="ih-field">
+              <label data-i18n="contact.phoneLabel">Telephone (optional)</label>
+              <input type="tel" id="contactPhone" />
+            </div>
+            <div class="ih-field">
+              <label data-i18n="contact.messageLabel">Message</label>
+              <textarea id="contactMessage" rows="5" required data-i18n-ph="contact.messagePlaceholder" placeholder="How can we help?"></textarea>
+              <div class="contact-word-count" id="contactWordCount">0 / 250 words</div>
+            </div>
+            <button type="submit" class="ih-submit" id="contactSendBtn" data-i18n="contact.sendBtn">Send email</button>
+            <p class="contact-status" id="contactStatus"></p>
+          </form>
         </div>
-        <div class="ih-field">
-          <label data-i18n="recruit.emailLabel">Email</label>
-          <input type="email" name="email" required />
-        </div>
-        <div class="ih-field">
-          <label data-i18n="recruit.specialtyLabel">Your specialty</label>
-          <select name="specialty">
-            <option value="radiology" data-i18n="nav.radiology">Radiology</option>
-            <option value="insurance" data-i18n="recruit.specInsurance">Pre-Auth Specialist</option>
-            <option value="pharmacy" data-i18n="recruit.specPharmacy">Pharmacy</option>
-            <option value="dentistry" data-i18n="recruit.specDentistry">Dentistry</option>
-            <option value="nursing" data-i18n="recruit.specNursing">Nursing</option>
-            <option value="administration" data-i18n="recruit.specAdministration">Administration</option>
-            <option value="other" data-i18n="recruit.specOther">Other</option>
-          </select>
-        </div>
-        <div class="ih-field">
-          <label data-i18n="recruit.experienceLabel">Years of experience</label>
-          <select name="experience">
-            <option value="student" data-i18n="recruit.expStudent">Student / trainee</option>
-            <option value="0-2" data-i18n="recruit.exp0to2">0–2 years</option>
-            <option value="3-5" data-i18n="recruit.exp3to5">3–5 years</option>
-            <option value="6-10" data-i18n="recruit.exp6to10">6–10 years</option>
-            <option value="10+" data-i18n="recruit.exp10plus">10+ years</option>
-          </select>
-        </div>
-        <div class="ih-field">
-          <label data-i18n="recruit.messageLabel">Message</label>
-          <textarea name="message" rows="4" data-i18n-ph="recruit.messagePlaceholder" placeholder="What kind of role are you looking for?"></textarea>
-        </div>
-        <div class="ih-field">
-          <label data-i18n="recruit.cvLabel">Upload your CV (PDF or Word)</label>
-          <label class="ih-upload" for="recruitCvInput" id="recruitUploadZone">
-            <input type="file" name="cv" id="recruitCvInput" class="ih-file-native" accept=".pdf,.doc,.docx" required />
-            <span class="ih-upload-ico"><i class="fi fi-sr-cloud-upload-alt"></i></span>
-            <span class="ih-upload-text">
-              <strong data-i18n="recruit.uploadCta">Click to upload</strong>
-              <span data-i18n="recruit.uploadHint"> or drag and drop — PDF or Word, up to 10MB</span>
-            </span>
-            <span class="ih-upload-filename" id="recruitCvFilename"></span>
-            <button type="button" class="ih-upload-remove" id="recruitCvRemove" aria-label="Remove file"><i class="fi fi-sr-cross-small"></i></button>
-          </label>
-        </div>
-        <button type="submit" class="ih-submit" id="recruitSubmitBtn" data-i18n="recruit.submitBtn">Submit my CV</button>
-        <p class="recruit-status" id="recruitFormStatus"></p>
-      </form>
 
-      <div class="recruit-success panel" id="recruitSuccess" hidden data-aos="fade-up">
-        <div class="recruit-success-ico"><i class="fi fi-sr-check"></i></div>
-        <h3 data-i18n="recruit.successTitle">CV received.</h3>
-        <p data-i18n="recruit.successDesc">Thanks for dropping your CV — we'll keep it on file and reach out by email as soon as a matching role opens up.</p>
+        <div class="panel contact-panel contact-chat-panel" data-aos="fade-up" data-aos-delay="200">
+          <h3 data-i18n="contact.chatTitle">Live chat</h3>
+          <p class="contact-panel-note" data-i18n="contact.chatNote">Prefer to chat? Our team usually replies within a few hours.</p>
+          <button type="button" class="ih-submit contact-chat-btn" id="contactChatBtn"><i class="fi fi-sr-comment-alt"></i> <span data-i18n="contact.chatBtn">Start live chat</span></button>
+        </div>
       </div>
     </div>
   </section>
@@ -222,38 +193,23 @@
   <script src="js/livechat.js"></script>
   <script>
     window.I18N_PAGE_DICT = {
-      'recruit.back': { en: 'Back to home', ar: 'العودة إلى الرئيسية' },
-      'recruit.tag': { en: 'Talent network', ar: 'شبكة المواهب' },
-      'recruit.title': { en: 'Get on our radar for future roles.', ar: 'كن على رادارنا للفرص القادمة.' },
-      'recruit.desc': { en: "Whatever your specialty, drop your CV and tell us where you'd like to grow. When a matching role opens up with iHealth Academy or one of our partner organizations, you'll be one of the first we reach out to.", ar: 'أيًا كان تخصصك، أرسل سيرتك الذاتية وأخبرنا أين تودّ أن تنمو مهنيًا. عندما تتوفر فرصة مناسبة لدى أكاديمية آي هيلث أو إحدى المؤسسات الشريكة، ستكون من أوائل من نتواصل معهم.' },
-      'recruit.nameLabel': { en: 'Full name', ar: 'الاسم الكامل' },
-      'recruit.emailLabel': { en: 'Email', ar: 'البريد الإلكتروني' },
-      'recruit.specialtyLabel': { en: 'Your specialty', ar: 'تخصصك' },
-      'recruit.specInsurance': { en: 'Pre-Auth Specialist', ar: 'أخصائي التصريح المسبق' },
-      'recruit.specPharmacy': { en: 'Pharmacy', ar: 'الصيدلة' },
-      'recruit.specDentistry': { en: 'Dentistry', ar: 'طب الأسنان' },
-      'recruit.specNursing': { en: 'Nursing', ar: 'التمريض' },
-      'recruit.specAdministration': { en: 'Administration', ar: 'الإدارة' },
-      'recruit.specOther': { en: 'Other', ar: 'أخرى' },
-      'recruit.experienceLabel': { en: 'Years of experience', ar: 'سنوات الخبرة' },
-      'recruit.expStudent': { en: 'Student / trainee', ar: 'طالب / متدرب' },
-      'recruit.exp0to2': { en: '0–2 years', ar: '0–2 سنة' },
-      'recruit.exp3to5': { en: '3–5 years', ar: '3–5 سنوات' },
-      'recruit.exp6to10': { en: '6–10 years', ar: '6–10 سنوات' },
-      'recruit.exp10plus': { en: '10+ years', ar: 'أكثر من 10 سنوات' },
-      'recruit.messageLabel': { en: 'Message', ar: 'الرسالة' },
-      'recruit.messagePlaceholder': { en: 'What kind of role are you looking for?', ar: 'ما نوع الدور الذي تبحث عنه؟' },
-      'recruit.cvLabel': { en: 'Upload your CV (PDF or Word)', ar: 'ارفع سيرتك الذاتية (PDF أو Word)' },
-      'recruit.uploadCta': { en: 'Click to upload', ar: 'اضغط للرفع' },
-      'recruit.uploadHint': { en: ' or drag and drop — PDF or Word, up to 10MB', ar: ' أو اسحب وأفلت — PDF أو Word، حتى 10 ميجابايت' },
-      'recruit.submitBtn': { en: 'Submit my CV', ar: 'إرسال سيرتي الذاتية' },
-      'recruit.successTitle': { en: 'CV received.', ar: 'تم استلام سيرتك الذاتية.' },
-      'recruit.successDesc': { en: "Thanks for dropping your CV — we'll keep it on file and reach out by email as soon as a matching role opens up.", ar: 'شكرًا لإرسال سيرتك الذاتية — سنحتفظ بها وسنتواصل معك عبر البريد الإلكتروني بمجرد توفر فرصة مناسبة.' },
-      'recruit.errorMsg': { en: 'Something went wrong — please try again, or email your CV directly to info@ihealthacademy.com.', ar: 'حدث خطأ ما — يرجى المحاولة مرة أخرى، أو إرسال سيرتك الذاتية مباشرة إلى info@ihealthacademy.com.' },
-      'recruit.sending': { en: 'Sending…', ar: 'جارٍ الإرسال…' },
+      'contact.back': { en: 'Back to home', ar: 'العودة إلى الرئيسية' },
+      'contact.tag': { en: 'Contact us', ar: 'اتصل بنا' },
+      'contact.title': { en: 'Get in touch.', ar: 'تواصل معنا.' },
+      'contact.desc': { en: "Reach us by email or start a live chat — whichever's easier for you.", ar: 'تواصل معنا عبر البريد الإلكتروني أو ابدأ محادثة مباشرة — أيهما أسهل بالنسبة لك.' },
+      'contact.emailTitle': { en: 'Email us', ar: 'راسلنا' },
+      'contact.emailNote': { en: 'This opens your email app with everything filled in, addressed to info@ihealthacademy.com.', ar: 'سيفتح هذا تطبيق البريد الإلكتروني لديك مع تعبئة كل شيء، موجّهًا إلى info@ihealthacademy.com.' },
+      'contact.emailLabel': { en: 'Your email *', ar: 'بريدك الإلكتروني *' },
+      'contact.phoneLabel': { en: 'Telephone (optional)', ar: 'الهاتف (اختياري)' },
+      'contact.messageLabel': { en: 'Message', ar: 'الرسالة' },
+      'contact.messagePlaceholder': { en: 'How can we help?', ar: 'كيف يمكننا مساعدتك؟' },
+      'contact.sendBtn': { en: 'Send email', ar: 'إرسال البريد' },
+      'contact.chatTitle': { en: 'Live chat', ar: 'محادثة مباشرة' },
+      'contact.chatNote': { en: 'Prefer to chat? Our team usually replies within a few hours.', ar: 'تفضل الدردشة؟ عادة ما يرد فريقنا خلال بضع ساعات.' },
+      'contact.chatBtn': { en: 'Start live chat', ar: 'ابدأ محادثة مباشرة' },
     };
   </script>
-  <script src="js/recruit.js"></script>
+  <script src="js/contact.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init({ duration: 700, easing: 'ease', once: true, offset: 80 });
