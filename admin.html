@@ -64,8 +64,8 @@
       <div class="metric-grid section-gap">
         <div class="metric"><b>—</b><span>Visitors (30d)</span></div>
         <div class="metric"><b>—</b><span>Sign-ups (30d)</span></div>
-        <div class="metric"><b>—</b><span>Paid members</span></div>
-        <div class="metric"><b>—</b><span>MRR</span></div>
+        <div class="metric"><b id="kpiPaidMembers">—</b><span>Paid members</span></div>
+        <div class="metric"><b id="kpiMRR">—</b><span>MRR</span></div>
       </div>
 
       <!-- funnel -->
@@ -106,11 +106,21 @@
         </div>
         <div class="panel">
           <h3>Revenue by plan</h3>
-          <div class="waitlist-row"><span>Free</span><span>—</span></div>
-          <div class="waitlist-row"><span>Pro</span><span>—</span></div>
-          <div class="waitlist-row"><span>Institution</span><span>—</span></div>
-          <p class="panel-note">Not yet connected to a payments backend.</p>
+          <div class="waitlist-row"><span>Free</span><span id="revenueFree">—</span></div>
+          <div class="waitlist-row"><span>Pro</span><span id="revenuePro">—</span></div>
+          <div class="waitlist-row"><span>Institution</span><span id="revenueInstitution">—</span></div>
+          <div class="mod-actions" style="margin-top:14px;">
+            <button type="button" class="mod-btn" id="importRevenueBtn">Import PayPal CSV</button>
+            <input type="file" id="importRevenueFile" accept=".csv,text/csv" hidden />
+          </div>
+          <p class="panel-note" id="revenueNote">Not yet connected — import a PayPal Activity CSV export below. This panel reads from a swappable data layer (js/revenue.js), so plugging in a live PayPal/Stripe API later won't require redesigning it.</p>
         </div>
+      </div>
+
+      <div class="panel section-gap" id="revenueTransactionsPanel">
+        <h3>💳 Recent transactions</h3>
+        <div id="revenueTransactionsList"></div>
+        <p class="panel-note">Imported from a PayPal CSV export — stored only in this browser (included automatically in the Export backup below).</p>
       </div>
 
       <div class="dash-grid section-gap">
@@ -179,6 +189,7 @@
   </div>
 
   <script src="js/mentors.js"></script>
+  <script src="js/revenue.js"></script>
   <script src="js/admin.js"></script>
 </body>
 

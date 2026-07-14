@@ -225,9 +225,68 @@
     }
   }
 
+  // REVENUE — reads only through window.IH_REVENUE (js/revenue.js), never localStorage
+  // directly, so swapping that module for a live PayPal/Stripe API needs no changes here.
+  function formatMoney(amount, currency) {
+    const symbol = currency === 'USD' || !currency ? '$' : currency + ' ';
+    return symbol + amount.toFixed(2);
+  }
+
+  function renderRevenue() {
+    if (!window.IH_REVENUE) return;
+    const summary = window.IH_REVENUE.getSummary();
+
+    document.getElementById('kpiPaidMembers').textContent = summary.hasData ? summary.paidMembers : '—';
+    document.getElementById('kpiMRR').textContent = summary.hasData ? formatMoney(summary.mrr, summary.currency) : '—';
+    document.getElementById('revenueFree').textContent = summary.hasData ? formatMoney(summary.revenueByPlan.Free, summary.currency) : '—';
+    document.getElementById('revenuePro').textContent = summary.hasData ? formatMoney(summary.revenueByPlan.Pro, summary.currency) : '—';
+    document.getElementById('revenueInstitution').textContent = summary.hasData ? formatMoney(summary.revenueByPlan.Institution, summary.currency) : '—';
+    document.getElementById('revenueNote').textContent = summary.hasData
+      ? 'From an imported PayPal CSV (' + window.IH_REVENUE.getTransactions().length + ' transaction(s)). Import a newer export to refresh — connecting a live PayPal/Stripe API later reuses this same panel.'
+      : 'Not yet connected — import a PayPal Activity CSV export below. This panel reads from a swappable data layer (js/revenue.js), so plugging in a live PayPal/Stripe API later won\'t require redesigning it.';
+
+    const list = document.getElementById('revenueTransactionsList');
+    const transactions = window.IH_REVENUE.getTransactions().slice().reverse();
+    list.innerHTML = '';
+    if (!transactions.length) {
+      list.innerHTML = '<p class="empty-note">No transactions imported yet.</p>';
+      return;
+    }
+    transactions.slice(0, 20).forEach((tx) => {
+      const row = document.createElement('div');
+      row.className = 'mentor-row';
+      row.innerHTML =
+        '<div><div class="mentor-name">' + (tx.name || tx.email || 'Unknown') + '</div>' +
+        '<div class="mentor-meta">' + tx.date + ' · ' + tx.plan + '</div></div>' +
+        '<div style="font-weight:700;">' + formatMoney(tx.amount, tx.currency) + '</div>';
+      list.appendChild(row);
+    });
+  }
+
+  function initRevenueImport() {
+    const btn = document.getElementById('importRevenueBtn');
+    const file = document.getElementById('importRevenueFile');
+    if (!btn || !file || !window.IH_REVENUE) return;
+    btn.addEventListener('click', () => file.click());
+    file.addEventListener('change', () => {
+      const f = file.files[0];
+      if (!f) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        const result = window.IH_REVENUE.importCSV(reader.result);
+        renderRevenue();
+        alert(result.imported + ' transaction(s) imported.');
+        file.value = '';
+      };
+      reader.readAsText(f);
+    });
+  }
+
   initLock();
   renderModQueue();
   renderMentorQueue();
   renderMeetingsOverview();
+  renderRevenue();
+  initRevenueImport();
   initBackup();
 })();

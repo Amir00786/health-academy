@@ -81,36 +81,7 @@
 
           <div class="nav-item" id="academyDropdown">
             <button type="button" class="nav-link" id="academyBtn"><span data-i18n="nav.academy">iHealthAcademy</span> <span class="caret">▾</span></button>
-            <div class="dropdown">
-              <a class="ddi" href="find-your-path.html" style="background:var(--primary-tint); margin-bottom:6px;">
-                <div><div class="ddi-title" data-i18n="nav.dd.findpath.title">🧭 Find Your Path</div><div class="ddi-sub" data-i18n="nav.dd.findpath.sub">Not sure yet? Take the 2-minute quiz</div></div>
-                <span class="badge live" data-i18n="badge.live">LIVE</span>
-              </a>
-              <a class="ddi" href="insurance-dept.html">
-                <div><div class="ddi-title" data-i18n="nav.dd.insurance.title">Insurance Industry</div><div class="ddi-sub" data-i18n="nav.dd.insurance.sub">Become a Pre-Auth Specialist</div></div>
-                <span class="badge live" data-i18n="badge.live">LIVE</span>
-              </a>
-              <div class="ddi ddi-disabled">
-                <div><div class="ddi-title" data-i18n="nav.dd.managers.title">Managers Professional</div><div class="ddi-sub" data-i18n="nav.dd.managers.sub">Leadership track for health managers</div></div>
-                <span class="badge soon" data-i18n="badge.soon">COMING SOON</span>
-              </div>
-              <a class="ddi" href="radiology-dept.html">
-                <div><div class="ddi-title" data-i18n="nav.dd.specialties.title">Medical Specialties</div><div class="ddi-sub" data-i18n="nav.dd.specialties.sub">Radiology</div></div>
-                <span class="badge live" data-i18n="badge.live">LIVE</span>
-              </a>
-              <div class="ddi ddi-disabled">
-                <div><div class="ddi-title" data-i18n="nav.dd.mentor.title">Mentorships</div><div class="ddi-sub" data-i18n="nav.dd.mentor.sub">1:1 guidance from practicing professionals</div></div>
-                <span class="badge soon" data-i18n="badge.soon">COMING SOON</span>
-              </div>
-              <div class="ddi ddi-disabled">
-                <div><div class="ddi-title" data-i18n="nav.dd.supporters.title">Supporters</div><div class="ddi-sub" data-i18n="nav.dd.supporters.sub">Volunteering, teaching &amp; side-missions — earn a certificate</div></div>
-                <span class="badge soon" data-i18n="badge.soon">COMING SOON</span>
-              </div>
-              <a class="ddi" href="join-team.html">
-                <div><div class="ddi-title" data-i18n="nav.dd.cofounders.title">Co-Founders</div><div class="ddi-sub" data-i18n="nav.dd.cofounders.sub">Join the founding team</div></div>
-                <span class="badge live" data-i18n="badge.live">LIVE</span>
-              </a>
-            </div>
+            <div class="dropdown" id="academyDropdownMenu"></div>
           </div>
 
           <div class="nav-item"><a class="nav-link" href="#" data-i18n="nav.connections">Connections</a></div>
@@ -185,6 +156,8 @@
   <script src="js/nav.js"></script>
   <script src="js/nav-v2.js"></script>
   <script src="js/i18n.js"></script>
+  <script src="js/site-content.js"></script>
+  <script src="js/nav-content.js"></script>
   <script src="js/livechat.js"></script>
   <script>
     window.I18N_PAGE_DICT = {
