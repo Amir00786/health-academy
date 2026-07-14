@@ -98,6 +98,11 @@ html.is-loading body {
   margin-bottom: 2rem;
 }
 
+.legal-back i {
+  font-size: calc(0.85rem + 5px);
+  display: flex;
+}
+
 .legal-back:hover {
   border-color: #00C896;
 }

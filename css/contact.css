@@ -99,6 +99,11 @@ html.is-loading body {
   transition: border-color 0.2s;
 }
 
+.contact-back i {
+  font-size: calc(0.85rem + 5px);
+  display: flex;
+}
+
 .contact-back:hover {
   border-color: #00C896;
 }

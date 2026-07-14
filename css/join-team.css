@@ -99,6 +99,11 @@ html.is-loading body {
   margin-bottom: 2rem;
 }
 
+.join-back i {
+  font-size: calc(0.85rem + 5px);
+  display: flex;
+}
+
 .join-back:hover {
   border-color: #00C896;
 }
@@ -141,6 +146,43 @@ html.is-loading body {
   text-align: center;
   margin-top: 0.8rem;
   min-height: 1.2em;
+}
+
+.join-charter-box {
+  max-height: 220px;
+  overflow-y: auto;
+  background: rgba(0, 200, 150, 0.05);
+  border: 1px solid rgba(0, 200, 150, 0.3);
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: rgba(6, 6, 8, 0.75);
+}
+
+.join-charter-box p {
+  margin-bottom: 0.7rem;
+}
+
+.join-charter-box p:last-child {
+  margin-bottom: 0;
+}
+
+.join-charter-agree {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 0.7rem;
+  font-size: 0.82rem;
+  color: rgba(6, 6, 8, 0.75);
+  cursor: pointer;
+}
+
+.join-charter-agree input {
+  margin-top: 3px;
+  flex-shrink: 0;
+  width: auto;
+  height: auto;
 }
 
 .join-success {
