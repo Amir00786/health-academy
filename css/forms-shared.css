@@ -78,6 +78,21 @@
   font-size: 0.85rem;
 }
 
+.ih-field select option:hover,
+.ih-field select option:checked,
+.ih-field select option:focus {
+  background: #00C896;
+  color: #060608;
+}
+
+.ih-field select option[value=""] {
+  color: #00C896;
+}
+
+.ih-field select:has(option[value=""]:checked) {
+  color: #060608;
+}
+
 .ih-field textarea {
   resize: none;
   min-height: 120px;
