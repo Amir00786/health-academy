@@ -1,0 +1,167 @@
+:root {
+  --black: #060608;
+  --white: #F8F6F1;
+  --teal: #00C896;
+  --teal-dim: rgba(0, 200, 150, 0.1);
+  --teal-border: rgba(0, 200, 150, 0.25);
+  --amber: #F5A623;
+  --blue: #4A9EFF;
+  --border: rgba(255, 255, 255, 0.07);
+  --card: #0D0D1A;
+  --muted: rgba(248, 246, 241, 0.45);
+  --muted2: rgba(248, 246, 241, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: var(--black);
+  color: var(--white);
+}
+
+#wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.picker-hero-wrap {
+  background: var(--teal);
+}
+
+.picker-hero {
+  padding: 40px 3rem 70px;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.picker-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--black);
+  opacity: 0.7;
+  margin-bottom: 1rem;
+}
+
+.picker-hero h1 {
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 800;
+  color: var(--black);
+  line-height: 1.1;
+  margin-bottom: 0.75rem;
+}
+
+.picker-hero p {
+  color: rgba(6, 6, 8, 0.75);
+  font-size: 1.05rem;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.picker-layout {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 3.5rem 3rem 5rem;
+}
+
+.picker-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 720px) {
+  .picker-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.picker-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2.25rem 2rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+  position: relative;
+}
+
+.picker-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--teal-border);
+}
+
+.picker-card-ico {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: var(--teal-dim);
+  color: var(--teal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.picker-card-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.picker-card-desc {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+}
+
+.picker-card-arrow {
+  color: var(--teal);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.picker-card.locked {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.picker-card.locked:hover {
+  transform: none;
+  border-color: var(--border);
+}
+
+.picker-card.locked .picker-card-ico {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--muted);
+}
+
+.picker-badge {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--muted);
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+}
