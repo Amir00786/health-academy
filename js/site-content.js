@@ -21,4 +21,11 @@ window.IH_CONTENT = {
     { titleKey: 'nav.dd.supporters.title', subKey: 'nav.dd.supporters.sub', href: null, badge: 'soon' },
     { titleKey: 'nav.dd.cofounders.title', subKey: 'nav.dd.cofounders.sub', href: 'join-team.html', badge: 'live' },
   ],
+  leadershipDropdown: [
+    { titleKey: 'nav.dd.founder.title', subKey: 'nav.dd.founder.sub', href: 'founder.html', badge: 'live', highlight: true },
+    { titleKey: 'nav.dd.execleadership.title', subKey: 'nav.dd.execleadership.sub', href: 'leadership-bubbles.html', badge: 'live' },
+    { titleKey: 'nav.dd.advisors.title', subKey: 'nav.dd.advisors.sub', href: null, badge: 'soon' },
+    { titleKey: 'nav.dd.directors.title', subKey: 'nav.dd.directors.sub', href: null, badge: 'soon' },
+    { titleKey: 'nav.dd.foundingteam.title', subKey: 'nav.dd.foundingteam.sub', href: 'join-team.html', badge: 'live' },
+  ],
 };

@@ -26,10 +26,16 @@
       : '<div class="ddi ddi-disabled"' + style + '>' + inner + '</div>';
   }
 
+  function renderMenu(menuId, items) {
+    const menu = document.getElementById(menuId);
+    if (!menu || !items) return;
+    menu.innerHTML = items.map(itemHtml).join('');
+  }
+
   function render() {
-    const menu = document.getElementById('academyDropdownMenu');
-    if (!menu || !window.IH_CONTENT) return;
-    menu.innerHTML = window.IH_CONTENT.dropdown.map(itemHtml).join('');
+    if (!window.IH_CONTENT) return;
+    renderMenu('academyDropdownMenu', window.IH_CONTENT.dropdown);
+    renderMenu('leadershipDropdownMenu', window.IH_CONTENT.leadershipDropdown);
   }
 
   render();

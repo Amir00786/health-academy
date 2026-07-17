@@ -80,6 +80,7 @@ const planets=[
     speed:0.00016,
     angle:Math.PI*1.5,
     tag:'Insurance company',
+    comingSoon:true,
     desc:'The insurer reviews every request before approving care. Understanding how they think — what they look for, why they deny, and how to appeal — is the most practical skill any radiologist can master.',
     subs:[
       {ico:'⭐',title:'Pre-authorization',desc:'The core step — how to get approvals fast'},
@@ -200,7 +201,15 @@ function drawPlanet(p){
   const pos=getPlanetPos(p);
   const r=p.radius*scale;
   const isHov=(hovered===p.id);
-  // Glow
+  // Ambient breathing glow — always on, so every planet feels alive, not just on hover
+  const pulse=0.55+0.45*Math.sin(time*0.03+p.angle*3);
+  const ambR=r*(1.8+0.3*pulse);
+  const ag=ctx.createRadialGradient(pos.x,pos.y,0,pos.x,pos.y,ambR);
+  ag.addColorStop(0,p.color+Math.round((isHov?38:20)*pulse+10).toString(16).padStart(2,'0'));
+  ag.addColorStop(1,p.color+'00');
+  ctx.beginPath();ctx.arc(pos.x,pos.y,ambR,0,Math.PI*2);
+  ctx.fillStyle=ag;ctx.fill();
+  // Extra hover glow on top
   if(isHov){
     const g=ctx.createRadialGradient(pos.x,pos.y,0,pos.x,pos.y,r*2.5);
     g.addColorStop(0,p.color+'40');
@@ -214,10 +223,18 @@ function drawPlanet(p){
   // Body
   ctx.beginPath();ctx.arc(pos.x,pos.y,r,0,Math.PI*2);
   ctx.fillStyle=isHov?p.color:p.color+'BB';ctx.fill();
-  // Ring for some
+  // Slow self-spin highlight, so the body itself visibly rotates, not just the orbit
+  const spinAngle=time*0.02+p.angle*2;
+  ctx.save();
+  ctx.beginPath();ctx.arc(pos.x,pos.y,r,0,Math.PI*2);ctx.clip();
+  ctx.beginPath();
+  ctx.ellipse(pos.x+Math.cos(spinAngle)*r*0.5,pos.y+Math.sin(spinAngle)*r*0.5,r*0.4,r*0.22,spinAngle,0,Math.PI*2);
+  ctx.fillStyle='rgba(255,255,255,0.18)';ctx.fill();
+  ctx.restore();
+  // Ring for some — slowly tumbles for a Saturn-like living look
   if(p.id==='regulator'||p.id==='cycle'){
     ctx.beginPath();
-    ctx.ellipse(pos.x,pos.y,r*1.6,r*0.4,0,0,Math.PI*2);
+    ctx.ellipse(pos.x,pos.y,r*1.6,r*0.4,time*0.01,0,Math.PI*2);
     ctx.strokeStyle=p.color+'50';ctx.lineWidth=2*scale;ctx.stroke();
   }
   // Icon
@@ -339,14 +356,20 @@ C.addEventListener('wheel',e=>{
 function openPanel(p){
   panelOpen=true;
   const picoEl=document.getElementById('p-ico');
-  picoEl.textContent=p.ico;
-  picoEl.style.fontFamily=p.icoFont||'';
-  picoEl.style.color='#060608';
+  if(p.comingSoon){
+    picoEl.style.display='none';
+  } else {
+    picoEl.style.display='';
+    picoEl.textContent=p.ico;
+    picoEl.style.fontFamily=p.icoFont||'';
+    picoEl.style.color='#060608';
+  }
   const tag=document.getElementById('p-tag');
   tag.textContent=p.tag;
   tag.style.background=p.color+'18';
   tag.style.color=p.color;
   tag.style.border='1px solid '+p.color+'44';
+  document.getElementById('p-soon').classList.toggle('show', !!p.comingSoon);
   document.getElementById('p-title').textContent=p.name;
   document.getElementById('p-desc').textContent=p.desc;
   document.getElementById('p-subs').innerHTML=p.subs.map(s=>`

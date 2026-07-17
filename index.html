@@ -48,7 +48,7 @@
   <div id="topbar">
     <div class="topbar-wrap">
       <div class="social-row">
-        <a class="social-chip" href="#" title="WhatsApp" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5.1-.1.2-.3.4-.4.1-.1.2-.2.2-.4.1-.1 0-.3 0-.4 0-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.3c.1.2 1.6 2.5 3.9 3.4.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg></a>
+        <a class="social-chip" href="https://chat.whatsapp.com/KIJxm1MHphy5nLFwVa81l7?mode=gi_t" target="_blank" rel="noopener noreferrer" title="WhatsApp" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5.1-.1.2-.3.4-.4.1-.1.2-.2.2-.4.1-.1 0-.3 0-.4 0-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.3c.1.2 1.6 2.5 3.9 3.4.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg></a>
         <a class="social-chip" href="https://www.facebook.com/share/1DAw4aVpVu/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" title="Facebook" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 22v-8h2.7l.4-3.1h-3.1V9c0-.9.2-1.5 1.6-1.5h1.6V4.7c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.3H8v3.1h2.5V22h3Z"/></svg></a>
         <a class="social-chip" href="https://www.linkedin.com/in/musab-ahmed-1b1481104/" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2 2 0 1 1 0 4 2 2 0 0 1 0-4ZM3 9h4v12H3V9Zm6.5 0h3.8v1.7h.1c.5-.9 1.8-1.9 3.7-1.9 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-2.9-1.8-2.9-1.8 0-2.1 1.4-2.1 2.8V21h-4V9Z"/></svg></a>
         <a class="social-chip" href="https://x.com/saoopy90" target="_blank" rel="noopener noreferrer" title="X (Twitter)" aria-label="X (Twitter)"><svg viewBox="0 0 24 24"><path d="M4 4l16 16M20 4 4 20" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" fill="none"/></svg></a>
@@ -84,7 +84,10 @@
           <div class="dropdown" id="academyDropdownMenu"></div>
         </div>
 
-        <div class="nav-item"><a class="nav-link" href="https://www.linkedin.com/in/musab-ahmed-1b1481104/" target="_blank" rel="noopener noreferrer" data-i18n="nav.connections">Connections</a></div>
+        <div class="nav-item" id="leadershipDropdown">
+          <button type="button" class="nav-link" id="leadershipBtn"><span data-i18n="nav.leadership">Leadership</span> <span class="caret">▾</span></button>
+          <div class="dropdown" id="leadershipDropdownMenu"></div>
+        </div>
         <div class="nav-item"><a class="nav-link" href="contact.html" data-i18n="nav.contact">Contact Us</a></div>
       </nav>
 
@@ -269,7 +272,7 @@
           <div class="serve-title" data-i18n="home.serve3Title">Healthcare Managers</div>
           <div class="serve-desc" data-i18n="home.serve3Desc">Hospital administration, quality, operations, patient experience,
             healthcare economics and executive leadership.</div>
-          <div class="serve-tags"><span class="stag" data-i18n="home.tagAdministration">Administration</span><span class="stag" data-i18n="home.tagPatientRights">Patient rights</span></div>
+          <div class="serve-tags"><span class="stag" data-i18n="home.tagPatientRights">Patient rights</span><span class="stag" data-i18n="home.tagComingSoon">Coming soon</span></div>
         </div>
         <div class="serve-card" style="--serve-color:#F5A623" data-aos="fade-up" data-aos-delay="300">
           <div class="serve-ico"><img class="serve-img" src="images/healthcare-manager.jpg" alt="Healthcare Partners">
@@ -482,29 +485,33 @@
           <div class="plan-price">$0</div>
           <div class="plan-period" data-i18n="home.plan1Period">forever — no card needed</div>
           <ul class="plan-feats">
-            <li data-i18n="home.plan1Feat1">Free ATS CV builder</li>
-            <li data-i18n="home.plan1Feat2">Ecosystem interactive map</li>
-            <li data-i18n="home.plan1Feat3">3 free lessons per module</li>
-            <li data-i18n="home.plan1Feat4">Insurance basics course</li>
-            <li data-i18n="home.plan1Feat5">Community access</li>
+            <li data-i18n="home.plan1Feat1">Introduction to Medical Insurance</li>
+            <li data-i18n="home.plan1Feat2">First 3 lessons</li>
+            <li data-i18n="home.plan1Feat3">Course overview &amp; roadmap</li>
+            <li data-i18n="home.plan1Feat4">Community access</li>
+            <li data-i18n="home.plan1Feat5">Sample quiz</li>
+            <li data-i18n="home.plan1Feat6">ATS CV Builder</li>
+            <li data-i18n="home.plan1Feat7">Certificate preview</li>
           </ul>
-          <button class="plan-btn" data-i18n="home.plan1Btn">Get started free</button>
+          <button class="plan-btn" data-i18n="home.plan1Btn">Start Free</button>
         </div>
         <div class="plan featured" data-aos="fade-up" data-aos-delay="100">
           <div class="plan-badge" data-i18n="home.plan2Badge">Most popular</div>
           <div class="plan-name" data-i18n="home.plan2Name">Pro</div>
-          <div class="plan-price" data-i18n="home.plan2Price">Coming soon</div>
+          <div class="plan-price" data-i18n="home.plan2Price">Launching soon</div>
           <div class="plan-period" data-i18n="home.plan2Period">pricing to be announced</div>
           <ul class="plan-feats">
             <li data-i18n="home.plan2Feat1">Everything in Free</li>
-            <li data-i18n="home.plan2Feat2">All modules — all specialties</li>
-            <li data-i18n="home.plan2Feat3">Full exam prep — FRCR, Arab Board, Saudi Board, ABR</li>
-            <li data-i18n="home.plan2Feat4">Full pre-auth masterclass</li>
-            <li data-i18n="home.plan2Feat5">Pre-auth certificate</li>
-            <li data-i18n="home.plan2Feat6">200+ case bank</li>
-            <li data-i18n="home.plan2Feat7">New content every week</li>
+            <li data-i18n="home.plan2Feat2">Full Medical Pre-Authorization course</li>
+            <li data-i18n="home.plan2Feat3">Complete quiz bank</li>
+            <li data-i18n="home.plan2Feat4">Case-based scenarios</li>
+            <li data-i18n="home.plan2Feat5">Downloadable resources</li>
+            <li data-i18n="home.plan2Feat6">Final assessment</li>
+            <li data-i18n="home.plan2Feat7">Certificate of Completion</li>
+            <li data-i18n="home.plan2Feat8">Future course updates included</li>
+            <li data-i18n="home.plan2Feat9">Priority support</li>
           </ul>
-          <button class="plan-btn" data-i18n="home.plan2Btn">Start 7-day free trial</button>
+          <button class="plan-btn" data-i18n="home.plan2Btn">Join Early Access</button>
         </div>
         <div class="plan" data-aos="fade-up" data-aos-delay="200">
           <div class="plan-name" data-i18n="home.plan3Name">Institution</div>
@@ -512,12 +519,14 @@
           <div class="plan-period" data-i18n="home.plan3Period">for hospitals & teams</div>
           <ul class="plan-feats">
             <li data-i18n="home.plan3Feat1">Everything in Pro</li>
-            <li data-i18n="home.plan3Feat2">Team dashboard & tracking</li>
-            <li data-i18n="home.plan3Feat3">Custom learning paths</li>
-            <li data-i18n="home.plan3Feat4">Department-level analytics</li>
-            <li data-i18n="home.plan3Feat5">Dedicated support</li>
+            <li data-i18n="home.plan3Feat2">Team enrollment</li>
+            <li data-i18n="home.plan3Feat3">Staff progress dashboard</li>
+            <li data-i18n="home.plan3Feat4">Group certificates</li>
+            <li data-i18n="home.plan3Feat5">Department reporting</li>
+            <li data-i18n="home.plan3Feat6">Dedicated onboarding</li>
+            <li data-i18n="home.plan3Feat7">Custom pricing</li>
           </ul>
-          <button class="plan-btn" data-i18n="home.plan3Btn">Contact us</button>
+          <button class="plan-btn" data-i18n="home.plan3Btn">Contact Sales</button>
         </div>
       </div>
     </div>
@@ -545,7 +554,7 @@
           </div>
           <div class="footer-col">
             <div class="footer-col-title" data-i18n="footer.legal">Legal</div>
-            <a href="#" data-i18n="footer.privacy">Privacy policy</a>
+            <a href="privacy-policy.html" data-i18n="footer.privacy">Privacy policy</a>
             <a href="legal-center.html" data-i18n="footer.terms">Terms and conditions</a>
           </div>
         </div>
@@ -597,7 +606,6 @@
       'home.tagPharmacy': { en: 'Pharmacy', ar: 'الصيدلة' },
       'home.tagDentistry': { en: 'Dentistry', ar: 'طب الأسنان' },
       'home.tagNursing': { en: 'Nursing', ar: 'التمريض' },
-      'home.tagAdministration': { en: 'Administration', ar: 'الإدارة' },
       'home.tagPatientRights': { en: 'Patient rights', ar: 'حقوق المرضى' },
       'home.tagComingSoon': { en: 'Coming soon', ar: 'قريبًا' },
       'home.stat5Value': { en: 'Experienced Personnel', ar: 'كادر ذو خبرة' },
@@ -654,33 +662,39 @@
       'home.plansDesc': { en: 'No hidden fees. No confusing tiers. Pick what works for where you are right now.', ar: 'بدون رسوم خفية. بدون مستويات معقدة. اختر ما يناسب مرحلتك الحالية.' },
       'home.plan1Name': { en: 'Free', ar: 'مجاني' },
       'home.plan1Period': { en: 'forever — no card needed', ar: 'إلى الأبد — بدون بطاقة' },
-      'home.plan1Feat1': { en: 'Free ATS CV builder', ar: 'أداة سيرة ذاتية مجانية متوافقة مع ATS' },
-      'home.plan1Feat2': { en: 'Ecosystem interactive map', ar: 'خريطة المنظومة التفاعلية' },
-      'home.plan1Feat3': { en: '3 free lessons per module', ar: '3 دروس مجانية لكل وحدة' },
-      'home.plan1Feat4': { en: 'Insurance basics course', ar: 'دورة أساسيات التأمين' },
-      'home.plan1Feat5': { en: 'Community access', ar: 'الوصول إلى المجتمع' },
-      'home.plan1Btn': { en: 'Get started free', ar: 'ابدأ مجانًا' },
+      'home.plan1Feat1': { en: 'Introduction to Medical Insurance', ar: 'مقدمة في التأمين الطبي' },
+      'home.plan1Feat2': { en: 'First 3 lessons', ar: 'أول 3 دروس' },
+      'home.plan1Feat3': { en: 'Course overview & roadmap', ar: 'نظرة عامة على الدورة وخارطة الطريق' },
+      'home.plan1Feat4': { en: 'Community access', ar: 'الوصول إلى المجتمع' },
+      'home.plan1Feat5': { en: 'Sample quiz', ar: 'اختبار تجريبي' },
+      'home.plan1Feat6': { en: 'ATS CV Builder', ar: 'أداة بناء السيرة الذاتية المتوافقة مع ATS' },
+      'home.plan1Feat7': { en: 'Certificate preview', ar: 'معاينة الشهادة' },
+      'home.plan1Btn': { en: 'Start Free', ar: 'ابدأ مجانًا' },
       'home.plan2Badge': { en: 'Most popular', ar: 'الأكثر شيوعًا' },
       'home.plan2Name': { en: 'Pro', ar: 'برو' },
-      'home.plan2Price': { en: 'Coming soon', ar: 'قريبًا' },
+      'home.plan2Price': { en: 'Launching soon', ar: 'الإطلاق قريبًا' },
       'home.plan2Period': { en: 'pricing to be announced', ar: 'سيتم الإعلان عن السعر لاحقًا' },
       'home.plan2Feat1': { en: 'Everything in Free', ar: 'كل ما في الخطة المجانية' },
-      'home.plan2Feat2': { en: 'All modules — all specialties', ar: 'كل الوحدات — كل التخصصات' },
-      'home.plan2Feat3': { en: 'Full exam prep — FRCR, Arab Board, Saudi Board, ABR', ar: 'تحضير كامل للامتحانات — FRCR، البورد العربي، البورد السعودي، ABR' },
-      'home.plan2Feat4': { en: 'Full pre-auth masterclass', ar: 'دورة احترافية كاملة في التصريح المسبق' },
-      'home.plan2Feat5': { en: 'Pre-auth certificate', ar: 'شهادة التصريح المسبق' },
-      'home.plan2Feat6': { en: '200+ case bank', ar: 'أكثر من 200 حالة دراسية' },
-      'home.plan2Feat7': { en: 'New content every week', ar: 'محتوى جديد كل أسبوع' },
-      'home.plan2Btn': { en: 'Start 7-day free trial', ar: 'ابدأ تجربة مجانية لمدة 7 أيام' },
+      'home.plan2Feat2': { en: 'Full Medical Pre-Authorization course', ar: 'دورة التصريح المسبق الطبي الكاملة' },
+      'home.plan2Feat3': { en: 'Complete quiz bank', ar: 'بنك أسئلة كامل' },
+      'home.plan2Feat4': { en: 'Case-based scenarios', ar: 'سيناريوهات قائمة على الحالات' },
+      'home.plan2Feat5': { en: 'Downloadable resources', ar: 'موارد قابلة للتحميل' },
+      'home.plan2Feat6': { en: 'Final assessment', ar: 'تقييم نهائي' },
+      'home.plan2Feat7': { en: 'Certificate of Completion', ar: 'شهادة إتمام' },
+      'home.plan2Feat8': { en: 'Future course updates included', ar: 'تحديثات الدورة المستقبلية مشمولة' },
+      'home.plan2Feat9': { en: 'Priority support', ar: 'دعم ذو أولوية' },
+      'home.plan2Btn': { en: 'Join Early Access', ar: 'انضم للوصول المبكر' },
       'home.plan3Name': { en: 'Institution', ar: 'مؤسسي' },
       'home.plan3Price': { en: 'Custom', ar: 'مخصص' },
       'home.plan3Period': { en: 'for hospitals & teams', ar: 'للمستشفيات والفرق' },
       'home.plan3Feat1': { en: 'Everything in Pro', ar: 'كل ما في خطة برو' },
-      'home.plan3Feat2': { en: 'Team dashboard & tracking', ar: 'لوحة تحكم وتتبع الفريق' },
-      'home.plan3Feat3': { en: 'Custom learning paths', ar: 'مسارات تعلم مخصصة' },
-      'home.plan3Feat4': { en: 'Department-level analytics', ar: 'تحليلات على مستوى القسم' },
-      'home.plan3Feat5': { en: 'Dedicated support', ar: 'دعم مخصص' },
-      'home.plan3Btn': { en: 'Contact us', ar: 'تواصل معنا' },
+      'home.plan3Feat2': { en: 'Team enrollment', ar: 'تسجيل الفريق' },
+      'home.plan3Feat3': { en: 'Staff progress dashboard', ar: 'لوحة متابعة تقدم الموظفين' },
+      'home.plan3Feat4': { en: 'Group certificates', ar: 'شهادات جماعية' },
+      'home.plan3Feat5': { en: 'Department reporting', ar: 'تقارير الأقسام' },
+      'home.plan3Feat6': { en: 'Dedicated onboarding', ar: 'تأهيل مخصص' },
+      'home.plan3Feat7': { en: 'Custom pricing', ar: 'تسعير مخصص' },
+      'home.plan3Btn': { en: 'Contact Sales', ar: 'تواصل مع المبيعات' },
     };
   </script>
   <script src="js/script.js"></script>

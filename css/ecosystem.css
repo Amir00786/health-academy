@@ -124,7 +124,7 @@ body {
 }
 
 .panel-inner {
-  padding: 2rem;
+  padding: 90px 2rem 2rem 2rem;
   flex: 1;
 }
 
@@ -166,6 +166,25 @@ body {
   border-radius: 100px;
   display: inline-block;
   margin-bottom: 0.85rem;
+  margin-right: 0.5rem;
+}
+
+.panel-soon-badge {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 100px;
+  display: none;
+  background: rgba(245, 166, 35, 0.12);
+  color: #F5A623;
+  border: 1px solid rgba(245, 166, 35, 0.35);
+  margin-bottom: 0.85rem;
+}
+
+.panel-soon-badge.show {
+  display: inline-block;
 }
 
 .panel-title {

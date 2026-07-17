@@ -7,17 +7,19 @@
     });
   }
 
-  var academyDropdown = document.getElementById('academyDropdown');
-  if (academyDropdown) {
-    var academyBtn = document.getElementById('academyBtn');
-    academyBtn.addEventListener('click', function (e) {
+  ['academyDropdown', 'leadershipDropdown'].forEach(function (id) {
+    var dropdown = document.getElementById(id);
+    if (!dropdown) return;
+    var btn = dropdown.querySelector('button.nav-link');
+    if (!btn) return;
+    btn.addEventListener('click', function (e) {
       e.preventDefault();
-      academyDropdown.classList.toggle('open');
+      dropdown.classList.toggle('open');
     });
     document.addEventListener('click', function (e) {
-      if (!academyDropdown.contains(e.target)) academyDropdown.classList.remove('open');
+      if (!dropdown.contains(e.target)) dropdown.classList.remove('open');
     });
-  }
+  });
 
   var hamburgerBtn = document.getElementById('hamburgerBtn');
   var navLinks = document.getElementById('navLinks');

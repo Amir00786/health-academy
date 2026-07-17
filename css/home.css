@@ -1149,8 +1149,8 @@ h1 .line3 {
   position: absolute;
   bottom: 0;
   right: 0;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: var(--teal);
   transform: translate(35%, 35%) scale(1);
@@ -1160,7 +1160,7 @@ h1 .line3 {
 }
 
 .plan:hover::after {
-  transform: translate(35%, 35%) scale(45);
+  transform: translate(35%, 35%) scale(60);
 }
 
 .plan:hover .plan-name,
