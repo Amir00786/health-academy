@@ -21,13 +21,19 @@
   <link href="css/certificate.css" rel="stylesheet" />
   <style>
     /* Insurance page's own hero image — overrides radiology-dept.css's shared
-       .dept-badge rule (which points at radio-hero.jpg, the wrong department). */
+       .dept-badge rule (which points at radio-hero.jpg, the wrong department).
+       Cropped to the illustration only (no logo/title/copy baked in) since the
+       real page title, description and stats already cover that content as text. */
     .ins-dept-badge {
-      background-image: url('images/insurance-hero-banner.png');
+      background-image: url('images/insurance-hero-illustration.png');
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
       background-color: #fff;
+      width: 420px;
+      aspect-ratio: 676 / 880;
+      height: auto;
+      max-width: 100%;
     }
 
     /* Choose Your Membership section */
