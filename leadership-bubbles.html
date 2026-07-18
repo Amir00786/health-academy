@@ -33,7 +33,7 @@
   .abbr{ font-family:"Inter",sans-serif; font-weight:700; text-anchor:middle; fill:#fff; pointer-events:none; }
   .dept{ font-family:"Inter",sans-serif; font-weight:500; text-anchor:middle; pointer-events:none; }
   .ceo-role{ font-family:"Inter",sans-serif; font-weight:600; letter-spacing:.05em; text-transform:uppercase; fill:#8FB4FF; text-anchor:middle; }
-  .ceo-name{ font-family:"Inter",sans-serif; font-weight:800; fill:#FFFFFF; text-anchor:middle; }
+  .ceo-name{ font-family:"Inter",sans-serif; font-weight:800; fill:#00C896; text-anchor:middle; }
 
   .orb{ transition:filter .25s ease; }
   .orb-group:hover .orb-ring{ opacity:1; }
@@ -274,12 +274,11 @@ function ceoOrbMarkup(r, photoHref, ringColor, bobDelay){
   return `
     <g class="orb-group bob" data-idx="0" style="animation-delay:${bobDelay}s; transform-origin:0px 0px;">
       <g class="orb-scale" data-idx="0" data-base-r="${r}" style="transform-origin:0px 0px;">
-        <ellipse cx="0" cy="${r*0.94}" rx="${r*0.78}" ry="${r*0.15}" fill="#000" opacity="0.38"/>
+        <ellipse cx="0" cy="${r*1.12}" rx="${r*0.78}" ry="${r*0.15}" fill="#000" opacity="0.28"/>
         <circle class="orb-ring" cx="0" cy="0" r="${r+5}" fill="none" stroke="${ringColor}" stroke-width="1.5"/>
         <circle cx="0" cy="0" r="${r}" fill="#EAF2FF" stroke="${ringColor}" stroke-width="3"/>
         <image href="${photoHref}" x="${-r}" y="${-r}" width="${r*2}" height="${r*2}" clip-path="url(#ceoPhotoClip)" preserveAspectRatio="xMidYMid slice"/>
         <rect x="${-r}" y="${r*0.32}" width="${r*2}" height="${r*0.68}" fill="url(#ceoScrim)" clip-path="url(#ceoPhotoClip)"/>
-        <ellipse cx="${-r*0.32}" cy="${-r*0.4}" rx="${r*0.27}" ry="${r*0.15}" fill="#fff" opacity="0.22"/>
       </g>
     </g>`;
 }
