@@ -120,11 +120,12 @@
   .dopt.selected{ border-color:var(--primary); background:var(--primary-tint); color:var(--primary-dark); }
   .submit-row{ margin-top:16px; display:flex; justify-content:flex-end; gap:10px; }
 
-  .modal-overlay{ position:fixed; inset:0; background:rgba(15,43,42,0.45); display:flex; align-items:center; justify-content:center; z-index:100; padding:20px; }
-  .modal-panel{ background:var(--surface); border-radius:14px; max-width:520px; width:100%; padding:26px; position:relative; max-height:80vh; overflow-y:auto; }
-  .modal-close{ position:absolute; top:14px; right:16px; background:none; border:none; font-size:18px; color:var(--ink-dim); }
-  .modal-panel h3{ font-size:16px; }
-  .modal-panel p{ font-size:13.5px; color:var(--ink); }
+  .doc-modal-overlay{ position:fixed; inset:0; background:rgba(15,43,42,0.45); display:flex; align-items:center; justify-content:center; z-index:100; padding:20px; }
+  .doc-modal-overlay.hidden{ display:none; }
+  .doc-modal-panel{ background:var(--surface); border-radius:14px; max-width:520px; width:100%; padding:26px; position:relative; max-height:80vh; overflow-y:auto; }
+  .doc-modal-close{ position:absolute; top:14px; right:16px; background:none; border:none; font-size:18px; color:var(--ink-dim); }
+  .doc-modal-panel h3{ font-size:16px; }
+  .doc-modal-panel p{ font-size:13.5px; color:var(--ink); }
   .doc-flag{ font-family:var(--mono); font-size:10px; padding:3px 8px; border-radius:999px; font-weight:700; }
 
   /* ---------- RESULTS ---------- */
