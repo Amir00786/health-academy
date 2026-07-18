@@ -358,8 +358,9 @@
     <div class="lessons-list">`;
       course.lessons.forEach((l, i) => {
         const isDone = progress.has(i);
+        const isLocked = i > 0 && !progress.has(i - 1);
         html += `
-      <div class="lesson-card${i === 0 ? ' featured' : ''}${isDone ? ' done' : ''}" onclick="openLesson(${i},this)" data-aos="fade-up" data-aos-delay="${Math.min(i, 6) * 50}">
+      <div class="lesson-card${i === 0 ? ' featured' : ''}${isDone ? ' done' : ''}${isLocked ? ' locked' : ''}" onclick="${isLocked ? `alert('${isAr ? 'أكمل الفيديو السابق أولاً' : 'Finish the previous video first'}')` : `openLesson(${i},this)`}" data-aos="fade-up" data-aos-delay="${Math.min(i, 6) * 50}">
         <div class="lesson-card-inner">
           <div class="lesson-card-num">${String(i + 1).padStart(2, '0')}</div>
           <div class="lesson-card-body">
@@ -369,7 +370,7 @@
           <div class="lesson-card-right">
             <span class="lesson-dur-tag">${l.dur}</span>
             <span class="lesson-tag tag-free">${isAr ? 'فيديو' : 'Video'}</span>
-            <span class="lesson-arrow"><i class="fi fi-br-arrow-right"></i></span>
+            ${isLocked ? '<span class="lock-ico"><i class="fi fi-sr-lock"></i></span>' : '<span class="lesson-arrow"><i class="fi fi-br-arrow-right"></i></span>'}
           </div>
         </div>
       </div>`;
@@ -381,14 +382,13 @@
     }
 
     function openLesson(idx, el) {
-      LessonViewer.open(currentCourse().lessons[idx], () => markDone(idx, el));
+      LessonViewer.open(currentCourse().lessons[idx], () => markDone(idx));
     }
 
-    function markDone(idx, el) {
+    function markDone(idx) {
       progress.add(idx);
-      if (el) el.classList.add('done');
-      updateProgress();
       saveProgress();
+      render();
     }
 
     function updateProgress() {

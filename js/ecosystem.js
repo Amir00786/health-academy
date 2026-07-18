@@ -37,6 +37,7 @@ const planets=[
     speed:0.0003,
     angle:Math.PI*0.1,
     tag:'Regulatory body',
+    comingSoon:true,
     desc:'CHI sets the rules that every hospital, insurer, and doctor must follow in Saudi Arabia. Internationally, equivalent bodies do the same. This is the foundation of the entire system.',
     subs:[
       {ico:'📜',title:'What is ضمان?',desc:'The Council of Health Insurance — Saudi regulator'},
@@ -58,6 +59,7 @@ const planets=[
     speed:0.00022,
     angle:Math.PI*0.85,
     tag:'Provider',
+    comingSoon:true,
     desc:'The provider is where care is delivered — hospital, clinic, or imaging center. As a radiologist, this is your world. Understanding how the provider interacts with insurers and regulators makes you exceptional.',
     subs:[
       {ico:'🩻',title:'Radiology department',desc:'Workflow, reporting & quality standards'},
@@ -103,6 +105,7 @@ const planets=[
     speed:0.0001,
     angle:Math.PI*0.4,
     tag:'The care cycle',
+    comingSoon:true,
     desc:'Every entity connects in one continuous loop: patient arrives → pre-auth submitted → insurer reviews → imaging performed → report written → claim submitted → payment made. Understanding the full loop makes you exceptional at every step.',
     subs:[
       {ico:'🚶',title:'Patient journey',desc:'The full path from symptom to result'},
@@ -355,15 +358,7 @@ C.addEventListener('wheel',e=>{
 // PANEL
 function openPanel(p){
   panelOpen=true;
-  const picoEl=document.getElementById('p-ico');
-  if(p.comingSoon){
-    picoEl.style.display='none';
-  } else {
-    picoEl.style.display='';
-    picoEl.textContent=p.ico;
-    picoEl.style.fontFamily=p.icoFont||'';
-    picoEl.style.color='#060608';
-  }
+  document.getElementById('p-ico').style.display='none';
   const tag=document.getElementById('p-tag');
   tag.textContent=p.tag;
   tag.style.background=p.color+'18';
