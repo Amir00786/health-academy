@@ -40,7 +40,7 @@ const planets=[
     comingSoon:true,
     desc:'CHI sets the rules that every hospital, insurer, and doctor must follow in Saudi Arabia. Internationally, equivalent bodies do the same. This is the foundation of the entire system.',
     subs:[
-      {ico:'📜',title:'What is ضمان?',desc:'The Council of Health Insurance — Saudi regulator'},
+      {ico:'📜',title:'What is CHI?',desc:'The Council of Health Insurance — Saudi regulator'},
       {ico:'⚖️',title:'Rules for doctors',desc:'Compliance, obligations & penalties'},
       {ico:'🖥️',title:'NPHIES system',desc:'Saudi national health data platform'},
       {ico:'🌍',title:'International bodies',desc:'CMS, NHS, DHA & global comparison'},
