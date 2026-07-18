@@ -170,7 +170,15 @@ async function cvExtractPdfText(file) {
   let text = '';
   for (let i = 1; i <= pdf.numPages; i++) {
     const pageContent = await pdf.getPage(i).then((page) => page.getTextContent());
-    text += pageContent.items.map((item) => item.str).join(' ') + '\n';
+    let lastY = null;
+    pageContent.items.forEach((item) => {
+      const y = item.transform[5];
+      if (lastY !== null && Math.abs(y - lastY) > 2) text += '\n';
+      else if (lastY !== null) text += ' ';
+      text += item.str;
+      lastY = y;
+    });
+    text += '\n';
   }
   return text;
 }
