@@ -149,6 +149,7 @@
       <div class="dept-layout" style="grid-template-columns: 1fr;">
         <div class="main-content" id="mainContent">
           <div id="contentArea"></div>
+          <div id="assessmentsArea"></div>
           <div id="masterclassArea"></div>
           <div id="bonusArea"></div>
         </div>
@@ -411,6 +412,109 @@
 
     loadProgress();
     render();
+
+    // COURSE ASSESSMENTS — "Video -> Quiz" pattern, 4 real videos with fact-checked
+    // question banks (Saudi CHI-specific content), each with per-question explanations.
+    // Free, sequentially locked like the main course above.
+    const assessments = {
+      title: 'Course Assessments',
+      desc: 'Real, fact-checked scenarios from Saudi Arabia\'s health insurance system — watch each video, then answer its quiz before moving to the next.',
+      lessons: [
+        {
+          title: 'Insurance & Pre-Authorization Fundamentals', desc: 'What medical insurance is, the role of the Pre-Authorization Department, and who is qualified to work in it.', dur: '', video: 'images/preauth-v1.mp4',
+          quiz: [
+            { q: 'What best defines medical insurance?', options: ['A savings account used only for medical expenses.', 'A financial agreement that helps cover eligible healthcare costs according to the terms and conditions of an insurance policy.', 'A payment made directly to healthcare providers without any policy or contract.', 'A government program that provides free healthcare for everyone.', 'A hospital membership that guarantees treatment regardless of policy conditions.'], correct: 1, explanation: 'Medical insurance is a contractual agreement between the insurer and the insured that provides financial protection against eligible medical expenses, subject to the policy\'s benefits, exclusions, limits, and conditions.' },
+            { q: 'What is the primary role of the Pre-Authorization Department?', options: ['To collect insurance premiums from members.', 'To negotiate hospital salaries.', 'To verify medical necessity, policy eligibility, and benefits before approving healthcare services.', 'To diagnose diseases and prescribe medications.', 'To replace the treating physician\'s clinical judgment.'], correct: 2, explanation: 'The Pre-Authorization Department evaluates requested healthcare services to ensure medical necessity, policy eligibility, coverage benefits, and compliance with clinical guidelines. Its role is not to diagnose patients or replace treating physicians.' },
+            { q: 'If a patient does not have medical insurance, which option is generally available?', options: ['The insurance company automatically creates a policy.', 'Free treatment in every private hospital.', 'The hospital must provide unlimited treatment without payment.', 'Self-payment (Cash / Private Payment).', 'Automatic approval by the insurance company.'], correct: 3, explanation: 'Patients without medical insurance usually pay directly for healthcare services (self-pay). Depending on local regulations, they may also be eligible for governmental programs, charity services, or employer support, but there is no automatic insurance coverage.' },
+            { q: 'Which of the following healthcare professionals are commonly qualified to work in Medical Pre-Authorization?', options: ['Only hospital administrators.', 'Medical specialists (consultants) only.', 'No one — it is too difficult to learn.', 'Call center agents without healthcare backgrounds.', 'Doctors, nurses, dentists, pharmacists, laboratory specialists, radiographers, physiotherapists, and other licensed healthcare professionals.'], correct: 4, explanation: 'Medical pre-authorization requires clinical knowledge to understand diagnoses, investigations, treatments, and insurance policies. Many licensed healthcare professionals can perform this role after appropriate training in medical insurance, clinical guidelines, and policy interpretation.' },
+          ],
+        },
+        {
+          title: 'Saudi Insurance System — Key Terms', desc: 'Network providers, Revenue Cycle Management, the Council of Health Insurance (CHI), NPHIES, and the Insurance Authority.', dur: '', video: 'images/preauth-v2.mp4',
+          quiz: [
+            { q: 'An insured member should normally receive healthcare services from providers within the approved insurance network, except in emergency cases. True or False?', options: ['False', 'True', 'Only outside Saudi Arabia', 'Only for surgical procedures', 'Only for chronic conditions'], correct: 1, explanation: 'The correct term is out-of-network (or non-network) provider — not "non-assigned provider." Treatment outside the approved network may be covered in an emergency, not only when the condition is strictly life-threatening.' },
+            { q: 'What does Revenue Cycle Management (RCM) refer to in healthcare?', options: ['Managing only the hospital\'s medical equipment.', 'Preparing clinical treatment guidelines for doctors.', 'Managing the administrative and clinical processes that generate, bill, collect, and reconcile healthcare revenue.', 'Reviewing only denied insurance approvals.', 'Managing employee salaries and annual leave.'], correct: 2, explanation: 'RCM covers the financial journey of a healthcare service from patient registration and eligibility verification through documentation, coding, billing, claims submission, payment, denial management, and collection.' },
+            { q: 'What is one of the main responsibilities of the Council of Health Insurance (CHI) in Saudi Arabia?', options: ['Paying all hospital claims on behalf of insurance companies.', 'Issuing medical licences to doctors and nurses.', 'Operating private hospitals throughout Saudi Arabia.', 'Enforcing mandatory health insurance, identifying covered groups, accrediting healthcare providers, and overseeing the NPHIES platform.', 'Selling health-insurance policies directly to individuals.'], correct: 3, explanation: 'CHI\'s responsibilities include enforcing compulsory health-insurance coverage, defining groups subject to mandatory coverage, accrediting healthcare providers, monitoring compliance, and overseeing NPHIES. Regulation and supervision of insurance companies has shifted to the Insurance Authority. Use "CHI," not "CCHI," in new materials.' },
+            { q: 'Why should an insured member keep their registered mobile number updated?', options: ['To remove exclusions from the insurance policy.', 'To automatically approve all submitted medical requests.', 'To allow the hospital to change the member\'s diagnosis.', 'To increase the member\'s insurance benefit limit.', 'To receive notifications about approval, rejection, or other updates related to pre-authorisation requests.'], correct: 4, explanation: 'An updated mobile number allows the insurer to send timely SMS notifications regarding pre-authorisation decisions and related service updates. It does not change benefits, diagnosis, exclusions, or approval criteria. CHI\'s payer standards specifically refer to beneficiaries receiving pre-authorisation approvals through SMS and email.' },
+            { q: 'Which statement correctly describes the roles of NPHIES and the Insurance Authority in Saudi Arabia?', options: ['NPHIES licenses physicians, while the Insurance Authority manages hospital appointments.', 'NPHIES enables electronic exchange of eligibility, authorisation, claims, and payment information, while the Insurance Authority regulates and supervises the insurance sector.', 'NPHIES sells insurance policies, while the Insurance Authority provides hospital treatment.', 'Both organisations are private insurance companies.', 'Both organisations perform only medical diagnosis and treatment.'], correct: 1, explanation: 'NPHIES is a central electronic exchange connecting providers, insurers, and TPAs — it validates and routes eligibility checks, prior-authorisation requests, claims, and payment information. The Insurance Authority regulates, supervises, and develops the insurance sector itself; it is not a hospital, payer, or clinical decision-maker.' },
+          ],
+        },
+        {
+          title: 'Health Questionnaire (HQ)', desc: 'What the Health Questionnaire covers, who must complete one, and how insurers evaluate the disclosed information.', dur: '', video: 'images/preauth-v3.mp4',
+          quiz: [
+            { q: 'Which statement is CORRECT regarding the Health Questionnaire (HQ)?', options: ['The insurer must reject all members with an HQ.', 'The insurer should ask the date of diagnosis for every medical visit, even if it is unrelated to the HQ.', 'The insurer should only ask about diseases diagnosed within the previous year.', 'The insurer should ignore the information provided in the HQ.', 'The insurer should ask only for the member\'s current medications without reviewing the disclosed disease.', 'For members who complete a Health Questionnaire (HQ), the insurer may request the date of diagnosis and supporting medical information for the diseases disclosed in the HQ.'], correct: 5, explanation: 'When a disease is declared on the Health Questionnaire, the insurer may request additional information such as the date of diagnosis, medical reports, and previous treatment to assess eligibility, waiting periods, exclusions, or underwriting decisions.' },
+            { q: 'A 70-year-old member requests Open Heart Surgery. The Health Questionnaire states: no previous history of cardiac disease. What is the MOST appropriate action?', options: ['Approve immediately because the member is elderly.', 'The insurer has the right to verify the member\'s relevant medical history through available medical records and healthcare providers before making a coverage decision.', 'Ask the treating physician to change the diagnosis.', 'Cancel the insurance policy immediately.', 'Ignore the Health Questionnaire and approve the request.', 'Reject immediately because the member is elderly.'], correct: 1, explanation: 'If there is a significant inconsistency between the Health Questionnaire and the requested treatment, the insurer may investigate the relevant medical history using legally available medical records and supporting documentation before making a coverage decision.' },
+            { q: 'Which members are generally NOT required to complete a Health Questionnaire (HQ)?', options: ['Only children under five years.', 'Every insured member regardless of policy type.', 'Employees of large groups under mandatory insurance and members renewing their existing policies, subject to applicable regulations.', 'Only emergency patients.', 'Only members older than 65 years.', 'Only retired members.'], correct: 2, explanation: 'Under Saudi regulations, certain mandatory group insurance and renewal situations may not require completion of a new Health Questionnaire, depending on the applicable underwriting rules.' },
+            { q: 'A pregnant member\'s Last Menstrual Period (LMP) occurred 29 days after the policy effective date. What is the appropriate action?', options: ['Reject all maternity services immediately.', 'Request a new Health Questionnaire before every visit.', 'Consider the pregnancy as pre-existing.', 'Approve the maternity outpatient visit because the pregnancy began after the policy became effective.', 'Cancel the insurance policy.', 'Reject the request because pregnancy is never covered.'], correct: 3, explanation: 'If conception occurred after the effective date of the policy (based on LMP and policy rules), maternity services are generally processed according to the member\'s maternity benefits and policy terms. Final decisions still depend on the exact policy wording and applicable regulations.' },
+            { q: 'Which group of conditions is included in the Health Questionnaire (HQ)?', options: ['Influenza, Food Poisoning, Ear Wax, Sunburn, and Muscle Fatigue.', 'Migraine, Conjunctivitis, Vitamin D Deficiency, Hiccups, and Dandruff.', 'Sore Throat, Constipation, Dry Skin, Athlete\'s Foot, and Nail Fungus.', 'Chickenpox, Mosquito Bite, Mild Bruise, Dental Plaque, and Head Lice.', 'Autism, Cataract, Obesity (Weight-related condition), Ligament Tears, and G6PD Deficiency.', 'Common Cold, Seasonal Allergy, Acne, Tooth Sensitivity, and Motion Sickness.'], correct: 4, explanation: 'The Health Questionnaire focuses on significant medical conditions that may affect underwriting, risk assessment, or coverage decisions — not minor self-limiting illnesses.' },
+          ],
+        },
+        {
+          title: 'Not Covered Services (CHI)', desc: 'Common CHI Basic Health Insurance Policy exclusions, and how to reason through edge cases instead of applying blanket rules.', dur: '', video: 'images/preauth-v4.mp4',
+          quiz: [
+            { q: 'A patient sustains multiple fractures after an earthquake and is admitted to the emergency department. The provider submits a claim under the Basic Health Insurance Policy. What is the most appropriate decision?', options: ['Approve because all emergency cases are covered.', 'Approve because natural disasters are always covered.', 'Not covered because natural disasters are excluded under the Basic Health Insurance Policy.', 'Approve if the patient has no previous medical history.', 'Approve only if the hospital is within the payer network.'], correct: 2, explanation: 'Natural disasters (such as earthquakes and floods) are generally excluded under the CHI Basic Health Insurance Policy unless otherwise required by law or specifically covered by the insurance contract.' },
+            { q: 'A newborn is diagnosed with a single ventricle congenital heart defect and has persistent severe cyanosis requiring urgent surgical intervention. What is the correct decision?', options: ['Approve because life-threatening congenital conditions requiring urgent treatment are covered.', 'Reject because all congenital anomalies are excluded.', 'Reject because the baby was born with the condition.', 'Reject because neonatal surgery is excluded.', 'Approve only after six months of observation.'], correct: 0, explanation: 'Although congenital anomalies are generally excluded, life-threatening congenital conditions requiring urgent intervention are covered under the CHI Basic Health Insurance Policy.' },
+            { q: 'A 20-year-old patient requests treatment for facial acne because it affects his appearance and self-confidence. What is the correct decision?', options: ['Approve because acne affects quality of life.', 'Approve if topical medication is requested.', 'Approve because the patient is under 25 years old.', 'Not covered because routine acne treatment is excluded under the Basic Health Insurance Policy.', 'Approve only after dermatology consultation.'], correct: 3, explanation: 'Routine acne treatment is generally excluded from the CHI Basic Health Insurance Policy unless specific medical circumstances or policy benefits apply.' },
+            { q: 'A member intentionally failed to declare an existing pregnancy on the Health Questionnaire (HQ) during policy enrolment and later requests coverage for delivery. What is the most appropriate action?', options: ['Automatically approve because maternity is always covered.', 'Approve because pregnancy cannot be investigated.', 'Approve if the provider confirms the pregnancy.', 'Refer the case for policy review because false declaration on the Health Questionnaire may affect coverage eligibility.', 'Reject all future claims permanently.'], correct: 3, explanation: 'Providing false or incomplete information on the Health Questionnaire may affect eligibility for benefits. The insurer has the right to investigate and determine coverage according to the policy terms and applicable regulations. Teaching point: avoid saying "Not Covered" automatically — the insurer investigates first.' },
+            { q: 'A Taekwondo athlete suffers an anterior shoulder dislocation during an official competition and requests emergency treatment. Which statement is most appropriate?', options: ['Approve because all sports injuries are covered.', 'Approve because shoulder reduction is an emergency procedure.', 'Reject because the injury occurred during exercise.', 'Approve because all trauma is covered.', 'Coverage depends on whether the injury falls under excluded personal hazards or hazardous sporting activities as defined by the policy.'], correct: 4, explanation: 'Coverage for sports-related injuries depends on the insurance policy and the applicable CHI provisions regarding personal hazards and excluded activities. Teaching point: be cautious here — "Taekwondo = automatically not covered" is too broad a rule.' },
+            { q: 'While travelling to work, a member is involved in a road traffic accident. He sustains a displaced femoral neck fracture requiring total hip replacement. The police report confirms the member was 0% liable. The hospital submits a request to the payer. What is the most appropriate response?', options: ['Reject because all traffic accidents are excluded.', 'Reject because hip replacement is excluded.', 'Approve because liability is 0%.', 'Reject because all trauma is work related.', 'Determine whether another legally responsible party should provide compensation before applying health insurance benefits, according to applicable regulations and policy terms.'], correct: 4, explanation: 'This scenario should not automatically be labelled as a work-related injury. Road traffic accident claims may involve other legal compensation systems (such as motor insurance), and the appropriate payer depends on the applicable regulations and policy wording.' },
+          ],
+        },
+      ],
+    };
+
+    let assessmentsProgress = new Set();
+    function loadAssessmentsProgress() {
+      try {
+        const raw = localStorage.getItem('ih-preauth-assessments-progress');
+        if (raw) assessmentsProgress = new Set(JSON.parse(raw));
+      } catch (e) { /* ignore corrupt data */ }
+    }
+    function saveAssessmentsProgress() {
+      localStorage.setItem('ih-preauth-assessments-progress', JSON.stringify(Array.from(assessmentsProgress)));
+    }
+
+    function renderAssessments() {
+      const isAr = lang() === 'ar';
+      let html = `
+        <div class="section-divider"><div class="section-divider-line"></div><span class="section-divider-label">${isAr ? 'تقييمات الدورة' : 'Course assessments'}</span><div class="section-divider-line"></div></div>
+        <div class="module-header">
+          <div class="module-title">${assessments.title}</div>
+          <p class="module-desc">${assessments.desc}</p>
+        </div>
+        <div class="lessons-list">`;
+      assessments.lessons.forEach((l, i) => {
+        const isDone = assessmentsProgress.has(i);
+        const isLocked = i > 0 && !assessmentsProgress.has(i - 1);
+        html += `
+          <div class="lesson-card${isDone ? ' done' : ''}${isLocked ? ' locked' : ''}" onclick="${isLocked ? `alert('${isAr ? 'أكمل الفيديو السابق أولاً' : 'Finish the previous video first'}')` : `openAssessmentLesson(${i}, this)`}">
+            <div class="lesson-card-inner">
+              <div class="lesson-card-num">${String(i + 1).padStart(2, '0')}</div>
+              <div class="lesson-card-body">
+                <div class="lesson-card-title">${l.title}</div>
+                <div class="lesson-card-desc">${l.desc}</div>
+              </div>
+              <div class="lesson-card-right">
+                <span class="lesson-tag tag-free">${isAr ? 'فيديو' : 'Video'}</span>
+                ${isLocked ? '<span class="lock-ico"><i class="fi fi-sr-lock"></i></span>' : '<span class="lesson-arrow"><i class="fi fi-br-arrow-right"></i></span>'}
+              </div>
+            </div>
+          </div>`;
+      });
+      html += `</div>`;
+      document.getElementById('assessmentsArea').innerHTML = html;
+    }
+
+    function openAssessmentLesson(idx, el) {
+      LessonViewer.open(assessments.lessons[idx], () => {
+        assessmentsProgress.add(idx);
+        saveAssessmentsProgress();
+        renderAssessments();
+      });
+    }
+
+    loadAssessmentsProgress();
+    renderAssessments();
 
     // MASTERCLASS — "Pre-Authorization Live Case Masterclass" — paid add-on, 3 videos.
     // Same trust-based PayPal unlock pattern as the bonus module below, but its own
@@ -832,7 +936,7 @@
     checkTierFromReturnUrl();
     loadBonusProgress();
     renderBonus();
-    document.addEventListener('ih:langchange', () => { render(); renderMasterclass(); renderBonus(); });
+    document.addEventListener('ih:langchange', () => { render(); renderAssessments(); renderMasterclass(); renderBonus(); });
   </script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>

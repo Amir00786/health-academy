@@ -214,3 +214,49 @@
   background: rgba(255, 107, 107, 0.14);
   color: #FF8C82;
 }
+
+.lv-option.lv-opt-correct {
+  border-color: #00C896;
+  background: rgba(0, 200, 150, 0.14);
+  color: #fff;
+}
+
+.lv-option.lv-opt-wrong {
+  border-color: #FF6B6B;
+  background: rgba(255, 107, 107, 0.14);
+  color: #fff;
+}
+
+.lv-option.lv-opt-disabled {
+  cursor: default;
+}
+
+.lv-explanation {
+  display: none;
+  margin-top: 0.6rem;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  background: rgba(255, 255, 255, 0.04);
+  border-left: 3px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.lv-explanation.show {
+  display: block;
+}
+
+.lv-explanation.lv-exp-correct {
+  border-left-color: #00C896;
+}
+
+.lv-explanation.lv-exp-wrong {
+  border-left-color: #FF6B6B;
+}
+
+.lv-explanation b {
+  color: #fff;
+  display: block;
+  margin-bottom: 2px;
+}
