@@ -16,7 +16,7 @@ window.IH_CONTENT = {
     { titleKey: 'nav.dd.findpath.title', subKey: 'nav.dd.findpath.sub', href: 'find-your-path.html', badge: 'live', highlight: true },
     { titleKey: 'nav.dd.insurance.title', subKey: 'nav.dd.insurance.sub', href: 'insurance-dept.html', badge: 'live' },
     { titleKey: 'nav.dd.managers.title', subKey: 'nav.dd.managers.sub', href: null, badge: 'soon' },
-    { titleKey: 'nav.dd.specialties.title', subKey: 'nav.dd.specialties.sub', href: 'radiology-dept.html', badge: 'live' },
+    { titleKey: 'nav.dd.specialties.title', subKey: 'nav.dd.specialties.sub', href: null, badge: 'soon' },
     { titleKey: 'nav.dd.mentor.title', subKey: 'nav.dd.mentor.sub', href: null, badge: 'soon' },
     { titleKey: 'nav.dd.supporters.title', subKey: 'nav.dd.supporters.sub', href: null, badge: 'soon' },
     { titleKey: 'nav.dd.cofounders.title', subKey: 'nav.dd.cofounders.sub', href: 'join-team.html', badge: 'live' },
