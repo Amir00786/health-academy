@@ -502,6 +502,19 @@
           </div>`;
       });
       html += `</div>`;
+      if (assessments.lessons.every((l, i) => assessmentsProgress.has(i))) {
+        html += `
+        <div class="exam-track-box" style="margin-top:1.5rem;">
+          <div class="exam-left">
+            <div class="exam-ico">📝</div>
+            <div>
+              <div class="exam-name">${isAr ? 'الامتحان العملي للتصريح المسبق' : 'Pre-Auth Practical Exam'}</div>
+              <div class="exam-info">${isAr ? 'اختبر معرفتك على 15 حالة حقيقية واحصل على شهادتك' : 'Put it to the test on 15 real cases and earn your certificate'}</div>
+            </div>
+          </div>
+          <a href="preauth-exam.html" class="exam-btn" style="text-decoration:none; display:inline-block;">${isAr ? '← ابدأ الامتحان العملي' : 'Take the Practical Exam →'}</a>
+        </div>`;
+      }
       document.getElementById('assessmentsArea').innerHTML = html;
     }
 

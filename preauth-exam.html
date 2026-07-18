@@ -1,0 +1,967 @@
+<!doctype html>
+<html lang="en" class="is-loading">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iHealth Academy — Pre-Auth Practical Exam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="css/preauth-exam.css" rel="stylesheet">
+<link href="css/nav-v2.css" rel="stylesheet">
+<link href="css/livechat.css" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F3F6F5; --surface:#FFFFFF; --ink:#0F2B2A; --ink-dim:#5B6B69;
+    --primary:#0B7A75; --primary-dark:#095F5B; --primary-tint:#E6F3F2;
+    --accent:#E8A33D; --accent-tint:#FBF0DD;
+    --live:#1F9D55; --live-tint:#E7F7EC;
+    --amber:#C9861F; --amber-tint:#FDF1DD;
+    --danger:#C0392B; --danger-tint:#FDEAEA;
+    --border:#DCE5E3; --navy:#152A3D;
+    --radius:12px; --heading:"Plus Jakarta Sans", sans-serif; --sans:"Inter", sans-serif; --mono:"IBM Plex Mono", monospace;
+  }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); line-height:1.5; }
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 22px; }
+  h1,h2,h3{ font-family:var(--heading); margin:0 0 .4em; }
+  button{ font-family:var(--sans); cursor:pointer; }
+  .hidden{ display:none !important; }
+
+  /* topbar */
+  .topbar{ background:var(--navy); color:#fff; padding:14px 0; }
+  .topbar .wrap{ display:flex; justify-content:space-between; align-items:center; }
+  .topbar .logo{ font-family:var(--heading); font-weight:800; font-size:15px; display:flex; align-items:center; gap:9px; }
+  .topbar .mark{ width:26px; height:26px; border-radius:7px; background:var(--primary); display:flex; align-items:center; justify-content:center; font-size:12px; }
+  .topbar .progress-pill{ font-family:var(--mono); font-size:12px; background:rgba(255,255,255,0.1); padding:6px 13px; border-radius:999px; }
+
+  /* ---------- INTRO ---------- */
+  #view-intro .wrap{ max-width:720px; padding:70px 22px; text-align:center; }
+  .eyebrow{ font-family:var(--mono); font-size:11.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--primary); font-weight:700; }
+  #view-intro h1{ font-size:clamp(26px,4vw,36px); margin-top:14px; }
+  #view-intro p{ color:var(--ink-dim); font-size:15px; }
+  .rules{ text-align:left; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:22px 26px; margin:26px 0; }
+  .rules li{ font-size:14px; margin-bottom:8px; color:var(--ink); }
+  .name-field{ margin:22px 0; }
+  .name-field input{ width:100%; max-width:340px; padding:12px 14px; border:1.5px solid var(--border); border-radius:9px; font-size:15px; font-family:var(--sans); text-align:center; }
+  .btn{ font-weight:700; font-size:14.5px; border-radius:999px; padding:13px 26px; border:none; }
+  .btn-primary{ background:var(--primary); color:#fff; }
+  .btn-primary:hover{ background:var(--primary-dark); }
+  .btn-ghost{ background:none; border:1.5px solid var(--border); color:var(--ink); }
+  .btn-ghost:hover{ border-color:var(--primary); color:var(--primary-dark); }
+
+  /* ---------- DASHBOARD ---------- */
+  #view-dashboard .wrap{ padding:34px 22px 70px; }
+  .dash-head{ display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:12px; margin-bottom:20px; }
+  .dash-head p{ color:var(--ink-dim); font-size:13.5px; max-width:56ch; margin:6px 0 0; }
+  .legend-row{ display:flex; gap:16px; font-size:12px; color:var(--ink-dim); font-family:var(--mono); flex-wrap:wrap; }
+  .legend-row span{ display:inline-flex; align-items:center; gap:6px; }
+  .dot{ width:9px; height:9px; border-radius:50%; display:inline-block; }
+
+  .case-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:14px; margin-top:20px; }
+  .tile{ background:var(--surface); border:1.5px solid var(--border); border-radius:var(--radius); padding:16px; cursor:pointer; transition:.15s ease; border-left-width:5px; }
+  .tile:hover{ transform:translateY(-2px); box-shadow:0 10px 22px -14px rgba(15,43,42,0.3); }
+  .tile.green{ border-left-color:var(--live); }
+  .tile.amber{ border-left-color:var(--amber); }
+  .tile.red{ border-left-color:var(--danger); }
+  .tile.done{ opacity:.55; cursor:default; }
+  .tile.done:hover{ transform:none; box-shadow:none; }
+  .tile.filler{ opacity:.4; cursor:not-allowed; border-left-color:var(--border); border-style:dashed; }
+  .tile-top{ display:flex; justify-content:space-between; align-items:flex-start; }
+  .tile-ref{ font-family:var(--mono); font-size:10.5px; color:var(--ink-dim); }
+  .tile-wait{ font-family:var(--mono); font-size:11px; font-weight:700; padding:2px 8px; border-radius:999px; }
+  .tile-wait.green{ background:var(--live-tint); color:var(--live); }
+  .tile-wait.amber{ background:var(--amber-tint); color:var(--amber); }
+  .tile-wait.red{ background:var(--danger-tint); color:var(--danger); }
+  .tile-name{ font-family:var(--heading); font-size:14.5px; font-weight:700; margin-top:10px; }
+  .tile-benefit{ font-size:12px; color:var(--ink-dim); margin-top:3px; }
+  .tile-check{ font-size:11px; color:var(--live); font-weight:700; margin-top:8px; }
+
+  /* ---------- CASE WORKSPACE ---------- */
+  #view-case .wrap{ padding:26px 22px 80px; max-width:980px; }
+  .case-header{ background:var(--navy); color:#fff; border-radius:var(--radius); padding:18px 22px; }
+  .case-header .row1{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-family:var(--mono); font-size:11.5px; color:#9FB4C6; }
+  .case-header .row1 b{ color:#fff; }
+  .case-header .patient-name{ font-family:var(--heading); font-size:19px; margin-top:10px; }
+  .case-header .row2{ display:flex; gap:20px; flex-wrap:wrap; font-size:12.5px; color:#CFE3DF; margin-top:6px; }
+
+  .case-body{ display:grid; grid-template-columns:1.4fr 1fr; gap:18px; margin-top:18px; }
+  @media (max-width:800px){ .case-body{ grid-template-columns:1fr; } }
+  .panel{ background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:20px 22px; margin-bottom:18px; }
+  .panel h3{ font-size:14.5px; display:flex; align-items:center; gap:8px; }
+  .panel p{ font-size:13.5px; color:var(--ink); margin:8px 0 0; }
+  .field-row{ display:flex; gap:8px; font-size:13px; margin-top:6px; }
+  .field-row .k{ color:var(--ink-dim); min-width:110px; }
+  .field-row .v{ font-weight:600; }
+
+  .hq-badge{ display:inline-block; font-family:var(--mono); font-size:11px; font-weight:700; padding:4px 10px; border-radius:999px; margin-top:8px; }
+  .hq-badge.none{ background:var(--danger-tint); color:var(--danger); }
+  .hq-badge.present{ background:var(--live-tint); color:var(--live); }
+
+  .doc-row{ display:flex; align-items:center; gap:10px; padding:9px 0; border-bottom:1px solid var(--border); cursor:pointer; }
+  .doc-row:last-child{ border-bottom:none; }
+  .doc-row:hover .doc-title{ color:var(--primary-dark); }
+  .doc-icon{ font-size:16px; }
+  .doc-title{ font-size:13.5px; font-weight:600; }
+
+  .q-btn{ display:block; width:100%; text-align:left; background:var(--bg); border:1px solid var(--border); border-radius:9px; padding:10px 12px; font-size:13px; margin-bottom:8px; color:var(--ink); }
+  .q-btn:hover:not(:disabled){ border-color:var(--primary); }
+  .q-btn:disabled{ opacity:.5; cursor:not-allowed; }
+  .q-answer{ background:var(--primary-tint); border-left:3px solid var(--primary); border-radius:0 8px 8px 0; padding:9px 12px; font-size:12.5px; margin:-4px 0 10px; }
+  .q-counter{ font-family:var(--mono); font-size:11.5px; color:var(--ink-dim); margin-bottom:10px; }
+
+  .history-table{ width:100%; border-collapse:collapse; font-size:12px; }
+  .history-table th{ text-align:left; color:var(--ink-dim); font-weight:600; padding:6px 8px; border-bottom:1px solid var(--border); font-family:var(--mono); font-size:10.5px; text-transform:uppercase; }
+  .history-table td{ padding:7px 8px; border-bottom:1px solid var(--border); }
+
+  .decision-bar{ background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:20px 22px; }
+  .decision-opts{ display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:12px; }
+  @media (max-width:640px){ .decision-opts{ grid-template-columns:1fr 1fr; } }
+  .dopt{ padding:12px 8px; border-radius:9px; border:1.5px solid var(--border); background:var(--bg); font-weight:700; font-size:13px; text-align:center; }
+  .dopt.selected{ border-color:var(--primary); background:var(--primary-tint); color:var(--primary-dark); }
+  .submit-row{ margin-top:16px; display:flex; justify-content:flex-end; gap:10px; }
+
+  .modal-overlay{ position:fixed; inset:0; background:rgba(15,43,42,0.45); display:flex; align-items:center; justify-content:center; z-index:100; padding:20px; }
+  .modal-panel{ background:var(--surface); border-radius:14px; max-width:520px; width:100%; padding:26px; position:relative; max-height:80vh; overflow-y:auto; }
+  .modal-close{ position:absolute; top:14px; right:16px; background:none; border:none; font-size:18px; color:var(--ink-dim); }
+  .modal-panel h3{ font-size:16px; }
+  .modal-panel p{ font-size:13.5px; color:var(--ink); }
+  .doc-flag{ font-family:var(--mono); font-size:10px; padding:3px 8px; border-radius:999px; font-weight:700; }
+
+  /* ---------- RESULTS ---------- */
+  #view-results .wrap{ max-width:760px; padding:60px 22px 90px; }
+  .verdict{ text-align:center; padding:36px 24px; border-radius:16px; margin-bottom:30px; }
+  .verdict.pass{ background:linear-gradient(160deg,#0B7A75,#095F5B); color:#fff; }
+  .verdict.fail{ background:var(--surface); border:1.5px solid var(--border); }
+  .verdict h2{ font-size:24px; margin:14px 0 6px; }
+  .verdict .score{ font-family:var(--mono); font-size:14px; }
+  .cert-name{ font-family:var(--heading); font-size:20px; margin-top:10px; }
+
+  .review-row{ background:var(--surface); border:1px solid var(--border); border-radius:11px; padding:16px 18px; margin-bottom:10px; }
+  .review-top{ display:flex; justify-content:space-between; align-items:center; gap:10px; }
+  .review-top .rn{ font-family:var(--heading); font-weight:700; font-size:14px; }
+  .rtag{ font-family:var(--mono); font-size:11px; font-weight:700; padding:3px 9px; border-radius:999px; }
+  .rtag.correct{ background:var(--live-tint); color:var(--live); }
+  .rtag.wrong{ background:var(--danger-tint); color:var(--danger); }
+  .review-detail{ font-size:12.5px; color:var(--ink-dim); margin-top:8px; }
+  .review-detail b{ color:var(--ink); }
+</style>
+</head>
+<body>
+
+<div class="page-loader" id="pageLoader">
+  <div class="ecg">
+    <svg class="ecg-svg" viewBox="0 0 600 120" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="ecgFade" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" style="stop-color:var(--teal); stop-opacity:0" />
+          <stop offset="18%" style="stop-color:var(--teal); stop-opacity:1" />
+          <stop offset="82%" style="stop-color:var(--teal); stop-opacity:1" />
+          <stop offset="100%" style="stop-color:var(--teal); stop-opacity:0" />
+        </linearGradient>
+      </defs>
+      <path class="ecg-track"
+        d="M0,60 L60,60 L72,50 L84,60 L100,60 L108,66 L114,10 L120,92 L128,60 L145,60 L162,48 L178,60 L200,60 L260,60 L272,50 L284,60 L300,60 L308,66 L314,10 L320,92 L328,60 L345,60 L362,48 L378,60 L400,60 L460,60 L472,50 L484,60 L500,60 L508,66 L514,10 L520,92 L528,60 L545,60 L562,48 L578,60 L600,60" />
+      <path class="ecg-pulse" pathLength="100"
+        d="M0,60 L60,60 L72,50 L84,60 L100,60 L108,66 L114,10 L120,92 L128,60 L145,60 L162,48 L178,60 L200,60 L260,60 L272,50 L284,60 L300,60 L308,66 L314,10 L320,92 L328,60 L345,60 L362,48 L378,60 L400,60 L460,60 L472,50 L484,60 L500,60 L508,66 L514,10 L520,92 L528,60 L545,60 L562,48 L578,60 L600,60" />
+    </svg>
+  </div>
+</div>
+
+<div id="topbar">
+  <div class="topbar-wrap">
+    <div class="social-row">
+      <a class="social-chip" href="https://chat.whatsapp.com/KIJxm1MHphy5nLFwVa81l7?mode=gi_t" target="_blank" rel="noopener noreferrer" title="WhatsApp" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5.1-.1.2-.3.4-.4.1-.1.2-.2.2-.4.1-.1 0-.3 0-.4 0-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.3c.1.2 1.6 2.5 3.9 3.4.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg></a>
+      <a class="social-chip" href="https://www.facebook.com/share/1DAw4aVpVu/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" title="Facebook" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 22v-8h2.7l.4-3.1h-3.1V9c0-.9.2-1.5 1.6-1.5h1.6V4.7c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.3H8v3.1h2.5V22h3Z"/></svg></a>
+      <a class="social-chip" href="https://www.linkedin.com/in/musab-ahmed-1b1481104/" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2 2 0 1 1 0 4 2 2 0 0 1 0-4ZM3 9h4v12H3V9Zm6.5 0h3.8v1.7h.1c.5-.9 1.8-1.9 3.7-1.9 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-2.9-1.8-2.9-1.8 0-2.1 1.4-2.1 2.8V21h-4V9Z"/></svg></a>
+      <a class="social-chip" href="https://x.com/saoopy90" target="_blank" rel="noopener noreferrer" title="X (Twitter)" aria-label="X (Twitter)"><svg viewBox="0 0 24 24"><path d="M4 4l16 16M20 4 4 20" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" fill="none"/></svg></a>
+      <a class="social-chip" href="https://www.instagram.com/_saoopy_?igsh=MTJrM2J2cHBvZWZlOA%3D%3D&amp;utm_source=qr" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor"/></svg></a>
+      <a class="social-chip" href="https://www.youtube.com/@RadiologyOasis" target="_blank" rel="noopener noreferrer" title="YouTube" aria-label="YouTube"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10 9l6 3-6 3V9Z" fill="currentColor"/></svg></a>
+      <a class="social-chip" href="https://www.tiktok.com/@tyb_alathr?_r=1&amp;_t=ZS-97zP3ajUVWv" target="_blank" rel="noopener noreferrer" title="TikTok" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.43 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z"/></svg></a>
+    </div>
+    <div class="right-links">
+      <div class="lang-switcher">
+        <a href="#" class="lang-toggle" data-i18n="nav.languages">Languages</a>
+        <div class="lang-dropdown">
+          <a href="#" class="lang-option" data-lang="ar">عربي</a>
+          <a href="#" class="lang-option" data-lang="en">English</a>
+        </div>
+      </div>
+      <a href="#" class="help-link" data-i18n="nav.help">Help</a>
+    </div>
+  </div>
+</div>
+
+<header id="mainnav">
+  <div class="mainnav-wrap">
+    <a class="logo" href="index.html"><span class="mark"><img src="images/ih-logo.png" alt="iHealth Academy"></span></a>
+
+    <nav class="nav-links" id="navLinks">
+      <div class="nav-item"><a class="nav-link" href="index.html" data-i18n="nav.home">Home</a></div>
+      <div class="nav-item"><a class="nav-link" href="find-your-path.html" data-i18n="nav.findPath">Find Your Path</a></div>
+      <div class="nav-item"><a class="nav-link" href="dashboard.html" data-i18n="nav.dashboard">Dashboard</a></div>
+      <div class="nav-item"><a class="nav-link" href="recruit.html" data-i18n="nav.recruit">Recruit</a></div>
+
+      <div class="nav-item" id="academyDropdown">
+        <button type="button" class="nav-link" id="academyBtn"><span data-i18n="nav.academy">iHealthAcademy</span> <span class="caret">▾</span></button>
+        <div class="dropdown" id="academyDropdownMenu"></div>
+      </div>
+
+      <div class="nav-item" id="leadershipDropdown">
+        <button type="button" class="nav-link" id="leadershipBtn"><span data-i18n="nav.leadership">Leadership</span> <span class="caret">▾</span></button>
+        <div class="dropdown" id="leadershipDropdownMenu"></div>
+      </div>
+      <div class="nav-item"><a class="nav-link" href="contact.html" data-i18n="nav.contact">Contact Us</a></div>
+    </nav>
+
+    <div class="auth-actions">
+      <a href="#" class="btn btn-ghost nav-signin" data-i18n="nav.signin">Sign in</a>
+      <a href="#" class="btn btn-primary nav-signup" data-i18n="nav.signup">Sign up</a>
+      <button type="button" class="hamburger btn btn-ghost" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="logo"><span class="mark">iH</span> Pre-Auth Practical Exam</div>
+    <div class="progress-pill" id="progressPill">0 / 15 cases decided</div>
+  </div>
+</div>
+
+<!-- ================= INTRO ================= -->
+<div id="view-intro">
+  <div class="wrap">
+    <div class="eyebrow">PRE-AUTH SPECIALIST · PRACTICAL EXAM</div>
+    <h1>Twenty cases. Fifteen decisions. One certificate.</h1>
+    <p>This simulates a real pre-authorization queue. Review each case's history, health questionnaire, and documents — ask up to two questions if you need more — then decide. Score more than 7 out of 15 and you pass.</p>
+    <div class="rules">
+      <li><b>The dashboard</b> shows a full queue like a real hospital line — cases are color-coded by how long they've been waiting.</li>
+      <li><b>Fifteen cases are real</b> and count toward your score. A few tiles are marked "not yet checked in" — they're just there for realism.</li>
+      <li><b>Each case</b> gives you a patient summary, insured claims history, HQ status, and three documents — not all of them matter.</li>
+      <li><b>You may ask up to two questions</b> per case for more detail. Choose them wisely.</li>
+      <li><b>Decide</b>: Approve, Partially Approve, Reject, or Refer for Review — the same categories used in real pre-auth software.</li>
+      <li>You'll see your full results — and the correct reasoning for every case — only at the end.</li>
+    </div>
+    <div class="name-field">
+      <input type="text" id="studentName" placeholder="Your name, for the certificate">
+    </div>
+    <button class="btn btn-primary" id="startBtn">Enter the queue →</button>
+  </div>
+</div>
+
+<!-- ================= DASHBOARD ================= -->
+<div id="view-dashboard" class="hidden">
+  <div class="wrap">
+    <div class="dash-head">
+      <div>
+        <h2 style="font-size:20px;">Today's Queue</h2>
+        <p>Click a case to open it. Color reflects waiting time — treat red cases with urgency, same as you would on the floor.</p>
+      </div>
+      <div class="legend-row">
+        <span><span class="dot" style="background:var(--live);"></span>&lt; 30 min</span>
+        <span><span class="dot" style="background:var(--amber);"></span>30–90 min</span>
+        <span><span class="dot" style="background:var(--danger);"></span>&gt; 90 min</span>
+      </div>
+    </div>
+    <div class="case-grid" id="caseGrid"></div>
+  </div>
+</div>
+
+<!-- ================= CASE WORKSPACE ================= -->
+<div id="view-case" class="hidden">
+  <div class="wrap">
+    <button class="btn btn-ghost" id="backToDashBtn" style="margin-bottom:14px;">← Back to queue</button>
+
+    <div class="case-header">
+      <div class="row1">
+        <span>Claim Ref: <b id="cRef">—</b></span>
+        <span>Benefit: <b id="cBenefit">—</b></span>
+        <span>HCP: <b id="cHcp">—</b></span>
+      </div>
+      <div class="patient-name" id="cName">—</div>
+      <div class="row2">
+        <span>Age: <b id="cAge">—</b></span>
+        <span>Gender: <b id="cGender">—</b></span>
+      </div>
+    </div>
+
+    <div class="case-body">
+      <div>
+        <div class="panel">
+          <h3>📋 Diagnosis &amp; Request</h3>
+          <div class="field-row"><span class="k">Diagnosis</span><span class="v" id="cDx">—</span></div>
+          <p id="cComplaint" class="dim"></p>
+          <div class="field-row" style="margin-top:10px;"><span class="k">Requested</span><span class="v" id="cRequested">—</span></div>
+        </div>
+
+        <div class="panel">
+          <h3>🩺 Health Questionnaire (HQ)</h3>
+          <div id="cHqBadgeArea"></div>
+          <div id="cHqList"></div>
+        </div>
+
+        <div class="panel">
+          <h3>📎 Documents</h3>
+          <div id="cDocs"></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="panel">
+          <h3>❓ Ask a Question</h3>
+          <div class="q-counter" id="qCounter">2 questions remaining</div>
+          <div id="cQuestions"></div>
+        </div>
+
+        <div class="panel">
+          <h3>🗂 Insured Claims History</h3>
+          <div id="cHistory"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="decision-bar">
+      <h3 style="margin-bottom:0;">Your Decision</h3>
+      <div class="decision-opts" id="decisionOpts">
+        <button class="dopt" data-d="approve">Approve</button>
+        <button class="dopt" data-d="partial">Partially Approve</button>
+        <button class="dopt" data-d="reject">Reject</button>
+        <button class="dopt" data-d="refer">Refer for Review</button>
+      </div>
+      <div class="submit-row">
+        <button class="btn btn-primary" id="submitDecisionBtn">Submit &amp; Next Case</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= RESULTS ================= -->
+<div id="view-results" class="hidden">
+  <div class="wrap">
+    <div id="verdictArea"></div>
+    <h3 style="margin-bottom:14px;">Case-by-case review</h3>
+    <div id="reviewList"></div>
+    <div style="text-align:center; margin-top:24px;">
+      <button class="btn btn-ghost" id="retryBtn">Retry the exam</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= DOCUMENT MODAL ================= -->
+<div class="modal-overlay hidden" id="docOverlay">
+  <div class="modal-panel">
+    <button class="modal-close" id="docClose">✕</button>
+    <span class="doc-flag" id="docFlag"></span>
+    <h3 id="docTitle">—</h3>
+    <p id="docContent">—</p>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">i<span>Health</span> Academy</div>
+        <p class="footer-tagline" data-i18n="footer.brandTagline">Career support for healthcare professionals — CV tools, exam prep, and career growth, all in one place.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <div class="footer-col-title" data-i18n="footer.product">Product</div>
+          <a href="ecosystem.html" data-i18n="footer.ecosystem">Ecosystem</a>
+          <a href="radiology-dept.html" data-i18n="footer.radiology">Radiology</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title" data-i18n="footer.company">Company</div>
+          <a href="founder.html" data-i18n="footer.meetFounder">Meet the Founder</a>
+          <a href="mailto:info@ihealthacademy.com" data-i18n="footer.contactSupport">Contact & support</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title" data-i18n="footer.legal">Legal</div>
+          <a href="privacy-policy.html" data-i18n="footer.privacy">Privacy policy</a>
+          <a href="legal-center.html" data-i18n="footer.terms">Terms and conditions</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy" data-i18n="footer.copy">© 2026 iHealth Academy. All rights reserved.</div>
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" rel="noopener" class="footer-paypal-form footer-paypal-pro-form">
+        <input type="hidden" name="cmd" value="_xclick" />
+        <input type="hidden" name="business" value="saoopy90@gmail.com" />
+        <input type="hidden" name="currency_code" value="USD" />
+        <input type="hidden" name="item_name" value="iHealth Academy — Pro Access" />
+        <input type="hidden" name="amount" value="20.00" />
+        <input type="hidden" name="return" class="pro-return-input" value="" />
+        <input type="hidden" name="rm" value="2" />
+        <button type="submit" class="footer-paypal-btn footer-paypal-btn-pro">
+          <img src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png" alt="PayPal">
+          <span data-i18n="footer.paypalProBtn">Get Pro access — $20</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</footer>
+
+<script src="js/nav.js"></script>
+<script src="js/nav-v2.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/site-content.js"></script>
+<script src="js/nav-content.js"></script>
+<script src="js/livechat.js"></script>
+<script>
+/* ============================================================
+   CASE DATA — 15 graded cases, drawn from the same concepts
+   already taught across Videos 2–6 (HQ, exclusions, liability,
+   chronic limits, DME) for course consistency.
+   ============================================================ */
+const CASES = [
+  { id:1, ref:"2026/700101", wait:12, name:"Male Patient", age:45, gender:"M", benefit:"H-OP / Out Patient", hcp:"Al Noor Medical Center - Riyadh",
+    dx:"E11.9 — Type 2 Diabetes Mellitus, without complications",
+    complaint:"Routine follow-up visit, requesting HbA1c and Metformin renewal.",
+    requested:"HbA1c test, Metformin 500mg × 90 tabs",
+    hasHQ:true, hqList:[],
+    history:[
+      {ref:"2025/551201",date:"14/03/2025",benefit:"Out Patient",dx:"Type 2 Diabetes",amt:"96.00",status:"Paid"},
+      {ref:"2024/338820",date:"02/09/2024",benefit:"Out Patient",dx:"Type 2 Diabetes",amt:"88.50",status:"Paid"}
+    ],
+    documents:[
+      {title:"HQ Declaration Form", necessary:false, content:"Health Questionnaire on file at enrollment. No hospital admission history for this member. Routine outpatient-managed conditions like DM and HTN are not required HQ declaration items unless there has been a prior admission for them."},
+      {title:"Clinic Referral Note", necessary:true, content:"Stable T2DM, routine 3-month follow-up, HbA1c due, continue Metformin."},
+      {title:"Dental Invoice (2023)", necessary:false, content:"Unrelated dental scaling invoice from a prior year — no relevance to this request."}
+    ],
+    questions:[
+      {q:"Does Diabetes need to be declared on the HQ?", a:"Not necessarily — DM and HTN are only required HQ items if the member has a prior hospital admission for the condition. This member has no admission history, so non-declaration isn't an issue here."},
+      {q:"Any new complications since enrollment?", a:"No new complications reported; the condition remains stable on oral therapy."},
+      {q:"Is the requested treatment consistent with standard guidelines?", a:"Yes — HbA1c monitoring and Metformin continuation are standard first-line management."}
+    ],
+    correct:"approve", rationale:"Stable, guideline-consistent outpatient management of a routine chronic condition. DM doesn't require HQ declaration absent a prior admission, so there's no disclosure issue — no exclusion applies."
+  },
+  { id:2, ref:"2026/700102", wait:95, name:"Male Patient", age:38, gender:"M", benefit:"H-IP / In Patient", hcp:"United Doctors Hospital - Jeddah",
+    dx:"B18.2 — Chronic viral hepatitis C, with decompensation",
+    complaint:"Admitted with jaundice and ascites, decompensated liver disease.",
+    requested:"Inpatient admission, liver function panel, diuretics, paracentesis",
+    hasHQ:true, hqList:[],
+    history:[{ref:"2025/119004",date:"20/01/2025",benefit:"Out Patient",dx:"Fatigue, unspecified",amt:"64.00",status:"Paid"}],
+    documents:[
+      {title:"HQ Declaration Form", necessary:true, content:"Health Questionnaire signed 6 months ago at policy inception. No chronic illness declared. No liver disease mentioned."},
+      {title:"Admission Medical Report", necessary:true, content:"History taking documents the patient's own report: 'known Hepatitis C, diagnosed approximately 3 years ago, previously untreated.' Current decompensation is consistent with long-standing disease."},
+      {title:"Underwriting Review Note", necessary:true, content:"Case flagged and reviewed by underwriting: non-disclosure confirmed. Diagnosis pre-dates policy inception by approximately 2.5 years and was not disclosed on the HQ."}
+    ],
+    questions:[
+      {q:"Was Hepatitis C declared on the Health Questionnaire?", a:"No — the HQ shows no chronic illness declared at enrollment."},
+      {q:"Does the medical record show when the condition was first diagnosed?", a:"Yes — the admission report documents the patient's own account of diagnosis roughly 3 years before the policy started."}
+    ],
+    correct:"reject", rationale:"Underwriting has already confirmed non-disclosure of a condition that materially pre-dates the policy. This isn't a snap judgment — the investigation is complete, and it supports rejection."
+  },
+  { id:3, ref:"2026/700103", wait:40, name:"Male Patient", age:29, gender:"M", benefit:"H-OP / Out Patient", hcp:"Al Samria Medical Center 2 - Jeddah",
+    dx:"S83.5 — Sprain of cruciate ligament, right knee",
+    complaint:"Requesting ACL reconstruction surgery, right knee instability.",
+    requested:"MRI-confirmed ACL reconstruction, pre-operative workup",
+    hasHQ:true, hqList:[],
+    history:[],
+    documents:[
+      {title:"HQ Declaration Form", necessary:true, content:"Health Questionnaire signed 14 months ago. No prior joint or orthopedic issues declared."},
+      {title:"Current MRI Report", necessary:true, content:"Right knee MRI: complete ACL tear, moderate joint effusion."},
+      {title:"Prior MRI Report (Pre-Policy)", necessary:true, content:"MRI dated 15 months before policy inception, from a different facility: partial tear of the right ACL, same knee."}
+    ],
+    questions:[
+      {q:"Is there any imaging that predates the policy?", a:"Yes — a prior MRI exists, dated 15 months before the policy started, showing a partial tear in the same knee."},
+      {q:"Was any knee condition declared on the HQ?", a:"No — the HQ shows no orthopedic history declared."}
+    ],
+    correct:"reject", rationale:"Imaging confirms pre-existing joint pathology predating the policy, and it wasn't disclosed on the HQ."
+  },
+  { id:4, ref:"2026/700104", wait:20, name:"Female Patient", age:26, gender:"F", benefit:"H-OP / Out Patient", hcp:"Al Andalus Specialized Clinic - Riyadh",
+    dx:"J34.2 — Deviated nasal septum (patient-reported)",
+    complaint:"Requesting rhinoplasty, states difficulty breathing.",
+    requested:"Septorhinoplasty",
+    hasHQ:true, hqList:["No relevant conditions declared"],
+    history:[],
+    documents:[
+      {title:"HQ Declaration Form", necessary:false, content:"No relevant prior conditions declared — not directly informative for this decision."},
+      {title:"ENT Consultation Report", necessary:true, content:"ENT exam: nasal airway patent bilaterally, no septal deviation on endoscopy, no functional obstruction identified. Cosmetic concern noted by the patient regarding nasal appearance."},
+      {title:"Old Lab Report", necessary:false, content:"Routine CBC from 8 months ago, within normal limits — unrelated to the current request."}
+    ],
+    questions:[
+      {q:"Does the ENT exam confirm a functional airway obstruction?", a:"No — the ENT report specifically notes no septal deviation and no functional obstruction on exam."},
+      {q:"Is there objective testing documenting breathing impairment?", a:"No airflow study was performed or documented; the complaint is subjective and appearance-related per the consultation note."}
+    ],
+    correct:"reject", rationale:"No confirmed functional impairment — the ENT exam is normal. This reads as a cosmetic request, excluded under routine policy terms."
+  },
+  { id:5, ref:"2026/700105", wait:80, name:"Male Patient", age:52, gender:"M", benefit:"H-ER / Emergency", hcp:"United Doctors Hospital - Jeddah",
+    dx:"T14.8 — Injury from external cause, storm-related",
+    complaint:"Admitted with crush injuries following a building collapse during severe flooding.",
+    requested:"Emergency admission, surgical fixation of fractures",
+    hasHQ:false, hqList:[],
+    history:[],
+    documents:[
+      {title:"Emergency Admission Report", necessary:true, content:"Patient brought in following structural collapse during a declared flood event in the region. Multiple long-bone fractures, hemodynamically stable."},
+      {title:"Civil Defense Incident Report", necessary:true, content:"Official incident report confirms the injury occurred during a declared flood/natural disaster event in the area."},
+      {title:"Insurance Card Copy", necessary:false, content:"Standard insurance card image — no additional clinical information."}
+    ],
+    questions:[
+      {q:"Is this injury related to a declared natural disaster event?", a:"Yes — the Civil Defense report confirms the injury occurred during a declared flood event."},
+      {q:"Is there any rider or legal requirement overriding the standard exclusion?", a:"No special legal mandate or policy rider is on file for this member."}
+    ],
+    correct:"reject", rationale:"Natural disaster injuries are excluded under the Basic Health Insurance Policy unless required by law or covered by a specific rider — neither applies here."
+  },
+  { id:6, ref:"2026/700106", wait:5, name:"Female Newborn Patient", age:0, gender:"F", benefit:"H-IP / In Patient", hcp:"United Doctors Hospital - Jeddah",
+    dx:"Q79.1 — Congenital diaphragmatic hernia",
+    complaint:"Newborn with severe respiratory distress, confirmed diaphragmatic hernia, requires emergency surgical repair.",
+    requested:"Emergency neonatal surgical repair, NICU admission",
+    hasHQ:false, hqList:[],
+    history:[],
+    documents:[
+      {title:"Neonatal Surgical Report", necessary:true, content:"Confirmed congenital diaphragmatic hernia with bowel herniation into the thoracic cavity, causing severe respiratory compromise. Immediate surgical repair indicated to prevent mortality."},
+      {title:"NICU Admission Note", necessary:true, content:"Neonate in critical but stabilized condition on ventilatory support, awaiting emergency surgery."},
+      {title:"Family Insurance Summary", necessary:false, content:"General family policy summary document, not specific to this admission."}
+    ],
+    questions:[
+      {q:"Is this condition immediately life-threatening without intervention?", a:"Yes — without urgent surgical repair, the condition carries a high risk of mortality due to respiratory compromise."},
+      {q:"Is this an urgent or elective congenital case?", a:"This is an urgent, life-threatening presentation requiring emergency intervention, not an elective correction."}
+    ],
+    correct:"approve", rationale:"Congenital anomalies are generally excluded, but life-threatening congenital conditions requiring urgent intervention are a recognized exception."
+  },
+  { id:7, ref:"2026/700107", wait:55, name:"Male Patient", age:24, gender:"M", benefit:"H-ER / Emergency", hcp:"Al Samria Medical Center 2 - Jeddah",
+    dx:"S52.5 — Fracture of distal radius",
+    complaint:"Injured during a motocross racing competition, open wrist fracture.",
+    requested:"Emergency reduction and fixation of wrist fracture",
+    hasHQ:true, hqList:["No relevant conditions declared"],
+    history:[],
+    documents:[
+      {title:"Emergency Report", necessary:true, content:"Patient sustained an open distal radius fracture during a motocross competition. Immediate surgical fixation required."},
+      {title:"Policy Exclusions Schedule", necessary:true, content:"Policy exclusions list includes: 'Injuries sustained during motor racing, motocross, or similar hazardous motorsport competitions are excluded from coverage.'"},
+      {title:"HQ Declaration Form", necessary:false, content:"No relevant prior conditions declared — not informative for this specific exclusion question."}
+    ],
+    questions:[
+      {q:"Is motocross racing specifically listed as an excluded activity?", a:"Yes — the policy exclusions schedule explicitly lists motocross and motor racing competitions as excluded hazardous activities."},
+      {q:"Was this an official competition or casual riding?", a:"Confirmed as an official motocross competition per the emergency report."}
+    ],
+    correct:"reject", rationale:"The policy explicitly excludes motocross and motor racing competitions as a hazardous activity."
+  },
+  { id:8, ref:"2026/700108", wait:30, name:"Male Patient", age:34, gender:"M", benefit:"H-OP / Out Patient", hcp:"Al Noor Medical Center - Riyadh",
+    dx:"S82.0 — Fracture of patella",
+    complaint:"Injured in a traffic accident while commuting home after work hours.",
+    requested:"Outpatient orthopedic management, casting",
+    hasHQ:true, hqList:["No relevant conditions declared"],
+    history:[],
+    documents:[
+      {title:"Najm (Police) Report", necessary:true, content:"Traffic accident report: member's liability assessed at 0%. The other driver was found fully at fault."},
+      {title:"Employer Duty Schedule", necessary:true, content:"Duty schedule confirms the accident occurred after official working hours, during the member's personal commute home — not during a work assignment."},
+      {title:"Old Physiotherapy Note", necessary:false, content:"Unrelated physiotherapy note from over a year ago, for a different, resolved complaint."}
+    ],
+    questions:[
+      {q:"Does the duty schedule confirm this happened during work duties?", a:"No — the duty schedule confirms the accident occurred after working hours, during a personal commute."},
+      {q:"What does the Najm report say about liability?", a:"The member was found 0% liable; the other driver was fully at fault."},
+      {q:"Does third-party liability affect the member's own health coverage eligibility?", a:"No — the member's health policy covers eligible treatment regardless of fault. Liability only determines whether the insurer can later recover costs from the at-fault party — it doesn't delay the member's own care."}
+    ],
+    correct:"approve", rationale:"This is not an occupational injury — it happened outside work duties, so no work-related exclusion applies. The member's own health coverage pays for eligible treatment regardless of who was at fault; recovering costs from the at-fault driver's motor insurer is a separate subrogation process handled by the insurer afterward, not a reason to withhold the member's care. Approve."
+  },
+  { id:9, ref:"2026/700109", wait:65, name:"Female Patient", age:58, gender:"F", benefit:"H-IP / In Patient", hcp:"United Doctors Hospital - Jeddah",
+    dx:"N18.6 — End-stage renal disease, diabetic nephropathy",
+    complaint:"Longstanding declared diabetic nephropathy, now requiring initiation of hemodialysis.",
+    requested:"Hemodialysis sessions, vascular access placement",
+    hasHQ:true, hqList:["Type 2 Diabetes Mellitus with nephropathy — declared at enrollment"],
+    history:[
+      {ref:"2025/882210",date:"10/06/2025",benefit:"Pre-Existing & Chronic",dx:"Diabetic Nephropathy",amt:"210,000.00",status:"Paid"},
+      {ref:"2025/441098",date:"22/02/2025",benefit:"Pre-Existing & Chronic",dx:"Diabetic Nephropathy",amt:"640,000.00",status:"Paid"}
+    ],
+    documents:[
+      {title:"HQ Declaration Form", necessary:false, content:"Diabetic nephropathy declared at enrollment — already established, not the key issue in this case."},
+      {title:"Chronic Condition Utilization Summary", necessary:true, content:"Cumulative paid amount under the Pre-Existing & Chronic Conditions benefit this policy year: SAR 850,000. Policy maximum for this benefit: SAR 1,000,000. Remaining balance: SAR 150,000."},
+      {title:"Nephrology Treatment Plan", necessary:true, content:"Hemodialysis initiation — estimated cost for the requested course of sessions: SAR 210,000."}
+    ],
+    questions:[
+      {q:"What is the remaining balance under the chronic condition limit?", a:"SAR 150,000 remains available under the SAR 1,000,000 chronic/pre-existing condition cap this policy year."},
+      {q:"What is the estimated cost of the requested treatment course?", a:"Approximately SAR 210,000 for the full requested course of dialysis sessions."}
+    ],
+    correct:"partial", rationale:"The condition and treatment are covered, but the requested amount (SAR 210,000) exceeds the SAR 150,000 remaining under the chronic condition cap. Partially approve up to the remaining limit."
+  },
+  { id:10, ref:"2026/700110", wait:15, name:"Male Patient", age:66, gender:"M", benefit:"H-OP / Out Patient", hcp:"Al Noor Medical Center - Riyadh",
+    dx:"J44.9 — Chronic obstructive pulmonary disease",
+    complaint:"Severe COPD with resting hypoxemia, requesting home oxygen therapy.",
+    requested:"Home oxygen concentrator (durable medical equipment)",
+    hasHQ:true, hqList:["COPD — declared at enrollment"],
+    history:[{ref:"2025/220456",date:"05/11/2025",benefit:"Out Patient",dx:"COPD",amt:"145.00",status:"Paid"}],
+    documents:[
+      {title:"HQ Declaration Form", necessary:false, content:"COPD declared at enrollment — already established."},
+      {title:"Pulmonology Report with Oximetry", necessary:true, content:"Resting oxygen saturation 87% on room air, consistent with criteria for home oxygen therapy per standard clinical guidelines."},
+      {title:"DME Coverage Schedule", necessary:true, content:"Policy DME schedule confirms home oxygen concentrators are a covered benefit when medical necessity criteria (documented hypoxemia) are met."}
+    ],
+    questions:[
+      {q:"Does the oximetry result meet medical necessity criteria for home oxygen?", a:"Yes — resting saturation of 87% meets standard clinical criteria for home oxygen therapy."},
+      {q:"Is home oxygen equipment covered under this policy's DME schedule?", a:"Yes — the DME schedule confirms coverage when documented medical necessity criteria are met, which this case satisfies."}
+    ],
+    correct:"approve", rationale:"Documented medical necessity (hypoxemia on oximetry) meets DME coverage criteria under the policy."
+  },
+  { id:11, ref:"2026/700111", wait:22, name:"Male Patient", age:31, gender:"M", benefit:"H-OP / Out Patient", hcp:"Al Noor Medical Center - Riyadh",
+    dx:"J18.9 — Community-acquired pneumonia",
+    complaint:"On oral antibiotics; physician referred the member to an external retail pharmacy to dispense the medication, since the hospital pharmacy doesn't stock this formulation.",
+    requested:"Dispense a 7-day antibiotic course at an external retail pharmacy per physician referral",
+    hasHQ:false, hqList:[],
+    history:[],
+    documents:[
+      {title:"Physician Prescription & Referral Note", necessary:true, content:"Prescribes a 7-day oral antibiotic course; refers the member to an external retail pharmacy for dispensing, as the hospital pharmacy does not stock this specific formulation."},
+      {title:"Network Pharmacy Directory", necessary:true, content:"Confirms the named external pharmacy IS listed as a contracted, in-network pharmacy provider for this member's plan."},
+      {title:"Unrelated Lab Slip", necessary:false, content:"Routine lab slip from an earlier, unrelated visit — no relevance to this request."}
+    ],
+    questions:[
+      {q:"Is the external pharmacy within the payer's contracted network?", a:"Yes — the network pharmacy directory confirms this pharmacy is a contracted, in-network provider."},
+      {q:"Is there a clinical reason the hospital pharmacy can't dispense this medication?", a:"Yes — the hospital pharmacy does not stock this specific antibiotic formulation, per the physician's note."}
+    ],
+    correct:"approve", rationale:"Coverage for a prescribed medication doesn't require it be filled in-house — what matters is whether the dispensing pharmacy is within the network. This one is confirmed in-network, with a documented clinical reason for the referral. Approve."
+  },
+  { id:12, ref:"2026/700112", wait:70, name:"Male Patient", age:71, gender:"M", benefit:"H-IP / In Patient", hcp:"United Doctors Hospital - Jeddah",
+    dx:"Z74.0 — Reduced mobility, custodial care (post-stroke, medically stable)",
+    complaint:"Admitted 1 July for stroke rehabilitation; remained hospitalized through 31 July. Notes show the patient became medically stable by 10 July, but discharge was delayed pending family/placement arrangements.",
+    requested:"Continued inpatient admission for the full month of July (31 days)",
+    hasHQ:true, hqList:["No relevant conditions declared"],
+    history:[],
+    documents:[
+      {title:"Admission & Progress Notes", necessary:true, content:"Admitted 1 July for acute stroke management. Medically and neurologically stable by 10 July. Notes from 11–31 July describe the patient as 'medically stable, awaiting family arrangements for home care setup' — no active acute treatment documented for this period."},
+      {title:"CHI Essential Benefits Framework Excerpt", necessary:true, content:"Inpatient benefits are covered for medically necessary acute care. Extended admission beyond resolution of the acute condition, for custodial, social, or placement reasons, is not a covered inpatient service — this applies regardless of whether the individual policy document separately restates it."},
+      {title:"Member's Policy Wording", necessary:true, content:"The individual policy document does not explicitly mention or exclude extended/custodial stays."}
+    ],
+    questions:[
+      {q:"When did the patient become medically stable?", a:"By 10 July, per the progress notes — the remaining 21 days show no active acute treatment."},
+      {q:"Does the specific policy document exclude extended stays?", a:"No — the policy wording is silent on this; it neither explicitly covers nor excludes it."}
+    ],
+    correct:"reject", rationale:"CHI's essential benefits framework governs inpatient medical necessity regardless of whether the individual policy restates every rule. Extended admission after the acute condition resolved, for custodial/placement reasons, is not covered under CHI regulations — even though this policy document doesn't separately exclude it. Policy silence doesn't create coverage that the regulatory framework doesn't provide."
+  },
+  { id:13, ref:"2026/700113", wait:48, name:"Female Patient", age:27, gender:"F", benefit:"H-Maternity", hcp:"Al Andalus Specialized Clinic - Riyadh",
+    dx:"O80 — Full-term normal delivery",
+    complaint:"Presented in labor at term; delivered vaginally. Marital status on the insurance card is recorded as single. Hospital has billed the delivery on a cash basis pending a coverage decision.",
+    requested:"Coverage or reimbursement for maternity delivery services",
+    hasHQ:true, hqList:["No relevant conditions declared"],
+    history:[],
+    documents:[
+      {title:"Insurance Card / Policy Extract", necessary:true, content:"Marital status field: Single. Class: Standard Employee coverage."},
+      {title:"Delivery Summary Report", necessary:true, content:"Uncomplicated vaginal delivery at term, mother and baby stable."},
+      {title:"Cash Payment Receipt", necessary:false, content:"Hospital cash receipt for delivery charges, submitted by the family requesting reimbursement consideration."}
+    ],
+    questions:[
+      {q:"What is the member's marital status on file?", a:"Single, per the insurance card and policy record."},
+      {q:"Does the policy restrict maternity benefits by marital status?", a:"Yes — maternity benefits under this plan are limited to married spouses and married female employees."}
+    ],
+    correct:"reject", rationale:"Maternity benefits are restricted to married spouses and married female employees. The member's policy record shows single marital status, so the delivery does not meet eligibility criteria — not covered."
+  },
+  { id:14, ref:"2026/700114", wait:52, name:"Male Newborn Patient", age:0, gender:"M", benefit:"H-IP / In Patient (Newborn)", hcp:"Al Andalus Specialized Clinic - Riyadh",
+    dx:"P22.0 — Transient tachypnea of the newborn, observation",
+    complaint:"Newborn from the delivery under Claim Ref 2026/700113 (not covered — mother's single marital status) now requires NICU observation for transient respiratory distress. Family requests coverage for the newborn as a dependent.",
+    requested:"NICU admission and observation for the newborn",
+    hasHQ:false, hqList:[],
+    history:[],
+    documents:[
+      {title:"Linked Maternity Claim Note", necessary:true, content:"Cross-reference to Claim Ref 2026/700113: the mother's delivery was not covered — single marital status, maternity benefit not applicable."},
+      {title:"Newborn Enrollment Status", necessary:true, content:"No newborn enrollment or dependent-addition request has been submitted or approved for this policy."},
+      {title:"NICU Admission Note", necessary:true, content:"Newborn observed for transient tachypnea, stable, routine NICU monitoring."}
+    ],
+    questions:[
+      {q:"Was the mother's delivery covered under the policy?", a:"No — Claim Ref 2026/700113 confirms the delivery was not covered due to the mother's single marital status."},
+      {q:"Has the newborn been formally enrolled as a dependent?", a:"No — no newborn enrollment or dependent addition has been submitted or approved."}
+    ],
+    correct:"reject", rationale:"Newborn coverage as a dependent generally flows from an eligible, covered maternity benefit and proper dependent enrollment. Since the delivery itself wasn't covered and the newborn hasn't been separately enrolled, the NICU admission is not covered."
+  },
+  { id:15, ref:"2026/700115", wait:18, name:"Male Patient", age:33, gender:"M", benefit:"H-OP / Out Patient", hcp:"Al Noor Medical Center - Riyadh",
+    dx:"E11.9 — Type 2 Diabetes Mellitus (per submitted diagnosis)",
+    complaint:"Requesting renewal of Mounjaro (tirzepatide) injections for 'diabetic control.' Most recent HbA1c: 4.8% — within the normal, non-diabetic range.",
+    requested:"Mounjaro (tirzepatide) injection, monthly supply renewal",
+    hasHQ:false, hqList:[],
+    history:[],
+    documents:[
+      {title:"Lab Report", necessary:true, content:"HbA1c 4.8% (reference range for non-diabetic adults: 4.0–5.6%). Result is within the normal, non-diabetic range."},
+      {title:"Prescription Request", necessary:true, content:"Requests continued monthly Mounjaro (tirzepatide) injections; diagnosis listed as Type 2 Diabetes Mellitus."},
+      {title:"Old Employment Physical", necessary:false, content:"Routine physical from a prior employer, no diabetes mentioned — no relevance to this request."}
+    ],
+    questions:[
+      {q:"Is the HbA1c consistent with a diabetes diagnosis requiring ongoing pharmacologic control?", a:"No — 4.8% is within the normal, non-diabetic reference range; it doesn't indicate poorly controlled or active diabetes requiring escalating therapy."},
+      {q:"Is there documentation supporting continued therapy despite normal levels?", a:"No hypoglycemic symptoms or additional clinical justification are documented in the request."}
+    ],
+    correct:"reject", rationale:"A normal, non-diabetic HbA1c doesn't support medical necessity for an anti-diabetic medication often used off-label for weight loss. This pattern should raise suspicion the request is for weight management rather than legitimate diabetic control — not medically justified as submitted. Reject."
+  }
+];
+
+const FILLER = [
+  {name:"Not yet checked in", ref:"—"}, {name:"Awaiting documents", ref:"—"},
+  {name:"Registration pending", ref:"—"}, {name:"Not yet checked in", ref:"—"},
+  {name:"Awaiting documents", ref:"—"}
+];
+
+const DECISION_LABELS = { approve:"Approve", partial:"Partially Approve", reject:"Reject", refer:"Refer for Review" };
+
+/* ---------------- STATE ---------------- */
+let decisions = {};       // caseId -> decision string
+let questionsAsked = {};  // caseId -> array of asked question indices
+let currentCaseId = null;
+let studentName = "";
+
+/* ---------------- PERSISTENCE — real localStorage, not the non-existent
+   window.storage API this prototype originally used ---------------- */
+function saveProgress(){
+  try{
+    localStorage.setItem("ih-preauth-exam-progress", JSON.stringify({decisions, questionsAsked, studentName}));
+  } catch(e){ /* ignore */ }
+}
+function loadProgress(){
+  try{
+    const raw = localStorage.getItem("ih-preauth-exam-progress");
+    if(raw){
+      const data = JSON.parse(raw);
+      decisions = data.decisions || {};
+      questionsAsked = data.questionsAsked || {};
+      studentName = data.studentName || "";
+    }
+  } catch(e){ /* fresh start */ }
+}
+
+function waitColor(mins){ return mins < 30 ? "green" : (mins <= 90 ? "amber" : "red"); }
+
+/* ---------------- INTRO ---------------- */
+document.getElementById("startBtn").addEventListener("click", ()=>{
+  studentName = document.getElementById("studentName").value.trim() || "Candidate";
+  saveProgress();
+  showView("dashboard");
+  renderDashboard();
+});
+
+/* ---------------- VIEW SWITCH ---------------- */
+function showView(name){
+  ["intro","dashboard","case","results"].forEach(v=>{
+    document.getElementById("view-"+v).classList.toggle("hidden", v!==name);
+  });
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+function updateProgressPill(){
+  const count = Object.keys(decisions).length;
+  document.getElementById("progressPill").textContent = count + " / " + CASES.length + " cases decided";
+}
+
+/* ---------------- DASHBOARD ---------------- */
+function renderDashboard(){
+  updateProgressPill();
+  const grid = document.getElementById("caseGrid");
+  grid.innerHTML = "";
+
+  CASES.forEach(c=>{
+    const color = waitColor(c.wait);
+    const isDone = !!decisions[c.id];
+    const tile = document.createElement("div");
+    tile.className = "tile " + color + (isDone ? " done" : "");
+    tile.innerHTML = `
+      <div class="tile-top">
+        <span class="tile-ref">${c.ref}</span>
+        <span class="tile-wait ${color}">${c.wait}m</span>
+      </div>
+      <div class="tile-name">${c.name}</div>
+      <div class="tile-benefit">${c.benefit}</div>
+      ${isDone ? `<div class="tile-check">✓ Decided: ${DECISION_LABELS[decisions[c.id]]}</div>` : ""}
+    `;
+    tile.addEventListener("click", ()=> openCase(c.id));
+    grid.appendChild(tile);
+  });
+
+  FILLER.forEach(f=>{
+    const tile = document.createElement("div");
+    tile.className = "tile filler";
+    tile.innerHTML = `
+      <div class="tile-top"><span class="tile-ref">${f.ref}</span></div>
+      <div class="tile-name">${f.name}</div>
+      <div class="tile-benefit">Not part of this exam</div>
+    `;
+    grid.appendChild(tile);
+  });
+
+  if(Object.keys(decisions).length === CASES.length){
+    const banner = document.createElement("div");
+    banner.style.cssText = "grid-column:1/-1; text-align:center; margin-top:10px;";
+    banner.innerHTML = `<button class="btn btn-primary" id="finishExamBtn">See my results →</button>`;
+    grid.appendChild(banner);
+    document.getElementById("finishExamBtn").addEventListener("click", showResults);
+  }
+}
+
+/* ---------------- CASE WORKSPACE ---------------- */
+function openCase(id){
+  currentCaseId = id;
+  const c = CASES.find(x=>x.id===id);
+  if(!questionsAsked[id]) questionsAsked[id] = [];
+
+  document.getElementById("cRef").textContent = c.ref;
+  document.getElementById("cBenefit").textContent = c.benefit;
+  document.getElementById("cHcp").textContent = c.hcp;
+  document.getElementById("cName").textContent = c.name;
+  document.getElementById("cAge").textContent = c.age;
+  document.getElementById("cGender").textContent = c.gender;
+  document.getElementById("cDx").textContent = c.dx;
+  document.getElementById("cComplaint").textContent = c.complaint;
+  document.getElementById("cRequested").textContent = c.requested;
+
+  // HQ
+  const hqArea = document.getElementById("cHqBadgeArea");
+  const hqList = document.getElementById("cHqList");
+  if(!c.hasHQ){
+    hqArea.innerHTML = `<span class="hq-badge none">No HQ on file</span>`;
+    hqList.innerHTML = "";
+  } else if(c.hqList.length === 0){
+    hqArea.innerHTML = `<span class="hq-badge none">HQ present — no relevant conditions declared</span>`;
+    hqList.innerHTML = "";
+  } else {
+    hqArea.innerHTML = `<span class="hq-badge present">HQ on file</span>`;
+    hqList.innerHTML = c.hqList.map(h=>`<p>• ${h}</p>`).join("");
+  }
+
+  // Documents
+  const docsEl = document.getElementById("cDocs");
+  docsEl.innerHTML = "";
+  c.documents.forEach(d=>{
+    const row = document.createElement("div");
+    row.className = "doc-row";
+    row.innerHTML = `<span class="doc-icon">📄</span><span class="doc-title">${d.title}</span>`;
+    row.addEventListener("click", ()=> openDoc(d));
+    docsEl.appendChild(row);
+  });
+
+  // Questions
+  renderQuestions(c);
+
+  // History
+  const histEl = document.getElementById("cHistory");
+  if(c.history.length === 0){
+    histEl.innerHTML = `<p style="font-size:12.5px; color:var(--ink-dim);">No prior claims on file for this member.</p>`;
+  } else {
+    histEl.innerHTML = `<table class="history-table"><thead><tr><th>Ref</th><th>Date</th><th>Benefit</th><th>Diagnosis</th><th>Amount</th><th>Status</th></tr></thead><tbody>` +
+      c.history.map(h=>`<tr><td>${h.ref}</td><td>${h.date}</td><td>${h.benefit}</td><td>${h.dx}</td><td>${h.amt}</td><td>${h.status}</td></tr>`).join("") +
+      `</tbody></table>`;
+  }
+
+  // Decision buttons reset / restore
+  document.querySelectorAll(".dopt").forEach(btn=> btn.classList.remove("selected"));
+  if(decisions[id]){
+    const btn = document.querySelector(`.dopt[data-d="${decisions[id]}"]`);
+    if(btn) btn.classList.add("selected");
+  }
+
+  showView("case");
+}
+
+function renderQuestions(c){
+  const qEl = document.getElementById("cQuestions");
+  const asked = questionsAsked[c.id] || [];
+  const remaining = Math.max(0, 2 - asked.length);
+  document.getElementById("qCounter").textContent = remaining + " question" + (remaining===1?"":"s") + " remaining";
+
+  qEl.innerHTML = "";
+  c.questions.forEach((q, idx)=>{
+    const wasAsked = asked.includes(idx);
+    if(wasAsked){
+      const ansDiv = document.createElement("div");
+      ansDiv.innerHTML = `<button class="q-btn" disabled>${q.q}</button><div class="q-answer">${q.a}</div>`;
+      qEl.appendChild(ansDiv);
+    } else {
+      const btn = document.createElement("button");
+      btn.className = "q-btn";
+      btn.textContent = q.q;
+      if(remaining === 0) btn.disabled = true;
+      btn.addEventListener("click", ()=>{
+        if((questionsAsked[c.id]||[]).length >= 2) return;
+        questionsAsked[c.id] = [...(questionsAsked[c.id]||[]), idx];
+        saveProgress();
+        renderQuestions(c);
+      });
+      qEl.appendChild(btn);
+    }
+  });
+}
+
+document.querySelectorAll(".dopt").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    document.querySelectorAll(".dopt").forEach(b=> b.classList.remove("selected"));
+    btn.classList.add("selected");
+  });
+});
+
+document.getElementById("submitDecisionBtn").addEventListener("click", ()=>{
+  const selected = document.querySelector(".dopt.selected");
+  if(!selected){ alert("Please select a decision before submitting."); return; }
+  decisions[currentCaseId] = selected.dataset.d;
+  saveProgress();
+  showView("dashboard");
+  renderDashboard();
+});
+
+document.getElementById("backToDashBtn").addEventListener("click", ()=>{
+  showView("dashboard");
+  renderDashboard();
+});
+
+/* ---------------- DOCUMENT MODAL ---------------- */
+function openDoc(d){
+  document.getElementById("docTitle").textContent = d.title;
+  document.getElementById("docContent").textContent = d.content;
+  document.getElementById("docOverlay").classList.remove("hidden");
+}
+document.getElementById("docClose").addEventListener("click", ()=> document.getElementById("docOverlay").classList.add("hidden"));
+document.getElementById("docOverlay").addEventListener("click",(e)=>{ if(e.target.id==="docOverlay") e.currentTarget.classList.add("hidden"); });
+
+/* ---------------- RESULTS ---------------- */
+function showResults(){
+  let correctCount = 0;
+  const reviewList = document.getElementById("reviewList");
+  reviewList.innerHTML = "";
+
+  CASES.forEach(c=>{
+    const studentDecision = decisions[c.id];
+    const isCorrect = studentDecision === c.correct;
+    if(isCorrect) correctCount++;
+    const row = document.createElement("div");
+    row.className = "review-row";
+    row.innerHTML = `
+      <div class="review-top">
+        <span class="rn">${c.ref} — ${c.name}</span>
+        <span class="rtag ${isCorrect ? "correct" : "wrong"}">${isCorrect ? "✓ Correct" : "✗ Incorrect"}</span>
+      </div>
+      <div class="review-detail">Your decision: <b>${DECISION_LABELS[studentDecision] || "—"}</b> · Correct decision: <b>${DECISION_LABELS[c.correct]}</b></div>
+      <div class="review-detail">${c.rationale}</div>
+    `;
+    reviewList.appendChild(row);
+  });
+
+  const verdictArea = document.getElementById("verdictArea");
+  const PASS_THRESHOLD = 7; // pass if strictly more than 7 correct
+  const passed = correctCount > PASS_THRESHOLD;
+  if(passed){
+    verdictArea.innerHTML = `
+      <div class="verdict pass">
+        <div class="eyebrow" style="color:#CFE3DF;">CERTIFICATE OF COMPLETION</div>
+        <h2>Congratulations — you have passed the exam!</h2>
+        <p style="color:#CFE3DF; max-width:52ch; margin:0 auto;">You are now eligible to work as a specialist at any of the biggest companies in the market. The insurance industry is waiting for you.</p>
+        <div class="cert-name">${studentName}</div>
+        <div class="score">Final score: ${correctCount} / ${CASES.length}</div>
+      </div>`;
+  } else {
+    verdictArea.innerHTML = `
+      <div class="verdict fail">
+        <div class="eyebrow">RESULT</div>
+        <h2>Bad luck — but don't let this mark define your limit.</h2>
+        <p style="max-width:54ch; margin:10px auto 0; color:var(--ink-dim);">You can do this. Slow down and focus before making each decision — the HQ is important, and checking exclusion criteria is a must before you decide, not an afterthought.</p>
+        <div class="score" style="margin-top:10px;">Score: ${correctCount} / ${CASES.length} (need more than ${PASS_THRESHOLD} to pass). Review the cases below, then retry the full exam.</div>
+      </div>`;
+  }
+
+  showView("results");
+}
+
+document.getElementById("retryBtn").addEventListener("click", ()=>{
+  decisions = {}; questionsAsked = {};
+  saveProgress();
+  showView("dashboard");
+  renderDashboard();
+});
+
+/* ---------------- INIT ---------------- */
+(function init(){
+  loadProgress();
+  if(studentName) document.getElementById("studentName").value = studentName;
+})();
+</script>
+</body>
+</html>
