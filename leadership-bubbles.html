@@ -33,7 +33,7 @@
   .abbr{ font-family:"Inter",sans-serif; font-weight:700; text-anchor:middle; fill:#fff; pointer-events:none; }
   .dept{ font-family:"Inter",sans-serif; font-weight:500; text-anchor:middle; pointer-events:none; }
   .ceo-role{ font-family:"Inter",sans-serif; font-weight:600; letter-spacing:.05em; text-transform:uppercase; fill:#8FB4FF; text-anchor:middle; }
-  .ceo-name{ font-family:"Inter",sans-serif; font-weight:800; fill:#0B1B30; text-anchor:middle; }
+  .ceo-name{ font-family:"Inter",sans-serif; font-weight:800; fill:#FFFFFF; text-anchor:middle; }
 
   .orb{ transition:filter .25s ease; }
   .orb-group:hover .orb-ring{ opacity:1; }
@@ -270,6 +270,20 @@ function orbGradient(id, pal){
   </radialGradient>`;
 }
 
+function ceoOrbMarkup(r, photoHref, ringColor, bobDelay){
+  return `
+    <g class="orb-group bob" data-idx="0" style="animation-delay:${bobDelay}s; transform-origin:0px 0px;">
+      <g class="orb-scale" data-idx="0" data-base-r="${r}" style="transform-origin:0px 0px;">
+        <ellipse cx="0" cy="${r*0.94}" rx="${r*0.78}" ry="${r*0.15}" fill="#000" opacity="0.38"/>
+        <circle class="orb-ring" cx="0" cy="0" r="${r+5}" fill="none" stroke="${ringColor}" stroke-width="1.5"/>
+        <circle cx="0" cy="0" r="${r}" fill="#EAF2FF" stroke="${ringColor}" stroke-width="3"/>
+        <image href="${photoHref}" x="${-r}" y="${-r}" width="${r*2}" height="${r*2}" clip-path="url(#ceoPhotoClip)" preserveAspectRatio="xMidYMid slice"/>
+        <rect x="${-r}" y="${r*0.32}" width="${r*2}" height="${r*0.68}" fill="url(#ceoScrim)" clip-path="url(#ceoPhotoClip)"/>
+        <ellipse cx="${-r*0.32}" cy="${-r*0.4}" rx="${r*0.27}" ry="${r*0.15}" fill="#fff" opacity="0.22"/>
+      </g>
+    </g>`;
+}
+
 function orbMarkup(idx, x, y, r, gradId, ringColor, abbrText, abbrSize, strokeExtra, bobDelay){
   return `
     <g class="orb-group bob" data-idx="${idx}" style="animation-delay:${bobDelay}s; transform-origin:${x}px ${y}px;">
@@ -293,7 +307,11 @@ function build(){
   const pts3 = layoutTierBand(TIER3, r3, bandY3, 16, rand, 46);
 
   let defs = [
-    orbGradient("gradCeo", PALETTE.ceo),
+    `<clipPath id="ceoPhotoClip"><circle cx="0" cy="0" r="${rCeo}"/></clipPath>`,
+    `<linearGradient id="ceoScrim" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0B1B30" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#0B1B30" stop-opacity="0.88"/>
+    </linearGradient>`,
     orbGradient("gradT1", PALETTE.tier1),
     orbGradient("gradT2", PALETTE.tier2),
     orbGradient("gradT3", PALETTE.tier3)
@@ -301,15 +319,15 @@ function build(){
   let els = [];
   let radiusByIdx = {}; // idx -> base radius, for scale-ratio math
 
-  // CEO orb (idx 0)
+  // CEO orb (idx 0) — founder's photo, clipped to the circle
   radiusByIdx[0] = rCeo;
-  els.push(orbMarkup(0, 0, 0, rCeo, "gradCeo", PALETTE.ceo.ring, "", 0, `stroke="${PALETTE.ceo.ring}" stroke-width="3"`, 0));
+  els.push(ceoOrbMarkup(rCeo, "images/founder-picture.png", PALETTE.ceo.ring, 0));
   els.push(`
     <g class="ceo-fulltext" id="ceoFulltext">
-      <text x="0" y="-6" class="ceo-role" style="font-size:12.5px;">${CEO.role}</text>
-      <text x="0" y="16" class="ceo-name" style="font-size:16px;">${CEO.name}</text>
+      <text x="0" y="${rCeo*0.58}" class="ceo-role" style="font-size:11px;">${CEO.role}</text>
+      <text x="0" y="${rCeo*0.80}" class="ceo-name" style="font-size:14px;">${CEO.name}</text>
     </g>
-    <text x="0" y="6" class="abbr ceo-compact" id="ceoCompact" style="font-size:16px;">CEO</text>
+    <text x="0" y="${rCeo*0.72}" class="abbr ceo-compact" id="ceoCompact" style="font-size:16px;">CEO</text>
   `);
 
   let idx = 1;
