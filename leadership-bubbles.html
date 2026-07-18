@@ -40,8 +40,6 @@
   .orb-ring{ opacity:0; transition:opacity .25s ease; }
   .orb-group{ cursor:pointer; }
   .orb-scale{ transition:transform .5s cubic-bezier(.34,1.4,.64,1); }
-  .ceo-fulltext, .ceo-compact{ transition:opacity .3s ease; }
-  .ceo-compact{ opacity:0; pointer-events:none; }
   .hint{ text-align:center; font-size:11.5px; color:var(--ink-faint); margin-top:14px; }
 
   .bob{ animation:bob 6s ease-in-out infinite; }
@@ -322,11 +320,8 @@ function build(){
   radiusByIdx[0] = rCeo;
   els.push(ceoOrbMarkup(rCeo, "images/founder-ceo-formal.png", PALETTE.ceo.ring, 0));
   els.push(`
-    <g class="ceo-fulltext" id="ceoFulltext">
-      <text x="0" y="${rCeo*0.58}" class="ceo-role" style="font-size:11px;">${CEO.role}</text>
-      <text x="0" y="${rCeo*0.80}" class="ceo-name" style="font-size:14px;">${CEO.name}</text>
-    </g>
-    <text x="0" y="${rCeo*0.72}" class="abbr ceo-compact" id="ceoCompact" style="font-size:16px;">CEO</text>
+    <text x="0" y="${rCeo*0.58}" class="ceo-role" style="font-size:11px;">${CEO.role}</text>
+    <text x="0" y="${rCeo*0.80}" class="ceo-name" style="font-size:14px;">${CEO.name}</text>
   `);
 
   let idx = 1;
@@ -358,19 +353,11 @@ function build(){
 }
 
 function wireInteraction(radiusByIdx, rCeo, rSuccess){
-  const state = { ceoShrunk:false, elevatedIdx:null };
+  const state = { elevatedIdx:null };
 
   function setScale(targetIdx, factor){
     const el = document.querySelector(`.orb-scale[data-idx="${targetIdx}"]`);
     if(el) el.style.transform = factor === 1 ? "" : `scale(${factor})`;
-  }
-  function resetCeoText(){
-    document.getElementById("ceoFulltext").style.opacity = 1;
-    document.getElementById("ceoCompact").style.opacity = 0;
-  }
-  function showCeoCompactText(){
-    document.getElementById("ceoFulltext").style.opacity = 0;
-    document.getElementById("ceoCompact").style.opacity = 1;
   }
 
   document.querySelectorAll(".orb-group").forEach(group=>{
@@ -378,18 +365,12 @@ function wireInteraction(radiusByIdx, rCeo, rSuccess){
       const idx = parseInt(group.dataset.idx, 10);
 
       if(idx === 0){
-        // clicked CEO
-        if(state.elevatedIdx !== null){ setScale(state.elevatedIdx, 1); state.elevatedIdx = null; }
-        if(state.ceoShrunk){
-          setScale(0, 1); resetCeoText(); state.ceoShrunk = false;
-        } else {
-          setScale(0, rSuccess/rCeo); showCeoCompactText(); state.ceoShrunk = true;
-        }
+        // clicked CEO — go straight to the founder's profile
+        window.location = "founder.html";
         return;
       }
 
       // clicked a non-CEO orb
-      if(state.ceoShrunk){ setScale(0, 1); resetCeoText(); state.ceoShrunk = false; }
       if(state.elevatedIdx === idx){
         setScale(idx, 1); state.elevatedIdx = null;
       } else {
