@@ -67,10 +67,10 @@ html.is-loading body {
   gap: 6px;
   font-size: 0.85rem;
   font-weight: 700;
-  color: #8FB4FF;
+  color: #095F5B;
   text-decoration: none;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #fff;
+  border: 1px solid rgba(6, 6, 8, 0.1);
   border-radius: 999px;
   padding: 8px 16px;
   margin-bottom: 1.5rem;
