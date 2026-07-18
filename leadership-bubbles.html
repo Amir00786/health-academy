@@ -277,7 +277,7 @@ function ceoOrbMarkup(r, photoHref, ringColor, bobDelay){
         <ellipse cx="0" cy="${r*1.12}" rx="${r*0.78}" ry="${r*0.15}" fill="#000" opacity="0.28"/>
         <circle class="orb-ring" cx="0" cy="0" r="${r+5}" fill="none" stroke="${ringColor}" stroke-width="1.5"/>
         <circle cx="0" cy="0" r="${r}" fill="#EAF2FF" stroke="${ringColor}" stroke-width="3"/>
-        <image href="${photoHref}" x="${-r}" y="${-r}" width="${r*2}" height="${r*2}" clip-path="url(#ceoPhotoClip)" preserveAspectRatio="xMidYMid slice"/>
+        <image href="${photoHref}" x="${-r}" y="${-r*1.18}" width="${r*2}" height="${r*3}" clip-path="url(#ceoPhotoClip)" preserveAspectRatio="none"/>
         <rect x="${-r}" y="${r*0.32}" width="${r*2}" height="${r*0.68}" fill="url(#ceoScrim)" clip-path="url(#ceoPhotoClip)"/>
       </g>
     </g>`;
