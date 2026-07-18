@@ -420,7 +420,9 @@
                   <option>General Medicine</option>
                   <option>Insurance / Pre-auth</option>
                   <option>Hospital Administration</option>
+                  <option value="Other">Other (please specify)</option>
                 </select>
+                <input type="text" id="cvsOther" class="cv-other-input hidden" placeholder="Enter your specialty" oninput="cvScore()" />
               </div>
             </div>
             <div class="cv-row">
@@ -435,7 +437,9 @@
                   <option>R4 / Fellow</option>
                   <option>Consultant</option>
                   <option>Manager</option>
+                  <option value="Other">Other (please specify)</option>
                 </select>
+                <input type="text" id="cvlOther" class="cv-other-input hidden" placeholder="Enter your level" oninput="cvScore()" />
               </div>
               <div class="ih-field"><label>Target country</label>
                 <select id="cvc" onchange="cvScore()">
@@ -445,8 +449,9 @@
                   <option>United Kingdom</option>
                   <option>United States</option>
                   <option>Egypt</option>
-                  <option>Other</option>
+                  <option value="Other">Other (please specify)</option>
                 </select>
+                <input type="text" id="cvcOther" class="cv-other-input hidden" placeholder="Enter your country" oninput="cvScore()" />
               </div>
             </div>
             <div class="ih-field"><label>Key skills & certifications</label><input type="text" id="cvsk"
@@ -692,6 +697,7 @@
       'home.plan3Btn': { en: 'Contact Sales', ar: 'تواصل مع المبيعات' },
     };
   </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="js/script.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>

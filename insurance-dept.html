@@ -19,6 +19,17 @@
   <link href="css/livechat.css" rel="stylesheet" />
   <link href="css/lesson-viewer.css" rel="stylesheet" />
   <link href="css/certificate.css" rel="stylesheet" />
+  <style>
+    /* Insurance page's own hero image — overrides radiology-dept.css's shared
+       .dept-badge rule (which points at radio-hero.jpg, the wrong department). */
+    .ins-dept-badge {
+      background-image: url('images/insurance-hero-banner.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-color: #fff;
+    }
+  </style>
 </head>
 
 <body>
@@ -123,12 +134,7 @@
           </div>
         </div>
         <div class="dept-hero-right">
-          <div class="dept-badge" data-aos="fade-up" data-aos-delay="100">
-            <div class="badge-caption">
-              <span class="badge-txt" data-i18n="ins.badgeTxt">Pre-Auth Specialist</span>
-              <span class="badge-sub">iHealth Academy</span>
-            </div>
-          </div>
+          <div class="dept-badge ins-dept-badge" data-aos="fade-up" data-aos-delay="100"></div>
         </div>
       </div>
     </div>

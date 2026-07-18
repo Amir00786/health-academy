@@ -853,6 +853,14 @@ h1 .line3 {
   gap: 0.75rem;
 }
 
+.cv-other-input {
+  margin-top: 0.5rem;
+}
+
+.cv-other-input.hidden {
+  display: none;
+}
+
 .ats-box {
   background: rgba(0, 200, 150, 0.07);
   border: 1px solid rgba(0, 200, 150, 0.18);
