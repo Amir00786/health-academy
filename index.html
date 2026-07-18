@@ -454,6 +454,11 @@
                 <input type="text" id="cvcOther" class="cv-other-input hidden" placeholder="Enter your country" oninput="cvScore()" />
               </div>
             </div>
+            <div class="ih-field cv-upload-field">
+              <label>Have an existing CV? Upload it to auto-fill</label>
+              <input type="file" id="cvUpload" accept="application/pdf" onchange="cvHandleUpload(event)" />
+              <div class="cv-upload-status hidden" id="cvUploadStatus"></div>
+            </div>
             <div class="ih-field"><label>Key skills & certifications</label><input type="text" id="cvsk"
                 placeholder="e.g. FRCR, MRI, CT, pre-authorization, PACS..." oninput="cvScore()" /></div>
             <div class="ih-field"><label>Professional summary</label><textarea id="cvsu"
@@ -698,6 +703,12 @@
     };
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script>
+    if (window['pdfjsLib']) {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    }
+  </script>
   <script src="js/script.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>

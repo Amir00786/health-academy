@@ -29,6 +29,287 @@
       background-position: center;
       background-color: #fff;
     }
+
+    /* Choose Your Membership section */
+    .mship-wrap {
+      max-width: 1200px;
+      margin: 3rem auto 4rem;
+      padding: 0 1.5rem;
+    }
+
+    .mship-head {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .mship-title {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 0.4rem;
+    }
+
+    .mship-sub {
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .mship-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      align-items: start;
+    }
+
+    .mship-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mship-card-premium {
+      border-color: var(--teal-border);
+      box-shadow: 0 0 0 1px var(--teal-border), 0 20px 40px rgba(0, 200, 150, 0.08);
+      transform: translateY(-6px);
+    }
+
+    .mship-card-hd {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .mship-ico {
+      width: 46px;
+      height: 46px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: var(--teal-dim);
+      color: var(--teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+    }
+
+    .mship-ico-gold {
+      background: rgba(245, 166, 35, 0.12);
+      color: var(--amber);
+    }
+
+    .mship-card-title {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .mship-card-price {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 0.15rem;
+    }
+
+    .mship-soon-badge {
+      display: inline-block;
+      background: rgba(245, 166, 35, 0.15);
+      color: var(--amber);
+      border: 1px solid rgba(245, 166, 35, 0.35);
+      border-radius: 999px;
+      padding: 0.15rem 0.6rem;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .mship-card-desc {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+
+    .mship-feat-list {
+      list-style: none;
+      margin: 0 0 1.25rem;
+      padding: 0;
+      flex: 1;
+    }
+
+    .mship-feat-list li {
+      position: relative;
+      padding: 0.5rem 0 0.5rem 1.6rem;
+      font-size: 0.88rem;
+      color: var(--white);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .mship-feat-list li:last-child {
+      border-bottom: none;
+    }
+
+    .mship-feat-list li::before {
+      content: '\2713';
+      position: absolute;
+      left: 0;
+      top: 0.5rem;
+      width: 1.15rem;
+      height: 1.15rem;
+      border-radius: 50%;
+      background: var(--teal-dim);
+      color: var(--teal);
+      font-size: 0.7rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mship-mini-tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 0.1rem 0.45rem;
+      border-radius: 999px;
+      background: var(--teal-dim);
+      color: var(--teal);
+      margin-left: 0.35rem;
+      text-transform: uppercase;
+    }
+
+    .mship-mini-tag-future {
+      background: rgba(74, 158, 255, 0.15);
+      color: var(--blue);
+    }
+
+    .mship-btn {
+      width: 100%;
+      padding: 0.85rem;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      border: 1px solid var(--teal-border);
+      background: transparent;
+      color: var(--teal);
+      transition: background 0.2s;
+    }
+
+    .mship-btn-outline:hover {
+      background: var(--teal-dim);
+    }
+
+    .mship-btn-solid {
+      background: var(--teal);
+      color: #06110d;
+      border-color: var(--teal);
+    }
+
+    .mship-btn-solid[disabled] {
+      background: var(--muted2);
+      border-color: var(--border);
+      color: var(--muted);
+      cursor: not-allowed;
+    }
+
+    .mship-footnote {
+      font-size: 0.72rem;
+      color: var(--muted2);
+      margin-top: 0.75rem;
+      text-align: center;
+    }
+
+    .mship-strip {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+      margin-top: 2rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+    }
+
+    .mship-strip-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+    }
+
+    .mship-strip-ico {
+      width: 34px;
+      height: 34px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: var(--teal-dim);
+      color: var(--teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+    }
+
+    .mship-strip-title {
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--white);
+    }
+
+    .mship-strip-desc {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 0.15rem;
+      line-height: 1.4;
+    }
+
+    .mship-bottombar {
+      margin-top: 1.25rem;
+      background: var(--teal-deep);
+      border-radius: 12px;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      color: var(--white);
+      font-size: 0.88rem;
+    }
+
+    .mship-bottombar span:first-child {
+      font-weight: 700;
+    }
+
+    @media (max-width: 900px) {
+      .mship-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .mship-card-premium {
+        transform: none;
+      }
+
+      .mship-strip {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .mship-strip {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 
@@ -161,6 +442,116 @@
         </div>
       </div>
     </div>
+
+    <div class="mship-wrap" data-aos="fade-up">
+      <div class="mship-head">
+        <h2 class="mship-title" data-i18n="mship.title">Choose Your Membership</h2>
+        <p class="mship-sub" data-i18n="mship.sub">Practical knowledge. Real skills. Career growth.</p>
+      </div>
+
+      <div class="mship-grid">
+        <div class="mship-card" data-aos="fade-up" data-aos-delay="0">
+          <div class="mship-card-hd">
+            <div class="mship-ico"><i class="fi fi-br-users"></i></div>
+            <div>
+              <div class="mship-card-title" data-i18n="mship.freeTitle">Free Membership</div>
+              <div class="mship-card-price" data-i18n="mship.freePrice">$0 Forever</div>
+            </div>
+          </div>
+          <p class="mship-card-desc" data-i18n="mship.freeDesc">Explore iHealth Academy and access essential free resources.</p>
+          <ul class="mship-feat-list">
+            <li data-i18n="mship.freeFeat1">Community Access</li>
+            <li data-i18n="mship.freeFeat2">Welcome & Orientation</li>
+            <li data-i18n="mship.freeFeat3">First Lesson of Every Academy</li>
+            <li data-i18n="mship.freeFeat4">Selected 5-Minute Preview Lessons</li>
+            <li data-i18n="mship.freeFeat5">ATS CV Builder</li>
+            <li data-i18n="mship.freeFeat6">Healthcare Career Resources</li>
+            <li data-i18n="mship.freeFeat7">Community Discussions</li>
+          </ul>
+          <button class="mship-btn mship-btn-outline" onclick="document.getElementById('contentArea').scrollIntoView({behavior:'smooth'})"><i class="fi fi-br-users"></i> <span data-i18n="mship.freeBtn">Join Free</span></button>
+        </div>
+
+        <div class="mship-card mship-card-premium" data-aos="fade-up" data-aos-delay="100">
+          <div class="mship-card-hd">
+            <div class="mship-ico mship-ico-gold"><i class="fi fi-br-crown"></i></div>
+            <div>
+              <div class="mship-card-title" data-i18n="mship.premTitle">Premium Membership <span class="mship-soon-badge" data-i18n="mship.premSoon">Available Soon</span></div>
+              <div class="mship-card-price" data-i18n="mship.premDesc">Unlock your complete learning experience.</div>
+            </div>
+          </div>
+          <ul class="mship-feat-list">
+            <li data-i18n="mship.premFeat1">Everything in Free</li>
+            <li data-i18n="mship.premFeat2">Unlimited Access to Premium Courses</li>
+            <li data-i18n="mship.premFeat3">Complete Learning Pathways</li>
+            <li data-i18n="mship.premFeat4">Full Video Library</li>
+            <li data-i18n="mship.premFeat5">Interactive Case Discussions</li>
+            <li data-i18n="mship.premFeat6">Downloadable Resources</li>
+            <li data-i18n="mship.premFeat7">Quiz Banks & Assessments</li>
+            <li data-i18n="mship.premFeat8">Certificate of Completion</li>
+            <li data-i18n="mship.premFeat9">Priority Access to All iHealth Academy Events</li>
+            <li data-i18n="mship.premFeat10">One Premium Session with the Mentor of Your Choice*</li>
+            <li data-i18n="mship.premFeat11">Premium Membership Valid for One Year</li>
+            <li data-i18n="mship.premFeat12">Priority Support</li>
+            <li data-i18n="mship.premFeat13">Exclusive Member Badge <span class="mship-mini-tag" data-i18n="mship.onProfile">On Your Profile</span></li>
+            <li data-i18n="mship.premFeat14">5 Mentorship Sessions <span class="mship-mini-tag mship-mini-tag-future" data-i18n="mship.futureFeature">Future Feature</span></li>
+            <li data-i18n="mship.premFeat15">AI Learning Tools <span class="mship-mini-tag mship-mini-tag-future" data-i18n="mship.futureFeature">Future Feature</span></li>
+          </ul>
+          <button class="mship-btn mship-btn-solid" disabled title="Available soon"><i class="fi fi-br-star"></i> <span data-i18n="mship.premBtn">Become Premium</span></button>
+          <p class="mship-footnote" data-i18n="mship.premFootnote">*One premium mentor session is subject to mentor availability and scheduling.</p>
+        </div>
+
+        <div class="mship-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="mship-card-hd">
+            <div class="mship-ico"><i class="fi fi-br-bank"></i></div>
+            <div>
+              <div class="mship-card-title" data-i18n="mship.instTitle">Institution</div>
+              <div class="mship-card-price" data-i18n="mship.instPrice">Custom Pricing</div>
+            </div>
+          </div>
+          <p class="mship-card-desc" data-i18n="mship.instDesc">Designed for hospitals, universities, healthcare organisations, and corporate teams.</p>
+          <ul class="mship-feat-list">
+            <li data-i18n="mship.instFeat1">Everything in Premium</li>
+            <li data-i18n="mship.instFeat2">Team Enrolment</li>
+            <li data-i18n="mship.instFeat3">Staff Progress Dashboard</li>
+            <li data-i18n="mship.instFeat4">Group Certificates</li>
+            <li data-i18n="mship.instFeat5">Department Reporting</li>
+            <li data-i18n="mship.instFeat6">Dedicated Onboarding</li>
+            <li data-i18n="mship.instFeat7">Custom Learning Pathways</li>
+            <li data-i18n="mship.instFeat8">Custom Pricing</li>
+            <li data-i18n="mship.instFeat9">Dedicated Account Manager</li>
+          </ul>
+          <button class="mship-btn mship-btn-outline" onclick="location.href='mailto:info@ihealthacademy.com?subject=Institution%20Membership%20Inquiry'"><i class="fi fi-br-bank"></i> <span data-i18n="mship.instBtn">Contact Sales</span></button>
+        </div>
+      </div>
+
+      <div class="mship-strip">
+        <div class="mship-strip-item">
+          <div class="mship-strip-ico"><i class="fi fi-br-shield-check"></i></div>
+          <div><div class="mship-strip-title" data-i18n="mship.strip1t">Practical & Relevant</div><div class="mship-strip-desc" data-i18n="mship.strip1d">Real-world scenarios and up-to-date knowledge.</div></div>
+        </div>
+        <div class="mship-strip-item">
+          <div class="mship-strip-ico"><i class="fi fi-br-stats"></i></div>
+          <div><div class="mship-strip-title" data-i18n="mship.strip2t">Expert Designed</div><div class="mship-strip-desc" data-i18n="mship.strip2d">Created by healthcare and insurance experts.</div></div>
+        </div>
+        <div class="mship-strip-item">
+          <div class="mship-strip-ico"><i class="fi fi-br-users-alt"></i></div>
+          <div><div class="mship-strip-title" data-i18n="mship.strip3t">Career Focused</div><div class="mship-strip-desc" data-i18n="mship.strip3d">Skills that employers are looking for.</div></div>
+        </div>
+        <div class="mship-strip-item">
+          <div class="mship-strip-ico"><i class="fi fi-br-diploma"></i></div>
+          <div><div class="mship-strip-title" data-i18n="mship.strip4t">Certificate of Completion</div><div class="mship-strip-desc" data-i18n="mship.strip4d">Showcase your achievement with confidence.</div></div>
+        </div>
+        <div class="mship-strip-item">
+          <div class="mship-strip-ico"><i class="fi fi-br-headset"></i></div>
+          <div><div class="mship-strip-title" data-i18n="mship.strip5t">Support When You Need It</div><div class="mship-strip-desc" data-i18n="mship.strip5d">We're here to help you succeed.</div></div>
+        </div>
+      </div>
+
+      <div class="mship-bottombar">
+        <span><i class="fi fi-br-lock"></i> <span data-i18n="mship.bar1">Your learning. Your pace. Your future.</span></span>
+        <span data-i18n="mship.bar2">Join thousands of healthcare professionals growing their careers with iHealth Academy.</span>
+      </div>
+    </div>
   </div>
 
   <script src="js/nav.js"></script>
@@ -183,6 +574,66 @@
       'ins.bonusModuleLabel': { en: 'Bonus module', ar: 'وحدة إضافية' },
       'ins.bonusBasicLabel': { en: 'Basic', ar: 'أساسي' },
       'ins.bonusPremiumLabel': { en: 'Premium', ar: 'مميز' },
+      'mship.title': { en: 'Choose Your Membership', ar: 'اختر عضويتك' },
+      'mship.sub': { en: 'Practical knowledge. Real skills. Career growth.', ar: 'معرفة عملية. مهارات حقيقية. نمو مهني.' },
+      'mship.freeTitle': { en: 'Free Membership', ar: 'العضوية المجانية' },
+      'mship.freePrice': { en: '$0 Forever', ar: '0$ إلى الأبد' },
+      'mship.freeDesc': { en: 'Explore iHealth Academy and access essential free resources.', ar: 'استكشف iHealth Academy واحصل على الموارد المجانية الأساسية.' },
+      'mship.freeFeat1': { en: 'Community Access', ar: 'الوصول إلى المجتمع' },
+      'mship.freeFeat2': { en: 'Welcome & Orientation', ar: 'الترحيب والتوجيه' },
+      'mship.freeFeat3': { en: 'First Lesson of Every Academy', ar: 'الدرس الأول من كل أكاديمية' },
+      'mship.freeFeat4': { en: 'Selected 5-Minute Preview Lessons', ar: 'دروس معاينة مختارة لمدة 5 دقائق' },
+      'mship.freeFeat5': { en: 'ATS CV Builder', ar: 'أداة بناء السيرة الذاتية ATS' },
+      'mship.freeFeat6': { en: 'Healthcare Career Resources', ar: 'موارد المسار المهني الصحي' },
+      'mship.freeFeat7': { en: 'Community Discussions', ar: 'نقاشات المجتمع' },
+      'mship.freeBtn': { en: 'Join Free', ar: 'انضم مجانًا' },
+      'mship.premTitle': { en: 'Premium Membership', ar: 'العضوية المميزة' },
+      'mship.premSoon': { en: 'Available Soon', ar: 'متوفر قريبًا' },
+      'mship.premDesc': { en: 'Unlock your complete learning experience.', ar: 'افتح تجربة التعلم الكاملة الخاصة بك.' },
+      'mship.premFeat1': { en: 'Everything in Free', ar: 'كل ما في الخطة المجانية' },
+      'mship.premFeat2': { en: 'Unlimited Access to Premium Courses', ar: 'وصول غير محدود للدورات المميزة' },
+      'mship.premFeat3': { en: 'Complete Learning Pathways', ar: 'مسارات تعلم كاملة' },
+      'mship.premFeat4': { en: 'Full Video Library', ar: 'مكتبة فيديو كاملة' },
+      'mship.premFeat5': { en: 'Interactive Case Discussions', ar: 'مناقشات حالات تفاعلية' },
+      'mship.premFeat6': { en: 'Downloadable Resources', ar: 'موارد قابلة للتحميل' },
+      'mship.premFeat7': { en: 'Quiz Banks & Assessments', ar: 'بنوك الأسئلة والتقييمات' },
+      'mship.premFeat8': { en: 'Certificate of Completion', ar: 'شهادة إتمام' },
+      'mship.premFeat9': { en: 'Priority Access to All iHealth Academy Events', ar: 'أولوية الوصول لجميع فعاليات iHealth Academy' },
+      'mship.premFeat10': { en: 'One Premium Session with the Mentor of Your Choice*', ar: 'جلسة مميزة واحدة مع الموجه الذي تختاره*' },
+      'mship.premFeat11': { en: 'Premium Membership Valid for One Year', ar: 'العضوية المميزة صالحة لمدة سنة واحدة' },
+      'mship.premFeat12': { en: 'Priority Support', ar: 'دعم ذو أولوية' },
+      'mship.premFeat13': { en: 'Exclusive Member Badge', ar: 'شارة عضو حصرية' },
+      'mship.onProfile': { en: 'On Your Profile', ar: 'على ملفك الشخصي' },
+      'mship.premFeat14': { en: '5 Mentorship Sessions', ar: '5 جلسات إرشاد' },
+      'mship.futureFeature': { en: 'Future Feature', ar: 'ميزة مستقبلية' },
+      'mship.premFeat15': { en: 'AI Learning Tools', ar: 'أدوات تعلم بالذكاء الاصطناعي' },
+      'mship.premBtn': { en: 'Become Premium', ar: 'كن عضوًا مميزًا' },
+      'mship.premFootnote': { en: '*One premium mentor session is subject to mentor availability and scheduling.', ar: '*جلسة الموجه المميزة الواحدة تخضع لتوفر الموجه والجدولة.' },
+      'mship.instTitle': { en: 'Institution', ar: 'المؤسسات' },
+      'mship.instPrice': { en: 'Custom Pricing', ar: 'تسعير مخصص' },
+      'mship.instDesc': { en: 'Designed for hospitals, universities, healthcare organisations, and corporate teams.', ar: 'مصمم للمستشفيات والجامعات والمؤسسات الصحية وفرق الشركات.' },
+      'mship.instFeat1': { en: 'Everything in Premium', ar: 'كل ما في الخطة المميزة' },
+      'mship.instFeat2': { en: 'Team Enrolment', ar: 'تسجيل الفريق' },
+      'mship.instFeat3': { en: 'Staff Progress Dashboard', ar: 'لوحة متابعة تقدم الموظفين' },
+      'mship.instFeat4': { en: 'Group Certificates', ar: 'شهادات جماعية' },
+      'mship.instFeat5': { en: 'Department Reporting', ar: 'تقارير الأقسام' },
+      'mship.instFeat6': { en: 'Dedicated Onboarding', ar: 'تأهيل مخصص' },
+      'mship.instFeat7': { en: 'Custom Learning Pathways', ar: 'مسارات تعلم مخصصة' },
+      'mship.instFeat8': { en: 'Custom Pricing', ar: 'تسعير مخصص' },
+      'mship.instFeat9': { en: 'Dedicated Account Manager', ar: 'مدير حساب مخصص' },
+      'mship.instBtn': { en: 'Contact Sales', ar: 'تواصل مع المبيعات' },
+      'mship.strip1t': { en: 'Practical & Relevant', ar: 'عملي وذو صلة' },
+      'mship.strip1d': { en: 'Real-world scenarios and up-to-date knowledge.', ar: 'سيناريوهات واقعية ومعرفة محدثة.' },
+      'mship.strip2t': { en: 'Expert Designed', ar: 'مصمم بواسطة خبراء' },
+      'mship.strip2d': { en: 'Created by healthcare and insurance experts.', ar: 'تم إنشاؤه بواسطة خبراء الرعاية الصحية والتأمين.' },
+      'mship.strip3t': { en: 'Career Focused', ar: 'يركز على المسار المهني' },
+      'mship.strip3d': { en: 'Skills that employers are looking for.', ar: 'مهارات يبحث عنها أصحاب العمل.' },
+      'mship.strip4t': { en: 'Certificate of Completion', ar: 'شهادة إتمام' },
+      'mship.strip4d': { en: 'Showcase your achievement with confidence.', ar: 'أظهر إنجازك بثقة.' },
+      'mship.strip5t': { en: 'Support When You Need It', ar: 'دعم عند حاجتك إليه' },
+      'mship.strip5d': { en: "We're here to help you succeed.", ar: 'نحن هنا لمساعدتك على النجاح.' },
+      'mship.bar1': { en: 'Your learning. Your pace. Your future.', ar: 'تعلمك. وتيرتك. مستقبلك.' },
+      'mship.bar2': { en: 'Join thousands of healthcare professionals growing their careers with iHealth Academy.', ar: 'انضم إلى آلاف المهنيين الصحيين الذين ينمّون مسيرتهم المهنية مع iHealth Academy.' },
     };
   </script>
   <script src="js/lesson-viewer.js"></script>

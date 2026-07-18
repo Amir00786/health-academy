@@ -861,6 +861,28 @@ h1 .line3 {
   display: none;
 }
 
+.cv-upload-field {
+  border: 1px dashed rgba(11, 122, 117, 0.35);
+  border-radius: 10px;
+  padding: 0.75rem 0.9rem;
+  background: rgba(11, 122, 117, 0.04);
+}
+
+.cv-upload-field input[type='file'] {
+  font-size: 0.85rem;
+  margin-top: 0.35rem;
+}
+
+.cv-upload-status {
+  margin-top: 0.5rem;
+  font-size: 0.82rem;
+  color: #0b7a75;
+}
+
+.cv-upload-status.hidden {
+  display: none;
+}
+
 .ats-box {
   background: rgba(0, 200, 150, 0.07);
   border: 1px solid rgba(0, 200, 150, 0.18);
