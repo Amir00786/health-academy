@@ -888,28 +888,28 @@ const ICON_LOCK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" st
 const VIDEO_SESSIONS = [
   { id:"v2a", title:"What is the Medical Insurance?", desc:"The core definitions and terms every specialist must know cold.",
     bullets:["What medical insurance actually is","The Pre-Auth Department's real role","Self-pay alternatives & who can work in pre-auth","CHI, NPHIES, RCM & key Saudi terms"],
-    duration:"37:05", videoUrl:"", quiz: [...SECTIONS[0].questions, ...SECTIONS[1].questions] },
+    duration:"37:05", videoUrl:"images/vid-1.mp4", quiz: [...SECTIONS[0].questions, ...SECTIONS[1].questions] },
   { id:"v1", title:"General Overview", desc:"See how patients, providers, insurers, and regulators all connect in one claim.",
     bullets:["Patient, provider & payer roles","Claim assignment & review cycles","CHI regulatory oversight","Employer eligibility checks"],
-    duration:"8:16", videoUrl:"Medical_Approval_Specialist-1.mp4", freePreviewSeconds:300, isFree:true, quiz: VIDEO1_QUIZ.questions },
+    duration:"10:47", videoUrl:"images/vid-2.mp4", freePreviewSeconds:300, isFree:true, quiz: VIDEO1_QUIZ.questions },
   { id:"v3", title:"Health Questionnaire", desc:"Disclosure rules, investigation standards, and what genuinely requires declaration.",
     bullets:["What the HQ actually covers","Investigating inconsistent history","Who's exempt from the HQ","Maternity timing edge cases"],
-    duration:"39:22", videoUrl:"", quiz: SECTIONS[2].questions },
+    duration:"26:18", videoUrl:"images/vid-3.mp4", quiz: SECTIONS[2].questions },
   { id:"v4", title:"CHI Exclusion Items", desc:"What's excluded, and the difference between reject and refer.",
     bullets:["Natural disaster exclusions","Life-threatening congenital exceptions","Sports & hazardous activities","Third-party liability coordination"],
-    duration:"31:03", videoUrl:"", quiz: SECTIONS[3].questions },
+    duration:"39:22", videoUrl:"images/vid-4.mp4", quiz: SECTIONS[3].questions },
   { id:"v5", title:"CHI Inclusion Items & Coverage", desc:"What's actually covered — maternity, chronic conditions, and organ transplants.",
     bullets:["Maternity marital-status rules","First ANC investigations","Chronic condition coverage limits","Companion & escort benefits"],
-    duration:"30:49", videoUrl:"", quiz: SECTIONS[4].questions },
+    duration:"31:03", videoUrl:"images/vid-5.mp4", quiz: SECTIONS[4].questions },
   { id:"v6", title:"Special Terms & Conditions", desc:"Ex gratia, second opinions, and the professional judgment behind every decision.",
     bullets:["Ex gratia approvals","Global policy limits","When to request a second opinion","The Visit Visa product"],
-    duration:"23:53", videoUrl:"", quiz: SECTIONS[5].questions }
+    duration:"30:49", videoUrl:"images/vid-6.mp4", quiz: SECTIONS[5].questions }
 ];
 
 const CAPSTONE_SESSIONS = [
   { id:"practice", title:"Let's Practice Before the Exam", desc:"Apply your knowledge with real-life scenarios and make the right decisions.",
     bullets:["Case-based scenarios","Decision-making practice","Instant feedback & explanations","Build confidence through practice"],
-    duration:"~10 min", type:"practice" },
+    duration:"23:53", videoUrl:"images/vid-7.mp4", type:"practice" },
   { id:"exam", title:"Exam", desc:"Test your knowledge across 15 real cases and earn your certificate.",
     bullets:["15 realistic pre-auth cases","Denial code accuracy required","Instant results","Pass with more than 7 / 15"],
     duration:"30–45 min", type:"exam" },
@@ -1167,6 +1167,10 @@ document.getElementById("videoBackBtn").addEventListener("click", ()=>{ showView
 const PRACTICE_CASE_IDS = [1, 4];
 
 function openPractice(){
+  const session = CAPSTONE_SESSIONS.find(s=>s.id==="practice");
+  const videoEl = document.getElementById("practiceVideo");
+  if(session.videoUrl) videoEl.src = session.videoUrl;
+
   const container = document.getElementById("practiceCases");
   container.innerHTML = "";
   document.getElementById("practiceDoneBtn").classList.add("hidden");
