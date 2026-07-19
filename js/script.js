@@ -537,3 +537,10 @@ if (offerGrid && offerPrev && offerNext) {
   offerPrev.addEventListener('click', () => offerGrid.scrollBy({ left: -scrollStep(), behavior: 'smooth' }));
   offerNext.addEventListener('click', () => offerGrid.scrollBy({ left: scrollStep(), behavior: 'smooth' }));
 }
+
+AOS.init({
+  duration: 700,
+  easing: 'ease',
+  once: true,
+  offset: 80,
+});
