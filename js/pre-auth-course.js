@@ -990,35 +990,26 @@ function renderLanding(){
     const done = isSessionDone(s);
     if(done && s.type !== "certificate") doneCount++;
 
-    const icon = s.type === "video" ? ICON_VIDEO : s.type === "practice" ? ICON_PRACTICE : s.type === "exam" ? ICON_EXAM : ICON_CERT;
     const num = idx + 1;
+    const numContent = done ? ICON_CHECK : (!unlocked ? ICON_LOCK : String(num).padStart(2,"0"));
 
-    let badgeClass = "s-badge";
-    let badgeContent = num;
-    if(done){ badgeClass += " done"; badgeContent = ICON_CHECK; }
-    else if(!unlocked){ badgeContent = ICON_LOCK; }
-    else { badgeClass += " current"; }
-
-    let statusHtml;
-    if(!unlocked) statusHtml = `<span class="s-status locked">Locked</span>`;
-    else if(done) statusHtml = `<span class="s-status done">✓ Completed</span>`;
-    else statusHtml = `<span class="s-status ready">Start</span>`;
+    const tagClass = s.type === "exam" ? "tag-exam" : s.type === "certificate" ? "tag-cert" : "tag-video";
+    const tagText = s.isFree ? "FREE" : s.type === "exam" ? "EXAM" : s.type === "certificate" ? "CERTIFICATE" : "VIDEO";
 
     const card = document.createElement("div");
-    card.className = "session-card" + (unlocked ? "" : " locked");
+    card.className = "lesson-card" + (done ? " done" : "") + (unlocked ? "" : " locked");
     card.innerHTML = `
-      <div class="${badgeClass}">${typeof badgeContent === "string" && badgeContent.length<=2 ? badgeContent : badgeContent}</div>
-      <div class="s-main">
-        <div class="s-icon-row">
-          <div class="s-icon">${icon}</div>
-          <h3>${s.title}</h3>
+      <div class="lesson-card-inner">
+        <div class="lesson-card-num">${numContent}</div>
+        <div class="lesson-card-body">
+          <div class="lesson-card-title">${s.title}</div>
+          <div class="lesson-card-desc">${s.desc}</div>
         </div>
-        <p>${s.desc}</p>
-        <ul class="s-bullets">${s.bullets.map(b=>`<li>${b}</li>`).join("")}</ul>
-      </div>
-      <div class="s-right">
-        <div class="s-duration">🕐 ${s.duration}${s.isFree ? ' <span class="free-tag">FREE PREVIEW</span>' : ''}</div>
-        ${statusHtml}
+        <div class="lesson-card-right">
+          <span class="lesson-dur-tag">${s.duration}</span>
+          <span class="lesson-tag ${tagClass}">${tagText}</span>
+          <span class="lesson-arrow">${!unlocked ? ICON_LOCK : ICON_ARROW}</span>
+        </div>
       </div>
     `;
     if(unlocked){
@@ -1044,6 +1035,7 @@ let currentVideoSession = null;
 
 function openVideoSession(id){
   currentVideoSession = VIDEO_SESSIONS.find(s=>s.id===id);
+  document.getElementById("vfHeading").textContent = currentVideoSession.title;
   document.getElementById("vfTitle").textContent = currentVideoSession.title;
   document.getElementById("vfDur").textContent = "Duration: " + currentVideoSession.duration;
 

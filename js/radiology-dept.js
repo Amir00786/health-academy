@@ -49,224 +49,42 @@
     document.querySelectorAll('.counter').forEach((el) => counterObserver.observe(el));
 
     const modules = {
-      foundations: {
+      preauth: {
         num: 'Module 01',
-        title: 'Radiology foundations — start here.',
-        desc: 'Before anything else, you need to understand what radiology is, how each imaging modality works, and when to use which. These lessons are written for everyone — from medical students to senior residents who want to fill in the gaps.',
-        meta: [{ ico: '<i class="fi fi-sr-alarm-clock"></i>', txt: '~57 min total' }, { ico: '<i class="fi fi-sr-user-graduate"></i>', txt: 'All levels' }, { ico: '<i class="fi fi-sr-lock-open-alt"></i>', txt: 'Free to access' }],
+        title: 'Pre-Authorization Specialist — start here.',
+        desc: 'The complete back-end workflow of medical pre-authorization — from request review and policy interpretation to approvals, denials, and appeals. Free, start to finish.',
+        meta: [{ ico: '<i class="fi fi-sr-alarm-clock"></i>', txt: '~3h 19m total' }, { ico: '<i class="fi fi-sr-user-graduate"></i>', txt: 'All levels' }, { ico: '<i class="fi fi-sr-lock-open-alt"></i>', txt: 'Free to access' }],
         exams: [],
         lessons: [
-          { num: '01', title: 'What is radiology?', desc: 'The role of the radiologist in modern medicine — clinical, administrative, and consultative.', dur: '5 min', tag: 'free', featured: true, locked: false,
-            quiz: [
-              { q: 'A radiologist\'s role is best described as:', options: ['Purely administrative', 'Clinical, administrative, and consultative', 'Only performing surgery'], correct: 1 },
-              { q: 'Radiology sits at the center of modern medicine mainly because it:', options: ['Informs diagnosis and treatment decisions across specialties', 'Replaces the need for physical exams', 'Is only used in emergencies'], correct: 0 },
-            ] },
-          { num: '02', title: 'How imaging works', desc: 'The physics behind every modality — explained simply without heavy math.', dur: '8 min', tag: 'free', featured: false, locked: false,
-            quiz: [
-              { q: 'Different imaging modalities (X-ray, CT, MRI, ultrasound) mainly differ by:', options: ['The physical principle used to create the image', 'The color of the machine', 'The size of the hospital'], correct: 0 },
-              { q: 'Understanding the physics behind imaging helps a radiologist:', options: ['Choose the right modality and interpret images correctly', 'Skip clinical training', 'Avoid talking to referring doctors'], correct: 0 },
-            ] },
-          { num: '03', title: 'X-ray — the foundation of everything', desc: 'How X-rays are produced, what they show, and how to read a chest X-ray step by step.', dur: '10 min', tag: 'free', featured: false, locked: false,
-            quiz: [
-              { q: 'X-ray is often called the foundation of imaging because it is:', options: ['The oldest and most widely used modality', 'Never used anymore', 'Only used for bones'], correct: 0 },
-              { q: 'Reading a chest X-ray step by step means:', options: ['Following a consistent, systematic review pattern', 'Guessing based on the first thing you notice', 'Only checking the corners of the image'], correct: 0 },
-            ] },
-          { num: '04', title: 'CT scan — when and how', desc: 'How CT works, why it is requested, and what the numbers mean.', dur: '12 min', tag: 'pro', featured: false, locked: true },
-          { num: '05', title: 'MRI — the most powerful tool', desc: 'When MRI beats CT, sequences explained, and how to avoid common mistakes.', dur: '12 min', tag: 'pro', featured: false, locked: true },
-          { num: '06', title: 'Ultrasound & nuclear medicine', desc: 'The role of US and nuclear in modern practice — including PET/CT basics.', dur: '10 min', tag: 'pro', featured: false, locked: true },
-        ]
-      },
-      reports: {
-        num: 'Module 02',
-        title: 'Report writing — your voice as a radiologist.',
-        desc: 'A radiology report is a medical-legal document. Every word matters. This module teaches you to write reports that are clear, clinically useful, and impossible to misinterpret. Based on real cases and international standards.',
-        meta: [{ ico: '<i class="fi fi-sr-alarm-clock"></i>', txt: '~43 min total' }, { ico: '<i class="fi fi-sr-graduation-cap"></i>', txt: 'R1 and above' }, { ico: '<i class="fi fi-sr-comet"></i>', txt: 'High impact' }],
-        exams: [],
-        lessons: [
-          { num: '01', title: 'Structure of a good report', desc: 'The four parts every radiology report must have — and why most reports fail at part three.', dur: '10 min', tag: 'free', featured: true, locked: false,
-            quiz: [
-              { q: 'A radiology report is best described as:', options: ['A casual note', 'A medical-legal document', 'An optional summary'], correct: 1 },
-              { q: 'Most weak reports fail specifically at:', options: ['The findings/impression section', 'The patient name field', 'The date field'], correct: 0 },
-            ] },
-          { num: '02', title: 'Language & clarity', desc: 'How to write so the referring doctor understands — and takes action.', dur: '8 min', tag: 'free', featured: false, locked: false,
-            quiz: [
-              { q: 'The main goal of clear report language is to:', options: ['Impress other radiologists', 'Help the referring doctor understand and act', 'Use as much medical jargon as possible'], correct: 1 },
-              { q: 'A report that is technically correct but confusing is:', options: ['Still a good report', 'Not clinically useful', 'Always the referring doctor\'s fault'], correct: 1 },
-            ] },
-          { num: '03', title: 'Describing common findings', desc: 'Standard language for the 20 most common findings in chest, abdomen, and brain.', dur: '15 min', tag: 'pro', featured: false, locked: true },
-          { num: '04', title: 'Critical findings & communication', desc: 'What to do when you find something urgent — legally, clinically, and practically.', dur: '10 min', tag: 'pro', featured: false, locked: true },
-        ]
-      },
-      exams: {
-        num: 'Module 04',
-        title: 'Exam preparation — pass on your first attempt.',
-        desc: 'Structured study plans for every major radiology board exam. Not just question banks — actual strategies, timelines, and the specific topics that appear most in each exam. Built for people with real clinical workloads.',
-        meta: [{ ico: '<i class="fi fi-sr-alarm-clock"></i>', txt: '~90 min total' }, { ico: '<i class="fi fi-sr-graduation-cap"></i>', txt: 'R2 and above' }, { ico: '<i class="fi fi-sr-track"></i>', txt: '5 exam tracks' }],
-        exams: [
-          { ico: '<img src="images/uk.webp" alt="UK">', name: 'FRCR Part 1 & 2B', info: 'UK Royal College — most internationally recognized', badges: ['Physics', 'Anatomy', 'Rapid reporting'] },
-          { ico: '🌍', name: 'Arab Board of Radiology', info: 'Arab countries — structured written & clinical', badges: ['Written exam', 'Clinical cases', 'Oral prep'] },
-          { ico: '<img src="images/saudi.jpg" alt="Saudi Arabia">', name: 'Saudi Board', info: 'Saudi Arabia — full residency board exam', badges: ['All modalities', 'Case-based', 'Viva prep'] },
-          { ico: '<img src="images/us.webp" alt="United States">', name: 'ABR — American Board', info: 'For those targeting the United States', badges: ['Core exam', 'Certifying exam', 'Physics'] },
-        ],
-        lessons: [
-          { num: '01', title: 'FRCR Part 1 — the complete study plan', desc: 'Physics, anatomy, and how to pass in 90 days with a full-time clinical schedule.', dur: '20 min', tag: 'pro', featured: true, locked: true },
-          { num: '02', title: 'FRCR Part 2B — rapid reporting mastered', desc: 'The technique, the common cases, and how to avoid the most common mistakes.', dur: '25 min', tag: 'pro', featured: false, locked: true },
-          { num: '03', title: 'Arab Board — structure and strategy', desc: 'What the exam tests, how to prepare, and what most candidates get wrong.', dur: '15 min', tag: 'pro', featured: false, locked: true },
-          { num: '04', title: 'Saudi Board — the complete guide', desc: 'All modalities, case formats, viva preparation, and the topics that repeat every year.', dur: '15 min', tag: 'pro', featured: false, locked: true },
-          { num: '05', title: 'ABR — for those targeting the United States', desc: 'Core exam structure, certifying exam strategy, and physics review.', dur: '15 min', tag: 'pro', featured: false, locked: true },
-        ]
-      },
-      systems: {
-        num: 'Module 05',
-        title: 'Systems & technology — what every radiologist must know.',
-        desc: 'RIS, PACS, NPHIES, and AI tools are part of your daily work. This module explains what each system does, how they connect, and how to use them efficiently.',
-        meta: [{ ico: '<i class="fi fi-sr-alarm-clock"></i>', txt: '~30 min total' }, { ico: '<i class="fi fi-sr-graduation-cap"></i>', txt: 'All levels' }, { ico: '<i class="fi fi-sr-calendar"></i>', txt: 'Updated 2026' }],
-        exams: [],
-        lessons: [
-          { num: '01', title: 'RIS & PACS — what they do and why they matter', desc: 'The two systems behind every scan — from order entry to report delivery.', dur: '8 min', tag: 'free', featured: false, locked: false,
-            quiz: [
-              { q: 'RIS and PACS together handle:', options: ['Order entry through report/image delivery', 'Only billing', 'Only patient parking'], correct: 0 },
-              { q: 'Knowing these systems well helps a radiologist:', options: ['Work more efficiently day to day', 'Avoid learning imaging physics', 'Skip writing reports'], correct: 0 },
-            ] },
-          { num: '02', title: 'NPHIES for radiologists', desc: 'Saudi Arabia\'s national health data platform — what you must know to submit correctly.', dur: '10 min', tag: 'free', featured: true, locked: false,
-            quiz: [
-              { q: 'NPHIES is:', options: ['Saudi Arabia\'s national health data exchange platform', 'A private imaging brand', 'An international exam board'], correct: 0 },
-              { q: 'Submitting correctly through NPHIES mainly affects:', options: ['Claims and pre-auth processing', 'Image resolution', 'Report font size'], correct: 0 },
-            ] },
-          { num: '03', title: 'AI tools in radiology today', desc: 'What AI is actually doing in radiology right now — triage, detection, and reporting.', dur: '12 min', tag: 'pro', featured: false, locked: true },
-        ]
-      },
-      research: {
-        num: 'Module 06',
-        title: 'Research basics — build your academic profile.',
-        desc: 'Research is not just for professors. Every level of training benefits from understanding how to read studies, write case reports, and contribute to the literature. This module makes it practical and achievable.',
-        meta: [{ ico: '<i class="fi fi-sr-alarm-clock"></i>', txt: '~52 min total' }, { ico: '<i class="fi fi-sr-graduation-cap"></i>', txt: 'All levels' }, { ico: '<i class="fi fi-sr-train-track"></i>', txt: 'Academic track' }],
-        exams: [],
-        lessons: [
-          { num: '01', title: 'How to read a radiology study', desc: 'The five questions to ask before trusting any paper. Critical appraisal made simple.', dur: '12 min', tag: 'free', featured: true, locked: false,
-            quiz: [
-              { q: 'Critical appraisal of a study means:', options: ['Judging its methods before trusting its conclusions', 'Accepting every published paper as fact', 'Only reading the abstract'], correct: 0 },
-              { q: 'Asking structured questions before trusting a paper helps you:', options: ['Avoid basing decisions on weak evidence', 'Read faster with no comprehension', 'Skip the discussion section entirely'], correct: 0 },
-            ] },
-          { num: '02', title: 'Writing your first case report', desc: 'Structure, language, and where to submit. Everything you need to publish your first paper.', dur: '15 min', tag: 'free', featured: false, locked: false,
-            quiz: [
-              { q: 'A case report is typically written to:', options: ['Describe an unusual or instructive clinical case', 'Replace a full research study', 'Avoid peer review'], correct: 0 },
-              { q: 'Before submitting a case report you should:', options: ['Follow the target journal\'s structure and guidelines', 'Ignore formatting requirements', 'Submit to as many journals at once as possible'], correct: 0 },
-            ] },
-          { num: '03', title: 'Evidence-based radiology in practice', desc: 'How to find, evaluate, and apply the best evidence to clinical decisions.', dur: '10 min', tag: 'pro', featured: false, locked: true },
-          { num: '04', title: 'Publishing your first paper — a step by step guide', desc: 'From idea to acceptance. Journal selection, submission, and responding to reviewers.', dur: '15 min', tag: 'pro', featured: false, locked: true },
+          { num: '01', title: 'What is the Medical Insurance?', desc: 'The core definitions and terms every specialist must know cold.', dur: '37:05', tag: 'free', featured: true, locked: false, video: 'images/vid-1.mp4' },
+          { num: '02', title: 'General Overview', desc: 'See how patients, providers, insurers, and regulators all connect in one claim.', dur: '10:47', tag: 'free', featured: false, locked: false, video: 'images/vid-2.mp4' },
+          { num: '03', title: 'Health Questionnaire', desc: 'Disclosure rules, investigation standards, and what genuinely requires declaration.', dur: '26:18', tag: 'free', featured: false, locked: false, video: 'images/vid-3.mp4' },
+          { num: '04', title: 'CHI Exclusion Items', desc: 'What\'s excluded, and the difference between reject and refer.', dur: '39:22', tag: 'free', featured: false, locked: false, video: 'images/vid-4.mp4' },
+          { num: '05', title: 'CHI Inclusion Items & Coverage', desc: 'What\'s actually covered — maternity, chronic conditions, and organ transplants.', dur: '31:03', tag: 'free', featured: false, locked: false, video: 'images/vid-5.mp4' },
+          { num: '06', title: 'Special Terms & Conditions', desc: 'Ex gratia, second opinions, and the professional judgment behind every decision.', dur: '30:49', tag: 'free', featured: false, locked: false, video: 'images/vid-6.mp4' },
+          { num: '07', title: 'Let\'s Practice Before the Exam', desc: 'Apply your knowledge with real-life scenarios and make the right decisions.', dur: '23:53', tag: 'free', featured: false, locked: false, video: 'images/vid-7.mp4' },
         ]
       }
     };
 
-    // Arabic mirror of `modules` — same shape/order, translated strings only.
+    // Arabic mirror of `modules` — same shape/order. No Arabic translation has
+    // been provided for this replaced content yet, so it mirrors the English
+    // strings verbatim (rather than mixing in stale/removed radiology text).
     const modules_ar = {
-      foundations: {
+      preauth: {
         num: 'الوحدة 01',
-        title: 'أساسيات الأشعة — ابدأ من هنا.',
-        desc: 'قبل أي شيء آخر، تحتاج إلى فهم ما هي الأشعة، وكيف تعمل كل وسيلة تصوير، ومتى تُستخدم كل منها. هذه الدروس مكتوبة للجميع — من طلاب الطب إلى الأطباء المقيمين المتقدمين الذين يريدون سد الثغرات.',
-        meta: [{ ico: '<i class="fi fi-sr-alarm-clock"></i>', txt: '~57 دقيقة إجمالاً' }, { ico: '<i class="fi fi-sr-user-graduate"></i>', txt: 'جميع المستويات' }, { ico: '<i class="fi fi-sr-lock-open-alt"></i>', txt: 'مجاني الوصول' }],
+        title: 'Pre-Authorization Specialist — start here.',
+        desc: 'The complete back-end workflow of medical pre-authorization — from request review and policy interpretation to approvals, denials, and appeals. Free, start to finish.',
+        meta: [{ ico: '<i class="fi fi-sr-alarm-clock"></i>', txt: '~3h 19m total' }, { ico: '<i class="fi fi-sr-user-graduate"></i>', txt: 'All levels' }, { ico: '<i class="fi fi-sr-lock-open-alt"></i>', txt: 'Free to access' }],
         exams: [],
         lessons: [
-          { num: '01', title: 'ما هي الأشعة؟', desc: 'دور أخصائي الأشعة في الطب الحديث — سريريًا وإداريًا واستشاريًا.', dur: '5 دقائق', tag: 'free', featured: true, locked: false,
-            quiz: [
-              { q: 'يمكن وصف دور أخصائي الأشعة بأنه:', options: ['إداري بحت', 'سريري وإداري واستشاري', 'إجراء العمليات الجراحية فقط'], correct: 1 },
-              { q: 'تحتل الأشعة مكانة محورية في الطب الحديث بشكل أساسي لأنها:', options: ['توجه قرارات التشخيص والعلاج في جميع التخصصات', 'تحل محل الحاجة للفحص السريري', 'تُستخدم فقط في الحالات الطارئة'], correct: 0 },
-            ] },
-          { num: '02', title: 'كيف يعمل التصوير الطبي', desc: 'الفيزياء الكامنة خلف كل وسيلة تصوير — موضحة ببساطة دون رياضيات معقدة.', dur: '8 دقائق', tag: 'free', featured: false, locked: false,
-            quiz: [
-              { q: 'تختلف وسائل التصوير المختلفة (الأشعة السينية، التصوير المقطعي، الرنين المغناطيسي، الموجات فوق الصوتية) بشكل أساسي في:', options: ['المبدأ الفيزيائي المستخدم لتكوين الصورة', 'لون الجهاز', 'حجم المستشفى'], correct: 0 },
-              { q: 'فهم الفيزياء الكامنة خلف التصوير يساعد أخصائي الأشعة على:', options: ['اختيار الوسيلة المناسبة وتفسير الصور بشكل صحيح', 'تجاوز التدريب السريري', 'تجنب التحدث مع الأطباء المحوِّلين'], correct: 0 },
-            ] },
-          { num: '03', title: 'الأشعة السينية — أساس كل شيء', desc: 'كيف تُنتج الأشعة السينية، وماذا تُظهر، وكيفية قراءة صورة أشعة الصدر خطوة بخطوة.', dur: '10 دقائق', tag: 'free', featured: false, locked: false,
-            quiz: [
-              { q: 'غالبًا ما تُسمى الأشعة السينية أساس التصوير لأنها:', options: ['أقدم وأكثر الوسائل استخدامًا', 'لم تعد تُستخدم أبدًا', 'تُستخدم فقط للعظام'], correct: 0 },
-              { q: 'قراءة صورة أشعة الصدر خطوة بخطوة تعني:', options: ['اتباع نمط مراجعة منظم وثابت', 'التخمين بناءً على أول ما تلاحظه', 'فحص زوايا الصورة فقط'], correct: 0 },
-            ] },
-          { num: '04', title: 'التصوير المقطعي — متى وكيف', desc: 'كيف يعمل التصوير المقطعي، ولماذا يُطلب، وماذا تعني الأرقام.', dur: '12 دقيقة', tag: 'pro', featured: false, locked: true },
-          { num: '05', title: 'الرنين المغناطيسي — الأداة الأقوى', desc: 'متى يتفوق الرنين المغناطيسي على التصوير المقطعي، وشرح التسلسلات، وكيفية تجنب الأخطاء الشائعة.', dur: '12 دقيقة', tag: 'pro', featured: false, locked: true },
-          { num: '06', title: 'الموجات فوق الصوتية والطب النووي', desc: 'دور الموجات فوق الصوتية والطب النووي في الممارسة الحديثة — بما في ذلك أساسيات PET/CT.', dur: '10 دقائق', tag: 'pro', featured: false, locked: true },
-        ]
-      },
-      reports: {
-        num: 'الوحدة 02',
-        title: 'كتابة التقارير — صوتك كأخصائي أشعة.',
-        desc: 'تقرير الأشعة هو وثيقة طبية-قانونية. كل كلمة مهمة. تُعلّمك هذه الوحدة كتابة تقارير واضحة ومفيدة سريريًا ولا يمكن إساءة تفسيرها. مبنية على حالات حقيقية ومعايير دولية.',
-        meta: [{ ico: '<i class="fi fi-sr-alarm-clock"></i>', txt: '~43 دقيقة إجمالاً' }, { ico: '<i class="fi fi-sr-graduation-cap"></i>', txt: 'من مستوى R1 وما فوق' }, { ico: '<i class="fi fi-sr-comet"></i>', txt: 'تأثير عالٍ' }],
-        exams: [],
-        lessons: [
-          { num: '01', title: 'بنية التقرير الجيد', desc: 'الأجزاء الأربعة التي يجب أن يحتويها كل تقرير أشعة — ولماذا تفشل معظم التقارير في الجزء الثالث.', dur: '10 دقائق', tag: 'free', featured: true, locked: false,
-            quiz: [
-              { q: 'يمكن وصف تقرير الأشعة بأنه:', options: ['ملاحظة عابرة', 'وثيقة طبية-قانونية', 'ملخص اختياري'], correct: 1 },
-              { q: 'تفشل معظم التقارير الضعيفة بشكل خاص في:', options: ['قسم النتائج/الانطباع', 'حقل اسم المريض', 'حقل التاريخ'], correct: 0 },
-            ] },
-          { num: '02', title: 'اللغة والوضوح', desc: 'كيف تكتب بطريقة يفهمها الطبيب المحوِّل — ويتخذ إجراءً بناءً عليها.', dur: '8 دقائق', tag: 'free', featured: false, locked: false,
-            quiz: [
-              { q: 'الهدف الأساسي من لغة التقرير الواضحة هو:', options: ['إثارة إعجاب أخصائيي الأشعة الآخرين', 'مساعدة الطبيب المحوِّل على الفهم والتصرف', 'استخدام أكبر قدر ممكن من المصطلحات الطبية المعقدة'], correct: 1 },
-              { q: 'التقرير الصحيح تقنيًا ولكن المُربك يُعتبر:', options: ['لا يزال تقريرًا جيدًا', 'غير مفيد سريريًا', 'خطأ الطبيب المحوِّل دائمًا'], correct: 1 },
-            ] },
-          { num: '03', title: 'وصف النتائج الشائعة', desc: 'لغة موحدة لأكثر 20 نتيجة شائعة في الصدر والبطن والدماغ.', dur: '15 دقيقة', tag: 'pro', featured: false, locked: true },
-          { num: '04', title: 'النتائج الحرجة والتواصل', desc: 'ما يجب فعله عند اكتشاف أمر عاجل — قانونيًا وسريريًا وعمليًا.', dur: '10 دقائق', tag: 'pro', featured: false, locked: true },
-        ]
-      },
-      exams: {
-        num: 'الوحدة 04',
-        title: 'التحضير للامتحانات — انجح من المحاولة الأولى.',
-        desc: 'خطط دراسية منظمة لكل امتحان بورد رئيسي في الأشعة. ليست مجرد بنوك أسئلة — بل استراتيجيات فعلية وجداول زمنية والمواضيع المحددة الأكثر ظهورًا في كل امتحان. مُصممة لأصحاب أعباء العمل السريري الحقيقية.',
-        meta: [{ ico: '<i class="fi fi-sr-alarm-clock"></i>', txt: '~90 دقيقة إجمالاً' }, { ico: '<i class="fi fi-sr-graduation-cap"></i>', txt: 'من مستوى R2 وما فوق' }, { ico: '<i class="fi fi-sr-track"></i>', txt: '5 مسارات امتحانات' }],
-        exams: [
-          { ico: '<img src="images/uk.webp" alt="UK">', name: 'FRCR Part 1 & 2B', info: 'الكلية الملكية البريطانية — الأكثر اعتمادًا دوليًا', badges: ['الفيزياء', 'التشريح', 'التقارير السريعة'] },
-          { ico: '🌍', name: 'البورد العربي للأشعة', info: 'الدول العربية — امتحان تحريري وسريري منظم', badges: ['امتحان تحريري', 'حالات سريرية', 'تحضير شفوي'] },
-          { ico: '<img src="images/saudi.jpg" alt="Saudi Arabia">', name: 'البورد السعودي', info: 'المملكة العربية السعودية — امتحان بورد الإقامة الكامل', badges: ['جميع الوسائل', 'قائم على الحالات', 'تحضير للمناقشة الشفوية'] },
-          { ico: '<img src="images/us.webp" alt="United States">', name: 'ABR — البورد الأمريكي', info: 'لمن يستهدف الولايات المتحدة الأمريكية', badges: ['الامتحان الأساسي', 'امتحان الشهادة', 'الفيزياء'] },
-        ],
-        lessons: [
-          { num: '01', title: 'FRCR الجزء 1 — خطة الدراسة الكاملة', desc: 'الفيزياء والتشريح وكيفية النجاح في 90 يومًا مع جدول عمل سريري كامل.', dur: '20 دقيقة', tag: 'pro', featured: true, locked: true },
-          { num: '02', title: 'FRCR الجزء 2B — احتراف التقارير السريعة', desc: 'التقنية، الحالات الشائعة، وكيفية تجنب الأخطاء الأكثر شيوعًا.', dur: '25 دقيقة', tag: 'pro', featured: false, locked: true },
-          { num: '03', title: 'البورد العربي — البنية والاستراتيجية', desc: 'ما يختبره الامتحان، وكيفية التحضير، وأكثر الأخطاء شيوعًا بين المتقدمين.', dur: '15 دقيقة', tag: 'pro', featured: false, locked: true },
-          { num: '04', title: 'البورد السعودي — الدليل الكامل', desc: 'جميع الوسائل، صيغ الحالات، التحضير للمناقشة الشفوية، والمواضيع المتكررة كل عام.', dur: '15 دقيقة', tag: 'pro', featured: false, locked: true },
-          { num: '05', title: 'ABR — لمن يستهدف الولايات المتحدة الأمريكية', desc: 'بنية الامتحان الأساسي، استراتيجية امتحان الشهادة، ومراجعة الفيزياء.', dur: '15 دقيقة', tag: 'pro', featured: false, locked: true },
-        ]
-      },
-      systems: {
-        num: 'الوحدة 05',
-        title: 'الأنظمة والتقنية — ما يجب أن يعرفه كل أخصائي أشعة.',
-        desc: 'RIS و PACS و NPHIES وأدوات الذكاء الاصطناعي جزء من عملك اليومي. تشرح هذه الوحدة وظيفة كل نظام، وكيفية ارتباطها ببعضها، وكيفية استخدامها بكفاءة.',
-        meta: [{ ico: '<i class="fi fi-sr-alarm-clock"></i>', txt: '~30 دقيقة إجمالاً' }, { ico: '<i class="fi fi-sr-graduation-cap"></i>', txt: 'جميع المستويات' }, { ico: '<i class="fi fi-sr-calendar"></i>', txt: 'مُحدَّث 2026' }],
-        exams: [],
-        lessons: [
-          { num: '01', title: 'RIS و PACS — ماذا تفعل ولماذا هي مهمة', desc: 'النظامان الكامنان خلف كل فحص — من إدخال الطلب إلى تسليم التقرير.', dur: '8 دقائق', tag: 'free', featured: false, locked: false,
-            quiz: [
-              { q: 'يتعامل RIS و PACS معًا مع:', options: ['من إدخال الطلب حتى تسليم التقرير/الصورة', 'الفوترة فقط', 'مواقف انتظار المرضى فقط'], correct: 0 },
-              { q: 'معرفة هذه الأنظمة جيدًا تساعد أخصائي الأشعة على:', options: ['العمل بكفاءة أكبر يوميًا', 'تجنب تعلم فيزياء التصوير', 'تجاوز كتابة التقارير'], correct: 0 },
-            ] },
-          { num: '02', title: 'NPHIES لأخصائيي الأشعة', desc: 'منصة البيانات الصحية الوطنية في السعودية — ما يجب معرفته للتقديم الصحيح.', dur: '10 دقائق', tag: 'free', featured: true, locked: false,
-            quiz: [
-              { q: 'NPHIES هي:', options: ['منصة تبادل البيانات الصحية الوطنية في السعودية', 'علامة تجارية خاصة للتصوير', 'هيئة امتحانات دولية'], correct: 0 },
-              { q: 'التقديم الصحيح عبر NPHIES يؤثر بشكل أساسي على:', options: ['معالجة المطالبات والتصريح المسبق', 'دقة الصورة', 'حجم خط التقرير'], correct: 0 },
-            ] },
-          { num: '03', title: 'أدوات الذكاء الاصطناعي في الأشعة اليوم', desc: 'ما يفعله الذكاء الاصطناعي فعليًا في الأشعة الآن — الفرز، الكشف، وكتابة التقارير.', dur: '12 دقيقة', tag: 'pro', featured: false, locked: true },
-        ]
-      },
-      research: {
-        num: 'الوحدة 06',
-        title: 'أساسيات البحث العلمي — بناء ملفك الأكاديمي.',
-        desc: 'البحث العلمي ليس للأساتذة فقط. تستفيد كل مستويات التدريب من فهم كيفية قراءة الدراسات، وكتابة تقارير الحالات، والمساهمة في الأدبيات الطبية. تجعل هذه الوحدة ذلك عمليًا وقابلاً للتحقيق.',
-        meta: [{ ico: '<i class="fi fi-sr-alarm-clock"></i>', txt: '~52 دقيقة إجمالاً' }, { ico: '<i class="fi fi-sr-graduation-cap"></i>', txt: 'جميع المستويات' }, { ico: '<i class="fi fi-sr-train-track"></i>', txt: 'المسار الأكاديمي' }],
-        exams: [],
-        lessons: [
-          { num: '01', title: 'كيفية قراءة دراسة في الأشعة', desc: 'خمسة أسئلة يجب طرحها قبل الوثوق بأي بحث. التقييم النقدي ببساطة.', dur: '12 دقيقة', tag: 'free', featured: true, locked: false,
-            quiz: [
-              { q: 'التقييم النقدي للدراسة يعني:', options: ['تقييم منهجيتها قبل الوثوق باستنتاجاتها', 'قبول كل بحث منشور كحقيقة', 'قراءة الملخص فقط'], correct: 0 },
-              { q: 'طرح أسئلة منظمة قبل الوثوق بالبحث يساعدك على:', options: ['تجنب اتخاذ القرارات بناءً على أدلة ضعيفة', 'القراءة بشكل أسرع دون فهم', 'تجاوز قسم النقاش بالكامل'], correct: 0 },
-            ] },
-          { num: '02', title: 'كتابة تقرير حالتك الأولى', desc: 'البنية واللغة وأين تُقدّم. كل ما تحتاجه لنشر بحثك الأول.', dur: '15 دقيقة', tag: 'free', featured: false, locked: false,
-            quiz: [
-              { q: 'يُكتب تقرير الحالة عادةً لـ:', options: ['وصف حالة سريرية غير عادية أو تعليمية', 'استبدال دراسة بحثية كاملة', 'تجنب مراجعة الأقران'], correct: 0 },
-              { q: 'قبل تقديم تقرير الحالة يجب عليك:', options: ['اتباع بنية وإرشادات المجلة المستهدفة', 'تجاهل متطلبات التنسيق', 'التقديم لأكبر عدد ممكن من المجلات في نفس الوقت'], correct: 0 },
-            ] },
-          { num: '03', title: 'الأشعة المبنية على الأدلة في الممارسة', desc: 'كيفية إيجاد وتقييم وتطبيق أفضل الأدلة في القرارات السريرية.', dur: '10 دقائق', tag: 'pro', featured: false, locked: true },
-          { num: '04', title: 'نشر بحثك الأول — دليل خطوة بخطوة', desc: 'من الفكرة إلى القبول. اختيار المجلة والتقديم والرد على المراجعين.', dur: '15 دقيقة', tag: 'pro', featured: false, locked: true },
+          { num: '01', title: 'What is the Medical Insurance?', desc: 'The core definitions and terms every specialist must know cold.', dur: '37:05', tag: 'free', featured: true, locked: false, video: 'images/vid-1.mp4' },
+          { num: '02', title: 'General Overview', desc: 'See how patients, providers, insurers, and regulators all connect in one claim.', dur: '10:47', tag: 'free', featured: false, locked: false, video: 'images/vid-2.mp4' },
+          { num: '03', title: 'Health Questionnaire', desc: 'Disclosure rules, investigation standards, and what genuinely requires declaration.', dur: '26:18', tag: 'free', featured: false, locked: false, video: 'images/vid-3.mp4' },
+          { num: '04', title: 'CHI Exclusion Items', desc: 'What\'s excluded, and the difference between reject and refer.', dur: '39:22', tag: 'free', featured: false, locked: false, video: 'images/vid-4.mp4' },
+          { num: '05', title: 'CHI Inclusion Items & Coverage', desc: 'What\'s actually covered — maternity, chronic conditions, and organ transplants.', dur: '31:03', tag: 'free', featured: false, locked: false, video: 'images/vid-5.mp4' },
+          { num: '06', title: 'Special Terms & Conditions', desc: 'Ex gratia, second opinions, and the professional judgment behind every decision.', dur: '30:49', tag: 'free', featured: false, locked: false, video: 'images/vid-6.mp4' },
+          { num: '07', title: 'Let\'s Practice Before the Exam', desc: 'Apply your knowledge with real-life scenarios and make the right decisions.', dur: '23:53', tag: 'free', featured: false, locked: false, video: 'images/vid-7.mp4' },
         ]
       }
     };
@@ -279,7 +97,7 @@
     }
 
     let progress = {};
-    let currentModule = 'foundations';
+    let currentModule = 'preauth';
 
     function renderModule(id) {
       const m = currentModules()[id];
@@ -427,7 +245,7 @@
     }
 
     loadProgress();
-    renderModule('foundations');
+    renderModule('preauth');
     document.addEventListener('ih:langchange', () => renderModule(currentModule));
 
     AOS.init({
