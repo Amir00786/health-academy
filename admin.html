@@ -37,12 +37,12 @@
   <div class="admin-lock" id="adminLock">
     <div class="admin-lock-card">
       <div class="admin-lock-icon"><i class="fi fi-sr-lock"></i></div>
-      <h1>Owner Console</h1>
-      <p>Enter the owner passcode to continue.</p>
+      <h1 data-i18n="admin.title">Owner Console</h1>
+      <p data-i18n="admin.lockSub">Enter the owner passcode to continue.</p>
       <div class="admin-lock-error" id="adminLockError"></div>
-      <input type="password" id="adminPasscode" placeholder="Passcode" autocomplete="off" />
-      <button type="button" id="adminUnlockBtn">Unlock</button>
-      <div class="admin-lock-note">
+      <input type="password" id="adminPasscode" placeholder="Passcode" data-i18n-ph="admin.passcodePh" autocomplete="off" />
+      <button type="button" id="adminUnlockBtn" data-i18n="admin.unlock">Unlock</button>
+      <div class="admin-lock-note" data-i18n="admin.lockNote">
         This is a basic client-side passcode, not real authentication — anyone who inspects the page source can
         bypass it. Add a real server-side login before relying on this to keep the console private.
       </div>
@@ -54,82 +54,91 @@
     <div class="dash-topbar">
       <div class="wrap">
         <div>
-          <strong>Owner Console</strong>
-          <span class="dash-role">CEO</span>
+          <strong data-i18n="admin.title">Owner Console</strong>
+          <span class="dash-role" data-i18n="admin.roleCeo">CEO</span>
         </div>
-        <a class="back-link" href="index.html">← Exit to public site</a>
+        <div style="display:flex; align-items:center; gap:18px;">
+          <div class="lang-switcher">
+            <a href="#" class="lang-toggle back-link" title="Language"><i class="fi fi-sr-globe"></i></a>
+            <div class="lang-dropdown">
+              <a href="#" class="lang-option" data-lang="ar">عربي</a>
+              <a href="#" class="lang-option" data-lang="en">English</a>
+            </div>
+          </div>
+          <a class="back-link" href="index.html" data-i18n="admin.exitLink">← Exit to public site</a>
+        </div>
       </div>
     </div>
 
     <div class="dash-body wrap">
 
       <div class="demo-banner">
-        <strong>Demo data.</strong> This console isn't connected to a real analytics or payments backend yet, so
+        <strong data-i18n="admin.demoBannerStrong">Demo data.</strong> <span data-i18n="admin.demoBannerText">This console isn't connected to a real analytics or payments backend yet, so
         visitor counts, sign-ups, revenue, and traffic sources below show as empty until that's wired up. The
         Trust &amp; Safety and Mentor review sections below use sample entries to demonstrate the workflow — but the
-        Review / Approve / Reject / Suspend buttons are fully functional and their state is saved in this browser.
+        Review / Approve / Reject / Suspend buttons are fully functional and their state is saved in this browser.</span>
       </div>
 
       <!-- AI briefing -->
       <div class="briefing-panel">
         <div class="briefing-head">
-          <h3>🧭 This week's briefing</h3>
+          <h3 data-i18n="admin.briefingTitle">🧭 This week's briefing</h3>
         </div>
-        <div class="briefing-empty">No briefing yet — this section will summarize real activity once analytics
+        <div class="briefing-empty" data-i18n="admin.briefingEmpty">No briefing yet — this section will summarize real activity once analytics
           and the moderation/mentor pipelines are connected to a backend.</div>
       </div>
 
       <!-- top-line KPIs -->
       <div class="metric-grid section-gap">
-        <div class="metric"><b>—</b><span>Visitors (30d)</span></div>
-        <div class="metric"><b>—</b><span>Sign-ups (30d)</span></div>
-        <div class="metric"><b id="kpiPaidMembers">—</b><span>Paid members</span></div>
-        <div class="metric"><b id="kpiMRR">—</b><span>MRR</span></div>
+        <div class="metric"><b>—</b><span data-i18n="admin.kpiVisitors">Visitors (30d)</span></div>
+        <div class="metric"><b>—</b><span data-i18n="admin.kpiSignups">Sign-ups (30d)</span></div>
+        <div class="metric"><b id="kpiPaidMembers">—</b><span data-i18n="admin.kpiPaidMembers">Paid members</span></div>
+        <div class="metric"><b id="kpiMRR">—</b><span data-i18n="admin.kpiMRR">MRR</span></div>
       </div>
 
       <!-- funnel -->
       <div class="panel section-gap">
-        <h3>Visitor → paid funnel (30d)</h3>
+        <h3 data-i18n="admin.funnelTitle">Visitor → paid funnel (30d)</h3>
         <div class="funnel-row">
-          <span class="funnel-label">Visitors</span>
+          <span class="funnel-label" data-i18n="admin.funnelVisitors">Visitors</span>
           <div class="funnel-bar-track"><div class="funnel-bar-fill" style="width:100%;">—</div></div>
           <span class="funnel-pct">—</span>
         </div>
         <div class="funnel-row">
-          <span class="funnel-label">Signed up</span>
+          <span class="funnel-label" data-i18n="admin.funnelSignedUp">Signed up</span>
           <div class="funnel-bar-track"><div class="funnel-bar-fill" style="width:100%;">—</div></div>
           <span class="funnel-pct">—</span>
         </div>
         <div class="funnel-row">
-          <span class="funnel-label">Activated<br><span style="font-weight:400; font-size:11px; color:var(--ink-dim);">(1+ module done)</span></span>
+          <span class="funnel-label"><span data-i18n="admin.funnelActivated">Activated</span><br><span style="font-weight:400; font-size:11px; color:var(--ink-dim);" data-i18n="admin.funnelActivatedSub">(1+ module done)</span></span>
           <div class="funnel-bar-track"><div class="funnel-bar-fill" style="width:100%;">—</div></div>
           <span class="funnel-pct">—</span>
         </div>
         <div class="funnel-row">
-          <span class="funnel-label">Paid</span>
+          <span class="funnel-label" data-i18n="admin.funnelPaid">Paid</span>
           <div class="funnel-bar-track"><div class="funnel-bar-fill" style="width:100%;">—</div></div>
           <span class="funnel-pct">—</span>
         </div>
-        <p class="panel-note">Not yet connected to live data.</p>
+        <p class="panel-note" data-i18n="admin.notConnected">Not yet connected to live data.</p>
       </div>
 
       <div class="dash-grid section-gap">
         <div class="panel">
-          <h3>Track engagement</h3>
+          <h3 data-i18n="admin.trackEngagement">Track engagement</h3>
           <div class="bar-chart">
             <div class="bar" style="height:4px;"><span>—</span></div>
             <div class="bar" style="height:4px;"><span>—</span></div>
           </div>
-          <div class="bar-labels"><span>Pre-Auth Specialist</span><span>Radiology</span></div>
-          <p class="panel-note">Not yet connected to live data.</p>
+          <div class="bar-labels"><span data-i18n="admin.preAuthLabel">Pre-Auth Specialist</span><span data-i18n="admin.radiologyLabel">Radiology</span></div>
+          <p class="panel-note" data-i18n="admin.notConnected">Not yet connected to live data.</p>
         </div>
         <div class="panel">
-          <h3>Revenue by plan</h3>
-          <div class="waitlist-row"><span>Free</span><span id="revenueFree">—</span></div>
-          <div class="waitlist-row"><span>Pro</span><span id="revenuePro">—</span></div>
-          <div class="waitlist-row"><span>Institution</span><span id="revenueInstitution">—</span></div>
+          <h3 data-i18n="admin.revenueByPlan">Revenue by plan</h3>
+          <div class="waitlist-row"><span data-i18n="admin.planFree">Free</span><span id="revenueFree">—</span></div>
+          <div class="waitlist-row"><span data-i18n="admin.planPro">Pro</span><span id="revenuePro">—</span></div>
+          <div class="waitlist-row"><span data-i18n="admin.planInstitution">Institution</span><span id="revenueInstitution">—</span></div>
           <div class="mod-actions" style="margin-top:14px;">
-            <button type="button" class="mod-btn" id="importRevenueBtn">Import PayPal CSV</button>
+            <button type="button" class="mod-btn" id="importRevenueBtn" data-i18n="admin.importCsv">Import PayPal CSV</button>
             <input type="file" id="importRevenueFile" accept=".csv,text/csv" hidden />
           </div>
           <p class="panel-note" id="revenueNote">Not yet connected — import a PayPal Activity CSV export below. This panel reads from a swappable data layer (js/revenue.js), so plugging in a live PayPal/Stripe API later won't require redesigning it.</p>
@@ -137,47 +146,47 @@
       </div>
 
       <div class="panel section-gap" id="revenueTransactionsPanel">
-        <h3>💳 Recent transactions</h3>
+        <h3 data-i18n="admin.recentTransactions">💳 Recent transactions</h3>
         <div id="revenueTransactionsList"></div>
-        <p class="panel-note">Imported from a PayPal CSV export — stored only in this browser (included automatically in the Export backup below).</p>
+        <p class="panel-note" data-i18n="admin.transactionsNote">Imported from a PayPal CSV export — stored only in this browser (included automatically in the Export backup below).</p>
       </div>
 
       <div class="dash-grid section-gap">
         <div class="panel">
-          <h3>⚠️ Trust &amp; Safety queue</h3>
+          <h3 data-i18n="admin.trustSafety">⚠️ Trust &amp; Safety queue</h3>
           <div id="modQueueList"></div>
-          <p class="panel-note">Sample entries — connect a real reporting/moderation backend to see live reports.</p>
+          <p class="panel-note" data-i18n="admin.trustSafetyNote">Sample entries — connect a real reporting/moderation backend to see live reports.</p>
         </div>
 
         <div class="panel">
-          <h3>👥 Mentor operations</h3>
+          <h3 data-i18n="admin.mentorOps">👥 Mentor operations</h3>
           <div class="metric-grid" style="grid-template-columns:repeat(3,1fr); margin-bottom:16px;">
-            <div class="metric" style="padding:14px;"><b style="font-size:20px;">—</b><span>Active mentors</span></div>
-            <div class="metric" style="padding:14px;" id="mentorPendingMetric"><b style="font-size:20px;">0</b><span>Pending review</span></div>
-            <div class="metric" style="padding:14px;"><b style="font-size:20px;">—</b><span>Avg. rating</span></div>
+            <div class="metric" style="padding:14px;"><b style="font-size:20px;">—</b><span data-i18n="admin.activeMentors">Active mentors</span></div>
+            <div class="metric" style="padding:14px;" id="mentorPendingMetric"><b style="font-size:20px;">0</b><span data-i18n="admin.pendingReview">Pending review</span></div>
+            <div class="metric" style="padding:14px;"><b style="font-size:20px;">—</b><span data-i18n="admin.avgRating">Avg. rating</span></div>
           </div>
           <div id="mentorQueueList"></div>
-          <p class="panel-note">Sample applicants — connect a real mentor application form to see live submissions.</p>
+          <p class="panel-note" data-i18n="admin.mentorOpsNote">Sample applicants — connect a real mentor application form to see live submissions.</p>
         </div>
       </div>
 
       <div class="panel section-gap">
-        <h3>📅 Meetings overview</h3>
+        <h3 data-i18n="admin.meetingsOverview">📅 Meetings overview</h3>
         <div class="metric-grid" style="grid-template-columns:repeat(3,1fr); margin-bottom:16px;">
-          <div class="metric" style="padding:14px;"><b style="font-size:20px;" id="meetingsPendingCount">0</b><span>Pending requests</span></div>
-          <div class="metric" style="padding:14px;"><b style="font-size:20px;" id="meetingsAcceptedCount">0</b><span>Accepted</span></div>
-          <div class="metric" style="padding:14px;"><b style="font-size:20px;" id="meetingsDeclinedCount">0</b><span>Declined</span></div>
+          <div class="metric" style="padding:14px;"><b style="font-size:20px;" id="meetingsPendingCount">0</b><span data-i18n="admin.pendingRequests">Pending requests</span></div>
+          <div class="metric" style="padding:14px;"><b style="font-size:20px;" id="meetingsAcceptedCount">0</b><span data-i18n="admin.accepted">Accepted</span></div>
+          <div class="metric" style="padding:14px;"><b style="font-size:20px;" id="meetingsDeclinedCount">0</b><span data-i18n="admin.declined">Declined</span></div>
         </div>
         <div id="meetingsOverviewList"></div>
-        <p class="panel-note">Reflects mentor/student meeting requests stored in this browser — connect a real backend for a cross-device view.</p>
+        <p class="panel-note" data-i18n="admin.meetingsNote">Reflects mentor/student meeting requests stored in this browser — connect a real backend for a cross-device view.</p>
       </div>
 
       <div class="panel section-gap">
-        <h3>🗂️ Backup &amp; Restore</h3>
-        <p class="panel-note" style="margin-top:0;">Export everything stored in this browser — student progress, mentor directory, meeting requests, and admin decisions — as a JSON file you can keep safe, and re-import it later to restore it or move it to another browser.</p>
+        <h3 data-i18n="admin.backupRestore">🗂️ Backup &amp; Restore</h3>
+        <p class="panel-note" style="margin-top:0;" data-i18n="admin.backupNote">Export everything stored in this browser — student progress, mentor directory, meeting requests, and admin decisions — as a JSON file you can keep safe, and re-import it later to restore it or move it to another browser.</p>
         <div class="mod-actions" style="margin-top:14px;">
-          <button type="button" class="mod-btn" id="exportDataBtn">Export data (.json)</button>
-          <button type="button" class="mod-btn" id="importDataBtn">Import data (.json)</button>
+          <button type="button" class="mod-btn" id="exportDataBtn" data-i18n="admin.exportBtn">Export data (.json)</button>
+          <button type="button" class="mod-btn" id="importDataBtn" data-i18n="admin.importBtn">Import data (.json)</button>
           <input type="file" id="importDataFile" accept="application/json" hidden />
         </div>
         <p class="panel-note" id="backupStatusNote"></p>
@@ -185,28 +194,94 @@
 
       <div class="dash-grid section-gap">
         <div class="panel">
-          <h3>Waitlist demand</h3>
-          <div class="waitlist-row"><span>Mentorships</span><span>—</span></div>
-          <div class="waitlist-row"><span>Managers Professional</span><span>—</span></div>
-          <div class="waitlist-row"><span>Supporters</span><span>—</span></div>
-          <div class="waitlist-row"><span>Co-Founders</span><span>—</span></div>
-          <p class="panel-note">There's no waitlist-capture form behind these "Coming soon" nav items yet — add
+          <h3 data-i18n="admin.waitlistDemand">Waitlist demand</h3>
+          <div class="waitlist-row"><span data-i18n="admin.waitlistMentorships">Mentorships</span><span>—</span></div>
+          <div class="waitlist-row"><span data-i18n="admin.waitlistManagers">Managers Professional</span><span>—</span></div>
+          <div class="waitlist-row"><span data-i18n="admin.waitlistSupporters">Supporters</span><span>—</span></div>
+          <div class="waitlist-row"><span data-i18n="admin.waitlistCofounders">Co-Founders</span><span>—</span></div>
+          <p class="panel-note" data-i18n="admin.waitlistNote">There's no waitlist-capture form behind these "Coming soon" nav items yet — add
             one to start collecting real demand data here.</p>
         </div>
         <div class="panel">
-          <h3>Where sign-ups come from</h3>
-          <div class="source-row"><span class="source-label">Instagram</span><div class="source-track"><div class="source-fill" style="width:0%;"></div></div><span class="source-pct">—</span></div>
-          <div class="source-row"><span class="source-label">WhatsApp</span><div class="source-track"><div class="source-fill" style="width:0%;"></div></div><span class="source-pct">—</span></div>
-          <div class="source-row"><span class="source-label">Direct</span><div class="source-track"><div class="source-fill" style="width:0%;"></div></div><span class="source-pct">—</span></div>
-          <div class="source-row"><span class="source-label">X / Twitter</span><div class="source-track"><div class="source-fill" style="width:0%;"></div></div><span class="source-pct">—</span></div>
-          <div class="source-row"><span class="source-label">LinkedIn</span><div class="source-track"><div class="source-fill" style="width:0%;"></div></div><span class="source-pct">—</span></div>
-          <p class="panel-note">Not yet connected to a real analytics source.</p>
+          <h3 data-i18n="admin.signupSources">Where sign-ups come from</h3>
+          <div class="source-row"><span class="source-label" data-i18n="admin.srcInstagram">Instagram</span><div class="source-track"><div class="source-fill" style="width:0%;"></div></div><span class="source-pct">—</span></div>
+          <div class="source-row"><span class="source-label" data-i18n="admin.srcWhatsapp">WhatsApp</span><div class="source-track"><div class="source-fill" style="width:0%;"></div></div><span class="source-pct">—</span></div>
+          <div class="source-row"><span class="source-label" data-i18n="admin.srcDirect">Direct</span><div class="source-track"><div class="source-fill" style="width:0%;"></div></div><span class="source-pct">—</span></div>
+          <div class="source-row"><span class="source-label" data-i18n="admin.srcTwitter">X / Twitter</span><div class="source-track"><div class="source-fill" style="width:0%;"></div></div><span class="source-pct">—</span></div>
+          <div class="source-row"><span class="source-label" data-i18n="admin.srcLinkedin">LinkedIn</span><div class="source-track"><div class="source-fill" style="width:0%;"></div></div><span class="source-pct">—</span></div>
+          <p class="panel-note" data-i18n="admin.srcNote">Not yet connected to a real analytics source.</p>
         </div>
       </div>
 
     </div>
   </div>
 
+  <script>
+    window.I18N_PAGE_DICT = {
+      'admin.title': { en: 'Owner Console', ar: 'وحدة تحكم المالك' },
+      'admin.lockSub': { en: 'Enter the owner passcode to continue.', ar: 'أدخل رمز مرور المالك للمتابعة.' },
+      'admin.passcodePh': { en: 'Passcode', ar: 'رمز المرور' },
+      'admin.unlock': { en: 'Unlock', ar: 'فتح' },
+      'admin.lockNote': { en: 'This is a basic client-side passcode, not real authentication — anyone who inspects the page source can bypass it. Add a real server-side login before relying on this to keep the console private.', ar: 'هذا مجرد رمز مرور أساسي من جهة العميل، وليس مصادقة حقيقية — يمكن لأي شخص يفحص كود الصفحة تجاوزه. أضف نظام تسجيل دخول حقيقي من جهة الخادم قبل الاعتماد على هذا للحفاظ على خصوصية الوحدة.' },
+      'admin.roleCeo': { en: 'CEO', ar: 'الرئيس التنفيذي' },
+      'admin.exitLink': { en: '← Exit to public site', ar: '→ الخروج إلى الموقع العام' },
+      'admin.demoBannerStrong': { en: 'Demo data.', ar: 'بيانات تجريبية.' },
+      'admin.demoBannerText': { en: "This console isn't connected to a real analytics or payments backend yet, so visitor counts, sign-ups, revenue, and traffic sources below show as empty until that's wired up. The Trust & Safety and Mentor review sections below use sample entries to demonstrate the workflow — but the Review / Approve / Reject / Suspend buttons are fully functional and their state is saved in this browser.", ar: 'هذه الوحدة غير متصلة بعد بأي نظام تحليلات أو مدفوعات حقيقي، لذا تظهر أعداد الزوار والتسجيلات والإيرادات ومصادر الزيارات أدناه فارغة حتى يتم ربطها. تستخدم أقسام السلامة والثقة ومراجعة الموجهين أدناه بيانات نموذجية لتوضيح آلية العمل — لكن أزرار مراجعة / موافقة / رفض / تعليق تعمل بشكل كامل وتُحفظ حالتها في هذا المتصفح.' },
+      'admin.briefingTitle': { en: "🧭 This week's briefing", ar: '🧭 ملخص هذا الأسبوع' },
+      'admin.briefingEmpty': { en: 'No briefing yet — this section will summarize real activity once analytics and the moderation/mentor pipelines are connected to a backend.', ar: 'لا يوجد ملخص بعد — سيقوم هذا القسم بتلخيص النشاط الحقيقي بمجرد ربط التحليلات وأنظمة الإشراف والموجهين بخادم حقيقي.' },
+      'admin.kpiVisitors': { en: 'Visitors (30d)', ar: 'الزوار (30 يومًا)' },
+      'admin.kpiSignups': { en: 'Sign-ups (30d)', ar: 'التسجيلات (30 يومًا)' },
+      'admin.kpiPaidMembers': { en: 'Paid members', ar: 'الأعضاء المدفوعون' },
+      'admin.kpiMRR': { en: 'MRR', ar: 'الإيراد الشهري المتكرر' },
+      'admin.funnelTitle': { en: 'Visitor → paid funnel (30d)', ar: 'مسار الزائر ← المشترك المدفوع (30 يومًا)' },
+      'admin.funnelVisitors': { en: 'Visitors', ar: 'الزوار' },
+      'admin.funnelSignedUp': { en: 'Signed up', ar: 'مسجّلون' },
+      'admin.funnelActivated': { en: 'Activated', ar: 'مُفعَّلون' },
+      'admin.funnelActivatedSub': { en: '(1+ module done)', ar: '(أكملوا وحدة واحدة على الأقل)' },
+      'admin.funnelPaid': { en: 'Paid', ar: 'مدفوعون' },
+      'admin.notConnected': { en: 'Not yet connected to live data.', ar: 'غير متصل بعد ببيانات حقيقية.' },
+      'admin.trackEngagement': { en: 'Track engagement', ar: 'تفاعل المسارات' },
+      'admin.preAuthLabel': { en: 'Pre-Auth Specialist', ar: 'أخصائي التصريح المسبق' },
+      'admin.radiologyLabel': { en: 'Radiology', ar: 'الأشعة' },
+      'admin.revenueByPlan': { en: 'Revenue by plan', ar: 'الإيرادات حسب الخطة' },
+      'admin.planFree': { en: 'Free', ar: 'مجاني' },
+      'admin.planPro': { en: 'Pro', ar: 'برو' },
+      'admin.planInstitution': { en: 'Institution', ar: 'المؤسسات' },
+      'admin.importCsv': { en: 'Import PayPal CSV', ar: 'استيراد ملف PayPal CSV' },
+      'admin.recentTransactions': { en: '💳 Recent transactions', ar: '💳 المعاملات الأخيرة' },
+      'admin.transactionsNote': { en: 'Imported from a PayPal CSV export — stored only in this browser (included automatically in the Export backup below).', ar: 'مستوردة من ملف تصدير PayPal CSV — مخزّنة فقط في هذا المتصفح (تُضمَّن تلقائيًا في النسخة الاحتياطية للتصدير أدناه).' },
+      'admin.trustSafety': { en: '⚠️ Trust & Safety queue', ar: '⚠️ قائمة السلامة والثقة' },
+      'admin.trustSafetyNote': { en: 'Sample entries — connect a real reporting/moderation backend to see live reports.', ar: 'إدخالات نموذجية — اربط نظام إبلاغ/إشراف حقيقي لرؤية البلاغات الفعلية.' },
+      'admin.mentorOps': { en: '👥 Mentor operations', ar: '👥 عمليات الموجهين' },
+      'admin.activeMentors': { en: 'Active mentors', ar: 'الموجهون النشطون' },
+      'admin.pendingReview': { en: 'Pending review', ar: 'قيد المراجعة' },
+      'admin.avgRating': { en: 'Avg. rating', ar: 'متوسط التقييم' },
+      'admin.mentorOpsNote': { en: 'Sample applicants — connect a real mentor application form to see live submissions.', ar: 'متقدمون نموذجيون — اربط نموذج تقديم موجهين حقيقي لرؤية الطلبات الفعلية.' },
+      'admin.meetingsOverview': { en: '📅 Meetings overview', ar: '📅 نظرة عامة على الاجتماعات' },
+      'admin.pendingRequests': { en: 'Pending requests', ar: 'طلبات معلّقة' },
+      'admin.accepted': { en: 'Accepted', ar: 'مقبولة' },
+      'admin.declined': { en: 'Declined', ar: 'مرفوضة' },
+      'admin.meetingsNote': { en: 'Reflects mentor/student meeting requests stored in this browser — connect a real backend for a cross-device view.', ar: 'يعكس طلبات اجتماعات الموجهين/الطلاب المخزّنة في هذا المتصفح — اربط خادمًا حقيقيًا لعرضها عبر جميع الأجهزة.' },
+      'admin.backupRestore': { en: '🗂️ Backup & Restore', ar: '🗂️ النسخ الاحتياطي والاستعادة' },
+      'admin.backupNote': { en: 'Export everything stored in this browser — student progress, mentor directory, meeting requests, and admin decisions — as a JSON file you can keep safe, and re-import it later to restore it or move it to another browser.', ar: 'صدّر كل ما هو مخزّن في هذا المتصفح — تقدم الطلاب، دليل الموجهين، طلبات الاجتماعات، وقرارات الإدارة — كملف JSON يمكنك حفظه بأمان، وإعادة استيراده لاحقًا لاستعادته أو نقله إلى متصفح آخر.' },
+      'admin.exportBtn': { en: 'Export data (.json)', ar: 'تصدير البيانات (.json)' },
+      'admin.importBtn': { en: 'Import data (.json)', ar: 'استيراد البيانات (.json)' },
+      'admin.waitlistDemand': { en: 'Waitlist demand', ar: 'الطلب على قائمة الانتظار' },
+      'admin.waitlistMentorships': { en: 'Mentorships', ar: 'برامج الإرشاد' },
+      'admin.waitlistManagers': { en: 'Managers Professional', ar: 'المدراء المحترفون' },
+      'admin.waitlistSupporters': { en: 'Supporters', ar: 'الداعمون' },
+      'admin.waitlistCofounders': { en: 'Co-Founders', ar: 'الشركاء المؤسسون' },
+      'admin.waitlistNote': { en: 'There\'s no waitlist-capture form behind these "Coming soon" nav items yet — add one to start collecting real demand data here.', ar: 'لا يوجد نموذج لتسجيل قائمة الانتظار خلف عناصر التنقل "قريبًا" هذه بعد — أضف واحدًا لبدء جمع بيانات طلب حقيقية هنا.' },
+      'admin.signupSources': { en: 'Where sign-ups come from', ar: 'مصادر التسجيلات' },
+      'admin.srcInstagram': { en: 'Instagram', ar: 'إنستغرام' },
+      'admin.srcWhatsapp': { en: 'WhatsApp', ar: 'واتساب' },
+      'admin.srcDirect': { en: 'Direct', ar: 'مباشر' },
+      'admin.srcTwitter': { en: 'X / Twitter', ar: 'إكس / تويتر' },
+      'admin.srcLinkedin': { en: 'LinkedIn', ar: 'لينكدإن' },
+      'admin.srcNote': { en: 'Not yet connected to a real analytics source.', ar: 'غير متصل بعد بمصدر تحليلات حقيقي.' },
+    };
+  </script>
+  <script src="js/i18n.js"></script>
   <script src="js/nav.js"></script>
   <script src="js/mentors.js"></script>
   <script src="js/revenue.js"></script>

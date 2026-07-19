@@ -240,6 +240,55 @@ html.is-loading body {
   color: #fff;
 }
 
+.lang-switcher {
+  position: relative;
+  display: inline-flex;
+}
+
+.lang-switcher .lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  font-size: 15px;
+}
+
+.lang-switcher .lang-dropdown {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 14px 32px rgba(15, 43, 42, 0.16);
+  padding: 6px;
+  min-width: 110px;
+  z-index: 50;
+}
+
+.lang-switcher:hover .lang-dropdown,
+.lang-switcher.open .lang-dropdown {
+  display: flex;
+}
+
+.lang-switcher .lang-option {
+  display: block;
+  padding: 7px 10px;
+  border-radius: 6px;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.lang-switcher .lang-option:hover,
+.lang-switcher .lang-option.active {
+  background: var(--primary-tint);
+  color: var(--primary);
+  font-weight: 700;
+}
+
 .dash-body {
   padding: 28px 0 60px;
 }
