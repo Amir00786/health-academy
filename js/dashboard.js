@@ -1,3 +1,42 @@
+window.I18N_PAGE_DICT = {
+      'dash.title': { en: 'Dashboard', ar: 'لوحة التحكم' },
+      'dash.nameLabel': { en: 'Name', ar: 'الاسم' },
+      'dash.specialtyLabel': { en: 'Speciality', ar: 'التخصص' },
+      'dash.stat1Label': { en: 'Active courses', ar: 'الدورات النشطة' },
+      'dash.viewCourses': { en: 'View →', ar: '← عرض' },
+      'dash.stat2Label': { en: 'Lessons completed', ar: 'الدروس المكتملة' },
+      'dash.stat3Label': { en: 'Certificates', ar: 'الشهادات' },
+      'dash.autoTag': { en: 'Updates automatically', ar: 'يتحدث تلقائيًا' },
+      'dash.stat4Label': { en: 'Anatomy Spotting tier', ar: 'مستوى تحديد التشريح' },
+      'dash.viewAnatomy': { en: 'Practice →', ar: '← تدرّب' },
+      'dash.recTitle': { en: 'What to learn next — recommended for you', ar: 'ماذا تتعلم بعد ذلك — موصى به لك' },
+      'dash.recSoon': { en: '(Coming soon: personalized AI recommendations — showing your in-progress courses for now)', ar: '(قريبًا: توصيات مخصصة بالذكاء الاصطناعي — يتم حاليًا عرض دوراتك الجارية)' },
+      'dash.radiologyName': { en: 'Radiology', ar: 'الأشعة' },
+      'dash.insuranceName': { en: 'Pre-Auth Specialist', ar: 'أخصائي التصريح المسبق' },
+      'dash.continueLesson': { en: 'lessons complete', ar: 'دروس مكتملة' },
+      'dash.startCourse': { en: 'Not started yet — click to begin', ar: 'لم يبدأ بعد — انقر للبدء' },
+      'dash.favTitle': { en: 'Favorite course', ar: 'الدورة المفضلة' },
+      'dash.mentorTitle': { en: 'Select your mentor', ar: 'اختر مرشدك' },
+      'mentor.demoTitle': { en: 'This runs locally, in this browser.', ar: 'يعمل هذا محليًا، في هذا المتصفح فقط.' },
+      'mentor.demoDescStudent': { en: 'Mentors listed here were added on this same browser (via the Owner Console or the Mentor Dashboard) — real cross-device matching needs a backend.', ar: 'المرشدون المدرجون هنا تمت إضافتهم على نفس هذا المتصفح (عبر لوحة تحكم المالك أو لوحة تحكم المرشد) — التوافق الحقيقي عبر الأجهزة يحتاج إلى خادم خلفي.' },
+      'mentor.noMentors': { en: 'No mentors available yet — approve one in the Owner Console, or set up a mentor profile via Sign up → As Mentor, to see it appear here.', ar: 'لا يوجد مرشدون متاحون بعد — وافق على أحدهم في لوحة تحكم المالك، أو أنشئ ملف مرشد عبر إنشاء حساب ← كمرشد، ليظهر هنا.' },
+      'mentor.select': { en: 'Select', ar: 'اختيار' },
+      'mentor.selected': { en: 'Selected ✓', ar: 'تم الاختيار ✓' },
+      'course.radiology': { en: 'Radiology', ar: 'الأشعة' },
+      'course.preauth': { en: 'Pre-Auth Specialist', ar: 'أخصائي التصريح المسبق' },
+      'meet.title': { en: 'Meeting requests', ar: 'طلبات الاجتماعات' },
+      'meet.selectMentorFirst': { en: 'Select a mentor above to request a meeting.', ar: 'اختر مرشدًا أعلاه لطلب اجتماع.' },
+      'meet.dateLabel': { en: 'Preferred date', ar: 'التاريخ المفضل' },
+      'meet.noteLabel': { en: 'Note for your mentor', ar: 'ملاحظة لمرشدك' },
+      'meet.notePlaceholder': { en: 'What would you like to discuss?', ar: 'ما الذي تود مناقشته؟' },
+      'meet.requestBtn': { en: 'Request a meeting', ar: 'اطلب اجتماعًا' },
+      'meet.noneYet': { en: 'No meeting requests yet.', ar: 'لا توجد طلبات اجتماعات بعد.' },
+      'meet.noDate': { en: 'No date set', ar: 'لم يتم تحديد تاريخ' },
+      'meet.pending': { en: 'Pending', ar: 'قيد الانتظار' },
+      'meet.accepted': { en: 'Accepted', ar: 'تم القبول' },
+      'meet.declined': { en: 'Declined', ar: 'تم الرفض' },
+    };
+
 // USER DASHBOARD — reads real progress already tracked in localStorage by
 // radiology-dept.html, insurance-dept.html, and anatomy-spotting.html.
 (function () {
@@ -263,3 +302,5 @@
   renderAll();
   document.addEventListener('ih:langchange', renderAll);
 })();
+
+AOS.init({ duration: 700, easing: 'ease', once: true, offset: 80 });

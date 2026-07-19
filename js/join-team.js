@@ -1,3 +1,30 @@
+window.I18N_PAGE_DICT = {
+      'join.back': { en: 'Back to home', ar: 'العودة إلى الرئيسية' },
+      'join.tag': { en: 'Join the founding team', ar: 'انضم إلى الفريق المؤسس' },
+      'join.title': { en: 'Help build iHealth Academy from the ground up.', ar: 'ساعد في بناء أكاديمية آي هيلث من الصفر.' },
+      'join.desc': { en: "We're looking for early co-founders and collaborators across clinical, content, and product roles. Tell us about yourself and attach your CV — our team reviews every submission.", ar: 'نبحث عن شركاء مؤسسين ومتعاونين أوائل عبر الأدوار السريرية والمحتوى والمنتج. أخبرنا عن نفسك وأرفق سيرتك الذاتية — يراجع فريقنا كل طلب.' },
+      'join.nameLabel': { en: 'Full name', ar: 'الاسم الكامل' },
+      'join.emailLabel': { en: 'Email', ar: 'البريد الإلكتروني' },
+      'join.trackLabel': { en: 'Which area interests you?', ar: 'ما المجال الذي يهمك؟' },
+      'join.trackClinical': { en: 'Clinical / Medical content', ar: 'المحتوى السريري / الطبي' },
+      'join.trackProduct': { en: 'Product / Tech', ar: 'المنتج / التقنية' },
+      'join.trackBusiness': { en: 'Business / Operations', ar: 'الأعمال / العمليات' },
+      'join.trackOther': { en: 'Other', ar: 'أخرى' },
+      'join.messageLabel': { en: 'Message', ar: 'الرسالة' },
+      'join.messagePlaceholder': { en: "A little about your background and why you'd like to join", ar: 'نبذة عن خلفيتك ولماذا ترغب في الانضمام' },
+      'join.cvLabel': { en: 'Upload your CV (PDF or Word)', ar: 'ارفع سيرتك الذاتية (PDF أو Word)' },
+      'join.uploadCta': { en: 'Click to upload', ar: 'اضغط للرفع' },
+      'join.uploadHint': { en: ' or drag and drop — PDF or Word, up to 10MB', ar: ' أو اسحب وأفلت — PDF أو Word، حتى 10 ميجابايت' },
+      'join.charterLabel': { en: 'Founding Team Charter & Collaboration Agreement', ar: 'ميثاق واتفاقية تعاون الفريق المؤسس' },
+      'join.charterAgree': { en: 'I have read and agree to the Founding Team Charter & Collaboration Agreement above. *', ar: 'لقد قرأت ووافقت على ميثاق واتفاقية تعاون الفريق المؤسس أعلاه. *' },
+      'join.submitBtn': { en: 'Submit application', ar: 'إرسال الطلب' },
+      'join.successTitle': { en: 'Application received.', ar: 'تم استلام طلبك.' },
+      'join.successDesc': { en: 'Thanks for reaching out — our team will review your CV and get back to you by email.', ar: 'شكرًا لتواصلك — سيراجع فريقنا سيرتك الذاتية ويتواصل معك عبر البريد الإلكتروني.' },
+      'join.errorMsg': { en: 'Something went wrong — please try again, or email your CV directly to info@ihealthacademy.com.', ar: 'حدث خطأ ما — يرجى المحاولة مرة أخرى، أو إرسال سيرتك الذاتية مباشرة إلى info@ihealthacademy.com.' },
+      'join.sending': { en: 'Sending…', ar: 'جارٍ الإرسال…' },
+      'dash.insuranceName': { en: 'Pre-Auth Specialist', ar: 'أخصائي التصريح المسبق' },
+    };
+
 // JOIN THE FOUNDING TEAM — CV upload form, submitted via Formspree (no backend needed).
 // IMPORTANT: the form action in join-team.html still has the placeholder
 // "https://formspree.io/f/YOUR_FORM_ID" — sign up free at formspree.io, create a
@@ -100,3 +127,5 @@
     }
   });
 })();
+
+AOS.init({ duration: 700, easing: 'ease', once: true, offset: 80 });

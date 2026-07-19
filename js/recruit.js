@@ -1,3 +1,36 @@
+window.I18N_PAGE_DICT = {
+      'recruit.back': { en: 'Back to home', ar: 'العودة إلى الرئيسية' },
+      'recruit.tag': { en: 'Talent network', ar: 'شبكة المواهب' },
+      'recruit.title': { en: 'Get on our radar for future roles.', ar: 'كن على رادارنا للفرص القادمة.' },
+      'recruit.desc': { en: "Whatever your specialty, drop your CV and tell us where you'd like to grow. When a matching role opens up with iHealth Academy or one of our partner organizations, you'll be one of the first we reach out to.", ar: 'أيًا كان تخصصك، أرسل سيرتك الذاتية وأخبرنا أين تودّ أن تنمو مهنيًا. عندما تتوفر فرصة مناسبة لدى أكاديمية آي هيلث أو إحدى المؤسسات الشريكة، ستكون من أوائل من نتواصل معهم.' },
+      'recruit.nameLabel': { en: 'Full name', ar: 'الاسم الكامل' },
+      'recruit.emailLabel': { en: 'Email', ar: 'البريد الإلكتروني' },
+      'recruit.specialtyLabel': { en: 'Your specialty', ar: 'تخصصك' },
+      'recruit.specIT': { en: 'IT', ar: 'تقنية المعلومات' },
+      'recruit.specMedicine': { en: 'Medicine', ar: 'الطب' },
+      'recruit.specPediatrics': { en: 'Pediatrics', ar: 'طب الأطفال' },
+      'recruit.specNursing': { en: 'Nursing', ar: 'التمريض' },
+      'recruit.specEmergency': { en: 'Emergency', ar: 'الطوارئ' },
+      'recruit.specPathology': { en: 'Pathology', ar: 'علم الأمراض' },
+      'recruit.specOther': { en: 'Others', ar: 'أخرى' },
+      'recruit.roleLabel': { en: 'Your role', ar: 'دورك' },
+      'recruit.roleStudent': { en: 'Student', ar: 'طالب' },
+      'recruit.roleResident': { en: 'Resident', ar: 'طبيب مقيم' },
+      'recruit.rolePhysician': { en: 'Physician', ar: 'طبيب' },
+      'recruit.roleConsultant': { en: 'Consultant', ar: 'استشاري' },
+      'recruit.roleOther': { en: 'Other', ar: 'أخرى' },
+      'recruit.messageLabel': { en: 'Message', ar: 'الرسالة' },
+      'recruit.messagePlaceholder': { en: 'What kind of role are you looking for?', ar: 'ما نوع الدور الذي تبحث عنه؟' },
+      'recruit.cvLabel': { en: 'Upload your CV (PDF or Word)', ar: 'ارفع سيرتك الذاتية (PDF أو Word)' },
+      'recruit.uploadCta': { en: 'Click to upload', ar: 'اضغط للرفع' },
+      'recruit.uploadHint': { en: ' or drag and drop — PDF or Word, up to 10MB', ar: ' أو اسحب وأفلت — PDF أو Word، حتى 10 ميجابايت' },
+      'recruit.submitBtn': { en: 'Submit my CV', ar: 'إرسال سيرتي الذاتية' },
+      'recruit.successTitle': { en: 'CV received.', ar: 'تم استلام سيرتك الذاتية.' },
+      'recruit.successDesc': { en: "Thanks for dropping your CV — we'll keep it on file and reach out by email as soon as a matching role opens up.", ar: 'شكرًا لإرسال سيرتك الذاتية — سنحتفظ بها وسنتواصل معك عبر البريد الإلكتروني بمجرد توفر فرصة مناسبة.' },
+      'recruit.errorMsg': { en: 'Something went wrong — please try again, or email your CV directly to info@ihealthacademy.com.', ar: 'حدث خطأ ما — يرجى المحاولة مرة أخرى، أو إرسال سيرتك الذاتية مباشرة إلى info@ihealthacademy.com.' },
+      'recruit.sending': { en: 'Sending…', ar: 'جارٍ الإرسال…' },
+    };
+
 // RECRUIT — general talent CV drop, submitted via Formspree (no backend needed).
 // IMPORTANT: the form action in recruit.html still has the placeholder
 // "https://formspree.io/f/YOUR_FORM_ID" — sign up free at formspree.io, create a
@@ -100,3 +133,5 @@
     }
   });
 })();
+
+AOS.init({ duration: 700, easing: 'ease', once: true, offset: 80 });

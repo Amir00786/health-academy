@@ -1,3 +1,32 @@
+window.I18N_PAGE_DICT = {
+      'mentor.title': { en: 'Mentor Dashboard', ar: 'لوحة تحكم المرشد' },
+      'mentor.nameLabel': { en: 'Name', ar: 'الاسم' },
+      'mentor.trackLabel': { en: 'Track', ar: 'المسار' },
+      'mentor.trackBoth': { en: 'Both', ar: 'كلاهما' },
+      'mentor.experienceLabel': { en: 'Years of experience', ar: 'سنوات الخبرة' },
+      'mentor.bioLabel': { en: 'Short bio', ar: 'نبذة قصيرة' },
+      'mentor.saveBtn': { en: 'Save profile', ar: 'حفظ الملف الشخصي' },
+      'mentor.demoTitle': { en: 'This runs locally, in this browser.', ar: 'يعمل هذا محليًا، في هذا المتصفح فقط.' },
+      'mentor.demoDesc': { en: 'There\'s no backend yet, so a "match" here only works if a student uses this same browser to select you. Connecting a real backend would make this work across everyone\'s own devices.', ar: 'لا يوجد خادم خلفي بعد، لذا فإن "التوافق" هنا يعمل فقط إذا استخدم الطالب نفس هذا المتصفح لاختيارك. ربط خادم حقيقي سيجعل هذا يعمل عبر أجهزة الجميع.' },
+      'mentor.setupTitle': { en: 'Set up your mentor profile', ar: 'أنشئ ملفك الشخصي كمرشد' },
+      'mentor.setupDesc': { en: 'Students will see this profile in their "Select your mentor" list once it\'s saved.', ar: 'سيرى الطلاب هذا الملف في قائمة "اختر مرشدك" بعد حفظه.' },
+      'mentor.stat1Label': { en: 'Mentees', ar: 'المتدربون' },
+      'mentor.stat2Label': { en: 'Your track', ar: 'مسارك' },
+      'mentor.stat3Label': { en: 'Profile status', ar: 'حالة الملف الشخصي' },
+      'mentor.listed': { en: 'Listed', ar: 'مُدرج' },
+      'mentor.editProfile': { en: 'Edit →', ar: '← تعديل' },
+      'mentor.menteesTitle': { en: 'Your mentees', ar: 'المتدربون لديك' },
+      'mentor.noMentees': { en: 'No mentees yet — once a student (in this same browser) selects you, they\'ll show up here.', ar: 'لا يوجد متدربون بعد — بمجرد أن يختارك طالب (في نفس هذا المتصفح)، سيظهر هنا.' },
+      'dash.insuranceName': { en: 'Pre-Auth Specialist', ar: 'أخصائي التصريح المسبق' },
+      'meet.requestsTitle': { en: 'Meeting requests', ar: 'طلبات الاجتماعات' },
+      'meet.upcomingTitle': { en: 'Upcoming meetings', ar: 'الاجتماعات القادمة' },
+      'meet.noRequests': { en: 'No pending meeting requests.', ar: 'لا توجد طلبات اجتماعات قيد الانتظار.' },
+      'meet.noUpcoming': { en: 'No upcoming meetings yet.', ar: 'لا توجد اجتماعات قادمة بعد.' },
+      'meet.noDate': { en: 'No date set', ar: 'لم يتم تحديد تاريخ' },
+      'meet.accept': { en: 'Accept', ar: 'قبول' },
+      'meet.decline': { en: 'Decline', ar: 'رفض' },
+    };
+
 // MENTOR DASHBOARD — profile setup + local mentee matching (see the note on the
 // page itself: this only "matches" a student who uses this same browser).
 (function () {
@@ -182,3 +211,5 @@
   renderProfile();
   document.addEventListener('ih:langchange', renderProfile);
 })();
+
+AOS.init({ duration: 700, easing: 'ease', once: true, offset: 80 });

@@ -1,3 +1,25 @@
+window.I18N_PAGE_DICT = {
+      'rm.back': { en: 'Back to home', ar: 'العودة إلى الرئيسية' },
+      'rm.eyebrow': { en: 'Certification Roadmap', ar: 'خارطة طريق الشهادة' },
+      'rm.title': { en: 'Your road to Board Certified.', ar: 'طريقك نحو الاعتماد المهني.' },
+      'rm.sub': { en: 'The Egyptian Board is open now — track your progress station by station. Other boards are shown for reference and marked coming soon.', ar: 'البورد المصري متاح الآن — تتبع تقدمك محطة بمحطة. البورودات الأخرى معروضة للمرجعية ومُعلَّمة قريبًا.' },
+      'rm.disclaimer': { en: "This roadmap reflects each college's publicly published requirements as a general reference. Exam formats, sitting dates, and eligibility rules change — always confirm current specifics with the official board before making decisions.", ar: 'تعكس خارطة الطريق هذه المتطلبات المنشورة علنًا لكل كلية كمرجع عام. تتغير صيغ الامتحانات ومواعيدها وشروط الأهلية — تأكد دائمًا من التفاصيل الحالية مع البورد الرسمي قبل اتخاذ القرار.' },
+      'rm.askMentor': { en: 'Need help with this station? Email our team →', ar: 'تحتاج مساعدة في هذه المحطة؟ راسل فريقنا ←' },
+      'rm.you': { en: 'YOU ARE HERE', ar: 'أنت هنا' },
+      'rm.exempted': { en: 'Exempted', ar: 'مُعفى' },
+      'rm.completed': { en: 'Completed', ar: 'مكتمل' },
+      'rm.certified': { en: 'Board Certified', ar: 'معتمد' },
+      'rm.locked': { en: 'Locked', ar: 'مغلق' },
+      'rm.actionNeeded': { en: 'Action Needed', ar: 'إجراء مطلوب' },
+      'rm.markComplete': { en: 'Mark this station complete', ar: 'وضع علامة اكتمال على هذه المحطة' },
+      'rm.markNote': { en: "This is self-tracked, not independently verified — mark a station complete once you've prepared what it needs.", ar: 'هذا تتبع ذاتي وليس تحققًا مستقلاً — ضع علامة الاكتمال بمجرد تجهيز ما تحتاجه المحطة.' },
+      'rm.doneOn': { en: 'Marked complete on', ar: 'تم وضع علامة الاكتمال في' },
+      'rm.waived': { en: 'Waived —', ar: 'مُعفى —' },
+      'rm.exemptionLabel': { en: "I hold a Royal College membership (e.g. MRCP, MRCS) or a relevant Master's degree", ar: 'أحمل عضوية كلية ملكية (مثل MRCP، MRCS) أو درجة ماجستير ذات صلة' },
+      'rm.exemptionNote': { en: "2 years are deducted from your rotation, and the First Part Exam is waived.", ar: 'يتم خصم سنتين من دورتك التدريبية، ويتم إعفاؤك من امتحان الجزء الأول.' },
+      'nav.dashboard': { en: 'Dashboard', ar: 'لوحة التحكم' },
+    };
+
 // CERTIFICATION ROADMAP — board-by-board certification journey tracker.
 // Scoped down from the original design: no admin review queue — stations are
 // self-tracked ("mark complete" once you've prepared what's needed), not
@@ -339,3 +361,5 @@
   renderAll();
   document.addEventListener('ih:langchange', renderAll);
 })();
+
+AOS.init({ duration: 700, easing: 'ease', once: true, offset: 80 });

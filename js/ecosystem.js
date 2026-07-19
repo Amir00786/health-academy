@@ -1,3 +1,8 @@
+window.I18N_PAGE_DICT = {
+      'eco.hint': { en: 'Click any planet to explore · Scroll to zoom', ar: 'انقر على أي كوكب للاستكشاف · مرر للتكبير' },
+      'eco.comingSoon': { en: 'Coming soon', ar: 'قريبًا' },
+    };
+
 const C=document.getElementById('solarCanvas');
 const ctx=C.getContext('2d');
 let W=C.width=window.innerWidth;
@@ -395,3 +400,10 @@ window.addEventListener('resize',()=>{
   cx=W/2;cy=H/2+30;
   stars.forEach(s=>{s.x=Math.random()*W;s.y=Math.random()*H});
 });
+
+AOS.init({
+      duration: 700,
+      easing: 'ease',
+      once: true,
+      offset: 80
+    });

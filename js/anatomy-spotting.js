@@ -1,3 +1,11 @@
+window.I18N_PAGE_DICT = {
+  'as.back': { en: '← Back to Radiology', ar: '→ العودة إلى الأشعة' },
+  'as.tag': { en: 'Radiology · Anatomy Spotting', ar: 'الأشعة · تحديد التشريح' },
+  'as.h1': { en: 'Label it. Time it. Level up.', ar: 'حدّده. وقّته. ارتقِ بمستواك.' },
+  'as.desc': { en: 'Pick a system, start a mock test, and label highlighted structures against a 90-minute countdown — exactly like exam day. Every correct label counts toward your all-time total: 50 correct earns Hero, 100 earns Master, 150 earns Legendary.', ar: 'اختر جهازًا، ابدأ اختبارًا تجريبيًا، وحدّد التراكيب المُبرزة ضمن عد تنازلي مدته 90 دقيقة — تمامًا كيوم الامتحان. كل تسمية صحيحة تُحتسب ضمن رصيدك الكلي: 50 صحيحة تمنحك لقب بطل، 100 تمنحك خبير، و150 تمنحك أسطوري.' },
+  'as.note': { en: 'Diagrams shown are placeholder schematics — real labeled imaging will replace these as content is added. The scoring and timer engine is fully live.', ar: 'المخططات المعروضة هي رسوم توضيحية مؤقتة — ستُستبدل بصور طبية حقيقية مصنّفة عند إضافة المحتوى. نظام التسجيل والمؤقت يعمل فعليًا بالكامل.' },
+};
+
 // ANATOMY SPOTTING — timed hotspot-labeling game with Hero/Master/Legendary tiers.
 // SYSTEMS use placeholder schematic diagrams (no real anatomy photos available yet).
 // Each hotspot is just an {x%, y%, label} over an SVG/image, so swapping in real
@@ -319,3 +327,5 @@
   if (document.readyState !== 'loading') renderLanding();
   document.addEventListener('ih:langchange', () => { applyGameChrome(); renderLanding(); });
 })();
+
+AOS.init({ duration: 700, easing: 'ease', once: true, offset: 80 });
