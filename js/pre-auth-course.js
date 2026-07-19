@@ -947,11 +947,13 @@ async function loadAllProgress(){
 }
 
 function isSessionUnlocked(idx){
-  if(idx === 0) return true;
-  const prev = ALL_SESSIONS[idx-1];
-  if(prev.type === "video") return !!progress.completedVideos[prev.id];
-  if(prev.type === "practice") return progress.practiceDone;
-  if(prev.type === "exam") return progress.examPassed;
+  const s = ALL_SESSIONS[idx];
+  // Every video (and the practice step) is directly clickable — no need to
+  // finish the previous one first. Only the exam and certificate still gate
+  // on their real prerequisite, since those are assessments, not lessons.
+  if(s.type === "video" || s.type === "practice") return true;
+  if(s.type === "exam") return progress.practiceDone;
+  if(s.type === "certificate") return progress.examPassed;
   return true;
 }
 function isSessionDone(session){
