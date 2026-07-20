@@ -906,12 +906,15 @@ const VIDEO_SESSIONS = [
   { id:"v4", title:"CHI Exclusion Items", desc:"What's excluded, and the difference between reject and refer.",
     bullets:["Natural disaster exclusions","Life-threatening congenital exceptions","Sports & hazardous activities","Third-party liability coordination"],
     duration:"39:22", videoUrl:"https://www.youtube.com/watch?v=vFySLKXal9M", quiz: SECTIONS[3].questions },
+  /* v5 and v6 (CHI Inclusion Items & Coverage, Special Terms & Conditions) are
+     pending final videos — re-add once the new links/durations are provided.
   { id:"v5", title:"CHI Inclusion Items & Coverage", desc:"What's actually covered — maternity, chronic conditions, and organ transplants.",
     bullets:["Maternity marital-status rules","First ANC investigations","Chronic condition coverage limits","Companion & escort benefits"],
     duration:"31:03", videoUrl:"https://www.youtube.com/watch?v=OdiFPvw4NAs", quiz: SECTIONS[4].questions },
   { id:"v6", title:"Special Terms & Conditions", desc:"Ex gratia, second opinions, and the professional judgment behind every decision.",
     bullets:["Ex gratia approvals","Global policy limits","When to request a second opinion","The Visit Visa product"],
-    duration:"30:49", videoUrl:"https://www.youtube.com/watch?v=e_vxQGzU_HY", quiz: SECTIONS[5].questions }
+    duration:"30:49", videoUrl:"https://www.youtube.com/watch?v=e_vxQGzU_HY", quiz: SECTIONS[5].questions },
+  */
 ];
 
 const PRACTICE_INTRO_VIDEO = "https://www.youtube.com/watch?v=W8nvCrAY4q0";
