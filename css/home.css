@@ -1153,8 +1153,10 @@ h1 .line3 {
 
 .plans-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.25rem;
+  max-width: 760px;
+  margin: 0 auto;
 }
 
 .plan {
@@ -1215,6 +1217,18 @@ h1 .line3 {
 .plan.featured {
   border-color: var(--teal);
   box-shadow: 0 0 0 1px rgba(0, 200, 150, 0.25), 0 25px 60px rgba(0, 200, 150, 0.18);
+}
+
+.plan-soon {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.plan-soon .plan-name,
+.plan-soon .plan-price,
+.plan-soon .plan-period,
+.plan-soon .plan-feats li {
+  opacity: 0.7;
 }
 
 .plan.featured::before {
