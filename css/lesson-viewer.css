@@ -50,10 +50,25 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+.lv-header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
 .lv-header-title {
   font-size: 1.05rem;
   font-weight: 700;
   color: #fff;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+.lv-header-duration {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .lv-header-actions {

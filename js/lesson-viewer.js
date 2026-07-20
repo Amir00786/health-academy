@@ -27,7 +27,10 @@
   overlay.innerHTML = `
     <div class="lv-modal">
       <div class="lv-header">
-        <span class="lv-header-title" id="lvTitle">—</span>
+        <div class="lv-header-text">
+          <span class="lv-header-title" id="lvTitle">—</span>
+          <span class="lv-header-duration" id="lvDuration"></span>
+        </div>
         <div class="lv-header-actions">
           <span class="lv-discussions"><i class="fi fi-sr-comment-alt"></i> <span id="lvDiscussions">0 Discussions</span></span>
           <button type="button" class="lv-icon-btn" id="lvExpand" aria-label="Toggle fullscreen"><i class="fi fi-sr-expand"></i></button>
@@ -73,6 +76,7 @@
     modal: overlay.querySelector('.lv-modal'),
     video: overlay.querySelector('#lvVideo'),
     title: overlay.querySelector('#lvTitle'),
+    duration: overlay.querySelector('#lvDuration'),
     toQuiz: overlay.querySelector('#lvToQuiz'),
     stepVideo: overlay.querySelector('#lvStepVideo'),
     stepQuiz: overlay.querySelector('#lvStepQuiz'),
@@ -113,6 +117,7 @@
     currentLesson = lesson;
     currentOnComplete = onComplete;
     els.title.textContent = lesson.title;
+    els.duration.textContent = lesson.dur || lesson.duration || '';
     els.video.src = lesson.video || PLACEHOLDER_VIDEO;
     els.toQuiz.disabled = true;
     els.stepVideo.classList.remove('lv-hidden');
