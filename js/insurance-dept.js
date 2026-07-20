@@ -1079,7 +1079,7 @@ function openVideoSession(id){
     frameEl.classList.add("hidden");
     realVideoEl.classList.add("hidden");
     realVideoEl.removeAttribute("src");
-    ytFrameEl.src = "https://www.youtube.com/embed/" + ytId;
+    ytFrameEl.src = "https://www.youtube.com/embed/" + ytId + "?rel=0&modestbranding=1";
     ytFrameEl.classList.remove("hidden");
     dlBtn.classList.add("hidden");
     missingNote.classList.add("hidden");
@@ -1213,8 +1213,8 @@ function openPractice(){
   if(practiceYtId){
     practiceVideoEl.classList.add("hidden");
     practiceVideoEl.removeAttribute("src");
-    if(practiceYtEl.getAttribute("src") !== "https://www.youtube.com/embed/" + practiceYtId){
-      practiceYtEl.src = "https://www.youtube.com/embed/" + practiceYtId;
+    if(practiceYtEl.getAttribute("src") !== "https://www.youtube.com/embed/" + practiceYtId + "?rel=0&modestbranding=1"){
+      practiceYtEl.src = "https://www.youtube.com/embed/" + practiceYtId + "?rel=0&modestbranding=1";
     }
     practiceYtEl.classList.remove("hidden");
   } else {

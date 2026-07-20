@@ -147,7 +147,19 @@
       width: '100%',
       height: '100%',
       videoId,
+      playerVars: {
+        origin: window.location.origin,
+        rel: 0,
+        modestbranding: 1,
+      },
       events: {
+        onError: (e) => {
+          // 2=bad id, 5=HTML5 player error, 100=not found/private, 101/150=embedding disabled by owner
+          els.youtube.innerHTML = `<div class="lv-yt-error">${lang() === 'ar'
+            ? 'تعذّر تشغيل الفيديو هنا — قد يكون التضمين معطّلاً لهذا الفيديو.'
+            : "This video can't play here — embedding may be disabled for it on YouTube."}</div>`;
+          els.toQuiz.disabled = false;
+        },
         onStateChange: (e) => {
           if (e.data === YT.PlayerState.ENDED) { els.toQuiz.disabled = false; }
           if (e.data === YT.PlayerState.PLAYING) {
