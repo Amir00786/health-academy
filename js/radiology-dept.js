@@ -50,22 +50,22 @@
 
     // Shared 7-video course, reused identically across every module tab.
     const VIDEO_LESSONS = [
-      { num: '01', title: 'What is the Medical Insurance?', desc: 'The core definitions and terms every specialist must know cold.', dur: '37:05', tag: 'free', featured: true, locked: false, video: 'images/vid-1.mp4' },
-      { num: '02', title: 'General Overview', desc: 'How patients, providers, insurers, and regulators all connect in one claim.', dur: '10:47', tag: 'free', featured: false, locked: false, video: 'images/vid-2.mp4' },
-      { num: '03', title: 'Health Questionnaire', desc: 'Disclosure rules, investigation standards, and what genuinely requires declaration.', dur: '26:18', tag: 'free', featured: false, locked: false, video: 'images/vid-3.mp4' },
-      { num: '04', title: 'CHI Exclusion Items', desc: "What's excluded, and the difference between reject and refer.", dur: '39:22', tag: 'free', featured: false, locked: false, video: 'images/vid-4.mp4' },
-      { num: '05', title: 'CHI Inclusion Items & Coverage', desc: "What's actually covered — maternity, chronic conditions, and organ transplants.", dur: '31:03', tag: 'free', featured: false, locked: false, video: 'images/vid-5.mp4' },
-      { num: '06', title: "Special Terms — Let's Wrap It Up", desc: 'Ex gratia, second opinions, and the professional judgment behind every decision.', dur: '30:49', tag: 'free', featured: false, locked: false, video: 'images/vid-6.mp4' },
-      { num: '07', title: "Let's Practice Before the Exam", desc: 'Apply what you learned with real-life scenarios before sitting the exam.', dur: '23:53', tag: 'free', featured: false, locked: false, video: 'images/vid-7.mp4' },
+      { num: '01', title: 'What is the Medical Insurance?', desc: 'The core definitions and terms every specialist must know cold.', dur: '37:05', tag: 'free', featured: true, locked: false, video: 'images/medical-approval-specialist-1.mp4' },
+      { num: '02', title: 'General Overview', desc: 'How patients, providers, insurers, and regulators all connect in one claim.', dur: '10:47', tag: 'free', featured: false, locked: false, video: 'images/medical-approval-specialist-2.mp4' },
+      { num: '03', title: 'Health Questionnaire', desc: 'Disclosure rules, investigation standards, and what genuinely requires declaration.', dur: '26:18', tag: 'free', featured: false, locked: false, video: 'images/medical-approval-specialist-3.mp4' },
+      { num: '04', title: 'CHI Exclusion Items', desc: "What's excluded, and the difference between reject and refer.", dur: '39:22', tag: 'free', featured: false, locked: false, video: 'images/medical-approval-specialist-4.mp4' },
+      { num: '05', title: 'CHI Inclusion Items & Coverage', desc: "What's actually covered — maternity, chronic conditions, and organ transplants.", dur: '31:03', tag: 'free', featured: false, locked: false, video: 'images/medical-approval-specialist-5.mp4' },
+      { num: '06', title: "Special Terms — Let's Wrap It Up", desc: 'Ex gratia, second opinions, and the professional judgment behind every decision.', dur: '30:49', tag: 'free', featured: false, locked: false, video: 'images/medical-approval-specialist-6.mp4' },
+      { num: '07', title: "Let's Practice Before the Exam", desc: 'Apply what you learned with real-life scenarios before sitting the exam.', dur: '23:53', tag: 'free', featured: false, locked: false, video: 'images/medical-approval-specialist-7.mp4' },
     ];
     const VIDEO_LESSONS_AR = [
-      { num: '01', title: 'ما هو التأمين الطبي؟', desc: 'التعريفات والمصطلحات الأساسية التي يجب أن يعرفها كل أخصائي جيدًا.', dur: '37:05', tag: 'free', featured: true, locked: false, video: 'images/vid-1.mp4' },
-      { num: '02', title: 'نظرة عامة', desc: 'كيف يرتبط المريض ومقدم الخدمة وشركة التأمين والجهة الرقابية في مطالبة واحدة.', dur: '10:47', tag: 'free', featured: false, locked: false, video: 'images/vid-2.mp4' },
-      { num: '03', title: 'الاستبيان الصحي', desc: 'قواعد الإفصاح، ومعايير التحقيق، وما يستوجب التصريح فعليًا.', dur: '26:18', tag: 'free', featured: false, locked: false, video: 'images/vid-3.mp4' },
-      { num: '04', title: 'بنود استثناء CHI', desc: 'ما هو مستثنى، والفرق بين الرفض والإحالة.', dur: '39:22', tag: 'free', featured: false, locked: false, video: 'images/vid-4.mp4' },
-      { num: '05', title: 'بنود التغطية والشمول في CHI', desc: 'ما هو مشمول فعليًا — الأمومة، الحالات المزمنة، وزراعة الأعضاء.', dur: '31:03', tag: 'free', featured: false, locked: false, video: 'images/vid-5.mp4' },
-      { num: '06', title: 'الشروط الخاصة — لنختم الموضوع', desc: 'الاستثناءات الإنسانية، الرأي الثاني، والحكم المهني خلف كل قرار.', dur: '30:49', tag: 'free', featured: false, locked: false, video: 'images/vid-6.mp4' },
-      { num: '07', title: 'لنتدرب قبل الامتحان', desc: 'طبّق ما تعلمته من خلال سيناريوهات واقعية قبل دخول الامتحان.', dur: '23:53', tag: 'free', featured: false, locked: false, video: 'images/vid-7.mp4' },
+      { num: '01', title: 'ما هو التأمين الطبي؟', desc: 'التعريفات والمصطلحات الأساسية التي يجب أن يعرفها كل أخصائي جيدًا.', dur: '37:05', tag: 'free', featured: true, locked: false, video: 'images/medical-approval-specialist-1.mp4' },
+      { num: '02', title: 'نظرة عامة', desc: 'كيف يرتبط المريض ومقدم الخدمة وشركة التأمين والجهة الرقابية في مطالبة واحدة.', dur: '10:47', tag: 'free', featured: false, locked: false, video: 'images/medical-approval-specialist-2.mp4' },
+      { num: '03', title: 'الاستبيان الصحي', desc: 'قواعد الإفصاح، ومعايير التحقيق، وما يستوجب التصريح فعليًا.', dur: '26:18', tag: 'free', featured: false, locked: false, video: 'images/medical-approval-specialist-3.mp4' },
+      { num: '04', title: 'بنود استثناء CHI', desc: 'ما هو مستثنى، والفرق بين الرفض والإحالة.', dur: '39:22', tag: 'free', featured: false, locked: false, video: 'images/medical-approval-specialist-4.mp4' },
+      { num: '05', title: 'بنود التغطية والشمول في CHI', desc: 'ما هو مشمول فعليًا — الأمومة، الحالات المزمنة، وزراعة الأعضاء.', dur: '31:03', tag: 'free', featured: false, locked: false, video: 'images/medical-approval-specialist-5.mp4' },
+      { num: '06', title: 'الشروط الخاصة — لنختم الموضوع', desc: 'الاستثناءات الإنسانية، الرأي الثاني، والحكم المهني خلف كل قرار.', dur: '30:49', tag: 'free', featured: false, locked: false, video: 'images/medical-approval-specialist-6.mp4' },
+      { num: '07', title: 'لنتدرب قبل الامتحان', desc: 'طبّق ما تعلمته من خلال سيناريوهات واقعية قبل دخول الامتحان.', dur: '23:53', tag: 'free', featured: false, locked: false, video: 'images/medical-approval-specialist-7.mp4' },
     ];
 
     const modules = {
