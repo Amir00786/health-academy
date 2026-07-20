@@ -36,7 +36,7 @@ window.I18N_PAGE_DICT = {
 
   const BOARDS = {
     usa: {
-      active: true, name: 'American Board (ABR)', country: 'United States',
+      active: false, name: 'American Board (ABR)', country: 'United States',
       note: 'Diagnostic Radiology pathway, standard ACGME residency route.',
       stations: [
         { title: 'Clinical Internship', sub: '1 year', musts: ['Complete PGY-1 in an ACGME- or RCPSC-accredited program', 'Hold a valid training medical license'] },
@@ -48,7 +48,7 @@ window.I18N_PAGE_DICT = {
       ]
     },
     uk: {
-      active: true, name: 'UK Board (Royal Colleges)', country: 'United Kingdom',
+      active: false, name: 'UK Board (Royal Colleges)', country: 'United Kingdom',
       note: "General UK specialty training structure — worked example uses Radiology's FRCR.",
       stations: [
         { title: 'Foundation Programme', sub: '2 years', musts: ['Full GMC registration', 'IELTS/OET English requirement for IMGs'] },
@@ -60,7 +60,7 @@ window.I18N_PAGE_DICT = {
       ]
     },
     ireland: {
-      active: true, name: 'Ireland Board (FFR RCSI)', country: 'Ireland',
+      active: false, name: 'Ireland Board (FFR RCSI)', country: 'Ireland',
       note: 'Fellowship of the Faculty of Radiologists, Royal College of Surgeons in Ireland.',
       stations: [
         { title: 'Pre-Training Experience', sub: '≥2 years post-registration', musts: ['1 year internship + 1 year clinical experience'] },
@@ -72,7 +72,7 @@ window.I18N_PAGE_DICT = {
       ]
     },
     australia: {
-      active: true, name: 'Australian / NZ Board (RANZCR)', country: 'Australia & New Zealand',
+      active: false, name: 'Australian / NZ Board (RANZCR)', country: 'Australia & New Zealand',
       note: 'Fellowship of RANZCR (FRANZCR), three-phase Clinical Radiology Training Program.',
       stations: [
         { title: 'Prevocational Years', sub: 'Internship + PGY', musts: ['AHPRA or Medical Council of NZ registration'] },
@@ -83,7 +83,7 @@ window.I18N_PAGE_DICT = {
       ]
     },
     saudi: {
-      active: true, name: 'Saudi Board (SCFHS)', country: 'Saudi Arabia',
+      active: false, name: 'Saudi Board (SCFHS)', country: 'Saudi Arabia',
       note: 'Saudi Commission for Health Specialties, Diagnostic Radiology residency.',
       stations: [
         { title: 'Rotating Internship', sub: '12 months', musts: ['Complete internship post-MBBS or equivalent'] },
@@ -133,7 +133,7 @@ window.I18N_PAGE_DICT = {
       ]
     },
     sudan: {
-      active: true, name: 'Sudanese Board (SMSB)', country: 'Sudan',
+      active: false, name: 'Sudanese Board (SMSB)', country: 'Sudan',
       note: 'Sudan Medical Specialization Board, Diagnostic Radiology residency.',
       stations: [
         { title: 'Selection Exam', sub: 'Entry to the program', musts: ['Pass the SMSB radiology selection exam'] },
@@ -143,7 +143,7 @@ window.I18N_PAGE_DICT = {
       ]
     },
     arab: {
-      active: true, name: 'Arab Board', country: 'Pan-Arab (League of Arab States)',
+      active: false, name: 'Arab Board', country: 'Pan-Arab (League of Arab States)',
       note: 'Arab Board of Radiology & Medical Imaging, under the ABHS.',
       stations: [
         { title: 'Residency Training', sub: '4 years minimum', musts: ['Full-time training at an approved Arab Board center', '≥80% attendance at academic activities'] },
