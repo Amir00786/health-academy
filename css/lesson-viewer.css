@@ -116,6 +116,8 @@
   display: block;
   background: #000;
   max-height: 420px;
+  aspect-ratio: 16 / 9;
+  border: 0;
 }
 
 .lv-footer {

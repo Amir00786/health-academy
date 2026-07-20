@@ -39,6 +39,7 @@
       </div>
       <div class="lv-step" id="lvStepVideo">
         <video class="lv-video" id="lvVideo" controls></video>
+        <div class="lv-video lv-hidden" id="lvYoutube"></div>
         <div class="lv-footer">
           <button type="button" class="lv-btn lv-btn-primary" id="lvToQuiz" disabled>Complete & Continue →</button>
         </div>
@@ -75,6 +76,7 @@
   const els = {
     modal: overlay.querySelector('.lv-modal'),
     video: overlay.querySelector('#lvVideo'),
+    youtube: overlay.querySelector('#lvYoutube'),
     title: overlay.querySelector('#lvTitle'),
     duration: overlay.querySelector('#lvDuration'),
     toQuiz: overlay.querySelector('#lvToQuiz'),
@@ -95,6 +97,73 @@
 
   let currentLesson = null;
   let currentOnComplete = null;
+
+  // YOUTUBE SUPPORT — lessons may point at a YouTube URL instead of a hosted
+  // .mp4. We still gate "Complete & Continue" on ~85% watched or the video
+  // ending, so we load the YT IFrame Player API and poll its currentTime the
+  // same way the native <video> "timeupdate" handler does below.
+  function getYouTubeId(url) {
+    if (!url) return null;
+    const m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([\w-]{11})/);
+    return m ? m[1] : null;
+  }
+
+  let ytApiPromise = null;
+  function loadYouTubeApi() {
+    if (ytApiPromise) return ytApiPromise;
+    ytApiPromise = new Promise((resolve) => {
+      if (window.YT && window.YT.Player) { resolve(window.YT); return; }
+      const prevReady = window.onYouTubeIframeAPIReady;
+      window.onYouTubeIframeAPIReady = () => { if (prevReady) prevReady(); resolve(window.YT); };
+      if (!document.querySelector('script[src="https://www.youtube.com/iframe_api"]')) {
+        const tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        document.head.appendChild(tag);
+      }
+    });
+    return ytApiPromise;
+  }
+
+  let ytPlayer = null;
+  let ytPollTimer = null;
+  let usingYouTube = false;
+
+  function stopYouTube() {
+    if (ytPollTimer) { clearInterval(ytPollTimer); ytPollTimer = null; }
+    if (ytPlayer && ytPlayer.destroy) { ytPlayer.destroy(); }
+    ytPlayer = null;
+    usingYouTube = false;
+  }
+
+  async function startYouTube(videoId) {
+    usingYouTube = true;
+    els.video.classList.add('lv-hidden');
+    els.youtube.classList.remove('lv-hidden');
+    els.youtube.innerHTML = '';
+    const mount = document.createElement('div');
+    els.youtube.appendChild(mount);
+    const YT = await loadYouTubeApi();
+    ytPlayer = new YT.Player(mount, {
+      width: '100%',
+      height: '100%',
+      videoId,
+      events: {
+        onStateChange: (e) => {
+          if (e.data === YT.PlayerState.ENDED) { els.toQuiz.disabled = false; }
+          if (e.data === YT.PlayerState.PLAYING) {
+            if (ytPollTimer) clearInterval(ytPollTimer);
+            ytPollTimer = setInterval(() => {
+              const dur = ytPlayer.getDuration ? ytPlayer.getDuration() : 0;
+              const cur = ytPlayer.getCurrentTime ? ytPlayer.getCurrentTime() : 0;
+              if (dur && cur / dur > 0.85) { els.toQuiz.disabled = false; }
+            }, 1000);
+          } else if (ytPollTimer) {
+            clearInterval(ytPollTimer); ytPollTimer = null;
+          }
+        },
+      },
+    });
+  }
 
   function renderQuiz(quiz) {
     els.questions.innerHTML = quiz.map((item, qi) => `
@@ -118,7 +187,16 @@
     currentOnComplete = onComplete;
     els.title.textContent = lesson.title;
     els.duration.textContent = lesson.dur || lesson.duration || '';
-    els.video.src = lesson.video || PLACEHOLDER_VIDEO;
+    stopYouTube();
+    const ytId = getYouTubeId(lesson.video);
+    if (ytId) {
+      els.video.removeAttribute('src');
+      startYouTube(ytId);
+    } else {
+      els.youtube.classList.add('lv-hidden');
+      els.video.classList.remove('lv-hidden');
+      els.video.src = lesson.video || PLACEHOLDER_VIDEO;
+    }
     els.toQuiz.disabled = true;
     els.stepVideo.classList.remove('lv-hidden');
     els.stepQuiz.classList.add('lv-hidden');
@@ -133,6 +211,7 @@
   function close() {
     overlay.classList.remove('open');
     els.video.pause();
+    stopYouTube();
   }
 
   els.video.addEventListener('timeupdate', () => {
@@ -202,7 +281,8 @@
     els.submit.classList.remove('lv-hidden');
     els.stepQuiz.classList.add('lv-hidden');
     els.stepVideo.classList.remove('lv-hidden');
-    els.video.currentTime = 0;
+    if (usingYouTube && ytPlayer && ytPlayer.seekTo) ytPlayer.seekTo(0);
+    else els.video.currentTime = 0;
     renderQuiz(currentLesson.quiz || []);
   });
 

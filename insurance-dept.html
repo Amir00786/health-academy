@@ -5,317 +5,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pre-Auth Specialist — iHealth Academy</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;800;900&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;800;900&display=swap"
     rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800;900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
   <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-bold-rounded/css/uicons-bold-rounded.css" rel="stylesheet" />
   <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css"
     rel="stylesheet" />
   <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-thin-rounded/css/uicons-thin-rounded.css" rel="stylesheet" />
   <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css" rel="stylesheet" />
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-  <link href="css/radiology-dept.css" rel="stylesheet" />
+  <link href="css/insurance-dept.css" rel="stylesheet" />
   <link href="css/nav-v2.css" rel="stylesheet" />
   <link href="css/livechat.css" rel="stylesheet" />
-  <link href="css/lesson-viewer.css" rel="stylesheet" />
-  <link href="css/certificate.css" rel="stylesheet" />
-  <style>
-    /* Insurance page's own hero image — overrides radiology-dept.css's shared
-       .dept-badge rule (which points at radio-hero.jpg, the wrong department).
-       Cropped to the illustration only (no logo/title/copy baked in) since the
-       real page title, description and stats already cover that content as text. */
-    .ins-hero-banner {
-      width: 100%;
-      padding: 0 0 1rem;
-    }
-
-    .ins-hero-banner img {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-
-    /* Choose Your Membership section */
-    .mship-wrap {
-      max-width: 1200px;
-      margin: 3rem auto 4rem;
-      padding: 0 1.5rem;
-    }
-
-    .mship-head {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    .mship-title {
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
-      font-weight: 800;
-      color: var(--white);
-      margin-bottom: 0.4rem;
-    }
-
-    .mship-sub {
-      color: var(--muted);
-      font-size: 1.05rem;
-    }
-
-    .mship-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.25rem;
-      align-items: start;
-    }
-
-    .mship-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.5rem;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .mship-card-premium {
-      border-color: var(--teal-border);
-      box-shadow: 0 0 0 1px var(--teal-border), 0 20px 40px rgba(0, 200, 150, 0.08);
-      transform: translateY(-6px);
-    }
-
-    .mship-card-hd {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 1rem;
-    }
-
-    .mship-ico {
-      width: 46px;
-      height: 46px;
-      flex-shrink: 0;
-      border-radius: 50%;
-      background: var(--teal-dim);
-      color: var(--teal);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.15rem;
-    }
-
-    .mship-ico-gold {
-      background: rgba(245, 166, 35, 0.12);
-      color: var(--amber);
-    }
-
-    .mship-card-title {
-      font-weight: 700;
-      font-size: 1.05rem;
-      color: var(--white);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-    }
-
-    .mship-card-price {
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin-top: 0.15rem;
-    }
-
-    .mship-soon-badge {
-      display: inline-block;
-      background: rgba(245, 166, 35, 0.15);
-      color: var(--amber);
-      border: 1px solid rgba(245, 166, 35, 0.35);
-      border-radius: 999px;
-      padding: 0.15rem 0.6rem;
-      font-size: 0.68rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-    }
-
-    .mship-card-desc {
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.5;
-      margin-bottom: 1rem;
-    }
-
-    .mship-feat-list {
-      list-style: none;
-      margin: 0 0 1.25rem;
-      padding: 0;
-      flex: 1;
-    }
-
-    .mship-feat-list li {
-      position: relative;
-      padding: 0.5rem 0 0.5rem 1.6rem;
-      font-size: 0.88rem;
-      color: var(--white);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .mship-feat-list li:last-child {
-      border-bottom: none;
-    }
-
-    .mship-feat-list li::before {
-      content: '\2713';
-      position: absolute;
-      left: 0;
-      top: 0.5rem;
-      width: 1.15rem;
-      height: 1.15rem;
-      border-radius: 50%;
-      background: var(--teal-dim);
-      color: var(--teal);
-      font-size: 0.7rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .mship-mini-tag {
-      display: inline-block;
-      font-size: 0.65rem;
-      font-weight: 600;
-      padding: 0.1rem 0.45rem;
-      border-radius: 999px;
-      background: var(--teal-dim);
-      color: var(--teal);
-      margin-left: 0.35rem;
-      text-transform: uppercase;
-    }
-
-    .mship-mini-tag-future {
-      background: rgba(74, 158, 255, 0.15);
-      color: var(--blue);
-    }
-
-    .mship-btn {
-      width: 100%;
-      padding: 0.85rem;
-      border-radius: 10px;
-      font-weight: 700;
-      font-size: 0.92rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      border: 1px solid var(--teal-border);
-      background: transparent;
-      color: var(--teal);
-      transition: background 0.2s;
-    }
-
-    .mship-btn-outline:hover {
-      background: var(--teal-dim);
-    }
-
-    .mship-btn-solid {
-      background: var(--teal);
-      color: #06110d;
-      border-color: var(--teal);
-    }
-
-    .mship-btn-solid[disabled] {
-      background: var(--muted2);
-      border-color: var(--border);
-      color: var(--muted);
-      cursor: not-allowed;
-    }
-
-    .mship-footnote {
-      font-size: 0.72rem;
-      color: var(--muted2);
-      margin-top: 0.75rem;
-      text-align: center;
-    }
-
-    .mship-strip {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 1rem;
-      margin-top: 2rem;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.5rem;
-    }
-
-    .mship-strip-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.6rem;
-    }
-
-    .mship-strip-ico {
-      width: 34px;
-      height: 34px;
-      flex-shrink: 0;
-      border-radius: 50%;
-      background: var(--teal-dim);
-      color: var(--teal);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.95rem;
-    }
-
-    .mship-strip-title {
-      font-weight: 700;
-      font-size: 0.85rem;
-      color: var(--white);
-    }
-
-    .mship-strip-desc {
-      font-size: 0.78rem;
-      color: var(--muted);
-      margin-top: 0.15rem;
-      line-height: 1.4;
-    }
-
-    .mship-bottombar {
-      margin-top: 1.25rem;
-      background: var(--teal-deep);
-      border-radius: 12px;
-      padding: 1rem 1.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      color: var(--white);
-      font-size: 0.88rem;
-    }
-
-    .mship-bottombar span:first-child {
-      font-weight: 700;
-    }
-
-    @media (max-width: 900px) {
-      .mship-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .mship-card-premium {
-        transform: none;
-      }
-
-      .mship-strip {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    @media (max-width: 520px) {
-      .mship-strip {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
 </head>
 
 <body>
@@ -344,13 +48,43 @@
     <div id="topbar">
       <div class="topbar-wrap">
         <div class="social-row">
-          <a class="social-chip" href="https://chat.whatsapp.com/KIJxm1MHphy5nLFwVa81l7?mode=gi_t" target="_blank" rel="noopener noreferrer" title="WhatsApp" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5.1-.1.2-.3.4-.4.1-.1.2-.2.2-.4.1-.1 0-.3 0-.4 0-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.3c.1.2 1.6 2.5 3.9 3.4.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg></a>
-          <a class="social-chip" href="https://www.facebook.com/share/1DAw4aVpVu/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" title="Facebook" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 22v-8h2.7l.4-3.1h-3.1V9c0-.9.2-1.5 1.6-1.5h1.6V4.7c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.3H8v3.1h2.5V22h3Z"/></svg></a>
-          <a class="social-chip" href="https://www.linkedin.com/in/musab-ahmed-1b1481104/" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2 2 0 1 1 0 4 2 2 0 0 1 0-4ZM3 9h4v12H3V9Zm6.5 0h3.8v1.7h.1c.5-.9 1.8-1.9 3.7-1.9 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-2.9-1.8-2.9-1.8 0-2.1 1.4-2.1 2.8V21h-4V9Z"/></svg></a>
-          <a class="social-chip" href="https://x.com/saoopy90" target="_blank" rel="noopener noreferrer" title="X (Twitter)" aria-label="X (Twitter)"><svg viewBox="0 0 24 24"><path d="M4 4l16 16M20 4 4 20" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" fill="none"/></svg></a>
-          <a class="social-chip" href="https://www.instagram.com/_saoopy_?igsh=MTJrM2J2cHBvZWZlOA%3D%3D&amp;utm_source=qr" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor"/></svg></a>
-          <a class="social-chip" href="https://www.youtube.com/@RadiologyOasis" target="_blank" rel="noopener noreferrer" title="YouTube" aria-label="YouTube"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10 9l6 3-6 3V9Z" fill="currentColor"/></svg></a>
-        <a class="social-chip" href="https://www.tiktok.com/@tyb_alathr?_r=1&amp;_t=ZS-97zP3ajUVWv" target="_blank" rel="noopener noreferrer" title="TikTok" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.43 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z"/></svg></a>
+          <a class="social-chip" href="https://chat.whatsapp.com/KIJxm1MHphy5nLFwVa81l7?mode=gi_t" target="_blank"
+            rel="noopener noreferrer" title="WhatsApp" aria-label="WhatsApp"><svg viewBox="0 0 24 24">
+              <path
+                d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5.1-.1.2-.3.4-.4.1-.1.2-.2.2-.4.1-.1 0-.3 0-.4 0-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.3c.1.2 1.6 2.5 3.9 3.4.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z" />
+            </svg></a>
+          <a class="social-chip" href="https://www.facebook.com/share/1DAw4aVpVu/?mibextid=wwXIfr" target="_blank"
+            rel="noopener noreferrer" title="Facebook" aria-label="Facebook"><svg viewBox="0 0 24 24">
+              <path
+                d="M13.5 22v-8h2.7l.4-3.1h-3.1V9c0-.9.2-1.5 1.6-1.5h1.6V4.7c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.3H8v3.1h2.5V22h3Z" />
+            </svg></a>
+          <a class="social-chip" href="https://www.linkedin.com/in/musab-ahmed-1b1481104/" target="_blank"
+            rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24">
+              <path
+                d="M4.98 3.5a2 2 0 1 1 0 4 2 2 0 0 1 0-4ZM3 9h4v12H3V9Zm6.5 0h3.8v1.7h.1c.5-.9 1.8-1.9 3.7-1.9 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-2.9-1.8-2.9-1.8 0-2.1 1.4-2.1 2.8V21h-4V9Z" />
+            </svg></a>
+          <a class="social-chip" href="https://x.com/saoopy90" target="_blank" rel="noopener noreferrer"
+            title="X (Twitter)" aria-label="X (Twitter)"><svg viewBox="0 0 24 24">
+              <path d="M4 4l16 16M20 4 4 20" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"
+                fill="none" />
+            </svg></a>
+          <a class="social-chip"
+            href="https://www.instagram.com/_saoopy_?igsh=MTJrM2J2cHBvZWZlOA%3D%3D&amp;utm_source=qr" target="_blank"
+            rel="noopener noreferrer" title="Instagram" aria-label="Instagram"><svg viewBox="0 0 24 24">
+              <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8" />
+              <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8" />
+              <circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" />
+            </svg></a>
+          <a class="social-chip" href="https://www.youtube.com/@RadiologyOasis" target="_blank"
+            rel="noopener noreferrer" title="YouTube" aria-label="YouTube"><svg viewBox="0 0 24 24">
+              <rect x="2" y="5" width="20" height="14" rx="4" fill="none" stroke="currentColor" stroke-width="1.8" />
+              <path d="M10 9l6 3-6 3V9Z" fill="currentColor" />
+            </svg></a>
+          <a class="social-chip" href="https://www.tiktok.com/@tyb_alathr?_r=1&amp;_t=ZS-97zP3ajUVWv" target="_blank"
+            rel="noopener noreferrer" title="TikTok" aria-label="TikTok"><svg viewBox="0 0 24 24">
+              <path
+                d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.43 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z" />
+            </svg></a>
         </div>
         <div class="right-links">
           <div class="lang-switcher">
@@ -367,21 +101,25 @@
 
     <header id="mainnav">
       <div class="mainnav-wrap">
-        <a class="logo" href="index.html"><span class="mark"><img src="images/ih-logo.png" alt="iHealth Academy"></span></a>
+        <a class="logo" href="index.html"><span class="mark"><img src="images/ih-logo.png"
+              alt="iHealth Academy"></span></a>
 
         <nav class="nav-links" id="navLinks">
           <div class="nav-item"><a class="nav-link" href="index.html" data-i18n="nav.home">Home</a></div>
-          <div class="nav-item"><a class="nav-link" href="find-your-path.html" data-i18n="nav.findPath">Find Your Path</a></div>
-        <div class="nav-item"><a class="nav-link" href="dashboard.html" data-i18n="nav.dashboard">Dashboard</a></div>
-        <div class="nav-item"><a class="nav-link" href="recruit.html" data-i18n="nav.recruit">Recruit</a></div>
+          <div class="nav-item"><a class="nav-link" href="find-your-path.html" data-i18n="nav.findPath">Find Your
+              Path</a></div>
+          <div class="nav-item"><a class="nav-link" href="dashboard.html" data-i18n="nav.dashboard">Dashboard</a></div>
+          <div class="nav-item"><a class="nav-link" href="recruit.html" data-i18n="nav.recruit">Recruit</a></div>
 
           <div class="nav-item" id="academyDropdown">
-            <button type="button" class="nav-link" id="academyBtn"><span data-i18n="nav.academy">iHealthAcademy</span> <span class="caret">▾</span></button>
+            <button type="button" class="nav-link" id="academyBtn"><span data-i18n="nav.academy">iHealthAcademy</span>
+              <span class="caret">▾</span></button>
             <div class="dropdown" id="academyDropdownMenu"></div>
           </div>
 
           <div class="nav-item" id="leadershipDropdown">
-            <button type="button" class="nav-link" id="leadershipBtn"><span data-i18n="nav.leadership">Leadership</span> <span class="caret">▾</span></button>
+            <button type="button" class="nav-link" id="leadershipBtn"><span data-i18n="nav.leadership">Leadership</span>
+              <span class="caret">▾</span></button>
             <div class="dropdown" id="leadershipDropdownMenu"></div>
           </div>
           <div class="nav-item"><a class="nav-link" href="contact.html" data-i18n="nav.contact">Contact Us</a></div>
@@ -390,38 +128,346 @@
         <div class="auth-actions">
           <a href="#" class="btn btn-ghost nav-signin" data-i18n="nav.signin">Sign in</a>
           <a href="#" class="btn btn-primary nav-signup" data-i18n="nav.signup">Sign up</a>
-          <button type="button" class="hamburger btn btn-ghost" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false">☰</button>
+          <button type="button" class="hamburger btn btn-ghost" id="hamburgerBtn" aria-label="Toggle menu"
+            aria-expanded="false">☰</button>
         </div>
       </div>
     </header>
 
-    <!-- HERO -->
-    <div class="ins-hero-banner" data-aos="fade-up">
-      <img src="images/dept-bg.png" alt="Pre-Authorization — Mastering the Back-End" />
-    </div>
-
-    <!-- PROGRESS -->
-    <div class="progress-bar">
-      <span class="prog-label" data-i18n="ins.progressLabel">Your progress</span>
-      <div class="prog-track-wrap">
-        <div class="prog-track">
-          <div class="prog-fill" id="progFill"></div>
-        </div>
-        <span class="prog-pct" id="progPct">0%</span>
+    <div class="preauth-app">
+      <div class="wrap" style="padding:14px 24px 0;">
+        <a href="#" id="topBackLink" class="back-btn" style="margin:0;">← Back to course overview</a>
       </div>
-    </div>
 
-    <!-- LAYOUT -->
-    <div class="dept-layout-wrap">
-      <div class="dept-layout" style="grid-template-columns: 1fr;">
-        <div class="main-content" id="mainContent">
-          <div id="contentArea"></div>
-          <div id="assessmentsArea"></div>
-          <div id="masterclassArea"></div>
-          <div id="bonusArea"></div>
+      <!-- ============ LANDING ============ -->
+      <main id="view-landing">
+        <section class="hero">
+          <div class="hero-pattern">
+            <svg viewBox="0 0 1200 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <g fill="none" stroke="#fff" stroke-width="1.6">
+                <!-- clipboard-check (approval) -->
+                <g transform="translate(90,70) scale(1.6)">
+                  <rect x="0" y="2" width="26" height="32" rx="3" />
+                  <rect x="8" y="-2" width="10" height="6" rx="1.5" />
+                  <path d="M6 16l5 5 9-11" />
+                </g>
+                <!-- shield (coverage) -->
+                <g transform="translate(980,60) scale(1.4)">
+                  <path d="M16 2 28 7v11c0 8-5 13-12 15-7-2-12-7-12-15V7Z" />
+                  <path d="M10 16l4 4 8-9" />
+                </g>
+                <!-- pulse / heartbeat line -->
+                <g transform="translate(230,260) scale(1.3)">
+                  <path d="M0 14h14l6-14 8 24 6-16 5 6h20" />
+                </g>
+                <!-- medical cross -->
+                <g transform="translate(650,90) scale(1.2)">
+                  <rect x="10" y="0" width="10" height="30" rx="2" />
+                  <rect x="0" y="10" width="30" height="10" rx="2" />
+                </g>
+                <!-- document / claim -->
+                <g transform="translate(1040,300) scale(1.3)">
+                  <path d="M2 0h18l8 8v30H2Z" />
+                  <path d="M20 0v8h8" />
+                  <path d="M6 16h16M6 22h16M6 28h10" />
+                </g>
+                <!-- clock (waiting time) -->
+                <g transform="translate(480,340) scale(1.2)">
+                  <circle cx="14" cy="14" r="14" />
+                  <path d="M14 6v8l6 4" />
+                </g>
+                <!-- clipboard-check (small, repeat) -->
+                <g transform="translate(830,240) scale(1.1)">
+                  <rect x="0" y="2" width="26" height="32" rx="3" />
+                  <rect x="8" y="-2" width="10" height="6" rx="1.5" />
+                  <path d="M6 16l5 5 9-11" />
+                </g>
+                <!-- shield small repeat -->
+                <g transform="translate(150,380) scale(1)">
+                  <path d="M16 2 28 7v11c0 8-5 13-12 15-7-2-12-7-12-15V7Z" />
+                  <path d="M10 16l4 4 8-9" />
+                </g>
+              </g>
+            </svg>
+          </div>
+          <div class="wrap hero-motion-row">
+            <div class="hero-motion">
+              <div class="motion-chip approved">
+                <div class="mc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 13l4 4L19 7" />
+                  </svg></div>
+                <div class="mc-body">
+                  <div class="mc-label">APPROVED</div>
+                </div>
+              </div>
+              <div class="motion-chip rejected">
+                <div class="mc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round">
+                    <path d="M6 6l12 12M18 6L6 18" />
+                  </svg></div>
+                <div class="mc-body">
+                  <div class="mc-label">REJECTED</div>
+                </div>
+              </div>
+              <div class="motion-chip partial">
+                <div class="mc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M12 3a9 9 0 0 1 0 18Z" fill="currentColor" stroke="none" />
+                  </svg></div>
+                <div class="mc-body">
+                  <div class="mc-label">PARTIAL APPROVED</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="wrap hero-inner">
+            <div>
+              <div class="hero-eyebrow">INSURANCE DEPARTMENT</div>
+              <h1>Pre-Authorization<br><em>Specialist</em></h1>
+              <div class="hero-sub"><span class="line"></span>
+                <p>Your journey from first concept to certified specialist.</p>
+              </div>
+            </div>
+            <div class="hero-panel">
+              <svg class="cap" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round">
+                <path d="M2 8l10-5 10 5-10 5-10-5Z" />
+                <path d="M6 10.5V16c0 1.5 3 3 6 3s6-1.5 6-3v-5.5" />
+                <path d="M22 8v6" />
+              </svg>
+              <b>MASTER THE BACK-END</b>
+              <span>of Medical Pre-Authorization, from start to finish.</span>
+            </div>
+          </div>
+        </section>
+
+        <div class="progress-strip">
+          <div class="wrap">
+            <div class="bar-track">
+              <div class="bar-fill" id="overallBarFill" style="width:0%;"></div>
+            </div>
+            <div class="pct" id="overallPct">0% complete</div>
+          </div>
+        </div>
+
+        <section class="sessions">
+          <div class="wrap" id="sessionList"></div>
+        </section>
+
+        <section class="trust-strip">
+          <div class="wrap trust-grid">
+            <div class="trust-item">
+              <div class="trust-icon">📘</div>
+              <div><b>Practical & Actionable</b><span>Real-world scenarios and examples.</span></div>
+            </div>
+            <div class="trust-item">
+              <div class="trust-icon">📊</div>
+              <div><b>Expert Designed</b><span>Built from real healthcare & insurance practice.</span></div>
+            </div>
+            <div class="trust-item">
+              <div class="trust-icon">🛡️</div>
+              <div><b>Career Boosting</b><span>Skills employers are looking for.</span></div>
+            </div>
+            <div class="trust-item">
+              <div class="trust-icon">🎓</div>
+              <div><b>Certificate of Completion</b><span>Showcase your expertise with confidence.</span></div>
+            </div>
+            <div class="trust-item">
+              <div class="trust-icon">🔒</div>
+              <div><b>Secure & Trusted</b><span>Your learning and data are always protected.</span></div>
+            </div>
+          </div>
+        </section>
+
+        <div class="foot-banner">
+          <div class="wrap">
+            <div class="msg">
+              <p>Learn the process. Master the rules. Make the right decisions.<br><b>Become a Pre-Authorization
+                  Specialist.</b></p>
+            </div>
+            <div class="right">
+              <div class="brand"><svg class="brand-icon" viewBox="0 0 40 40" fill="none">
+                  <path d="M20 3 L35 9 V20 C35 29 29 35 20 37 C11 35 5 29 5 20 V9 Z" fill="#fff" opacity="0.15" />
+                  <path d="M13 20 l5 5 l9 -11" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+                <div class="brand-text"><b>iHealth Academy</b><span style="color:#9FC9C2;">Learn · Apply · Lead</span>
+                </div>
+              </div>
+              <div class="foot-impact">Better Decisions<br>Better Care<br>Better Impact</div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- ============ VIDEO + QUIZ VIEW ============ -->
+      <main id="view-video" class="hidden">
+        <div class="wrap">
+          <button class="back-btn" id="videoBackBtn">← Back to course</button>
+          <div class="video-frame" id="videoFrame">
+            <div class="vf-play"><svg viewBox="0 0 24 24" fill="#fff">
+                <path d="M8 5v14l11-7z" />
+              </svg></div>
+            <div class="vf-title" id="vfTitle">—</div>
+            <div class="vf-dur" id="vfDur">—</div>
+          </div>
+          <div class="video-wrap" id="videoWrap">
+            <video id="realVideo" class="hidden" controls
+              style="width:100%; border-radius:14px; background:#000; display:block;"></video>
+            <iframe id="ytFrame" class="hidden" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+              style="width:100%; aspect-ratio:16/9; border:0; border-radius:14px; background:#000; display:block;"></iframe>
+            <div class="paywall-overlay hidden" id="paywallOverlay">
+              <div class="paywall-card">
+                <div class="paywall-icon">🔒</div>
+                <h3>Your free preview has ended</h3>
+                <p>You've watched the first 5 minutes free. Unlock the rest of this video — and the full
+                  Pre-Authorization Specialist track — to continue.</p>
+                <button class="btn btn-primary" id="unlockVideoBtn">Unlock full access →</button>
+                <p class="paywall-note">Demo only — no real payment is processed here.</p>
+              </div>
+            </div>
+          </div>
+          <div class="video-actions" id="videoActionsRow">
+            <button class="btn btn-primary" id="watchedBtn">I've finished watching this video →</button>
+            <a class="btn btn-ghost hidden" id="downloadVideoBtn" download>⬇ Download this video</a>
+            <p class="video-missing-note hidden" id="videoMissingNote">No video file uploaded yet for this session —
+              link it in the VIDEO_SESSIONS config to make it real.</p>
+          </div>
+          <div class="quiz-block hidden" id="quizBlock">
+            <h3 style="margin-top:30px;">Post-video quiz</h3>
+            <div id="quizQuestions"></div>
+            <div class="quiz-complete-banner hidden" id="quizCompleteBanner">
+              <p>✓ Quiz complete — this session is marked done.</p>
+              <button class="btn btn-primary" id="quizContinueBtn">Continue →</button>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- ============ PRACTICE VIEW ============ -->
+      <main id="view-practice" class="hidden">
+        <div class="wrap">
+          <button class="back-btn" id="practiceBackBtn">← Back to course</button>
+          <div class="hero-eyebrow">STEP 08</div>
+          <h2 style="margin-top:8px;">Let's Practice</h2>
+          <video id="practiceVideo" class="hidden" controls
+            style="width:100%; border-radius:14px; background:#000; display:block; margin-bottom:20px;"></video>
+          <iframe id="practiceYtFrame" class="hidden" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+            style="width:100%; aspect-ratio:16/9; border:0; border-radius:14px; background:#000; display:block; margin-bottom:20px;"></iframe>
+          <div class="practice-note">Two sample cases, ungraded — just to get comfortable with the format before the
+            real exam. Nothing here affects your certificate.</div>
+          <div id="practiceCases"></div>
+          <div style="text-align:center; margin-top:20px;">
+            <button class="btn btn-primary hidden" id="practiceDoneBtn">I'm ready — go to the exam →</button>
+          </div>
+        </div>
+      </main>
+
+      <!-- ============ EXAM VIEW ============ -->
+      <main id="view-exam" class="hidden">
+        <div class="wrap">
+          <button class="back-btn" id="examBackBtn">← Back to course</button>
+          <div class="ex-topbar">
+            <span>PRE-AUTH PRACTICAL EXAM</span>
+            <span id="exProgressPill">0 / 15 cases decided</span>
+          </div>
+          <p style="color:var(--ink-dim); font-size:13.5px;">Score more than 7 out of 15 to pass and unlock your
+            certificate.</p>
+          <div class="legend-row">
+            <span><span class="dot" style="background:var(--live);"></span>&lt; 30 min</span>
+            <span><span class="dot" style="background:#C9861F;"></span>30–90 min</span>
+            <span><span class="dot" style="background:var(--danger);"></span>&gt; 90 min</span>
+          </div>
+          <div class="case-grid" id="exCaseGrid"></div>
+        </div>
+      </main>
+
+      <!-- ============ EXAM CASE WORKSPACE ============ -->
+      <main id="view-examcase" class="hidden">
+        <div class="wrap" style="max-width:980px; padding:26px 22px 80px;">
+          <button class="back-btn" id="exCaseBackBtn">← Back to queue</button>
+          <div class="ex-case-header">
+            <div class="row1"><span>Claim Ref: <b id="exRef">—</b></span><span>Benefit: <b
+                  id="exBenefit">—</b></span><span>HCP: <b id="exHcp">—</b></span></div>
+            <div class="patient-name" id="exName">—</div>
+            <div class="row1" style="margin-top:4px;"><span>Age: <b id="exAge">—</b></span><span>Gender: <b
+                  id="exGender">—</b></span></div>
+          </div>
+          <div class="ex-case-body">
+            <div>
+              <div class="panel">
+                <h4>📋 Diagnosis & Request</h4>
+                <div class="field-row"><span class="k">Diagnosis</span><span class="v" id="exDx">—</span></div>
+                <p style="font-size:12.5px; color:var(--ink-dim);" id="exComplaint"></p>
+                <div class="field-row"><span class="k">Requested</span><span class="v" id="exRequested">—</span></div>
+              </div>
+              <div class="panel">
+                <h4>🩺 Health Questionnaire (HQ)</h4>
+                <div id="exHqBadgeArea"></div>
+                <div id="exHqList"></div>
+              </div>
+              <div class="panel">
+                <h4>📎 Documents</h4>
+                <div id="exDocs"></div>
+              </div>
+            </div>
+            <div>
+              <div class="panel">
+                <h4>❓ Ask a Question</h4>
+                <div class="q-counter" id="exQCounter">2 questions remaining</div>
+                <div id="exQuestions"></div>
+              </div>
+              <div class="panel">
+                <h4>🗂 Insured Claims History</h4>
+                <div id="exHistory"></div>
+              </div>
+            </div>
+          </div>
+          <div class="decision-bar">
+            <h4 style="margin-bottom:0;">Your Decision</h4>
+            <div class="decision-opts" id="exDecisionOpts">
+              <button class="dopt" data-d="approve">Approve</button>
+              <button class="dopt" data-d="partial">Partially Approve</button>
+              <button class="dopt" data-d="reject">Reject</button>
+              <button class="dopt" data-d="refer">Refer for Review</button>
+            </div>
+            <div id="exDenialCodeArea" class="hidden"></div>
+            <div class="submit-row"><button class="btn btn-primary" id="exSubmitBtn">Submit &amp; Next Case</button>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <div class="ex-modal-overlay hidden" id="exDocOverlay">
+        <div class="ex-modal-panel"><button class="ex-modal-close" id="exDocClose">✕</button>
+          <h3 id="exDocTitle">—</h3>
+          <p id="exDocContent">—</p>
         </div>
       </div>
+
+      <!-- ============ EXAM RESULTS ============ -->
+      <main id="view-examresults" class="hidden">
+        <div class="wrap">
+          <div id="exVerdictArea"></div>
+          <h3 style="margin-bottom:14px;">Case-by-case review</h3>
+          <div id="exReviewList"></div>
+          <div style="text-align:center; margin-top:24px; display:flex; gap:12px; justify-content:center;">
+            <button class="btn btn-ghost" id="exRetryBtn">Retry the exam</button>
+            <button class="btn btn-primary hidden" id="goToCertBtn">Get your certificate →</button>
+          </div>
+        </div>
+      </main>
+
+      <!-- ============ CERTIFICATE VIEW ============ -->
+      <main id="view-certificate" class="hidden">
+        <div class="wrap">
+          <button class="back-btn" id="certBackBtn">← Back to course</button>
+          <div id="certContent"></div>
+        </div>
+      </main>
+
     </div>
+    <!-- /.preauth-app -->
 
     <div class="mship-wrap" data-aos="fade-up">
       <div class="mship-head">
@@ -438,7 +484,8 @@
               <div class="mship-card-price" data-i18n="mship.freePrice">$0 Forever</div>
             </div>
           </div>
-          <p class="mship-card-desc" data-i18n="mship.freeDesc">Explore iHealth Academy and access essential free resources.</p>
+          <p class="mship-card-desc" data-i18n="mship.freeDesc">Explore iHealth Academy and access essential free
+            resources.</p>
           <ul class="mship-feat-list">
             <li data-i18n="mship.freeFeat1">Community Access</li>
             <li data-i18n="mship.freeFeat2">Welcome & Orientation</li>
@@ -448,14 +495,17 @@
             <li data-i18n="mship.freeFeat6">Healthcare Career Resources</li>
             <li data-i18n="mship.freeFeat7">Community Discussions</li>
           </ul>
-          <button class="mship-btn mship-btn-outline" onclick="document.getElementById('contentArea').scrollIntoView({behavior:'smooth'})"><i class="fi fi-br-users"></i> <span data-i18n="mship.freeBtn">Join Free</span></button>
+          <button class="mship-btn mship-btn-outline"
+            onclick="document.getElementById('sessionList').scrollIntoView({behavior:'smooth'})"><i
+              class="fi fi-br-users"></i> <span data-i18n="mship.freeBtn">Join Free</span></button>
         </div>
 
         <div class="mship-card mship-card-premium" data-aos="fade-up" data-aos-delay="100">
           <div class="mship-card-hd">
             <div class="mship-ico mship-ico-gold"><i class="fi fi-br-crown"></i></div>
             <div>
-              <div class="mship-card-title"><span data-i18n="mship.premTitle">Premium Membership</span> <span class="mship-soon-badge" data-i18n="mship.premSoon">Available Soon</span></div>
+              <div class="mship-card-title"><span data-i18n="mship.premTitle">Premium Membership</span> <span
+                  class="mship-soon-badge" data-i18n="mship.premSoon">Available Soon</span></div>
               <div class="mship-card-price" data-i18n="mship.premDesc">Unlock your complete learning experience.</div>
             </div>
           </div>
@@ -472,12 +522,17 @@
             <li data-i18n="mship.premFeat10">One Premium Session with the Mentor of Your Choice*</li>
             <li data-i18n="mship.premFeat11">Premium Membership Valid for One Year</li>
             <li data-i18n="mship.premFeat12">Priority Support</li>
-            <li><span data-i18n="mship.premFeat13">Exclusive Member Badge</span> <span class="mship-mini-tag" data-i18n="mship.onProfile">On Your Profile</span></li>
-            <li><span data-i18n="mship.premFeat14">5 Mentorship Sessions</span> <span class="mship-mini-tag mship-mini-tag-future" data-i18n="mship.futureFeature">Future Feature</span></li>
-            <li><span data-i18n="mship.premFeat15">AI Learning Tools</span> <span class="mship-mini-tag mship-mini-tag-future" data-i18n="mship.futureFeature">Future Feature</span></li>
+            <li><span data-i18n="mship.premFeat13">Exclusive Member Badge</span> <span class="mship-mini-tag"
+                data-i18n="mship.onProfile">On Your Profile</span></li>
+            <li><span data-i18n="mship.premFeat14">5 Mentorship Sessions</span> <span
+                class="mship-mini-tag mship-mini-tag-future" data-i18n="mship.futureFeature">Future Feature</span></li>
+            <li><span data-i18n="mship.premFeat15">AI Learning Tools</span> <span
+                class="mship-mini-tag mship-mini-tag-future" data-i18n="mship.futureFeature">Future Feature</span></li>
           </ul>
-          <button class="mship-btn mship-btn-solid" disabled title="Available soon"><i class="fi fi-br-star"></i> <span data-i18n="mship.premBtn">Become Premium</span></button>
-          <p class="mship-footnote" data-i18n="mship.premFootnote">*One premium mentor session is subject to mentor availability and scheduling.</p>
+          <button class="mship-btn mship-btn-solid" disabled title="Available soon"><i class="fi fi-br-star"></i> <span
+              data-i18n="mship.premBtn">Become Premium</span></button>
+          <p class="mship-footnote" data-i18n="mship.premFootnote">*One premium mentor session is subject to mentor
+            availability and scheduling.</p>
         </div>
 
         <div class="mship-card" data-aos="fade-up" data-aos-delay="200">
@@ -488,7 +543,8 @@
               <div class="mship-card-price" data-i18n="mship.instPrice">Custom Pricing</div>
             </div>
           </div>
-          <p class="mship-card-desc" data-i18n="mship.instDesc">Designed for hospitals, universities, healthcare organisations, and corporate teams.</p>
+          <p class="mship-card-desc" data-i18n="mship.instDesc">Designed for hospitals, universities, healthcare
+            organisations, and corporate teams.</p>
           <ul class="mship-feat-list">
             <li data-i18n="mship.instFeat1">Everything in Premium</li>
             <li data-i18n="mship.instFeat2">Team Enrolment</li>
@@ -500,46 +556,66 @@
             <li data-i18n="mship.instFeat8">Custom Pricing</li>
             <li data-i18n="mship.instFeat9">Dedicated Account Manager</li>
           </ul>
-          <button class="mship-btn mship-btn-outline" onclick="location.href='mailto:info@ihealthacademy.com?subject=Institution%20Membership%20Inquiry'"><i class="fi fi-br-bank"></i> <span data-i18n="mship.instBtn">Contact Sales</span></button>
+          <button class="mship-btn mship-btn-outline"
+            onclick="location.href='mailto:info@ihealthacademy.com?subject=Institution%20Membership%20Inquiry'"><i
+              class="fi fi-br-bank"></i> <span data-i18n="mship.instBtn">Contact Sales</span></button>
         </div>
       </div>
 
       <div class="mship-strip">
         <div class="mship-strip-item">
           <div class="mship-strip-ico"><i class="fi fi-br-shield-check"></i></div>
-          <div><div class="mship-strip-title" data-i18n="mship.strip1t">Practical & Relevant</div><div class="mship-strip-desc" data-i18n="mship.strip1d">Real-world scenarios and up-to-date knowledge.</div></div>
+          <div>
+            <div class="mship-strip-title" data-i18n="mship.strip1t">Practical & Relevant</div>
+            <div class="mship-strip-desc" data-i18n="mship.strip1d">Real-world scenarios and up-to-date knowledge.</div>
+          </div>
         </div>
         <div class="mship-strip-item">
           <div class="mship-strip-ico"><i class="fi fi-br-stats"></i></div>
-          <div><div class="mship-strip-title" data-i18n="mship.strip2t">Expert Designed</div><div class="mship-strip-desc" data-i18n="mship.strip2d">Created by healthcare and insurance experts.</div></div>
+          <div>
+            <div class="mship-strip-title" data-i18n="mship.strip2t">Expert Designed</div>
+            <div class="mship-strip-desc" data-i18n="mship.strip2d">Created by healthcare and insurance experts.</div>
+          </div>
         </div>
         <div class="mship-strip-item">
           <div class="mship-strip-ico"><i class="fi fi-br-users-alt"></i></div>
-          <div><div class="mship-strip-title" data-i18n="mship.strip3t">Career Focused</div><div class="mship-strip-desc" data-i18n="mship.strip3d">Skills that employers are looking for.</div></div>
+          <div>
+            <div class="mship-strip-title" data-i18n="mship.strip3t">Career Focused</div>
+            <div class="mship-strip-desc" data-i18n="mship.strip3d">Skills that employers are looking for.</div>
+          </div>
         </div>
         <div class="mship-strip-item">
           <div class="mship-strip-ico"><i class="fi fi-br-diploma"></i></div>
-          <div><div class="mship-strip-title" data-i18n="mship.strip4t">Certificate of Completion</div><div class="mship-strip-desc" data-i18n="mship.strip4d">Showcase your achievement with confidence.</div></div>
+          <div>
+            <div class="mship-strip-title" data-i18n="mship.strip4t">Certificate of Completion</div>
+            <div class="mship-strip-desc" data-i18n="mship.strip4d">Showcase your achievement with confidence.</div>
+          </div>
         </div>
         <div class="mship-strip-item">
           <div class="mship-strip-ico"><i class="fi fi-br-headset"></i></div>
-          <div><div class="mship-strip-title" data-i18n="mship.strip5t">Support When You Need It</div><div class="mship-strip-desc" data-i18n="mship.strip5d">We're here to help you succeed.</div></div>
+          <div>
+            <div class="mship-strip-title" data-i18n="mship.strip5t">Support When You Need It</div>
+            <div class="mship-strip-desc" data-i18n="mship.strip5d">We're here to help you succeed.</div>
+          </div>
         </div>
       </div>
 
       <div class="mship-bottombar">
-        <span><i class="fi fi-br-lock"></i> <span data-i18n="mship.bar1">Your learning. Your pace. Your future.</span></span>
-        <span data-i18n="mship.bar2">Join thousands of healthcare professionals growing their careers with iHealth Academy.</span>
+        <span><i class="fi fi-br-lock"></i> <span data-i18n="mship.bar1">Your learning. Your pace. Your
+            future.</span></span>
+        <span data-i18n="mship.bar2">Join thousands of healthcare professionals growing their careers with iHealth
+          Academy.</span>
       </div>
     </div>
   </div>
 
-    <footer>
+  <footer>
     <div class="footer-inner">
       <div class="footer-top">
         <div class="footer-brand">
           <div class="footer-logo">i<span>Health</span> Academy</div>
-          <p class="footer-tagline" data-i18n="footer.brandTagline">Career support for healthcare professionals — CV tools, exam prep, and career
+          <p class="footer-tagline" data-i18n="footer.brandTagline">Career support for healthcare professionals — CV
+            tools, exam prep, and career
             growth, all in one place.</p>
         </div>
         <div class="footer-cols">
@@ -562,7 +638,8 @@
       </div>
       <div class="footer-bottom">
         <div class="footer-copy" data-i18n="footer.copy">© 2026 iHealth Academy. All rights reserved.</div>
-        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" rel="noopener" class="footer-paypal-form footer-paypal-pro-form">
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" rel="noopener"
+          class="footer-paypal-form footer-paypal-pro-form">
           <input type="hidden" name="cmd" value="_xclick" />
           <input type="hidden" name="business" value="saoopy90@gmail.com" />
           <input type="hidden" name="currency_code" value="USD" />
@@ -579,15 +656,14 @@
     </div>
   </footer>
 
-<script src="js/nav.js"></script>
+  <script src="js/nav.js"></script>
   <script src="js/nav-v2.js"></script>
   <script src="js/i18n.js"></script>
   <script src="js/site-content.js"></script>
   <script src="js/nav-content.js"></script>
   <script src="js/livechat.js"></script>
-  <script src="js/lesson-viewer.js"></script>
-  <script src="js/certificate.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="js/insurance-dept.js"></script>
 </body>
+
 </html>
