@@ -519,6 +519,8 @@ function showResults(){
   const PASS_THRESHOLD = 7; // pass if strictly more than 7 correct
   const passed = correctCount > PASS_THRESHOLD;
   if(passed){
+    const examDate = new Date().toISOString().slice(0,10);
+    const certUrl = "preauth-certificate.html?name=" + encodeURIComponent(studentName) + "&examDate=" + encodeURIComponent(examDate);
     verdictArea.innerHTML = `
       <div class="verdict pass">
         <div class="eyebrow" style="color:#CFE3DF;">CERTIFICATE OF COMPLETION</div>
@@ -526,6 +528,7 @@ function showResults(){
         <p style="color:#CFE3DF; max-width:52ch; margin:0 auto;">You are now eligible to work as a specialist at any of the biggest companies in the market. The insurance industry is waiting for you.</p>
         <div class="cert-name">${studentName}</div>
         <div class="score">Final score: ${correctCount} / ${CASES.length}</div>
+        <a class="btn btn-primary" href="${certUrl}" style="display:inline-block; margin-top:18px;">Get your certificate →</a>
       </div>`;
   } else {
     verdictArea.innerHTML = `
