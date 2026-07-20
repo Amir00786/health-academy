@@ -896,16 +896,16 @@ const ICON_LOCK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" st
 const VIDEO_SESSIONS = [
   { num:1, id:"v2a", title:"What is the Medical Insurance?", desc:"The core definitions and terms every specialist must know cold.",
     bullets:["What medical insurance actually is","The Pre-Auth Department's real role","Self-pay alternatives & who can work in pre-auth","CHI, NPHIES, RCM & key Saudi terms"],
-    duration:"37:05", videoUrl:"https://www.youtube.com/watch?v=vJzWV6U3uQw", quiz: [...SECTIONS[0].questions, ...SECTIONS[1].questions] },
+    duration:"37:05", videoUrl:"images/medical-approval-specialist-1.mp4", quiz: [...SECTIONS[0].questions, ...SECTIONS[1].questions] },
   { num:2, id:"v1", title:"General Overview", desc:"See how patients, providers, insurers, and regulators all connect in one claim.",
     bullets:["Patient, provider & payer roles","Claim assignment & review cycles","CHI regulatory oversight","Employer eligibility checks"],
-    duration:"10:47", videoUrl:"https://www.youtube.com/watch?v=EqYoSJYB5BA", isFree:true, quiz: VIDEO1_QUIZ.questions },
+    duration:"10:47", videoUrl:"images/medical-approval-specialist-2.mp4", isFree:true, quiz: VIDEO1_QUIZ.questions },
   { num:3, id:"v3", title:"Health Questionnaire", desc:"Disclosure rules, investigation standards, and what genuinely requires declaration.",
     bullets:["What the HQ actually covers","Investigating inconsistent history","Who's exempt from the HQ","Maternity timing edge cases"],
-    duration:"26:18", videoUrl:"https://www.youtube.com/watch?v=rD0k2ZC9BTI", quiz: SECTIONS[2].questions },
+    duration:"26:18", videoUrl:"images/medical-approval-specialist-3.mp4", quiz: SECTIONS[2].questions },
   { num:4, id:"v4", title:"CHI Exclusion Items", desc:"What's excluded, and the difference between reject and refer.",
     bullets:["Natural disaster exclusions","Life-threatening congenital exceptions","Sports & hazardous activities","Third-party liability coordination"],
-    duration:"39:22", videoUrl:"https://www.youtube.com/watch?v=vFySLKXal9M", quiz: SECTIONS[3].questions },
+    duration:"39:22", videoUrl:"images/medical-approval-specialist-4.mp4", quiz: SECTIONS[3].questions },
   /* v5 and v6 (CHI Inclusion Items & Coverage, Special Terms & Conditions) are
      pending final videos — re-add once the new links/durations are provided.
   { num:5, id:"v5", title:"CHI Inclusion Items & Coverage", desc:"What's actually covered — maternity, chronic conditions, and organ transplants.",
@@ -917,7 +917,7 @@ const VIDEO_SESSIONS = [
   */
 ];
 
-const PRACTICE_INTRO_VIDEO = "https://www.youtube.com/watch?v=W8nvCrAY4q0";
+const PRACTICE_INTRO_VIDEO = "images/medical-approval-specialist-7.mov";
 
 const CAPSTONE_SESSIONS = [
   { num:7, id:"practice", title:"Let's Practice Before the Exam", desc:"Apply your knowledge with real-life scenarios and make the right decisions.",
