@@ -991,7 +991,7 @@ function showView(name){
   });
   window.scrollTo({top:0, behavior:"smooth"});
 }
-document.getElementById("topBackLink").addEventListener("click",(e)=>{ e.preventDefault(); showView("landing"); renderLanding(); });
+document.getElementById("topBackLink")?.addEventListener("click",(e)=>{ e.preventDefault(); showView("landing"); renderLanding(); });
 
 /* ============================================================
    LANDING — SESSION LIST

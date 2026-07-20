@@ -1,3 +1,5 @@
+  body{ margin:0; padding:0; }
+
   .preauth-app{
     --bg:#F3F7F6; --surface:#FFFFFF; --ink:#122A3D; --ink-dim:#5C7080;
     --navy:#0D2440; --navy-2:#123152;
@@ -26,6 +28,7 @@
   /* ============ HERO ============ */
   .hero{
     position:relative; overflow:hidden;
+    padding-top: 28px;
     background:
       radial-gradient(ellipse 700px 500px at 85% 15%, rgba(14,124,116,0.55), transparent 60%),
       radial-gradient(ellipse 600px 500px at 10% 90%, rgba(212,175,55,0.14), transparent 55%),
@@ -677,6 +680,68 @@ footer {
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
+}
+
+/* ============================================================
+   PAGE LOADER (ECG) — same markup/animation as the home page
+   ============================================================ */
+html.is-loading,
+html.is-loading body {
+  overflow: hidden;
+  height: 100%;
+}
+
+.page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #060608;
+  transition: opacity .5s ease, visibility .5s ease;
+}
+
+.page-loader.hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.ecg {
+  width: 380px;
+  height: 100px;
+}
+
+.ecg-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.ecg-track {
+  fill: none;
+  stroke: rgba(248, 246, 241, 0.1);
+  stroke-width: 3;
+  stroke-linejoin: round;
+}
+
+.ecg-pulse {
+  fill: none;
+  stroke: url(#ecgFade);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 22 78;
+  stroke-dashoffset: 0;
+  animation: ecgSweep 3s linear infinite;
+  filter: drop-shadow(0 0 6px rgba(0, 200, 150, 0.6));
+}
+
+@keyframes ecgSweep {
+  to {
+    stroke-dashoffset: -100;
+  }
 }
 
 .footer-copy {
