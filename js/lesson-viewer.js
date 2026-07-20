@@ -99,82 +99,42 @@
   let currentOnComplete = null;
 
   // YOUTUBE SUPPORT — lessons may point at a YouTube URL instead of a hosted
-  // .mp4. We still gate "Complete & Continue" on ~85% watched or the video
-  // ending, so we load the YT IFrame Player API and poll its currentTime the
-  // same way the native <video> "timeupdate" handler does below.
+  // .mp4. A plain <iframe> embed (rather than the YT IFrame Player API) is
+  // used deliberately: the API's origin validation fails outside a matching
+  // live https domain (e.g. opening the file locally), surfacing as
+  // "Error 153". A plain iframe has no such restriction. The trade-off is we
+  // can't read real playback progress across origins, so "Complete &
+  // Continue" unlocks on a timer sized to the lesson's stated duration
+  // instead of a live watched-percentage check.
   function getYouTubeId(url) {
     if (!url) return null;
     const m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([\w-]{11})/);
     return m ? m[1] : null;
   }
 
-  let ytApiPromise = null;
-  function loadYouTubeApi() {
-    if (ytApiPromise) return ytApiPromise;
-    ytApiPromise = new Promise((resolve) => {
-      if (window.YT && window.YT.Player) { resolve(window.YT); return; }
-      const prevReady = window.onYouTubeIframeAPIReady;
-      window.onYouTubeIframeAPIReady = () => { if (prevReady) prevReady(); resolve(window.YT); };
-      if (!document.querySelector('script[src="https://www.youtube.com/iframe_api"]')) {
-        const tag = document.createElement('script');
-        tag.src = 'https://www.youtube.com/iframe_api';
-        document.head.appendChild(tag);
-      }
-    });
-    return ytApiPromise;
+  function parseDurationSeconds(dur) {
+    if (!dur) return 0;
+    const parts = String(dur).split(':').map((n) => parseInt(n, 10) || 0);
+    return parts.reduce((acc, n) => acc * 60 + n, 0);
   }
 
-  let ytPlayer = null;
-  let ytPollTimer = null;
   let usingYouTube = false;
+  let ytUnlockTimer = null;
 
   function stopYouTube() {
-    if (ytPollTimer) { clearInterval(ytPollTimer); ytPollTimer = null; }
-    if (ytPlayer && ytPlayer.destroy) { ytPlayer.destroy(); }
-    ytPlayer = null;
+    if (ytUnlockTimer) { clearTimeout(ytUnlockTimer); ytUnlockTimer = null; }
+    els.youtube.innerHTML = '';
     usingYouTube = false;
   }
 
-  async function startYouTube(videoId) {
+  function startYouTube(videoId, dur) {
     usingYouTube = true;
     els.video.classList.add('lv-hidden');
     els.youtube.classList.remove('lv-hidden');
-    els.youtube.innerHTML = '';
-    const mount = document.createElement('div');
-    els.youtube.appendChild(mount);
-    const YT = await loadYouTubeApi();
-    ytPlayer = new YT.Player(mount, {
-      width: '100%',
-      height: '100%',
-      videoId,
-      playerVars: {
-        origin: window.location.origin,
-        rel: 0,
-        modestbranding: 1,
-      },
-      events: {
-        onError: (e) => {
-          // 2=bad id, 5=HTML5 player error, 100=not found/private, 101/150=embedding disabled by owner
-          els.youtube.innerHTML = `<div class="lv-yt-error">${lang() === 'ar'
-            ? 'تعذّر تشغيل الفيديو هنا — قد يكون التضمين معطّلاً لهذا الفيديو.'
-            : "This video can't play here — embedding may be disabled for it on YouTube."}</div>`;
-          els.toQuiz.disabled = false;
-        },
-        onStateChange: (e) => {
-          if (e.data === YT.PlayerState.ENDED) { els.toQuiz.disabled = false; }
-          if (e.data === YT.PlayerState.PLAYING) {
-            if (ytPollTimer) clearInterval(ytPollTimer);
-            ytPollTimer = setInterval(() => {
-              const dur = ytPlayer.getDuration ? ytPlayer.getDuration() : 0;
-              const cur = ytPlayer.getCurrentTime ? ytPlayer.getCurrentTime() : 0;
-              if (dur && cur / dur > 0.85) { els.toQuiz.disabled = false; }
-            }, 1000);
-          } else if (ytPollTimer) {
-            clearInterval(ytPollTimer); ytPollTimer = null;
-          }
-        },
-      },
-    });
+    els.youtube.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1" style="width:100%; height:100%; border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+    const seconds = parseDurationSeconds(dur);
+    if (ytUnlockTimer) clearTimeout(ytUnlockTimer);
+    ytUnlockTimer = setTimeout(() => { els.toQuiz.disabled = false; }, Math.max(seconds * 0.85, 20) * 1000);
   }
 
   function renderQuiz(quiz) {
@@ -203,7 +163,7 @@
     const ytId = getYouTubeId(lesson.video);
     if (ytId) {
       els.video.removeAttribute('src');
-      startYouTube(ytId);
+      startYouTube(ytId, lesson.dur || lesson.duration);
     } else {
       els.youtube.classList.add('lv-hidden');
       els.video.classList.remove('lv-hidden');
@@ -293,8 +253,13 @@
     els.submit.classList.remove('lv-hidden');
     els.stepQuiz.classList.add('lv-hidden');
     els.stepVideo.classList.remove('lv-hidden');
-    if (usingYouTube && ytPlayer && ytPlayer.seekTo) ytPlayer.seekTo(0);
-    else els.video.currentTime = 0;
+    if (usingYouTube) {
+      const ytId = getYouTubeId(currentLesson.video);
+      if (ytId) startYouTube(ytId, currentLesson.dur || currentLesson.duration);
+    } else {
+      els.video.currentTime = 0;
+    }
+    els.toQuiz.disabled = true;
     renderQuiz(currentLesson.quiz || []);
   });
 
