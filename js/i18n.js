@@ -58,7 +58,7 @@
     'footer.terms': { en: 'Terms and conditions', ar: 'الشروط والأحكام' },
     'footer.copy': { en: '© 2026 iHealth Academy. All rights reserved.', ar: '© 2026 أكاديمية آي هيلث. جميع الحقوق محفوظة.' },
     'footer.paypalBtn': { en: 'Support us', ar: 'ادعمنا' },
-    'footer.paypalProBtn': { en: 'Get Pro access — $20', ar: 'احصل على وصول برو — 20$' },
+    'footer.paypalProBtn': { en: 'Get Pro access — $100', ar: 'احصل على وصول برو — 100$' },
     'footer.paypalProUnlocked': { en: '✓ Pro unlocked', ar: '✓ تم تفعيل برو' },
 
     'chat.title': { en: 'iHealth Academy Support', ar: 'دعم أكاديمية آي هيلث' },

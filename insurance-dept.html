@@ -24,16 +24,15 @@
        .dept-badge rule (which points at radio-hero.jpg, the wrong department).
        Cropped to the illustration only (no logo/title/copy baked in) since the
        real page title, description and stats already cover that content as text. */
-    .ins-dept-badge {
-      background-image: url('images/insurance-hero-illustration.png');
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-color: #fff;
-      width: 420px;
-      aspect-ratio: 676 / 880;
+    .ins-hero-banner {
+      width: 100%;
+      padding: 0 0 1rem;
+    }
+
+    .ins-hero-banner img {
+      display: block;
+      width: 100%;
       height: auto;
-      max-width: 100%;
     }
 
     /* Choose Your Membership section */
@@ -397,33 +396,8 @@
     </header>
 
     <!-- HERO -->
-    <div class="dept-hero-wrap">
-      <div class="dept-hero">
-        <div>
-          <div class="dept-tag" data-aos="fade-up"><span class="dept-tag-dot"></span><span data-i18n="ins.tag">Insurance Industry — Pre-Auth Specialist</span></div>
-          <h1 data-aos="fade-up" data-aos-delay="50" data-i18n="ins.h1">Pre-authorization.<br><span>Mastered.</span></h1>
-          <p class="dept-desc" data-aos="fade-up" data-aos-delay="100" data-i18n="ins.desc">The skill no medical school teaches. Learn to
-            write requests that get approved, handle denials, appeal effectively, and earn a certificate that sets
-            you apart — free, start to finish.</p>
-          <div class="dept-stats" data-aos="fade-up" data-aos-delay="150">
-            <div>
-              <span class="dept-stat-val counter" data-target="6">0</span>
-              <div class="dept-stat-lbl" data-i18n="ins.stat1">Lessons</div>
-            </div>
-            <div>
-              <span class="dept-stat-val" data-i18n="ins.stat2val">Free</span>
-              <div class="dept-stat-lbl" data-i18n="ins.stat2">To complete</div>
-            </div>
-            <div>
-              <span class="dept-stat-val">1</span>
-              <div class="dept-stat-lbl" data-i18n="ins.stat3">Certificate</div>
-            </div>
-          </div>
-        </div>
-        <div class="dept-hero-right">
-          <div class="dept-badge ins-dept-badge" data-aos="fade-up" data-aos-delay="100"></div>
-        </div>
-      </div>
+    <div class="ins-hero-banner" data-aos="fade-up">
+      <img src="images/dept-bg.png" alt="Pre-Authorization — Mastering the Back-End" />
     </div>
 
     <!-- PROGRESS -->
@@ -593,12 +567,12 @@
           <input type="hidden" name="business" value="saoopy90@gmail.com" />
           <input type="hidden" name="currency_code" value="USD" />
           <input type="hidden" name="item_name" value="iHealth Academy — Pro Access" />
-          <input type="hidden" name="amount" value="20.00" />
+          <input type="hidden" name="amount" value="100.00" />
           <input type="hidden" name="return" class="pro-return-input" value="" />
           <input type="hidden" name="rm" value="2" />
           <button type="submit" class="footer-paypal-btn footer-paypal-btn-pro">
             <img src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png" alt="PayPal">
-            <span data-i18n="footer.paypalProBtn">Get Pro access — $20</span>
+            <span data-i18n="footer.paypalProBtn">Get Pro access — $100</span>
           </button>
         </form>
       </div>

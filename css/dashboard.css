@@ -276,6 +276,14 @@ html.is-loading body {
   padding: 1.4rem;
 }
 
+.dash-stat-grid .dash-stat-card:last-child {
+  opacity: 0.6;
+}
+
+.dash-stat-grid .dash-stat-card:last-child:hover {
+  cursor: not-allowed;
+}
+
 .dash-stat-top {
   display: flex;
   align-items: flex-start;
