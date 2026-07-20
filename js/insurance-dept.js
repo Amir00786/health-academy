@@ -894,24 +894,24 @@ const ICON_LOCK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" st
 /* videoUrl: point this to a real hosted .mp4 (your own site, Drive, etc.) to make that
    session's video real and downloadable. Leave "" to keep the placeholder frame. */
 const VIDEO_SESSIONS = [
-  { id:"v2a", title:"What is the Medical Insurance?", desc:"The core definitions and terms every specialist must know cold.",
+  { num:1, id:"v2a", title:"What is the Medical Insurance?", desc:"The core definitions and terms every specialist must know cold.",
     bullets:["What medical insurance actually is","The Pre-Auth Department's real role","Self-pay alternatives & who can work in pre-auth","CHI, NPHIES, RCM & key Saudi terms"],
     duration:"37:05", videoUrl:"https://www.youtube.com/watch?v=vJzWV6U3uQw", quiz: [...SECTIONS[0].questions, ...SECTIONS[1].questions] },
-  { id:"v1", title:"General Overview", desc:"See how patients, providers, insurers, and regulators all connect in one claim.",
+  { num:2, id:"v1", title:"General Overview", desc:"See how patients, providers, insurers, and regulators all connect in one claim.",
     bullets:["Patient, provider & payer roles","Claim assignment & review cycles","CHI regulatory oversight","Employer eligibility checks"],
     duration:"10:47", videoUrl:"https://www.youtube.com/watch?v=EqYoSJYB5BA", isFree:true, quiz: VIDEO1_QUIZ.questions },
-  { id:"v3", title:"Health Questionnaire", desc:"Disclosure rules, investigation standards, and what genuinely requires declaration.",
+  { num:3, id:"v3", title:"Health Questionnaire", desc:"Disclosure rules, investigation standards, and what genuinely requires declaration.",
     bullets:["What the HQ actually covers","Investigating inconsistent history","Who's exempt from the HQ","Maternity timing edge cases"],
     duration:"26:18", videoUrl:"https://www.youtube.com/watch?v=rD0k2ZC9BTI", quiz: SECTIONS[2].questions },
-  { id:"v4", title:"CHI Exclusion Items", desc:"What's excluded, and the difference between reject and refer.",
+  { num:4, id:"v4", title:"CHI Exclusion Items", desc:"What's excluded, and the difference between reject and refer.",
     bullets:["Natural disaster exclusions","Life-threatening congenital exceptions","Sports & hazardous activities","Third-party liability coordination"],
     duration:"39:22", videoUrl:"https://www.youtube.com/watch?v=vFySLKXal9M", quiz: SECTIONS[3].questions },
   /* v5 and v6 (CHI Inclusion Items & Coverage, Special Terms & Conditions) are
      pending final videos — re-add once the new links/durations are provided.
-  { id:"v5", title:"CHI Inclusion Items & Coverage", desc:"What's actually covered — maternity, chronic conditions, and organ transplants.",
+  { num:5, id:"v5", title:"CHI Inclusion Items & Coverage", desc:"What's actually covered — maternity, chronic conditions, and organ transplants.",
     bullets:["Maternity marital-status rules","First ANC investigations","Chronic condition coverage limits","Companion & escort benefits"],
     duration:"31:03", videoUrl:"https://www.youtube.com/watch?v=OdiFPvw4NAs", quiz: SECTIONS[4].questions },
-  { id:"v6", title:"Special Terms & Conditions", desc:"Ex gratia, second opinions, and the professional judgment behind every decision.",
+  { num:6, id:"v6", title:"Special Terms & Conditions", desc:"Ex gratia, second opinions, and the professional judgment behind every decision.",
     bullets:["Ex gratia approvals","Global policy limits","When to request a second opinion","The Visit Visa product"],
     duration:"30:49", videoUrl:"https://www.youtube.com/watch?v=e_vxQGzU_HY", quiz: SECTIONS[5].questions },
   */
@@ -920,13 +920,13 @@ const VIDEO_SESSIONS = [
 const PRACTICE_INTRO_VIDEO = "https://www.youtube.com/watch?v=W8nvCrAY4q0";
 
 const CAPSTONE_SESSIONS = [
-  { id:"practice", title:"Let's Practice Before the Exam", desc:"Apply your knowledge with real-life scenarios and make the right decisions.",
+  { num:7, id:"practice", title:"Let's Practice Before the Exam", desc:"Apply your knowledge with real-life scenarios and make the right decisions.",
     bullets:["Case-based scenarios","Decision-making practice","Instant feedback & explanations","Build confidence through practice"],
     duration:"23:53", type:"practice" },
-  { id:"exam", title:"Exam", desc:"Test your knowledge across 15 real cases and earn your certificate.",
+  { num:8, id:"exam", title:"Exam", desc:"Test your knowledge across 15 real cases and earn your certificate.",
     bullets:["15 realistic pre-auth cases","Denial code accuracy required","Instant results","Pass with more than 7 / 15"],
     duration:"30–45 min", type:"exam" },
-  { id:"certificate", title:"Certificate", desc:"Get certified and showcase your expertise with confidence.",
+  { num:9, id:"certificate", title:"Certificate", desc:"Get certified and showcase your expertise with confidence.",
     bullets:["Certificate of completion","Personalized with your name","Printable & shareable","Boost your career"],
     duration:"2 min", type:"certificate" }
 ];
@@ -1011,7 +1011,7 @@ function renderLanding(){
     if(done && s.type !== "certificate") doneCount++;
 
     const icon = s.type === "video" ? ICON_VIDEO : s.type === "practice" ? ICON_PRACTICE : s.type === "exam" ? ICON_EXAM : ICON_CERT;
-    const num = idx + 1;
+    const num = s.num || (idx + 1);
 
     let badgeClass = "s-badge";
     let badgeContent = num;
