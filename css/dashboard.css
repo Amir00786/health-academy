@@ -372,11 +372,32 @@ html.is-loading body {
   border-color: #00C896;
 }
 
+.dash-course-card-soon {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.dash-course-card-soon:hover {
+  border-color: rgba(6, 6, 8, 0.08);
+}
+
 .dash-course-title {
   font-size: 1rem;
   font-weight: 700;
   color: #060608;
   margin-bottom: 0.3rem;
+}
+
+.dash-course-price {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #00875A;
+  background: rgba(0, 200, 150, 0.12);
+  border: 1px solid rgba(0, 200, 150, 0.3);
+  border-radius: 999px;
+  padding: 0.1rem 0.5rem;
+  margin-left: 0.35rem;
+  white-space: nowrap;
 }
 
 .dash-course-meta {

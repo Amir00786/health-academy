@@ -11,6 +11,7 @@ window.I18N_PAGE_DICT = {
       'dash.viewAnatomy': { en: 'Practice →', ar: '← تدرّب' },
       'dash.recTitle': { en: 'What to learn next — recommended for you', ar: 'ماذا تتعلم بعد ذلك — موصى به لك' },
       'dash.recSoon': { en: '(Coming soon: personalized AI recommendations — showing your in-progress courses for now)', ar: '(قريبًا: توصيات مخصصة بالذكاء الاصطناعي — يتم حاليًا عرض دوراتك الجارية)' },
+      'dash.comingSoon': { en: 'Coming soon', ar: 'قريبًا' },
       'dash.radiologyName': { en: 'Radiology', ar: 'الأشعة' },
       'dash.insuranceName': { en: 'Pre-Auth Specialist', ar: 'أخصائي التصريح المسبق' },
       'dash.continueLesson': { en: 'lessons complete', ar: 'دروس مكتملة' },
@@ -128,28 +129,33 @@ window.I18N_PAGE_DICT = {
     const activeCourses = (rad.inProgress ? 1 : 0) + (ins.inProgress ? 1 : 0);
     const lessonsDone = rad.done + ins.done;
     const certs = (rad.complete ? 1 : 0) + (ins.complete ? 1 : 0);
-    const anatomyTotal = getAnatomyTotal();
-    const tier = tierFor(anatomyTotal);
 
     document.getElementById('dashActiveCourses').textContent = activeCourses;
     document.getElementById('dashLessonsDone').textContent = lessonsDone;
     document.getElementById('dashCerts').textContent = certs;
-    document.getElementById('dashAnatomyTier').textContent = lang() === 'ar' ? tier.ar : tier.name;
+    document.getElementById('dashAnatomyTier').textContent = t('dash.comingSoon', 'Coming soon');
   }
 
-  function courseCard(nameKey, href, stats) {
+  function courseCard(nameKey, href, stats, opts) {
+    opts = opts || {};
     const dict = (window.I18N && window.I18N.dict) ? window.I18N.dict() : {};
     const t = (key, fallback) => (dict[key] ? dict[key][lang()] || dict[key].en : fallback);
     const pct = stats.total ? Math.round((stats.done / stats.total) * 100) : 0;
-    const meta = stats.done > 0
-      ? `${stats.done}/${stats.total} ${t('dash.continueLesson', 'lessons complete')}`
-      : t('dash.startCourse', 'Not started yet — click to begin');
+    const meta = opts.comingSoon
+      ? t('dash.comingSoon', 'Coming soon')
+      : stats.done > 0
+        ? `${stats.done}/${stats.total} ${t('dash.continueLesson', 'lessons complete')}`
+        : t('dash.startCourse', 'Not started yet — click to begin');
+    const title = t(nameKey, nameKey) + (opts.priceTag ? ` <span class="dash-course-price">${opts.priceTag}</span>` : '');
+    const tag = opts.comingSoon ? 'div' : 'a';
+    const hrefAttr = opts.comingSoon ? '' : ` href="${href}"`;
+    const classAttr = 'dash-course-card' + (opts.comingSoon ? ' dash-course-card-soon' : '');
     return `
-      <a class="dash-course-card" href="${href}">
-        <div class="dash-course-title">${t(nameKey, nameKey)}</div>
+      <${tag} class="${classAttr}"${hrefAttr}>
+        <div class="dash-course-title">${title}</div>
         <div class="dash-course-meta">${meta}</div>
         <div class="dash-progress-track"><div class="dash-progress-fill" style="width:${pct}%"></div></div>
-      </a>
+      </${tag}>
     `;
   }
 
@@ -157,8 +163,8 @@ window.I18N_PAGE_DICT = {
     const rad = radiologyStats();
     const ins = insuranceStats();
     document.getElementById('dashCourseGrid').innerHTML =
-      courseCard('dash.radiologyName', 'radiology-dept.html', rad) +
-      courseCard('dash.insuranceName', 'insurance-dept.html', ins);
+      courseCard('dash.radiologyName', 'radiology-dept.html', rad, { comingSoon: true }) +
+      courseCard('dash.insuranceName', 'insurance-dept.html', ins, { priceTag: '(Free + $100)' });
   }
 
   function initials(fullName) {
@@ -168,7 +174,6 @@ window.I18N_PAGE_DICT = {
   }
 
   const FAVORITE_COURSES = [
-    { id: 'radiology', key: 'course.radiology', icon: 'fi-sr-x-ray' },
     { id: 'preauth', key: 'course.preauth', icon: 'fi-sr-shield-check' },
   ];
 
