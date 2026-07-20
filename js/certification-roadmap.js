@@ -2,7 +2,7 @@ window.I18N_PAGE_DICT = {
       'rm.back': { en: 'Back to home', ar: 'العودة إلى الرئيسية' },
       'rm.eyebrow': { en: 'Certification Roadmap', ar: 'خارطة طريق الشهادة' },
       'rm.title': { en: 'Your road to Board Certified.', ar: 'طريقك نحو الاعتماد المهني.' },
-      'rm.sub': { en: 'The Egyptian Board is open now — track your progress station by station. Other boards are shown for reference and marked coming soon.', ar: 'البورد المصري متاح الآن — تتبع تقدمك محطة بمحطة. البورودات الأخرى معروضة للمرجعية ومُعلَّمة قريبًا.' },
+      'rm.sub': { en: 'Track your progress station by station. The Egyptian Board is coming soon.', ar: 'تتبع تقدمك محطة بمحطة. البورد المصري قريبًا.' },
       'rm.disclaimer': { en: "This roadmap reflects each college's publicly published requirements as a general reference. Exam formats, sitting dates, and eligibility rules change — always confirm current specifics with the official board before making decisions.", ar: 'تعكس خارطة الطريق هذه المتطلبات المنشورة علنًا لكل كلية كمرجع عام. تتغير صيغ الامتحانات ومواعيدها وشروط الأهلية — تأكد دائمًا من التفاصيل الحالية مع البورد الرسمي قبل اتخاذ القرار.' },
       'rm.askMentor': { en: 'Need help with this station? Email our team →', ar: 'تحتاج مساعدة في هذه المحطة؟ راسل فريقنا ←' },
       'rm.you': { en: 'YOU ARE HERE', ar: 'أنت هنا' },
@@ -23,8 +23,8 @@ window.I18N_PAGE_DICT = {
 // CERTIFICATION ROADMAP — board-by-board certification journey tracker.
 // Scoped down from the original design: no admin review queue — stations are
 // self-tracked ("mark complete" once you've prepared what's needed), not
-// verified by anyone. Only the Egyptian Board is interactive; the rest are
-// shown for reference and marked "Coming soon", matching the source design.
+// verified by anyone. All boards are interactive except the Egyptian Board,
+// which is shown for reference and marked "Coming soon" for now.
 (function () {
   function lang() {
     return (window.I18N && window.I18N.currentLang) ? window.I18N.currentLang() : 'en';
@@ -36,7 +36,7 @@ window.I18N_PAGE_DICT = {
 
   const BOARDS = {
     usa: {
-      active: false, name: 'American Board (ABR)', country: 'United States',
+      active: true, name: 'American Board (ABR)', country: 'United States',
       note: 'Diagnostic Radiology pathway, standard ACGME residency route.',
       stations: [
         { title: 'Clinical Internship', sub: '1 year', musts: ['Complete PGY-1 in an ACGME- or RCPSC-accredited program', 'Hold a valid training medical license'] },
@@ -48,7 +48,7 @@ window.I18N_PAGE_DICT = {
       ]
     },
     uk: {
-      active: false, name: 'UK Board (Royal Colleges)', country: 'United Kingdom',
+      active: true, name: 'UK Board (Royal Colleges)', country: 'United Kingdom',
       note: "General UK specialty training structure — worked example uses Radiology's FRCR.",
       stations: [
         { title: 'Foundation Programme', sub: '2 years', musts: ['Full GMC registration', 'IELTS/OET English requirement for IMGs'] },
@@ -60,7 +60,7 @@ window.I18N_PAGE_DICT = {
       ]
     },
     ireland: {
-      active: false, name: 'Ireland Board (FFR RCSI)', country: 'Ireland',
+      active: true, name: 'Ireland Board (FFR RCSI)', country: 'Ireland',
       note: 'Fellowship of the Faculty of Radiologists, Royal College of Surgeons in Ireland.',
       stations: [
         { title: 'Pre-Training Experience', sub: '≥2 years post-registration', musts: ['1 year internship + 1 year clinical experience'] },
@@ -72,7 +72,7 @@ window.I18N_PAGE_DICT = {
       ]
     },
     australia: {
-      active: false, name: 'Australian / NZ Board (RANZCR)', country: 'Australia & New Zealand',
+      active: true, name: 'Australian / NZ Board (RANZCR)', country: 'Australia & New Zealand',
       note: 'Fellowship of RANZCR (FRANZCR), three-phase Clinical Radiology Training Program.',
       stations: [
         { title: 'Prevocational Years', sub: 'Internship + PGY', musts: ['AHPRA or Medical Council of NZ registration'] },
@@ -83,7 +83,7 @@ window.I18N_PAGE_DICT = {
       ]
     },
     saudi: {
-      active: false, name: 'Saudi Board (SCFHS)', country: 'Saudi Arabia',
+      active: true, name: 'Saudi Board (SCFHS)', country: 'Saudi Arabia',
       note: 'Saudi Commission for Health Specialties, Diagnostic Radiology residency.',
       stations: [
         { title: 'Rotating Internship', sub: '12 months', musts: ['Complete internship post-MBBS or equivalent'] },
@@ -94,7 +94,7 @@ window.I18N_PAGE_DICT = {
       ]
     },
     egypt: {
-      active: true, name: 'Egyptian Board', country: 'Egypt',
+      active: false, name: 'Egyptian Board', country: 'Egypt',
       note: 'Egyptian Fellowship (egyfellow.com), under the Ministry of Health & Population.',
       exemption: {
         label: 'rm.exemptionLabel',
@@ -133,7 +133,7 @@ window.I18N_PAGE_DICT = {
       ]
     },
     sudan: {
-      active: false, name: 'Sudanese Board (SMSB)', country: 'Sudan',
+      active: true, name: 'Sudanese Board (SMSB)', country: 'Sudan',
       note: 'Sudan Medical Specialization Board, Diagnostic Radiology residency.',
       stations: [
         { title: 'Selection Exam', sub: 'Entry to the program', musts: ['Pass the SMSB radiology selection exam'] },
@@ -143,7 +143,7 @@ window.I18N_PAGE_DICT = {
       ]
     },
     arab: {
-      active: false, name: 'Arab Board', country: 'Pan-Arab (League of Arab States)',
+      active: true, name: 'Arab Board', country: 'Pan-Arab (League of Arab States)',
       note: 'Arab Board of Radiology & Medical Imaging, under the ABHS.',
       stations: [
         { title: 'Residency Training', sub: '4 years minimum', musts: ['Full-time training at an approved Arab Board center', '≥80% attendance at academic activities'] },
@@ -154,7 +154,7 @@ window.I18N_PAGE_DICT = {
     }
   };
 
-  let currentBoard = 'egypt';
+  let currentBoard = 'usa';
   let activeStationIdx = null;
 
   function progressKey(boardId) { return 'ih-roadmap-progress:' + boardId; }
@@ -206,7 +206,7 @@ window.I18N_PAGE_DICT = {
       const pill = document.createElement('button');
       const isActive = !!b.active;
       pill.type = 'button';
-      pill.className = 'rm-board-pill' + (key === currentBoard ? ' active' : '') + (!isActive ? ' soon' : '');
+      pill.className = 'rm-board-pill' + (key === currentBoard && isActive ? ' active' : '') + (!isActive ? ' soon' : '');
       pill.innerHTML = b.name + (!isActive ? ' <span class="rm-soon-tag">Soon</span>' : '');
       if (isActive) {
         pill.addEventListener('click', () => { currentBoard = key; renderAll(); });
