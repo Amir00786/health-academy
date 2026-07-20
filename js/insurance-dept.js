@@ -970,11 +970,6 @@ async function loadAllProgress(){
 }
 
 function isSessionUnlocked(idx){
-  if(idx === 0) return true;
-  const prev = ALL_SESSIONS[idx-1];
-  if(prev.type === "video") return !!progress.completedVideos[prev.id];
-  if(prev.type === "practice") return progress.practiceDone;
-  if(prev.type === "exam") return progress.examPassed;
   return true;
 }
 function isSessionDone(session){
