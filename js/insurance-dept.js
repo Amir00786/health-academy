@@ -1872,13 +1872,14 @@ async function loadAllProgress(){
   } catch(e){ /* fresh start */ }
 }
 
-// Videos stay clickable regardless of membership — the free preview / 5-min cap is
-// enforced inside the player itself (see openVideoSession). Practice, Exam, and the
-// Certificate require an active membership to START, but once reached they stay
-// permanently accessible even if membership later lapses — an earned result/certificate
-// shouldn't disappear just because the subscription expired.
+// Only the one isFree video is open to everyone (so a visitor can see the quality of
+// the material before paying). Every other video, Practice, Exam, and the Certificate
+// require an active membership to START — but once reached, each stays permanently
+// accessible even if membership later lapses (an already-watched video or an earned
+// result/certificate shouldn't disappear just because the subscription expired).
 function isSessionUnlocked(idx){
   const s = ALL_SESSIONS[idx];
+  if(s.type === "video") return !!s.isFree || isMembershipActive() || !!progress.completedVideos[s.id];
   if(s.type === "practice") return isMembershipActive() || progress.practiceDone;
   if(s.type === "exam") return isMembershipActive() || progress.examPassed;
   // Keyed off examPassed (not certConfirmed) so passing the exam permanently unlocks
@@ -1950,7 +1951,7 @@ function renderLanding(){
         <ul class="s-bullets">${bullets.map(b=>`<li>${b}</li>`).join("")}</ul>
       </div>
       <div class="s-right">
-        <div class="s-duration">🕐 ${s.duration}${s.isFree ? ` <span class="free-tag">${T('ins.freePreviewTag')}</span>` : (s.type === "video" && !isMembershipActive() ? ` <span class="premium-tag">🔒 ${T('ins.premiumTag')}</span>` : '')}</div>
+        <div class="s-duration">🕐 ${s.duration}${s.isFree ? ` <span class="free-tag">${T('ins.freePreviewTag')}</span>` : (s.type === "video" && !unlocked ? ` <span class="premium-tag">🔒 ${T('ins.premiumTag')}</span>` : '')}</div>
         ${statusHtml}
       </div>
     `;
