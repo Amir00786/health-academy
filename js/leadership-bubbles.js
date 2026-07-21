@@ -1,20 +1,37 @@
-const CEO = { abbr:"MA", role:"Founder & CEO", name:"Dr. Musab M. Ahmed" };
+window.I18N_PAGE_DICT = {
+  'lb.back': { en: '← Back to iHealth Academy', ar: '← العودة إلى أكاديمية آي هيلث' },
+  'lb.eyebrow': { en: 'EXECUTIVE LEADERSHIP', ar: 'القيادة التنفيذية' },
+  'lb.title': { en: 'iHealth Academy', ar: 'أكاديمية آي هيلث' },
+  'lb.subtitle': { en: "Not who's already on the team — who earns a seat, and when. Size and light mark how soon each role becomes real.", ar: 'ليس من هم في الفريق حاليًا — بل من يستحق مقعدًا، ومتى. الحجم والإضاءة يوضحان متى يصبح كل دور حقيقيًا.' },
+  'lb.legendMustNow': { en: '<b>Must Now</b> — the founding team', ar: '<b>ضروري الآن</b> — الفريق المؤسس' },
+  'lb.legendGrowth': { en: '<b>Growth Phase</b> — after the first paying cohort', ar: '<b>مرحلة النمو</b> — بعد أول دفعة من المشتركين المدفوعين' },
+  'lb.legendFuture': { en: '<b>Future Vision</b> — once team and revenue justify it', ar: '<b>رؤية المستقبل</b> — عندما يبرر حجم الفريق والإيرادات ذلك' },
+  'lb.hint': { en: 'Tap any leader to see them at founder scale. Tap the founder to step back.', ar: 'انقر على أي قائد لرؤيته بحجم المؤسس. انقر على المؤسس للتراجع.' },
+};
+
+// Names stay in Latin script (matches founder.html); roles/departments get an
+// Arabic variant picked at render-time via window.I18N.currentLang().
+const CEO = { abbr:"MA", role:"Founder & CEO", roleAr:"المؤسس والرئيس التنفيذي", name:"Dr. Musab M. Ahmed" };
 
 const TIER1 = [
-  { abbr:"OPS", dept:"Success Lead" },
-  { abbr:"MED ED", dept:"Academic Dean" }
+  { abbr:"OPS", dept:"Success Lead", deptAr:"قائد النجاح" },
+  { abbr:"MED ED", dept:"Academic Dean", deptAr:"العميد الأكاديمي" }
 ];
 const TIER2 = [
-  { abbr:"FIN", dept:"Finance Lead" },
-  { abbr:"TECH", dept:"Technology Lead" },
-  { abbr:"PARTNER", dept:"Partnerships Lead" }
+  { abbr:"FIN", dept:"Finance Lead", deptAr:"قائد الشؤون المالية" },
+  { abbr:"TECH", dept:"Technology Lead", deptAr:"قائد التقنية" },
+  { abbr:"PARTNER", dept:"Partnerships Lead", deptAr:"قائد الشراكات" }
 ];
 const TIER3 = [
-  { abbr:"CHRO", dept:"Human Resources" },
-  { abbr:"CAIO", dept:"Artificial Intelligence" },
-  { abbr:"CRO", dept:"Research" },
-  { abbr:"CINO", dept:"Innovation" }
+  { abbr:"CHRO", dept:"Human Resources", deptAr:"الموارد البشرية" },
+  { abbr:"CAIO", dept:"Artificial Intelligence", deptAr:"الذكاء الاصطناعي" },
+  { abbr:"CRO", dept:"Research", deptAr:"البحث العلمي" },
+  { abbr:"CINO", dept:"Innovation", deptAr:"الابتكار" }
 ];
+
+function isArabic(){
+  return !!(window.I18N && window.I18N.currentLang && window.I18N.currentLang() === 'ar');
+}
 
 const PALETTE = {
   ceo:   { light:"#FFFFFF", mid:"#EAF2FF", dark:"#B9CEF2", ring:"#3B7BF6" },
@@ -93,6 +110,7 @@ function orbMarkup(idx, x, y, r, gradId, ringColor, abbrText, abbrSize, strokeEx
 }
 
 function build(){
+  const ar = isArabic();
   const rand = makeRand(7);
   const rCeo = 78, r1 = 60, r2 = 47, r3 = 39;
 
@@ -118,7 +136,7 @@ function build(){
   radiusByIdx[0] = rCeo;
   els.push(ceoOrbMarkup(rCeo, "images/founder-ceo-formal.png", PALETTE.ceo.ring, 0));
   els.push(`
-    <text x="0" y="${rCeo*0.58}" class="ceo-role" style="font-size:11px;">${CEO.role}</text>
+    <text x="0" y="${rCeo*0.58}" class="ceo-role" style="font-size:11px;">${ar ? CEO.roleAr : CEO.role}</text>
     <text x="0" y="${rCeo*0.80}" class="ceo-name" style="font-size:14px;">${CEO.name}</text>
   `);
 
@@ -127,7 +145,8 @@ function build(){
     pts.forEach((p, i)=>{
       radiusByIdx[idx] = p.r;
       els.push(orbMarkup(idx, p.x, p.y, p.r, gradId, ring, nodes[i].abbr, abbrSize, "", delayBase + i*0.5));
-      els.push(`<text x="${p.x}" y="${p.y+p.r+22}" class="dept" style="font-size:${deptSize}px; fill:${deptColor};">${nodes[i].dept}</text>`);
+      const deptLabel = ar ? nodes[i].deptAr : nodes[i].dept;
+      els.push(`<text x="${p.x}" y="${p.y+p.r+22}" class="dept" style="font-size:${deptSize}px; fill:${deptColor};">${deptLabel}</text>`);
       idx++;
     });
   }
@@ -182,3 +201,8 @@ function wireInteraction(radiusByIdx, rCeo, rSuccess){
 }
 
 build();
+
+// Re-render the SVG (labels are baked into markup, not tagged with data-i18n)
+// whenever the language toggle fires, so tier/role labels flip with the rest
+// of the page. This also re-wires click handlers and resets the elevated orb.
+document.addEventListener('ih:langchange', build);

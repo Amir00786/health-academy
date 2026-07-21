@@ -18,6 +18,9 @@ window.I18N_PAGE_DICT = {
       'dash.startCourse': { en: 'Not started yet — click to begin', ar: 'لم يبدأ بعد — انقر للبدء' },
       'dash.favTitle': { en: 'Favorite course', ar: 'الدورة المفضلة' },
       'dash.mentorTitle': { en: 'Select your mentor', ar: 'اختر مرشدك' },
+      'dash.guestStudent': { en: 'Guest Student', ar: 'طالب زائر' },
+      'dash.pricingFreePlusPro': { en: '(Free + $100)', ar: '(مجاني + 100$)' },
+      'mentor.trackBoth': { en: 'Both', ar: 'كلاهما' },
       'mentor.demoTitle': { en: 'This runs locally, in this browser.', ar: 'يعمل هذا محليًا، في هذا المتصفح فقط.' },
       'mentor.demoDescStudent': { en: 'Mentors listed here were added on this same browser (via the Owner Console or the Mentor Dashboard) — real cross-device matching needs a backend.', ar: 'المرشدون المدرجون هنا تمت إضافتهم على نفس هذا المتصفح (عبر لوحة تحكم المالك أو لوحة تحكم المرشد) — التوافق الحقيقي عبر الأجهزة يحتاج إلى خادم خلفي.' },
       'mentor.noMentors': { en: 'No mentors available yet — approve one in the Owner Console, or set up a mentor profile via Sign up → As Mentor, to see it appear here.', ar: 'لا يوجد مرشدون متاحون بعد — وافق على أحدهم في لوحة تحكم المالك، أو أنشئ ملف مرشد عبر إنشاء حساب ← كمرشد، ليظهر هنا.' },
@@ -99,7 +102,7 @@ window.I18N_PAGE_DICT = {
   }
 
   function renderProfile() {
-    const name = localStorage.getItem('ih-student-name') || 'Guest Student';
+    const name = localStorage.getItem('ih-student-name') || t('dash.guestStudent', 'Guest Student');
     const specialty = localStorage.getItem('ih-student-specialty') || (lang() === 'ar' ? 'غير محدد' : 'Not set');
     document.getElementById('dashNameVal').textContent = name;
     document.getElementById('dashSpecialtyVal').textContent = specialty;
@@ -164,7 +167,7 @@ window.I18N_PAGE_DICT = {
     const ins = insuranceStats();
     document.getElementById('dashCourseGrid').innerHTML =
       courseCard('dash.radiologyName', 'radiology-dept.html', rad, { comingSoon: true }) +
-      courseCard('dash.insuranceName', 'insurance-dept.html', ins, { priceTag: '(Free + $100)' });
+      courseCard('dash.insuranceName', 'insurance-dept.html', ins, { priceTag: t('dash.pricingFreePlusPro', '(Free + $100)') });
   }
 
   function initials(fullName) {

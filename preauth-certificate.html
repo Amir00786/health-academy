@@ -87,47 +87,47 @@
 
 <div class="cert-topbar">
   <div class="wrap">
-    <b>iHealth Academy</b><span>Pre-Authorization Specialist &middot; Certificate Issuance</span>
+    <b>iHealth Academy</b><span data-i18n="pcert.topbarTag">Pre-Authorization Specialist &middot; Certificate Issuance</span>
   </div>
 </div>
 
 <!-- ================= STEP 1: NAME ENTRY ================= -->
 <div id="nameStage" class="stage">
-  <div class="eyebrow">PRE-AUTHORIZATION SPECIALIST</div>
-  <h2>Your certificate is ready.</h2>
-  <p class="lead">Enter your full name exactly as you want it to appear, and the date you took the exam. This can only be entered once, so please check both carefully before confirming.</p>
+  <div class="eyebrow" data-i18n="pcert.eyebrowName">PRE-AUTHORIZATION SPECIALIST</div>
+  <h2 data-i18n="pcert.nameH2">Your certificate is ready.</h2>
+  <p class="lead" data-i18n="pcert.nameLead">Enter your full name exactly as you want it to appear, and the date you took the exam. This can only be entered once, so please check both carefully before confirming.</p>
   <div class="name-field">
-    <input type="text" id="nameInput" placeholder="e.g. Sara Al-Mutairi" autocomplete="off">
+    <input type="text" id="nameInput" placeholder="e.g. Sara Al-Mutairi" data-i18n-ph="pcert.namePh" autocomplete="off">
   </div>
   <div class="name-field date-field">
-    <label for="examDateInput">Date you took the exam</label>
+    <label for="examDateInput" data-i18n="pcert.dateLabel">Date you took the exam</label>
     <input type="date" id="examDateInput">
   </div>
-  <p class="warn-note"><b>This cannot be edited later</b> — once confirmed, your name and exam date are permanently set on your certificate record.</p>
-  <button class="btn btn-primary" id="reviewNameBtn" style="margin-top:16px;">Review before confirming →</button>
+  <p class="warn-note" data-i18n="pcert.warnNote"><b>This cannot be edited later</b> — once confirmed, your name and exam date are permanently set on your certificate record.</p>
+  <button class="btn btn-primary" id="reviewNameBtn" style="margin-top:16px;" data-i18n="pcert.reviewBtn">Review before confirming →</button>
 </div>
 
 <!-- ================= STEP 2: CONFIRM ================= -->
 <div id="confirmStage" class="stage hidden">
-  <div class="eyebrow">FINAL CHECK</div>
-  <h2>Please confirm this is spelled exactly right.</h2>
-  <p class="lead">Your certificate will be generated with this exact name and date and cannot be changed afterward.</p>
+  <div class="eyebrow" data-i18n="pcert.eyebrowConfirm">FINAL CHECK</div>
+  <h2 data-i18n="pcert.confirmH2">Please confirm this is spelled exactly right.</h2>
+  <p class="lead" data-i18n="pcert.confirmLead">Your certificate will be generated with this exact name and date and cannot be changed afterward.</p>
   <div class="confirm-preview">
-    <div class="mlabel-plain">Name on certificate</div>
+    <div class="mlabel-plain" data-i18n="pcert.nameOnCert">Name on certificate</div>
     <div class="cname" id="confirmNamePreview">—</div>
-    <div class="mlabel-plain" style="margin-top:16px;">Exam date</div>
+    <div class="mlabel-plain" style="margin-top:16px;" data-i18n="pcert.examDateLabel2">Exam date</div>
     <div class="cdate" id="confirmDatePreview">—</div>
   </div>
   <div class="confirm-actions">
-    <button class="btn btn-ghost" id="editNameBtn">← Edit</button>
-    <button class="btn btn-primary" id="confirmNameBtn">Yes, this is correct — generate my certificate</button>
+    <button class="btn btn-ghost" id="editNameBtn" data-i18n="pcert.editBtn">← Edit</button>
+    <button class="btn btn-primary" id="confirmNameBtn" data-i18n="pcert.confirmBtn">Yes, this is correct — generate my certificate</button>
   </div>
 </div>
 
 <!-- ================= STEP 3: CERTIFICATE ================= -->
 <div id="certStage" class="hidden">
   <div class="cert-toolbar">
-    <button class="btn btn-primary" id="printBtn">🖨 Print / Save as PDF</button>
+    <button class="btn btn-primary" id="printBtn" data-i18n="pcert.printBtn">🖨 Print / Save as PDF</button>
   </div>
   <div class="cert-frame">
     <div class="cert-corner cc-tl"></div><div class="cert-corner cc-tr"></div>
@@ -138,28 +138,28 @@
         <svg viewBox="0 0 40 40" fill="none"><path d="M20 3 L35 9 V20 C35 29 29 35 20 37 C11 35 5 29 5 20 V9 Z" fill="#0E7C74"/><path d="M13 20 l5 5 l9 -11" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <b>iHealth Academy</b>
       </div>
-      <div class="cert-eyebrow">Certificate of Completion</div>
-      <div class="cert-title">Pre-Authorization Specialist</div>
+      <div class="cert-eyebrow" data-i18n="pcert.certEyebrow">Certificate of Completion</div>
+      <div class="cert-title" data-i18n="pcert.certTitle">Pre-Authorization Specialist</div>
     </div>
 
     <div class="cert-body">
-      <div class="this-certifies">This certifies that</div>
+      <div class="this-certifies" data-i18n="pcert.certifies">This certifies that</div>
       <div class="cert-name" id="certName">—</div>
-      <p class="cert-desc">has successfully completed the full <b>Pre-Authorization Specialist</b> track at iHealth Academy — seven core modules, applied practice, and a comprehensive 15-case practical examination — and is hereby recognized as <b>ready for work</b> in medical pre-authorization.</p>
+      <p class="cert-desc" data-i18n="pcert.certDesc">has successfully completed the full <b>Pre-Authorization Specialist</b> track at iHealth Academy — seven core modules, applied practice, and a comprehensive 15-case practical examination — and is hereby recognized as <b>ready for work</b> in medical pre-authorization.</p>
 
       <div class="cert-meta-row">
-        <div><div class="mlabel">Date of Exam</div><div class="mvalue" id="certExamDate">—</div></div>
-        <div><div class="mlabel">Date Issued</div><div class="mvalue" id="certIssueDate">—</div></div>
+        <div><div class="mlabel" data-i18n="pcert.dateOfExam">Date of Exam</div><div class="mvalue" id="certExamDate">—</div></div>
+        <div><div class="mlabel" data-i18n="pcert.dateIssued">Date Issued</div><div class="mvalue" id="certIssueDate">—</div></div>
       </div>
 
       <div class="cert-sign-row">
         <div class="sign-block">
           <div class="sign-name" id="instructorName">—</div>
-          <div class="sign-line"><div class="sign-role">Course Instructor</div><div class="sign-title">Pre-Authorization Specialist Track</div></div>
+          <div class="sign-line"><div class="sign-role" data-i18n="pcert.instructorRole">Course Instructor</div><div class="sign-title" data-i18n="pcert.instructorTitle">Pre-Authorization Specialist Track</div></div>
         </div>
         <div class="sign-block">
           <div class="sign-name" id="ceoName">—</div>
-          <div class="sign-line"><div class="sign-role">Founder &amp; CEO</div><div class="sign-title">iHealth Academy</div></div>
+          <div class="sign-line"><div class="sign-role" data-i18n="pcert.ceoRole">Founder &amp; CEO</div><div class="sign-title">iHealth Academy</div></div>
         </div>
       </div>
     </div>
@@ -178,8 +178,8 @@
     </div>
 
     <div class="cert-footer">
-      <div class="verify-id">UNIQUE VERIFICATION ID &nbsp; <b id="certSerial">—</b></div>
-      <p class="cert-legal">Any alteration, reproduction, or misuse of this certificate is strictly prohibited. iHealth Academy reserves the right to take legal action.</p>
+      <div class="verify-id"><span data-i18n="pcert.verifyId">UNIQUE VERIFICATION ID</span> &nbsp; <b id="certSerial">—</b></div>
+      <p class="cert-legal" data-i18n="pcert.legal">Any alteration, reproduction, or misuse of this certificate is strictly prohibited. iHealth Academy reserves the right to take legal action.</p>
     </div>
   </div>
 </div>

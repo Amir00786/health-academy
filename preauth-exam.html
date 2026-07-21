@@ -87,7 +87,7 @@
 
 <div class="topbar">
   <div class="wrap">
-    <div class="logo"><span class="mark">iH</span> Pre-Auth Practical Exam</div>
+    <div class="logo"><span class="mark">iH</span> <span data-i18n="pex.topbarTitle">Pre-Auth Practical Exam</span></div>
     <div class="progress-pill" id="progressPill">0 / 15 cases decided</div>
   </div>
 </div>
@@ -95,21 +95,21 @@
 <!-- ================= INTRO ================= -->
 <div id="view-intro">
   <div class="wrap">
-    <div class="eyebrow">PRE-AUTH SPECIALIST · PRACTICAL EXAM</div>
-    <h1>Twenty cases. Fifteen decisions. One certificate.</h1>
-    <p>This simulates a real pre-authorization queue. Review each case's history, health questionnaire, and documents — ask up to two questions if you need more — then decide. Score more than 7 out of 15 and you pass.</p>
+    <div class="eyebrow" data-i18n="pex.eyebrow">PRE-AUTH SPECIALIST · PRACTICAL EXAM</div>
+    <h1 data-i18n="pex.h1">Twenty cases. Fifteen decisions. One certificate.</h1>
+    <p data-i18n="pex.introP">This simulates a real pre-authorization queue. Review each case's history, health questionnaire, and documents — ask up to two questions if you need more — then decide. Score more than 7 out of 15 and you pass.</p>
     <div class="rules">
-      <li><b>The dashboard</b> shows a full queue like a real hospital line — cases are color-coded by how long they've been waiting.</li>
-      <li><b>Fifteen cases are real</b> and count toward your score. A few tiles are marked "not yet checked in" — they're just there for realism.</li>
-      <li><b>Each case</b> gives you a patient summary, insured claims history, HQ status, and three documents — not all of them matter.</li>
-      <li><b>You may ask up to two questions</b> per case for more detail. Choose them wisely.</li>
-      <li><b>Decide</b>: Approve, Partially Approve, Reject, or Refer for Review — the same categories used in real pre-auth software.</li>
-      <li>You'll see your full results — and the correct reasoning for every case — only at the end.</li>
+      <li data-i18n="pex.rule1"><b>The dashboard</b> shows a full queue like a real hospital line — cases are color-coded by how long they've been waiting.</li>
+      <li data-i18n="pex.rule2"><b>Fifteen cases are real</b> and count toward your score. A few tiles are marked "not yet checked in" — they're just there for realism.</li>
+      <li data-i18n="pex.rule3"><b>Each case</b> gives you a patient summary, insured claims history, HQ status, and three documents — not all of them matter.</li>
+      <li data-i18n="pex.rule4"><b>You may ask up to two questions</b> per case for more detail. Choose them wisely.</li>
+      <li data-i18n="pex.rule5"><b>Decide</b>: Approve, Partially Approve, Reject, or Refer for Review — the same categories used in real pre-auth software.</li>
+      <li data-i18n="pex.rule6">You'll see your full results — and the correct reasoning for every case — only at the end.</li>
     </div>
     <div class="name-field">
-      <input type="text" id="studentName" placeholder="Your name, for the certificate">
+      <input type="text" id="studentName" placeholder="Your name, for the certificate" data-i18n-ph="pex.namePlaceholder">
     </div>
-    <button class="btn btn-primary" id="startBtn">Enter the queue →</button>
+    <button class="btn btn-primary" id="startBtn" data-i18n="pex.startBtn">Enter the queue →</button>
   </div>
 </div>
 
@@ -118,13 +118,13 @@
   <div class="wrap">
     <div class="dash-head">
       <div>
-        <h2 style="font-size:20px;">Today's Queue</h2>
-        <p>Click a case to open it. Color reflects waiting time — treat red cases with urgency, same as you would on the floor.</p>
+        <h2 style="font-size:20px;" data-i18n="pex.dashTitle">Today's Queue</h2>
+        <p data-i18n="pex.dashDesc">Click a case to open it. Color reflects waiting time — treat red cases with urgency, same as you would on the floor.</p>
       </div>
       <div class="legend-row">
-        <span><span class="dot" style="background:var(--live);"></span>&lt; 30 min</span>
-        <span><span class="dot" style="background:var(--amber);"></span>30–90 min</span>
-        <span><span class="dot" style="background:var(--danger);"></span>&gt; 90 min</span>
+        <span><span class="dot" style="background:var(--live);"></span><span data-i18n="pex.legend1">&lt; 30 min</span></span>
+        <span><span class="dot" style="background:var(--amber);"></span><span data-i18n="pex.legend2">30–90 min</span></span>
+        <span><span class="dot" style="background:var(--danger);"></span><span data-i18n="pex.legend3">&gt; 90 min</span></span>
       </div>
     </div>
     <div class="case-grid" id="caseGrid"></div>
@@ -134,66 +134,66 @@
 <!-- ================= CASE WORKSPACE ================= -->
 <div id="view-case" class="hidden">
   <div class="wrap">
-    <button class="btn btn-ghost" id="backToDashBtn" style="margin-bottom:14px;">← Back to queue</button>
+    <button class="btn btn-ghost" id="backToDashBtn" style="margin-bottom:14px;" data-i18n="pex.backToQueue">← Back to queue</button>
 
     <div class="case-header">
       <div class="row1">
-        <span>Claim Ref: <b id="cRef">—</b></span>
-        <span>Benefit: <b id="cBenefit">—</b></span>
-        <span>HCP: <b id="cHcp">—</b></span>
+        <span><span data-i18n="pex.claimRefLabel">Claim Ref:</span> <b id="cRef">—</b></span>
+        <span><span data-i18n="pex.benefitLabel">Benefit:</span> <b id="cBenefit">—</b></span>
+        <span><span data-i18n="pex.hcpLabel">HCP:</span> <b id="cHcp">—</b></span>
       </div>
       <div class="patient-name" id="cName">—</div>
       <div class="row2">
-        <span>Age: <b id="cAge">—</b></span>
-        <span>Gender: <b id="cGender">—</b></span>
+        <span><span data-i18n="pex.ageLabel">Age:</span> <b id="cAge">—</b></span>
+        <span><span data-i18n="pex.genderLabel">Gender:</span> <b id="cGender">—</b></span>
       </div>
     </div>
 
     <div class="case-body">
       <div>
         <div class="panel">
-          <h3>📋 Diagnosis &amp; Request</h3>
-          <div class="field-row"><span class="k">Diagnosis</span><span class="v" id="cDx">—</span></div>
+          <h3 data-i18n="pex.panelDiagnosis">📋 Diagnosis &amp; Request</h3>
+          <div class="field-row"><span class="k" data-i18n="pex.fieldDiagnosisLabel">Diagnosis</span><span class="v" id="cDx">—</span></div>
           <p id="cComplaint" class="dim"></p>
-          <div class="field-row" style="margin-top:10px;"><span class="k">Requested</span><span class="v" id="cRequested">—</span></div>
+          <div class="field-row" style="margin-top:10px;"><span class="k" data-i18n="pex.fieldRequestedLabel">Requested</span><span class="v" id="cRequested">—</span></div>
         </div>
 
         <div class="panel">
-          <h3>🩺 Health Questionnaire (HQ)</h3>
+          <h3 data-i18n="pex.panelHQ">🩺 Health Questionnaire (HQ)</h3>
           <div id="cHqBadgeArea"></div>
           <div id="cHqList"></div>
         </div>
 
         <div class="panel">
-          <h3>📎 Documents</h3>
+          <h3 data-i18n="pex.panelDocs">📎 Documents</h3>
           <div id="cDocs"></div>
         </div>
       </div>
 
       <div>
         <div class="panel">
-          <h3>❓ Ask a Question</h3>
+          <h3 data-i18n="pex.panelAsk">❓ Ask a Question</h3>
           <div class="q-counter" id="qCounter">2 questions remaining</div>
           <div id="cQuestions"></div>
         </div>
 
         <div class="panel">
-          <h3>🗂 Insured Claims History</h3>
+          <h3 data-i18n="pex.panelHistory">🗂 Insured Claims History</h3>
           <div id="cHistory"></div>
         </div>
       </div>
     </div>
 
     <div class="decision-bar">
-      <h3 style="margin-bottom:0;">Your Decision</h3>
+      <h3 style="margin-bottom:0;" data-i18n="pex.yourDecision">Your Decision</h3>
       <div class="decision-opts" id="decisionOpts">
-        <button class="dopt" data-d="approve">Approve</button>
-        <button class="dopt" data-d="partial">Partially Approve</button>
-        <button class="dopt" data-d="reject">Reject</button>
-        <button class="dopt" data-d="refer">Refer for Review</button>
+        <button class="dopt" data-d="approve" data-i18n="pex.decApprove">Approve</button>
+        <button class="dopt" data-d="partial" data-i18n="pex.decPartial">Partially Approve</button>
+        <button class="dopt" data-d="reject" data-i18n="pex.decReject">Reject</button>
+        <button class="dopt" data-d="refer" data-i18n="pex.decRefer">Refer for Review</button>
       </div>
       <div class="submit-row">
-        <button class="btn btn-primary" id="submitDecisionBtn">Submit &amp; Next Case</button>
+        <button class="btn btn-primary" id="submitDecisionBtn" data-i18n="pex.submitBtn">Submit &amp; Next Case</button>
       </div>
     </div>
   </div>
@@ -203,10 +203,10 @@
 <div id="view-results" class="hidden">
   <div class="wrap">
     <div id="verdictArea"></div>
-    <h3 style="margin-bottom:14px;">Case-by-case review</h3>
+    <h3 style="margin-bottom:14px;" data-i18n="pex.reviewTitle">Case-by-case review</h3>
     <div id="reviewList"></div>
     <div style="text-align:center; margin-top:24px;">
-      <button class="btn btn-ghost" id="retryBtn">Retry the exam</button>
+      <button class="btn btn-ghost" id="retryBtn" data-i18n="pex.retryBtn">Retry the exam</button>
     </div>
   </div>
 </div>

@@ -1,3 +1,160 @@
+window.I18N_PAGE_DICT = {
+  // Hero
+  'ins.eyebrow': { en: 'INSURANCE DEPARTMENT', ar: 'قسم التأمين' },
+  'ins.heroTitle': { en: 'Pre-Authorization<br><em>Specialist</em>', ar: 'التصريح المسبق<br><em>أخصائي</em>' },
+  'ins.heroSub': { en: 'Your journey from first concept to certified specialist.', ar: 'رحلتك من الفكرة الأولى إلى أن تصبح أخصائيًا معتمدًا.' },
+  'ins.mcApproved': { en: 'APPROVED', ar: 'مقبول' },
+  'ins.mcRejected': { en: 'REJECTED', ar: 'مرفوض' },
+  'ins.mcPartial': { en: 'PARTIAL APPROVED', ar: 'قبول جزئي' },
+  'ins.panelTitle': { en: 'MASTER THE BACK-END', ar: 'احترف العمل الداخلي' },
+  'ins.panelDesc': { en: 'of Medical Pre-Authorization, from start to finish.', ar: 'للتصريح المسبق الطبي، من البداية إلى النهاية.' },
+
+  // Trust strip
+  'ins.trust1': { en: '<b>Practical & Actionable</b><span>Real-world scenarios and examples.</span>', ar: '<b>عملي وقابل للتطبيق</b><span>سيناريوهات وأمثلة من واقع العمل.</span>' },
+  'ins.trust2': { en: '<b>Expert Designed</b><span>Built from real healthcare & insurance practice.</span>', ar: '<b>مصمم بخبرة متخصصين</b><span>مبني على ممارسة فعلية في الرعاية الصحية والتأمين.</span>' },
+  'ins.trust3': { en: '<b>Career Boosting</b><span>Skills employers are looking for.</span>', ar: '<b>يعزز مسارك المهني</b><span>مهارات يبحث عنها أصحاب العمل.</span>' },
+  'ins.trust4': { en: '<b>Certificate of Completion</b><span>Showcase your expertise with confidence.</span>', ar: '<b>شهادة إتمام</b><span>أظهر خبرتك بثقة.</span>' },
+  'ins.trust5': { en: '<b>Secure & Trusted</b><span>Your learning and data are always protected.</span>', ar: '<b>آمن وموثوق</b><span>تعلمك وبياناتك محميان دائمًا.</span>' },
+
+  // Foot banner
+  'ins.footMsg': { en: 'Learn the process. Master the rules. Make the right decisions.<br><b>Become a Pre-Authorization Specialist.</b>', ar: 'تعلّم آلية العمل. أتقن القواعد. اتخذ القرار الصحيح.<br><b>كن أخصائي تصريح مسبق.</b>' },
+  'ins.brandSlogan': { en: 'Learn · Apply · Lead', ar: 'تعلّم · طبّق · قُد' },
+  'ins.footImpact': { en: 'Better Decisions<br>Better Care<br>Better Impact', ar: 'قرارات أفضل<br>رعاية أفضل<br>أثر أفضل' },
+
+  // Video view
+  'ins.backToCourse': { en: '← Back to course', ar: '← العودة إلى الدورة' },
+  'ins.backToQueue': { en: '← Back to queue', ar: '← العودة إلى القائمة' },
+  'ins.paywallTitle': { en: 'Your free preview has ended', ar: 'انتهت معاينتك المجانية' },
+  'ins.paywallDesc': { en: "You've watched the first 5 minutes free. Unlock the rest of this video — and the full Pre-Authorization Specialist track — to continue.", ar: 'لقد شاهدت أول 5 دقائق مجانًا. لإكمال هذا الفيديو — ومسار أخصائي التصريح المسبق الكامل — يرجى إلغاء القفل.' },
+  'ins.unlockBtn': { en: 'Unlock full access →', ar: 'فتح الوصول الكامل ←' },
+  'ins.paywallNote': { en: 'Demo only — no real payment is processed here.', ar: 'هذا للعرض التجريبي فقط — لا تتم معالجة أي دفعة حقيقية هنا.' },
+  'ins.watchedBtn': { en: "I've finished watching this video →", ar: 'لقد أنهيت مشاهدة هذا الفيديو ←' },
+  'ins.downloadBtn': { en: '⬇ Download this video', ar: '⬇ تحميل هذا الفيديو' },
+  'ins.videoMissingNote': { en: 'No video file uploaded yet for this session — link it in the VIDEO_SESSIONS config to make it real.', ar: 'لم يتم رفع ملف الفيديو لهذه الجلسة بعد — يرجى ربطه في إعدادات VIDEO_SESSIONS لتفعيله.' },
+  'ins.postVideoQuiz': { en: 'Post-video quiz', ar: 'اختبار ما بعد الفيديو' },
+  'ins.quizCompleteMsg': { en: '✓ Quiz complete — this session is marked done.', ar: '✓ اكتمل الاختبار — تم وضع علامة إنجاز لهذه الجلسة.' },
+  'ins.continueBtn': { en: 'Continue →', ar: 'التالي ←' },
+
+  // Practice view
+  'ins.step08': { en: 'STEP 08', ar: 'الخطوة 08' },
+  'ins.letsPractice': { en: "Let's Practice", ar: 'لنبدأ التطبيق' },
+  'ins.practiceNote': { en: 'Two sample cases, ungraded — just to get comfortable with the format before the real exam. Nothing here affects your certificate.', ar: 'حالتان تجريبيتان غير مُقيَّمتين — فقط للتعرّف على شكل الاختبار قبل الامتحان الحقيقي. لا شيء هنا يؤثر على شهادتك.' },
+  'ins.readyForExamBtn': { en: "I'm ready — go to the exam →", ar: 'أنا جاهز — الذهاب إلى الامتحان ←' },
+  'ins.practiceCasePrefix': { en: 'Practice Case', ar: 'حالة تدريبية' },
+  'ins.patientLabel': { en: 'Patient', ar: 'المريض' },
+  'ins.newborn': { en: 'newborn', ar: 'حديث الولادة' },
+  'ins.correctDecisionWas': { en: 'The correct decision was:', ar: 'القرار الصحيح كان:' },
+
+  // Exam view
+  'ins.examTopbarTitle': { en: 'PRE-AUTH PRACTICAL EXAM', ar: 'الامتحان العملي للتصريح المسبق' },
+  'ins.examScoreNote': { en: 'Score more than 7 out of 15 to pass and unlock your certificate.', ar: 'احصل على أكثر من 7 من 15 للنجاح وفتح شهادتك.' },
+  'ins.legendFast': { en: '&lt; 30 min', ar: 'أقل من 30 دقيقة' },
+  'ins.legendMed': { en: '30–90 min', ar: '30–90 دقيقة' },
+  'ins.legendSlow': { en: '&gt; 90 min', ar: 'أكثر من 90 دقيقة' },
+  'ins.seeMyResults': { en: 'See my results →', ar: 'عرض نتيجتي ←' },
+  'ins.casesDecidedSuffix': { en: 'cases decided', ar: 'حالة تم تحديد قرارها' },
+  'ins.notPartOfExam': { en: 'Not part of this exam', ar: 'ليست جزءًا من هذا الامتحان' },
+  'ins.decided': { en: '✓ Decided:', ar: '✓ تم اتخاذ القرار:' },
+  'ins.fillerNotCheckedIn': { en: 'Not yet checked in', ar: 'لم يتم تسجيل الوصول بعد' },
+  'ins.fillerAwaitingDocs': { en: 'Awaiting documents', ar: 'في انتظار المستندات' },
+  'ins.fillerRegPending': { en: 'Registration pending', ar: 'التسجيل قيد الانتظار' },
+
+  // Exam case workspace
+  'ins.claimRefLabel': { en: 'Claim Ref:', ar: 'مرجع المطالبة:' },
+  'ins.benefitLabel': { en: 'Benefit:', ar: 'المنفعة:' },
+  'ins.hcpLabel': { en: 'HCP:', ar: 'مقدم الخدمة:' },
+  'ins.ageLabel': { en: 'Age:', ar: 'العمر:' },
+  'ins.genderLabel': { en: 'Gender:', ar: 'الجنس:' },
+  'ins.dxRequestHeader': { en: '📋 Diagnosis & Request', ar: '📋 التشخيص والطلب' },
+  'ins.diagnosisLabel': { en: 'Diagnosis', ar: 'التشخيص' },
+  'ins.requestedLabel': { en: 'Requested', ar: 'المطلوب' },
+  'ins.hqHeader': { en: '🩺 Health Questionnaire (HQ)', ar: '🩺 الاستبيان الصحي (HQ)' },
+  'ins.documentsHeader': { en: '📎 Documents', ar: '📎 المستندات' },
+  'ins.askQuestionHeader': { en: '❓ Ask a Question', ar: '❓ اطرح سؤالًا' },
+  'ins.claimsHistoryHeader': { en: '🗂 Insured Claims History', ar: '🗂 سجل مطالبات المؤمَّن له' },
+  'ins.yourDecision': { en: 'Your Decision', ar: 'قرارك' },
+  'ins.decideApprove': { en: 'Approve', ar: 'قبول' },
+  'ins.decidePartial': { en: 'Partially Approve', ar: 'قبول جزئي' },
+  'ins.decideReject': { en: 'Reject', ar: 'رفض' },
+  'ins.decideRefer': { en: 'Refer for Review', ar: 'تحويل للمراجعة' },
+  'ins.submitNextCase': { en: 'Submit &amp; Next Case', ar: 'إرسال والانتقال للحالة التالية' },
+  'ins.noHqOnFile': { en: 'No HQ on file', ar: 'لا يوجد استبيان صحي مسجل' },
+  'ins.hqPresentNoConditions': { en: 'HQ present — no relevant conditions declared', ar: 'الاستبيان الصحي موجود — لا توجد حالات ذات صلة مصرَّح بها' },
+  'ins.hqOnFile': { en: 'HQ on file', ar: 'الاستبيان الصحي متوفر' },
+  'ins.tableRef': { en: 'Ref', ar: 'المرجع' },
+  'ins.tableDate': { en: 'Date', ar: 'التاريخ' },
+  'ins.tableBenefit': { en: 'Benefit', ar: 'المنفعة' },
+  'ins.tableDx': { en: 'Dx', ar: 'التشخيص' },
+  'ins.tableAmount': { en: 'Amount', ar: 'المبلغ' },
+  'ins.tableStatus': { en: 'Status', ar: 'الحالة' },
+  'ins.noPriorClaims': { en: 'No prior claims on file.', ar: 'لا توجد مطالبات سابقة مسجلة.' },
+  'ins.selectDenialCode': { en: 'Select the denial code', ar: 'اختر رمز الرفض' },
+  'ins.denialHint': { en: "You've marked this case as Reject — choose the reason that actually applies here.", ar: 'لقد حددت هذه الحالة كمرفوضة — اختر السبب الذي ينطبق فعليًا هنا.' },
+  'ins.alertSelectDecision': { en: 'Please select a decision before submitting.', ar: 'يرجى اختيار قرار قبل الإرسال.' },
+  'ins.alertSelectDenialCode': { en: 'Please select a denial code for this rejection before submitting.', ar: 'يرجى اختيار رمز الرفض لهذه الحالة قبل الإرسال.' },
+
+  // Exam results
+  'ins.caseByCaseReview': { en: 'Case-by-case review', ar: 'مراجعة كل حالة على حدة' },
+  'ins.retryExam': { en: 'Retry the exam', ar: 'إعادة الامتحان' },
+  'ins.getYourCertificate': { en: 'Get your certificate →', ar: 'الحصول على شهادتك ←' },
+  'ins.yourDenialCode': { en: 'Your denial code:', ar: 'رمز الرفض الذي اخترته:' },
+  'ins.correctCode': { en: 'Correct code:', ar: 'الرمز الصحيح:' },
+  'ins.reviewCorrect': { en: '✓ Correct', ar: '✓ صحيح' },
+  'ins.reviewIncorrect': { en: '✗ Incorrect', ar: '✗ غير صحيح' },
+  'ins.yourDecisionLabel': { en: 'Your decision:', ar: 'قرارك:' },
+  'ins.correctDecisionLabel': { en: 'Correct decision:', ar: 'القرار الصحيح:' },
+  'ins.resultEyebrow': { en: 'RESULT', ar: 'النتيجة' },
+  'ins.passTitle': { en: 'Congratulations — you have passed the exam!', ar: 'تهانينا — لقد نجحت في الامتحان!' },
+  'ins.passDesc': { en: 'You are now eligible to work as a specialist at any of the biggest companies in the market. The insurance industry is waiting for you.', ar: 'أنت الآن مؤهل للعمل كأخصائي في أي من كبرى الشركات في السوق. قطاع التأمين في انتظارك.' },
+  'ins.finalScore': { en: 'Final score:', ar: 'النتيجة النهائية:' },
+  'ins.failTitle': { en: "Bad luck — but don't let this mark define your limit.", ar: 'حظ عاثر — لكن لا تدع هذه النتيجة تحدد قدراتك.' },
+  'ins.failDesc': { en: 'You can do this. Slow down and focus before making each decision — the HQ is important, and checking exclusion criteria is a must before you decide, not an afterthought.', ar: 'يمكنك تحقيق ذلك. تمهّل وركّز قبل اتخاذ كل قرار — الاستبيان الصحي مهم، والتحقق من معايير الاستبعاد واجب قبل القرار لا بعده.' },
+  'ins.scoreLabel': { en: 'Score:', ar: 'النتيجة:' },
+  'ins.needMoreThan': { en: 'need more than', ar: 'يجب تحقيق أكثر من' },
+  'ins.toPass': { en: 'to pass', ar: 'للنجاح' },
+
+  // Certificate
+  'ins.certNotUnlocked': { en: 'Not unlocked yet', ar: 'لم تُفتح بعد' },
+  'ins.certLockedDesc': { en: 'Pass the final exam (more than 7 out of 15) to unlock your certificate.', ar: 'انجح في الامتحان النهائي (أكثر من 7 من 15) لفتح شهادتك.' },
+  'ins.goToExam': { en: 'Go to the exam →', ar: 'الذهاب إلى الامتحان ←' },
+  'ins.enterFullName': { en: 'Enter your full name for the certificate', ar: 'أدخل اسمك الكامل للشهادة' },
+  'ins.namePlaceholder': { en: 'e.g. Sara Al-Mutairi', ar: 'مثال: سارة المطيري' },
+  'ins.generateCert': { en: 'Generate my certificate →', ar: 'إنشاء شهادتي ←' },
+  'ins.certBrand': { en: 'iHealth Academy · Certificate of Completion', ar: 'أكاديمية آي هيلث · شهادة إتمام' },
+  'ins.certSpecialistTitle': { en: 'Pre-Authorization Specialist', ar: 'أخصائي التصريح المسبق' },
+  'ins.certLine': { en: 'has successfully completed the full Pre-Authorization Specialist track — seven core modules, applied practice, and a 15-case practical exam — and is certified <b>ready for work</b> in medical pre-authorization.', ar: 'أكمل بنجاح مسار أخصائي التصريح المسبق الكامل — سبع وحدات أساسية، تطبيق عملي، وامتحان عملي من 15 حالة — وهو معتمد <b>جاهز للعمل</b> في مجال التصريح المسبق الطبي.' },
+  'ins.issued': { en: 'Issued', ar: 'تاريخ الإصدار' },
+  'ins.printSave': { en: '🖨 Print / Save as PDF', ar: '🖨 طباعة / حفظ كملف PDF' },
+  'ins.editName': { en: 'Edit name', ar: 'تعديل الاسم' },
+
+  // Landing session list chrome
+  'ins.locked': { en: 'Locked', ar: 'مغلق' },
+  'ins.completedStatus': { en: '✓ Completed', ar: '✓ مكتمل' },
+  'ins.startStatus': { en: 'Start', ar: 'ابدأ' },
+  'ins.freePreviewTag': { en: 'FREE PREVIEW', ar: 'معاينة مجانية' },
+  'ins.durationPrefix': { en: 'Duration: ', ar: 'المدة: ' },
+
+  // Quiz chrome
+  'ins.correct': { en: 'Correct', ar: 'إجابة صحيحة' },
+  'ins.notQuite': { en: 'Not quite', ar: 'ليس تمامًا' },
+  'ins.percentComplete': { en: '% complete', ar: '% مكتمل' },
+};
+
+// lang()/isAr() mirror the helper pattern used in anatomy-spotting.js; T()
+// looks up a key straight from I18N_PAGE_DICT so JS-generated markup (not
+// just data-i18n static elements) can share the exact same translations.
+function lang() {
+  return (window.I18N && window.I18N.currentLang) ? window.I18N.currentLang() : 'en';
+}
+function isAr() {
+  return lang() === 'ar';
+}
+function T(key) {
+  const entry = (window.I18N_PAGE_DICT || {})[key];
+  if (!entry) return key;
+  return isAr() ? (entry.ar || entry.en) : entry.en;
+}
+
 // Sessions may point at a YouTube URL instead of a hosted .mp4 — detect it so
 // the video views can embed a YouTube iframe instead of a native <video>.
 function getYouTubeId(url) {
@@ -870,16 +1027,17 @@ const CASES = [
 ];
 
 const DENIAL_CODES = [
-  { code:"DC01", label:"Pre-existing condition not declared on the Health Questionnaire" },
-  { code:"DC02", label:"Work-related / occupational injury (alternate payer applies)" },
-  { code:"DC03", label:"Insured or provider not respecting policy terms and conditions" },
-  { code:"DC04", label:"Excluded hazardous activity or sporting event" },
-  { code:"DC05", label:"Cosmetic or otherwise not medically necessary" },
-  { code:"DC06", label:"Excluded peril — natural disaster / force majeure" },
-  { code:"DC07", label:"Eligibility criteria not met (e.g. marital status, dependent enrollment)" },
-  { code:"DC08", label:"Requested amount exceeds the applicable policy benefit limit" },
-  { code:"DC09", label:"Not supported by clinical or medical necessity" }
+  { code:"DC01", label:"Pre-existing condition not declared on the Health Questionnaire", labelAr:"حالة موجودة مسبقًا لم يتم الإفصاح عنها في الاستبيان الصحي" },
+  { code:"DC02", label:"Work-related / occupational injury (alternate payer applies)", labelAr:"إصابة عمل / مهنية (تنطبق جهة دفع أخرى)" },
+  { code:"DC03", label:"Insured or provider not respecting policy terms and conditions", labelAr:"عدم التزام المؤمَّن له أو مقدم الخدمة بشروط وأحكام الوثيقة" },
+  { code:"DC04", label:"Excluded hazardous activity or sporting event", labelAr:"نشاط خطر أو رياضي مستبعد من التغطية" },
+  { code:"DC05", label:"Cosmetic or otherwise not medically necessary", labelAr:"تجميلي أو غير ضروري طبيًا" },
+  { code:"DC06", label:"Excluded peril — natural disaster / force majeure", labelAr:"خطر مستبعد — كارثة طبيعية / قوة قاهرة" },
+  { code:"DC07", label:"Eligibility criteria not met (e.g. marital status, dependent enrollment)", labelAr:"عدم استيفاء معايير الأهلية (مثل الحالة الاجتماعية أو تسجيل التابعين)" },
+  { code:"DC08", label:"Requested amount exceeds the applicable policy benefit limit", labelAr:"المبلغ المطلوب يتجاوز حد المنفعة المطبَّق في الوثيقة" },
+  { code:"DC09", label:"Not supported by clinical or medical necessity", labelAr:"غير مدعوم بضرورة إكلينيكية أو طبية" }
 ];
+function denialLabel(dc){ return isAr() ? (dc.labelAr || dc.label) : dc.label; }
 
 /* ============================================================
    SESSION DEFINITIONS
@@ -895,16 +1053,24 @@ const ICON_LOCK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" st
    session's video real and downloadable. Leave "" to keep the placeholder frame. */
 const VIDEO_SESSIONS = [
   { num:1, id:"v2a", title:"What is the Medical Insurance?", desc:"The core definitions and terms every specialist must know cold.",
+    titleAr:"ما هو التأمين الطبي؟", descAr:"التعريفات والمصطلحات الأساسية التي يجب أن يعرفها كل أخصائي عن ظهر قلب.",
     bullets:["What medical insurance actually is","The Pre-Auth Department's real role","Self-pay alternatives & who can work in pre-auth","CHI, NPHIES, RCM & key Saudi terms"],
+    bulletsAr:["ما هو التأمين الطبي فعليًا","الدور الحقيقي لقسم التصريح المسبق","بدائل الدفع الذاتي ومن يمكنه العمل في التصريح المسبق","مجلس ضمان، نفيس، إدارة الدورة المالية، والمصطلحات السعودية الأساسية"],
     duration:"37:05", videoUrl:"images/medical-approval-specialist-1.mp4", quiz: [...SECTIONS[0].questions, ...SECTIONS[1].questions] },
   { num:2, id:"v1", title:"General Overview", desc:"See how patients, providers, insurers, and regulators all connect in one claim.",
+    titleAr:"نظرة عامة", descAr:"تعرّف على كيفية ارتباط المريض ومقدم الخدمة وشركة التأمين والجهة التنظيمية في مطالبة واحدة.",
     bullets:["Patient, provider & payer roles","Claim assignment & review cycles","CHI regulatory oversight","Employer eligibility checks"],
+    bulletsAr:["أدوار المريض ومقدم الخدمة وجهة الدفع","تخصيص المطالبات ودورات المراجعة","الإشراف التنظيمي من مجلس ضمان","التحقق من أهلية جهة العمل"],
     duration:"10:47", videoUrl:"images/medical-approval-specialist-2.mp4", isFree:true, quiz: VIDEO1_QUIZ.questions },
   { num:3, id:"v3", title:"Health Questionnaire", desc:"Disclosure rules, investigation standards, and what genuinely requires declaration.",
+    titleAr:"الاستبيان الصحي", descAr:"قواعد الإفصاح، معايير التحقيق، وما يتطلب التصريح فعليًا.",
     bullets:["What the HQ actually covers","Investigating inconsistent history","Who's exempt from the HQ","Maternity timing edge cases"],
+    bulletsAr:["ما يغطيه الاستبيان الصحي فعليًا","التحقيق في التاريخ الطبي غير المتطابق","من هو المستثنى من الاستبيان الصحي","حالات خاصة بتوقيت الحمل"],
     duration:"26:18", videoUrl:"images/medical-approval-specialist-3.mp4", quiz: SECTIONS[2].questions },
   { num:4, id:"v4", title:"CHI Exclusion Items", desc:"What's excluded, and the difference between reject and refer.",
+    titleAr:"بنود الاستبعاد لدى مجلس ضمان", descAr:"ما هو مستبعد من التغطية، والفرق بين الرفض والتحويل.",
     bullets:["Natural disaster exclusions","Life-threatening congenital exceptions","Sports & hazardous activities","Third-party liability coordination"],
+    bulletsAr:["استبعادات الكوارث الطبيعية","استثناءات الحالات الخلقية المهددة للحياة","الأنشطة الرياضية والخطرة","التنسيق مع مسؤولية الطرف الثالث"],
     duration:"39:22", videoUrl:"images/medical-approval-specialist-4.mp4", quiz: SECTIONS[3].questions },
   /* v5 and v6 (CHI Inclusion Items & Coverage, Special Terms & Conditions) are
      pending final videos — re-add once the new links/durations are provided.
@@ -921,13 +1087,19 @@ const PRACTICE_INTRO_VIDEO = "images/medical-approval-specialist-7.mov";
 
 const CAPSTONE_SESSIONS = [
   { num:7, id:"practice", title:"Let's Practice Before the Exam", desc:"Apply your knowledge with real-life scenarios and make the right decisions.",
+    titleAr:"لنتدرب قبل الامتحان", descAr:"طبّق معرفتك من خلال سيناريوهات واقعية واتخذ القرار الصحيح.",
     bullets:["Case-based scenarios","Decision-making practice","Instant feedback & explanations","Build confidence through practice"],
+    bulletsAr:["سيناريوهات قائمة على حالات فعلية","تدريب على اتخاذ القرار","تغذية راجعة وتوضيحات فورية","بناء الثقة من خلال التدريب"],
     duration:"23:53", type:"practice" },
   { num:8, id:"exam", title:"Exam", desc:"Test your knowledge across 15 real cases and earn your certificate.",
+    titleAr:"الامتحان", descAr:"اختبر معرفتك عبر 15 حالة واقعية واحصل على شهادتك.",
     bullets:["15 realistic pre-auth cases","Denial code accuracy required","Instant results","Pass with more than 7 / 15"],
+    bulletsAr:["15 حالة واقعية في التصريح المسبق","دقة اختيار رمز الرفض مطلوبة","نتائج فورية","النجاح بأكثر من 7 من 15"],
     duration:"30–45 min", type:"exam" },
   { num:9, id:"certificate", title:"Certificate", desc:"Get certified and showcase your expertise with confidence.",
+    titleAr:"الشهادة", descAr:"احصل على شهادتك وأظهر خبرتك بثقة.",
     bullets:["Certificate of completion","Personalized with your name","Printable & shareable","Boost your career"],
+    bulletsAr:["شهادة إتمام","مخصصة باسمك","قابلة للطباعة والمشاركة","تعزز مسارك المهني"],
     duration:"2 min", type:"certificate" }
 ];
 
@@ -1015,9 +1187,13 @@ function renderLanding(){
     else { badgeClass += " current"; }
 
     let statusHtml;
-    if(!unlocked) statusHtml = `<span class="s-status locked">Locked</span>`;
-    else if(done) statusHtml = `<span class="s-status done">✓ Completed</span>`;
-    else statusHtml = `<span class="s-status ready">Start</span>`;
+    if(!unlocked) statusHtml = `<span class="s-status locked">${T('ins.locked')}</span>`;
+    else if(done) statusHtml = `<span class="s-status done">${T('ins.completedStatus')}</span>`;
+    else statusHtml = `<span class="s-status ready">${T('ins.startStatus')}</span>`;
+
+    const title = isAr() && s.titleAr ? s.titleAr : s.title;
+    const desc = isAr() && s.descAr ? s.descAr : s.desc;
+    const bullets = isAr() && s.bulletsAr ? s.bulletsAr : s.bullets;
 
     const card = document.createElement("div");
     card.className = "session-card" + (unlocked ? "" : " locked");
@@ -1026,13 +1202,13 @@ function renderLanding(){
       <div class="s-main">
         <div class="s-icon-row">
           <div class="s-icon">${icon}</div>
-          <h3>${s.title}</h3>
+          <h3>${title}</h3>
         </div>
-        <p>${s.desc}</p>
-        <ul class="s-bullets">${s.bullets.map(b=>`<li>${b}</li>`).join("")}</ul>
+        <p>${desc}</p>
+        <ul class="s-bullets">${bullets.map(b=>`<li>${b}</li>`).join("")}</ul>
       </div>
       <div class="s-right">
-        <div class="s-duration">🕐 ${s.duration}${s.isFree ? ' <span class="free-tag">FREE PREVIEW</span>' : ''}</div>
+        <div class="s-duration">🕐 ${s.duration}${s.isFree ? ` <span class="free-tag">${T('ins.freePreviewTag')}</span>` : ''}</div>
         ${statusHtml}
       </div>
     `;
@@ -1049,8 +1225,9 @@ function renderLanding(){
 
   const pct = Math.round((doneCount / totalSteps) * 100);
   document.getElementById("overallBarFill").style.width = pct + "%";
-  document.getElementById("overallPct").textContent = pct + "% complete";
+  document.getElementById("overallPct").textContent = pct + T('ins.percentComplete');
 }
+document.addEventListener('ih:langchange', renderLanding);
 
 /* ============================================================
    VIDEO + QUIZ VIEW
@@ -1059,8 +1236,8 @@ let currentVideoSession = null;
 
 function openVideoSession(id){
   currentVideoSession = VIDEO_SESSIONS.find(s=>s.id===id);
-  document.getElementById("vfTitle").textContent = currentVideoSession.title;
-  document.getElementById("vfDur").textContent = "Duration: " + currentVideoSession.duration;
+  document.getElementById("vfTitle").textContent = isAr() && currentVideoSession.titleAr ? currentVideoSession.titleAr : currentVideoSession.title;
+  document.getElementById("vfDur").textContent = T('ins.durationPrefix') + currentVideoSession.duration;
 
   const hasRealVideo = !!currentVideoSession.videoUrl;
   const ytId = getYouTubeId(currentVideoSession.videoUrl);
@@ -1147,7 +1324,8 @@ function renderVideoQuiz(session, readOnly){
   session.quiz.forEach((q, qi)=>{
     const card = document.createElement("div");
     card.className = "qcard";
-    card.innerHTML = `<div class="qnum">Question ${qi+1} of ${session.quiz.length}</div><div class="qstem">${q.stem}</div><div class="opts"></div><div class="feedback"></div>`;
+    const qNumText = isAr() ? `السؤال ${qi+1} من ${session.quiz.length}` : `Question ${qi+1} of ${session.quiz.length}`;
+    card.innerHTML = `<div class="qnum">${qNumText}</div><div class="qstem">${q.stem}</div><div class="opts"></div><div class="feedback"></div>`;
     const optsWrap = card.querySelector(".opts");
     const feedback = card.querySelector(".feedback");
     let locked = readOnly;
@@ -1169,14 +1347,14 @@ function renderVideoQuiz(session, readOnly){
         if(isCorrect) btn.classList.add("selected-correct");
         else { btn.classList.add("selected-wrong"); optsWrap.children[q.correctIndex].classList.add("reveal-correct"); }
         feedback.className = "feedback show " + (isCorrect ? "correct" : "wrong");
-        feedback.innerHTML = `<b>${isCorrect ? "Correct" : "Not quite"}</b>${q.explanation}`;
+        feedback.innerHTML = `<b>${isCorrect ? T('ins.correct') : T('ins.notQuite')}</b>${q.explanation}`;
         if(answeredCount === session.quiz.length) finishVideoQuiz(session);
       });
       optsWrap.appendChild(btn);
     });
     if(readOnly){
       feedback.className = "feedback show correct";
-      feedback.innerHTML = `<b>Correct</b>${q.explanation}`;
+      feedback.innerHTML = `<b>${T('ins.correct')}</b>${q.explanation}`;
     }
     qEl.appendChild(card);
   });
@@ -1230,17 +1408,18 @@ function openPractice(){
     const c = CASES.find(x=>x.id===cid);
     const card = document.createElement("div");
     card.className = "panel";
+    const ageText = c.age===0 ? T('ins.newborn') : (isAr() ? `${c.age} سنة` : `${c.age}y`);
     card.innerHTML = `
-      <h4>Practice Case ${i+1} — ${c.ref}</h4>
-      <div class="field-row"><span class="k">Patient</span><span class="v">${c.name}, ${c.age===0?"newborn":c.age+"y"}, ${c.gender}</span></div>
-      <div class="field-row"><span class="k">Diagnosis</span><span class="v">${c.dx}</span></div>
+      <h4>${T('ins.practiceCasePrefix')} ${i+1} — ${c.ref}</h4>
+      <div class="field-row"><span class="k">${T('ins.patientLabel')}</span><span class="v">${c.name}, ${ageText}, ${c.gender}</span></div>
+      <div class="field-row"><span class="k">${T('ins.diagnosisLabel')}</span><span class="v">${c.dx}</span></div>
       <p style="font-size:12.5px; color:var(--ink-dim);">${c.complaint}</p>
-      <div class="field-row"><span class="k">Requested</span><span class="v">${c.requested}</span></div>
+      <div class="field-row"><span class="k">${T('ins.requestedLabel')}</span><span class="v">${c.requested}</span></div>
       <div class="decision-opts" style="margin-top:12px;" id="pract-opts-${i}">
-        <button class="dopt" data-d="approve">Approve</button>
-        <button class="dopt" data-d="partial">Partially Approve</button>
-        <button class="dopt" data-d="reject">Reject</button>
-        <button class="dopt" data-d="refer">Refer for Review</button>
+        <button class="dopt" data-d="approve">${T('ins.decideApprove')}</button>
+        <button class="dopt" data-d="partial">${T('ins.decidePartial')}</button>
+        <button class="dopt" data-d="reject">${T('ins.decideReject')}</button>
+        <button class="dopt" data-d="refer">${T('ins.decideRefer')}</button>
       </div>
       <div class="feedback" id="pract-feedback-${i}"></div>
     `;
@@ -1254,7 +1433,7 @@ function openPractice(){
         btn.style.borderColor = isCorrect ? "var(--live)" : "var(--danger)";
         const fb = document.getElementById(`pract-feedback-${i}`);
         fb.className = "feedback show " + (isCorrect ? "correct" : "wrong");
-        fb.innerHTML = `<b>${isCorrect ? "Correct" : "The correct decision was: " + DECISION_LABELS_LOCAL[c.correct]}</b>${c.rationale}`;
+        fb.innerHTML = `<b>${isCorrect ? T('ins.correct') : T('ins.correctDecisionWas') + " " + decisionLabel(c.correct)}</b>${c.rationale}`;
         doneCount++;
         if(doneCount === PRACTICE_CASE_IDS.length) document.getElementById("practiceDoneBtn").classList.remove("hidden");
       });
@@ -1262,7 +1441,11 @@ function openPractice(){
   });
   showView("practice");
 }
-const DECISION_LABELS_LOCAL = { approve:"Approve", partial:"Partially Approve", reject:"Reject", refer:"Refer for Review" };
+// Single source of truth for decision-option labels, shared across the
+// practice view, exam dashboard, and exam results (was two duplicated
+// English-only objects before i18n).
+const DECISION_LABEL_KEYS = { approve:"ins.decideApprove", partial:"ins.decidePartial", reject:"ins.decideReject", refer:"ins.decideRefer" };
+function decisionLabel(d){ return DECISION_LABEL_KEYS[d] ? T(DECISION_LABEL_KEYS[d]) : (d || "—"); }
 
 function stopPracticeVideoPlayback(){
   const practiceVideoEl = document.getElementById("practiceVideo");
@@ -1282,23 +1465,28 @@ document.getElementById("practiceBackBtn").addEventListener("click", ()=>{ stopP
    EXAM (embedded — same logic as the standalone simulator)
    ============================================================ */
 const EX_FILLER = [
-  {name:"Not yet checked in"}, {name:"Awaiting documents"}, {name:"Registration pending"},
-  {name:"Not yet checked in"}, {name:"Awaiting documents"}
+  {name:"Not yet checked in", nameAr:"لم يتم تسجيل الوصول بعد"},
+  {name:"Awaiting documents", nameAr:"في انتظار المستندات"},
+  {name:"Registration pending", nameAr:"التسجيل قيد الانتظار"},
+  {name:"Not yet checked in", nameAr:"لم يتم تسجيل الوصول بعد"},
+  {name:"Awaiting documents", nameAr:"في انتظار المستندات"}
 ];
-const DECISION_LABELS = { approve:"Approve", partial:"Partially Approve", reject:"Reject", refer:"Refer for Review" };
 let currentExamCaseId = null;
 
 function waitColor(mins){ return mins < 30 ? "green" : (mins <= 90 ? "amber" : "red"); }
+function examProgressText(){
+  return Object.keys(progress.examDecisions).length + " / " + CASES.length + " " + T('ins.casesDecidedSuffix');
+}
 
 function openExam(){
-  document.getElementById("exProgressPill").textContent = Object.keys(progress.examDecisions).length + " / " + CASES.length + " cases decided";
+  document.getElementById("exProgressPill").textContent = examProgressText();
   renderExamDashboard();
   showView("exam");
 }
 document.getElementById("examBackBtn").addEventListener("click", ()=>{ showView("landing"); renderLanding(); });
 
 function renderExamDashboard(){
-  document.getElementById("exProgressPill").textContent = Object.keys(progress.examDecisions).length + " / " + CASES.length + " cases decided";
+  document.getElementById("exProgressPill").textContent = examProgressText();
   const grid = document.getElementById("exCaseGrid");
   grid.innerHTML = "";
   CASES.forEach(c=>{
@@ -1310,7 +1498,7 @@ function renderExamDashboard(){
       <div class="tile-top"><span class="tile-ref">${c.ref}</span><span class="tile-wait ${color}">${c.wait}m</span></div>
       <div class="tile-name">${c.name}</div>
       <div class="tile-benefit">${c.benefit}</div>
-      ${isDone ? `<div class="tile-check">✓ Decided: ${DECISION_LABELS[progress.examDecisions[c.id]]}</div>` : ""}
+      ${isDone ? `<div class="tile-check">${T('ins.decided')} ${decisionLabel(progress.examDecisions[c.id])}</div>` : ""}
     `;
     tile.addEventListener("click", ()=> openExamCase(c.id));
     grid.appendChild(tile);
@@ -1318,13 +1506,13 @@ function renderExamDashboard(){
   EX_FILLER.forEach(f=>{
     const tile = document.createElement("div");
     tile.className = "tile filler";
-    tile.innerHTML = `<div class="tile-top"><span class="tile-ref">—</span></div><div class="tile-name">${f.name}</div><div class="tile-benefit">Not part of this exam</div>`;
+    tile.innerHTML = `<div class="tile-top"><span class="tile-ref">—</span></div><div class="tile-name">${isAr() ? f.nameAr : f.name}</div><div class="tile-benefit">${T('ins.notPartOfExam')}</div>`;
     grid.appendChild(tile);
   });
   if(Object.keys(progress.examDecisions).length === CASES.length){
     const banner = document.createElement("div");
     banner.style.cssText = "grid-column:1/-1; text-align:center; margin-top:8px;";
-    banner.innerHTML = `<button class="btn btn-primary" id="exFinishBtn">See my results →</button>`;
+    banner.innerHTML = `<button class="btn btn-primary" id="exFinishBtn">${T('ins.seeMyResults')}</button>`;
     grid.appendChild(banner);
     document.getElementById("exFinishBtn").addEventListener("click", showExamResults);
   }
@@ -1347,9 +1535,9 @@ function openExamCase(id){
 
   const hqArea = document.getElementById("exHqBadgeArea");
   const hqList = document.getElementById("exHqList");
-  if(!c.hasHQ){ hqArea.innerHTML = `<span class="hq-badge none">No HQ on file</span>`; hqList.innerHTML = ""; }
-  else if(c.hqList.length === 0){ hqArea.innerHTML = `<span class="hq-badge none">HQ present — no relevant conditions declared</span>`; hqList.innerHTML = ""; }
-  else { hqArea.innerHTML = `<span class="hq-badge present">HQ on file</span>`; hqList.innerHTML = c.hqList.map(h=>`<p style="font-size:12px; margin:6px 0 0;">• ${h}</p>`).join(""); }
+  if(!c.hasHQ){ hqArea.innerHTML = `<span class="hq-badge none">${T('ins.noHqOnFile')}</span>`; hqList.innerHTML = ""; }
+  else if(c.hqList.length === 0){ hqArea.innerHTML = `<span class="hq-badge none">${T('ins.hqPresentNoConditions')}</span>`; hqList.innerHTML = ""; }
+  else { hqArea.innerHTML = `<span class="hq-badge present">${T('ins.hqOnFile')}</span>`; hqList.innerHTML = c.hqList.map(h=>`<p style="font-size:12px; margin:6px 0 0;">• ${h}</p>`).join(""); }
 
   const docsEl = document.getElementById("exDocs");
   docsEl.innerHTML = "";
@@ -1364,9 +1552,9 @@ function openExamCase(id){
   renderExamQuestions(c);
 
   const histEl = document.getElementById("exHistory");
-  if(c.history.length === 0){ histEl.innerHTML = `<p style="font-size:12px; color:var(--ink-dim);">No prior claims on file.</p>`; }
+  if(c.history.length === 0){ histEl.innerHTML = `<p style="font-size:12px; color:var(--ink-dim);">${T('ins.noPriorClaims')}</p>`; }
   else {
-    histEl.innerHTML = `<table class="history-table"><thead><tr><th>Ref</th><th>Date</th><th>Benefit</th><th>Dx</th><th>Amount</th><th>Status</th></tr></thead><tbody>` +
+    histEl.innerHTML = `<table class="history-table"><thead><tr><th>${T('ins.tableRef')}</th><th>${T('ins.tableDate')}</th><th>${T('ins.tableBenefit')}</th><th>${T('ins.tableDx')}</th><th>${T('ins.tableAmount')}</th><th>${T('ins.tableStatus')}</th></tr></thead><tbody>` +
       c.history.map(h=>`<tr><td>${h.ref}</td><td>${h.date}</td><td>${h.benefit}</td><td>${h.dx}</td><td>${h.amt}</td><td>${h.status}</td></tr>`).join("") + `</tbody></table>`;
   }
 
@@ -1385,7 +1573,9 @@ function renderExamQuestions(c){
   const qEl = document.getElementById("exQuestions");
   const asked = progress.examQuestionsAsked[c.id] || [];
   const remaining = Math.max(0, 2 - asked.length);
-  document.getElementById("exQCounter").textContent = remaining + " question" + (remaining===1?"":"s") + " remaining";
+  document.getElementById("exQCounter").textContent = isAr()
+    ? `${remaining} ${remaining===1 ? "سؤال متبقٍ" : "أسئلة متبقية"}`
+    : remaining + " question" + (remaining===1?"":"s") + " remaining";
   qEl.innerHTML = "";
   c.questions.forEach((q, idx)=>{
     const wasAsked = asked.includes(idx);
@@ -1420,12 +1610,12 @@ function renderExamDenialPanel(show){
   const area = document.getElementById("exDenialCodeArea");
   if(!show){ area.classList.add("hidden"); area.innerHTML = ""; return; }
   area.classList.remove("hidden");
-  area.innerHTML = `<div class="denial-panel"><h4>Select the denial code</h4><p class="hint">You've marked this case as Reject — choose the reason that actually applies here.</p><div id="exDenialCodeList"></div></div>`;
+  area.innerHTML = `<div class="denial-panel"><h4>${T('ins.selectDenialCode')}</h4><p class="hint">${T('ins.denialHint')}</p><div id="exDenialCodeList"></div></div>`;
   const listEl = document.getElementById("exDenialCodeList");
   DENIAL_CODES.forEach(dc=>{
     const btn = document.createElement("button");
     btn.className = "dc-opt"; btn.dataset.code = dc.code;
-    btn.innerHTML = `<span class="dc-code">${dc.code}</span>${dc.label}`;
+    btn.innerHTML = `<span class="dc-code">${dc.code}</span>${denialLabel(dc)}`;
     btn.addEventListener("click", ()=>{
       document.querySelectorAll(".dc-opt").forEach(b=> b.classList.remove("selected"));
       btn.classList.add("selected");
@@ -1440,10 +1630,10 @@ function highlightExamDenialCode(code){
 
 document.getElementById("exSubmitBtn").addEventListener("click", ()=>{
   const selected = document.querySelector("#exDecisionOpts .dopt.selected");
-  if(!selected){ alert("Please select a decision before submitting."); return; }
+  if(!selected){ alert(T('ins.alertSelectDecision')); return; }
   if(selected.dataset.d === "reject"){
     const dcSelected = document.querySelector(".dc-opt.selected");
-    if(!dcSelected){ alert("Please select a denial code for this rejection before submitting."); return; }
+    if(!dcSelected){ alert(T('ins.alertSelectDenialCode')); return; }
     progress.examDenialCodes[currentExamCaseId] = dcSelected.dataset.code;
   } else { delete progress.examDenialCodes[currentExamCaseId]; }
   progress.examDecisions[currentExamCaseId] = selected.dataset.d;
@@ -1476,13 +1666,13 @@ function showExamResults(){
     if(isCorrect) correctCount++;
 
     const codeLine = needsCode
-      ? `<div class="review-detail">Your denial code: <b>${studentCode || "—"}</b> · Correct code: <b>${c.denialCode} — ${DENIAL_CODES.find(d=>d.code===c.denialCode).label}</b></div>`
+      ? `<div class="review-detail">${T('ins.yourDenialCode')} <b>${studentCode || "—"}</b> · ${T('ins.correctCode')} <b>${c.denialCode} — ${denialLabel(DENIAL_CODES.find(d=>d.code===c.denialCode))}</b></div>`
       : "";
     const row = document.createElement("div");
     row.className = "review-row";
     row.innerHTML = `
-      <div class="review-top"><span class="rn">${c.ref} — ${c.name}</span><span class="rtag ${isCorrect?"correct":"wrong"}">${isCorrect?"✓ Correct":"✗ Incorrect"}</span></div>
-      <div class="review-detail">Your decision: <b>${DECISION_LABELS[studentDecision] || "—"}</b> · Correct decision: <b>${DECISION_LABELS[c.correct]}</b></div>
+      <div class="review-top"><span class="rn">${c.ref} — ${c.name}</span><span class="rtag ${isCorrect?"correct":"wrong"}">${isCorrect?T('ins.reviewCorrect'):T('ins.reviewIncorrect')}</span></div>
+      <div class="review-detail">${T('ins.yourDecisionLabel')} <b>${decisionLabel(studentDecision) || "—"}</b> · ${T('ins.correctDecisionLabel')} <b>${decisionLabel(c.correct)}</b></div>
       ${codeLine}
       <div class="review-detail">${c.rationale}</div>
     `;
@@ -1499,18 +1689,18 @@ function showExamResults(){
   if(passed){
     verdictArea.innerHTML = `
       <div class="verdict pass">
-        <div class="hero-eyebrow" style="color:#CFE9E5; justify-content:center;">RESULT</div>
-        <h2>Congratulations — you have passed the exam!</h2>
-        <p style="color:#CFE9E5; max-width:52ch; margin:0 auto;">You are now eligible to work as a specialist at any of the biggest companies in the market. The insurance industry is waiting for you.</p>
-        <div style="font-family:var(--mono); font-size:13px; margin-top:10px;">Final score: ${correctCount} / ${CASES.length}</div>
+        <div class="hero-eyebrow" style="color:#CFE9E5; justify-content:center;">${T('ins.resultEyebrow')}</div>
+        <h2>${T('ins.passTitle')}</h2>
+        <p style="color:#CFE9E5; max-width:52ch; margin:0 auto;">${T('ins.passDesc')}</p>
+        <div style="font-family:var(--mono); font-size:13px; margin-top:10px;">${T('ins.finalScore')} ${correctCount} / ${CASES.length}</div>
       </div>`;
   } else {
     verdictArea.innerHTML = `
       <div class="verdict fail">
-        <div class="hero-eyebrow" style="justify-content:center;">RESULT</div>
-        <h2>Bad luck — but don't let this mark define your limit.</h2>
-        <p style="max-width:54ch; margin:10px auto 0; color:var(--ink-dim);">You can do this. Slow down and focus before making each decision — the HQ is important, and checking exclusion criteria is a must before you decide, not an afterthought.</p>
-        <div style="font-family:var(--mono); font-size:13px; margin-top:10px;">Score: ${correctCount} / ${CASES.length} (need more than ${PASS_THRESHOLD} to pass).</div>
+        <div class="hero-eyebrow" style="justify-content:center;">${T('ins.resultEyebrow')}</div>
+        <h2>${T('ins.failTitle')}</h2>
+        <p style="max-width:54ch; margin:10px auto 0; color:var(--ink-dim);">${T('ins.failDesc')}</p>
+        <div style="font-family:var(--mono); font-size:13px; margin-top:10px;">${T('ins.scoreLabel')} ${correctCount} / ${CASES.length} (${T('ins.needMoreThan')} ${PASS_THRESHOLD} ${T('ins.toPass')}).</div>
       </div>`;
   }
   document.getElementById("goToCertBtn").classList.toggle("hidden", !passed);
@@ -1533,18 +1723,18 @@ function openCertificate(){
     content.innerHTML = `
       <div class="cert-locked">
         <div style="font-size:40px;">🔒</div>
-        <h3 style="margin-top:10px;">Not unlocked yet</h3>
-        <p style="color:var(--ink-dim); max-width:44ch; margin:8px auto 0;">Pass the final exam (more than 7 out of 15) to unlock your certificate.</p>
-        <button class="btn btn-primary" style="margin-top:18px;" id="certGoExamBtn">Go to the exam →</button>
+        <h3 style="margin-top:10px;">${T('ins.certNotUnlocked')}</h3>
+        <p style="color:var(--ink-dim); max-width:44ch; margin:8px auto 0;">${T('ins.certLockedDesc')}</p>
+        <button class="btn btn-primary" style="margin-top:18px;" id="certGoExamBtn">${T('ins.goToExam')}</button>
       </div>`;
     document.getElementById("certGoExamBtn").addEventListener("click", openExam);
   } else {
     content.innerHTML = `
       <div class="name-input-row">
-        <label style="display:block; font-size:13px; color:var(--ink-dim); margin-bottom:8px;">Enter your full name for the certificate</label>
-        <input type="text" id="certNameInput" placeholder="e.g. Sara Al-Mutairi" value="${progress.certName || ""}">
+        <label style="display:block; font-size:13px; color:var(--ink-dim); margin-bottom:8px;">${T('ins.enterFullName')}</label>
+        <input type="text" id="certNameInput" placeholder="${T('ins.namePlaceholder')}" value="${progress.certName || ""}">
       </div>
-      <div style="text-align:center;"><button class="btn btn-primary" id="certGenerateBtn">Generate my certificate →</button></div>
+      <div style="text-align:center;"><button class="btn btn-primary" id="certGenerateBtn">${T('ins.generateCert')}</button></div>
       <div id="certOutput" style="margin-top:26px;"></div>
     `;
     document.getElementById("certGenerateBtn").addEventListener("click", async ()=>{
@@ -1565,15 +1755,15 @@ function renderCertificate(name){
   out.innerHTML = `
     <div class="cert-frame">
       <svg class="cert-seal" viewBox="0 0 40 40" fill="none"><path d="M20 3 L35 9 V20 C35 29 29 35 20 37 C11 35 5 29 5 20 V9 Z" fill="#D4AF37"/><path d="M13 20 l5 5 l9 -11" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <div class="ceyebrow">iHealth Academy · Certificate of Completion</div>
-      <h2>Pre-Authorization Specialist</h2>
+      <div class="ceyebrow">${T('ins.certBrand')}</div>
+      <h2>${T('ins.certSpecialistTitle')}</h2>
       <div class="cert-name">${name}</div>
-      <p class="cert-line">has successfully completed the full Pre-Authorization Specialist track — seven core modules, applied practice, and a 15-case practical exam — and is certified <b>ready for work</b> in medical pre-authorization.</p>
-      <div class="cert-date">Issued ${dateStr} · Score: ${progress.examScore} / ${CASES.length}</div>
+      <p class="cert-line">${T('ins.certLine')}</p>
+      <div class="cert-date">${T('ins.issued')} ${dateStr} · ${T('ins.scoreLabel')} ${progress.examScore} / ${CASES.length}</div>
     </div>
     <div class="cert-actions">
-      <button class="btn btn-primary" id="certPrintBtn">🖨 Print / Save as PDF</button>
-      <button class="btn btn-ghost" id="certEditBtn">Edit name</button>
+      <button class="btn btn-primary" id="certPrintBtn">${T('ins.printSave')}</button>
+      <button class="btn btn-ghost" id="certEditBtn">${T('ins.editName')}</button>
     </div>
   `;
   document.getElementById("certPrintBtn").addEventListener("click", ()=> window.print());

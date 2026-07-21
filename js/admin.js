@@ -83,6 +83,78 @@ window.I18N_PAGE_DICT = {
     { id: 216, name: 'Applicant #216', meta: 'Radiology · 11 yrs experience' },
   ];
 
+  // Local i18n for dynamic queue/table UI built via innerHTML in this file.
+  // The shared dictionary (js/i18n.js) only re-tags static [data-i18n] elements,
+  // so anything rendered here needs its own lang lookup at render time.
+  function currentLang() {
+    return (window.I18N && window.I18N.currentLang()) || 'en';
+  }
+
+  function t(key) {
+    const entry = STRINGS[key];
+    if (!entry) return key;
+    return entry[currentLang()] || entry.en;
+  }
+
+  const STRINGS = {
+    incorrectPasscode: { en: 'Incorrect passcode.', ar: 'رمز مرور غير صحيح.' },
+    modQueueClear: { en: 'Queue is clear — nothing waiting on review.', ar: 'القائمة خالية — لا يوجد ما يحتاج إلى مراجعة.' },
+    caseReviewAlert: { en: 'Opening a real case-review view needs a backend to store report details/evidence — this button is a placeholder for that flow.', ar: 'فتح صفحة مراجعة حالة حقيقية يتطلب خادمًا لتخزين تفاصيل البلاغ والأدلة — هذا الزر مجرد نموذج مؤقت لهذه العملية.' },
+    noPendingMentors: { en: 'No pending mentor applications.', ar: 'لا توجد طلبات موجهين قيد المراجعة.' },
+    noMeetings: { en: 'No meeting requests yet.', ar: 'لا توجد طلبات اجتماعات حتى الآن.' },
+    noDateSet: { en: 'No date set', ar: 'لم يُحدَّد تاريخ' },
+    backupRestored: { en: 'Backup restored — reloading…', ar: 'تمت استعادة النسخة الاحتياطية — جارٍ إعادة التحميل…' },
+    backupBadFile: { en: "Could not read that file — make sure it's a backup JSON exported from this console.", ar: 'تعذّرت قراءة هذا الملف — تأكد من أنه ملف نسخة احتياطية بصيغة JSON صادر من هذه الوحدة.' },
+    noTransactions: { en: 'No transactions imported yet.', ar: 'لم تُستورد أي معاملات حتى الآن.' },
+    unknownPayer: { en: 'Unknown', ar: 'غير معروف' },
+    revenueNotConnected: { en: "Not yet connected — import a PayPal Activity CSV export below. This panel reads from a swappable data layer (js/revenue.js), so plugging in a live PayPal/Stripe API later won't require redesigning it.", ar: 'غير متصل بعد — استورد ملف تصدير نشاط PayPal (CSV) أدناه. تعتمد هذه اللوحة على طبقة بيانات قابلة للتبديل (js/revenue.js)، لذا فإن ربط واجهة PayPal/Stripe حقيقية لاحقًا لن يتطلب إعادة تصميمها.' },
+    revenueConnectedNote: { en: 'From an imported PayPal CSV ({count} transaction(s)). Import a newer export to refresh — connecting a live PayPal/Stripe API later reuses this same panel.', ar: 'من ملف PayPal CSV مستورد ({count} معاملة). استورد نسخة أحدث لتحديث البيانات — سيُعاد استخدام هذه اللوحة نفسها عند ربط واجهة PayPal/Stripe حقيقية لاحقًا.' },
+    transactionsImportedAlert: { en: '{count} transaction(s) imported.', ar: 'تم استيراد {count} معاملة.' },
+  };
+
+  // Small fixed sets of repeating labels — status/severity words and action
+  // button text — kept separate from STRINGS since they're keyed by a data value.
+  const SEVERITY_LABELS = {
+    high: { en: 'HIGH', ar: 'خطورة عالية' },
+    medium: { en: 'MEDIUM', ar: 'متوسطة' },
+    low: { en: 'LOW', ar: 'منخفضة' },
+  };
+
+  const ACTION_LABELS = {
+    Review: { en: 'Review', ar: 'مراجعة' },
+    Suspend: { en: 'Suspend', ar: 'تعليق' },
+    Reject: { en: 'Reject', ar: 'رفض' },
+    Block: { en: 'Block', ar: 'حظر' },
+    Approve: { en: 'Approve', ar: 'قبول' },
+  };
+
+  const MEETING_STATUS_LABELS = {
+    pending: { en: 'Pending', ar: 'قيد الانتظار' },
+    accepted: { en: 'Accepted', ar: 'مقبولة' },
+    declined: { en: 'Declined', ar: 'مرفوضة' },
+  };
+
+  const PLAN_LABELS = {
+    Free: { en: 'Free', ar: 'مجاني' },
+    Pro: { en: 'Pro', ar: 'برو' },
+    Institution: { en: 'Institution', ar: 'المؤسسات' },
+  };
+
+  function label(map, key) {
+    const entry = map[key];
+    if (!entry) return key;
+    return entry[currentLang()] || entry.en;
+  }
+
+  // Reads a key straight out of the shared/page i18n dictionary (js/i18n.js) —
+  // used when a hardcoded string here just duplicates an existing [data-i18n] key.
+  function dictLabel(key) {
+    if (!window.I18N) return key;
+    const entry = window.I18N.dict()[key];
+    if (!entry) return key;
+    return entry[currentLang()] || entry.en;
+  }
+
   function loadJson(key) {
     try {
       return JSON.parse(localStorage.getItem(key)) || [];
@@ -113,7 +185,7 @@ window.I18N_PAGE_DICT = {
         localStorage.setItem(AUTH_KEY, '1');
         unlock();
       } else {
-        error.textContent = 'Incorrect passcode.';
+        error.textContent = t('incorrectPasscode');
         input.value = '';
         input.focus();
       }
@@ -132,7 +204,7 @@ window.I18N_PAGE_DICT = {
     const remaining = SAMPLE_REPORTS.filter((r) => !resolved.includes(r.id));
     list.innerHTML = '';
     if (!remaining.length) {
-      list.innerHTML = '<p class="empty-note">Queue is clear — nothing waiting on review.</p>';
+      list.innerHTML = '<p class="empty-note">' + t('modQueueClear') + '</p>';
       return;
     }
     remaining.forEach((r) => {
@@ -141,9 +213,9 @@ window.I18N_PAGE_DICT = {
       row.innerHTML =
         '<div><div class="mod-title">' + r.title + '</div><div class="mod-meta">' + r.meta + '</div></div>' +
         '<div style="text-align:right;">' +
-          '<span class="mod-severity ' + r.severity + '">' + r.severity.toUpperCase() + '</span>' +
+          '<span class="mod-severity ' + r.severity + '">' + label(SEVERITY_LABELS, r.severity) + '</span>' +
           '<div class="mod-actions" style="margin-top:8px;">' +
-            r.actions.map((a) => '<button type="button" class="mod-btn ' + a.cls + '" data-report="' + r.id + '" data-action="' + a.label + '">' + a.label + '</button>').join('') +
+            r.actions.map((a) => '<button type="button" class="mod-btn ' + a.cls + '" data-report="' + r.id + '" data-action="' + a.label + '">' + label(ACTION_LABELS, a.label) + '</button>').join('') +
           '</div>' +
         '</div>';
       list.appendChild(row);
@@ -153,7 +225,7 @@ window.I18N_PAGE_DICT = {
       b.addEventListener('click', () => {
         const action = b.getAttribute('data-action');
         if (action === 'Review') {
-          alert('Opening a real case-review view needs a backend to store report details/evidence — this button is a placeholder for that flow.');
+          alert(t('caseReviewAlert'));
           return;
         }
         const id = Number(b.getAttribute('data-report'));
@@ -170,10 +242,13 @@ window.I18N_PAGE_DICT = {
     const decisions = loadJson(MENTOR_DECISIONS_KEY);
     const decidedIds = decisions.map((d) => d.id);
     const remaining = SAMPLE_MENTORS.filter((m) => !decidedIds.includes(m.id));
-    document.getElementById('mentorPendingMetric').innerHTML = '<b style="font-size:20px;">' + remaining.length + '</b><span>Pending review</span>';
+    // data-i18n keeps this span in sync if js/i18n.js's own apply() runs again;
+    // the langchange re-render below also refreshes it directly.
+    document.getElementById('mentorPendingMetric').innerHTML =
+      '<b style="font-size:20px;">' + remaining.length + '</b><span data-i18n="admin.pendingReview">' + dictLabel('admin.pendingReview') + '</span>';
     list.innerHTML = '';
     if (!remaining.length) {
-      list.innerHTML = '<p class="empty-note">No pending mentor applications.</p>';
+      list.innerHTML = '<p class="empty-note">' + t('noPendingMentors') + '</p>';
       return;
     }
     remaining.forEach((m) => {
@@ -182,8 +257,8 @@ window.I18N_PAGE_DICT = {
       row.innerHTML =
         '<div><div class="mentor-name">' + m.name + '</div><div class="mentor-meta">' + m.meta + '</div></div>' +
         '<div class="mod-actions">' +
-          '<button type="button" class="mod-btn" data-mentor="' + m.id + '" data-decision="approved">Approve</button>' +
-          '<button type="button" class="mod-btn danger" data-mentor="' + m.id + '" data-decision="rejected">Reject</button>' +
+          '<button type="button" class="mod-btn" data-mentor="' + m.id + '" data-decision="approved">' + label(ACTION_LABELS, 'Approve') + '</button>' +
+          '<button type="button" class="mod-btn danger" data-mentor="' + m.id + '" data-decision="rejected">' + label(ACTION_LABELS, 'Reject') + '</button>' +
         '</div>';
       list.appendChild(row);
     });
@@ -224,17 +299,17 @@ window.I18N_PAGE_DICT = {
 
     list.innerHTML = '';
     if (!meetings.length) {
-      list.innerHTML = '<p class="empty-note">No meeting requests yet.</p>';
+      list.innerHTML = '<p class="empty-note">' + t('noMeetings') + '</p>';
       return;
     }
     meetings.forEach((m) => {
       const row = document.createElement('div');
       row.className = 'mentor-row';
-      const label = m.status.charAt(0).toUpperCase() + m.status.slice(1);
+      const statusLabel = label(MEETING_STATUS_LABELS, m.status);
       row.innerHTML =
         '<div><div class="mentor-name">' + m.studentName + ' → ' + m.mentorName + '</div>' +
-        '<div class="mentor-meta">' + (m.preferredDate || 'No date set') + (m.note ? ' · ' + m.note : '') + '</div></div>' +
-        '<span class="meeting-status status-' + m.status + '">' + label + '</span>';
+        '<div class="mentor-meta">' + (m.preferredDate || t('noDateSet')) + (m.note ? ' · ' + m.note : '') + '</div></div>' +
+        '<span class="meeting-status status-' + m.status + '">' + statusLabel + '</span>';
       list.appendChild(row);
     });
   }
@@ -267,10 +342,10 @@ window.I18N_PAGE_DICT = {
         Object.keys(data).forEach((key) => {
           if (key.indexOf('ih-') === 0) localStorage.setItem(key, data[key]);
         });
-        note.textContent = 'Backup restored — reloading…';
+        note.textContent = t('backupRestored');
         location.reload();
       } catch (e) {
-        note.textContent = 'Could not read that file — make sure it\'s a backup JSON exported from this console.';
+        note.textContent = t('backupBadFile');
       }
     };
     reader.readAsText(file);
@@ -306,22 +381,22 @@ window.I18N_PAGE_DICT = {
     document.getElementById('revenuePro').textContent = summary.hasData ? formatMoney(summary.revenueByPlan.Pro, summary.currency) : '—';
     document.getElementById('revenueInstitution').textContent = summary.hasData ? formatMoney(summary.revenueByPlan.Institution, summary.currency) : '—';
     document.getElementById('revenueNote').textContent = summary.hasData
-      ? 'From an imported PayPal CSV (' + window.IH_REVENUE.getTransactions().length + ' transaction(s)). Import a newer export to refresh — connecting a live PayPal/Stripe API later reuses this same panel.'
-      : 'Not yet connected — import a PayPal Activity CSV export below. This panel reads from a swappable data layer (js/revenue.js), so plugging in a live PayPal/Stripe API later won\'t require redesigning it.';
+      ? t('revenueConnectedNote').replace('{count}', window.IH_REVENUE.getTransactions().length)
+      : t('revenueNotConnected');
 
     const list = document.getElementById('revenueTransactionsList');
     const transactions = window.IH_REVENUE.getTransactions().slice().reverse();
     list.innerHTML = '';
     if (!transactions.length) {
-      list.innerHTML = '<p class="empty-note">No transactions imported yet.</p>';
+      list.innerHTML = '<p class="empty-note">' + t('noTransactions') + '</p>';
       return;
     }
     transactions.slice(0, 20).forEach((tx) => {
       const row = document.createElement('div');
       row.className = 'mentor-row';
       row.innerHTML =
-        '<div><div class="mentor-name">' + (tx.name || tx.email || 'Unknown') + '</div>' +
-        '<div class="mentor-meta">' + tx.date + ' · ' + tx.plan + '</div></div>' +
+        '<div><div class="mentor-name">' + (tx.name || tx.email || t('unknownPayer')) + '</div>' +
+        '<div class="mentor-meta">' + tx.date + ' · ' + label(PLAN_LABELS, tx.plan) + '</div></div>' +
         '<div style="font-weight:700;">' + formatMoney(tx.amount, tx.currency) + '</div>';
       list.appendChild(row);
     });
@@ -339,7 +414,7 @@ window.I18N_PAGE_DICT = {
       reader.onload = () => {
         const result = window.IH_REVENUE.importCSV(reader.result);
         renderRevenue();
-        alert(result.imported + ' transaction(s) imported.');
+        alert(t('transactionsImportedAlert').replace('{count}', result.imported));
         file.value = '';
       };
       reader.readAsText(f);
@@ -353,4 +428,16 @@ window.I18N_PAGE_DICT = {
   renderRevenue();
   initRevenueImport();
   initBackup();
+
+  // Re-render every dynamically-built queue/table so their labels/statuses
+  // switch language too — the shared i18n.apply() only re-tags static [data-i18n]
+  // elements, which doesn't reach the innerHTML this file rebuilds from data.
+  document.addEventListener('ih:langchange', () => {
+    const lockError = document.getElementById('adminLockError');
+    if (lockError && lockError.textContent) lockError.textContent = t('incorrectPasscode');
+    renderModQueue();
+    renderMentorQueue();
+    renderMeetingsOverview();
+    renderRevenue();
+  });
 })();
