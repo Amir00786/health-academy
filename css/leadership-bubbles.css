@@ -242,3 +242,183 @@ footer {
     justify-content: center;
   }
 }
+
+/* ============ ORG CHART (moved out of an inline <style> block in leadership-bubbles.html) ============ */
+:root {
+  --bg: #F6F9F8;
+  --ink: #0F2B2A;
+  --ink-dim: #5B6B69;
+  --ink-faint: #8A9491;
+  --blue: #3B7BF6;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Roboto", sans-serif;
+  min-height: 100vh;
+}
+
+.frame {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 32px 24px 60px;
+}
+
+.masthead {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.eyebrow {
+  font-size: 11.5px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  font-weight: 600;
+}
+
+.masthead h1 {
+  font-size: clamp(24px, 3.4vw, 34px);
+  font-weight: 800;
+  margin: 14px 0 8px;
+  letter-spacing: -.01em;
+}
+
+.masthead p {
+  color: var(--ink-dim);
+  font-size: 14px;
+  max-width: 56ch;
+  margin: 0 auto;
+}
+
+.stage {
+  margin-top: 26px;
+}
+
+.stage svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+.abbr {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  text-anchor: middle;
+  fill: #fff;
+  pointer-events: none;
+}
+
+.dept {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  text-anchor: middle;
+  pointer-events: none;
+}
+
+.ceo-role {
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  fill: #8FB4FF;
+  text-anchor: middle;
+}
+
+.ceo-name {
+  font-family: "Roboto", sans-serif;
+  font-weight: 800;
+  fill: #00C896;
+  text-anchor: middle;
+}
+
+.orb {
+  transition: filter .25s ease;
+}
+
+.orb-group:hover .orb-ring {
+  opacity: 1;
+}
+
+.orb-ring {
+  opacity: 0;
+  transition: opacity .25s ease;
+}
+
+.orb-group {
+  cursor: pointer;
+}
+
+.orb-scale {
+  transition: transform .5s cubic-bezier(.34, 1.4, .64, 1);
+}
+
+.hint {
+  text-align: center;
+  font-size: 11.5px;
+  color: var(--ink-faint);
+  margin-top: 14px;
+}
+
+.bob {
+  animation: bob 6s ease-in-out infinite;
+}
+
+@keyframes bob {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bob {
+    animation: none;
+  }
+}
+
+.legend {
+  display: flex;
+  justify-content: center;
+  gap: 26px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(6, 6, 8, 0.08);
+}
+
+.legend div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--ink-dim);
+}
+
+.legend .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.legend b {
+  color: var(--ink);
+  font-weight: 600;
+}

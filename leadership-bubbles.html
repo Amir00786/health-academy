@@ -1,209 +1,211 @@
 <!doctype html>
 <html lang="en" class="is-loading">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>iHealth Academy — Leadership Roadmap</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css" rel="stylesheet" />
-<link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-bold-rounded/css/uicons-bold-rounded.css" rel="stylesheet" />
-<link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css" rel="stylesheet" />
-<link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css" rel="stylesheet" />
-<link href="css/leadership-bubbles.css" rel="stylesheet">
-<link href="css/nav-v2.css" rel="stylesheet">
-<link href="css/livechat.css" rel="stylesheet">
-<style>
-  :root{
-    --bg:#F6F9F8;
-    --ink:#0F2B2A;
-    --ink-dim:#5B6B69;
-    --ink-faint:#8A9491;
-    --blue:#3B7BF6;
-  }
-  *{ box-sizing:border-box; }
-  html,body{ margin:0; padding:0; }
-  body{ background:var(--bg); color:var(--ink); font-family:"Roboto", sans-serif; min-height:100vh; }
-
-  .frame{ max-width:1180px; margin:0 auto; padding:32px 24px 60px; }
-  .masthead{ text-align:center; margin-bottom:10px; }
-  .eyebrow{ font-size:11.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--ink-dim); font-weight:600; }
-  .masthead h1{ font-size:clamp(24px,3.4vw,34px); font-weight:800; margin:14px 0 8px; letter-spacing:-.01em; }
-  .masthead p{ color:var(--ink-dim); font-size:14px; max-width:56ch; margin:0 auto; }
-
-  .stage{ margin-top:26px; }
-  .stage svg{ width:100%; height:auto; display:block; overflow:visible; }
-
-  .abbr{ font-family:"Roboto",sans-serif; font-weight:700; text-anchor:middle; fill:#fff; pointer-events:none; }
-  .dept{ font-family:"Roboto",sans-serif; font-weight:500; text-anchor:middle; pointer-events:none; }
-  .ceo-role{ font-family:"Roboto",sans-serif; font-weight:600; letter-spacing:.05em; text-transform:uppercase; fill:#8FB4FF; text-anchor:middle; }
-  .ceo-name{ font-family:"Roboto",sans-serif; font-weight:800; fill:#00C896; text-anchor:middle; }
-
-  .orb{ transition:filter .25s ease; }
-  .orb-group:hover .orb-ring{ opacity:1; }
-  .orb-ring{ opacity:0; transition:opacity .25s ease; }
-  .orb-group{ cursor:pointer; }
-  .orb-scale{ transition:transform .5s cubic-bezier(.34,1.4,.64,1); }
-  .hint{ text-align:center; font-size:11.5px; color:var(--ink-faint); margin-top:14px; }
-
-  .bob{ animation:bob 6s ease-in-out infinite; }
-  @keyframes bob{ 0%,100%{ transform:translateY(0px);} 50%{ transform:translateY(-9px);} }
-  @media (prefers-reduced-motion: reduce){ .bob{ animation:none; } }
-
-  .legend{
-    display:flex; justify-content:center; gap:26px; flex-wrap:wrap; margin-top:20px; padding-top:22px;
-    border-top:1px solid rgba(6,6,8,0.08);
-  }
-  .legend div{ display:flex; align-items:center; gap:8px; font-size:12px; color:var(--ink-dim); }
-  .legend .dot{ width:10px; height:10px; border-radius:50%; }
-  .legend b{ color:var(--ink); font-weight:600; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iHealth Academy — Leadership Roadmap</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css"
+    rel="stylesheet" />
+  <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-bold-rounded/css/uicons-bold-rounded.css" rel="stylesheet" />
+  <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css"
+    rel="stylesheet" />
+  <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css" rel="stylesheet" />
+  <link href="css/leadership-bubbles.css" rel="stylesheet">
+  <link href="css/nav-v2.css" rel="stylesheet">
+  <link href="css/livechat.css" rel="stylesheet">
 </head>
+
 <body>
 
-<div class="page-loader" id="pageLoader">
-  <div class="ecg">
-    <svg class="ecg-svg" viewBox="0 0 600 120" preserveAspectRatio="none">
-      <defs>
-        <linearGradient id="ecgFade" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" style="stop-color:var(--teal); stop-opacity:0" />
-          <stop offset="18%" style="stop-color:var(--teal); stop-opacity:1" />
-          <stop offset="82%" style="stop-color:var(--teal); stop-opacity:1" />
-          <stop offset="100%" style="stop-color:var(--teal); stop-opacity:0" />
-        </linearGradient>
-      </defs>
-      <path class="ecg-track"
-        d="M0,60 L60,60 L72,50 L84,60 L100,60 L108,66 L114,10 L120,92 L128,60 L145,60 L162,48 L178,60 L200,60 L260,60 L272,50 L284,60 L300,60 L308,66 L314,10 L320,92 L328,60 L345,60 L362,48 L378,60 L400,60 L460,60 L472,50 L484,60 L500,60 L508,66 L514,10 L520,92 L528,60 L545,60 L562,48 L578,60 L600,60" />
-      <path class="ecg-pulse" pathLength="100"
-        d="M0,60 L60,60 L72,50 L84,60 L100,60 L108,66 L114,10 L120,92 L128,60 L145,60 L162,48 L178,60 L200,60 L260,60 L272,50 L284,60 L300,60 L308,66 L314,10 L320,92 L328,60 L345,60 L362,48 L378,60 L400,60 L460,60 L472,50 L484,60 L500,60 L508,66 L514,10 L520,92 L528,60 L545,60 L562,48 L578,60 L600,60" />
-    </svg>
-  </div>
-</div>
-
-<div id="topbar">
-  <div class="topbar-wrap">
-    <div class="social-row">
-      <a class="social-chip" href="https://chat.whatsapp.com/KIJxm1MHphy5nLFwVa81l7?mode=gi_t" target="_blank" rel="noopener noreferrer" title="WhatsApp" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5.1-.1.2-.3.4-.4.1-.1.2-.2.2-.4.1-.1 0-.3 0-.4 0-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.3c.1.2 1.6 2.5 3.9 3.4.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg></a>
-      <a class="social-chip" href="https://www.facebook.com/share/1DAw4aVpVu/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" title="Facebook" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 22v-8h2.7l.4-3.1h-3.1V9c0-.9.2-1.5 1.6-1.5h1.6V4.7c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.3H8v3.1h2.5V22h3Z"/></svg></a>
-      <a class="social-chip" href="https://www.linkedin.com/in/musab-ahmed-1b1481104/" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2 2 0 1 1 0 4 2 2 0 0 1 0-4ZM3 9h4v12H3V9Zm6.5 0h3.8v1.7h.1c.5-.9 1.8-1.9 3.7-1.9 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-2.9-1.8-2.9-1.8 0-2.1 1.4-2.1 2.8V21h-4V9Z"/></svg></a>
-      <a class="social-chip" href="https://x.com/saoopy90" target="_blank" rel="noopener noreferrer" title="X (Twitter)" aria-label="X (Twitter)"><svg viewBox="0 0 24 24"><path d="M4 4l16 16M20 4 4 20" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" fill="none"/></svg></a>
-      <a class="social-chip" href="https://www.instagram.com/_saoopy_?igsh=MTJrM2J2cHBvZWZlOA%3D%3D&amp;utm_source=qr" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor"/></svg></a>
-      <a class="social-chip" href="https://www.youtube.com/@RadiologyOasis" target="_blank" rel="noopener noreferrer" title="YouTube" aria-label="YouTube"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10 9l6 3-6 3V9Z" fill="currentColor"/></svg></a>
-      <a class="social-chip" href="https://www.tiktok.com/@tyb_alathr?_r=1&amp;_t=ZS-97zP3ajUVWv" target="_blank" rel="noopener noreferrer" title="TikTok" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.43 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z"/></svg></a>
+  <div class="page-loader" id="pageLoader">
+    <div class="ecg">
+      <svg class="ecg-svg" viewBox="0 0 600 120" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="ecgFade" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" style="stop-color:var(--teal); stop-opacity:0" />
+            <stop offset="18%" style="stop-color:var(--teal); stop-opacity:1" />
+            <stop offset="82%" style="stop-color:var(--teal); stop-opacity:1" />
+            <stop offset="100%" style="stop-color:var(--teal); stop-opacity:0" />
+          </linearGradient>
+        </defs>
+        <path class="ecg-track"
+          d="M0,60 L60,60 L72,50 L84,60 L100,60 L108,66 L114,10 L120,92 L128,60 L145,60 L162,48 L178,60 L200,60 L260,60 L272,50 L284,60 L300,60 L308,66 L314,10 L320,92 L328,60 L345,60 L362,48 L378,60 L400,60 L460,60 L472,50 L484,60 L500,60 L508,66 L514,10 L520,92 L528,60 L545,60 L562,48 L578,60 L600,60" />
+        <path class="ecg-pulse" pathLength="100"
+          d="M0,60 L60,60 L72,50 L84,60 L100,60 L108,66 L114,10 L120,92 L128,60 L145,60 L162,48 L178,60 L200,60 L260,60 L272,50 L284,60 L300,60 L308,66 L314,10 L320,92 L328,60 L345,60 L362,48 L378,60 L400,60 L460,60 L472,50 L484,60 L500,60 L508,66 L514,10 L520,92 L528,60 L545,60 L562,48 L578,60 L600,60" />
+      </svg>
     </div>
-    <div class="right-links">
-      <div class="lang-switcher">
-        <a href="#" class="lang-toggle" data-i18n="nav.languages">Languages</a>
-        <div class="lang-dropdown">
-          <a href="#" class="lang-option" data-lang="ar">عربي</a>
-          <a href="#" class="lang-option" data-lang="en">English</a>
+  </div>
+
+  <div id="topbar">
+    <div class="topbar-wrap">
+      <div class="social-row">
+        <a class="social-chip" href="https://chat.whatsapp.com/KIJxm1MHphy5nLFwVa81l7?mode=gi_t" target="_blank"
+          rel="noopener noreferrer" title="WhatsApp" aria-label="WhatsApp"><svg viewBox="0 0 24 24">
+            <path
+              d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5.1-.1.2-.3.4-.4.1-.1.2-.2.2-.4.1-.1 0-.3 0-.4 0-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.3c.1.2 1.6 2.5 3.9 3.4.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z" />
+          </svg></a>
+        <a class="social-chip" href="https://www.facebook.com/share/1DAw4aVpVu/?mibextid=wwXIfr" target="_blank"
+          rel="noopener noreferrer" title="Facebook" aria-label="Facebook"><svg viewBox="0 0 24 24">
+            <path
+              d="M13.5 22v-8h2.7l.4-3.1h-3.1V9c0-.9.2-1.5 1.6-1.5h1.6V4.7c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.3H8v3.1h2.5V22h3Z" />
+          </svg></a>
+        <a class="social-chip" href="https://www.linkedin.com/in/musab-ahmed-1b1481104/" target="_blank"
+          rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24">
+            <path
+              d="M4.98 3.5a2 2 0 1 1 0 4 2 2 0 0 1 0-4ZM3 9h4v12H3V9Zm6.5 0h3.8v1.7h.1c.5-.9 1.8-1.9 3.7-1.9 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-2.9-1.8-2.9-1.8 0-2.1 1.4-2.1 2.8V21h-4V9Z" />
+          </svg></a>
+        <a class="social-chip" href="https://x.com/saoopy90" target="_blank" rel="noopener noreferrer"
+          title="X (Twitter)" aria-label="X (Twitter)"><svg viewBox="0 0 24 24">
+            <path d="M4 4l16 16M20 4 4 20" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"
+              fill="none" />
+          </svg></a>
+        <a class="social-chip" href="https://www.instagram.com/_saoopy_?igsh=MTJrM2J2cHBvZWZlOA%3D%3D&amp;utm_source=qr"
+          target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Instagram"><svg viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8" />
+            <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8" />
+            <circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" />
+          </svg></a>
+        <a class="social-chip" href="https://www.youtube.com/@RadiologyOasis" target="_blank" rel="noopener noreferrer"
+          title="YouTube" aria-label="YouTube"><svg viewBox="0 0 24 24">
+            <rect x="2" y="5" width="20" height="14" rx="4" fill="none" stroke="currentColor" stroke-width="1.8" />
+            <path d="M10 9l6 3-6 3V9Z" fill="currentColor" />
+          </svg></a>
+        <a class="social-chip" href="https://www.tiktok.com/@tyb_alathr?_r=1&amp;_t=ZS-97zP3ajUVWv" target="_blank"
+          rel="noopener noreferrer" title="TikTok" aria-label="TikTok"><svg viewBox="0 0 24 24">
+            <path
+              d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.43 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z" />
+          </svg></a>
+      </div>
+      <div class="right-links">
+        <div class="lang-switcher">
+          <a href="#" class="lang-toggle" data-i18n="nav.languages">Languages</a>
+          <div class="lang-dropdown">
+            <a href="#" class="lang-option" data-lang="ar">عربي</a>
+            <a href="#" class="lang-option" data-lang="en">English</a>
+          </div>
+        </div>
+        <a href="contact.html" class="help-link" data-i18n="nav.help">Help</a>
+      </div>
+    </div>
+  </div>
+
+  <header id="mainnav">
+    <div class="mainnav-wrap">
+      <a class="logo" href="index.html"><span class="mark"><img src="images/ih-logo.png"
+            alt="iHealth Academy"></span></a>
+
+      <nav class="nav-links" id="navLinks">
+        <div class="nav-item"><a class="nav-link" href="index.html" data-i18n="nav.home">Home</a></div>
+        <div class="nav-item"><a class="nav-link" href="find-your-path.html" data-i18n="nav.findPath">Find Your Path</a>
+        </div>
+        <div class="nav-item"><a class="nav-link" href="dashboard.html" data-i18n="nav.dashboard">Dashboard</a></div>
+        <div class="nav-item"><a class="nav-link" href="recruit.html" data-i18n="nav.recruit">Recruit</a></div>
+
+        <div class="nav-item" id="academyDropdown">
+          <button type="button" class="nav-link" id="academyBtn"><span data-i18n="nav.academy">iHealthAcademy</span>
+            <span class="caret">▾</span></button>
+          <div class="dropdown" id="academyDropdownMenu"></div>
+        </div>
+
+        <div class="nav-item" id="leadershipDropdown">
+          <button type="button" class="nav-link" id="leadershipBtn"><span data-i18n="nav.leadership">Leadership</span>
+            <span class="caret">▾</span></button>
+          <div class="dropdown" id="leadershipDropdownMenu"></div>
+        </div>
+        <div class="nav-item"><a class="nav-link" href="contact.html" data-i18n="nav.contact">Contact Us</a></div>
+      </nav>
+
+      <div class="auth-actions">
+        <a href="#" class="btn btn-ghost nav-signin" data-i18n="nav.signin">Sign in</a>
+        <a href="#" class="btn btn-primary nav-signup" data-i18n="nav.signup">Sign up</a>
+        <button type="button" class="hamburger btn btn-ghost" id="hamburgerBtn" aria-label="Toggle menu"
+          aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="frame">
+    <a class="lb-back" href="index.html" data-i18n="lb.back"><i class="fi fi-rr-arrow-small-left"></i> Back to iHealth
+      Academy</a>
+
+    <div class="masthead">
+      <div class="eyebrow" data-i18n="lb.eyebrow">EXECUTIVE LEADERSHIP</div>
+      <h1 data-i18n="lb.title">iHealth Academy</h1>
+      <p data-i18n="lb.subtitle">Not who's already on the team — who earns a seat, and when. Size and light mark how
+        soon each role becomes real.</p>
+    </div>
+
+    <div class="stage" id="stage"></div>
+
+    <div class="legend">
+      <div><span class="dot" style="background:#3B7BF6;"></span><span data-i18n="lb.legendMustNow"><b>Must Now</b> — the
+          founding team</span></div>
+      <div><span class="dot" style="background:#5B7DAE;"></span><span data-i18n="lb.legendGrowth"><b>Growth Phase</b> —
+          after the first paying cohort</span></div>
+      <div><span class="dot" style="background:#4B5568;"></span><span data-i18n="lb.legendFuture"><b>Future Vision</b> —
+          once team and revenue justify it</span></div>
+    </div>
+    <div class="hint" data-i18n="lb.hint">Tap any leader to see them at founder scale. Tap the founder to step back.
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">i<span>Health</span> Academy</div>
+          <p class="footer-tagline" data-i18n="footer.brandTagline">Career support for healthcare professionals — CV
+            tools, exam prep, and career growth, all in one place.</p>
+        </div>
+        <div class="footer-cols">
+          <div class="footer-col">
+            <div class="footer-col-title" data-i18n="footer.product">Product</div>
+            <a href="ecosystem.html" data-i18n="footer.ecosystem">Ecosystem</a>
+            <a href="radiology-dept.html" data-i18n="footer.radiology">Radiology</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title" data-i18n="footer.company">Company</div>
+            <a href="founder.html" data-i18n="footer.meetFounder">Meet the Founder</a>
+            <a href="mailto:info@ihealthacademy.com" data-i18n="footer.contactSupport">Contact & support</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title" data-i18n="footer.legal">Legal</div>
+            <a href="privacy-policy.html" data-i18n="footer.privacy">Privacy policy</a>
+            <a href="legal-center.html" data-i18n="footer.terms">Terms and conditions</a>
+          </div>
         </div>
       </div>
-      <a href="contact.html" class="help-link" data-i18n="nav.help">Help</a>
-    </div>
-  </div>
-</div>
-
-<header id="mainnav">
-  <div class="mainnav-wrap">
-    <a class="logo" href="index.html"><span class="mark"><img src="images/ih-logo.png" alt="iHealth Academy"></span></a>
-
-    <nav class="nav-links" id="navLinks">
-      <div class="nav-item"><a class="nav-link" href="index.html" data-i18n="nav.home">Home</a></div>
-      <div class="nav-item"><a class="nav-link" href="find-your-path.html" data-i18n="nav.findPath">Find Your Path</a></div>
-      <div class="nav-item"><a class="nav-link" href="dashboard.html" data-i18n="nav.dashboard">Dashboard</a></div>
-      <div class="nav-item"><a class="nav-link" href="recruit.html" data-i18n="nav.recruit">Recruit</a></div>
-
-      <div class="nav-item" id="academyDropdown">
-        <button type="button" class="nav-link" id="academyBtn"><span data-i18n="nav.academy">iHealthAcademy</span> <span class="caret">▾</span></button>
-        <div class="dropdown" id="academyDropdownMenu"></div>
-      </div>
-
-      <div class="nav-item" id="leadershipDropdown">
-        <button type="button" class="nav-link" id="leadershipBtn"><span data-i18n="nav.leadership">Leadership</span> <span class="caret">▾</span></button>
-        <div class="dropdown" id="leadershipDropdownMenu"></div>
-      </div>
-      <div class="nav-item"><a class="nav-link" href="contact.html" data-i18n="nav.contact">Contact Us</a></div>
-    </nav>
-
-    <div class="auth-actions">
-      <a href="#" class="btn btn-ghost nav-signin" data-i18n="nav.signin">Sign in</a>
-      <a href="#" class="btn btn-primary nav-signup" data-i18n="nav.signup">Sign up</a>
-      <button type="button" class="hamburger btn btn-ghost" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false">☰</button>
-    </div>
-  </div>
-</header>
-
-<div class="frame">
-  <a class="lb-back" href="index.html" data-i18n="lb.back"><i class="fi fi-rr-arrow-small-left"></i> Back to iHealth Academy</a>
-
-  <div class="masthead">
-    <div class="eyebrow" data-i18n="lb.eyebrow">EXECUTIVE LEADERSHIP</div>
-    <h1 data-i18n="lb.title">iHealth Academy</h1>
-    <p data-i18n="lb.subtitle">Not who's already on the team — who earns a seat, and when. Size and light mark how soon each role becomes real.</p>
-  </div>
-
-  <div class="stage" id="stage"></div>
-
-  <div class="legend">
-    <div><span class="dot" style="background:#3B7BF6;"></span><span data-i18n="lb.legendMustNow"><b>Must Now</b> — the founding team</span></div>
-    <div><span class="dot" style="background:#5B7DAE;"></span><span data-i18n="lb.legendGrowth"><b>Growth Phase</b> — after the first paying cohort</span></div>
-    <div><span class="dot" style="background:#4B5568;"></span><span data-i18n="lb.legendFuture"><b>Future Vision</b> — once team and revenue justify it</span></div>
-  </div>
-  <div class="hint" data-i18n="lb.hint">Tap any leader to see them at founder scale. Tap the founder to step back.</div>
-</div>
-
-<footer>
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <div class="footer-logo">i<span>Health</span> Academy</div>
-        <p class="footer-tagline" data-i18n="footer.brandTagline">Career support for healthcare professionals — CV tools, exam prep, and career growth, all in one place.</p>
-      </div>
-      <div class="footer-cols">
-        <div class="footer-col">
-          <div class="footer-col-title" data-i18n="footer.product">Product</div>
-          <a href="ecosystem.html" data-i18n="footer.ecosystem">Ecosystem</a>
-          <a href="radiology-dept.html" data-i18n="footer.radiology">Radiology</a>
-        </div>
-        <div class="footer-col">
-          <div class="footer-col-title" data-i18n="footer.company">Company</div>
-          <a href="founder.html" data-i18n="footer.meetFounder">Meet the Founder</a>
-          <a href="mailto:info@ihealthacademy.com" data-i18n="footer.contactSupport">Contact & support</a>
-        </div>
-        <div class="footer-col">
-          <div class="footer-col-title" data-i18n="footer.legal">Legal</div>
-          <a href="privacy-policy.html" data-i18n="footer.privacy">Privacy policy</a>
-          <a href="legal-center.html" data-i18n="footer.terms">Terms and conditions</a>
-        </div>
+      <div class="footer-bottom">
+        <div class="footer-copy" data-i18n="footer.copy">© 2026 iHealth Academy. All rights reserved.</div>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" rel="noopener"
+          class="footer-paypal-form footer-paypal-pro-form">
+          <input type="hidden" name="cmd" value="_xclick" />
+          <input type="hidden" name="business" value="saoopy90@gmail.com" />
+          <input type="hidden" name="currency_code" value="USD" />
+          <input type="hidden" name="item_name" value="iHealth Academy — Pro Access" />
+          <input type="hidden" name="amount" value="100.00" />
+          <input type="hidden" name="return" class="pro-return-input" value="" />
+          <input type="hidden" name="rm" value="2" />
+          <button type="submit" class="footer-paypal-btn footer-paypal-btn-pro">
+            <img src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png" alt="PayPal">
+            <span data-i18n="footer.paypalProBtn">Get Pro access — $100</span>
+          </button>
+        </form>
       </div>
     </div>
-    <div class="footer-bottom">
-      <div class="footer-copy" data-i18n="footer.copy">© 2026 iHealth Academy. All rights reserved.</div>
-      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" rel="noopener" class="footer-paypal-form footer-paypal-pro-form">
-        <input type="hidden" name="cmd" value="_xclick" />
-        <input type="hidden" name="business" value="saoopy90@gmail.com" />
-        <input type="hidden" name="currency_code" value="USD" />
-        <input type="hidden" name="item_name" value="iHealth Academy — Pro Access" />
-        <input type="hidden" name="amount" value="100.00" />
-        <input type="hidden" name="return" class="pro-return-input" value="" />
-        <input type="hidden" name="rm" value="2" />
-        <button type="submit" class="footer-paypal-btn footer-paypal-btn-pro">
-          <img src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png" alt="PayPal">
-          <span data-i18n="footer.paypalProBtn">Get Pro access — $100</span>
-        </button>
-      </form>
-    </div>
-  </div>
-</footer>
+  </footer>
 
-<script src="js/nav.js"></script>
-<script src="js/nav-v2.js"></script>
-<script src="js/i18n.js"></script>
-<script src="js/site-content.js"></script>
-<script src="js/nav-content.js"></script>
-<script src="js/livechat.js"></script>
-<script src="js/leadership-bubbles.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/nav-v2.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/site-content.js"></script>
+  <script src="js/nav-content.js"></script>
+  <script src="js/livechat.js"></script>
+  <script src="js/leadership-bubbles.js"></script>
 
 </body>
+
 </html>
