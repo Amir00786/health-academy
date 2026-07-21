@@ -112,12 +112,12 @@
 
 /* VIDEO STEP */
 .lv-video {
+  border: 0;
   width: 100%;
   display: block;
-  background: #000;
   max-height: 420px;
+  background: #000;
   aspect-ratio: 16 / 9;
-  border: 0;
 }
 
 .lv-footer {
@@ -125,20 +125,22 @@
 }
 
 .lv-btn {
-  display: block;
   width: 100%;
   border: none;
-  border-radius: 999px;
   padding: 13px;
+  cursor: pointer;
   font-weight: 700;
   font-size: 0.95rem;
-  cursor: pointer;
+  align-items: center;
+  border-radius: 999px;
   font-family: inherit;
+  display: inline-flex;
+  justify-content: center;
 }
 
 .lv-btn-primary {
-  background: #00C896;
   color: #060608;
+  background: #00C896;
 }
 
 .lv-btn-primary:disabled {

@@ -4,7 +4,7 @@ window.I18N_PAGE_DICT = {
       'rm.title': { en: 'Your road to Board Certified.', ar: 'طريقك نحو الاعتماد المهني.' },
       'rm.sub': { en: 'Track your progress station by station. The Egyptian Board is coming soon.', ar: 'تتبع تقدمك محطة بمحطة. البورد المصري قريبًا.' },
       'rm.disclaimer': { en: "This roadmap reflects each college's publicly published requirements as a general reference. Exam formats, sitting dates, and eligibility rules change — always confirm current specifics with the official board before making decisions.", ar: 'تعكس خارطة الطريق هذه المتطلبات المنشورة علنًا لكل كلية كمرجع عام. تتغير صيغ الامتحانات ومواعيدها وشروط الأهلية — تأكد دائمًا من التفاصيل الحالية مع البورد الرسمي قبل اتخاذ القرار.' },
-      'rm.askMentor': { en: 'Need help with this station? Email our team <i class="fi fi-rr-arrow-small-right"></i>', ar: 'تحتاج مساعدة في هذه المحطة؟ راسل فريقنا ←' },
+      'rm.askMentor': { en: 'Need help with this station? Email our team <i class="fi fi-rr-arrow-small-right"></i>', ar: 'تحتاج مساعدة في هذه المحطة؟ راسل فريقنا <i class="fi fi-rr-arrow-small-left"></i>' },
       'rm.you': { en: 'YOU ARE HERE', ar: 'أنت هنا' },
       'rm.exempted': { en: 'Exempted', ar: 'مُعفى' },
       'rm.completed': { en: 'Completed', ar: 'مكتمل' },

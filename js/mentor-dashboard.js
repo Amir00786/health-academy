@@ -17,7 +17,7 @@ window.I18N_PAGE_DICT = {
       'mentor.stat2Label': { en: 'Your track', ar: 'مسارك' },
       'mentor.stat3Label': { en: 'Profile status', ar: 'حالة الملف الشخصي' },
       'mentor.listed': { en: 'Listed', ar: 'مُدرج' },
-      'mentor.editProfile': { en: 'Edit <i class="fi fi-rr-arrow-small-right"></i>', ar: '← تعديل' },
+      'mentor.editProfile': { en: 'Edit <i class="fi fi-rr-arrow-small-right"></i>', ar: '<i class="fi fi-rr-arrow-small-left"></i> تعديل' },
       'mentor.menteesTitle': { en: 'Your mentees', ar: 'المتدربون لديك' },
       'mentor.noMentees': { en: 'No mentees yet — once a student (in this same browser) selects you, they\'ll show up here.', ar: 'لا يوجد متدربون بعد — بمجرد أن يختارك طالب (في نفس هذا المتصفح)، سيظهر هنا.' },
       'dash.insuranceName': { en: 'Pre-Auth Specialist', ar: 'أخصائي التصريح المسبق' },

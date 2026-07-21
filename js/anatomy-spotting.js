@@ -1,5 +1,5 @@
 window.I18N_PAGE_DICT = {
-  'as.back': { en: '← Back to Radiology', ar: '<i class="fi fi-rr-arrow-small-right"></i> العودة إلى الأشعة' },
+  'as.back': { en: '<i class="fi fi-rr-arrow-small-left"></i> Back to Radiology', ar: '<i class="fi fi-rr-arrow-small-right"></i> العودة إلى الأشعة' },
   'as.tag': { en: 'Radiology · Anatomy Spotting', ar: 'الأشعة · تحديد التشريح' },
   'as.h1': { en: 'Label it. Time it. Level up.', ar: 'حدّده. وقّته. ارتقِ بمستواك.' },
   'as.desc': { en: 'Pick a system, start a mock test, and label highlighted structures against a 90-minute countdown — exactly like exam day. Every correct label counts toward your all-time total: 50 correct earns Hero, 100 earns Master, 150 earns Legendary.', ar: 'اختر جهازًا، ابدأ اختبارًا تجريبيًا، وحدّد التراكيب المُبرزة ضمن عد تنازلي مدته 90 دقيقة — تمامًا كيوم الامتحان. كل تسمية صحيحة تُحتسب ضمن رصيدك الكلي: 50 صحيحة تمنحك لقب بطل، 100 تمنحك خبير، و150 تمنحك أسطوري.' },
@@ -163,7 +163,7 @@ window.I18N_PAGE_DICT = {
   overlay.className = 'as-game-overlay';
   overlay.innerHTML = `
     <div class="as-game-top">
-      <button type="button" class="as-game-exit" id="asExit">← Exit mock test</button>
+      <button type="button" class="as-game-exit" id="asExit"><i class="fi fi-rr-arrow-small-left"></i> Exit mock test</button>
       <div class="as-timer" id="asTimer">90:00</div>
       <div class="as-game-score" id="asScore">0 correct</div>
     </div>
@@ -176,7 +176,7 @@ window.I18N_PAGE_DICT = {
 
   function applyGameChrome() {
     const isAr = lang() === 'ar';
-    document.getElementById('asExit').textContent = isAr ? '← الخروج من الاختبار' : '← Exit mock test';
+    document.getElementById('asExit').innerHTML = isAr ? '<i class="fi fi-rr-arrow-small-left"></i> الخروج من الاختبار' : '<i class="fi fi-rr-arrow-small-left"></i> Exit mock test';
   }
   applyGameChrome();
 

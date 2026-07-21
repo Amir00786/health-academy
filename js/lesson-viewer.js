@@ -11,12 +11,12 @@
     discussions: { en: '0 Discussions', ar: '0 مناقشات' },
     expandLabel: { en: 'Toggle fullscreen', ar: 'تبديل ملء الشاشة' },
     closeLabel: { en: 'Close', ar: 'إغلاق' },
-    completeContinue: { en: 'Complete & Continue <i class="fi fi-rr-arrow-small-right"></i>', ar: '← إتمام والمتابعة' },
+    completeContinue: { en: 'Complete & Continue <i class="fi fi-rr-arrow-small-right"></i>', ar: '<i class="fi fi-rr-arrow-small-left"></i> إتمام والمتابعة' },
     quickCheck: { en: 'Quick check', ar: 'تحقق سريع' },
     answerToComplete: { en: 'Answer to complete this lesson', ar: 'أجب لإكمال هذا الدرس' },
     submitAnswers: { en: 'Submit answers', ar: 'إرسال الإجابات' },
     tryAgain: { en: 'Try again', ar: 'حاول مرة أخرى' },
-    continueBtn: { en: 'Continue <i class="fi fi-rr-arrow-small-right"></i>', ar: '← متابعة' },
+    continueBtn: { en: 'Continue <i class="fi fi-rr-arrow-small-right"></i>', ar: '<i class="fi fi-rr-arrow-small-left"></i> متابعة' },
   };
   function t(key) {
     return STRINGS[key][lang()] || STRINGS[key].en;

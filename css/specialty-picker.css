@@ -195,6 +195,9 @@ html.is-loading body {
   color: var(--teal);
   font-weight: 600;
   font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .picker-card.locked {

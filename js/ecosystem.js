@@ -2,7 +2,7 @@ window.I18N_PAGE_DICT = {
       'eco.hint': { en: 'Click any planet to explore · Scroll to zoom', ar: 'انقر على أي كوكب للاستكشاف · مرر للتكبير' },
       'eco.comingSoon': { en: 'Coming soon', ar: 'قريبًا' },
       'eco.exploreInside': { en: 'Explore inside', ar: 'استكشف بالداخل' },
-      'eco.openSection': { en: 'Open full section <i class="fi fi-rr-arrow-small-right"></i>', ar: 'افتح القسم كاملاً ←' },
+      'eco.openSection': { en: 'Open full section <i class="fi fi-rr-arrow-small-right"></i>', ar: 'افتح القسم كاملاً <i class="fi fi-rr-arrow-small-left"></i>' },
     };
 
 const C=document.getElementById('solarCanvas');
@@ -152,7 +152,7 @@ const planets=[
     tagAr:'دورة الرعاية',
     comingSoon:true,
     desc:'Every entity connects in one continuous loop: patient arrives <i class="fi fi-rr-arrow-small-right"></i> pre-auth submitted <i class="fi fi-rr-arrow-small-right"></i> insurer reviews <i class="fi fi-rr-arrow-small-right"></i> imaging performed <i class="fi fi-rr-arrow-small-right"></i> report written <i class="fi fi-rr-arrow-small-right"></i> claim submitted <i class="fi fi-rr-arrow-small-right"></i> payment made. Understanding the full loop makes you exceptional at every step.',
-    descAr:'تتصل كل الجهات في حلقة واحدة متواصلة: يصل المريض ← يُقدَّم طلب التصريح المسبق ← تراجعه شركة التأمين ← يُجرى التصوير ← يُكتب التقرير ← تُقدَّم المطالبة ← تتم عملية الدفع. فهم هذه الحلقة كاملة يجعلك متميزًا في كل خطوة.',
+    descAr:'تتصل كل الجهات في حلقة واحدة متواصلة: يصل المريض <i class="fi fi-rr-arrow-small-left"></i> يُقدَّم طلب التصريح المسبق <i class="fi fi-rr-arrow-small-left"></i> تراجعه شركة التأمين <i class="fi fi-rr-arrow-small-left"></i> يُجرى التصوير <i class="fi fi-rr-arrow-small-left"></i> يُكتب التقرير <i class="fi fi-rr-arrow-small-left"></i> تُقدَّم المطالبة <i class="fi fi-rr-arrow-small-left"></i> تتم عملية الدفع. فهم هذه الحلقة كاملة يجعلك متميزًا في كل خطوة.',
     subs:[
       {ico:'🚶',title:'Patient journey',desc:'The full path from symptom to result'},
       {ico:'⏳',title:'Where delays happen',desc:'The two biggest bottlenecks explained'},
@@ -442,7 +442,7 @@ function openPanel(p){
     </div>
   `).join('');
   const btn=document.getElementById('p-btn');
-  btn.innerHTML=isAr?('استكشف '+dispName+' ←'):('Explore '+dispName+' <i class="fi fi-rr-arrow-small-right"></i>');
+  btn.innerHTML=isAr?('استكشف '+dispName+' <i class="fi fi-rr-arrow-small-left"></i>'):('Explore '+dispName+' <i class="fi fi-rr-arrow-small-right"></i>');
   btn.style.background=p.color;
   btn.style.color=p.id==='provider'?'#060608':'#060608';
   document.getElementById('panel').classList.add('open');

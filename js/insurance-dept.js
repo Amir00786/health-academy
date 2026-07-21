@@ -22,26 +22,26 @@ window.I18N_PAGE_DICT = {
   'ins.footImpact': { en: 'Better Decisions<br>Better Care<br>Better Impact', ar: 'قرارات أفضل<br>رعاية أفضل<br>أثر أفضل' },
 
   // Video view
-  'ins.backToCourse': { en: '← Back to course', ar: '← العودة إلى الدورة' },
-  'ins.backToQueue': { en: '← Back to queue', ar: '← العودة إلى القائمة' },
+  'ins.backToCourse': { en: '<i class="fi fi-rr-arrow-small-left"></i> Back to course', ar: '<i class="fi fi-rr-arrow-small-left"></i> العودة إلى الدورة' },
+  'ins.backToQueue': { en: '<i class="fi fi-rr-arrow-small-left"></i> Back to queue', ar: '<i class="fi fi-rr-arrow-small-left"></i> العودة إلى القائمة' },
   'ins.paywallTitle': { en: 'Your free preview has ended', ar: 'انتهت معاينتك المجانية' },
   'ins.paywallDesc': { en: "You've watched the first 5 minutes free. Unlock the rest of this video — and the full Pre-Authorization Specialist track — to continue.", ar: 'لقد شاهدت أول 5 دقائق مجانًا. لإكمال هذا الفيديو — ومسار أخصائي التصريح المسبق الكامل — يرجى إلغاء القفل.' },
   'ins.paywallExpiredTitle': { en: 'Your one-year access has expired', ar: 'انتهت صلاحية وصولك لمدة عام' },
   'ins.paywallExpiredDesc': { en: 'Your Pre-Authorization Specialist membership was valid for one year from your purchase date and has now expired. Renew to keep watching.', ar: 'كانت عضويتك في مسار أخصائي التصريح المسبق سارية لمدة عام واحد من تاريخ الشراء وقد انتهت الآن. جدد اشتراكك لمتابعة المشاهدة.' },
-  'ins.unlockBtn': { en: 'Unlock full access <i class="fi fi-rr-arrow-small-right"></i>', ar: 'فتح الوصول الكامل ←' },
-  'ins.renewBtn': { en: 'Renew membership <i class="fi fi-rr-arrow-small-right"></i>', ar: 'تجديد العضوية ←' },
+  'ins.unlockBtn': { en: 'Unlock full access <i class="fi fi-rr-arrow-small-right"></i>', ar: 'فتح الوصول الكامل <i class="fi fi-rr-arrow-small-left"></i>' },
+  'ins.renewBtn': { en: 'Renew membership <i class="fi fi-rr-arrow-small-right"></i>', ar: 'تجديد العضوية <i class="fi fi-rr-arrow-small-left"></i>' },
   'ins.paywallNote': { en: 'Demo only — no real payment is processed here. Unlocks full access for one year from today.', ar: 'هذا للعرض التجريبي فقط — لا تتم معالجة أي دفعة حقيقية هنا. يفتح الوصول الكامل لمدة عام واحد من اليوم.' },
-  'ins.watchedBtn': { en: 'I\'ve finished watching this video <i class="fi fi-rr-arrow-small-right"></i>', ar: 'لقد أنهيت مشاهدة هذا الفيديو ←' },
+  'ins.watchedBtn': { en: 'I\'ve finished watching this video <i class="fi fi-rr-arrow-small-right"></i>', ar: 'لقد أنهيت مشاهدة هذا الفيديو <i class="fi fi-rr-arrow-small-left"></i>' },
   'ins.videoMissingNote': { en: 'No video file uploaded yet for this session — link it in the VIDEO_SESSIONS config to make it real.', ar: 'لم يتم رفع ملف الفيديو لهذه الجلسة بعد — يرجى ربطه في إعدادات VIDEO_SESSIONS لتفعيله.' },
   'ins.postVideoQuiz': { en: 'Post-video quiz', ar: 'اختبار ما بعد الفيديو' },
   'ins.quizCompleteMsg': { en: '✓ Quiz complete — this session is marked done.', ar: '✓ اكتمل الاختبار — تم وضع علامة إنجاز لهذه الجلسة.' },
-  'ins.continueBtn': { en: 'Continue <i class="fi fi-rr-arrow-small-right"></i>', ar: 'التالي ←' },
+  'ins.continueBtn': { en: 'Continue <i class="fi fi-rr-arrow-small-right"></i>', ar: 'التالي <i class="fi fi-rr-arrow-small-left"></i>' },
 
   // Practice view
   'ins.step08': { en: 'STEP 08', ar: 'الخطوة 08' },
   'ins.letsPractice': { en: "Let's Practice", ar: 'لنبدأ التطبيق' },
   'ins.practiceNote': { en: 'Two sample cases, ungraded — just to get comfortable with the format before the real exam. Nothing here affects your certificate.', ar: 'حالتان تجريبيتان غير مُقيَّمتين — فقط للتعرّف على شكل الاختبار قبل الامتحان الحقيقي. لا شيء هنا يؤثر على شهادتك.' },
-  'ins.readyForExamBtn': { en: 'I\'m ready — go to the exam <i class="fi fi-rr-arrow-small-right"></i>', ar: 'أنا جاهز — الذهاب إلى الامتحان ←' },
+  'ins.readyForExamBtn': { en: 'I\'m ready — go to the exam <i class="fi fi-rr-arrow-small-right"></i>', ar: 'أنا جاهز — الذهاب إلى الامتحان <i class="fi fi-rr-arrow-small-left"></i>' },
   'ins.practiceCasePrefix': { en: 'Practice Case', ar: 'حالة تدريبية' },
   'ins.patientLabel': { en: 'Patient', ar: 'المريض' },
   'ins.newborn': { en: 'newborn', ar: 'حديث الولادة' },
@@ -53,7 +53,7 @@ window.I18N_PAGE_DICT = {
   'ins.legendFast': { en: '&lt; 30 min', ar: 'أقل من 30 دقيقة' },
   'ins.legendMed': { en: '30–90 min', ar: '30–90 دقيقة' },
   'ins.legendSlow': { en: '&gt; 90 min', ar: 'أكثر من 90 دقيقة' },
-  'ins.seeMyResults': { en: 'See my results <i class="fi fi-rr-arrow-small-right"></i>', ar: 'عرض نتيجتي ←' },
+  'ins.seeMyResults': { en: 'See my results <i class="fi fi-rr-arrow-small-right"></i>', ar: 'عرض نتيجتي <i class="fi fi-rr-arrow-small-left"></i>' },
   'ins.casesDecidedSuffix': { en: 'cases decided', ar: 'حالة تم تحديد قرارها' },
   'ins.notPartOfExam': { en: 'Not part of this exam', ar: 'ليست جزءًا من هذا الامتحان' },
   'ins.decided': { en: '✓ Decided:', ar: '✓ تم اتخاذ القرار:' },
@@ -98,7 +98,7 @@ window.I18N_PAGE_DICT = {
   // Exam results
   'ins.caseByCaseReview': { en: 'Case-by-case review', ar: 'مراجعة كل حالة على حدة' },
   'ins.retryExam': { en: 'Retry the exam', ar: 'إعادة الامتحان' },
-  'ins.getYourCertificate': { en: 'Get your certificate <i class="fi fi-rr-arrow-small-right"></i>', ar: 'الحصول على شهادتك ←' },
+  'ins.getYourCertificate': { en: 'Get your certificate <i class="fi fi-rr-arrow-small-right"></i>', ar: 'الحصول على شهادتك <i class="fi fi-rr-arrow-small-left"></i>' },
   'ins.yourDenialCode': { en: 'Your denial code:', ar: 'رمز الرفض الذي اخترته:' },
   'ins.correctCode': { en: 'Correct code:', ar: 'الرمز الصحيح:' },
   'ins.reviewCorrect': { en: '✓ Correct', ar: '✓ صحيح' },
@@ -118,16 +118,25 @@ window.I18N_PAGE_DICT = {
   // Certificate
   'ins.certNotUnlocked': { en: 'Not unlocked yet', ar: 'لم تُفتح بعد' },
   'ins.certLockedDesc': { en: 'Pass the final exam (more than 7 out of 15) to unlock your certificate.', ar: 'انجح في الامتحان النهائي (أكثر من 7 من 15) لفتح شهادتك.' },
-  'ins.goToExam': { en: 'Go to the exam <i class="fi fi-rr-arrow-small-right"></i>', ar: 'الذهاب إلى الامتحان ←' },
+  'ins.goToExam': { en: 'Go to the exam <i class="fi fi-rr-arrow-small-right"></i>', ar: 'الذهاب إلى الامتحان <i class="fi fi-rr-arrow-small-left"></i>' },
   'ins.enterFullName': { en: 'Enter your full name for the certificate', ar: 'أدخل اسمك الكامل للشهادة' },
   'ins.namePlaceholder': { en: 'e.g. Sara Al-Mutairi', ar: 'مثال: سارة المطيري' },
-  'ins.generateCert': { en: 'Generate my certificate <i class="fi fi-rr-arrow-small-right"></i>', ar: 'إنشاء شهادتي ←' },
+  'ins.generateCert': { en: 'Generate my certificate <i class="fi fi-rr-arrow-small-right"></i>', ar: 'إنشاء شهادتي <i class="fi fi-rr-arrow-small-left"></i>' },
   'ins.certBrand': { en: 'iHealth Academy · Certificate of Completion', ar: 'أكاديمية آي هيلث · شهادة إتمام' },
   'ins.certSpecialistTitle': { en: 'Pre-Authorization Specialist', ar: 'أخصائي التصريح المسبق' },
   'ins.certLine': { en: 'has successfully completed the full Pre-Authorization Specialist track — seven core modules, applied practice, and a 15-case practical exam — and is certified <b>ready for work</b> in medical pre-authorization.', ar: 'أكمل بنجاح مسار أخصائي التصريح المسبق الكامل — سبع وحدات أساسية، تطبيق عملي، وامتحان عملي من 15 حالة — وهو معتمد <b>جاهز للعمل</b> في مجال التصريح المسبق الطبي.' },
   'ins.issued': { en: 'Issued', ar: 'تاريخ الإصدار' },
   'ins.printSave': { en: '🖨 Print / Save as PDF', ar: '🖨 طباعة / حفظ كملف PDF' },
   'ins.editName': { en: 'Edit name', ar: 'تعديل الاسم' },
+
+  // Course feedback (post-completion star rating + comment)
+  'ins.rateCourseTitle': { en: 'Rate this course', ar: 'قيّم هذه الدورة' },
+  'ins.rateCourseDesc': { en: 'Your feedback helps us improve this course for future students.', ar: 'ملاحظاتك تساعدنا على تحسين هذه الدورة للطلاب القادمين.' },
+  'ins.commentPlaceholder': { en: 'Share your thoughts about this course (optional)', ar: 'شاركنا رأيك حول هذه الدورة (اختياري)' },
+  'ins.submitFeedbackBtn': { en: 'Submit feedback', ar: 'إرسال الملاحظات' },
+  'ins.pleaseSelectStars': { en: 'Please select a star rating first.', ar: 'يرجى اختيار تقييم بالنجوم أولاً.' },
+  'ins.feedbackThanks': { en: 'Thanks for your feedback!', ar: 'شكرًا لملاحظاتك!' },
+  'ins.editFeedbackBtn': { en: 'Edit your feedback', ar: 'تعديل ملاحظاتك' },
 
   // Landing session list chrome
   'ins.locked': { en: 'Locked', ar: 'مغلق' },
@@ -1721,7 +1730,7 @@ const VIDEO_SESSIONS = [
     titleAr:"ما هو التأمين الطبي؟", descAr:"التعريفات والمصطلحات الأساسية التي يجب أن يعرفها كل أخصائي عن ظهر قلب.",
     bullets:["What medical insurance actually is","The Pre-Auth Department's real role","Self-pay alternatives & who can work in pre-auth","CHI, NPHIES, RCM & key Saudi terms"],
     bulletsAr:["ما هو التأمين الطبي فعليًا","الدور الحقيقي لقسم التصريح المسبق","بدائل الدفع الذاتي ومن يمكنه العمل في التصريح المسبق","مجلس ضمان، نفيس، إدارة الدورة المالية، والمصطلحات السعودية الأساسية"],
-    duration:"37:05", videoUrl:"images/medical-approval-specialist-1.mp4", quiz: [...SECTIONS[0].questions, ...SECTIONS[1].questions] },
+    duration:"37:05", videoUrl:"images/medical-approval-specialist-1.mp4", freePreviewSeconds:300, quiz: [...SECTIONS[0].questions, ...SECTIONS[1].questions] },
   { num:2, id:"v1", title:"General Overview", desc:"See how patients, providers, insurers, and regulators all connect in one claim.",
     titleAr:"نظرة عامة", descAr:"تعرّف على كيفية ارتباط المريض ومقدم الخدمة وشركة التأمين والجهة التنظيمية في مطالبة واحدة.",
     bullets:["Patient, provider & payer roles","Claim assignment & review cycles","CHI regulatory oversight","Employer eligibility checks"],
@@ -1731,12 +1740,12 @@ const VIDEO_SESSIONS = [
     titleAr:"الاستبيان الصحي", descAr:"قواعد الإفصاح، معايير التحقيق، وما يتطلب التصريح فعليًا.",
     bullets:["What the HQ actually covers","Investigating inconsistent history","Who's exempt from the HQ","Maternity timing edge cases"],
     bulletsAr:["ما يغطيه الاستبيان الصحي فعليًا","التحقيق في التاريخ الطبي غير المتطابق","من هو المستثنى من الاستبيان الصحي","حالات خاصة بتوقيت الحمل"],
-    duration:"26:18", videoUrl:"images/medical-approval-specialist-3.mp4", quiz: SECTIONS[2].questions },
+    duration:"26:18", videoUrl:"images/medical-approval-specialist-3.mp4", freePreviewSeconds:300, quiz: SECTIONS[2].questions },
   { num:4, id:"v4", title:"CHI Exclusion Items", desc:"What's excluded, and the difference between reject and refer.",
     titleAr:"بنود الاستبعاد لدى مجلس ضمان", descAr:"ما هو مستبعد من التغطية، والفرق بين الرفض والتحويل.",
     bullets:["Natural disaster exclusions","Life-threatening congenital exceptions","Sports & hazardous activities","Third-party liability coordination"],
     bulletsAr:["استبعادات الكوارث الطبيعية","استثناءات الحالات الخلقية المهددة للحياة","الأنشطة الرياضية والخطرة","التنسيق مع مسؤولية الطرف الثالث"],
-    duration:"39:22", videoUrl:"images/medical-approval-specialist-4.mp4", quiz: SECTIONS[3].questions },
+    duration:"39:22", videoUrl:"images/medical-approval-specialist-4.mp4", freePreviewSeconds:300, quiz: SECTIONS[3].questions },
   /* v5 and v6 (CHI Inclusion Items & Coverage, Special Terms & Conditions) are
      pending final videos — re-add once the new links/durations are provided.
   { num:5, id:"v5", title:"CHI Inclusion Items & Coverage", desc:"What's actually covered — maternity, chronic conditions, and organ transplants.",
@@ -1783,7 +1792,11 @@ let progress = {
   examScore: 0,
   certName: "",
   paidUnlocked: false,     // demo paywall — true once "Unlock full access" is clicked
-  paidUnlockedAt: null     // timestamp of that unlock — membership runs 1 year from here
+  paidUnlockedAt: null,    // timestamp of that unlock — membership runs 1 year from here
+  feedbackGiven: false,    // true once the post-course star rating + comment has been submitted
+  feedbackStars: 0,
+  feedbackComment: "",
+  feedbackEntryId: null    // id of this browser's entry in the shared ih-course-feedback list
 };
 
 const MEMBERSHIP_DURATION_MS = 365 * 24 * 60 * 60 * 1000; // one year from the joining/purchase date
@@ -2436,6 +2449,7 @@ function openCertificate(){
     });
     if(progress.certName) renderCertificate(progress.certName);
   }
+  renderFeedbackWidget();
   showView("certificate");
 }
 document.getElementById("certBackBtn").addEventListener("click", ()=>{ showView("landing"); renderLanding(); });
@@ -2459,6 +2473,98 @@ function renderCertificate(name){
   `;
   document.getElementById("certPrintBtn").addEventListener("click", ()=> window.print());
   document.getElementById("certEditBtn").addEventListener("click", ()=>{ out.innerHTML = ""; });
+}
+
+/* ============================================================
+   COURSE FEEDBACK — star rating + comment, shown once the exam is
+   passed. Stored under a shared "ih-" prefixed key (ih-course-feedback)
+   so it's picked up automatically by the admin console's backup/export
+   sweep and can be reused by other course pages, each entry tagged
+   with its own `course` id.
+   ============================================================ */
+const FEEDBACK_KEY = "ih-course-feedback";
+const FEEDBACK_COURSE_ID = "insurance-dept";
+
+function escapeHtml(str){
+  const div = document.createElement("div");
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+async function loadFeedbackList(){
+  try{
+    const r = await storage.get(FEEDBACK_KEY);
+    return r && r.value ? JSON.parse(r.value) : [];
+  }catch(e){ return []; }
+}
+
+async function submitFeedbackEntry(stars, comment){
+  const list = await loadFeedbackList();
+  if(!progress.feedbackEntryId){
+    progress.feedbackEntryId = `${FEEDBACK_COURSE_ID}-${Date.now()}-${Math.random().toString(36).slice(2,8)}`;
+  }
+  const entry = { id: progress.feedbackEntryId, course: FEEDBACK_COURSE_ID, name: progress.certName || "", stars, comment, ts: Date.now() };
+  const idx = list.findIndex(f=> f.id === progress.feedbackEntryId);
+  if(idx >= 0) list[idx] = entry; else list.push(entry);
+  await storage.set(FEEDBACK_KEY, JSON.stringify(list));
+}
+
+function renderStarGlyphs(stars){
+  return "★".repeat(stars) + "☆".repeat(5 - stars);
+}
+
+function renderFeedbackWidget(){
+  const wrap = document.getElementById("certFeedback");
+  if(!wrap) return;
+  if(!progress.examPassed){ wrap.innerHTML = ""; return; }
+
+  if(progress.feedbackGiven){
+    wrap.innerHTML = `
+      <div class="feedback-box feedback-done">
+        <h3>${T('ins.rateCourseTitle')}</h3>
+        <div class="star-display">${renderStarGlyphs(progress.feedbackStars || 0)}</div>
+        ${progress.feedbackComment ? `<p class="feedback-comment-echo">"${escapeHtml(progress.feedbackComment)}"</p>` : ""}
+        <p class="feedback-thanks">${T('ins.feedbackThanks')}</p>
+        <button class="btn btn-ghost" id="feedbackEditBtn">${T('ins.editFeedbackBtn')}</button>
+      </div>`;
+    document.getElementById("feedbackEditBtn").addEventListener("click", async ()=>{
+      progress.feedbackGiven = false;
+      await saveAllProgress();
+      renderFeedbackWidget();
+    });
+    return;
+  }
+
+  wrap.innerHTML = `
+    <div class="feedback-box">
+      <h3>${T('ins.rateCourseTitle')}</h3>
+      <p class="feedback-desc">${T('ins.rateCourseDesc')}</p>
+      <div class="star-picker" id="starPicker">${[1,2,3,4,5].map(n=>`<span class="star" data-v="${n}">★</span>`).join("")}</div>
+      <p class="feedback-error hidden" id="feedbackError">${T('ins.pleaseSelectStars')}</p>
+      <textarea id="feedbackCommentInput" class="feedback-textarea" placeholder="${T('ins.commentPlaceholder')}">${progress.feedbackComment ? escapeHtml(progress.feedbackComment) : ""}</textarea>
+      <div style="text-align:center;"><button class="btn btn-primary" id="feedbackSubmitBtn">${T('ins.submitFeedbackBtn')}</button></div>
+    </div>`;
+
+  let selected = progress.feedbackStars || 0;
+  const starEls = wrap.querySelectorAll(".star");
+  function paint(v){ starEls.forEach(s=> s.classList.toggle("filled", Number(s.dataset.v) <= v)); }
+  paint(selected);
+  starEls.forEach(s=>{
+    s.addEventListener("mouseenter", ()=> paint(Number(s.dataset.v)));
+    s.addEventListener("mouseleave", ()=> paint(selected));
+    s.addEventListener("click", ()=>{ selected = Number(s.dataset.v); paint(selected); });
+  });
+
+  document.getElementById("feedbackSubmitBtn").addEventListener("click", async ()=>{
+    if(!selected){ document.getElementById("feedbackError").classList.remove("hidden"); return; }
+    const comment = document.getElementById("feedbackCommentInput").value.trim();
+    progress.feedbackStars = selected;
+    progress.feedbackComment = comment;
+    progress.feedbackGiven = true;
+    await saveAllProgress();
+    await submitFeedbackEntry(selected, comment);
+    renderFeedbackWidget();
+  });
 }
 
 /* ============================================================
@@ -2486,8 +2592,9 @@ document.addEventListener('ih:langchange', ()=>{
     openExamCase(currentExamCaseId);
   } else if(view === "examresults"){
     showExamResults();
-  } else if(view === "certificate" && progress.certName){
-    renderCertificate(progress.certName);
+  } else if(view === "certificate"){
+    if(progress.certName) renderCertificate(progress.certName);
+    renderFeedbackWidget();
   }
 });
 

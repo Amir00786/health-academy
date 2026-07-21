@@ -5,7 +5,7 @@ window.I18N_PAGE_DICT = {
   'admin.unlock': { en: 'Unlock', ar: 'فتح' },
   'admin.lockNote': { en: 'This is a basic client-side passcode, not real authentication — anyone who inspects the page source can bypass it. Add a real server-side login before relying on this to keep the console private.', ar: 'هذا مجرد رمز مرور أساسي من جهة العميل، وليس مصادقة حقيقية — يمكن لأي شخص يفحص كود الصفحة تجاوزه. أضف نظام تسجيل دخول حقيقي من جهة الخادم قبل الاعتماد على هذا للحفاظ على خصوصية الوحدة.' },
   'admin.roleCeo': { en: 'CEO', ar: 'الرئيس التنفيذي' },
-  'admin.exitLink': { en: '← Exit to public site', ar: '<i class="fi fi-rr-arrow-small-right"></i> الخروج إلى الموقع العام' },
+  'admin.exitLink': { en: '<i class="fi fi-rr-arrow-small-left"></i> Exit to public site', ar: '<i class="fi fi-rr-arrow-small-right"></i> الخروج إلى الموقع العام' },
   'admin.demoBannerStrong': { en: 'Demo data.', ar: 'بيانات تجريبية.' },
   'admin.demoBannerText': { en: "This console isn't connected to a real analytics or payments backend yet, so visitor counts, sign-ups, revenue, and traffic sources below show as empty until that's wired up. The Trust & Safety and Mentor review sections below use sample entries to demonstrate the workflow — but the Review / Approve / Reject / Suspend buttons are fully functional and their state is saved in this browser.", ar: 'هذه الوحدة غير متصلة بعد بأي نظام تحليلات أو مدفوعات حقيقي، لذا تظهر أعداد الزوار والتسجيلات والإيرادات ومصادر الزيارات أدناه فارغة حتى يتم ربطها. تستخدم أقسام السلامة والثقة ومراجعة الموجهين أدناه بيانات نموذجية لتوضيح آلية العمل — لكن أزرار مراجعة / موافقة / رفض / تعليق تعمل بشكل كامل وتُحفظ حالتها في هذا المتصفح.' },
   'admin.briefingTitle': { en: "🧭 This week's briefing", ar: '🧭 ملخص هذا الأسبوع' },
@@ -14,7 +14,7 @@ window.I18N_PAGE_DICT = {
   'admin.kpiSignups': { en: 'Sign-ups (30d)', ar: 'التسجيلات (30 يومًا)' },
   'admin.kpiPaidMembers': { en: 'Paid members', ar: 'الأعضاء المدفوعون' },
   'admin.kpiMRR': { en: 'MRR', ar: 'الإيراد الشهري المتكرر' },
-  'admin.funnelTitle': { en: 'Visitor <i class="fi fi-rr-arrow-small-right"></i> paid funnel (30d)', ar: 'مسار الزائر ← المشترك المدفوع (30 يومًا)' },
+  'admin.funnelTitle': { en: 'Visitor <i class="fi fi-rr-arrow-small-right"></i> paid funnel (30d)', ar: 'مسار الزائر <i class="fi fi-rr-arrow-small-left"></i> المشترك المدفوع (30 يومًا)' },
   'admin.funnelVisitors': { en: 'Visitors', ar: 'الزوار' },
   'admin.funnelSignedUp': { en: 'Signed up', ar: 'مسجّلون' },
   'admin.funnelActivated': { en: 'Activated', ar: 'مُفعَّلون' },
@@ -43,6 +43,8 @@ window.I18N_PAGE_DICT = {
   'admin.accepted': { en: 'Accepted', ar: 'مقبولة' },
   'admin.declined': { en: 'Declined', ar: 'مرفوضة' },
   'admin.meetingsNote': { en: 'Reflects mentor/student meeting requests stored in this browser — connect a real backend for a cross-device view.', ar: 'يعكس طلبات اجتماعات الموجهين/الطلاب المخزّنة في هذا المتصفح — اربط خادمًا حقيقيًا لعرضها عبر جميع الأجهزة.' },
+  'admin.courseFeedback': { en: '⭐ Course feedback', ar: '⭐ ملاحظات الدورة' },
+  'admin.courseFeedbackNote': { en: 'Star ratings and written comments students leave after finishing a course — stored only in this browser (included automatically in the Export backup below). Remove anything irrelevant or inappropriate; removal is immediate.', ar: 'تقييمات بالنجوم وتعليقات مكتوبة يتركها الطلاب بعد إنهاء الدورة — مخزّنة فقط في هذا المتصفح (تُضمَّن تلقائيًا في النسخة الاحتياطية للتصدير أدناه). احذف أي تعليق غير ذي صلة أو غير لائق؛ يتم الحذف فورًا.' },
   'admin.backupRestore': { en: '🗂️ Backup & Restore', ar: '🗂️ النسخ الاحتياطي والاستعادة' },
   'admin.backupNote': { en: 'Export everything stored in this browser — student progress, mentor directory, meeting requests, and admin decisions — as a JSON file you can keep safe, and re-import it later to restore it or move it to another browser.', ar: 'صدّر كل ما هو مخزّن في هذا المتصفح — تقدم الطلاب، دليل الموجهين، طلبات الاجتماعات، وقرارات الإدارة — كملف JSON يمكنك حفظه بأمان، وإعادة استيراده لاحقًا لاستعادته أو نقله إلى متصفح آخر.' },
   'admin.exportBtn': { en: 'Export data (.json)', ar: 'تصدير البيانات (.json)' },
@@ -69,6 +71,14 @@ window.I18N_PAGE_DICT = {
   const AUTH_KEY = 'ih-admin-authed';
   const RESOLVED_REPORTS_KEY = 'ih-admin-resolved-reports';
   const MENTOR_DECISIONS_KEY = 'ih-admin-mentor-decisions';
+  const COURSE_FEEDBACK_KEY = 'ih-course-feedback';
+
+  // Maps a course id (as tagged on each feedback entry) to an existing dictionary
+  // label, so new course pages just need to add their id here to show up correctly.
+  const COURSE_FEEDBACK_LABELS = {
+    'insurance-dept': 'admin.preAuthLabel',
+    'radiology-dept': 'admin.radiologyLabel',
+  };
 
   const SAMPLE_REPORTS = [
     { id: 1042, title: 'Possible exam-answer sharing in a mentor session', meta: 'Report #1042 · Student account', severity: 'high', actions: [{ label: 'Review', cls: '' }, { label: 'Suspend', cls: 'danger' }] },
@@ -110,6 +120,10 @@ window.I18N_PAGE_DICT = {
     revenueNotConnected: { en: "Not yet connected — import a PayPal Activity CSV export below. This panel reads from a swappable data layer (js/revenue.js), so plugging in a live PayPal/Stripe API later won't require redesigning it.", ar: 'غير متصل بعد — استورد ملف تصدير نشاط PayPal (CSV) أدناه. تعتمد هذه اللوحة على طبقة بيانات قابلة للتبديل (js/revenue.js)، لذا فإن ربط واجهة PayPal/Stripe حقيقية لاحقًا لن يتطلب إعادة تصميمها.' },
     revenueConnectedNote: { en: 'From an imported PayPal CSV ({count} transaction(s)). Import a newer export to refresh — connecting a live PayPal/Stripe API later reuses this same panel.', ar: 'من ملف PayPal CSV مستورد ({count} معاملة). استورد نسخة أحدث لتحديث البيانات — سيُعاد استخدام هذه اللوحة نفسها عند ربط واجهة PayPal/Stripe حقيقية لاحقًا.' },
     transactionsImportedAlert: { en: '{count} transaction(s) imported.', ar: 'تم استيراد {count} معاملة.' },
+    noFeedback: { en: 'No course feedback submitted yet.', ar: 'لم تُقدَّم أي ملاحظات على الدورات حتى الآن.' },
+    removeFeedback: { en: 'Remove', ar: 'حذف' },
+    confirmRemoveFeedback: { en: 'Remove this feedback entry? This cannot be undone.', ar: 'هل تريد حذف هذا التعليق؟ لا يمكن التراجع عن هذا الإجراء.' },
+    anonymousStudent: { en: 'Anonymous student', ar: 'طالب مجهول' },
   };
 
   // Small fixed sets of repeating labels — status/severity words and action
@@ -314,6 +328,52 @@ window.I18N_PAGE_DICT = {
     });
   }
 
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function courseFeedbackLabel(courseId) {
+    const dictKey = COURSE_FEEDBACK_LABELS[courseId];
+    return dictKey ? dictLabel(dictKey) : courseId;
+  }
+
+  function renderCourseFeedback() {
+    const list = document.getElementById('courseFeedbackList');
+    if (!list) return;
+    const entries = loadJson(COURSE_FEEDBACK_KEY).slice().sort((a, b) => b.ts - a.ts);
+    list.innerHTML = '';
+    if (!entries.length) {
+      list.innerHTML = '<p class="empty-note">' + t('noFeedback') + '</p>';
+      return;
+    }
+    entries.forEach((f) => {
+      const row = document.createElement('div');
+      row.className = 'mod-row';
+      const stars = '★'.repeat(f.stars || 0) + '☆'.repeat(5 - (f.stars || 0));
+      const studentName = f.name ? escapeHtml(f.name) : t('anonymousStudent');
+      const dateStr = f.ts ? new Date(f.ts).toLocaleDateString() : '';
+      row.innerHTML =
+        '<div><div class="mod-title">' + stars + ' — ' + studentName + '</div>' +
+          (f.comment ? '<div class="mod-meta">' + escapeHtml(f.comment) + '</div>' : '') +
+          '<div class="mod-meta">' + courseFeedbackLabel(f.course) + (dateStr ? ' · ' + dateStr : '') + '</div>' +
+        '</div>' +
+        '<div class="mod-actions"><button type="button" class="mod-btn danger" data-feedback="' + f.id + '">' + t('removeFeedback') + '</button></div>';
+      list.appendChild(row);
+    });
+
+    list.querySelectorAll('[data-feedback]').forEach((b) => {
+      b.addEventListener('click', () => {
+        if (!confirm(t('confirmRemoveFeedback'))) return;
+        const id = b.getAttribute('data-feedback');
+        const remaining = loadJson(COURSE_FEEDBACK_KEY).filter((f) => f.id !== id);
+        localStorage.setItem(COURSE_FEEDBACK_KEY, JSON.stringify(remaining));
+        renderCourseFeedback();
+      });
+    });
+  }
+
   // BACKUP & RESTORE — bundles every "ih-" localStorage key (student progress,
   // mentor directory, meeting requests, admin decisions) into one JSON file.
   function exportAllData() {
@@ -425,6 +485,7 @@ window.I18N_PAGE_DICT = {
   renderModQueue();
   renderMentorQueue();
   renderMeetingsOverview();
+  renderCourseFeedback();
   renderRevenue();
   initRevenueImport();
   initBackup();
@@ -438,6 +499,7 @@ window.I18N_PAGE_DICT = {
     renderModQueue();
     renderMentorQueue();
     renderMeetingsOverview();
+    renderCourseFeedback();
     renderRevenue();
   });
 })();

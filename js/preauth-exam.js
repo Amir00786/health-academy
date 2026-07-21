@@ -15,7 +15,7 @@ window.I18N_PAGE_DICT = {
   'pex.rule5': { en: "<b>Decide</b>: Approve, Partially Approve, Reject, or Refer for Review — the same categories used in real pre-auth software.", ar: '<b>اتخذ قرارك</b>: موافقة، موافقة جزئية، رفض، أو تحويل للمراجعة — وهي نفس التصنيفات المستخدمة في برامج التصريح المسبق الحقيقية.' },
   'pex.rule6': { en: "You'll see your full results — and the correct reasoning for every case — only at the end.", ar: 'ستشاهد نتائجك الكاملة — والتحليل الصحيح لكل حالة — في النهاية فقط.' },
   'pex.namePlaceholder': { en: 'Your name, for the certificate', ar: 'اسمك، لإضافته في الشهادة' },
-  'pex.startBtn': { en: 'Enter the queue <i class="fi fi-rr-arrow-small-right"></i>', ar: 'ادخل قائمة الانتظار ←' },
+  'pex.startBtn': { en: 'Enter the queue <i class="fi fi-rr-arrow-small-right"></i>', ar: 'ادخل قائمة الانتظار <i class="fi fi-rr-arrow-small-left"></i>' },
 
   'pex.dashTitle': { en: "Today's Queue", ar: 'قائمة انتظار اليوم' },
   'pex.dashDesc': { en: 'Click a case to open it. Color reflects waiting time — treat red cases with urgency, same as you would on the floor.', ar: 'اضغط على أي حالة لفتحها. اللون يعكس مدة الانتظار — تعامل مع الحالات الحمراء بإلحاح، تمامًا كما تفعل في الواقع الميداني.' },
@@ -23,7 +23,7 @@ window.I18N_PAGE_DICT = {
   'pex.legend2': { en: '30–90 min', ar: '30–90 دقيقة' },
   'pex.legend3': { en: '&gt; 90 min', ar: '&gt; 90 دقيقة' },
 
-  'pex.backToQueue': { en: '← Back to queue', ar: '← رجوع إلى قائمة الانتظار' },
+  'pex.backToQueue': { en: '<i class="fi fi-rr-arrow-small-left"></i> Back to queue', ar: '<i class="fi fi-rr-arrow-small-left"></i> رجوع إلى قائمة الانتظار' },
   'pex.claimRefLabel': { en: 'Claim Ref:', ar: 'مرجع المطالبة:' },
   'pex.benefitLabel': { en: 'Benefit:', ar: 'الميزة:' },
   'pex.hcpLabel': { en: 'HCP:', ar: 'مقدم الخدمة الصحية:' },
@@ -57,7 +57,7 @@ window.I18N_PAGE_DICT = {
   'pex.historyStatus': { en: 'Status', ar: 'الحالة' },
 
   'pex.notPartOfExam': { en: 'Not part of this exam', ar: 'ليست جزءًا من هذا الامتحان' },
-  'pex.seeResults': { en: 'See my results <i class="fi fi-rr-arrow-small-right"></i>', ar: 'عرض نتيجتي ←' },
+  'pex.seeResults': { en: 'See my results <i class="fi fi-rr-arrow-small-right"></i>', ar: 'عرض نتيجتي <i class="fi fi-rr-arrow-small-left"></i>' },
   'pex.decidedPrefix': { en: '✓ Decided: ', ar: '✓ تم اتخاذ القرار: ' },
 
   'pex.correctTag': { en: '✓ Correct', ar: '✓ صحيح' },
@@ -69,7 +69,7 @@ window.I18N_PAGE_DICT = {
   'pex.passHeading': { en: 'Congratulations — you have passed the exam!', ar: 'تهانينا — لقد نجحت في الامتحان!' },
   'pex.passBody': { en: 'You are now eligible to work as a specialist at any of the biggest companies in the market. The insurance industry is waiting for you.', ar: 'أنت الآن مؤهل للعمل كأخصائي في أي من أكبر الشركات في السوق. قطاع التأمين في انتظارك.' },
   'pex.finalScoreLabel': { en: 'Final score:', ar: 'النتيجة النهائية:' },
-  'pex.getCertBtn': { en: 'Get your certificate <i class="fi fi-rr-arrow-small-right"></i>', ar: 'احصل على شهادتك ←' },
+  'pex.getCertBtn': { en: 'Get your certificate <i class="fi fi-rr-arrow-small-right"></i>', ar: 'احصل على شهادتك <i class="fi fi-rr-arrow-small-left"></i>' },
   'pex.failEyebrow': { en: 'RESULT', ar: 'النتيجة' },
   'pex.failHeading': { en: "Bad luck — but don't let this mark define your limit.", ar: 'حظ عاثر — لكن لا تدع هذه العلامة تحدد قدراتك.' },
   'pex.failBody': { en: "You can do this. Slow down and focus before making each decision — the HQ is important, and checking exclusion criteria is a must before you decide, not an afterthought.", ar: 'يمكنك تحقيق ذلك. تمهّل وركّز قبل اتخاذ كل قرار — فالاستبيان الصحي مهم، وفحص معايير الاستثناء واجب قبل اتخاذ القرار، لا بعده.' },

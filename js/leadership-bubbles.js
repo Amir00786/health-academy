@@ -1,5 +1,5 @@
 window.I18N_PAGE_DICT = {
-  'lb.back': { en: '← Back to iHealth Academy', ar: '← العودة إلى أكاديمية آي هيلث' },
+  'lb.back': { en: '<i class="fi fi-rr-arrow-small-left"></i> Back to iHealth Academy', ar: '<i class="fi fi-rr-arrow-small-left"></i> العودة إلى أكاديمية آي هيلث' },
   'lb.eyebrow': { en: 'EXECUTIVE LEADERSHIP', ar: 'القيادة التنفيذية' },
   'lb.title': { en: 'iHealth Academy', ar: 'أكاديمية آي هيلث' },
   'lb.subtitle': { en: "Not who's already on the team — who earns a seat, and when. Size and light mark how soon each role becomes real.", ar: 'ليس من هم في الفريق حاليًا — بل من يستحق مقعدًا، ومتى. الحجم والإضاءة يوضحان متى يصبح كل دور حقيقيًا.' },

@@ -10,7 +10,7 @@ window.I18N_PAGE_DICT = {
       'fyp.stage2Title': { en: 'After Medical School', ar: 'بعد كلية الطب' },
       'fyp.stage2Desc': { en: "Intern or final-year student ranking residency programs — which specialty you'll spend the next thirty years inside.", ar: 'متدرب أو طالب في السنة الأخيرة يرتب برامج الإقامة — أي تخصص سيقضي فيه الثلاثين سنة القادمة.' },
       'fyp.stage2Meta': { en: '28 questions <i class="fi fi-sr-arrow-small-right"></i> top 10 specialties <i class="fi fi-sr-arrow-small-right"></i>', ar: '28 سؤالًا <i class="fi fi-sr-arrow-small-right"></i> أفضل 10 تخصصات <i class="fi fi-sr-arrow-small-right"></i>' },
-      'fyp.back': { en: '← Back', ar: '<i class="fi fi-rr-arrow-small-right"></i> رجوع' },
+      'fyp.back': { en: '<i class="fi fi-rr-arrow-small-left"></i> Back', ar: '<i class="fi fi-rr-arrow-small-right"></i> رجوع' },
       'fyp.skip': { en: 'Skip question', ar: 'تخطي السؤال' },
     };
 

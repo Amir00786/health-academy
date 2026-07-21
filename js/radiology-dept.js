@@ -7,7 +7,7 @@
       'rad.stat3': { en: 'Exam tracks', ar: 'مسارات امتحانات' },
       'rad.stat4val': { en: 'Free', ar: 'مجاني' },
       'rad.stat4': { en: 'To start', ar: 'للبدء' },
-      'rad.anatomyBtn': { en: '🩻 Try Anatomy Spotting — timed mock test <i class="fi fi-rr-arrow-small-right"></i>', ar: '🩻 جرّب تحديد التشريح — اختبار تجريبي محدد بوقت ←' },
+      'rad.anatomyBtn': { en: '🩻 Try Anatomy Spotting — timed mock test <i class="fi fi-rr-arrow-small-right"></i>', ar: '🩻 جرّب تحديد التشريح — اختبار تجريبي محدد بوقت <i class="fi fi-rr-arrow-small-left"></i>' },
       'rad.tabFoundations': { en: 'Foundations', ar: 'الأساسيات' },
       'rad.tabSystems': { en: 'Systems', ar: 'الأنظمة' },
       'rad.tabReports': { en: 'Reports', ar: 'التقارير' },
@@ -196,7 +196,7 @@
           </div>
         </div>
         <div class="exam-badges">${ex.badges.map(b => `<span class="exam-badge">${b}</span>`).join('')}</div>
-        <button class="exam-btn" id="examBtn-${id}" onclick="document.querySelector('.lessons-list').scrollIntoView({behavior:'smooth'})">${lang() === 'ar' ? '← ابدأ المسار' : 'Start track <i class="fi fi-rr-arrow-small-right"></i>'}</button>
+        <button class="exam-btn" id="examBtn-${id}" onclick="document.querySelector('.lessons-list').scrollIntoView({behavior:'smooth'})">${lang() === 'ar' ? '<i class="fi fi-rr-arrow-small-left"></i> ابدأ المسار' : 'Start track <i class="fi fi-rr-arrow-small-right"></i>'}</button>
       </div>`;
         });
         html += `<div class="section-divider"><div class="section-divider-line"></div><span class="section-divider-label">${lang() === 'ar' ? 'جميع الدروس' : 'All lessons'}</span><div class="section-divider-line"></div></div>`;
@@ -228,7 +228,7 @@
       <div class="free-cta-txt">${lang() === 'ar' ? 'مستعد لفتح كل شيء؟' : 'Ready to unlock everything?'}</div>
       <div class="free-cta-sub">${lang() === 'ar' ? 'احصل على وصول كامل لجميع الدروس والامتحانات وشهادة التصريح المسبق.' : 'Get full access to all lessons, exams, and your pre-auth certificate.'}</div>
     </div>
-    <button class="free-cta-btn">${lang() === 'ar' ? '← ابدأ Pro — 7 أيام مجانًا' : 'Start Pro — 7 days free <i class="fi fi-rr-arrow-small-right"></i>'}</button>
+    <button class="free-cta-btn">${lang() === 'ar' ? '<i class="fi fi-rr-arrow-small-left"></i> ابدأ Pro — 7 أيام مجانًا' : 'Start Pro — 7 days free <i class="fi fi-rr-arrow-small-right"></i>'}</button>
   </div>`;
       document.getElementById('contentArea').innerHTML = html;
       updateProgress();
@@ -272,10 +272,10 @@
       const btn = document.getElementById('examBtn-' + modId);
       if (!btn) return;
       if (allDone) {
-        btn.innerHTML = lang() === 'ar' ? '← تحميل الشهادة' : 'Download certificate <i class="fi fi-rr-arrow-small-right"></i>';
+        btn.innerHTML = lang() === 'ar' ? '<i class="fi fi-rr-arrow-small-left"></i> تحميل الشهادة' : 'Download certificate <i class="fi fi-rr-arrow-small-right"></i>';
         btn.onclick = () => Certificate.generate(m.exams[0].name);
       } else {
-        btn.innerHTML = lang() === 'ar' ? '← ابدأ المسار' : 'Start track <i class="fi fi-rr-arrow-small-right"></i>';
+        btn.innerHTML = lang() === 'ar' ? '<i class="fi fi-rr-arrow-small-left"></i> ابدأ المسار' : 'Start track <i class="fi fi-rr-arrow-small-right"></i>';
         btn.onclick = () => document.querySelector('.lessons-list').scrollIntoView({ behavior: 'smooth' });
       }
     }

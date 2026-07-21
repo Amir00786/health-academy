@@ -793,11 +793,13 @@
   }
 
   .btn {
+    gap: 5px;
+    display: flex;
+    border: none;
     font-weight: 700;
     font-size: 14px;
-    border-radius: 999px;
     padding: 12px 24px;
-    border: none;
+    border-radius: 999px;
   }
 
   .btn-primary {
@@ -1538,6 +1540,95 @@
     font-family: var(--sans);
   }
 
+  /* ============ COURSE FEEDBACK (star rating + comment) ============ */
+  .feedback-box {
+    margin-top: 26px;
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    padding: 30px 28px;
+    text-align: center;
+  }
+
+  .feedback-box h3 {
+    font-family: var(--heading);
+    font-size: 18px;
+    color: var(--navy);
+    margin: 0 0 6px;
+  }
+
+  .feedback-desc {
+    font-size: 13.5px;
+    color: var(--ink-dim);
+    max-width: 46ch;
+    margin: 0 auto 18px;
+  }
+
+  .star-picker {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    font-size: 34px;
+    line-height: 1;
+    margin-bottom: 14px;
+  }
+
+  .star-picker .star {
+    cursor: pointer;
+    color: var(--border);
+    transition: color .12s ease, transform .12s ease;
+  }
+
+  .star-picker .star.filled {
+    color: var(--gold);
+  }
+
+  .star-picker .star:hover {
+    transform: scale(1.12);
+  }
+
+  .star-display {
+    font-size: 28px;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+
+  .feedback-error {
+    color: #c0392b;
+    font-size: 12.5px;
+    margin: -6px 0 12px;
+  }
+
+  .feedback-textarea {
+    width: 100%;
+    max-width: 480px;
+    min-height: 90px;
+    padding: 12px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 9px;
+    font-size: 14px;
+    font-family: var(--sans);
+    resize: vertical;
+    margin: 0 auto 18px;
+    display: block;
+  }
+
+  .feedback-comment-echo {
+    font-size: 13.5px;
+    color: var(--ink-dim);
+    font-style: italic;
+    max-width: 46ch;
+    margin: 0 auto 8px;
+  }
+
+  .feedback-thanks {
+    font-size: 13.5px;
+    color: var(--teal-dark);
+    font-weight: 600;
+    margin: 0 0 14px;
+  }
+
   @media print {
 
     #topbar,
@@ -1546,6 +1637,7 @@
     .foot-banner,
     .back-btn,
     .cert-actions,
+    .feedback-box,
     .progress-strip {
       display: none !important;
     }

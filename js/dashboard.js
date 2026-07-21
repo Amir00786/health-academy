@@ -3,12 +3,12 @@ window.I18N_PAGE_DICT = {
       'dash.nameLabel': { en: 'Name', ar: 'الاسم' },
       'dash.specialtyLabel': { en: 'Speciality', ar: 'التخصص' },
       'dash.stat1Label': { en: 'Active courses', ar: 'الدورات النشطة' },
-      'dash.viewCourses': { en: 'View <i class="fi fi-rr-arrow-small-right"></i>', ar: '← عرض' },
+      'dash.viewCourses': { en: 'View <i class="fi fi-rr-arrow-small-right"></i>', ar: '<i class="fi fi-rr-arrow-small-left"></i> عرض' },
       'dash.stat2Label': { en: 'Lessons completed', ar: 'الدروس المكتملة' },
       'dash.stat3Label': { en: 'Certificates', ar: 'الشهادات' },
       'dash.autoTag': { en: 'Updates automatically', ar: 'يتحدث تلقائيًا' },
       'dash.stat4Label': { en: 'Anatomy Spotting tier', ar: 'مستوى تحديد التشريح' },
-      'dash.viewAnatomy': { en: 'Practice <i class="fi fi-rr-arrow-small-right"></i>', ar: '← تدرّب' },
+      'dash.viewAnatomy': { en: 'Practice <i class="fi fi-rr-arrow-small-right"></i>', ar: '<i class="fi fi-rr-arrow-small-left"></i> تدرّب' },
       'dash.recTitle': { en: 'What to learn next — recommended for you', ar: 'ماذا تتعلم بعد ذلك — موصى به لك' },
       'dash.recSoon': { en: '(Coming soon: personalized AI recommendations — showing your in-progress courses for now)', ar: '(قريبًا: توصيات مخصصة بالذكاء الاصطناعي — يتم حاليًا عرض دوراتك الجارية)' },
       'dash.comingSoon': { en: 'Coming soon', ar: 'قريبًا' },
@@ -23,7 +23,7 @@ window.I18N_PAGE_DICT = {
       'mentor.trackBoth': { en: 'Both', ar: 'كلاهما' },
       'mentor.demoTitle': { en: 'This runs locally, in this browser.', ar: 'يعمل هذا محليًا، في هذا المتصفح فقط.' },
       'mentor.demoDescStudent': { en: 'Mentors listed here were added on this same browser (via the Owner Console or the Mentor Dashboard) — real cross-device matching needs a backend.', ar: 'المرشدون المدرجون هنا تمت إضافتهم على نفس هذا المتصفح (عبر لوحة تحكم المالك أو لوحة تحكم المرشد) — التوافق الحقيقي عبر الأجهزة يحتاج إلى خادم خلفي.' },
-      'mentor.noMentors': { en: 'No mentors available yet — approve one in the Owner Console, or set up a mentor profile via Sign up <i class="fi fi-rr-arrow-small-right"></i> As Mentor, to see it appear here.', ar: 'لا يوجد مرشدون متاحون بعد — وافق على أحدهم في لوحة تحكم المالك، أو أنشئ ملف مرشد عبر إنشاء حساب ← كمرشد، ليظهر هنا.' },
+      'mentor.noMentors': { en: 'No mentors available yet — approve one in the Owner Console, or set up a mentor profile via Sign up <i class="fi fi-rr-arrow-small-right"></i> As Mentor, to see it appear here.', ar: 'لا يوجد مرشدون متاحون بعد — وافق على أحدهم في لوحة تحكم المالك، أو أنشئ ملف مرشد عبر إنشاء حساب <i class="fi fi-rr-arrow-small-left"></i> كمرشد، ليظهر هنا.' },
       'mentor.select': { en: 'Select', ar: 'اختيار' },
       'mentor.selected': { en: 'Selected ✓', ar: 'تم الاختيار ✓' },
       'course.radiology': { en: 'Radiology', ar: 'الأشعة' },
@@ -52,7 +52,7 @@ window.I18N_PAGE_DICT = {
     { name: 'Learner', ar: 'متعلم', min: 0 },
   ];
   const RADIOLOGY_FREE_LESSONS = { foundations: 3, reports: 2, preauth: 2, systems: 2, research: 2 };
-  const INSURANCE_TOTAL_LESSONS = 6;
+  const INSURANCE_TOTAL_LESSONS = 4; // must match the active (non-commented-out) VIDEO_SESSIONS count in insurance-dept.js
 
   function lang() {
     return (window.I18N && window.I18N.currentLang) ? window.I18N.currentLang() : 'en';
@@ -65,8 +65,8 @@ window.I18N_PAGE_DICT = {
   }
   function getInsuranceProgress() {
     try {
-      return JSON.parse(localStorage.getItem('ih-preauth-progress') || '[]');
-    } catch (e) { return []; }
+      return JSON.parse(localStorage.getItem('insurance-dept-progress') || '{}');
+    } catch (e) { return {}; }
   }
   function getAnatomyTotal() {
     return ANATOMY_SYSTEMS.reduce((sum, sys) => sum + parseInt(localStorage.getItem('ih-anatomy-score:' + sys) || '0', 10), 0);
@@ -91,8 +91,11 @@ window.I18N_PAGE_DICT = {
 
   function insuranceStats() {
     const progress = getInsuranceProgress();
-    const done = progress.length;
-    return { done, total: INSURANCE_TOTAL_LESSONS, inProgress: done > 0 && done < INSURANCE_TOTAL_LESSONS, complete: done >= INSURANCE_TOTAL_LESSONS };
+    const done = Object.values(progress.completedVideos || {}).filter(Boolean).length;
+    const hasCert = !!progress.certName;
+    const started = done > 0 || !!progress.paidUnlocked || !!progress.practiceDone
+      || Object.keys(progress.examDecisions || {}).length > 0;
+    return { done, total: INSURANCE_TOTAL_LESSONS, inProgress: started && !hasCert, complete: hasCert };
   }
 
   function initials(name) {
