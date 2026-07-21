@@ -539,6 +539,17 @@
     letter-spacing: .03em;
   }
 
+  .premium-tag {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    font-weight: 700;
+    background: var(--navy);
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 999px;
+    letter-spacing: .03em;
+  }
+
   .s-status {
     font-family: var(--mono);
     font-size: 10px;
@@ -751,6 +762,10 @@
 
   .video-wrap {
     position: relative;
+    /* On narrow phones the video's own 16:9 rendered height can be shorter than the
+       paywall card's content — this floor keeps the "Unlock full access" overlay
+       readable instead of getting squeezed into ~200px. */
+    min-height: 230px;
   }
 
   .paywall-overlay {
@@ -762,11 +777,34 @@
     align-items: center;
     justify-content: center;
     padding: 20px;
+    overflow-y: auto;
+  }
+
+  @media (max-width:480px) {
+    .paywall-icon {
+      font-size: 22px;
+    }
+
+    .paywall-card h3 {
+      font-size: 15px;
+      margin: 8px 0 6px;
+    }
+
+    .paywall-card p {
+      font-size: 12px;
+      margin: 0 0 12px;
+    }
+
+    .paywall-overlay {
+      padding: 14px;
+    }
   }
 
   .paywall-card {
     text-align: center;
     max-width: 380px;
+    display: flex;
+    flex-direction: column;
     color: #fff;
   }
 
@@ -1579,9 +1617,21 @@
 
   .confirm-actions {
     display: flex;
+    flex-wrap: wrap;
     gap: 12px;
     justify-content: center;
     margin-top: 22px;
+  }
+
+  .confirm-actions .btn {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+
+  @media (max-width: 480px) {
+    .confirm-actions .btn {
+      flex-basis: 100%;
+    }
   }
 
   /* ---- stage 3: final certificate ---- */
@@ -1828,6 +1878,34 @@
       flex-direction: column;
       gap: 26px;
       align-items: center;
+    }
+
+    .cert-frame {
+      padding: 32px 18px 28px;
+    }
+
+    .cert-title {
+      font-size: 24px;
+    }
+
+    .cert-eyebrow {
+      font-size: 9.5px;
+      letter-spacing: .16em;
+    }
+
+    .cert-meta-row {
+      gap: 20px;
+    }
+
+    .cert-corner {
+      width: 22px;
+      height: 22px;
+    }
+
+    .cert-seal {
+      width: 90px;
+      right: 14px;
+      bottom: 10px;
     }
   }
 

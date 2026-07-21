@@ -173,6 +173,7 @@ window.I18N_PAGE_DICT = {
   'ins.completedStatus': { en: '✓ Completed', ar: '✓ مكتمل' },
   'ins.startStatus': { en: 'Start', ar: 'ابدأ' },
   'ins.freePreviewTag': { en: 'FREE PREVIEW', ar: 'معاينة مجانية' },
+  'ins.premiumTag': { en: 'PREMIUM', ar: 'مدفوع' },
   'ins.durationPrefix': { en: 'Duration: ', ar: 'المدة: ' },
 
   // Quiz chrome
@@ -1842,6 +1843,14 @@ function isMembershipActive(){
   return !!(progress.paidUnlocked && progress.paidUnlockedAt && (Date.now() - progress.paidUnlockedAt) < MEMBERSHIP_DURATION_MS);
 }
 
+// Shared "demo purchase" action — reused by the video paywall's Unlock button and by
+// the Practice/Exam locked-state Unlock buttons below.
+async function unlockMembership(){
+  progress.paidUnlocked = true;
+  progress.paidUnlockedAt = Date.now();
+  await saveAllProgress();
+}
+
 // window.storage is a sandbox-only API from the original mockup — replaced
 // with a small localStorage shim so progress still persists on a static site.
 const storage = {
@@ -1863,7 +1872,18 @@ async function loadAllProgress(){
   } catch(e){ /* fresh start */ }
 }
 
+// Videos stay clickable regardless of membership — the free preview / 5-min cap is
+// enforced inside the player itself (see openVideoSession). Practice, Exam, and the
+// Certificate require an active membership to START, but once reached they stay
+// permanently accessible even if membership later lapses — an earned result/certificate
+// shouldn't disappear just because the subscription expired.
 function isSessionUnlocked(idx){
+  const s = ALL_SESSIONS[idx];
+  if(s.type === "practice") return isMembershipActive() || progress.practiceDone;
+  if(s.type === "exam") return isMembershipActive() || progress.examPassed;
+  // Keyed off examPassed (not certConfirmed) so passing the exam permanently unlocks
+  // the certificate flow even if membership later lapses before it's actually confirmed.
+  if(s.type === "certificate") return isMembershipActive() || progress.examPassed;
   return true;
 }
 function isSessionDone(session){
@@ -1909,8 +1929,8 @@ function renderLanding(){
     else { badgeClass += " current"; }
 
     let statusHtml;
-    if(!unlocked) statusHtml = `<span class="s-status locked">${T('ins.locked')}</span>`;
-    else if(done) statusHtml = `<span class="s-status done">${T('ins.completedStatus')}</span>`;
+    if(done) statusHtml = `<span class="s-status done">${T('ins.completedStatus')}</span>`;
+    else if(!unlocked) statusHtml = `<span class="s-status locked">${T('ins.locked')}</span>`;
     else statusHtml = `<span class="s-status ready">${T('ins.startStatus')}</span>`;
 
     const title = isAr() && s.titleAr ? s.titleAr : s.title;
@@ -1930,7 +1950,7 @@ function renderLanding(){
         <ul class="s-bullets">${bullets.map(b=>`<li>${b}</li>`).join("")}</ul>
       </div>
       <div class="s-right">
-        <div class="s-duration">🕐 ${s.duration}${s.isFree ? ` <span class="free-tag">${T('ins.freePreviewTag')}</span>` : ''}</div>
+        <div class="s-duration">🕐 ${s.duration}${s.isFree ? ` <span class="free-tag">${T('ins.freePreviewTag')}</span>` : (s.type === "video" && !isMembershipActive() ? ` <span class="premium-tag">🔒 ${T('ins.premiumTag')}</span>` : '')}</div>
         ${statusHtml}
       </div>
     `;
@@ -2019,18 +2039,22 @@ function openVideoSession(id){
 }
 
 // Swaps the paywall copy between "first purchase" and "renew — your prior year
-// expired" depending on whether this browser has unlocked membership before.
+// expired" depending on whether this browser has unlocked membership before, and
+// spells out the actual expiry date so the one-year membership window is visible.
 function renderPaywall(){
   const expired = !!progress.paidUnlockedAt;
   document.getElementById("paywallTitle").textContent = T(expired ? 'ins.paywallExpiredTitle' : 'ins.paywallTitle');
-  document.getElementById("paywallDesc").textContent = T(expired ? 'ins.paywallExpiredDesc' : 'ins.paywallDesc');
-  document.getElementById("unlockVideoBtn").textContent = T(expired ? 'ins.renewBtn' : 'ins.unlockBtn');
+  let desc = T(expired ? 'ins.paywallExpiredDesc' : 'ins.paywallDesc');
+  if(expired){
+    const expiryDate = new Date(progress.paidUnlockedAt + MEMBERSHIP_DURATION_MS);
+    desc = desc.replace('{date}', expiryDate.toLocaleDateString(undefined, {year:"numeric", month:"long", day:"numeric"}));
+  }
+  document.getElementById("paywallDesc").textContent = desc;
+  document.getElementById("unlockVideoBtn").innerHTML = T(expired ? 'ins.renewBtn' : 'ins.unlockBtn');
 }
 
 document.getElementById("unlockVideoBtn").addEventListener("click", async ()=>{
-  progress.paidUnlocked = true;
-  progress.paidUnlockedAt = Date.now();
-  await saveAllProgress();
+  await unlockMembership();
   document.getElementById("paywallOverlay").classList.add("hidden");
   const realVideoEl = document.getElementById("realVideo");
   realVideoEl.ontimeupdate = null;
@@ -2114,11 +2138,39 @@ document.getElementById("quizContinueBtn").addEventListener("click", ()=>{ stopV
 document.getElementById("videoBackBtn").addEventListener("click", ()=>{ stopVideoPlayback(); showView("landing"); renderLanding(); });
 
 /* ============================================================
+   MEMBERSHIP LOCK — shared "locked" panel for Practice/Exam, matching
+   the certificate view's existing locked-state look.
+   ============================================================ */
+function renderMembershipLockPanel(areaId, titleKey, descKey, onUnlock){
+  const area = document.getElementById(areaId);
+  area.innerHTML = `
+    <div class="cert-locked">
+      <div style="font-size:40px;">🔒</div>
+      <h3 style="margin-top:10px;">${T(titleKey)}</h3>
+      <p style="color:var(--ink-dim); max-width:44ch; margin:8px auto 0;">${T(descKey)}</p>
+      <button class="btn btn-primary" style="margin-top:18px;" id="${areaId}UnlockBtn">${T(progress.paidUnlockedAt ? 'ins.renewBtn' : 'ins.unlockBtn')}</button>
+    </div>`;
+  document.getElementById(`${areaId}UnlockBtn`).addEventListener("click", async ()=>{
+    await unlockMembership();
+    onUnlock();
+  });
+}
+
+/* ============================================================
    PRACTICE VIEW
    ============================================================ */
 const PRACTICE_CASE_IDS = [1];
 
 function openPractice(){
+  const locked = !isMembershipActive() && !progress.practiceDone;
+  document.getElementById("practiceLockedArea").classList.toggle("hidden", !locked);
+  document.getElementById("practiceUnlockedArea").classList.toggle("hidden", locked);
+  if(locked){
+    renderMembershipLockPanel("practiceLockedArea", 'ins.practiceLockedTitle', 'ins.practiceLockedDesc', openPractice);
+    showView("practice");
+    return;
+  }
+
   const practiceVideoEl = document.getElementById("practiceVideo");
   const practiceYtEl = document.getElementById("practiceYtFrame");
   const practiceYtId = getYouTubeId(PRACTICE_INTRO_VIDEO);
@@ -2215,6 +2267,15 @@ function examProgressText(){
 }
 
 function openExam(){
+  const locked = !isMembershipActive() && !progress.examPassed;
+  document.getElementById("examLockedArea").classList.toggle("hidden", !locked);
+  document.getElementById("examUnlockedArea").classList.toggle("hidden", locked);
+  if(locked){
+    renderMembershipLockPanel("examLockedArea", 'ins.examLockedTitle', 'ins.examLockedDesc', openExam);
+    showView("exam");
+    return;
+  }
+
   document.getElementById("exProgressPill").textContent = examProgressText();
   renderExamDashboard();
   showView("exam");
@@ -2769,7 +2830,7 @@ document.addEventListener('ih:langchange', ()=>{
   } else if(view === "practice"){
     openPractice();
   } else if(view === "exam"){
-    renderExamDashboard();
+    openExam();
   } else if(view === "examcase" && currentExamCaseId != null){
     openExamCase(currentExamCaseId);
   } else if(view === "examresults"){
