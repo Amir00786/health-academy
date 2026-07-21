@@ -50,7 +50,7 @@
     'footer.company': { en: 'Company', ar: 'الشركة' },
     'footer.legal': { en: 'Legal', ar: 'قانوني' },
     'footer.ecosystem': { en: 'Ecosystem', ar: 'المنظومة' },
-    'footer.radiology': { en: 'Radiology', ar: 'الأشعة' },
+    'footer.insurance': { en: 'Insurance', ar: 'التأمين' },
     'footer.about': { en: 'About', ar: 'من نحن' },
     'footer.meetFounder': { en: 'Meet the Founder', ar: 'تعرف على المؤسس' },
     'footer.contactSupport': { en: 'Contact & support', ar: 'التواصل والدعم' },
