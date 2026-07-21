@@ -346,18 +346,21 @@
       <main id="view-practice" class="hidden">
         <div class="wrap">
           <button class="back-btn" id="practiceBackBtn" data-i18n="ins.backToCourse"><i class="fi fi-rr-arrow-small-left"></i> Back to course</button>
-          <div class="hero-eyebrow" data-i18n="ins.step08">STEP 08</div>
-          <h2 style="margin-top:8px;" data-i18n="ins.letsPractice">Let's Practice</h2>
-          <video id="practiceVideo" class="hidden" controls controlsList="nodownload" disablePictureInPicture
-            oncontextmenu="return false;"
-            style="width:100%; border-radius:14px; background:#000; display:block; margin-bottom:20px;"></video>
-          <iframe id="practiceYtFrame" class="hidden" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
-            style="width:100%; aspect-ratio:16/9; border:0; border-radius:14px; background:#000; display:block; margin-bottom:20px;"></iframe>
-          <div class="practice-note" data-i18n="ins.practiceNote">Two sample cases, ungraded — just to get comfortable with the format before the
-            real exam. Nothing here affects your certificate.</div>
-          <div id="practiceCases"></div>
-          <div style="text-align:center; margin-top:20px;">
-            <button class="btn btn-primary hidden" id="practiceDoneBtn" data-i18n="ins.readyForExamBtn">I'm ready — go to the exam <i class="fi fi-rr-arrow-small-right"></i></button>
+          <div id="practiceLockedArea" class="hidden"></div>
+          <div id="practiceUnlockedArea">
+            <div class="hero-eyebrow" data-i18n="ins.step08">STEP 08</div>
+            <h2 style="margin-top:8px;" data-i18n="ins.letsPractice">Let's Practice</h2>
+            <video id="practiceVideo" class="hidden" controls controlsList="nodownload" disablePictureInPicture
+              oncontextmenu="return false;"
+              style="width:100%; border-radius:14px; background:#000; display:block; margin-bottom:20px;"></video>
+            <iframe id="practiceYtFrame" class="hidden" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+              style="width:100%; aspect-ratio:16/9; border:0; border-radius:14px; background:#000; display:block; margin-bottom:20px;"></iframe>
+            <div class="practice-note" data-i18n="ins.practiceNote">One sample case, ungraded — just to get comfortable with the format before the
+              real exam. Nothing here affects your certificate.</div>
+            <div id="practiceCases"></div>
+            <div style="text-align:center; margin-top:20px;">
+              <button class="btn btn-primary hidden" id="practiceDoneBtn" data-i18n="ins.readyForExamBtn">I'm ready — go to the exam <i class="fi fi-rr-arrow-small-right"></i></button>
+            </div>
           </div>
         </div>
       </main>
@@ -366,18 +369,21 @@
       <main id="view-exam" class="hidden">
         <div class="wrap">
           <button class="back-btn" id="examBackBtn" data-i18n="ins.backToCourse"><i class="fi fi-rr-arrow-small-left"></i> Back to course</button>
-          <div class="ex-topbar">
-            <span data-i18n="ins.examTopbarTitle">PRE-AUTH PRACTICAL EXAM</span>
-            <span id="exProgressPill">0 / 15 cases decided</span>
+          <div id="examLockedArea" class="hidden"></div>
+          <div id="examUnlockedArea">
+            <div class="ex-topbar">
+              <span data-i18n="ins.examTopbarTitle">PRE-AUTH PRACTICAL EXAM</span>
+              <span id="exProgressPill">0 / 15 cases decided</span>
+            </div>
+            <p style="color:var(--ink-dim); font-size:13.5px;" data-i18n="ins.examScoreNote">Score more than 7 out of 15 to pass and unlock your
+              certificate.</p>
+            <div class="legend-row">
+              <span><span class="dot" style="background:var(--live);"></span><span data-i18n="ins.legendFast">&lt; 30 min</span></span>
+              <span><span class="dot" style="background:#C9861F;"></span><span data-i18n="ins.legendMed">30–90 min</span></span>
+              <span><span class="dot" style="background:var(--danger);"></span><span data-i18n="ins.legendSlow">&gt; 90 min</span></span>
+            </div>
+            <div class="case-grid" id="exCaseGrid"></div>
           </div>
-          <p style="color:var(--ink-dim); font-size:13.5px;" data-i18n="ins.examScoreNote">Score more than 7 out of 15 to pass and unlock your
-            certificate.</p>
-          <div class="legend-row">
-            <span><span class="dot" style="background:var(--live);"></span><span data-i18n="ins.legendFast">&lt; 30 min</span></span>
-            <span><span class="dot" style="background:#C9861F;"></span><span data-i18n="ins.legendMed">30–90 min</span></span>
-            <span><span class="dot" style="background:var(--danger);"></span><span data-i18n="ins.legendSlow">&gt; 90 min</span></span>
-          </div>
-          <div class="case-grid" id="exCaseGrid"></div>
         </div>
       </main>
 

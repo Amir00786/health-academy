@@ -52,7 +52,12 @@ window.I18N_PAGE_DICT = {
     { name: 'Learner', ar: 'متعلم', min: 0 },
   ];
   const RADIOLOGY_FREE_LESSONS = { foundations: 3, reports: 2, preauth: 2, systems: 2, research: 2 };
-  const INSURANCE_TOTAL_LESSONS = 4; // must match the active (non-commented-out) VIDEO_SESSIONS count in insurance-dept.js
+  // Must match the id list of the active (non-commented-out) VIDEO_SESSIONS entries in
+  // insurance-dept.js. Counting against this whitelist (rather than just the raw size of
+  // progress.completedVideos) keeps old browsers' stale completions from a since-removed
+  // video (e.g. a since-commented-out v5/v6) from inflating "done" past the real total.
+  const INSURANCE_VIDEO_IDS = ['v2a', 'v1', 'v3', 'v4'];
+  const INSURANCE_TOTAL_LESSONS = INSURANCE_VIDEO_IDS.length;
 
   function lang() {
     return (window.I18N && window.I18N.currentLang) ? window.I18N.currentLang() : 'en';
@@ -86,16 +91,21 @@ window.I18N_PAGE_DICT = {
       if (doneCount > 0) modulesStarted++;
       if (doneCount >= freeCount) modulesComplete++;
     });
-    return { done, total, inProgress: modulesStarted > 0 && done < total, complete: done >= total && total > 0 };
+    // A finished course still counts as "active" — Certificates is the separate stat for
+    // completion, so this shouldn't drop back to 0 once every free module is done.
+    return { done, total, inProgress: modulesStarted > 0, complete: done >= total && total > 0 };
   }
 
   function insuranceStats() {
     const progress = getInsuranceProgress();
-    const done = Object.values(progress.completedVideos || {}).filter(Boolean).length;
+    const completed = progress.completedVideos || {};
+    const done = INSURANCE_VIDEO_IDS.filter((id) => completed[id]).length;
     const hasCert = !!progress.certName;
     const started = done > 0 || !!progress.paidUnlocked || !!progress.practiceDone
       || Object.keys(progress.examDecisions || {}).length > 0;
-    return { done, total: INSURANCE_TOTAL_LESSONS, inProgress: started && !hasCert, complete: hasCert };
+    // A finished course is still an "active" one the student is enrolled in — Certificates
+    // is the separate stat for completion, so this shouldn't drop back to 0 once certified.
+    return { done, total: INSURANCE_TOTAL_LESSONS, inProgress: started, complete: hasCert };
   }
 
   function initials(name) {
