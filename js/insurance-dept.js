@@ -163,11 +163,101 @@ function getYouTubeId(url) {
   return m ? m[1] : null;
 }
 
+/* Lookup tables for values that repeat across the CASES bank — translating
+   these once here is far cheaper than a per-case Arabic field. Mirrors the
+   pattern already used in js/preauth-exam.js. */
+const NAME_AR = {
+  "Male Patient": "مريض ذكر",
+  "Female Patient": "مريضة",
+  "Female Newborn Patient": "رضيعة حديثة الولادة",
+  "Male Newborn Patient": "رضيع حديث الولادة"
+};
+const GENDER_AR = { M: "ذكر", F: "أنثى" };
+const BENEFIT_AR = {
+  "H-OP / Out Patient": "H-OP / العيادات الخارجية",
+  "H-IP / In Patient": "H-IP / التنويم الداخلي",
+  "H-ER / Emergency": "H-ER / الطوارئ",
+  "H-Maternity": "H-Maternity / الولادة",
+  "H-IP / In Patient (Newborn)": "H-IP / التنويم الداخلي (المولود)"
+};
+const HCP_AR = {
+  "Al Noor Medical Center - Riyadh": "مركز النور الطبي - الرياض",
+  "United Doctors Hospital - Jeddah": "مستشفى الأطباء المتحدين - جدة",
+  "Al Samria Medical Center 2 - Jeddah": "مركز السامرية الطبي 2 - جدة",
+  "Al Andalus Specialized Clinic - Riyadh": "عيادات الأندلس التخصصية - الرياض"
+};
+const HQ_ITEM_AR = {
+  "No relevant conditions declared": "لم تُصرَّح أي حالات ذات صلة",
+  "Type 2 Diabetes Mellitus with nephropathy — declared at enrollment": "داء السكري من النوع الثاني مع اعتلال الكلى — مُصرَّح به عند الالتحاق بالوثيقة",
+  "COPD — declared at enrollment": "الانسداد الرئوي المزمن — مُصرَّح به عند الالتحاق بالوثيقة"
+};
+const HIST_BENEFIT_AR = {
+  "Out Patient": "العيادات الخارجية",
+  "Pre-Existing & Chronic": "الحالات السابقة والمزمنة"
+};
+const HIST_DX_AR = {
+  "Type 2 Diabetes": "داء السكري من النوع الثاني",
+  "Fatigue, unspecified": "تعب غير محدد",
+  "Diabetic Nephropathy": "اعتلال الكلى السكري",
+  "COPD": "الانسداد الرئوي المزمن"
+};
+const STATUS_AR = { "Paid": "مدفوعة" };
+const DOC_TITLE_AR = {
+  "HQ Declaration Form": "نموذج التصريح بالاستبيان الصحي",
+  "Clinic Referral Note": "مذكرة تحويل من العيادة",
+  "Dental Invoice (2023)": "فاتورة أسنان (2023)",
+  "Admission Medical Report": "التقرير الطبي للدخول",
+  "Underwriting Review Note": "مذكرة مراجعة التحصين",
+  "Current MRI Report": "تقرير الرنين المغناطيسي الحالي",
+  "Prior MRI Report (Pre-Policy)": "تقرير رنين مغناطيسي سابق (قبل الوثيقة)",
+  "ENT Consultation Report": "تقرير استشارة الأنف والأذن والحنجرة",
+  "Old Lab Report": "تقرير مخبري سابق",
+  "Emergency Admission Report": "تقرير دخول الطوارئ",
+  "Civil Defense Incident Report": "تقرير حادثة الدفاع المدني",
+  "Insurance Card Copy": "نسخة بطاقة التأمين",
+  "Neonatal Surgical Report": "تقرير جراحة حديثي الولادة",
+  "NICU Admission Note": "مذكرة دخول وحدة العناية المركزة لحديثي الولادة",
+  "Family Insurance Summary": "ملخص التأمين العائلي",
+  "Emergency Report": "تقرير الطوارئ",
+  "Policy Exclusions Schedule": "جدول استثناءات الوثيقة",
+  "Najm (Police) Report": "تقرير نجم (الشرطة)",
+  "Employer Duty Schedule": "جدول دوام جهة العمل",
+  "Old Physiotherapy Note": "مذكرة علاج طبيعي سابقة",
+  "Chronic Condition Utilization Summary": "ملخص استخدام الحالات المزمنة",
+  "Nephrology Treatment Plan": "خطة علاج أمراض الكلى",
+  "Pulmonology Report with Oximetry": "تقرير أمراض الرئة مع قياس التأكسج",
+  "DME Coverage Schedule": "جدول تغطية المعدات الطبية المعمرة",
+  "Physician Prescription & Referral Note": "وصفة الطبيب ومذكرة التحويل",
+  "Network Pharmacy Directory": "دليل الصيدليات المتعاقدة",
+  "Unrelated Lab Slip": "إيصال مخبري غير ذي صلة",
+  "Admission & Progress Notes": "مذكرات الدخول والتقدم",
+  "CHI Essential Benefits Framework Excerpt": "مقتطف من إطار المزايا الأساسية للمجلس",
+  "Member's Policy Wording": "نص وثيقة المؤمَّن له",
+  "Insurance Card / Policy Extract": "بطاقة التأمين / مقتطف الوثيقة",
+  "Delivery Summary Report": "تقرير ملخص الولادة",
+  "Cash Payment Receipt": "إيصال الدفع النقدي",
+  "Linked Maternity Claim Note": "مذكرة مطالبة الولادة المرتبطة",
+  "Newborn Enrollment Status": "حالة تسجيل المولود",
+  "Lab Report": "تقرير مخبري",
+  "Prescription Request": "طلب الوصفة الطبية",
+  "Old Employment Physical": "فحص طبي سابق لجهة عمل"
+};
+function localizedName(name){ return isAr() ? (NAME_AR[name] || name) : name; }
+function localizedGender(g){ return isAr() ? (GENDER_AR[g] || g) : g; }
+function localizedBenefit(b){ return isAr() ? (BENEFIT_AR[b] || b) : b; }
+function localizedHcp(h){ return isAr() ? (HCP_AR[h] || h) : h; }
+function localizedHqItem(h){ return isAr() ? (HQ_ITEM_AR[h] || h) : h; }
+function localizedHistBenefit(b){ return isAr() ? (HIST_BENEFIT_AR[b] || b) : b; }
+function localizedHistDx(dx){ return isAr() ? (HIST_DX_AR[dx] || dx) : dx; }
+function localizedStatus(s){ return isAr() ? (STATUS_AR[s] || s) : s; }
+function localizedDocTitle(title){ return isAr() ? (DOC_TITLE_AR[title] || title) : title; }
+
 const VIDEO1_QUIZ = {
   title: "General Overview",
   questions: [
     {
       stem: "A 40-year-old male presents to the hospital with fever. The treating physician requests admission, a CBC, a specialist referral, and IV medications. On pre-authorization review, admission and the referral are approved, while the CBC and IV medications are denied. What is the most likely reason for this kind of partial approval?",
+      stem_ar: "يحضر مريض ذكر يبلغ من العمر 40 عامًا إلى المستشفى وهو يعاني من الحمى. يطلب الطبيب المعالج الدخول، وتحليل دم شامل (CBC)، وتحويلًا لأخصائي، وأدوية وريدية. عند مراجعة التصريح المسبق، تتم الموافقة على الدخول والتحويل، بينما يُرفض تحليل الدم الشامل والأدوية الوريدية. ما هو السبب الأكثر احتمالًا لهذا النوع من الموافقة الجزئية؟",
       options: [
         "The hospital submitted the request too late",
         "The payer determined some requested services were not medically necessary or lacked supporting documentation at that time",
@@ -175,11 +265,20 @@ const VIDEO1_QUIZ = {
         "CBC and IV medications are never covered under any policy",
         "The physician made a coding error"
       ],
+      options_ar: [
+        "قدّمت المستشفى الطلب في وقت متأخر جدًا",
+        "قررت شركة التأمين أن بعض الخدمات المطلوبة لم تكن ضرورية طبيًا أو لم تتوفر لها مستندات داعمة في ذلك الوقت",
+        "كانت وثيقة المريض منتهية الصلاحية",
+        "تحليل الدم الشامل والأدوية الوريدية غير مغطاة أبدًا في أي وثيقة",
+        "ارتكب الطبيب خطأ في الترميز"
+      ],
       correctIndex: 1,
-      explanation: "Partial approvals are common in pre-authorization: each requested service is reviewed on its own medical-necessity merits and documentation, not approved or denied as a single bundle."
+      explanation: "Partial approvals are common in pre-authorization: each requested service is reviewed on its own medical-necessity merits and documentation, not approved or denied as a single bundle.",
+      explanation_ar: "الموافقات الجزئية شائعة في التصريح المسبق: تُراجع كل خدمة مطلوبة بناءً على مدى ضرورتها الطبية والمستندات الداعمة لها بشكل مستقل، لا كحزمة واحدة تُقبل أو تُرفض دفعة واحدة."
     },
     {
       stem: "In the diagram, the air ambulance / medical evacuation request is marked as declined. Which of the following is the most common reason an air evacuation request is denied in a pre-authorization review?",
+      stem_ar: "في الرسم التوضيحي، يظهر طلب الإخلاء الطبي الجوي (طائرة الإسعاف) وهو مرفوض. ما هو السبب الأكثر شيوعًا لرفض طلب الإخلاء الجوي في مراجعة التصريح المسبق؟",
       options: [
         "The patient refused transport",
         "Medical evacuation typically requires proof that equivalent care is unavailable locally and specific medical-necessity criteria are met",
@@ -187,11 +286,20 @@ const VIDEO1_QUIZ = {
         "The hospital did not own an ambulance",
         "The claim was submitted in the wrong currency"
       ],
+      options_ar: [
+        "رفض المريض النقل",
+        "يتطلب الإخلاء الطبي عادةً إثبات عدم توفر رعاية مماثلة محليًا، بالإضافة إلى استيفاء معايير محددة للضرورة الطبية",
+        "الإخلاء الجوي غير مغطى أبدًا في أي وثيقة تأمين صحي سعودية",
+        "لم تكن المستشفى تملك سيارة إسعاف",
+        "تم تقديم المطالبة بعملة خاطئة"
+      ],
       correctIndex: 1,
-      explanation: "Air evacuation is a high-cost, tightly-scrutinized benefit — approval usually hinges on documented unavailability of equivalent local care, not on it being categorically excluded."
+      explanation: "Air evacuation is a high-cost, tightly-scrutinized benefit — approval usually hinges on documented unavailability of equivalent local care, not on it being categorically excluded.",
+      explanation_ar: "الإخلاء الجوي ميزة عالية التكلفة وتخضع لمراجعة دقيقة — وتعتمد الموافقة عليها عادةً على توثيق عدم توفر رعاية مماثلة محليًا، لا على كونها مستثناة بشكل مطلق."
     },
     {
       stem: "The diagram shows a figure of 5,000 SAR linked to the insurance company / TPA building. What does this figure most likely represent in a pre-authorization workflow?",
+      stem_ar: "يُظهر الرسم التوضيحي رقمًا قدره 5,000 ريال سعودي مرتبطًا بمبنى شركة التأمين / الجهة المُدير الطرف الثالث (TPA). ماذا يمثل هذا الرقم على الأرجح في مسار عمل التصريح المسبق؟",
       options: [
         "The patient's monthly premium",
         "The hospital's total annual revenue",
@@ -199,11 +307,20 @@ const VIDEO1_QUIZ = {
         "A penalty fee charged to the hospital",
         "The employer's total payroll"
       ],
+      options_ar: [
+        "قسط التأمين الشهري للمريض",
+        "إجمالي الإيرادات السنوية للمستشفى",
+        "السقف المعتمد للتكلفة أو مبلغ السداد المقابل للخدمات المصرَّح بها",
+        "رسم غرامة مفروض على المستشفى",
+        "إجمالي رواتب موظفي جهة العمل"
+      ],
       correctIndex: 2,
-      explanation: "TPAs and insurers commonly set an approved cost ceiling per authorization — the figure tracks what will actually be reimbursed for the approved services, not premiums or penalties."
+      explanation: "TPAs and insurers commonly set an approved cost ceiling per authorization — the figure tracks what will actually be reimbursed for the approved services, not premiums or penalties.",
+      explanation_ar: "غالبًا ما تحدد الجهات المُديرة للطرف الثالث وشركات التأمين سقفًا معتمدًا للتكلفة لكل تصريح — ويعكس هذا الرقم ما سيتم سداده فعليًا مقابل الخدمات المعتمدة، لا الأقساط أو الغرامات."
     },
     {
       stem: "Hospital B in the diagram is labeled as non-network. What is the most likely consequence of a patient receiving care at a non-network hospital under most Saudi health insurance policies?",
+      stem_ar: "يُصنَّف المستشفى (ب) في الرسم التوضيحي على أنه خارج الشبكة. ما هي النتيجة الأكثر احتمالًا عند حصول مريض على رعاية في مستشفى خارج الشبكة بموجب معظم وثائق التأمين الصحي السعودية؟",
       options: [
         "The claim is automatically approved at a higher rate",
         "Coverage may be reduced, denied, or require special exception approval compared to in-network care",
@@ -211,11 +328,20 @@ const VIDEO1_QUIZ = {
         "The patient must always pay double the network rate",
         "It has no effect on the claim outcome"
       ],
+      options_ar: [
+        "تتم الموافقة على المطالبة تلقائيًا بمعدل أعلى",
+        "قد تُخفَّض التغطية أو تُرفض أو تتطلب موافقة استثناء خاصة مقارنة بالرعاية داخل الشبكة",
+        "تُسدَّد المستشفيات خارج الشبكة دائمًا بنفس معدل المستشفيات داخل الشبكة",
+        "يجب على المريض دائمًا دفع ضعف معدل الشبكة",
+        "لا يوجد أي تأثير على نتيجة المطالبة"
+      ],
       correctIndex: 1,
-      explanation: "Non-network care sits outside the payer's negotiated agreements, so it typically triggers reduced coverage or an exception-approval process rather than standard reimbursement."
+      explanation: "Non-network care sits outside the payer's negotiated agreements, so it typically triggers reduced coverage or an exception-approval process rather than standard reimbursement.",
+      explanation_ar: "الرعاية خارج الشبكة تقع خارج نطاق الاتفاقيات المتفاوض عليها مع جهة الدفع، ولذلك تؤدي عادةً إلى تخفيض التغطية أو تفعيل إجراء موافقة استثنائية بدلًا من السداد المعتاد."
     },
     {
       stem: "The circular icon beneath the hospital in the diagram — an eye with three colored arrows in a loop — most likely represents which pre-authorization concept?",
+      stem_ar: "الأيقونة الدائرية أسفل المستشفى في الرسم التوضيحي — عين مع ثلاثة أسهم ملونة في حلقة — تمثل على الأرجح أي مفهوم من مفاهيم التصريح المسبق؟",
       options: [
         "A one-time approval with no further oversight",
         "The billing department's internal accounting cycle",
@@ -223,11 +349,20 @@ const VIDEO1_QUIZ = {
         "Patient discharge planning only",
         "The hospital's cleaning schedule"
       ],
+      options_ar: [
+        "موافقة لمرة واحدة دون أي إشراف لاحق",
+        "الدورة المحاسبية الداخلية لقسم الفوترة",
+        "دورة مستمرة لمراجعة ومراقبة استخدام الخدمة بين مقدم الخدمة وجهة الدفع",
+        "تخطيط خروج المريض من المستشفى فقط",
+        "جدول تنظيف المستشفى"
+      ],
       correctIndex: 2,
-      explanation: "The eye-and-loop motif represents ongoing oversight — utilization review doesn't end at initial approval; payers continue monitoring care as it's delivered."
+      explanation: "The eye-and-loop motif represents ongoing oversight — utilization review doesn't end at initial approval; payers continue monitoring care as it's delivered.",
+      explanation_ar: "يمثل رمز العين والحلقة إشرافًا مستمرًا — فمراجعة استخدام الخدمة لا تنتهي عند الموافقة الأولية؛ بل تستمر شركات التأمين في مراقبة الرعاية المقدَّمة أثناء تنفيذها."
     },
     {
       stem: "In the diagram, a claim document is labeled \"Assigned.\" What does this step represent in the pre-authorization process?",
+      stem_ar: "في الرسم التوضيحي، تُوصَف مستند المطالبة بأنه \"مُخصَّص\" (Assigned). ماذا تمثل هذه الخطوة في عملية التصريح المسبق؟",
       options: [
         "The claim has been permanently closed",
         "The claim has been routed to a specific reviewer or case manager for adjudication",
@@ -235,11 +370,20 @@ const VIDEO1_QUIZ = {
         "The hospital has been assigned a new operating license",
         "The claim has been rejected"
       ],
+      options_ar: [
+        "تم إغلاق المطالبة بشكل نهائي",
+        "تم توجيه المطالبة إلى مراجع أو مدير حالة محدد لاتخاذ القرار بشأنها",
+        "تم تعيين طبيب معالج جديد للمريض",
+        "تم منح المستشفى ترخيص تشغيل جديد",
+        "تم رفض المطالبة"
+      ],
       correctIndex: 1,
-      explanation: "\"Assigned\" is a workflow status, not an outcome — it means the claim now has a named reviewer responsible for adjudicating it, before any decision is reached."
+      explanation: "\"Assigned\" is a workflow status, not an outcome — it means the claim now has a named reviewer responsible for adjudicating it, before any decision is reached.",
+      explanation_ar: "\"مُخصَّص\" هي حالة في مسار العمل، وليست نتيجة نهائية — فهي تعني أن المطالبة أصبح لها مراجع محدد مسؤول عن اتخاذ القرار بشأنها، قبل الوصول إلى أي قرار."
     },
     {
       stem: "The building labeled \"ضمان\" (Council of Health Insurance) in the diagram represents which role in the Saudi healthcare insurance ecosystem?",
+      stem_ar: "المبنى الذي يحمل عنوان \"ضمان\" (مجلس ضمان الصحي) في الرسم التوضيحي يمثل أي دور في منظومة التأمين الصحي السعودية؟",
       options: [
         "A private hospital chain",
         "The national regulatory body overseeing health insurance compliance and claims standards",
@@ -247,11 +391,20 @@ const VIDEO1_QUIZ = {
         "An employer's human resources department",
         "A patient advocacy group with no regulatory authority"
       ],
+      options_ar: [
+        "سلسلة مستشفيات خاصة",
+        "الجهة التنظيمية الوطنية المسؤولة عن الإشراف على الامتثال في التأمين الصحي ومعايير المطالبات",
+        "موزّع أدوية",
+        "قسم الموارد البشرية في جهة العمل",
+        "جمعية لحماية حقوق المرضى دون أي صلاحيات تنظيمية"
+      ],
       correctIndex: 1,
-      explanation: "The Council of Health Insurance (CHI) is the Saudi regulator that sets and enforces the standards insurers, TPAs, and providers must follow."
+      explanation: "The Council of Health Insurance (CHI) is the Saudi regulator that sets and enforces the standards insurers, TPAs, and providers must follow.",
+      explanation_ar: "مجلس ضمان الصحي هو الجهة التنظيمية السعودية التي تضع وتفرض المعايير التي يجب أن تلتزم بها شركات التأمين، والجهات المُديرة للطرف الثالث، ومقدمو الخدمة الصحية."
     },
     {
       stem: "The diagram shows an ID card and an employee count linked to an employer-side building, with a red cross mark. What process does this most likely represent?",
+      stem_ar: "يُظهر الرسم التوضيحي بطاقة هوية وعدد موظفين مرتبطين بمبنى جهة العمل، مع علامة صليب حمراء. أي عملية يمثل هذا على الأرجح؟",
       options: [
         "Employee eligibility / membership verification against the employer's group policy",
         "Hospital staff scheduling",
@@ -259,11 +412,20 @@ const VIDEO1_QUIZ = {
         "Patient medical history review",
         "CHI's annual public audit report"
       ],
+      options_ar: [
+        "التحقق من أهلية الموظف / عضويته مقابل وثيقة التأمين الجماعية لجهة العمل",
+        "جدولة عمل موظفي المستشفى",
+        "توظيف موظفين في شركة التأمين",
+        "مراجعة التاريخ الطبي للمريض",
+        "تقرير التدقيق العام السنوي لمجلس ضمان الصحي"
+      ],
       correctIndex: 0,
-      explanation: "Group policies are tied to verified employee rosters — a mismatch or failed check here (the red cross) commonly means an eligibility issue, not a clinical one."
+      explanation: "Group policies are tied to verified employee rosters — a mismatch or failed check here (the red cross) commonly means an eligibility issue, not a clinical one.",
+      explanation_ar: "الوثائق الجماعية مرتبطة بقوائم موظفين تم التحقق منها — وعدم التطابق أو فشل التحقق هنا (الصليب الأحمر) يعني عادةً وجود مشكلة في الأهلية، لا مشكلة إكلينيكية."
     },
     {
       stem: "In the pre-authorization ecosystem, which entity typically initiates a pre-authorization request?",
+      stem_ar: "في منظومة التصريح المسبق، أي جهة تبدأ عادةً طلب التصريح المسبق؟",
       options: [
         "The patient's employer",
         "The treating provider / hospital, on behalf of the patient",
@@ -271,11 +433,20 @@ const VIDEO1_QUIZ = {
         "The patient's family",
         "The insurance company always initiates it first"
       ],
+      options_ar: [
+        "جهة عمل المريض",
+        "مقدم الخدمة المعالج / المستشفى، نيابة عن المريض",
+        "مجلس ضمان الصحي",
+        "أسرة المريض",
+        "شركة التأمين هي التي تبدأ الطلب دائمًا"
+      ],
       correctIndex: 1,
-      explanation: "The provider holds the clinical information needed to justify a request, so authorization requests are almost always provider-initiated on the patient's behalf."
+      explanation: "The provider holds the clinical information needed to justify a request, so authorization requests are almost always provider-initiated on the patient's behalf.",
+      explanation_ar: "يمتلك مقدم الخدمة المعلومات الإكلينيكية اللازمة لتبرير الطلب، ولذلك تكون طلبات التصريح في الغالب مُبتدَأة من مقدم الخدمة نيابة عن المريض."
     },
     {
       stem: "The diagram places the patient at the center, with two-way arrows connecting to both the hospital side and the insurer/employer side. What does this best illustrate about the patient's role in the ecosystem?",
+      stem_ar: "يضع الرسم التوضيحي المريض في المركز، مع أسهم ثنائية الاتجاه تربطه بجانب المستشفى وجانب شركة التأمين/جهة العمل. ماذا يوضح هذا بشكل أفضل بشأن دور المريض في المنظومة؟",
       options: [
         "The patient has no role once treatment starts",
         "The patient is relevant only for billing purposes",
@@ -283,8 +454,16 @@ const VIDEO1_QUIZ = {
         "The patient interacts only with CHI directly",
         "The patient's role ends after admission"
       ],
+      options_ar: [
+        "لا دور للمريض بعد بدء العلاج",
+        "المريض مهم فقط لأغراض الفوترة",
+        "المريض هو نقطة المرجعية المشتركة التي تربط أهليته وعلاجه ونتائجه بجميع الأطراف الأخرى في الدورة",
+        "يتفاعل المريض فقط مع مجلس ضمان الصحي مباشرة",
+        "ينتهي دور المريض بعد الدخول إلى المستشفى"
+      ],
       correctIndex: 2,
-      explanation: "Every other party in the diagram — provider, insurer, employer, regulator — ultimately traces back to the same patient record; the patient is the connecting thread, not a passive endpoint."
+      explanation: "Every other party in the diagram — provider, insurer, employer, regulator — ultimately traces back to the same patient record; the patient is the connecting thread, not a passive endpoint.",
+      explanation_ar: "كل طرف آخر في الرسم التوضيحي — مقدم الخدمة، شركة التأمين، جهة العمل، الجهة التنظيمية — يعود في النهاية إلى سجل المريض نفسه؛ فالمريض هو الخيط الرابط، لا نقطة نهاية سلبية."
     }
   ]
 };
@@ -299,6 +478,7 @@ const SECTIONS = [
     questions: [
       {
         stem: "What best defines medical insurance?",
+        stem_ar: "ما هو التعريف الأدق للتأمين الطبي؟",
         options: [
           "A savings account used only for medical expenses.",
           "A financial agreement that helps cover eligible healthcare costs according to the terms and conditions of an insurance policy.",
@@ -306,11 +486,20 @@ const SECTIONS = [
           "A government program that provides free healthcare for everyone.",
           "A hospital membership that guarantees treatment regardless of policy conditions."
         ],
+        options_ar: [
+          "حساب توفير يُستخدم فقط للنفقات الطبية.",
+          "اتفاقية مالية تساعد على تغطية تكاليف الرعاية الصحية المؤهلة وفقًا لشروط وأحكام وثيقة التأمين.",
+          "دفعة تُسدَّد مباشرة لمقدمي الخدمة الصحية دون وجود وثيقة أو عقد.",
+          "برنامج حكومي يقدم رعاية صحية مجانية لجميع الأفراد.",
+          "عضوية في مستشفى تضمن العلاج بغض النظر عن شروط الوثيقة."
+        ],
         correctIndex: 1,
-        explanation: "Medical insurance is a contractual agreement between the insurer and the insured that provides financial protection against eligible medical expenses, subject to the policy's benefits, exclusions, limits, and conditions."
+        explanation: "Medical insurance is a contractual agreement between the insurer and the insured that provides financial protection against eligible medical expenses, subject to the policy's benefits, exclusions, limits, and conditions.",
+        explanation_ar: "التأمين الطبي هو اتفاقية تعاقدية بين شركة التأمين والمؤمَّن له تقدم حماية مالية من النفقات الطبية المؤهلة، وفقًا لمزايا الوثيقة واستثناءاتها وحدودها وشروطها."
       },
       {
         stem: "What is the primary role of the Pre-Authorization Department?",
+        stem_ar: "ما هو الدور الأساسي لقسم التصريح المسبق؟",
         options: [
           "To collect insurance premiums from members.",
           "To negotiate hospital salaries.",
@@ -318,11 +507,20 @@ const SECTIONS = [
           "To diagnose diseases and prescribe medications.",
           "To replace the treating physician's clinical judgment."
         ],
+        options_ar: [
+          "تحصيل أقساط التأمين من المؤمَّن لهم.",
+          "التفاوض على رواتب موظفي المستشفى.",
+          "التحقق من الضرورة الطبية، وأهلية الوثيقة، والمزايا قبل الموافقة على الخدمات الصحية.",
+          "تشخيص الأمراض ووصف الأدوية.",
+          "استبدال الحكم الإكلينيكي للطبيب المعالج."
+        ],
         correctIndex: 2,
-        explanation: "The Pre-Authorization Department evaluates requested healthcare services to ensure medical necessity, policy eligibility, coverage benefits, and compliance with clinical guidelines. Its role is not to diagnose patients or replace treating physicians."
+        explanation: "The Pre-Authorization Department evaluates requested healthcare services to ensure medical necessity, policy eligibility, coverage benefits, and compliance with clinical guidelines. Its role is not to diagnose patients or replace treating physicians.",
+        explanation_ar: "يقيّم قسم التصريح المسبق الخدمات الصحية المطلوبة للتأكد من الضرورة الطبية، وأهلية الوثيقة، ومزايا التغطية، والامتثال للإرشادات السريرية. دوره ليس تشخيص المرضى أو استبدال الأطباء المعالجين."
       },
       {
         stem: "If a patient does not have medical insurance, which option is generally available?",
+        stem_ar: "إذا لم يكن لدى المريض تأمين طبي، فما هو الخيار المتاح عمومًا؟",
         options: [
           "The insurance company automatically creates a policy.",
           "Free treatment in every private hospital.",
@@ -330,11 +528,20 @@ const SECTIONS = [
           "Self-payment (Cash / Private Payment).",
           "Automatic approval by the insurance company."
         ],
+        options_ar: [
+          "تُنشئ شركة التأمين وثيقة تلقائيًا للمريض.",
+          "علاج مجاني في كل مستشفى خاص.",
+          "يجب على المستشفى تقديم علاج غير محدود دون أي مقابل.",
+          "الدفع الذاتي (نقدًا / دفع خاص).",
+          "موافقة تلقائية من شركة التأمين."
+        ],
         correctIndex: 3,
-        explanation: "Patients without medical insurance usually pay directly for healthcare services (self-pay). Depending on local regulations, they may also be eligible for governmental programs, charity services, or employer support, but there is no automatic insurance coverage."
+        explanation: "Patients without medical insurance usually pay directly for healthcare services (self-pay). Depending on local regulations, they may also be eligible for governmental programs, charity services, or employer support, but there is no automatic insurance coverage.",
+        explanation_ar: "يدفع المرضى غير المؤمَّن عليهم طبيًا عادةً بشكل مباشر مقابل الخدمات الصحية (الدفع الذاتي). وقد يكونون مؤهلين، حسب اللوائح المحلية، للاستفادة من برامج حكومية أو خدمات خيرية أو دعم من جهة العمل، لكن لا توجد تغطية تأمينية تلقائية."
       },
       {
         stem: "Which of the following healthcare professionals are commonly qualified to work in Medical Pre-Authorization?",
+        stem_ar: "أي من مقدمي الرعاية الصحية التالية مؤهلون عادةً للعمل في التصريح المسبق الطبي؟",
         options: [
           "Only hospital administrators.",
           "Medical specialists (consultants) only.",
@@ -342,8 +549,16 @@ const SECTIONS = [
           "Call center agents without healthcare backgrounds.",
           "Doctors, nurses, dentists, pharmacists, laboratory specialists, radiographers, physiotherapists, and other licensed healthcare professionals."
         ],
+        options_ar: [
+          "مسؤولو إدارة المستشفى فقط.",
+          "الأخصائيون الاستشاريون فقط.",
+          "لا أحد — الأمر أصعب من أن يتعلمه أي شخص.",
+          "موظفو مركز الاتصال دون خلفية صحية.",
+          "الأطباء، والممرضون، وأطباء الأسنان، والصيادلة، وأخصائيو المختبرات، وأخصائيو التصوير الإشعاعي، وأخصائيو العلاج الطبيعي، وغيرهم من مقدمي الرعاية الصحية المرخَّصين."
+        ],
         correctIndex: 4,
-        explanation: "Medical pre-authorization requires clinical knowledge to understand diagnoses, investigations, treatments, and insurance policies. Many licensed healthcare professionals can perform this role after appropriate training in medical insurance, clinical guidelines, and policy interpretation."
+        explanation: "Medical pre-authorization requires clinical knowledge to understand diagnoses, investigations, treatments, and insurance policies. Many licensed healthcare professionals can perform this role after appropriate training in medical insurance, clinical guidelines, and policy interpretation.",
+        explanation_ar: "يتطلب التصريح المسبق الطبي معرفة إكلينيكية لفهم التشخيصات والفحوصات والعلاجات ووثائق التأمين. يمكن لكثير من مقدمي الرعاية الصحية المرخَّصين القيام بهذا الدور بعد التدريب المناسب على التأمين الطبي والإرشادات السريرية وتفسير الوثائق."
       }
     ]
   },
@@ -355,6 +570,7 @@ const SECTIONS = [
     questions: [
       {
         stem: "An insured member should normally receive healthcare services from providers within the approved insurance network, except in emergency cases. True or False?",
+        stem_ar: "يجب على المؤمَّن له عادةً الحصول على الخدمات الصحية من مقدمي الخدمة ضمن شبكة التأمين المعتمدة، إلا في حالات الطوارئ. صحيح أم خاطئ؟",
         options: [
           "False",
           "True",
@@ -362,11 +578,20 @@ const SECTIONS = [
           "Only for surgical procedures",
           "Only for chronic conditions"
         ],
+        options_ar: [
+          "خاطئ",
+          "صحيح",
+          "فقط خارج المملكة العربية السعودية",
+          "فقط للإجراءات الجراحية",
+          "فقط للحالات المزمنة"
+        ],
         correctIndex: 1,
-        explanation: "The correct term is out-of-network (or non-network) provider — not \"non-assigned provider.\" Treatment outside the approved network may be covered in an emergency, not only when the condition is strictly life-threatening."
+        explanation: "The correct term is out-of-network (or non-network) provider — not \"non-assigned provider.\" Treatment outside the approved network may be covered in an emergency, not only when the condition is strictly life-threatening.",
+        explanation_ar: "المصطلح الصحيح هو مقدم خدمة خارج الشبكة (أو غير متعاقد) — وليس \"مقدم خدمة غير مُخصَّص\". قد يُغطى العلاج خارج الشبكة المعتمدة في حالات الطوارئ، وليس فقط عندما تكون الحالة مهددة للحياة بشكل قاطع."
       },
       {
         stem: "What does Revenue Cycle Management (RCM) refer to in healthcare?",
+        stem_ar: "ماذا تعني إدارة الدورة المالية (Revenue Cycle Management - RCM) في مجال الرعاية الصحية؟",
         options: [
           "Managing only the hospital's medical equipment.",
           "Preparing clinical treatment guidelines for doctors.",
@@ -374,11 +599,20 @@ const SECTIONS = [
           "Reviewing only denied insurance approvals.",
           "Managing employee salaries and annual leave."
         ],
+        options_ar: [
+          "إدارة المعدات الطبية للمستشفى فقط.",
+          "إعداد إرشادات العلاج السريري للأطباء.",
+          "إدارة العمليات الإدارية والسريرية التي تُنشئ وتُفوتر وتُحصّل وتُسوّي إيرادات الرعاية الصحية.",
+          "مراجعة الموافقات التأمينية المرفوضة فقط.",
+          "إدارة رواتب الموظفين والإجازات السنوية."
+        ],
         correctIndex: 2,
-        explanation: "RCM covers the financial journey of a healthcare service from patient registration and eligibility verification through documentation, coding, billing, claims submission, payment, denial management, and collection."
+        explanation: "RCM covers the financial journey of a healthcare service from patient registration and eligibility verification through documentation, coding, billing, claims submission, payment, denial management, and collection.",
+        explanation_ar: "تشمل إدارة الدورة المالية المسار المالي لأي خدمة صحية بدءًا من تسجيل المريض والتحقق من الأهلية، مرورًا بالتوثيق والترميز والفوترة وتقديم المطالبات والدفع وإدارة الرفض، وحتى التحصيل."
       },
       {
         stem: "What is one of the main responsibilities of the Council of Health Insurance (CHI) in Saudi Arabia?",
+        stem_ar: "ما هي إحدى المسؤوليات الرئيسية لمجلس ضمان الصحي (CHI) في المملكة العربية السعودية؟",
         options: [
           "Paying all hospital claims on behalf of insurance companies.",
           "Issuing medical licences to doctors and nurses.",
@@ -386,11 +620,20 @@ const SECTIONS = [
           "Enforcing mandatory health insurance, identifying covered groups, accrediting healthcare providers, and overseeing the NPHIES platform.",
           "Selling health-insurance policies directly to individuals."
         ],
+        options_ar: [
+          "دفع جميع مطالبات المستشفيات نيابة عن شركات التأمين.",
+          "إصدار التراخيص الطبية للأطباء والممرضين.",
+          "تشغيل المستشفيات الخاصة في جميع مناطق المملكة.",
+          "فرض التأمين الصحي الإلزامي، وتحديد الفئات الخاضعة له، واعتماد مقدمي الخدمة الصحية، والإشراف على منصة نفيس (NPHIES).",
+          "بيع وثائق التأمين الصحي مباشرة للأفراد."
+        ],
         correctIndex: 3,
-        explanation: "CHI's responsibilities include enforcing compulsory health-insurance coverage, defining groups subject to mandatory coverage, accrediting healthcare providers, monitoring compliance, and overseeing NPHIES. Regulation and supervision of insurance companies has shifted to the Insurance Authority. Use \"CHI,\" not \"CCHI,\" in new materials."
+        explanation: "CHI's responsibilities include enforcing compulsory health-insurance coverage, defining groups subject to mandatory coverage, accrediting healthcare providers, monitoring compliance, and overseeing NPHIES. Regulation and supervision of insurance companies has shifted to the Insurance Authority. Use \"CHI,\" not \"CCHI,\" in new materials.",
+        explanation_ar: "تشمل مسؤوليات مجلس ضمان الصحي فرض التغطية التأمينية الصحية الإلزامية، وتحديد الفئات الخاضعة للتغطية الإلزامية، واعتماد مقدمي الخدمة الصحية، ومراقبة الامتثال، والإشراف على منصة نفيس. أما تنظيم والإشراف على شركات التأمين فقد انتقل إلى هيئة التأمين. يُستخدم مصطلح \"مجلس ضمان الصحي (CHI)\"، لا \"CCHI\"، في المواد الجديدة."
       },
       {
         stem: "Why should an insured member keep their registered mobile number updated?",
+        stem_ar: "لماذا يجب على المؤمَّن له تحديث رقم جواله المسجَّل؟",
         options: [
           "To remove exclusions from the insurance policy.",
           "To automatically approve all submitted medical requests.",
@@ -398,11 +641,20 @@ const SECTIONS = [
           "To increase the member's insurance benefit limit.",
           "To receive notifications about approval, rejection, or other updates related to pre-authorisation requests."
         ],
+        options_ar: [
+          "لإزالة الاستثناءات من وثيقة التأمين.",
+          "للموافقة تلقائيًا على جميع الطلبات الطبية المُقدَّمة.",
+          "للسماح للمستشفى بتغيير تشخيص المؤمَّن له.",
+          "لزيادة حد المنفعة التأمينية للمؤمَّن له.",
+          "لاستقبال إشعارات بشأن الموافقة أو الرفض أو أي تحديثات أخرى متعلقة بطلبات التصريح المسبق."
+        ],
         correctIndex: 4,
-        explanation: "An updated mobile number allows the insurer to send timely SMS notifications regarding pre-authorisation decisions and related service updates. It does not change benefits, diagnosis, exclusions, or approval criteria. CHI's payer standards specifically refer to beneficiaries receiving pre-authorisation approvals through SMS and email."
+        explanation: "An updated mobile number allows the insurer to send timely SMS notifications regarding pre-authorisation decisions and related service updates. It does not change benefits, diagnosis, exclusions, or approval criteria. CHI's payer standards specifically refer to beneficiaries receiving pre-authorisation approvals through SMS and email.",
+        explanation_ar: "يسمح تحديث رقم الجوال لشركة التأمين بإرسال إشعارات نصية في الوقت المناسب بشأن قرارات التصريح المسبق والتحديثات المتعلقة بالخدمة. وهو لا يغيّر المزايا أو التشخيص أو الاستثناءات أو معايير الموافقة. وتشير معايير جهات الدفع الصادرة عن مجلس ضمان الصحي تحديدًا إلى استلام المستفيدين موافقات التصريح المسبق عبر الرسائل النصية والبريد الإلكتروني."
       },
       {
         stem: "Which statement correctly describes the roles of NPHIES and the Insurance Authority in Saudi Arabia?",
+        stem_ar: "أي عبارة تصف بشكل صحيح دور منصة نفيس (NPHIES) وهيئة التأمين في المملكة العربية السعودية؟",
         options: [
           "NPHIES licenses physicians, while the Insurance Authority manages hospital appointments.",
           "NPHIES enables electronic exchange of eligibility, authorisation, claims, and payment information, while the Insurance Authority regulates and supervises the insurance sector.",
@@ -410,8 +662,16 @@ const SECTIONS = [
           "Both organisations are private insurance companies.",
           "Both organisations perform only medical diagnosis and treatment."
         ],
+        options_ar: [
+          "تُرخِّص نفيس الأطباء، بينما تُدير هيئة التأمين مواعيد المستشفيات.",
+          "تُتيح نفيس التبادل الإلكتروني لمعلومات الأهلية والتصريح والمطالبات والدفع، بينما تنظم هيئة التأمين قطاع التأمين وتشرف عليه.",
+          "تبيع نفيس وثائق التأمين، بينما تقدم هيئة التأمين العلاج داخل المستشفيات.",
+          "كلا الجهتين شركتا تأمين خاصتان.",
+          "تقوم كلا الجهتين بالتشخيص والعلاج الطبي فقط."
+        ],
         correctIndex: 1,
-        explanation: "NPHIES is a central electronic exchange connecting providers, insurers, and TPAs — it validates and routes eligibility checks, prior-authorisation requests, claims, and payment information. The Insurance Authority regulates, supervises, and develops the insurance sector itself; it is not a hospital, payer, or clinical decision-maker."
+        explanation: "NPHIES is a central electronic exchange connecting providers, insurers, and TPAs — it validates and routes eligibility checks, prior-authorisation requests, claims, and payment information. The Insurance Authority regulates, supervises, and develops the insurance sector itself; it is not a hospital, payer, or clinical decision-maker.",
+        explanation_ar: "منصة نفيس هي مركز تبادل إلكتروني مركزي يربط بين مقدمي الخدمة وشركات التأمين والجهات المُديرة للطرف الثالث — وتتحقق من صحة عمليات فحص الأهلية وطلبات التصريح المسبق والمطالبات ومعلومات الدفع وتوجيهها. أما هيئة التأمين فتنظم وتشرف على قطاع التأمين نفسه وتطوّره؛ وهي ليست مستشفى أو جهة دفع أو جهة اتخاذ قرار سريري."
       }
     ]
   },
@@ -423,6 +683,7 @@ const SECTIONS = [
     questions: [
       {
         stem: "Which statement is CORRECT regarding the Health Questionnaire (HQ)?",
+        stem_ar: "أي عبارة صحيحة بخصوص الاستبيان الصحي (HQ)؟",
         options: [
           "The insurer must reject all members with an HQ.",
           "The insurer should ask the date of diagnosis for every medical visit, even if it is unrelated to the HQ.",
@@ -431,11 +692,21 @@ const SECTIONS = [
           "The insurer should ask only for the member's current medications without reviewing the disclosed disease.",
           "For members who complete a Health Questionnaire (HQ), the insurer may request the date of diagnosis and supporting medical information for the diseases disclosed in the HQ."
         ],
+        options_ar: [
+          "يجب على شركة التأمين رفض جميع المؤمَّن لهم الذين لديهم استبيان صحي.",
+          "يجب على شركة التأمين أن تطلب تاريخ التشخيص لكل زيارة طبية، حتى إن لم تكن ذات صلة بالاستبيان الصحي.",
+          "يجب على شركة التأمين أن تسأل فقط عن الأمراض المُشخَّصة خلال السنة السابقة.",
+          "يجب على شركة التأمين تجاهل المعلومات المُقدَّمة في الاستبيان الصحي.",
+          "يجب على شركة التأمين أن تطلب فقط الأدوية الحالية للمؤمَّن له دون مراجعة المرض المُصرَّح به.",
+          "بالنسبة للمؤمَّن لهم الذين يُكملون استبيانًا صحيًا (HQ)، يجوز لشركة التأمين طلب تاريخ التشخيص ومعلومات طبية داعمة للأمراض المُصرَّح بها في الاستبيان."
+        ],
         correctIndex: 5,
-        explanation: "When a disease is declared on the Health Questionnaire, the insurer may request additional information such as the date of diagnosis, medical reports, and previous treatment to assess eligibility, waiting periods, exclusions, or underwriting decisions."
+        explanation: "When a disease is declared on the Health Questionnaire, the insurer may request additional information such as the date of diagnosis, medical reports, and previous treatment to assess eligibility, waiting periods, exclusions, or underwriting decisions.",
+        explanation_ar: "عند التصريح بمرض في الاستبيان الصحي، يجوز لشركة التأمين طلب معلومات إضافية مثل تاريخ التشخيص والتقارير الطبية والعلاج السابق لتقييم الأهلية أو فترات الانتظار أو الاستثناءات أو قرارات التحصين."
       },
       {
         stem: "A 70-year-old member requests Open Heart Surgery. The Health Questionnaire states: no previous history of cardiac disease. What is the MOST appropriate action?",
+        stem_ar: "يطلب مؤمَّن له يبلغ من العمر 70 عامًا إجراء جراحة قلب مفتوح. ينص الاستبيان الصحي على عدم وجود تاريخ سابق لمرض قلبي. ما هو الإجراء الأكثر ملاءمة؟",
         options: [
           "Approve immediately because the member is elderly.",
           "The insurer has the right to verify the member's relevant medical history through available medical records and healthcare providers before making a coverage decision.",
@@ -444,11 +715,21 @@ const SECTIONS = [
           "Ignore the Health Questionnaire and approve the request.",
           "Reject immediately because the member is elderly."
         ],
+        options_ar: [
+          "الموافقة فورًا لأن المؤمَّن له مسن.",
+          "يحق لشركة التأمين التحقق من التاريخ الطبي ذي الصلة للمؤمَّن له من خلال السجلات الطبية المتاحة ومقدمي الخدمة الصحية قبل اتخاذ قرار التغطية.",
+          "طلب من الطبيب المعالج تغيير التشخيص.",
+          "إلغاء وثيقة التأمين فورًا.",
+          "تجاهل الاستبيان الصحي والموافقة على الطلب.",
+          "الرفض فورًا لأن المؤمَّن له مسن."
+        ],
         correctIndex: 1,
-        explanation: "If there is a significant inconsistency between the Health Questionnaire and the requested treatment, the insurer may investigate the relevant medical history using legally available medical records and supporting documentation before making a coverage decision."
+        explanation: "If there is a significant inconsistency between the Health Questionnaire and the requested treatment, the insurer may investigate the relevant medical history using legally available medical records and supporting documentation before making a coverage decision.",
+        explanation_ar: "في حال وجود تعارض جوهري بين الاستبيان الصحي والعلاج المطلوب، يجوز لشركة التأمين التحقيق في التاريخ الطبي ذي الصلة باستخدام السجلات الطبية المتاحة قانونيًا والمستندات الداعمة قبل اتخاذ قرار التغطية."
       },
       {
         stem: "Which members are generally NOT required to complete a Health Questionnaire (HQ)?",
+        stem_ar: "أي المؤمَّن لهم عمومًا غير مطالَبين باستكمال الاستبيان الصحي (HQ)؟",
         options: [
           "Only children under five years.",
           "Every insured member regardless of policy type.",
@@ -457,11 +738,21 @@ const SECTIONS = [
           "Only members older than 65 years.",
           "Only retired members."
         ],
+        options_ar: [
+          "الأطفال دون الخامسة من العمر فقط.",
+          "جميع المؤمَّن لهم بغض النظر عن نوع الوثيقة.",
+          "موظفو المجموعات الكبيرة الخاضعة للتأمين الإلزامي، والمؤمَّن لهم الذين يجدِّدون وثائقهم الحالية، وفقًا للوائح المعمول بها.",
+          "مرضى الطوارئ فقط.",
+          "المؤمَّن لهم الذين تجاوزوا 65 عامًا فقط.",
+          "المتقاعدون فقط."
+        ],
         correctIndex: 2,
-        explanation: "Under Saudi regulations, certain mandatory group insurance and renewal situations may not require completion of a new Health Questionnaire, depending on the applicable underwriting rules."
+        explanation: "Under Saudi regulations, certain mandatory group insurance and renewal situations may not require completion of a new Health Questionnaire, depending on the applicable underwriting rules.",
+        explanation_ar: "بموجب اللوائح السعودية، قد لا تتطلب بعض حالات التأمين الجماعي الإلزامي والتجديد استكمال استبيان صحي جديد، وذلك حسب قواعد التحصين المعمول بها."
       },
       {
         stem: "A pregnant member's Last Menstrual Period (LMP) occurred 29 days after the policy effective date. What is the appropriate action?",
+        stem_ar: "حدث آخر دورة شهرية (LMP) لمؤمَّن لها حامل بعد 29 يومًا من تاريخ نفاذ الوثيقة. ما هو الإجراء المناسب؟",
         options: [
           "Reject all maternity services immediately.",
           "Request a new Health Questionnaire before every visit.",
@@ -470,11 +761,21 @@ const SECTIONS = [
           "Cancel the insurance policy.",
           "Reject the request because pregnancy is never covered."
         ],
+        options_ar: [
+          "رفض جميع خدمات الولادة فورًا.",
+          "طلب استبيان صحي جديد قبل كل زيارة.",
+          "اعتبار الحمل حالة سابقة للوثيقة.",
+          "الموافقة على زيارة العيادة الخارجية للولادة لأن الحمل بدأ بعد نفاذ الوثيقة.",
+          "إلغاء وثيقة التأمين.",
+          "رفض الطلب لأن الحمل غير مغطى أبدًا."
+        ],
         correctIndex: 3,
-        explanation: "If conception occurred after the effective date of the policy (based on LMP and policy rules), maternity services are generally processed according to the member's maternity benefits and policy terms. Final decisions still depend on the exact policy wording and applicable regulations."
+        explanation: "If conception occurred after the effective date of the policy (based on LMP and policy rules), maternity services are generally processed according to the member's maternity benefits and policy terms. Final decisions still depend on the exact policy wording and applicable regulations.",
+        explanation_ar: "إذا حدث الحمل بعد تاريخ نفاذ الوثيقة (بناءً على آخر دورة شهرية وقواعد الوثيقة)، تُعالَج خدمات الولادة عمومًا وفقًا لمزايا الولادة الخاصة بالمؤمَّن له وشروط الوثيقة. وتبقى القرارات النهائية متوقفة على نص الوثيقة الدقيق واللوائح المعمول بها."
       },
       {
         stem: "Which group of conditions is included in the Health Questionnaire (HQ)?",
+        stem_ar: "أي مجموعة من الحالات مُدرَجة في الاستبيان الصحي (HQ)؟",
         options: [
           "Influenza, Food Poisoning, Ear Wax, Sunburn, and Muscle Fatigue.",
           "Migraine, Conjunctivitis, Vitamin D Deficiency, Hiccups, and Dandruff.",
@@ -483,8 +784,17 @@ const SECTIONS = [
           "Autism, Cataract, Obesity (Weight-related condition), Ligament Tears, and G6PD Deficiency.",
           "Common Cold, Seasonal Allergy, Acne, Tooth Sensitivity, and Motion Sickness."
         ],
+        options_ar: [
+          "الإنفلونزا، والتسمم الغذائي، وشمع الأذن، وحروق الشمس، والتعب العضلي.",
+          "الصداع النصفي، والتهاب الملتحمة، ونقص فيتامين د، والفواق (الزغطة)، وقشرة الرأس.",
+          "التهاب الحلق، والإمساك، وجفاف الجلد، والقدم الرياضي، وفطريات الأظافر.",
+          "الجديري المائي، ولدغة البعوض، والكدمات الخفيفة، وطبقة الجرثوم على الأسنان، والقمل.",
+          "التوحد، والساد (الكتاراكت)، والسمنة (حالة مرتبطة بالوزن)، وتمزق الأربطة، ونقص إنزيم G6PD.",
+          "نزلات البرد، والحساسية الموسمية، وحب الشباب، وحساسية الأسنان، ودوار الحركة."
+        ],
         correctIndex: 4,
-        explanation: "The Health Questionnaire focuses on significant medical conditions that may affect underwriting, risk assessment, or coverage decisions — not minor self-limiting illnesses."
+        explanation: "The Health Questionnaire focuses on significant medical conditions that may affect underwriting, risk assessment, or coverage decisions — not minor self-limiting illnesses.",
+        explanation_ar: "يركز الاستبيان الصحي على الحالات الطبية الجوهرية التي قد تؤثر على التحصين أو تقييم المخاطر أو قرارات التغطية — ولا يشمل الأمراض الخفيفة العابرة."
       }
     ]
   },
@@ -496,6 +806,7 @@ const SECTIONS = [
     questions: [
       {
         stem: "A patient sustains multiple fractures after an earthquake and is admitted to the emergency department. The provider submits a claim under the Basic Health Insurance Policy. What is the most appropriate decision?",
+        stem_ar: "يتعرض مريض لكسور متعددة بعد زلزال ويُدخَل إلى قسم الطوارئ. يقدم مقدم الخدمة مطالبة بموجب وثيقة التأمين الصحي الأساسية. ما هو القرار الأكثر ملاءمة؟",
         options: [
           "Approve because all emergency cases are covered.",
           "Approve because natural disasters are always covered.",
@@ -503,11 +814,20 @@ const SECTIONS = [
           "Approve if the patient has no previous medical history.",
           "Approve only if the hospital is within the payer network."
         ],
+        options_ar: [
+          "الموافقة لأن جميع حالات الطوارئ مغطاة.",
+          "الموافقة لأن الكوارث الطبيعية مغطاة دائمًا.",
+          "غير مغطى لأن الكوارث الطبيعية مستثناة بموجب وثيقة التأمين الصحي الأساسية.",
+          "الموافقة إذا لم يكن للمريض تاريخ طبي سابق.",
+          "الموافقة فقط إذا كانت المستشفى ضمن شبكة جهة الدفع."
+        ],
         correctIndex: 2,
-        explanation: "Natural disasters (such as earthquakes and floods) are generally excluded under the CHI Basic Health Insurance Policy unless otherwise required by law or specifically covered by the insurance contract."
+        explanation: "Natural disasters (such as earthquakes and floods) are generally excluded under the CHI Basic Health Insurance Policy unless otherwise required by law or specifically covered by the insurance contract.",
+        explanation_ar: "تُستثنى الكوارث الطبيعية (كالزلازل والفيضانات) عمومًا بموجب وثيقة التأمين الصحي الأساسية لمجلس ضمان الصحي، إلا إذا كان القانون يُلزم بالتغطية أو كانت مشمولة تحديدًا في عقد التأمين."
       },
       {
         stem: "A newborn is diagnosed with a single ventricle congenital heart defect and has persistent severe cyanosis requiring urgent surgical intervention. What is the correct decision?",
+        stem_ar: "يُشخَّص مولود بعيب خلقي في القلب (بطين واحد) ويعاني من زرقة شديدة مستمرة تتطلب تدخلًا جراحيًا عاجلًا. ما هو القرار الصحيح؟",
         options: [
           "Approve because life-threatening congenital conditions requiring urgent treatment are covered.",
           "Reject because all congenital anomalies are excluded.",
@@ -515,11 +835,20 @@ const SECTIONS = [
           "Reject because neonatal surgery is excluded.",
           "Approve only after six months of observation."
         ],
+        options_ar: [
+          "الموافقة لأن الحالات الخلقية المهددة للحياة التي تتطلب علاجًا عاجلًا مغطاة.",
+          "الرفض لأن جميع التشوهات الخلقية مستثناة.",
+          "الرفض لأن المولود وُلد مصابًا بهذه الحالة.",
+          "الرفض لأن جراحة حديثي الولادة مستثناة.",
+          "الموافقة فقط بعد ستة أشهر من الملاحظة."
+        ],
         correctIndex: 0,
-        explanation: "Although congenital anomalies are generally excluded, life-threatening congenital conditions requiring urgent intervention are covered under the CHI Basic Health Insurance Policy."
+        explanation: "Although congenital anomalies are generally excluded, life-threatening congenital conditions requiring urgent intervention are covered under the CHI Basic Health Insurance Policy.",
+        explanation_ar: "على الرغم من استثناء التشوهات الخلقية عمومًا، فإن الحالات الخلقية المهددة للحياة التي تتطلب تدخلًا عاجلًا مغطاة بموجب وثيقة التأمين الصحي الأساسية لمجلس ضمان الصحي."
       },
       {
         stem: "A 20-year-old patient requests treatment for facial acne because it affects his appearance and self-confidence. What is the correct decision?",
+        stem_ar: "يطلب مريض يبلغ من العمر 20 عامًا علاج حب الشباب في الوجه لأنه يؤثر على مظهره وثقته بنفسه. ما هو القرار الصحيح؟",
         options: [
           "Approve because acne affects quality of life.",
           "Approve if topical medication is requested.",
@@ -527,11 +856,20 @@ const SECTIONS = [
           "Not covered because routine acne treatment is excluded under the Basic Health Insurance Policy.",
           "Approve only after dermatology consultation."
         ],
+        options_ar: [
+          "الموافقة لأن حب الشباب يؤثر على جودة الحياة.",
+          "الموافقة إذا كان الدواء المطلوب موضعيًا.",
+          "الموافقة لأن المريض أصغر من 25 عامًا.",
+          "غير مغطى لأن علاج حب الشباب الروتيني مستثنى بموجب وثيقة التأمين الصحي الأساسية.",
+          "الموافقة فقط بعد استشارة طبيب جلدية."
+        ],
         correctIndex: 3,
-        explanation: "Routine acne treatment is generally excluded from the CHI Basic Health Insurance Policy unless specific medical circumstances or policy benefits apply."
+        explanation: "Routine acne treatment is generally excluded from the CHI Basic Health Insurance Policy unless specific medical circumstances or policy benefits apply.",
+        explanation_ar: "يُستثنى علاج حب الشباب الروتيني عمومًا من وثيقة التأمين الصحي الأساسية لمجلس ضمان الصحي، إلا إذا انطبقت ظروف طبية محددة أو مزايا خاصة في الوثيقة."
       },
       {
         stem: "A member intentionally failed to declare an existing pregnancy on the Health Questionnaire (HQ) during policy enrolment and later requests coverage for delivery. What is the most appropriate action?",
+        stem_ar: "لم تُصرِّح مؤمَّن لها عمدًا بحمل قائم في الاستبيان الصحي (HQ) عند الالتحاق بالوثيقة، وطلبت لاحقًا تغطية الولادة. ما هو الإجراء الأكثر ملاءمة؟",
         options: [
           "Automatically approve because maternity is always covered.",
           "Approve because pregnancy cannot be investigated.",
@@ -539,11 +877,20 @@ const SECTIONS = [
           "Refer the case for policy review because false declaration on the Health Questionnaire may affect coverage eligibility.",
           "Reject all future claims permanently."
         ],
+        options_ar: [
+          "الموافقة تلقائيًا لأن الولادة مغطاة دائمًا.",
+          "الموافقة لأنه لا يمكن التحقيق في الحمل.",
+          "الموافقة إذا أكد مقدم الخدمة وجود الحمل.",
+          "تحويل الحالة لمراجعة الوثيقة لأن التصريح الكاذب في الاستبيان الصحي قد يؤثر على أهلية التغطية.",
+          "رفض جميع المطالبات المستقبلية بشكل نهائي."
+        ],
         correctIndex: 3,
-        explanation: "Providing false or incomplete information on the Health Questionnaire may affect eligibility for benefits. The insurer has the right to investigate and determine coverage according to the policy terms and applicable regulations. Teaching point: avoid saying \"Not Covered\" automatically — the insurer investigates first."
+        explanation: "Providing false or incomplete information on the Health Questionnaire may affect eligibility for benefits. The insurer has the right to investigate and determine coverage according to the policy terms and applicable regulations. Teaching point: avoid saying \"Not Covered\" automatically — the insurer investigates first.",
+        explanation_ar: "قد يؤثر تقديم معلومات كاذبة أو غير كاملة في الاستبيان الصحي على أهلية الحصول على المزايا. يحق لشركة التأمين التحقيق وتحديد التغطية وفقًا لشروط الوثيقة واللوائح المعمول بها. نقطة تعليمية: تجنّب القول \"غير مغطى\" تلقائيًا — فشركة التأمين تُحقِّق أولًا."
       },
       {
         stem: "A Taekwondo athlete suffers an anterior shoulder dislocation during an official competition and requests emergency treatment. Which statement is most appropriate?",
+        stem_ar: "يتعرض لاعب تايكوندو لخلع في مقدمة الكتف خلال منافسة رسمية ويطلب علاجًا طارئًا. ما هي العبارة الأكثر ملاءمة؟",
         options: [
           "Approve because all sports injuries are covered.",
           "Approve because shoulder reduction is an emergency procedure.",
@@ -551,11 +898,20 @@ const SECTIONS = [
           "Approve because all trauma is covered.",
           "Coverage depends on whether the injury falls under excluded personal hazards or hazardous sporting activities as defined by the policy."
         ],
+        options_ar: [
+          "الموافقة لأن جميع الإصابات الرياضية مغطاة.",
+          "الموافقة لأن رد الكتف إجراء طارئ.",
+          "الرفض لأن الإصابة وقعت خلال ممارسة الرياضة.",
+          "الموافقة لأن جميع إصابات الرضوض مغطاة.",
+          "تعتمد التغطية على ما إذا كانت الإصابة تقع ضمن الأخطار الشخصية المستثناة أو الأنشطة الرياضية الخطرة كما تحددها الوثيقة."
+        ],
         correctIndex: 4,
-        explanation: "Coverage for sports-related injuries depends on the insurance policy and the applicable CHI provisions regarding personal hazards and excluded activities. Teaching point: be cautious here — \"Taekwondo = automatically not covered\" is too broad a rule."
+        explanation: "Coverage for sports-related injuries depends on the insurance policy and the applicable CHI provisions regarding personal hazards and excluded activities. Teaching point: be cautious here — \"Taekwondo = automatically not covered\" is too broad a rule.",
+        explanation_ar: "تعتمد تغطية الإصابات الرياضية على وثيقة التأمين وأحكام مجلس ضمان الصحي المعمول بها بشأن الأخطار الشخصية والأنشطة المستثناة. نقطة تعليمية: كن حذرًا هنا — اعتبار \"التايكوندو = غير مغطى تلقائيًا\" قاعدة فضفاضة أكثر من اللازم."
       },
       {
         stem: "While travelling to work, a member is involved in a road traffic accident. He sustains a displaced femoral neck fracture requiring total hip replacement. The police report confirms the member was 0% liable. The hospital submits a request to the payer. What is the most appropriate response?",
+        stem_ar: "يتعرض مؤمَّن له لحادث سير خلال توجهه إلى العمل، ويصاب بكسر مزحزح في عنق عظم الفخذ يتطلب استبدالًا كاملًا لمفصل الحوض. يؤكد تقرير الشرطة أن مسؤولية المؤمَّن له 0%. تُقدِّم المستشفى طلبًا إلى جهة الدفع. ما هو الرد الأكثر ملاءمة؟",
         options: [
           "Reject because all traffic accidents are excluded.",
           "Reject because hip replacement is excluded.",
@@ -563,8 +919,16 @@ const SECTIONS = [
           "Reject because all trauma is work related.",
           "Determine whether another legally responsible party should provide compensation before applying health insurance benefits, according to applicable regulations and policy terms."
         ],
+        options_ar: [
+          "الرفض لأن جميع حوادث السير مستثناة.",
+          "الرفض لأن استبدال مفصل الحوض مستثنى.",
+          "الموافقة لأن نسبة المسؤولية 0%.",
+          "الرفض لأن جميع إصابات الرضوض تُعد متعلقة بالعمل.",
+          "تحديد ما إذا كانت هناك جهة قانونية أخرى مسؤولة يجب أن تقدم التعويض قبل تطبيق مزايا التأمين الصحي، وفقًا للوائح المعمول بها وشروط الوثيقة."
+        ],
         correctIndex: 4,
-        explanation: "This scenario should not automatically be labelled as a work-related injury. Road traffic accident claims may involve other legal compensation systems (such as motor insurance), and the appropriate payer depends on the applicable regulations and policy wording."
+        explanation: "This scenario should not automatically be labelled as a work-related injury. Road traffic accident claims may involve other legal compensation systems (such as motor insurance), and the appropriate payer depends on the applicable regulations and policy wording.",
+        explanation_ar: "لا ينبغي وصف هذا السيناريو تلقائيًا بأنه إصابة متعلقة بالعمل. قد تشمل مطالبات حوادث السير أنظمة تعويض قانونية أخرى (مثل تأمين المركبات)، وتعتمد جهة الدفع المناسبة على اللوائح المعمول بها ونص الوثيقة."
       }
     ]
   },
@@ -576,91 +940,155 @@ const SECTIONS = [
     questions: [
       {
         stem: "Maternity benefits are covered for:",
+        stem_ar: "تُغطى مزايا الولادة لـ:",
         options: [
           "All female members regardless of marital status",
           "Married spouses and married female employees",
           "Female dependents below 18 years",
           "Male employees' sisters"
         ],
+        options_ar: [
+          "جميع المؤمَّن لهن بغض النظر عن الحالة الاجتماعية",
+          "الزوجات المتزوجات والموظفات المتزوجات",
+          "المُعالات الإناث دون 18 عامًا",
+          "أخوات الموظفين الذكور"
+        ],
         correctIndex: 1,
-        explanation: "Maternity benefits are generally restricted to married female members and the married spouses of male policyholders — not extended to unmarried females or unrelated dependents."
+        explanation: "Maternity benefits are generally restricted to married female members and the married spouses of male policyholders — not extended to unmarried females or unrelated dependents.",
+        explanation_ar: "تقتصر مزايا الولادة عمومًا على المؤمَّن لهن المتزوجات وزوجات حاملي الوثيقة الذكور المتزوجين — ولا تشمل غير المتزوجات أو المُعالات غير ذوات الصلة."
       },
       {
         stem: "Which of the following represents the recommended first ANC (Antenatal Care) investigations?",
+        stem_ar: "أي مما يلي يمثل الفحوصات الأولى الموصى بها لرعاية ما قبل الولادة (ANC)؟",
         options: [
           "CBC, ECG, Chest X-ray, HbA1c, CT Abdomen",
           "HBsAg, HIV, Rubella IgG, Obstetric Ultrasound, CBC, Urinalysis, FBS/RBS",
           "MRI Pelvis, PSA, Colonoscopy, ESR, Stool Analysis",
           "Vitamin D, ECG, Bone Scan, Troponin, CT Brain"
         ],
+        options_ar: [
+          "تحليل دم شامل، تخطيط قلب، أشعة سينية للصدر، سكر تراكمي، تصوير طبقي للبطن",
+          "مستضد التهاب الكبد B، فحص فيروس نقص المناعة، أجسام مضادة للحصبة الألمانية IgG، تصوير سونار للحمل، تحليل دم شامل، تحليل بول، سكر صائم/عشوائي",
+          "رنين مغناطيسي للحوض، مستضد البروستاتا النوعي، تنظير القولون، سرعة الترسيب، تحليل البراز",
+          "فيتامين د، تخطيط قلب، مسح عظمي، تروبونين، تصوير طبقي للدماغ"
+        ],
         correctIndex: 1,
-        explanation: "Standard first-trimester ANC screening covers infectious disease markers (HBsAg, HIV), immunity status (Rubella IgG), baseline hematology and metabolic screening (CBC, FBS/RBS), urinalysis, and an obstetric ultrasound — not unrelated investigations like CT or colonoscopy."
+        explanation: "Standard first-trimester ANC screening covers infectious disease markers (HBsAg, HIV), immunity status (Rubella IgG), baseline hematology and metabolic screening (CBC, FBS/RBS), urinalysis, and an obstetric ultrasound — not unrelated investigations like CT or colonoscopy.",
+        explanation_ar: "يشمل الفحص المعياري في الثلث الأول من الحمل لرعاية ما قبل الولادة مؤشرات الأمراض المعدية (مستضد التهاب الكبد B، فحص فيروس نقص المناعة)، وحالة المناعة (الحصبة الألمانية IgG)، وفحوصات الدم والتمثيل الغذائي الأساسية (تحليل دم شامل، سكر صائم/عشوائي)، وتحليل البول، وتصوير سونار للحمل — وليس فحوصات غير ذات صلة كالتصوير الطبقي أو تنظير القولون."
       },
       {
         stem: "The maximum coverage limit for Pre-existing and Chronic Conditions is:",
+        stem_ar: "ما هو الحد الأقصى للتغطية للحالات السابقة والمزمنة؟",
         options: [
           "SAR 250,000",
           "SAR 500,000",
           "SAR 750,000",
           "SAR 1,000,000"
         ],
+        options_ar: [
+          "250,000 ريال سعودي",
+          "500,000 ريال سعودي",
+          "750,000 ريال سعودي",
+          "1,000,000 ريال سعودي"
+        ],
         correctIndex: 3,
-        explanation: "Under CHI regulations, pre-existing and chronic conditions carry a defined maximum coverage ceiling of SAR 1,000,000, distinct from the general policy limit."
+        explanation: "Under CHI regulations, pre-existing and chronic conditions carry a defined maximum coverage ceiling of SAR 1,000,000, distinct from the general policy limit.",
+        explanation_ar: "بموجب لوائح مجلس ضمان الصحي، تحمل الحالات السابقة والمزمنة سقف تغطية أقصى محدد يبلغ 1,000,000 ريال سعودي، وهو منفصل عن حد الوثيقة العام."
       },
       {
         stem: "According to the CHI Essential Benefit Package, the companion (escort) benefit is covered up to:",
+        stem_ar: "بحسب باقة المزايا الأساسية لمجلس ضمان الصحي، تُغطى ميزة المرافق (المُرافِق) بحد أقصى:",
         options: [
           "SAR 75 per night",
           "SAR 100 per night",
           "SAR 150 per night",
           "SAR 300 per night"
         ],
+        options_ar: [
+          "75 ريالًا سعوديًا لليلة",
+          "100 ريال سعودي لليلة",
+          "150 ريالًا سعوديًا لليلة",
+          "300 ريال سعودي لليلة"
+        ],
         correctIndex: 2,
-        explanation: "The CHI Essential Benefit Package sets the companion (escort) allowance at SAR 150 per night for eligible inpatient admissions."
+        explanation: "The CHI Essential Benefit Package sets the companion (escort) allowance at SAR 150 per night for eligible inpatient admissions.",
+        explanation_ar: "تحدد باقة المزايا الأساسية لمجلس ضمان الصحي بدل المرافق بمقدار 150 ريالًا سعوديًا لليلة الواحدة لحالات التنويم الداخلي المؤهلة."
       },
       {
         stem: "Renal transplantation is:",
+        stem_ar: "زراعة الكلى هي:",
         options: [
           "Never covered",
           "Covered under the policy according to CHI regulations and policy terms",
           "Covered only outside Saudi Arabia",
           "Covered only for VIP members"
         ],
+        options_ar: [
+          "غير مغطاة أبدًا",
+          "مغطاة بموجب الوثيقة وفقًا للوائح مجلس ضمان الصحي وشروط الوثيقة",
+          "مغطاة فقط خارج المملكة العربية السعودية",
+          "مغطاة فقط لكبار الشخصيات"
+        ],
         correctIndex: 1,
-        explanation: "Renal transplantation is not a blanket exclusion — it is a coverable service subject to CHI regulations, medical necessity, and the specific policy's terms."
+        explanation: "Renal transplantation is not a blanket exclusion — it is a coverable service subject to CHI regulations, medical necessity, and the specific policy's terms.",
+        explanation_ar: "زراعة الكلى ليست استثناءً شاملًا — بل هي خدمة قابلة للتغطية رهنًا بلوائح مجلس ضمان الصحي، والضرورة الطبية، وشروط الوثيقة المحددة."
       },
       {
         stem: "Which documents are essential when reviewing a Road Traffic Accident (RTA) case?",
+        stem_ar: "ما هي المستندات الأساسية عند مراجعة حالة حادث سير (RTA)؟",
         options: [
           "Employer letter + Medical report + Sick leave",
           "Police (Najm) Report showing liability + Duty Schedule (to exclude work-related RTA)",
           "Passport + National ID + Insurance Card",
           "Hospital invoice + Pharmacy receipt + X-ray only"
         ],
+        options_ar: [
+          "خطاب من جهة العمل + تقرير طبي + إجازة مرضية",
+          "تقرير الشرطة (نجم) الذي يوضح المسؤولية + جدول العمل (لاستثناء الحوادث المتعلقة بالعمل)",
+          "جواز السفر + الهوية الوطنية + بطاقة التأمين",
+          "فاتورة المستشفى + إيصال الصيدلية + الأشعة فقط"
+        ],
         correctIndex: 1,
-        explanation: "Determining the correct payer for an RTA requires the Najm police report to establish liability, plus the member's duty schedule to confirm whether the accident happened during work hours — which would shift the case to occupational injury regulations instead."
+        explanation: "Determining the correct payer for an RTA requires the Najm police report to establish liability, plus the member's duty schedule to confirm whether the accident happened during work hours — which would shift the case to occupational injury regulations instead.",
+        explanation_ar: "يتطلب تحديد جهة الدفع الصحيحة لحادث سير تقرير نجم من الشرطة لإثبات المسؤولية، بالإضافة إلى جدول عمل المؤمَّن له للتأكد مما إذا كان الحادث وقع أثناء ساعات العمل — الأمر الذي يحوّل الحالة إلى لوائح إصابات العمل بدلًا من ذلك."
       },
       {
         stem: "Occupational injuries are injuries that are:",
+        stem_ar: "إصابات العمل هي الإصابات التي:",
         options: [
           "Directly related to the patient's work or occurred because of work",
           "Any injury that occurs inside the hospital",
           "Any illness occurring during working hours",
           "Any chronic disease diagnosed while employed"
         ],
+        options_ar: [
+          "ترتبط مباشرة بعمل المريض أو تحدث بسبب العمل",
+          "أي إصابة تحدث داخل المستشفى",
+          "أي مرض يحدث خلال ساعات العمل",
+          "أي مرض مزمن يُشخَّص خلال فترة التوظيف"
+        ],
         correctIndex: 0,
-        explanation: "An occupational injury is defined by its causal link to work duties — not simply by timing (occurring during working hours) or location (occurring inside a hospital)."
+        explanation: "An occupational injury is defined by its causal link to work duties — not simply by timing (occurring during working hours) or location (occurring inside a hospital).",
+        explanation_ar: "تُعرَّف إصابة العمل من خلال علاقتها السببية بمهام العمل — لا مجرد توقيتها (حدوثها خلال ساعات العمل) أو مكانها (حدوثها داخل المستشفى)."
       },
       {
         stem: "Bonus (recommended): Which statement is TRUE regarding work-related injuries?",
+        stem_ar: "سؤال إضافي (موصى به): أي عبارة صحيحة بخصوص إصابات العمل؟",
         options: [
           "Every injury occurring during working hours is automatically an occupational injury.",
           "Every occupational injury is covered under the health insurance policy.",
           "Cases suspected to be work-related should be evaluated according to occupational injury regulations before determining the responsible payer.",
           "Road traffic accidents are always considered occupational injuries."
         ],
+        options_ar: [
+          "كل إصابة تحدث خلال ساعات العمل تُعد تلقائيًا إصابة عمل.",
+          "كل إصابة عمل مغطاة بموجب وثيقة التأمين الصحي.",
+          "يجب تقييم الحالات المشتبه في كونها متعلقة بالعمل وفقًا لوائح إصابات العمل قبل تحديد جهة الدفع المسؤولة.",
+          "تُعتبر حوادث السير دائمًا إصابات عمل."
+        ],
         correctIndex: 2,
-        explanation: "Neither \"all injuries during work hours\" nor \"all occupational injuries are automatically covered\" is accurate — each suspected work-related case must be evaluated against occupational injury regulations before the responsible payer is determined. This is a high-yield question: it targets one of the most common areas of confusion for new pre-authorization staff."
+        explanation: "Neither \"all injuries during work hours\" nor \"all occupational injuries are automatically covered\" is accurate — each suspected work-related case must be evaluated against occupational injury regulations before the responsible payer is determined. This is a high-yield question: it targets one of the most common areas of confusion for new pre-authorization staff.",
+        explanation_ar: "لا يصح افتراض أن \"كل الإصابات خلال ساعات العمل\" أو أن \"كل إصابات العمل مغطاة تلقائيًا\" — بل يجب تقييم كل حالة يُشتبه في ارتباطها بالعمل وفق لوائح إصابات العمل قبل تحديد جهة الدفع المسؤولة. هذا سؤال عالي الأهمية: فهو يستهدف أحد أكثر مصادر الالتباس شيوعًا لدى موظفي التصريح المسبق الجدد."
       }
     ]
   },
@@ -672,89 +1100,151 @@ const SECTIONS = [
     questions: [
       {
         stem: "Ex gratia approval is:",
+        stem_ar: "الموافقة على أساس المجاملة (Ex Gratia) هي:",
         options: [
           "A mandatory benefit covered under every insurance policy.",
           "A compassionate exception granted outside the standard policy benefits after special review.",
           "A benefit automatically approved by the approval specialist.",
           "A benefit covered only for VIP members."
         ],
+        options_ar: [
+          "ميزة إلزامية مغطاة بموجب كل وثيقة تأمين.",
+          "استثناء إنساني يُمنح خارج مزايا الوثيقة المعتادة بعد مراجعة خاصة.",
+          "ميزة تُوافَق عليها تلقائيًا من أخصائي الموافقات.",
+          "ميزة مغطاة فقط لكبار الشخصيات."
+        ],
         correctIndex: 1,
-        explanation: "Ex gratia approval is a discretionary, compassionate exception made outside standard policy terms after special review — not a standard or automatic benefit."
+        explanation: "Ex gratia approval is a discretionary, compassionate exception made outside standard policy terms after special review — not a standard or automatic benefit.",
+        explanation_ar: "الموافقة على أساس المجاملة هي استثناء تقديري إنساني يُمنح خارج شروط الوثيقة المعتادة بعد مراجعة خاصة — وليست ميزة معيارية أو تلقائية."
       },
       {
         stem: "If a member has exhausted the Global Policy Limit, the approval specialist should:",
+        stem_ar: "إذا استنفد المؤمَّن له الحد الأقصى العام للوثيقة، فماذا يجب على أخصائي الموافقات أن يفعل؟",
         options: [
           "Continue approving all medically necessary requests.",
           "Approve only emergency services.",
           "Decline further claims unless additional coverage or a special arrangement exists.",
           "Restart the annual policy limit."
         ],
+        options_ar: [
+          "الاستمرار في الموافقة على جميع الطلبات الضرورية طبيًا.",
+          "الموافقة فقط على خدمات الطوارئ.",
+          "رفض المطالبات الإضافية إلا في حال وجود تغطية إضافية أو ترتيب خاص.",
+          "إعادة تشغيل الحد السنوي للوثيقة من جديد."
+        ],
         correctIndex: 2,
-        explanation: "Once the Global Policy Limit is exhausted, claims cannot continue to be approved as usual — coverage stops unless supplemental coverage or a special arrangement is confirmed."
+        explanation: "Once the Global Policy Limit is exhausted, claims cannot continue to be approved as usual — coverage stops unless supplemental coverage or a special arrangement is confirmed.",
+        explanation_ar: "بعد استنفاد الحد الأقصى العام للوثيقة، لا يمكن الاستمرار في الموافقة على المطالبات كالمعتاد — وتتوقف التغطية إلا في حال تأكيد وجود تغطية تكميلية أو ترتيب خاص."
       },
       {
         stem: "Which of the following situations is MOST appropriate for referral for a Second Opinion?",
+        stem_ar: "أي من الحالات التالية هي الأكثر ملاءمة للتحويل لطلب رأي ثانٍ؟",
         options: [
           "A routine follow-up for controlled hypertension.",
           "A hospital recommends treatment for a condition believed to be congenital and requires confirmation of the diagnosis and coverage.",
           "A patient requests a vitamin prescription.",
           "A member requests an outpatient laboratory test."
         ],
+        options_ar: [
+          "متابعة دورية لحالة ارتفاع ضغط دم مضبوطة.",
+          "توصية مستشفى بعلاج لحالة يُعتقد أنها خلقية وتتطلب تأكيد التشخيص والتغطية.",
+          "طلب مريض وصفة فيتامينات.",
+          "طلب مؤمَّن له إجراء فحص مخبري في العيادة الخارجية."
+        ],
         correctIndex: 1,
-        explanation: "Second opinion referrals are reserved for cases with real diagnostic uncertainty or coverage ambiguity — like confirming a suspected congenital condition — not routine, low-stakes requests."
+        explanation: "Second opinion referrals are reserved for cases with real diagnostic uncertainty or coverage ambiguity — like confirming a suspected congenital condition — not routine, low-stakes requests.",
+        explanation_ar: "تُخصَّص تحويلات الرأي الثاني للحالات التي يوجد فيها شك تشخيصي حقيقي أو غموض في التغطية — مثل تأكيد حالة خلقية مشتبه بها — لا للطلبات الروتينية منخفضة الأهمية."
       },
       {
         stem: "The Effective Date of an insurance policy refers to:",
+        stem_ar: "يشير تاريخ نفاذ وثيقة التأمين إلى:",
         options: [
           "The date the insurance card was printed.",
           "The date the member first visits a hospital.",
           "The date on which the insurance coverage officially starts.",
           "The date the claim is submitted."
         ],
+        options_ar: [
+          "تاريخ طباعة بطاقة التأمين.",
+          "تاريخ أول زيارة للمؤمَّن له إلى المستشفى.",
+          "التاريخ الذي تبدأ فيه التغطية التأمينية رسميًا.",
+          "تاريخ تقديم المطالبة."
+        ],
         correctIndex: 2,
-        explanation: "The Effective Date marks when coverage legally begins — independent of when the card was printed, the first hospital visit, or claim submission."
+        explanation: "The Effective Date marks when coverage legally begins — independent of when the card was printed, the first hospital visit, or claim submission.",
+        explanation_ar: "يحدد تاريخ النفاذ بدء التغطية قانونيًا — بشكل مستقل عن تاريخ طباعة البطاقة، أو أول زيارة للمستشفى، أو تقديم المطالبة."
       },
       {
         stem: "True or False: the Approval Specialist works in harmony with other departments such as Claims, Customer Service, Provider Relations, and Underwriting.",
+        stem_ar: "صحيح أم خاطئ: يعمل أخصائي الموافقات بتناسق مع أقسام أخرى مثل المطالبات، وخدمة العملاء، وعلاقات مقدمي الخدمة، والتحصين.",
         options: [
           "True",
           "False"
         ],
+        options_ar: [
+          "صحيح",
+          "خاطئ"
+        ],
         correctIndex: 0,
-        explanation: "The Approval Specialist role is inherently cross-functional, coordinating with Claims, Customer Service, Provider Relations, and Underwriting to reach accurate coverage decisions."
+        explanation: "The Approval Specialist role is inherently cross-functional, coordinating with Claims, Customer Service, Provider Relations, and Underwriting to reach accurate coverage decisions.",
+        explanation_ar: "دور أخصائي الموافقات هو دور متعدد الوظائف بطبيعته، يتطلب التنسيق مع أقسام المطالبات وخدمة العملاء وعلاقات مقدمي الخدمة والتحصين للوصول إلى قرارات تغطية دقيقة."
       },
       {
         stem: "The biggest challenge for a Medical Approval Specialist is:",
+        stem_ar: "ما هو أكبر تحدٍّ يواجه أخصائي الموافقات الطبية؟",
         options: [
           "Writing medical reports.",
           "Managing physician appointments.",
           "Making accurate medical decisions within limited time.",
           "Registering new insurance members."
         ],
+        options_ar: [
+          "كتابة التقارير الطبية.",
+          "إدارة مواعيد الأطباء.",
+          "اتخاذ قرارات طبية دقيقة في وقت محدود.",
+          "تسجيل مؤمَّن لهم جدد."
+        ],
         correctIndex: 2,
-        explanation: "The core professional challenge is balancing clinical accuracy against the operational pressure of turnaround time — not administrative tasks like scheduling or registration."
+        explanation: "The core professional challenge is balancing clinical accuracy against the operational pressure of turnaround time — not administrative tasks like scheduling or registration.",
+        explanation_ar: "التحدي المهني الجوهري هو تحقيق التوازن بين الدقة الإكلينيكية والضغط التشغيلي لسرعة الإنجاز — لا المهام الإدارية كالجدولة أو التسجيل."
       },
       {
         stem: "Which service is generally covered for Visit Visa holders under the CHI Visit Visa product?",
+        stem_ar: "أي خدمة تُغطى عادةً لحاملي تأشيرة الزيارة بموجب منتج تأشيرة الزيارة لدى مجلس ضمان الصحي؟",
         options: [
           "Routine outpatient follow-up.",
           "Dental scaling and polishing.",
           "Inpatient and emergency medical care up to the applicable policy limit (e.g., SAR 100,000 depending on the product).",
           "Cosmetic surgery."
         ],
+        options_ar: [
+          "المتابعة الروتينية في العيادة الخارجية.",
+          "تنظيف وتلميع الأسنان.",
+          "الرعاية الطبية للتنويم الداخلي والطوارئ حتى حد الوثيقة المطبَّق (مثل 100,000 ريال سعودي حسب المنتج).",
+          "الجراحة التجميلية."
+        ],
         correctIndex: 2,
-        explanation: "Visit Visa health insurance products are designed to cover urgent, inpatient, and emergency care up to a defined limit — not routine outpatient follow-up or elective/cosmetic services."
+        explanation: "Visit Visa health insurance products are designed to cover urgent, inpatient, and emergency care up to a defined limit — not routine outpatient follow-up or elective/cosmetic services.",
+        explanation_ar: "صُمِّمت منتجات التأمين الصحي لتأشيرة الزيارة لتغطية الرعاية العاجلة والتنويم الداخلي والطوارئ حتى حد محدد — لا المتابعة الروتينية في العيادة الخارجية أو الخدمات الاختيارية/التجميلية."
       },
       {
         stem: "Bonus (highly recommended): Which statement BEST describes the role of a Medical Approval Specialist?",
+        stem_ar: "سؤال إضافي (يُوصى به بشدة): أي عبارة تصف بأفضل شكل دور أخصائي الموافقات الطبية؟",
         options: [
           "Approve every request submitted by providers.",
           "Reject all expensive medical requests.",
           "Make fair, evidence-based decisions according to medical necessity, policy terms, and CHI regulations.",
           "Follow the treating physician's recommendation without reviewing the policy."
         ],
+        options_ar: [
+          "الموافقة على كل طلب يُقدَّم من مقدمي الخدمة.",
+          "رفض جميع الطلبات الطبية المرتفعة التكلفة.",
+          "اتخاذ قرارات عادلة ومبنية على الأدلة وفقًا للضرورة الطبية وشروط الوثيقة ولوائح مجلس ضمان الصحي.",
+          "اتباع توصية الطبيب المعالج دون مراجعة الوثيقة."
+        ],
         correctIndex: 2,
-        explanation: "The specialist's role is neither to rubber-stamp every request, reject costly ones, nor defer entirely to the treating physician — it's to make a fair, evidence-based decision grounded in medical necessity, policy terms, and CHI regulations. This closing question reinforces the core message of the course and the professional mindset it's meant to leave learners with."
+        explanation: "The specialist's role is neither to rubber-stamp every request, reject costly ones, nor defer entirely to the treating physician — it's to make a fair, evidence-based decision grounded in medical necessity, policy terms, and CHI regulations. This closing question reinforces the core message of the course and the professional mindset it's meant to leave learners with.",
+        explanation_ar: "دور الأخصائي ليس الموافقة الشكلية على كل طلب، ولا رفض الطلبات المرتفعة التكلفة، ولا الاعتماد الكامل على الطبيب المعالج — بل اتخاذ قرار عادل ومبني على الأدلة يرتكز على الضرورة الطبية وشروط الوثيقة ولوائح مجلس ضمان الصحي. يعزز هذا السؤال الختامي الرسالة الجوهرية للدورة والعقلية المهنية التي يُفترض أن يترسخ لدى المتعلمين."
       }
     ]
   }
@@ -763,266 +1253,439 @@ const SECTIONS = [
 const CASES = [
   { id:1, ref:"2026/700101", wait:12, name:"Male Patient", age:45, gender:"M", benefit:"H-OP / Out Patient", hcp:"Al Noor Medical Center - Riyadh",
     dx:"E11.9 — Type 2 Diabetes Mellitus, without complications",
+    dx_ar:"E11.9 — داء السكري من النوع الثاني، دون مضاعفات",
     complaint:"Routine follow-up visit, requesting HbA1c and Metformin renewal.",
+    complaint_ar:"زيارة متابعة دورية، مع طلب تجديد فحص السكر التراكمي (HbA1c) ودواء الميتفورمين.",
     requested:"HbA1c test, Metformin 500mg × 90 tabs",
+    requested_ar:"فحص السكر التراكمي (HbA1c)، ميتفورمين 500 ملغ × 90 قرصًا",
     hasHQ:true, hqList:[],
     history:[
       {ref:"2025/551201",date:"14/03/2025",benefit:"Out Patient",dx:"Type 2 Diabetes",amt:"96.00",status:"Paid"},
       {ref:"2024/338820",date:"02/09/2024",benefit:"Out Patient",dx:"Type 2 Diabetes",amt:"88.50",status:"Paid"}
     ],
     documents:[
-      {title:"HQ Declaration Form", necessary:false, content:"Health Questionnaire on file at enrollment. No hospital admission history for this member. Routine outpatient-managed conditions like DM and HTN are not required HQ declaration items unless there has been a prior admission for them."},
-      {title:"Clinic Referral Note", necessary:true, content:"Stable T2DM, routine 3-month follow-up, HbA1c due, continue Metformin."},
-      {title:"Dental Invoice (2023)", necessary:false, content:"Unrelated dental scaling invoice from a prior year — no relevance to this request."}
+      {title:"HQ Declaration Form", necessary:false, content:"Health Questionnaire on file at enrollment. No hospital admission history for this member. Routine outpatient-managed conditions like DM and HTN are not required HQ declaration items unless there has been a prior admission for them.",
+        content_ar:"استبيان الحالة الصحية موجود في الملف منذ الالتحاق بالوثيقة. لا يوجد سجل لأي دخول إلى المستشفى لهذا المؤمَّن له. الحالات التي تُعالَج عادةً في العيادات الخارجية مثل السكري وارتفاع ضغط الدم لا تُعد بنودًا واجبة التصريح في الاستبيان الصحي إلا إذا كان هناك دخول سابق للمستشفى بسببها."},
+      {title:"Clinic Referral Note", necessary:true, content:"Stable T2DM, routine 3-month follow-up, HbA1c due, continue Metformin.",
+        content_ar:"حالة سكري من النوع الثاني مستقرة، متابعة دورية كل 3 أشهر، مطلوب فحص السكر التراكمي، والاستمرار على الميتفورمين."},
+      {title:"Dental Invoice (2023)", necessary:false, content:"Unrelated dental scaling invoice from a prior year — no relevance to this request.",
+        content_ar:"فاتورة تنظيف أسنان من سنة سابقة لا علاقة لها بالطلب الحالي."}
     ],
     questions:[
-      {q:"Does Diabetes need to be declared on the HQ?", a:"Not necessarily — DM and HTN are only required HQ items if the member has a prior hospital admission for the condition. This member has no admission history, so non-declaration isn't an issue here."},
-      {q:"Any new complications since enrollment?", a:"No new complications reported; the condition remains stable on oral therapy."},
-      {q:"Is the requested treatment consistent with standard guidelines?", a:"Yes — HbA1c monitoring and Metformin continuation are standard first-line management."}
+      {q:"Does Diabetes need to be declared on the HQ?", a:"Not necessarily — DM and HTN are only required HQ items if the member has a prior hospital admission for the condition. This member has no admission history, so non-declaration isn't an issue here.",
+        q_ar:"هل يجب التصريح بمرض السكري في الاستبيان الصحي؟",
+        a_ar:"ليس بالضرورة — السكري وارتفاع ضغط الدم يُشترط التصريح بهما فقط إذا كان للمؤمَّن له دخول سابق للمستشفى بسبب الحالة. هذا المؤمَّن له لا يوجد له سجل دخول، لذا عدم التصريح لا يمثل مشكلة في هذه الحالة."},
+      {q:"Any new complications since enrollment?", a:"No new complications reported; the condition remains stable on oral therapy.",
+        q_ar:"هل ظهرت أي مضاعفات جديدة منذ الالتحاق بالوثيقة؟",
+        a_ar:"لم تُسجَّل أي مضاعفات جديدة؛ الحالة مستقرة على العلاج الفموي."},
+      {q:"Is the requested treatment consistent with standard guidelines?", a:"Yes — HbA1c monitoring and Metformin continuation are standard first-line management.",
+        q_ar:"هل العلاج المطلوب متوافق مع الإرشادات المعتمدة؟",
+        a_ar:"نعم — متابعة السكر التراكمي والاستمرار على الميتفورمين يمثلان خط العلاج الأول المعتمد."}
     ],
-    correct:"approve", rationale:"Stable, guideline-consistent outpatient management of a routine chronic condition. DM doesn't require HQ declaration absent a prior admission, so there's no disclosure issue — no exclusion applies."
+    correct:"approve", rationale:"Stable, guideline-consistent outpatient management of a routine chronic condition. DM doesn't require HQ declaration absent a prior admission, so there's no disclosure issue — no exclusion applies.",
+    rationale_ar:"إدارة مستقرة ومتوافقة مع الإرشادات لحالة مزمنة روتينية في العيادات الخارجية. السكري لا يتطلب التصريح في الاستبيان الصحي في غياب دخول سابق للمستشفى، لذا لا توجد مشكلة إفصاح — ولا ينطبق أي استثناء. القرار: الموافقة."
   },
   { id:2, ref:"2026/700102", wait:95, name:"Male Patient", age:38, gender:"M", benefit:"H-IP / In Patient", hcp:"United Doctors Hospital - Jeddah",
     dx:"B18.2 — Chronic viral hepatitis C, with decompensation",
+    dx_ar:"B18.2 — التهاب الكبد الفيروسي الوبائي (سي) المزمن، مع تدهور وظائف الكبد",
     complaint:"Admitted with jaundice and ascites, decompensated liver disease.",
+    complaint_ar:"تم إدخاله بسبب اليرقان (اصفرار) والاستسقاء البطني، مع تدهور في وظائف الكبد.",
     requested:"Inpatient admission, liver function panel, diuretics, paracentesis",
+    requested_ar:"دخول للتنويم الداخلي، فحوصات وظائف الكبد، مدرات البول، وبزل السائل البطني (الاستسقاء)",
     hasHQ:true, hqList:[],
-    history:[{ref:"2025/119004",date:"20/01/2025",benefit:"Out Patient",dx:"Fatigue, unspecified",amt:"64.00",status:"Paid"}],
+    history:[
+      {ref:"2025/119004",date:"20/01/2025",benefit:"Out Patient",dx:"Fatigue, unspecified",amt:"64.00",status:"Paid"}
+    ],
     documents:[
-      {title:"HQ Declaration Form", necessary:true, content:"Health Questionnaire signed 6 months ago at policy inception. No chronic illness declared. No liver disease mentioned."},
-      {title:"Admission Medical Report", necessary:true, content:"History taking documents the patient's own report: 'known Hepatitis C, diagnosed approximately 3 years ago, previously untreated.' Current decompensation is consistent with long-standing disease."},
-      {title:"Underwriting Review Note", necessary:true, content:"Case flagged and reviewed by underwriting: non-disclosure confirmed. Diagnosis pre-dates policy inception by approximately 2.5 years and was not disclosed on the HQ."}
+      {title:"HQ Declaration Form", necessary:true, content:"Health Questionnaire signed 6 months ago at policy inception. No chronic illness declared. No liver disease mentioned.",
+        content_ar:"تم توقيع الاستبيان الصحي منذ 6 أشهر عند بدء الوثيقة. لم يُصرَّح بأي مرض مزمن. لم يُذكر أي مرض في الكبد."},
+      {title:"Admission Medical Report", necessary:true, content:"History taking documents the patient's own report: 'known Hepatitis C, diagnosed approximately 3 years ago, previously untreated.' Current decompensation is consistent with long-standing disease.",
+        content_ar:"يوثّق أخذ التاريخ المرضي إفادة المريض نفسه: 'مصاب بالتهاب الكبد الوبائي سي، تم تشخيصه منذ نحو 3 سنوات، ولم يُعالَج سابقًا.' التدهور الحالي متوافق مع مرض طويل الأمد."},
+      {title:"Underwriting Review Note", necessary:true, content:"Case flagged and reviewed by underwriting: non-disclosure confirmed. Diagnosis pre-dates policy inception by approximately 2.5 years and was not disclosed on the HQ.",
+        content_ar:"تمت مراجعة الحالة من قبل قسم التحصين (Underwriting) وتأكيد عدم الإفصاح. التشخيص يسبق بدء الوثيقة بنحو 2.5 سنة ولم يُصرَّح به في الاستبيان الصحي."}
     ],
     questions:[
-      {q:"Was Hepatitis C declared on the Health Questionnaire?", a:"No — the HQ shows no chronic illness declared at enrollment."},
-      {q:"Does the medical record show when the condition was first diagnosed?", a:"Yes — the admission report documents the patient's own account of diagnosis roughly 3 years before the policy started."}
+      {q:"Was Hepatitis C declared on the Health Questionnaire?", a:"No — the HQ shows no chronic illness declared at enrollment.",
+        q_ar:"هل تم التصريح بالتهاب الكبد الوبائي سي في الاستبيان الصحي؟",
+        a_ar:"لا — لا يُظهر الاستبيان الصحي أي مرض مزمن مُصرَّح به عند الالتحاق بالوثيقة."},
+      {q:"Does the medical record show when the condition was first diagnosed?", a:"Yes — the admission report documents the patient's own account of diagnosis roughly 3 years before the policy started.",
+        q_ar:"هل يوضح السجل الطبي تاريخ التشخيص الأول للحالة؟",
+        a_ar:"نعم — يوثّق تقرير الدخول إفادة المريض نفسه بأن التشخيص تم قبل نحو 3 سنوات من بدء الوثيقة."}
     ],
-    correct:"reject", denialCode:"DC01", rationale:"Underwriting has already confirmed non-disclosure of a condition that materially pre-dates the policy. This isn't a snap judgment — the investigation is complete, and it supports rejection."
+    correct:"reject", denialCode:"DC01", rationale:"Underwriting has already confirmed non-disclosure of a condition that materially pre-dates the policy. This isn't a snap judgment — the investigation is complete, and it supports rejection.",
+    rationale_ar:"قسم التحصين أكد بالفعل عدم الإفصاح عن حالة تسبق بشكل جوهري بدء الوثيقة. هذا ليس قرارًا متسرعًا — التحقيق مكتمل، وهو يدعم الرفض."
   },
   { id:3, ref:"2026/700103", wait:40, name:"Male Patient", age:29, gender:"M", benefit:"H-OP / Out Patient", hcp:"Al Samria Medical Center 2 - Jeddah",
     dx:"S83.5 — Sprain of cruciate ligament, right knee",
+    dx_ar:"S83.5 — التواء الرباط الصليبي، الركبة اليمنى",
     complaint:"Requesting ACL reconstruction surgery, right knee instability.",
+    complaint_ar:"طلب إجراء جراحة إعادة بناء الرباط الصليبي الأمامي بسبب عدم استقرار الركبة اليمنى.",
     requested:"MRI-confirmed ACL reconstruction, pre-operative workup",
+    requested_ar:"إعادة بناء الرباط الصليبي الأمامي المؤكدة بالرنين المغناطيسي، والفحوصات التحضيرية قبل الجراحة",
     hasHQ:true, hqList:[],
     history:[],
     documents:[
-      {title:"HQ Declaration Form", necessary:true, content:"Health Questionnaire signed 14 months ago. No prior joint or orthopedic issues declared."},
-      {title:"Current MRI Report", necessary:true, content:"Right knee MRI: complete ACL tear, moderate joint effusion."},
-      {title:"Prior MRI Report (Pre-Policy)", necessary:true, content:"MRI dated 15 months before policy inception, from a different facility: partial tear of the right ACL, same knee."}
+      {title:"HQ Declaration Form", necessary:true, content:"Health Questionnaire signed 14 months ago. No prior joint or orthopedic issues declared.",
+        content_ar:"تم توقيع الاستبيان الصحي منذ 14 شهرًا. لم يُصرَّح بأي مشاكل سابقة في المفاصل أو العظام."},
+      {title:"Current MRI Report", necessary:true, content:"Right knee MRI: complete ACL tear, moderate joint effusion.",
+        content_ar:"تقرير رنين مغناطيسي للركبة اليمنى: تمزق كامل في الرباط الصليبي الأمامي، مع انصباب متوسط في المفصل."},
+      {title:"Prior MRI Report (Pre-Policy)", necessary:true, content:"MRI dated 15 months before policy inception, from a different facility: partial tear of the right ACL, same knee.",
+        content_ar:"تقرير رنين مغناطيسي سابق يعود تاريخه إلى 15 شهرًا قبل بدء الوثيقة، من منشأة مختلفة: تمزق جزئي في الرباط الصليبي الأمامي لنفس الركبة."}
     ],
     questions:[
-      {q:"Is there any imaging that predates the policy?", a:"Yes — a prior MRI exists, dated 15 months before the policy started, showing a partial tear in the same knee."},
-      {q:"Was any knee condition declared on the HQ?", a:"No — the HQ shows no orthopedic history declared."}
+      {q:"Is there any imaging that predates the policy?", a:"Yes — a prior MRI exists, dated 15 months before the policy started, showing a partial tear in the same knee.",
+        q_ar:"هل توجد أي صور تصوير طبي تسبق تاريخ بدء الوثيقة؟",
+        a_ar:"نعم — يوجد تقرير رنين مغناطيسي سابق يعود إلى 15 شهرًا قبل بدء الوثيقة، يُظهر تمزقًا جزئيًا في نفس الركبة."},
+      {q:"Was any knee condition declared on the HQ?", a:"No — the HQ shows no orthopedic history declared.",
+        q_ar:"هل تم التصريح بأي حالة في الركبة في الاستبيان الصحي؟",
+        a_ar:"لا — لا يُظهر الاستبيان الصحي أي تاريخ سابق في العظام أو المفاصل."}
     ],
-    correct:"reject", denialCode:"DC01", rationale:"Imaging confirms pre-existing joint pathology predating the policy, and it wasn't disclosed on the HQ."
+    correct:"reject", denialCode:"DC01", rationale:"Imaging confirms pre-existing joint pathology predating the policy, and it wasn't disclosed on the HQ.",
+    rationale_ar:"التصوير الطبي يؤكد وجود حالة سابقة في المفصل تسبق بدء الوثيقة، ولم يتم الإفصاح عنها في الاستبيان الصحي. القرار: الرفض."
   },
   { id:4, ref:"2026/700104", wait:20, name:"Female Patient", age:26, gender:"F", benefit:"H-OP / Out Patient", hcp:"Al Andalus Specialized Clinic - Riyadh",
     dx:"J34.2 — Deviated nasal septum (patient-reported)",
+    dx_ar:"J34.2 — انحراف الحاجز الأنفي (بحسب إفادة المريضة)",
     complaint:"Requesting rhinoplasty, states difficulty breathing.",
+    complaint_ar:"طلب إجراء عملية تجميل الأنف، مع إفادة بوجود صعوبة في التنفس.",
     requested:"Septorhinoplasty",
+    requested_ar:"عملية تجميل الأنف وتقويم الحاجز الأنفي",
     hasHQ:true, hqList:["No relevant conditions declared"],
     history:[],
     documents:[
-      {title:"HQ Declaration Form", necessary:false, content:"No relevant prior conditions declared — not directly informative for this decision."},
-      {title:"ENT Consultation Report", necessary:true, content:"ENT exam: nasal airway patent bilaterally, no septal deviation on endoscopy, no functional obstruction identified. Cosmetic concern noted by the patient regarding nasal appearance."},
-      {title:"Old Lab Report", necessary:false, content:"Routine CBC from 8 months ago, within normal limits — unrelated to the current request."}
+      {title:"HQ Declaration Form", necessary:false, content:"No relevant prior conditions declared — not directly informative for this decision.",
+        content_ar:"لم يُصرَّح بأي حالات سابقة ذات صلة — غير مفيد بشكل مباشر لهذا القرار."},
+      {title:"ENT Consultation Report", necessary:true, content:"ENT exam: nasal airway patent bilaterally, no septal deviation on endoscopy, no functional obstruction identified. Cosmetic concern noted by the patient regarding nasal appearance.",
+        content_ar:"فحص الأنف والأذن والحنجرة: الممر الأنفي سالك من الجانبين، لا يوجد انحراف في الحاجز عند التنظير، ولم يُحدَّد أي انسداد وظيفي. لوحظ اهتمام المريضة بالمظهر التجميلي للأنف."},
+      {title:"Old Lab Report", necessary:false, content:"Routine CBC from 8 months ago, within normal limits — unrelated to the current request.",
+        content_ar:"تحليل دم شامل روتيني من قبل 8 أشهر، ضمن الحدود الطبيعية — لا علاقة له بالطلب الحالي."}
     ],
     questions:[
-      {q:"Does the ENT exam confirm a functional airway obstruction?", a:"No — the ENT report specifically notes no septal deviation and no functional obstruction on exam."},
-      {q:"Is there objective testing documenting breathing impairment?", a:"No airflow study was performed or documented; the complaint is subjective and appearance-related per the consultation note."}
+      {q:"Does the ENT exam confirm a functional airway obstruction?", a:"No — the ENT report specifically notes no septal deviation and no functional obstruction on exam.",
+        q_ar:"هل يؤكد فحص الأنف والأذن والحنجرة وجود انسداد وظيفي في مجرى التنفس؟",
+        a_ar:"لا — يوضح تقرير الفحص تحديدًا عدم وجود انحراف في الحاجز أو انسداد وظيفي عند الفحص."},
+      {q:"Is there objective testing documenting breathing impairment?", a:"No airflow study was performed or documented; the complaint is subjective and appearance-related per the consultation note.",
+        q_ar:"هل توجد فحوصات موضوعية توثّق ضعفًا في التنفس؟",
+        a_ar:"لم يتم إجراء أو توثيق أي فحص لتدفق الهواء؛ والشكوى ذاتية ومرتبطة بالمظهر بحسب مذكرة الاستشارة."}
     ],
-    correct:"reject", denialCode:"DC05", rationale:"No confirmed functional impairment — the ENT exam is normal. This reads as a cosmetic request, excluded under routine policy terms."
+    correct:"reject", denialCode:"DC05", rationale:"No confirmed functional impairment — the ENT exam is normal. This reads as a cosmetic request, excluded under routine policy terms.",
+    rationale_ar:"لا يوجد ضعف وظيفي مؤكد — فحص الأنف والأذن والحنجرة طبيعي. يبدو الطلب تجميليًا، وهو مستثنى بموجب شروط الوثيقة المعتادة. القرار: الرفض."
   },
   { id:5, ref:"2026/700105", wait:80, name:"Male Patient", age:52, gender:"M", benefit:"H-ER / Emergency", hcp:"United Doctors Hospital - Jeddah",
     dx:"T14.8 — Injury from external cause, storm-related",
+    dx_ar:"T14.8 — إصابة ناتجة عن سبب خارجي، مرتبطة بعاصفة",
     complaint:"Admitted with crush injuries following a building collapse during severe flooding.",
+    complaint_ar:"تم إدخاله بإصابات سحق ناتجة عن انهيار مبنى خلال فيضانات شديدة.",
     requested:"Emergency admission, surgical fixation of fractures",
+    requested_ar:"دخول طارئ، وتثبيت جراحي للكسور",
     hasHQ:false, hqList:[],
     history:[],
     documents:[
-      {title:"Emergency Admission Report", necessary:true, content:"Patient brought in following structural collapse during a declared flood event in the region. Multiple long-bone fractures, hemodynamically stable."},
-      {title:"Civil Defense Incident Report", necessary:true, content:"Official incident report confirms the injury occurred during a declared flood/natural disaster event in the area."},
-      {title:"Insurance Card Copy", necessary:false, content:"Standard insurance card image — no additional clinical information."}
+      {title:"Emergency Admission Report", necessary:true, content:"Patient brought in following structural collapse during a declared flood event in the region. Multiple long-bone fractures, hemodynamically stable.",
+        content_ar:"تم إحضار المريض بعد انهيار إنشائي خلال حدث فيضان معلن رسميًا في المنطقة. كسور متعددة في العظام الطويلة، والحالة الدموية مستقرة."},
+      {title:"Civil Defense Incident Report", necessary:true, content:"Official incident report confirms the injury occurred during a declared flood/natural disaster event in the area.",
+        content_ar:"تقرير رسمي من الدفاع المدني يؤكد أن الإصابة وقعت خلال حدث فيضان/كارثة طبيعية معلنة في المنطقة."},
+      {title:"Insurance Card Copy", necessary:false, content:"Standard insurance card image — no additional clinical information.",
+        content_ar:"صورة بطاقة تأمين عادية — لا تحتوي على أي معلومات طبية إضافية."}
     ],
     questions:[
-      {q:"Is this injury related to a declared natural disaster event?", a:"Yes — the Civil Defense report confirms the injury occurred during a declared flood event."},
-      {q:"Is there any rider or legal requirement overriding the standard exclusion?", a:"No special legal mandate or policy rider is on file for this member."}
+      {q:"Is this injury related to a declared natural disaster event?", a:"Yes — the Civil Defense report confirms the injury occurred during a declared flood event.",
+        q_ar:"هل هذه الإصابة مرتبطة بحدث كارثة طبيعية معلنة؟",
+        a_ar:"نعم — يؤكد تقرير الدفاع المدني أن الإصابة وقعت خلال حدث فيضان معلن."},
+      {q:"Is there any rider or legal requirement overriding the standard exclusion?", a:"No special legal mandate or policy rider is on file for this member.",
+        q_ar:"هل توجد أي ملحقة تأمينية أو مطلب قانوني يتجاوز الاستثناء المعتاد؟",
+        a_ar:"لا يوجد أي إلزام قانوني خاص أو ملحقة تأمينية مسجلة لهذا المؤمَّن له."}
     ],
-    correct:"reject", denialCode:"DC06", rationale:"Natural disaster injuries are excluded under the Basic Health Insurance Policy unless required by law or covered by a specific rider — neither applies here."
+    correct:"reject", denialCode:"DC06", rationale:"Natural disaster injuries are excluded under the Basic Health Insurance Policy unless required by law or covered by a specific rider — neither applies here.",
+    rationale_ar:"إصابات الكوارث الطبيعية مستثناة بموجب وثيقة التأمين الصحي الأساسية، إلا إذا كان التغطية مطلوبة قانونًا أو مشمولة بملحقة خاصة — وكلا الحالتين لا تنطبق هنا. القرار: الرفض."
   },
   { id:6, ref:"2026/700106", wait:5, name:"Female Newborn Patient", age:0, gender:"F", benefit:"H-IP / In Patient", hcp:"United Doctors Hospital - Jeddah",
     dx:"Q79.1 — Congenital diaphragmatic hernia",
+    dx_ar:"Q79.1 — فتق الحجاب الحاجز الخلقي",
     complaint:"Newborn with severe respiratory distress, confirmed diaphragmatic hernia, requires emergency surgical repair.",
+    complaint_ar:"مولود يعاني من ضيق تنفس شديد، مع تأكيد فتق في الحجاب الحاجز، ويحتاج إلى إصلاح جراحي طارئ.",
     requested:"Emergency neonatal surgical repair, NICU admission",
+    requested_ar:"إصلاح جراحي طارئ لحديثي الولادة، ودخول وحدة العناية المركزة لحديثي الولادة",
     hasHQ:false, hqList:[],
     history:[],
     documents:[
-      {title:"Neonatal Surgical Report", necessary:true, content:"Confirmed congenital diaphragmatic hernia with bowel herniation into the thoracic cavity, causing severe respiratory compromise. Immediate surgical repair indicated to prevent mortality."},
-      {title:"NICU Admission Note", necessary:true, content:"Neonate in critical but stabilized condition on ventilatory support, awaiting emergency surgery."},
-      {title:"Family Insurance Summary", necessary:false, content:"General family policy summary document, not specific to this admission."}
+      {title:"Neonatal Surgical Report", necessary:true, content:"Confirmed congenital diaphragmatic hernia with bowel herniation into the thoracic cavity, causing severe respiratory compromise. Immediate surgical repair indicated to prevent mortality.",
+        content_ar:"تأكيد وجود فتق خلقي في الحجاب الحاجز مع انزلاق للأمعاء داخل التجويف الصدري، مما تسبب في ضعف شديد في التنفس. الإصلاح الجراحي الفوري مطلوب لمنع الوفاة."},
+      {title:"NICU Admission Note", necessary:true, content:"Neonate in critical but stabilized condition on ventilatory support, awaiting emergency surgery.",
+        content_ar:"المولود في حالة حرجة لكنه مستقر على دعم التنفس الآلي، وفي انتظار الجراحة الطارئة."},
+      {title:"Family Insurance Summary", necessary:false, content:"General family policy summary document, not specific to this admission.",
+        content_ar:"مستند ملخص عام لوثيقة التأمين العائلية، غير خاص بهذا الدخول."}
     ],
     questions:[
-      {q:"Is this condition immediately life-threatening without intervention?", a:"Yes — without urgent surgical repair, the condition carries a high risk of mortality due to respiratory compromise."},
-      {q:"Is this an urgent or elective congenital case?", a:"This is an urgent, life-threatening presentation requiring emergency intervention, not an elective correction."}
+      {q:"Is this condition immediately life-threatening without intervention?", a:"Yes — without urgent surgical repair, the condition carries a high risk of mortality due to respiratory compromise.",
+        q_ar:"هل هذه الحالة مهددة للحياة بشكل فوري دون تدخل؟",
+        a_ar:"نعم — دون الإصلاح الجراحي العاجل، تحمل الحالة خطرًا كبيرًا للوفاة بسبب ضعف التنفس."},
+      {q:"Is this an urgent or elective congenital case?", a:"This is an urgent, life-threatening presentation requiring emergency intervention, not an elective correction.",
+        q_ar:"هل هذه حالة خلقية طارئة أم اختيارية؟",
+        a_ar:"هذه حالة طارئة ومهددة للحياة تتطلب تدخلًا فوريًا، وليست تصحيحًا اختياريًا."}
     ],
-    correct:"approve", rationale:"Congenital anomalies are generally excluded, but life-threatening congenital conditions requiring urgent intervention are a recognized exception."
+    correct:"approve", rationale:"Congenital anomalies are generally excluded, but life-threatening congenital conditions requiring urgent intervention are a recognized exception.",
+    rationale_ar:"التشوهات الخلقية مستثناة بشكل عام، إلا أن الحالات الخلقية المهددة للحياة التي تتطلب تدخلًا عاجلًا تُعد استثناءً معتمدًا. القرار: الموافقة."
   },
   { id:7, ref:"2026/700107", wait:55, name:"Male Patient", age:24, gender:"M", benefit:"H-ER / Emergency", hcp:"Al Samria Medical Center 2 - Jeddah",
     dx:"S52.5 — Fracture of distal radius",
+    dx_ar:"S52.5 — كسر في الطرف البعيد لعظم الكعبرة",
     complaint:"Injured during a motocross racing competition, open wrist fracture.",
+    complaint_ar:"أصيب خلال منافسة سباق دراجات موتوكروس، مع كسر مفتوح في المعصم.",
     requested:"Emergency reduction and fixation of wrist fracture",
+    requested_ar:"رد وتثبيت طارئ لكسر المعصم",
     hasHQ:true, hqList:["No relevant conditions declared"],
     history:[],
     documents:[
-      {title:"Emergency Report", necessary:true, content:"Patient sustained an open distal radius fracture during a motocross competition. Immediate surgical fixation required."},
-      {title:"Policy Exclusions Schedule", necessary:true, content:"Policy exclusions list includes: 'Injuries sustained during motor racing, motocross, or similar hazardous motorsport competitions are excluded from coverage.'"},
-      {title:"HQ Declaration Form", necessary:false, content:"No relevant prior conditions declared — not informative for this specific exclusion question."}
+      {title:"Emergency Report", necessary:true, content:"Patient sustained an open distal radius fracture during a motocross competition. Immediate surgical fixation required.",
+        content_ar:"تعرض المريض لكسر مفتوح في الطرف البعيد لعظم الكعبرة خلال منافسة موتوكروس. يتطلب تثبيتًا جراحيًا فوريًا."},
+      {title:"Policy Exclusions Schedule", necessary:true, content:"Policy exclusions list includes: 'Injuries sustained during motor racing, motocross, or similar hazardous motorsport competitions are excluded from coverage.'",
+        content_ar:"تتضمن قائمة استثناءات الوثيقة: 'الإصابات الناتجة عن سباقات السيارات أو الموتوكروس أو منافسات رياضات المحركات الخطرة المماثلة مستثناة من التغطية.'"},
+      {title:"HQ Declaration Form", necessary:false, content:"No relevant prior conditions declared — not informative for this specific exclusion question.",
+        content_ar:"لم يُصرَّح بأي حالات سابقة ذات صلة — غير مفيد لهذا السؤال المحدد المتعلق بالاستثناء."}
     ],
     questions:[
-      {q:"Is motocross racing specifically listed as an excluded activity?", a:"Yes — the policy exclusions schedule explicitly lists motocross and motor racing competitions as excluded hazardous activities."},
-      {q:"Was this an official competition or casual riding?", a:"Confirmed as an official motocross competition per the emergency report."}
+      {q:"Is motocross racing specifically listed as an excluded activity?", a:"Yes — the policy exclusions schedule explicitly lists motocross and motor racing competitions as excluded hazardous activities.",
+        q_ar:"هل يتم ذكر رياضة الموتوكروس تحديدًا كنشاط مستثنى؟",
+        a_ar:"نعم — يذكر جدول استثناءات الوثيقة صريحًا منافسات الموتوكروس وسباقات السيارات كأنشطة خطرة مستثناة."},
+      {q:"Was this an official competition or casual riding?", a:"Confirmed as an official motocross competition per the emergency report.",
+        q_ar:"هل كانت هذه منافسة رسمية أم قيادة عادية؟",
+        a_ar:"تم تأكيد أنها منافسة موتوكروس رسمية بحسب تقرير الطوارئ."}
     ],
-    correct:"reject", denialCode:"DC04", rationale:"The policy explicitly excludes motocross and motor racing competitions as a hazardous activity."
+    correct:"reject", denialCode:"DC04", rationale:"The policy explicitly excludes motocross and motor racing competitions as a hazardous activity.",
+    rationale_ar:"تستثني الوثيقة صريحًا منافسات الموتوكروس وسباقات السيارات كنشاط خطر. القرار: الرفض."
   },
   { id:8, ref:"2026/700108", wait:30, name:"Male Patient", age:34, gender:"M", benefit:"H-OP / Out Patient", hcp:"Al Noor Medical Center - Riyadh",
     dx:"S82.0 — Fracture of patella",
+    dx_ar:"S82.0 — كسر في الرضفة",
     complaint:"Injured in a traffic accident while commuting home after work hours.",
+    complaint_ar:"أصيب في حادث سير خلال تنقله إلى المنزل بعد ساعات العمل.",
     requested:"Outpatient orthopedic management, casting",
+    requested_ar:"علاج عظمي في العيادات الخارجية، وتجبير",
     hasHQ:true, hqList:["No relevant conditions declared"],
     history:[],
     documents:[
-      {title:"Najm (Police) Report", necessary:true, content:"Traffic accident report: member's liability assessed at 0%. The other driver was found fully at fault."},
-      {title:"Employer Duty Schedule", necessary:true, content:"Duty schedule confirms the accident occurred after official working hours, during the member's personal commute home — not during a work assignment."},
-      {title:"Old Physiotherapy Note", necessary:false, content:"Unrelated physiotherapy note from over a year ago, for a different, resolved complaint."}
+      {title:"Najm (Police) Report", necessary:true, content:"Traffic accident report: member's liability assessed at 0%. The other driver was found fully at fault.",
+        content_ar:"تقرير حادث مروري (نجم): تم تقييم مسؤولية المؤمَّن له بنسبة 0%. تم تحديد مسؤولية السائق الآخر بالكامل."},
+      {title:"Employer Duty Schedule", necessary:true, content:"Duty schedule confirms the accident occurred after official working hours, during the member's personal commute home — not during a work assignment.",
+        content_ar:"يؤكد جدول العمل أن الحادث وقع بعد ساعات العمل الرسمية، خلال تنقل المؤمَّن له الشخصي إلى المنزل — وليس أثناء مهمة عمل."},
+      {title:"Old Physiotherapy Note", necessary:false, content:"Unrelated physiotherapy note from over a year ago, for a different, resolved complaint.",
+        content_ar:"مذكرة علاج طبيعي سابقة منذ أكثر من سنة، لشكوى مختلفة تم حلها، ولا علاقة لها بالحالة الحالية."}
     ],
     questions:[
-      {q:"Does the duty schedule confirm this happened during work duties?", a:"No — the duty schedule confirms the accident occurred after working hours, during a personal commute."},
-      {q:"What does the Najm report say about liability?", a:"The member was found 0% liable; the other driver was fully at fault."},
-      {q:"Does third-party liability affect the member's own health coverage eligibility?", a:"No — the member's health policy covers eligible treatment regardless of fault. Liability only determines whether the insurer can later recover costs from the at-fault party — it doesn't delay the member's own care."}
+      {q:"Does the duty schedule confirm this happened during work duties?", a:"No — the duty schedule confirms the accident occurred after working hours, during a personal commute.",
+        q_ar:"هل يؤكد جدول العمل أن الحادث وقع أثناء مهام العمل؟",
+        a_ar:"لا — يؤكد جدول العمل أن الحادث وقع بعد ساعات العمل، خلال تنقل شخصي."},
+      {q:"What does the Najm report say about liability?", a:"The member was found 0% liable; the other driver was fully at fault.",
+        q_ar:"ماذا يذكر تقرير نجم بشأن المسؤولية؟",
+        a_ar:"تم تحديد مسؤولية المؤمَّن له بنسبة 0%؛ وكانت المسؤولية الكاملة على السائق الآخر."},
+      {q:"Does third-party liability affect the member's own health coverage eligibility?", a:"No — the member's health policy covers eligible treatment regardless of fault. Liability only determines whether the insurer can later recover costs from the at-fault party — it doesn't delay the member's own care.",
+        q_ar:"هل تؤثر مسؤولية الطرف الثالث على أهلية المؤمَّن له للتغطية الصحية؟",
+        a_ar:"لا — تغطي وثيقة المؤمَّن له الصحية العلاج المستحق بغض النظر عن المسؤولية. المسؤولية تحدد فقط إمكانية استرداد شركة التأمين للتكاليف من الطرف المتسبب لاحقًا — ولا تُعد سببًا لتأخير رعاية المؤمَّن له."}
     ],
-    correct:"approve", rationale:"This is not an occupational injury — it happened outside work duties, so no work-related exclusion applies. The member's own health coverage pays for eligible treatment regardless of who was at fault; recovering costs from the at-fault driver's motor insurer is a separate subrogation process handled by the insurer afterward, not a reason to withhold the member's care. Approve."
+    correct:"approve", rationale:"This is not an occupational injury — it happened outside work duties, so no work-related exclusion applies. The member's own health coverage pays for eligible treatment regardless of who was at fault; recovering costs from the at-fault driver's motor insurer is a separate subrogation process handled by the insurer afterward, not a reason to withhold the member's care. Approve.",
+    rationale_ar:"هذه ليست إصابة عمل — فقد وقعت خارج مهام العمل، ولذلك لا ينطبق أي استثناء متعلق بالعمل. تغطي وثيقة المؤمَّن له الصحية العلاج المستحق بغض النظر عن المسؤولية؛ واسترداد التكاليف من شركة تأمين السائق المتسبب هو إجراء حلول (Subrogation) منفصل تتولاه شركة التأمين لاحقًا، ولا يُعد سببًا لحجب رعاية المؤمَّن له. القرار: الموافقة."
   },
   { id:9, ref:"2026/700109", wait:65, name:"Female Patient", age:58, gender:"F", benefit:"H-IP / In Patient", hcp:"United Doctors Hospital - Jeddah",
     dx:"N18.6 — End-stage renal disease, diabetic nephropathy",
+    dx_ar:"N18.6 — الفشل الكلوي في مرحلته النهائية، اعتلال الكلى السكري",
     complaint:"Longstanding declared diabetic nephropathy, now requiring initiation of hemodialysis.",
+    complaint_ar:"اعتلال كلى سكري مُصرَّح به منذ فترة طويلة، ويحتاج الآن إلى بدء الغسيل الكلوي.",
     requested:"Hemodialysis sessions, vascular access placement",
+    requested_ar:"جلسات غسيل كلوي، وتركيب منفذ وعائي",
     hasHQ:true, hqList:["Type 2 Diabetes Mellitus with nephropathy — declared at enrollment"],
     history:[
       {ref:"2025/882210",date:"10/06/2025",benefit:"Pre-Existing & Chronic",dx:"Diabetic Nephropathy",amt:"210,000.00",status:"Paid"},
       {ref:"2025/441098",date:"22/02/2025",benefit:"Pre-Existing & Chronic",dx:"Diabetic Nephropathy",amt:"640,000.00",status:"Paid"}
     ],
     documents:[
-      {title:"HQ Declaration Form", necessary:false, content:"Diabetic nephropathy declared at enrollment — already established, not the key issue in this case."},
-      {title:"Chronic Condition Utilization Summary", necessary:true, content:"Cumulative paid amount under the Pre-Existing & Chronic Conditions benefit this policy year: SAR 850,000. Policy maximum for this benefit: SAR 1,000,000. Remaining balance: SAR 150,000."},
-      {title:"Nephrology Treatment Plan", necessary:true, content:"Hemodialysis initiation — estimated cost for the requested course of sessions: SAR 210,000."}
+      {title:"HQ Declaration Form", necessary:false, content:"Diabetic nephropathy declared at enrollment — already established, not the key issue in this case.",
+        content_ar:"تم التصريح باعتلال الكلى السكري عند الالتحاق بالوثيقة — وهو أمر ثابت مسبقًا وليس القضية الجوهرية في هذه الحالة."},
+      {title:"Chronic Condition Utilization Summary", necessary:true, content:"Cumulative paid amount under the Pre-Existing & Chronic Conditions benefit this policy year: SAR 850,000. Policy maximum for this benefit: SAR 1,000,000. Remaining balance: SAR 150,000.",
+        content_ar:"إجمالي المبلغ المدفوع ضمن مزايا الحالات السابقة والمزمنة لهذا العام التأميني: 850,000 ريال سعودي. الحد الأقصى للوثيقة لهذه الميزة: 1,000,000 ريال سعودي. الرصيد المتبقي: 150,000 ريال سعودي."},
+      {title:"Nephrology Treatment Plan", necessary:true, content:"Hemodialysis initiation — estimated cost for the requested course of sessions: SAR 210,000.",
+        content_ar:"بدء الغسيل الكلوي — التكلفة التقديرية لسلسلة الجلسات المطلوبة: 210,000 ريال سعودي."}
     ],
     questions:[
-      {q:"What is the remaining balance under the chronic condition limit?", a:"SAR 150,000 remains available under the SAR 1,000,000 chronic/pre-existing condition cap this policy year."},
-      {q:"What is the estimated cost of the requested treatment course?", a:"Approximately SAR 210,000 for the full requested course of dialysis sessions."}
+      {q:"What is the remaining balance under the chronic condition limit?", a:"SAR 150,000 remains available under the SAR 1,000,000 chronic/pre-existing condition cap this policy year.",
+        q_ar:"ما هو الرصيد المتبقي ضمن حد الحالات المزمنة؟",
+        a_ar:"يتبقى 150,000 ريال سعودي متاحة ضمن الحد الأقصى البالغ 1,000,000 ريال سعودي لهذا العام التأميني."},
+      {q:"What is the estimated cost of the requested treatment course?", a:"Approximately SAR 210,000 for the full requested course of dialysis sessions.",
+        q_ar:"ما هي التكلفة التقديرية لسلسلة العلاج المطلوبة؟",
+        a_ar:"حوالي 210,000 ريال سعودي للسلسلة الكاملة من جلسات الغسيل الكلوي المطلوبة."}
     ],
-    correct:"partial", rationale:"The condition and treatment are covered, but the requested amount (SAR 210,000) exceeds the SAR 150,000 remaining under the chronic condition cap. Partially approve up to the remaining limit."
+    correct:"partial", rationale:"The condition and treatment are covered, but the requested amount (SAR 210,000) exceeds the SAR 150,000 remaining under the chronic condition cap. Partially approve up to the remaining limit.",
+    rationale_ar:"الحالة والعلاج مغطاة، لكن المبلغ المطلوب (210,000 ريال) يتجاوز الرصيد المتبقي البالغ 150,000 ريال ضمن حد الحالات المزمنة. الموافقة جزئيًا بحدود الرصيد المتبقي. القرار: موافقة جزئية."
   },
   { id:10, ref:"2026/700110", wait:15, name:"Male Patient", age:66, gender:"M", benefit:"H-OP / Out Patient", hcp:"Al Noor Medical Center - Riyadh",
     dx:"J44.9 — Chronic obstructive pulmonary disease",
+    dx_ar:"J44.9 — الانسداد الرئوي المزمن",
     complaint:"Severe COPD with resting hypoxemia, requesting home oxygen therapy.",
+    complaint_ar:"انسداد رئوي مزمن شديد مع نقص أكسجين عند الراحة، مع طلب علاج الأكسجين المنزلي.",
     requested:"Home oxygen concentrator (durable medical equipment)",
+    requested_ar:"مكثف أكسجين منزلي (معدات طبية معمرة)",
     hasHQ:true, hqList:["COPD — declared at enrollment"],
-    history:[{ref:"2025/220456",date:"05/11/2025",benefit:"Out Patient",dx:"COPD",amt:"145.00",status:"Paid"}],
+    history:[
+      {ref:"2025/220456",date:"05/11/2025",benefit:"Out Patient",dx:"COPD",amt:"145.00",status:"Paid"}
+    ],
     documents:[
-      {title:"HQ Declaration Form", necessary:false, content:"COPD declared at enrollment — already established."},
-      {title:"Pulmonology Report with Oximetry", necessary:true, content:"Resting oxygen saturation 87% on room air, consistent with criteria for home oxygen therapy per standard clinical guidelines."},
-      {title:"DME Coverage Schedule", necessary:true, content:"Policy DME schedule confirms home oxygen concentrators are a covered benefit when medical necessity criteria (documented hypoxemia) are met."}
+      {title:"HQ Declaration Form", necessary:false, content:"COPD declared at enrollment — already established.",
+        content_ar:"تم التصريح بالانسداد الرئوي المزمن عند الالتحاق بالوثيقة — وهو أمر ثابت مسبقًا."},
+      {title:"Pulmonology Report with Oximetry", necessary:true, content:"Resting oxygen saturation 87% on room air, consistent with criteria for home oxygen therapy per standard clinical guidelines.",
+        content_ar:"تشبع الأكسجين عند الراحة على الهواء الجوي 87%، وهو متوافق مع معايير علاج الأكسجين المنزلي بحسب الإرشادات السريرية المعتمدة."},
+      {title:"DME Coverage Schedule", necessary:true, content:"Policy DME schedule confirms home oxygen concentrators are a covered benefit when medical necessity criteria (documented hypoxemia) are met.",
+        content_ar:"يؤكد جدول المعدات الطبية المعمرة في الوثيقة أن مكثفات الأكسجين المنزلية مغطاة عند استيفاء معايير الضرورة الطبية (نقص الأكسجين الموثق)."}
     ],
     questions:[
-      {q:"Does the oximetry result meet medical necessity criteria for home oxygen?", a:"Yes — resting saturation of 87% meets standard clinical criteria for home oxygen therapy."},
-      {q:"Is home oxygen equipment covered under this policy's DME schedule?", a:"Yes — the DME schedule confirms coverage when documented medical necessity criteria are met, which this case satisfies."}
+      {q:"Does the oximetry result meet medical necessity criteria for home oxygen?", a:"Yes — resting saturation of 87% meets standard clinical criteria for home oxygen therapy.",
+        q_ar:"هل تستوفي نتيجة قياس التأكسج معايير الضرورة الطبية للأكسجين المنزلي؟",
+        a_ar:"نعم — تشبع الأكسجين عند الراحة البالغ 87% يستوفي المعايير السريرية المعتمدة لعلاج الأكسجين المنزلي."},
+      {q:"Is home oxygen equipment covered under this policy's DME schedule?", a:"Yes — the DME schedule confirms coverage when documented medical necessity criteria are met, which this case satisfies.",
+        q_ar:"هل معدات الأكسجين المنزلي مغطاة ضمن جدول المعدات الطبية المعمرة في هذه الوثيقة؟",
+        a_ar:"نعم — يؤكد الجدول التغطية عند استيفاء معايير الضرورة الطبية الموثقة، وهو ما تستوفيه هذه الحالة."}
     ],
-    correct:"approve", rationale:"Documented medical necessity (hypoxemia on oximetry) meets DME coverage criteria under the policy."
+    correct:"approve", rationale:"Documented medical necessity (hypoxemia on oximetry) meets DME coverage criteria under the policy.",
+    rationale_ar:"الضرورة الطبية الموثقة (نقص الأكسجين في قياس التأكسج) تستوفي معايير تغطية المعدات الطبية المعمرة بموجب الوثيقة. القرار: الموافقة."
   },
   { id:11, ref:"2026/700111", wait:22, name:"Male Patient", age:31, gender:"M", benefit:"H-OP / Out Patient", hcp:"Al Noor Medical Center - Riyadh",
     dx:"J18.9 — Community-acquired pneumonia",
+    dx_ar:"J18.9 — التهاب رئوي مكتسب من المجتمع",
     complaint:"On oral antibiotics; physician referred the member to an external retail pharmacy to dispense the medication, since the hospital pharmacy doesn't stock this formulation.",
+    complaint_ar:"يتلقى مضادات حيوية فموية؛ وقد أحاله الطبيب إلى صيدلية خارجية لصرف الدواء، لأن صيدلية المستشفى لا تتوفر لديها هذا التركيب.",
     requested:"Dispense a 7-day antibiotic course at an external retail pharmacy per physician referral",
+    requested_ar:"صرف مضاد حيوي لمدة 7 أيام من صيدلية خارجية بموجب إحالة الطبيب",
     hasHQ:false, hqList:[],
     history:[],
     documents:[
-      {title:"Physician Prescription & Referral Note", necessary:true, content:"Prescribes a 7-day oral antibiotic course; refers the member to an external retail pharmacy for dispensing, as the hospital pharmacy does not stock this specific formulation."},
-      {title:"Network Pharmacy Directory", necessary:true, content:"Confirms the named external pharmacy IS listed as a contracted, in-network pharmacy provider for this member's plan."},
-      {title:"Unrelated Lab Slip", necessary:false, content:"Routine lab slip from an earlier, unrelated visit — no relevance to this request."}
+      {title:"Physician Prescription & Referral Note", necessary:true, content:"Prescribes a 7-day oral antibiotic course; refers the member to an external retail pharmacy for dispensing, as the hospital pharmacy does not stock this specific formulation.",
+        content_ar:"يصف الطبيب مضادًا حيويًا فمويًا لمدة 7 أيام؛ ويحيل المؤمَّن له إلى صيدلية خارجية للصرف، لأن صيدلية المستشفى لا تتوفر لديها هذا التركيب المحدد."},
+      {title:"Network Pharmacy Directory", necessary:true, content:"Confirms the named external pharmacy IS listed as a contracted, in-network pharmacy provider for this member's plan.",
+        content_ar:"يؤكد أن الصيدلية الخارجية المذكورة مدرجة ضمن مقدمي الخدمة المتعاقدين داخل الشبكة لخطة هذا المؤمَّن له."},
+      {title:"Unrelated Lab Slip", necessary:false, content:"Routine lab slip from an earlier, unrelated visit — no relevance to this request.",
+        content_ar:"إيصال تحليل مخبري روتيني من زيارة سابقة غير ذات صلة — لا علاقة له بهذا الطلب."}
     ],
     questions:[
-      {q:"Is the external pharmacy within the payer's contracted network?", a:"Yes — the network pharmacy directory confirms this pharmacy is a contracted, in-network provider."},
-      {q:"Is there a clinical reason the hospital pharmacy can't dispense this medication?", a:"Yes — the hospital pharmacy does not stock this specific antibiotic formulation, per the physician's note."}
+      {q:"Is the external pharmacy within the payer's contracted network?", a:"Yes — the network pharmacy directory confirms this pharmacy is a contracted, in-network provider.",
+        q_ar:"هل الصيدلية الخارجية ضمن الشبكة المتعاقدة مع شركة التأمين؟",
+        a_ar:"نعم — يؤكد دليل الصيدليات المتعاقدة أن هذه الصيدلية مقدم خدمة متعاقد ضمن الشبكة."},
+      {q:"Is there a clinical reason the hospital pharmacy can't dispense this medication?", a:"Yes — the hospital pharmacy does not stock this specific antibiotic formulation, per the physician's note.",
+        q_ar:"هل يوجد سبب سريري يمنع صيدلية المستشفى من صرف هذا الدواء؟",
+        a_ar:"نعم — لا تتوفر لدى صيدلية المستشفى هذا التركيب المحدد من المضاد الحيوي، بحسب مذكرة الطبيب."}
     ],
-    correct:"refer", rationale:"The hospital pharmacy can't fill this prescription — it doesn't stock the formulation. Since the medication itself is appropriate but can't be dispensed in-house, the correct action is to refer the request to the confirmed in-network external pharmacy for dispensing, not to approve it as an in-hospital pharmacy service. Refer to the external pharmacy."
+    correct:"refer", rationale:"The hospital pharmacy can't fill this prescription — it doesn't stock the formulation. Since the medication itself is appropriate but can't be dispensed in-house, the correct action is to refer the request to the confirmed in-network external pharmacy for dispensing, not to approve it as an in-hospital pharmacy service. Refer to the external pharmacy.",
+    rationale_ar:"الصيدلية داخل المستشفى لا يمكنها صرف هذه الوصفة — لأنها لا تتوفر لديها هذا التركيب الدوائي. وبما أن الدواء نفسه مناسب لكنه لا يمكن صرفه من داخل المنشأة، فإن الإجراء الصحيح هو تحويل الطلب إلى الصيدلية الخارجية المتعاقدة والمؤكدة ضمن الشبكة لصرفه، لا الموافقة عليه كخدمة صيدلية داخل المستشفى. القرار: التحويل إلى الصيدلية الخارجية."
   },
   { id:12, ref:"2026/700112", wait:70, name:"Male Patient", age:71, gender:"M", benefit:"H-IP / In Patient", hcp:"United Doctors Hospital - Jeddah",
     dx:"Z74.0 — Reduced mobility, custodial care (post-stroke, medically stable)",
+    dx_ar:"Z74.0 — انخفاض الحركة، رعاية تمريضية غير علاجية (بعد سكتة دماغية، مستقر طبيًا)",
     complaint:"Admitted 1 July for stroke rehabilitation; remained hospitalized through 31 July. Notes show the patient became medically stable by 10 July, but discharge was delayed pending family/placement arrangements.",
+    complaint_ar:"تم إدخاله في 1 يوليو لإعادة التأهيل بعد سكتة دماغية؛ واستمر تنويمه حتى 31 يوليو. تشير الملاحظات إلى أن حالته أصبحت مستقرة طبيًا بتاريخ 10 يوليو، لكن الخروج تأخر بانتظار ترتيبات الأسرة/مكان الإقامة.",
     requested:"Continued inpatient admission for the full month of July (31 days)",
+    requested_ar:"استمرار التنويم الداخلي لشهر يوليو كاملًا (31 يومًا)",
     hasHQ:true, hqList:["No relevant conditions declared"],
     history:[],
     documents:[
-      {title:"Admission & Progress Notes", necessary:true, content:"Admitted 1 July for acute stroke management. Medically and neurologically stable by 10 July. Notes from 11–31 July describe the patient as 'medically stable, awaiting family arrangements for home care setup' — no active acute treatment documented for this period."},
-      {title:"CHI Essential Benefits Framework Excerpt", necessary:true, content:"Inpatient benefits are covered for medically necessary acute care. Extended admission beyond resolution of the acute condition, for custodial, social, or placement reasons, is not a covered inpatient service — this applies regardless of whether the individual policy document separately restates it."},
-      {title:"Member's Policy Wording", necessary:true, content:"The individual policy document does not explicitly mention or exclude extended/custodial stays."}
+      {title:"Admission & Progress Notes", necessary:true, content:"Admitted 1 July for acute stroke management. Medically and neurologically stable by 10 July. Notes from 11–31 July describe the patient as 'medically stable, awaiting family arrangements for home care setup' — no active acute treatment documented for this period.",
+        content_ar:"تم الإدخال في 1 يوليو لعلاج السكتة الدماغية الحادة. أصبح مستقرًا طبيًا وعصبيًا بتاريخ 10 يوليو. تصف الملاحظات من 11 إلى 31 يوليو المريض بأنه 'مستقر طبيًا، في انتظار ترتيبات الأسرة لتجهيز الرعاية المنزلية' — دون توثيق أي علاج حاد فعّال خلال هذه الفترة."},
+      {title:"CHI Essential Benefits Framework Excerpt", necessary:true, content:"Inpatient benefits are covered for medically necessary acute care. Extended admission beyond resolution of the acute condition, for custodial, social, or placement reasons, is not a covered inpatient service — this applies regardless of whether the individual policy document separately restates it.",
+        content_ar:"تُغطى مزايا التنويم الداخلي للرعاية الحادة الضرورية طبيًا. التنويم الممتد بعد انتهاء الحالة الحادة، لأسباب تمريضية أو اجتماعية أو تتعلق بالإقامة، لا يُعد خدمة تنويم مغطاة — وينطبق هذا بغض النظر عن كون وثيقة التأمين الفردية تُعيد ذكره صراحة أم لا."},
+      {title:"Member's Policy Wording", necessary:true, content:"The individual policy document does not explicitly mention or exclude extended/custodial stays.",
+        content_ar:"لا تذكر وثيقة التأمين الفردية أو تستثني صراحة فترات التنويم الممتدة أو التمريضية."}
     ],
     questions:[
-      {q:"When did the patient become medically stable?", a:"By 10 July, per the progress notes — the remaining 21 days show no active acute treatment."},
-      {q:"Does the specific policy document exclude extended stays?", a:"No — the policy wording is silent on this; it neither explicitly covers nor excludes it."}
+      {q:"When did the patient become medically stable?", a:"By 10 July, per the progress notes — the remaining 21 days show no active acute treatment.",
+        q_ar:"متى أصبح المريض مستقرًا طبيًا؟",
+        a_ar:"بتاريخ 10 يوليو، بحسب ملاحظات التقدم — ولا تُظهر الأيام المتبقية (21 يومًا) أي علاج حاد فعّال."},
+      {q:"Does the specific policy document exclude extended stays?", a:"No — the policy wording is silent on this; it neither explicitly covers nor excludes it.",
+        q_ar:"هل تستثني وثيقة التأمين المحددة فترات التنويم الممتدة؟",
+        a_ar:"لا — نص الوثيقة صامت بهذا الشأن؛ فهو لا يشمل ذلك ولا يستثنيه صريحًا."}
     ],
-    correct:"reject", denialCode:"DC03", rationale:"CHI's essential benefits framework governs inpatient medical necessity regardless of whether the individual policy restates every rule. Extended admission after the acute condition resolved, for custodial/placement reasons, is not covered under CHI regulations — even though this policy document doesn't separately exclude it. Policy silence doesn't create coverage that the regulatory framework doesn't provide."
+    correct:"reject", denialCode:"DC03", rationale:"CHI's essential benefits framework governs inpatient medical necessity regardless of whether the individual policy restates every rule. Extended admission after the acute condition resolved, for custodial/placement reasons, is not covered under CHI regulations — even though this policy document doesn't separately exclude it. Policy silence doesn't create coverage that the regulatory framework doesn't provide.",
+    rationale_ar:"يحكم إطار المزايا الأساسية للمجلس (CHI) مبدأ الضرورة الطبية للتنويم بغض النظر عن إعادة ذكر كل قاعدة في الوثيقة الفردية. التنويم الممتد بعد انتهاء الحالة الحادة، لأسباب تمريضية أو تتعلق بالإقامة، غير مغطى بموجب لوائح المجلس — حتى وإن لم تستثنِه وثيقة التأمين هذه صراحة. صمت الوثيقة لا يمنح تغطية لم يوفرها الإطار التنظيمي. القرار: الرفض."
   },
   { id:13, ref:"2026/700113", wait:48, name:"Female Patient", age:27, gender:"F", benefit:"H-Maternity", hcp:"Al Andalus Specialized Clinic - Riyadh",
     dx:"O80 — Full-term normal delivery",
+    dx_ar:"O80 — ولادة طبيعية مكتملة المدة",
     complaint:"Presented in labor at term; delivered vaginally. Marital status on the insurance card is recorded as single. Hospital has billed the delivery on a cash basis pending a coverage decision.",
+    complaint_ar:"حضرت في حالة مخاض مكتملة المدة؛ وأنجبت ولادة طبيعية. الحالة الاجتماعية المسجلة على بطاقة التأمين هي 'أعزب/عزباء'. قامت المستشفى بفوترة الولادة نقدًا في انتظار قرار التغطية.",
     requested:"Coverage or reimbursement for maternity delivery services",
+    requested_ar:"التغطية أو استرداد تكاليف خدمات الولادة",
     hasHQ:true, hqList:["No relevant conditions declared"],
     history:[],
     documents:[
-      {title:"Insurance Card / Policy Extract", necessary:true, content:"Marital status field: Single. Class: Standard Employee coverage."},
-      {title:"Delivery Summary Report", necessary:true, content:"Uncomplicated vaginal delivery at term, mother and baby stable."},
-      {title:"Cash Payment Receipt", necessary:false, content:"Hospital cash receipt for delivery charges, submitted by the family requesting reimbursement consideration."}
+      {title:"Insurance Card / Policy Extract", necessary:true, content:"Marital status field: Single. Class: Standard Employee coverage.",
+        content_ar:"خانة الحالة الاجتماعية: أعزب/عزباء. الفئة: تغطية موظف قياسية."},
+      {title:"Delivery Summary Report", necessary:true, content:"Uncomplicated vaginal delivery at term, mother and baby stable.",
+        content_ar:"ولادة طبيعية مكتملة المدة دون مضاعفات، والأم والمولود في حالة مستقرة."},
+      {title:"Cash Payment Receipt", necessary:false, content:"Hospital cash receipt for delivery charges, submitted by the family requesting reimbursement consideration.",
+        content_ar:"إيصال دفع نقدي من المستشفى مقابل رسوم الولادة، مقدَّم من الأسرة لطلب النظر في استرداد التكاليف."}
     ],
     questions:[
-      {q:"What is the member's marital status on file?", a:"Single, per the insurance card and policy record."},
-      {q:"Does the policy restrict maternity benefits by marital status?", a:"Yes — maternity benefits under this plan are limited to married spouses and married female employees."}
+      {q:"What is the member's marital status on file?", a:"Single, per the insurance card and policy record.",
+        q_ar:"ما هي الحالة الاجتماعية المسجلة للمؤمَّن له؟",
+        a_ar:"أعزب/عزباء، بحسب بطاقة التأمين وسجل الوثيقة."},
+      {q:"Does the policy restrict maternity benefits by marital status?", a:"Yes — maternity benefits under this plan are limited to married spouses and married female employees.",
+        q_ar:"هل تقيّد الوثيقة مزايا الولادة بحسب الحالة الاجتماعية؟",
+        a_ar:"نعم — تقتصر مزايا الولادة في هذه الخطة على الزوجات وموظفات المتزوجات."}
     ],
-    correct:"reject", denialCode:"DC07", rationale:"Maternity benefits are restricted to married spouses and married female employees. The member's policy record shows single marital status, so the delivery does not meet eligibility criteria — not covered."
+    correct:"reject", denialCode:"DC07", rationale:"Maternity benefits are restricted to married spouses and married female employees. The member's policy record shows single marital status, so the delivery does not meet eligibility criteria — not covered.",
+    rationale_ar:"مزايا الولادة مقيدة بالزوجات وموظفات المتزوجات. يُظهر سجل وثيقة المؤمَّن له حالة اجتماعية 'أعزب/عزباء'، ولذلك لا تستوفي الولادة معايير الأهلية — وهي غير مغطاة. القرار: الرفض."
   },
   { id:14, ref:"2026/700114", wait:52, name:"Male Newborn Patient", age:0, gender:"M", benefit:"H-IP / In Patient (Newborn)", hcp:"Al Andalus Specialized Clinic - Riyadh",
     dx:"P22.0 — Transient tachypnea of the newborn, observation",
+    dx_ar:"P22.0 — تسرع التنفس العابر عند المولود، تحت الملاحظة",
     complaint:"Newborn from the delivery under Claim Ref 2026/700113 (not covered — mother's single marital status) now requires NICU observation for transient respiratory distress. Family requests coverage for the newborn as a dependent.",
+    complaint_ar:"المولود الناتج عن الولادة تحت مرجع المطالبة 2026/700113 (غير مغطاة — بسبب الحالة الاجتماعية 'أعزب/عزباء' للأم) يحتاج الآن إلى ملاحظة في وحدة العناية المركزة لحديثي الولادة بسبب ضيق تنفس عابر. تطلب الأسرة التغطية للمولود كمُعال.",
     requested:"NICU admission and observation for the newborn",
+    requested_ar:"دخول وحدة العناية المركزة لحديثي الولادة وملاحظة المولود",
     hasHQ:false, hqList:[],
     history:[],
     documents:[
-      {title:"Linked Maternity Claim Note", necessary:true, content:"Cross-reference to Claim Ref 2026/700113: the mother's delivery was not covered — single marital status, maternity benefit not applicable."},
-      {title:"Newborn Enrollment Status", necessary:true, content:"No newborn enrollment or dependent-addition request has been submitted or approved for this policy."},
-      {title:"NICU Admission Note", necessary:true, content:"Newborn observed for transient tachypnea, stable, routine NICU monitoring."}
+      {title:"Linked Maternity Claim Note", necessary:true, content:"Cross-reference to Claim Ref 2026/700113: the mother's delivery was not covered — single marital status, maternity benefit not applicable.",
+        content_ar:"إشارة مرجعية إلى المطالبة رقم 2026/700113: ولادة الأم لم تكن مغطاة — بسبب الحالة الاجتماعية 'أعزب/عزباء'، ولا تنطبق ميزة الولادة."},
+      {title:"Newborn Enrollment Status", necessary:true, content:"No newborn enrollment or dependent-addition request has been submitted or approved for this policy.",
+        content_ar:"لم يتم تقديم أو الموافقة على أي طلب تسجيل للمولود أو إضافة مُعال ضمن هذه الوثيقة."},
+      {title:"NICU Admission Note", necessary:true, content:"Newborn observed for transient tachypnea, stable, routine NICU monitoring.",
+        content_ar:"المولود تحت الملاحظة بسبب تسرع تنفس عابر، وحالته مستقرة، ضمن المتابعة الروتينية لوحدة العناية المركزة لحديثي الولادة."}
     ],
     questions:[
-      {q:"Was the mother's delivery covered under the policy?", a:"No — Claim Ref 2026/700113 confirms the delivery was not covered due to the mother's single marital status."},
-      {q:"Has the newborn been formally enrolled as a dependent?", a:"No — no newborn enrollment or dependent addition has been submitted or approved."}
+      {q:"Was the mother's delivery covered under the policy?", a:"No — Claim Ref 2026/700113 confirms the delivery was not covered due to the mother's single marital status.",
+        q_ar:"هل كانت ولادة الأم مغطاة بموجب الوثيقة؟",
+        a_ar:"لا — تؤكد المطالبة رقم 2026/700113 أن الولادة لم تكن مغطاة بسبب الحالة الاجتماعية 'أعزب/عزباء' للأم."},
+      {q:"Has the newborn been formally enrolled as a dependent?", a:"No — no newborn enrollment or dependent addition has been submitted or approved.",
+        q_ar:"هل تم تسجيل المولود رسميًا كمُعال؟",
+        a_ar:"لا — لم يتم تقديم أو الموافقة على أي طلب تسجيل للمولود أو إضافة مُعال."}
     ],
-    correct:"reject", denialCode:"DC07", rationale:"Newborn coverage as a dependent generally flows from an eligible, covered maternity benefit and proper dependent enrollment. Since the delivery itself wasn't covered and the newborn hasn't been separately enrolled, the NICU admission is not covered."
+    correct:"reject", denialCode:"DC07", rationale:"Newborn coverage as a dependent generally flows from an eligible, covered maternity benefit and proper dependent enrollment. Since the delivery itself wasn't covered and the newborn hasn't been separately enrolled, the NICU admission is not covered.",
+    rationale_ar:"تغطية المولود كمُعال تنبع بشكل عام من ميزة ولادة مؤهلة ومغطاة، ومن تسجيل صحيح للمُعال. وبما أن الولادة نفسها لم تكن مغطاة ولم يتم تسجيل المولود بشكل مستقل، فإن دخول وحدة العناية المركزة لحديثي الولادة غير مغطى. القرار: الرفض."
   },
   { id:15, ref:"2026/700115", wait:18, name:"Male Patient", age:33, gender:"M", benefit:"H-OP / Out Patient", hcp:"Al Noor Medical Center - Riyadh",
     dx:"E11.9 — Type 2 Diabetes Mellitus (per submitted diagnosis)",
+    dx_ar:"E11.9 — داء السكري من النوع الثاني (بحسب التشخيص المقدَّم)",
     complaint:"Requesting renewal of Mounjaro (tirzepatide) injections for 'diabetic control.' Most recent HbA1c: 4.8% — within the normal, non-diabetic range.",
+    complaint_ar:"طلب تجديد حقن مونجارو (تيرزيباتيد) بغرض 'ضبط السكري'. آخر قياس للسكر التراكمي: 4.8% — ضمن المعدل الطبيعي غير السكري.",
     requested:"Mounjaro (tirzepatide) injection, monthly supply renewal",
+    requested_ar:"حقن مونجارو (تيرزيباتيد)، تجديد الكمية الشهرية",
     hasHQ:false, hqList:[],
     history:[],
     documents:[
-      {title:"Lab Report", necessary:true, content:"HbA1c 4.8% (reference range for non-diabetic adults: 4.0–5.6%). Result is within the normal, non-diabetic range."},
-      {title:"Prescription Request", necessary:true, content:"Requests continued monthly Mounjaro (tirzepatide) injections; diagnosis listed as Type 2 Diabetes Mellitus."},
-      {title:"Old Employment Physical", necessary:false, content:"Routine physical from a prior employer, no diabetes mentioned — no relevance to this request."}
+      {title:"Lab Report", necessary:true, content:"HbA1c 4.8% (reference range for non-diabetic adults: 4.0–5.6%). Result is within the normal, non-diabetic range.",
+        content_ar:"السكر التراكمي 4.8% (المعدل المرجعي للبالغين غير المصابين بالسكري: 4.0–5.6%). النتيجة ضمن المعدل الطبيعي غير السكري."},
+      {title:"Prescription Request", necessary:true, content:"Requests continued monthly Mounjaro (tirzepatide) injections; diagnosis listed as Type 2 Diabetes Mellitus.",
+        content_ar:"طلب الاستمرار في حقن مونجارو (تيرزيباتيد) الشهرية؛ مع تسجيل التشخيص كداء السكري من النوع الثاني."},
+      {title:"Old Employment Physical", necessary:false, content:"Routine physical from a prior employer, no diabetes mentioned — no relevance to this request.",
+        content_ar:"فحص طبي روتيني من جهة عمل سابقة، دون ذكر لمرض السكري — لا علاقة له بهذا الطلب."}
     ],
     questions:[
-      {q:"Is the HbA1c consistent with a diabetes diagnosis requiring ongoing pharmacologic control?", a:"No — 4.8% is within the normal, non-diabetic reference range; it doesn't indicate poorly controlled or active diabetes requiring escalating therapy."},
-      {q:"Is there documentation supporting continued therapy despite normal levels?", a:"No hypoglycemic symptoms or additional clinical justification are documented in the request."}
+      {q:"Is the HbA1c consistent with a diabetes diagnosis requiring ongoing pharmacologic control?", a:"No — 4.8% is within the normal, non-diabetic reference range; it doesn't indicate poorly controlled or active diabetes requiring escalating therapy.",
+        q_ar:"هل السكر التراكمي يتوافق مع تشخيص سكري يتطلب ضبطًا دوائيًا مستمرًا؟",
+        a_ar:"لا — 4.8% ضمن المعدل المرجعي الطبيعي غير السكري؛ ولا يشير إلى سكري غير مضبوط أو نشط يتطلب تصعيد العلاج."},
+      {q:"Is there documentation supporting continued therapy despite normal levels?", a:"No hypoglycemic symptoms or additional clinical justification are documented in the request.",
+        q_ar:"هل يوجد توثيق يدعم الاستمرار في العلاج رغم المستويات الطبيعية؟",
+        a_ar:"لا توجد أعراض نقص سكر أو أي تبرير سريري إضافي موثق في الطلب."}
     ],
-    correct:"reject", denialCode:"DC09", rationale:"A normal, non-diabetic HbA1c doesn't support medical necessity for an anti-diabetic medication often used off-label for weight loss. This pattern should raise suspicion the request is for weight management rather than legitimate diabetic control — not medically justified as submitted. Reject."
+    correct:"reject", denialCode:"DC09", rationale:"A normal, non-diabetic HbA1c doesn't support medical necessity for an anti-diabetic medication often used off-label for weight loss. This pattern should raise suspicion the request is for weight management rather than legitimate diabetic control — not medically justified as submitted. Reject.",
+    rationale_ar:"السكر التراكمي الطبيعي غير السكري لا يدعم الضرورة الطبية لدواء مضاد للسكري يُستخدم غالبًا خارج نطاق الاستطباب المعتمد لإنقاص الوزن. يجب أن يثير هذا النمط الشك في أن الطلب لأغراض إدارة الوزن وليس لضبط سكري حقيقي — وهو غير مبرر طبيًا كما قُدِّم. القرار: الرفض."
   }
 ];
 
@@ -1325,12 +1988,15 @@ function renderVideoQuiz(session, readOnly){
     const card = document.createElement("div");
     card.className = "qcard";
     const qNumText = isAr() ? `السؤال ${qi+1} من ${session.quiz.length}` : `Question ${qi+1} of ${session.quiz.length}`;
-    card.innerHTML = `<div class="qnum">${qNumText}</div><div class="qstem">${q.stem}</div><div class="opts"></div><div class="feedback"></div>`;
+    const stemText = isAr() && q.stem_ar ? q.stem_ar : q.stem;
+    const optionsText = isAr() && q.options_ar ? q.options_ar : q.options;
+    const explanationText = isAr() && q.explanation_ar ? q.explanation_ar : q.explanation;
+    card.innerHTML = `<div class="qnum">${qNumText}</div><div class="qstem">${stemText}</div><div class="opts"></div><div class="feedback"></div>`;
     const optsWrap = card.querySelector(".opts");
     const feedback = card.querySelector(".feedback");
     let locked = readOnly;
 
-    q.options.forEach((opt, oi)=>{
+    optionsText.forEach((opt, oi)=>{
       const btn = document.createElement("button");
       btn.className = "opt";
       btn.innerHTML = `<span class="optletter">${letters[oi]}.</span><span>${opt}</span>`;
@@ -1347,14 +2013,14 @@ function renderVideoQuiz(session, readOnly){
         if(isCorrect) btn.classList.add("selected-correct");
         else { btn.classList.add("selected-wrong"); optsWrap.children[q.correctIndex].classList.add("reveal-correct"); }
         feedback.className = "feedback show " + (isCorrect ? "correct" : "wrong");
-        feedback.innerHTML = `<b>${isCorrect ? T('ins.correct') : T('ins.notQuite')}</b>${q.explanation}`;
+        feedback.innerHTML = `<b>${isCorrect ? T('ins.correct') : T('ins.notQuite')}</b>${explanationText}`;
         if(answeredCount === session.quiz.length) finishVideoQuiz(session);
       });
       optsWrap.appendChild(btn);
     });
     if(readOnly){
       feedback.className = "feedback show correct";
-      feedback.innerHTML = `<b>${T('ins.correct')}</b>${q.explanation}`;
+      feedback.innerHTML = `<b>${T('ins.correct')}</b>${explanationText}`;
     }
     qEl.appendChild(card);
   });
@@ -1411,10 +2077,10 @@ function openPractice(){
     const ageText = c.age===0 ? T('ins.newborn') : (isAr() ? `${c.age} سنة` : `${c.age}y`);
     card.innerHTML = `
       <h4>${T('ins.practiceCasePrefix')} ${i+1} — ${c.ref}</h4>
-      <div class="field-row"><span class="k">${T('ins.patientLabel')}</span><span class="v">${c.name}, ${ageText}, ${c.gender}</span></div>
-      <div class="field-row"><span class="k">${T('ins.diagnosisLabel')}</span><span class="v">${c.dx}</span></div>
-      <p style="font-size:12.5px; color:var(--ink-dim);">${c.complaint}</p>
-      <div class="field-row"><span class="k">${T('ins.requestedLabel')}</span><span class="v">${c.requested}</span></div>
+      <div class="field-row"><span class="k">${T('ins.patientLabel')}</span><span class="v">${localizedName(c.name)}, ${ageText}, ${localizedGender(c.gender)}</span></div>
+      <div class="field-row"><span class="k">${T('ins.diagnosisLabel')}</span><span class="v">${isAr() ? (c.dx_ar || c.dx) : c.dx}</span></div>
+      <p style="font-size:12.5px; color:var(--ink-dim);">${isAr() ? (c.complaint_ar || c.complaint) : c.complaint}</p>
+      <div class="field-row"><span class="k">${T('ins.requestedLabel')}</span><span class="v">${isAr() ? (c.requested_ar || c.requested) : c.requested}</span></div>
       <div class="decision-opts" style="margin-top:12px;" id="pract-opts-${i}">
         <button class="dopt" data-d="approve">${T('ins.decideApprove')}</button>
         <button class="dopt" data-d="partial">${T('ins.decidePartial')}</button>
@@ -1433,7 +2099,7 @@ function openPractice(){
         btn.style.borderColor = isCorrect ? "var(--live)" : "var(--danger)";
         const fb = document.getElementById(`pract-feedback-${i}`);
         fb.className = "feedback show " + (isCorrect ? "correct" : "wrong");
-        fb.innerHTML = `<b>${isCorrect ? T('ins.correct') : T('ins.correctDecisionWas') + " " + decisionLabel(c.correct)}</b>${c.rationale}`;
+        fb.innerHTML = `<b>${isCorrect ? T('ins.correct') : T('ins.correctDecisionWas') + " " + decisionLabel(c.correct)}</b>${isAr() ? (c.rationale_ar || c.rationale) : c.rationale}`;
         doneCount++;
         if(doneCount === PRACTICE_CASE_IDS.length) document.getElementById("practiceDoneBtn").classList.remove("hidden");
       });
@@ -1496,8 +2162,8 @@ function renderExamDashboard(){
     tile.className = "tile " + color + (isDone ? " done" : "");
     tile.innerHTML = `
       <div class="tile-top"><span class="tile-ref">${c.ref}</span><span class="tile-wait ${color}">${c.wait}m</span></div>
-      <div class="tile-name">${c.name}</div>
-      <div class="tile-benefit">${c.benefit}</div>
+      <div class="tile-name">${localizedName(c.name)}</div>
+      <div class="tile-benefit">${localizedBenefit(c.benefit)}</div>
       ${isDone ? `<div class="tile-check">${T('ins.decided')} ${decisionLabel(progress.examDecisions[c.id])}</div>` : ""}
     `;
     tile.addEventListener("click", ()=> openExamCase(c.id));
@@ -1524,27 +2190,27 @@ function openExamCase(id){
   if(!progress.examQuestionsAsked[id]) progress.examQuestionsAsked[id] = [];
 
   document.getElementById("exRef").textContent = c.ref;
-  document.getElementById("exBenefit").textContent = c.benefit;
-  document.getElementById("exHcp").textContent = c.hcp;
-  document.getElementById("exName").textContent = c.name;
+  document.getElementById("exBenefit").textContent = localizedBenefit(c.benefit);
+  document.getElementById("exHcp").textContent = localizedHcp(c.hcp);
+  document.getElementById("exName").textContent = localizedName(c.name);
   document.getElementById("exAge").textContent = c.age;
-  document.getElementById("exGender").textContent = c.gender;
-  document.getElementById("exDx").textContent = c.dx;
-  document.getElementById("exComplaint").textContent = c.complaint;
-  document.getElementById("exRequested").textContent = c.requested;
+  document.getElementById("exGender").textContent = localizedGender(c.gender);
+  document.getElementById("exDx").textContent = isAr() ? (c.dx_ar || c.dx) : c.dx;
+  document.getElementById("exComplaint").textContent = isAr() ? (c.complaint_ar || c.complaint) : c.complaint;
+  document.getElementById("exRequested").textContent = isAr() ? (c.requested_ar || c.requested) : c.requested;
 
   const hqArea = document.getElementById("exHqBadgeArea");
   const hqList = document.getElementById("exHqList");
   if(!c.hasHQ){ hqArea.innerHTML = `<span class="hq-badge none">${T('ins.noHqOnFile')}</span>`; hqList.innerHTML = ""; }
   else if(c.hqList.length === 0){ hqArea.innerHTML = `<span class="hq-badge none">${T('ins.hqPresentNoConditions')}</span>`; hqList.innerHTML = ""; }
-  else { hqArea.innerHTML = `<span class="hq-badge present">${T('ins.hqOnFile')}</span>`; hqList.innerHTML = c.hqList.map(h=>`<p style="font-size:12px; margin:6px 0 0;">• ${h}</p>`).join(""); }
+  else { hqArea.innerHTML = `<span class="hq-badge present">${T('ins.hqOnFile')}</span>`; hqList.innerHTML = c.hqList.map(h=>`<p style="font-size:12px; margin:6px 0 0;">• ${localizedHqItem(h)}</p>`).join(""); }
 
   const docsEl = document.getElementById("exDocs");
   docsEl.innerHTML = "";
   c.documents.forEach(d=>{
     const row = document.createElement("div");
     row.className = "doc-row";
-    row.innerHTML = `<span>📄</span><span style="font-size:12.5px; font-weight:600;">${d.title}</span>`;
+    row.innerHTML = `<span>📄</span><span style="font-size:12.5px; font-weight:600;">${localizedDocTitle(d.title)}</span>`;
     row.addEventListener("click", ()=> openExamDoc(d));
     docsEl.appendChild(row);
   });
@@ -1555,7 +2221,7 @@ function openExamCase(id){
   if(c.history.length === 0){ histEl.innerHTML = `<p style="font-size:12px; color:var(--ink-dim);">${T('ins.noPriorClaims')}</p>`; }
   else {
     histEl.innerHTML = `<table class="history-table"><thead><tr><th>${T('ins.tableRef')}</th><th>${T('ins.tableDate')}</th><th>${T('ins.tableBenefit')}</th><th>${T('ins.tableDx')}</th><th>${T('ins.tableAmount')}</th><th>${T('ins.tableStatus')}</th></tr></thead><tbody>` +
-      c.history.map(h=>`<tr><td>${h.ref}</td><td>${h.date}</td><td>${h.benefit}</td><td>${h.dx}</td><td>${h.amt}</td><td>${h.status}</td></tr>`).join("") + `</tbody></table>`;
+      c.history.map(h=>`<tr><td>${h.ref}</td><td>${h.date}</td><td>${localizedHistBenefit(h.benefit)}</td><td>${localizedHistDx(h.dx)}</td><td>${h.amt}</td><td>${localizedStatus(h.status)}</td></tr>`).join("") + `</tbody></table>`;
   }
 
   document.querySelectorAll("#exDecisionOpts .dopt").forEach(btn=> btn.classList.remove("selected"));
@@ -1579,13 +2245,15 @@ function renderExamQuestions(c){
   qEl.innerHTML = "";
   c.questions.forEach((q, idx)=>{
     const wasAsked = asked.includes(idx);
+    const qText = isAr() && q.q_ar ? q.q_ar : q.q;
+    const aText = isAr() && q.a_ar ? q.a_ar : q.a;
     if(wasAsked){
       const div = document.createElement("div");
-      div.innerHTML = `<button class="q-btn" disabled>${q.q}</button><div class="q-answer">${q.a}</div>`;
+      div.innerHTML = `<button class="q-btn" disabled>${qText}</button><div class="q-answer">${aText}</div>`;
       qEl.appendChild(div);
     } else {
       const btn = document.createElement("button");
-      btn.className = "q-btn"; btn.textContent = q.q;
+      btn.className = "q-btn"; btn.textContent = qText;
       if(remaining === 0) btn.disabled = true;
       btn.addEventListener("click", ()=>{
         if((progress.examQuestionsAsked[c.id]||[]).length >= 2) return;
@@ -1644,8 +2312,8 @@ document.getElementById("exSubmitBtn").addEventListener("click", ()=>{
 document.getElementById("exCaseBackBtn").addEventListener("click", ()=>{ showView("exam"); renderExamDashboard(); });
 
 function openExamDoc(d){
-  document.getElementById("exDocTitle").textContent = d.title;
-  document.getElementById("exDocContent").textContent = d.content;
+  document.getElementById("exDocTitle").textContent = localizedDocTitle(d.title);
+  document.getElementById("exDocContent").textContent = isAr() ? (d.content_ar || d.content) : d.content;
   document.getElementById("exDocOverlay").classList.remove("hidden");
 }
 document.getElementById("exDocClose").addEventListener("click", ()=> document.getElementById("exDocOverlay").classList.add("hidden"));
@@ -1671,10 +2339,10 @@ function showExamResults(){
     const row = document.createElement("div");
     row.className = "review-row";
     row.innerHTML = `
-      <div class="review-top"><span class="rn">${c.ref} — ${c.name}</span><span class="rtag ${isCorrect?"correct":"wrong"}">${isCorrect?T('ins.reviewCorrect'):T('ins.reviewIncorrect')}</span></div>
+      <div class="review-top"><span class="rn">${c.ref} — ${localizedName(c.name)}</span><span class="rtag ${isCorrect?"correct":"wrong"}">${isCorrect?T('ins.reviewCorrect'):T('ins.reviewIncorrect')}</span></div>
       <div class="review-detail">${T('ins.yourDecisionLabel')} <b>${decisionLabel(studentDecision) || "—"}</b> · ${T('ins.correctDecisionLabel')} <b>${decisionLabel(c.correct)}</b></div>
       ${codeLine}
-      <div class="review-detail">${c.rationale}</div>
+      <div class="review-detail">${isAr() ? (c.rationale_ar || c.rationale) : c.rationale}</div>
     `;
     reviewList.appendChild(row);
   });
@@ -1769,6 +2437,36 @@ function renderCertificate(name){
   document.getElementById("certPrintBtn").addEventListener("click", ()=> window.print());
   document.getElementById("certEditBtn").addEventListener("click", ()=>{ out.innerHTML = ""; });
 }
+
+/* ============================================================
+   LANGUAGE SWITCH — re-render whichever dynamic view is currently open
+   so quiz/case/results content refreshes into the newly selected
+   language, mirroring the pattern in js/preauth-exam.js.
+   ============================================================ */
+function currentViewName(){
+  const views = ["landing","video","practice","exam","examcase","examresults","certificate"];
+  return views.find(v=> !document.getElementById("view-"+v).classList.contains("hidden")) || "landing";
+}
+document.addEventListener('ih:langchange', ()=>{
+  const view = currentViewName();
+  if(view === "video" && currentVideoSession){
+    document.getElementById("vfTitle").textContent = isAr() && currentVideoSession.titleAr ? currentVideoSession.titleAr : currentVideoSession.title;
+    document.getElementById("vfDur").textContent = T('ins.durationPrefix') + currentVideoSession.duration;
+    if(!document.getElementById("quizBlock").classList.contains("hidden")){
+      renderVideoQuiz(currentVideoSession, !!progress.completedVideos[currentVideoSession.id]);
+    }
+  } else if(view === "practice"){
+    openPractice();
+  } else if(view === "exam"){
+    renderExamDashboard();
+  } else if(view === "examcase" && currentExamCaseId != null){
+    openExamCase(currentExamCaseId);
+  } else if(view === "examresults"){
+    showExamResults();
+  } else if(view === "certificate" && progress.certName){
+    renderCertificate(progress.certName);
+  }
+});
 
 /* ============================================================
    INIT
