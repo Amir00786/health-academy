@@ -308,7 +308,8 @@
             <div class="vf-dur" id="vfDur">—</div>
           </div>
           <div class="video-wrap" id="videoWrap">
-            <video id="realVideo" class="hidden" controls
+            <video id="realVideo" class="hidden" controls controlsList="nodownload" disablePictureInPicture
+              oncontextmenu="return false;"
               style="width:100%; border-radius:14px; background:#000; display:block;"></video>
             <iframe id="ytFrame" class="hidden" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
               style="width:100%; aspect-ratio:16/9; border:0; border-radius:14px; background:#000; display:block;"></iframe>
@@ -325,7 +326,6 @@
           </div>
           <div class="video-actions" id="videoActionsRow">
             <button class="btn btn-primary" id="watchedBtn" data-i18n="ins.watchedBtn">I've finished watching this video →</button>
-            <a class="btn btn-ghost hidden" id="downloadVideoBtn" download data-i18n="ins.downloadBtn">⬇ Download this video</a>
             <p class="video-missing-note hidden" id="videoMissingNote" data-i18n="ins.videoMissingNote">No video file uploaded yet for this session —
               link it in the VIDEO_SESSIONS config to make it real.</p>
           </div>
@@ -346,7 +346,8 @@
           <button class="back-btn" id="practiceBackBtn" data-i18n="ins.backToCourse">← Back to course</button>
           <div class="hero-eyebrow" data-i18n="ins.step08">STEP 08</div>
           <h2 style="margin-top:8px;" data-i18n="ins.letsPractice">Let's Practice</h2>
-          <video id="practiceVideo" class="hidden" controls
+          <video id="practiceVideo" class="hidden" controls controlsList="nodownload" disablePictureInPicture
+            oncontextmenu="return false;"
             style="width:100%; border-radius:14px; background:#000; display:block; margin-bottom:20px;"></video>
           <iframe id="practiceYtFrame" class="hidden" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
             style="width:100%; aspect-ratio:16/9; border:0; border-radius:14px; background:#000; display:block; margin-bottom:20px;"></iframe>

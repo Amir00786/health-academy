@@ -29,7 +29,6 @@ window.I18N_PAGE_DICT = {
   'ins.unlockBtn': { en: 'Unlock full access →', ar: 'فتح الوصول الكامل ←' },
   'ins.paywallNote': { en: 'Demo only — no real payment is processed here.', ar: 'هذا للعرض التجريبي فقط — لا تتم معالجة أي دفعة حقيقية هنا.' },
   'ins.watchedBtn': { en: "I've finished watching this video →", ar: 'لقد أنهيت مشاهدة هذا الفيديو ←' },
-  'ins.downloadBtn': { en: '⬇ Download this video', ar: '⬇ تحميل هذا الفيديو' },
   'ins.videoMissingNote': { en: 'No video file uploaded yet for this session — link it in the VIDEO_SESSIONS config to make it real.', ar: 'لم يتم رفع ملف الفيديو لهذه الجلسة بعد — يرجى ربطه في إعدادات VIDEO_SESSIONS لتفعيله.' },
   'ins.postVideoQuiz': { en: 'Post-video quiz', ar: 'اختبار ما بعد الفيديو' },
   'ins.quizCompleteMsg': { en: '✓ Quiz complete — this session is marked done.', ar: '✓ اكتمل الاختبار — تم وضع علامة إنجاز لهذه الجلسة.' },
@@ -1907,7 +1906,6 @@ function openVideoSession(id){
   const realVideoEl = document.getElementById("realVideo");
   const ytFrameEl = document.getElementById("ytFrame");
   const frameEl = document.getElementById("videoFrame");
-  const dlBtn = document.getElementById("downloadVideoBtn");
   const missingNote = document.getElementById("videoMissingNote");
   const paywall = document.getElementById("paywallOverlay");
   paywall.classList.add("hidden");
@@ -1919,7 +1917,6 @@ function openVideoSession(id){
     realVideoEl.removeAttribute("src");
     ytFrameEl.src = "https://www.youtube.com/embed/" + ytId + "?rel=0&modestbranding=1";
     ytFrameEl.classList.remove("hidden");
-    dlBtn.classList.add("hidden");
     missingNote.classList.add("hidden");
   } else if(hasRealVideo){
     frameEl.classList.add("hidden");
@@ -1927,8 +1924,6 @@ function openVideoSession(id){
     ytFrameEl.removeAttribute("src");
     realVideoEl.src = currentVideoSession.videoUrl;
     realVideoEl.classList.remove("hidden");
-    dlBtn.href = currentVideoSession.videoUrl;
-    dlBtn.classList.remove("hidden");
     missingNote.classList.add("hidden");
 
     const freeLimit = currentVideoSession.freePreviewSeconds;
@@ -1947,7 +1942,6 @@ function openVideoSession(id){
     realVideoEl.removeAttribute("src");
     ytFrameEl.classList.add("hidden");
     ytFrameEl.removeAttribute("src");
-    dlBtn.classList.add("hidden");
     missingNote.classList.remove("hidden");
   }
 
