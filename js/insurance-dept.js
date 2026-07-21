@@ -40,7 +40,7 @@ window.I18N_PAGE_DICT = {
   // Practice view
   'ins.step08': { en: 'STEP 08', ar: 'الخطوة 08' },
   'ins.letsPractice': { en: "Let's Practice", ar: 'لنبدأ التطبيق' },
-  'ins.practiceNote': { en: 'Two sample cases, ungraded — just to get comfortable with the format before the real exam. Nothing here affects your certificate.', ar: 'حالتان تجريبيتان غير مُقيَّمتين — فقط للتعرّف على شكل الاختبار قبل الامتحان الحقيقي. لا شيء هنا يؤثر على شهادتك.' },
+  'ins.practiceNote': { en: 'One sample case, ungraded — just to get comfortable with the format before the real exam. Nothing here affects your certificate.', ar: 'حالة تدريبية واحدة غير مُقيَّمة — فقط للتعرّف على شكل الاختبار قبل الامتحان الحقيقي. لا شيء هنا يؤثر على شهادتك.' },
   'ins.readyForExamBtn': { en: 'I\'m ready — go to the exam <i class="fi fi-rr-arrow-small-right"></i>', ar: 'أنا جاهز — الذهاب إلى الامتحان <i class="fi fi-rr-arrow-small-left"></i>' },
   'ins.practiceCasePrefix': { en: 'Practice Case', ar: 'حالة تدريبية' },
   'ins.patientLabel': { en: 'Patient', ar: 'المريض' },
@@ -119,15 +119,41 @@ window.I18N_PAGE_DICT = {
   'ins.certNotUnlocked': { en: 'Not unlocked yet', ar: 'لم تُفتح بعد' },
   'ins.certLockedDesc': { en: 'Pass the final exam (more than 7 out of 15) to unlock your certificate.', ar: 'انجح في الامتحان النهائي (أكثر من 7 من 15) لفتح شهادتك.' },
   'ins.goToExam': { en: 'Go to the exam <i class="fi fi-rr-arrow-small-right"></i>', ar: 'الذهاب إلى الامتحان <i class="fi fi-rr-arrow-small-left"></i>' },
-  'ins.enterFullName': { en: 'Enter your full name for the certificate', ar: 'أدخل اسمك الكامل للشهادة' },
-  'ins.namePlaceholder': { en: 'e.g. Sara Al-Mutairi', ar: 'مثال: سارة المطيري' },
-  'ins.generateCert': { en: 'Generate my certificate <i class="fi fi-rr-arrow-small-right"></i>', ar: 'إنشاء شهادتي <i class="fi fi-rr-arrow-small-left"></i>' },
-  'ins.certBrand': { en: 'iHealth Academy · Certificate of Completion', ar: 'أكاديمية آي هيلث · شهادة إتمام' },
-  'ins.certSpecialistTitle': { en: 'Pre-Authorization Specialist', ar: 'أخصائي التصريح المسبق' },
-  'ins.certLine': { en: 'has successfully completed the full Pre-Authorization Specialist track — seven core modules, applied practice, and a 15-case practical exam — and is certified <b>ready for work</b> in medical pre-authorization.', ar: 'أكمل بنجاح مسار أخصائي التصريح المسبق الكامل — سبع وحدات أساسية، تطبيق عملي، وامتحان عملي من 15 حالة — وهو معتمد <b>جاهز للعمل</b> في مجال التصريح المسبق الطبي.' },
-  'ins.issued': { en: 'Issued', ar: 'تاريخ الإصدار' },
   'ins.printSave': { en: '🖨 Print / Save as PDF', ar: '🖨 طباعة / حفظ كملف PDF' },
-  'ins.editName': { en: 'Edit name', ar: 'تعديل الاسم' },
+
+  // Certificate — step 1: name + exam date entry
+  'ins.certTrackEyebrow': { en: 'PRE-AUTHORIZATION SPECIALIST', ar: 'أخصائي التصريح المسبق' },
+  'ins.certReadyTitle': { en: 'Your certificate is ready.', ar: 'شهادتك جاهزة.' },
+  'ins.certReadyLead': { en: 'Enter your full name exactly as you want it to appear, and the date you took the exam. This can only be entered once, so please check both carefully before confirming.', ar: 'أدخل اسمك الكامل تمامًا كما تريد ظهوره، وتاريخ خوضك للامتحان. يمكن إدخال هذا مرة واحدة فقط، لذا يرجى التحقق من الاثنين بعناية قبل التأكيد.' },
+  'ins.namePlaceholder': { en: 'e.g. Sara Al-Mutairi', ar: 'مثال: سارة المطيري' },
+  'ins.examDateLabel': { en: 'Date you took the exam', ar: 'تاريخ خوض الامتحان' },
+  'ins.certWarnNote': { en: 'This cannot be edited later — once confirmed, your name and exam date are permanently set on your certificate record.', ar: 'لا يمكن تعديل هذا لاحقًا — بمجرد التأكيد، يتم تثبيت اسمك وتاريخ امتحانك بشكل دائم في سجل شهادتك.' },
+  'ins.certReviewBtn': { en: 'Review before confirming <i class="fi fi-rr-arrow-small-right"></i>', ar: 'مراجعة قبل التأكيد <i class="fi fi-rr-arrow-small-left"></i>' },
+  'ins.certNameRequired': { en: 'Please enter your name first.', ar: 'يرجى إدخال اسمك أولاً.' },
+  'ins.certDateRequired': { en: 'Please enter the date you took the exam.', ar: 'يرجى إدخال تاريخ خوض الامتحان.' },
+
+  // Certificate — step 2: confirm
+  'ins.certFinalCheckEyebrow': { en: 'FINAL CHECK', ar: 'التحقق الأخير' },
+  'ins.certConfirmTitle': { en: 'Please confirm this is spelled exactly right.', ar: 'يرجى التأكد من صحة الإملاء تمامًا.' },
+  'ins.certConfirmLead': { en: 'Your certificate will be generated with this exact name and date and cannot be changed afterward.', ar: 'سيتم إنشاء شهادتك بهذا الاسم والتاريخ بالضبط ولا يمكن تغييرهما بعد ذلك.' },
+  'ins.certNameOnCert': { en: 'Name on certificate', ar: 'الاسم على الشهادة' },
+  'ins.certExamDateLabel': { en: 'Exam date', ar: 'تاريخ الامتحان' },
+  'ins.certEditBack': { en: '<i class="fi fi-rr-arrow-small-left"></i> Edit', ar: 'تعديل <i class="fi fi-rr-arrow-small-right"></i>' },
+  'ins.certConfirmBtn': { en: 'Yes, this is correct — generate my certificate', ar: 'نعم، هذا صحيح — إنشاء شهادتي' },
+
+  // Certificate — step 3: final certificate
+  'ins.certOfCompletion': { en: 'Certificate of Completion', ar: 'شهادة إتمام' },
+  'ins.certSpecialistTitle': { en: 'Pre-Authorization Specialist', ar: 'أخصائي التصريح المسبق' },
+  'ins.certThisCertifies': { en: 'This certifies that', ar: 'تشهد هذه الوثيقة بأن' },
+  'ins.certLine': { en: 'has successfully completed the full <b>Pre-Authorization Specialist</b> track at iHealth Academy — seven core modules, applied practice, and a comprehensive 15-case practical examination — and is hereby recognized as <b>ready for work</b> in medical pre-authorization.', ar: 'أكمل بنجاح مسار <b>أخصائي التصريح المسبق</b> الكامل في أكاديمية آي هيلث — سبع وحدات أساسية، تطبيق عملي، وامتحان عملي شامل من 15 حالة — ويُعتَرف له رسميًا بأنه <b>جاهز للعمل</b> في مجال التصريح المسبق الطبي.' },
+  'ins.certExamDateMeta': { en: 'Date of Exam', ar: 'تاريخ الامتحان' },
+  'ins.certIssueDateMeta': { en: 'Date Issued', ar: 'تاريخ الإصدار' },
+  'ins.certInstructorRole': { en: 'Course Instructor', ar: 'مدرّب الدورة' },
+  'ins.certInstructorTrack': { en: 'Pre-Authorization Specialist Track', ar: 'مسار أخصائي التصريح المسبق' },
+  'ins.certCeoRole': { en: 'Founder &amp; CEO', ar: 'المؤسس والرئيس التنفيذي' },
+  'ins.certCeoOrg': { en: 'iHealth Academy', ar: 'أكاديمية آي هيلث' },
+  'ins.certVerifyId': { en: 'UNIQUE VERIFICATION ID', ar: 'رقم التحقق الفريد' },
+  'ins.certLegal': { en: 'Any alteration, reproduction, or misuse of this certificate is strictly prohibited. iHealth Academy reserves the right to take legal action.', ar: 'يُمنع منعًا باتًا تعديل هذه الشهادة أو نسخها أو إساءة استخدامها بأي شكل. تحتفظ أكاديمية آي هيلث بحقها في اتخاذ الإجراءات القانونية.' },
 
   // Course feedback (post-completion star rating + comment)
   'ins.rateCourseTitle': { en: 'Rate this course', ar: 'قيّم هذه الدورة' },
@@ -1790,7 +1816,11 @@ let progress = {
   examQuestionsAsked: {},
   examPassed: false,
   examScore: 0,
+  examDate: null,          // ISO date the exam was last passed, auto-captured — prefills the certificate's exam-date field
   certName: "",
+  certConfirmed: false,    // true once the student has confirmed their name/date on the certificate — locked from then on
+  certSerial: "",          // e.g. "IHA-2026-000001", assigned once at confirmation time
+  certIssueDate: null,     // ISO date the certificate was confirmed/issued
   paidUnlocked: false,     // demo paywall — true once "Unlock full access" is clicked
   paidUnlockedAt: null,    // timestamp of that unlock — membership runs 1 year from here
   feedbackGiven: false,    // true once the post-course star rating + comment has been submitted
@@ -2082,7 +2112,7 @@ document.getElementById("videoBackBtn").addEventListener("click", ()=>{ stopVide
 /* ============================================================
    PRACTICE VIEW
    ============================================================ */
-const PRACTICE_CASE_IDS = [1, 4];
+const PRACTICE_CASE_IDS = [1];
 
 function openPractice(){
   const practiceVideoEl = document.getElementById("practiceVideo");
@@ -2387,6 +2417,7 @@ function showExamResults(){
   const passed = correctCount > PASS_THRESHOLD;
   progress.examPassed = passed;
   progress.examScore = correctCount;
+  if(passed) progress.examDate = new Date().toISOString().slice(0,10);
   saveAllProgress();
 
   const verdictArea = document.getElementById("exVerdictArea");
@@ -2419,8 +2450,14 @@ document.getElementById("exRetryBtn").addEventListener("click", async ()=>{
 document.getElementById("goToCertBtn").addEventListener("click", ()=> openCertificate());
 
 /* ============================================================
-   CERTIFICATE VIEW
+   CERTIFICATE VIEW — three stages once the exam is passed: name +
+   exam-date entry, a confirm/review step, then the final certificate
+   with a locked-in serial number, signatures, and official seal.
+   Matches the client-approved certificate design.
    ============================================================ */
+const CERT_INSTRUCTOR_NAME = "Dr. Musab M. Ahmed";
+const CERT_CEO_NAME = "Dr. Musab M. Ahmed"; // same person as founder — confirmed spelling
+
 function openCertificate(){
   const content = document.getElementById("certContent");
   if(!progress.examPassed){
@@ -2432,48 +2469,189 @@ function openCertificate(){
         <button class="btn btn-primary" style="margin-top:18px;" id="certGoExamBtn">${T('ins.goToExam')}</button>
       </div>`;
     document.getElementById("certGoExamBtn").addEventListener("click", openExam);
-  } else {
-    content.innerHTML = `
-      <div class="name-input-row">
-        <label style="display:block; font-size:13px; color:var(--ink-dim); margin-bottom:8px;">${T('ins.enterFullName')}</label>
-        <input type="text" id="certNameInput" placeholder="${T('ins.namePlaceholder')}" value="${progress.certName || ""}">
-      </div>
-      <div style="text-align:center;"><button class="btn btn-primary" id="certGenerateBtn">${T('ins.generateCert')}</button></div>
-      <div id="certOutput" style="margin-top:26px;"></div>
-    `;
-    document.getElementById("certGenerateBtn").addEventListener("click", async ()=>{
-      const name = document.getElementById("certNameInput").value.trim() || "Candidate";
-      progress.certName = name;
-      await saveAllProgress();
-      renderCertificate(name);
-    });
-    if(progress.certName) renderCertificate(progress.certName);
+    renderFeedbackWidget();
+    showView("certificate");
+    return;
   }
+
+  content.innerHTML = `
+    <div id="certNameStage" class="stage">
+      <div class="eyebrow">${T('ins.certTrackEyebrow')}</div>
+      <h2>${T('ins.certReadyTitle')}</h2>
+      <p class="lead">${T('ins.certReadyLead')}</p>
+      <div class="name-field">
+        <input type="text" id="certNameInput" placeholder="${T('ins.namePlaceholder')}" autocomplete="off">
+      </div>
+      <div class="name-field date-field">
+        <label for="certExamDateInput">${T('ins.examDateLabel')}</label>
+        <input type="date" id="certExamDateInput">
+      </div>
+      <p class="warn-note"><b>${T('ins.certWarnNote')}</b></p>
+      <button class="btn btn-primary" id="certReviewBtn" style="margin-top:16px;">${T('ins.certReviewBtn')}</button>
+    </div>
+
+    <div id="certConfirmStage" class="stage hidden">
+      <div class="eyebrow">${T('ins.certFinalCheckEyebrow')}</div>
+      <h2>${T('ins.certConfirmTitle')}</h2>
+      <p class="lead">${T('ins.certConfirmLead')}</p>
+      <div class="confirm-preview">
+        <div class="mlabel">${T('ins.certNameOnCert')}</div>
+        <div class="cname" id="certConfirmNamePreview">—</div>
+        <div class="mlabel" style="margin-top:16px;">${T('ins.certExamDateLabel')}</div>
+        <div class="cdate" id="certConfirmDatePreview">—</div>
+      </div>
+      <div class="confirm-actions">
+        <button class="btn btn-ghost" id="certEditBackBtn">${T('ins.certEditBack')}</button>
+        <button class="btn btn-primary" id="certConfirmBtn">${T('ins.certConfirmBtn')}</button>
+      </div>
+    </div>
+
+    <div id="certFinalStage" class="hidden">
+      <div class="cert-toolbar"><button class="btn btn-primary" id="certPrintBtn">${T('ins.printSave')}</button></div>
+      <div class="cert-frame">
+        <div class="cert-corner cc-tl"></div><div class="cert-corner cc-tr"></div>
+        <div class="cert-corner cc-bl"></div><div class="cert-corner cc-br"></div>
+
+        <div class="cert-head">
+          <div class="cert-logo">
+            <svg viewBox="0 0 40 40" fill="none"><path d="M20 3 L35 9 V20 C35 29 29 35 20 37 C11 35 5 29 5 20 V9 Z" fill="#0E7C74"/><path d="M13 20 l5 5 l9 -11" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <b>iHealth Academy</b>
+          </div>
+          <div class="cert-eyebrow">${T('ins.certOfCompletion')}</div>
+          <div class="cert-title">${T('ins.certSpecialistTitle')}</div>
+        </div>
+
+        <div class="cert-body">
+          <div class="this-certifies">${T('ins.certThisCertifies')}</div>
+          <div class="cert-name" id="certFinalName">—</div>
+          <p class="cert-desc">${T('ins.certLine')}</p>
+
+          <div class="cert-meta-row">
+            <div><div class="mlabel">${T('ins.certExamDateMeta')}</div><div class="mvalue" id="certFinalExamDate">—</div></div>
+            <div><div class="mlabel">${T('ins.certIssueDateMeta')}</div><div class="mvalue" id="certFinalIssueDate">—</div></div>
+          </div>
+
+          <div class="cert-sign-row">
+            <div class="sign-block">
+              <div class="sign-name">${CERT_INSTRUCTOR_NAME}</div>
+              <div class="sign-line"><div class="sign-role">${T('ins.certInstructorRole')}</div><div class="sign-title">${T('ins.certInstructorTrack')}</div></div>
+            </div>
+            <div class="sign-block">
+              <div class="sign-name">${CERT_CEO_NAME}</div>
+              <div class="sign-line"><div class="sign-role">${T('ins.certCeoRole')}</div><div class="sign-title">${T('ins.certCeoOrg')}</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cert-seal"><img src="images/cert-seal.png" alt="iHealth Academy official seal"></div>
+
+        <div class="cert-footer">
+          <div class="verify-id">${T('ins.certVerifyId')} &nbsp; <b id="certFinalSerial">—</b></div>
+          <p class="cert-legal">${T('ins.certLegal')}</p>
+        </div>
+      </div>
+    </div>
+  `;
+
+  document.getElementById("certNameInput").value = progress.certName || "";
+  document.getElementById("certExamDateInput").value = progress.examDate || new Date().toISOString().slice(0,10);
+  document.getElementById("certExamDateInput").max = new Date().toISOString().slice(0,10);
+
+  document.getElementById("certReviewBtn").addEventListener("click", ()=>{
+    const name = document.getElementById("certNameInput").value.trim();
+    const examDate = document.getElementById("certExamDateInput").value;
+    if(!name){ alert(T('ins.certNameRequired')); return; }
+    if(!examDate){ alert(T('ins.certDateRequired')); return; }
+    document.getElementById("certConfirmNamePreview").textContent = name;
+    document.getElementById("certConfirmDatePreview").textContent = formatCertDate(examDate);
+    document.getElementById("certConfirmDatePreview").dataset.raw = examDate;
+    showCertStage("certConfirmStage");
+  });
+  document.getElementById("certEditBackBtn").addEventListener("click", ()=> showCertStage("certNameStage"));
+  document.getElementById("certConfirmBtn").addEventListener("click", async ()=>{
+    const name = document.getElementById("certConfirmNamePreview").textContent;
+    const examDate = document.getElementById("certConfirmDatePreview").dataset.raw;
+    progress.certName = name;
+    progress.examDate = examDate;
+    progress.certSerial = await nextCertSerial();
+    progress.certIssueDate = new Date().toISOString().slice(0,10);
+    progress.certConfirmed = true;
+    await saveAllProgress();
+    renderFinalCertificate();
+  });
+  document.getElementById("certPrintBtn").addEventListener("click", ()=> window.print());
+
+  if(progress.certConfirmed) renderFinalCertificate();
+  else showCertStage("certNameStage");
+
   renderFeedbackWidget();
   showView("certificate");
 }
 document.getElementById("certBackBtn").addEventListener("click", ()=>{ showView("landing"); renderLanding(); });
 
-function renderCertificate(name){
-  const out = document.getElementById("certOutput");
-  const dateStr = new Date().toLocaleDateString(undefined, {year:"numeric", month:"long", day:"numeric"});
-  out.innerHTML = `
-    <div class="cert-frame">
-      <svg class="cert-seal" viewBox="0 0 40 40" fill="none"><path d="M20 3 L35 9 V20 C35 29 29 35 20 37 C11 35 5 29 5 20 V9 Z" fill="#D4AF37"/><path d="M13 20 l5 5 l9 -11" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <div class="ceyebrow">${T('ins.certBrand')}</div>
-      <h2>${T('ins.certSpecialistTitle')}</h2>
-      <div class="cert-name">${name}</div>
-      <p class="cert-line">${T('ins.certLine')}</p>
-      <div class="cert-date">${T('ins.issued')} ${dateStr} · ${T('ins.scoreLabel')} ${progress.examScore} / ${CASES.length}</div>
-    </div>
-    <div class="cert-actions">
-      <button class="btn btn-primary" id="certPrintBtn">${T('ins.printSave')}</button>
-      <button class="btn btn-ghost" id="certEditBtn">${T('ins.editName')}</button>
-    </div>
-  `;
-  document.getElementById("certPrintBtn").addEventListener("click", ()=> window.print());
-  document.getElementById("certEditBtn").addEventListener("click", ()=>{ out.innerHTML = ""; });
+function showCertStage(id){
+  ["certNameStage","certConfirmStage","certFinalStage"].forEach(s=>{
+    const el = document.getElementById(s);
+    if(el) el.classList.toggle("hidden", s!==id);
+  });
+  requestAnimationFrame(fitCertName);
 }
+
+function renderFinalCertificate(){
+  document.getElementById("certFinalName").textContent = progress.certName;
+  document.getElementById("certFinalExamDate").textContent = formatCertDate(progress.examDate);
+  document.getElementById("certFinalIssueDate").textContent = formatCertDate(progress.certIssueDate);
+  document.getElementById("certFinalSerial").textContent = progress.certSerial;
+  showCertStage("certFinalStage");
+}
+
+function formatCertDate(iso){
+  if(!iso) return "—";
+  return new Date(iso + "T00:00:00").toLocaleDateString(undefined, {year:"numeric", month:"long", day:"numeric"});
+}
+
+/* This app has no backend (see storage shim above), so — unlike a real
+   verification system — this counter cannot guarantee a serial that's
+   unique across every student's device; it only avoids collisions within
+   this one browser's own certificates. A genuine verification system needs
+   a real backend generating this serial with an atomic increment. */
+async function nextCertSerial(){
+  const key = "ih-cert-serial-counter";
+  let n = 0;
+  try{
+    const r = await storage.get(key);
+    n = r && r.value ? (JSON.parse(r.value).n || 0) : 0;
+  }catch(e){ n = 0; }
+  n += 1;
+  await storage.set(key, JSON.stringify({n}));
+  return "IHA-" + new Date().getFullYear() + "-" + String(n).padStart(6,"0");
+}
+
+/* Measures the actual rendered width of the name and scales the font down
+   only as much as needed to keep it on one line, for a two- or three-word
+   name without guessing at a fixed size. */
+function autoFitCertNameEl(el, maxSize, minSize){
+  if(!el || !el.parentElement) return;
+  const container = el.parentElement;
+  el.style.whiteSpace = "nowrap";
+  el.style.fontSize = maxSize + "px";
+  const available = container.clientWidth * 0.92;
+  const natural = el.scrollWidth;
+  if(natural > available){
+    let size = Math.max(minSize, Math.floor(maxSize * (available / natural)));
+    el.style.fontSize = size + "px";
+    if(el.scrollWidth > available && size > minSize){
+      el.style.fontSize = Math.max(minSize, size - 2) + "px";
+    }
+  }
+}
+function fitCertName(){
+  const confirmEl = document.getElementById("certConfirmNamePreview");
+  if(confirmEl && confirmEl.textContent !== "—" && confirmEl.offsetParent) autoFitCertNameEl(confirmEl, 44, 22);
+  const finalEl = document.getElementById("certFinalName");
+  if(finalEl && finalEl.textContent !== "—" && finalEl.offsetParent) autoFitCertNameEl(finalEl, 56, 26);
+}
+window.addEventListener("resize", fitCertName);
 
 /* ============================================================
    COURSE FEEDBACK — star rating + comment, shown once the exam is
@@ -2593,8 +2771,7 @@ document.addEventListener('ih:langchange', ()=>{
   } else if(view === "examresults"){
     showExamResults();
   } else if(view === "certificate"){
-    if(progress.certName) renderCertificate(progress.certName);
-    renderFeedbackWidget();
+    openCertificate();
   }
 });
 
