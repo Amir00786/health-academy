@@ -10,7 +10,7 @@ window.I18N_PAGE_DICT = {
       'fyp.stage2Title': { en: 'After Medical School', ar: 'بعد كلية الطب' },
       'fyp.stage2Desc': { en: "Intern or final-year student ranking residency programs — which specialty you'll spend the next thirty years inside.", ar: 'متدرب أو طالب في السنة الأخيرة يرتب برامج الإقامة — أي تخصص سيقضي فيه الثلاثين سنة القادمة.' },
       'fyp.stage2Meta': { en: '28 questions <i class="fi fi-sr-arrow-small-right"></i> top 10 specialties <i class="fi fi-sr-arrow-small-right"></i>', ar: '28 سؤالًا <i class="fi fi-sr-arrow-small-right"></i> أفضل 10 تخصصات <i class="fi fi-sr-arrow-small-right"></i>' },
-      'fyp.back': { en: '← Back', ar: '→ رجوع' },
+      'fyp.back': { en: '← Back', ar: '<i class="fi fi-rr-arrow-small-right"></i> رجوع' },
       'fyp.skip': { en: 'Skip question', ar: 'تخطي السؤال' },
     };
 
@@ -208,7 +208,7 @@ window.I18N_PAGE_DICT = {
         { name: 'Dentistry', field: 'Oral Health', path: '4 yrs undergrad + 4 yrs dental school', v: [.80, .85, .55, .70, .80, .50, .50], note: 'Shorter, more predictable training than medicine, strong controllable earning potential, and a heavy hands-on core.' },
         { name: 'Pharmacy', field: 'Pharmaceutical Care', path: '4 yrs undergrad + 4 yrs PharmD', v: [.85, .35, .45, .55, .55, .55, .60], note: 'Deep pharmacology expertise with far more predictable hours than clinical medicine.' },
         { name: 'Physician Assistant / Clinical Associate', field: 'Medicine (Advanced Practice)', path: 'Undergrad + ~2-3 yr PA program', v: [.75, .60, .80, .65, .55, .65, .60], note: 'Broad clinical practice and direct patient care in roughly a third of the training time of becoming a physician.' },
-        { name: 'Nursing (BSN → Nurse Practitioner)', field: 'Nursing', path: '3-4 yrs BSN, +2 yrs for NP', v: [.60, .55, .90, .65, .40, .80, .50], note: 'The fastest route into sustained direct patient care, with a clear path to prescribing authority via NP training.' },
+        { name: 'Nursing (BSN <i class="fi fi-rr-arrow-small-right"></i> Nurse Practitioner)', field: 'Nursing', path: '3-4 yrs BSN, +2 yrs for NP', v: [.60, .55, .90, .65, .40, .80, .50], note: 'The fastest route into sustained direct patient care, with a clear path to prescribing authority via NP training.' },
         { name: 'Biomedical Engineering / MedTech', field: 'Engineering', path: '4-5 yrs undergrad, often +grad', v: [.90, .60, .25, .50, .70, .55, .95], note: 'For people who want to build the devices and diagnostics doctors use, rather than use them directly on patients.' },
         { name: 'Public Health / Epidemiology', field: 'Population Health', path: '3-4 yrs undergrad, often +MPH', v: [.65, .20, .45, .50, .35, .85, .65], note: 'Population-scale impact through policy, outbreak response, and health systems, without direct one-on-one clinical practice.' },
         { name: 'Physical Therapy', field: 'Rehabilitation', path: 'Undergrad + Doctor of Physical Therapy', v: [.60, .80, .80, .55, .45, .65, .40], note: 'Hands-on rehabilitation with long-term patient relationships and a shorter path than medicine.' },

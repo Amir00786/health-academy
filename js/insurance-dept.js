@@ -26,19 +26,22 @@ window.I18N_PAGE_DICT = {
   'ins.backToQueue': { en: '← Back to queue', ar: '← العودة إلى القائمة' },
   'ins.paywallTitle': { en: 'Your free preview has ended', ar: 'انتهت معاينتك المجانية' },
   'ins.paywallDesc': { en: "You've watched the first 5 minutes free. Unlock the rest of this video — and the full Pre-Authorization Specialist track — to continue.", ar: 'لقد شاهدت أول 5 دقائق مجانًا. لإكمال هذا الفيديو — ومسار أخصائي التصريح المسبق الكامل — يرجى إلغاء القفل.' },
-  'ins.unlockBtn': { en: 'Unlock full access →', ar: 'فتح الوصول الكامل ←' },
-  'ins.paywallNote': { en: 'Demo only — no real payment is processed here.', ar: 'هذا للعرض التجريبي فقط — لا تتم معالجة أي دفعة حقيقية هنا.' },
-  'ins.watchedBtn': { en: "I've finished watching this video →", ar: 'لقد أنهيت مشاهدة هذا الفيديو ←' },
+  'ins.paywallExpiredTitle': { en: 'Your one-year access has expired', ar: 'انتهت صلاحية وصولك لمدة عام' },
+  'ins.paywallExpiredDesc': { en: 'Your Pre-Authorization Specialist membership was valid for one year from your purchase date and has now expired. Renew to keep watching.', ar: 'كانت عضويتك في مسار أخصائي التصريح المسبق سارية لمدة عام واحد من تاريخ الشراء وقد انتهت الآن. جدد اشتراكك لمتابعة المشاهدة.' },
+  'ins.unlockBtn': { en: 'Unlock full access <i class="fi fi-rr-arrow-small-right"></i>', ar: 'فتح الوصول الكامل ←' },
+  'ins.renewBtn': { en: 'Renew membership <i class="fi fi-rr-arrow-small-right"></i>', ar: 'تجديد العضوية ←' },
+  'ins.paywallNote': { en: 'Demo only — no real payment is processed here. Unlocks full access for one year from today.', ar: 'هذا للعرض التجريبي فقط — لا تتم معالجة أي دفعة حقيقية هنا. يفتح الوصول الكامل لمدة عام واحد من اليوم.' },
+  'ins.watchedBtn': { en: 'I\'ve finished watching this video <i class="fi fi-rr-arrow-small-right"></i>', ar: 'لقد أنهيت مشاهدة هذا الفيديو ←' },
   'ins.videoMissingNote': { en: 'No video file uploaded yet for this session — link it in the VIDEO_SESSIONS config to make it real.', ar: 'لم يتم رفع ملف الفيديو لهذه الجلسة بعد — يرجى ربطه في إعدادات VIDEO_SESSIONS لتفعيله.' },
   'ins.postVideoQuiz': { en: 'Post-video quiz', ar: 'اختبار ما بعد الفيديو' },
   'ins.quizCompleteMsg': { en: '✓ Quiz complete — this session is marked done.', ar: '✓ اكتمل الاختبار — تم وضع علامة إنجاز لهذه الجلسة.' },
-  'ins.continueBtn': { en: 'Continue →', ar: 'التالي ←' },
+  'ins.continueBtn': { en: 'Continue <i class="fi fi-rr-arrow-small-right"></i>', ar: 'التالي ←' },
 
   // Practice view
   'ins.step08': { en: 'STEP 08', ar: 'الخطوة 08' },
   'ins.letsPractice': { en: "Let's Practice", ar: 'لنبدأ التطبيق' },
   'ins.practiceNote': { en: 'Two sample cases, ungraded — just to get comfortable with the format before the real exam. Nothing here affects your certificate.', ar: 'حالتان تجريبيتان غير مُقيَّمتين — فقط للتعرّف على شكل الاختبار قبل الامتحان الحقيقي. لا شيء هنا يؤثر على شهادتك.' },
-  'ins.readyForExamBtn': { en: "I'm ready — go to the exam →", ar: 'أنا جاهز — الذهاب إلى الامتحان ←' },
+  'ins.readyForExamBtn': { en: 'I\'m ready — go to the exam <i class="fi fi-rr-arrow-small-right"></i>', ar: 'أنا جاهز — الذهاب إلى الامتحان ←' },
   'ins.practiceCasePrefix': { en: 'Practice Case', ar: 'حالة تدريبية' },
   'ins.patientLabel': { en: 'Patient', ar: 'المريض' },
   'ins.newborn': { en: 'newborn', ar: 'حديث الولادة' },
@@ -50,7 +53,7 @@ window.I18N_PAGE_DICT = {
   'ins.legendFast': { en: '&lt; 30 min', ar: 'أقل من 30 دقيقة' },
   'ins.legendMed': { en: '30–90 min', ar: '30–90 دقيقة' },
   'ins.legendSlow': { en: '&gt; 90 min', ar: 'أكثر من 90 دقيقة' },
-  'ins.seeMyResults': { en: 'See my results →', ar: 'عرض نتيجتي ←' },
+  'ins.seeMyResults': { en: 'See my results <i class="fi fi-rr-arrow-small-right"></i>', ar: 'عرض نتيجتي ←' },
   'ins.casesDecidedSuffix': { en: 'cases decided', ar: 'حالة تم تحديد قرارها' },
   'ins.notPartOfExam': { en: 'Not part of this exam', ar: 'ليست جزءًا من هذا الامتحان' },
   'ins.decided': { en: '✓ Decided:', ar: '✓ تم اتخاذ القرار:' },
@@ -95,7 +98,7 @@ window.I18N_PAGE_DICT = {
   // Exam results
   'ins.caseByCaseReview': { en: 'Case-by-case review', ar: 'مراجعة كل حالة على حدة' },
   'ins.retryExam': { en: 'Retry the exam', ar: 'إعادة الامتحان' },
-  'ins.getYourCertificate': { en: 'Get your certificate →', ar: 'الحصول على شهادتك ←' },
+  'ins.getYourCertificate': { en: 'Get your certificate <i class="fi fi-rr-arrow-small-right"></i>', ar: 'الحصول على شهادتك ←' },
   'ins.yourDenialCode': { en: 'Your denial code:', ar: 'رمز الرفض الذي اخترته:' },
   'ins.correctCode': { en: 'Correct code:', ar: 'الرمز الصحيح:' },
   'ins.reviewCorrect': { en: '✓ Correct', ar: '✓ صحيح' },
@@ -115,10 +118,10 @@ window.I18N_PAGE_DICT = {
   // Certificate
   'ins.certNotUnlocked': { en: 'Not unlocked yet', ar: 'لم تُفتح بعد' },
   'ins.certLockedDesc': { en: 'Pass the final exam (more than 7 out of 15) to unlock your certificate.', ar: 'انجح في الامتحان النهائي (أكثر من 7 من 15) لفتح شهادتك.' },
-  'ins.goToExam': { en: 'Go to the exam →', ar: 'الذهاب إلى الامتحان ←' },
+  'ins.goToExam': { en: 'Go to the exam <i class="fi fi-rr-arrow-small-right"></i>', ar: 'الذهاب إلى الامتحان ←' },
   'ins.enterFullName': { en: 'Enter your full name for the certificate', ar: 'أدخل اسمك الكامل للشهادة' },
   'ins.namePlaceholder': { en: 'e.g. Sara Al-Mutairi', ar: 'مثال: سارة المطيري' },
-  'ins.generateCert': { en: 'Generate my certificate →', ar: 'إنشاء شهادتي ←' },
+  'ins.generateCert': { en: 'Generate my certificate <i class="fi fi-rr-arrow-small-right"></i>', ar: 'إنشاء شهادتي ←' },
   'ins.certBrand': { en: 'iHealth Academy · Certificate of Completion', ar: 'أكاديمية آي هيلث · شهادة إتمام' },
   'ins.certSpecialistTitle': { en: 'Pre-Authorization Specialist', ar: 'أخصائي التصريح المسبق' },
   'ins.certLine': { en: 'has successfully completed the full Pre-Authorization Specialist track — seven core modules, applied practice, and a 15-case practical exam — and is certified <b>ready for work</b> in medical pre-authorization.', ar: 'أكمل بنجاح مسار أخصائي التصريح المسبق الكامل — سبع وحدات أساسية، تطبيق عملي، وامتحان عملي من 15 حالة — وهو معتمد <b>جاهز للعمل</b> في مجال التصريح المسبق الطبي.' },
@@ -1779,8 +1782,18 @@ let progress = {
   examPassed: false,
   examScore: 0,
   certName: "",
-  paidUnlocked: false      // demo paywall — true once "Unlock full access" is clicked
+  paidUnlocked: false,     // demo paywall — true once "Unlock full access" is clicked
+  paidUnlockedAt: null     // timestamp of that unlock — membership runs 1 year from here
 };
+
+const MEMBERSHIP_DURATION_MS = 365 * 24 * 60 * 60 * 1000; // one year from the joining/purchase date
+
+// Membership is only active if it was unlocked AND is still within its one-year window.
+// paidUnlocked/paidUnlockedAt are left untouched on expiry so we can tell "expired" from
+// "never purchased" and show the right paywall copy.
+function isMembershipActive(){
+  return !!(progress.paidUnlocked && progress.paidUnlockedAt && (Date.now() - progress.paidUnlockedAt) < MEMBERSHIP_DURATION_MS);
+}
 
 // window.storage is a sandbox-only API from the original mockup — replaced
 // with a small localStorage shim so progress still persists on a static site.
@@ -1927,11 +1940,12 @@ function openVideoSession(id){
     missingNote.classList.add("hidden");
 
     const freeLimit = currentVideoSession.freePreviewSeconds;
-    if(freeLimit && !progress.paidUnlocked){
+    if(freeLimit && !isMembershipActive()){
       realVideoEl.ontimeupdate = ()=>{
         if(realVideoEl.currentTime >= freeLimit){
           realVideoEl.pause();
           realVideoEl.currentTime = freeLimit;
+          renderPaywall();
           paywall.classList.remove("hidden");
         }
       };
@@ -1957,13 +1971,28 @@ function openVideoSession(id){
   showView("video");
 }
 
+// Swaps the paywall copy between "first purchase" and "renew — your prior year
+// expired" depending on whether this browser has unlocked membership before.
+function renderPaywall(){
+  const expired = !!progress.paidUnlockedAt;
+  document.getElementById("paywallTitle").textContent = T(expired ? 'ins.paywallExpiredTitle' : 'ins.paywallTitle');
+  document.getElementById("paywallDesc").textContent = T(expired ? 'ins.paywallExpiredDesc' : 'ins.paywallDesc');
+  document.getElementById("unlockVideoBtn").textContent = T(expired ? 'ins.renewBtn' : 'ins.unlockBtn');
+}
+
 document.getElementById("unlockVideoBtn").addEventListener("click", async ()=>{
   progress.paidUnlocked = true;
+  progress.paidUnlockedAt = Date.now();
   await saveAllProgress();
   document.getElementById("paywallOverlay").classList.add("hidden");
   const realVideoEl = document.getElementById("realVideo");
   realVideoEl.ontimeupdate = null;
   realVideoEl.play();
+});
+
+document.addEventListener('ih:langchange', ()=>{
+  const paywall = document.getElementById("paywallOverlay");
+  if(paywall && !paywall.classList.contains("hidden")) renderPaywall();
 });
 
 document.getElementById("watchedBtn").addEventListener("click", ()=>{

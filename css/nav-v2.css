@@ -3,6 +3,11 @@
    Variables are scoped to #topbar/#mainnav only, so they don't
    collide with each page's own design tokens of the same name.
    ============================================================ */
+.fi-rr-arrow-small-right {
+  display: flex;
+  font-size: 18px;
+}
+
 #topbar,
 #mainnav {
   --bg: #F6F9F8;

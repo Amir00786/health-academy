@@ -1262,7 +1262,7 @@ function renderExamDashboard(){
   if(Object.keys(progress.examDecisions).length === CASES.length){
     const banner = document.createElement("div");
     banner.style.cssText = "grid-column:1/-1; text-align:center; margin-top:8px;";
-    banner.innerHTML = `<button class="btn btn-primary" id="exFinishBtn">See my results →</button>`;
+    banner.innerHTML = `<button class="btn btn-primary" id="exFinishBtn">See my results <i class="fi fi-rr-arrow-small-right"></i></button>`;
     grid.appendChild(banner);
     document.getElementById("exFinishBtn").addEventListener("click", showExamResults);
   }
@@ -1473,7 +1473,7 @@ function openCertificate(){
         <div style="font-size:40px;">🔒</div>
         <h3 style="margin-top:10px;">Not unlocked yet</h3>
         <p style="color:var(--ink-dim); max-width:44ch; margin:8px auto 0;">Pass the final exam (more than 7 out of 15) to unlock your certificate.</p>
-        <button class="btn btn-primary" style="margin-top:18px;" id="certGoExamBtn">Go to the exam →</button>
+        <button class="btn btn-primary" style="margin-top:18px;" id="certGoExamBtn">Go to the exam <i class="fi fi-rr-arrow-small-right"></i></button>
       </div>`;
     document.getElementById("certGoExamBtn").addEventListener("click", openExam);
   } else {
@@ -1482,7 +1482,7 @@ function openCertificate(){
         <label style="display:block; font-size:13px; color:var(--ink-dim); margin-bottom:8px;">Enter your full name for the certificate</label>
         <input type="text" id="certNameInput" placeholder="e.g. Sara Al-Mutairi" value="${progress.certName || ""}">
       </div>
-      <div style="text-align:center;"><button class="btn btn-primary" id="certGenerateBtn">Generate my certificate →</button></div>
+      <div style="text-align:center;"><button class="btn btn-primary" id="certGenerateBtn">Generate my certificate <i class="fi fi-rr-arrow-small-right"></i></button></div>
       <div id="certOutput" style="margin-top:26px;"></div>
     `;
     document.getElementById("certGenerateBtn").addEventListener("click", async ()=>{

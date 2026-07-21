@@ -67,9 +67,9 @@ html.is-loading body {
   --navy:#0D2440; --teal:#0E7C74; --teal-dark:#0A5F5B;
   --gold:#C9A227; --gold-light:#E7C766; --gold-tint:#FBF3DC;
   --parchment:#FCFAF3; --border:#E3DEC9;
-  --heading:"Fraunces", serif; --display:"Playfair Display", serif; --sans:"Inter", sans-serif; --mono:"IBM Plex Mono", monospace; --script:"Petit Formal Script", cursive;
+  --heading:"Fraunces", serif; --display:"Playfair Display", serif; --sans:"Roboto", sans-serif; --mono:"IBM Plex Mono", monospace; --script:"Petit Formal Script", cursive;
 }
-body{ background:#F3F7F6; }
+body{ margin:0; padding:0; background:#F3F7F6; }
 .hidden{ display:none !important; }
 
 /* ---------- sub topbar under the site nav ---------- */

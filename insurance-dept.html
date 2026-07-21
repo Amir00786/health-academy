@@ -15,6 +15,8 @@
   <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css"
     rel="stylesheet" />
   <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-thin-rounded/css/uicons-thin-rounded.css" rel="stylesheet" />
+  <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css"
+    rel="stylesheet" />
   <link href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css" rel="stylesheet" />
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <link href="css/insurance-dept.css" rel="stylesheet" />
@@ -316,16 +318,16 @@
             <div class="paywall-overlay hidden" id="paywallOverlay">
               <div class="paywall-card">
                 <div class="paywall-icon">🔒</div>
-                <h3 data-i18n="ins.paywallTitle">Your free preview has ended</h3>
-                <p data-i18n="ins.paywallDesc">You've watched the first 5 minutes free. Unlock the rest of this video — and the full
+                <h3 id="paywallTitle" data-i18n="ins.paywallTitle">Your free preview has ended</h3>
+                <p id="paywallDesc" data-i18n="ins.paywallDesc">You've watched the first 5 minutes free. Unlock the rest of this video — and the full
                   Pre-Authorization Specialist track — to continue.</p>
-                <button class="btn btn-primary" id="unlockVideoBtn" data-i18n="ins.unlockBtn">Unlock full access →</button>
+                <button class="btn btn-primary" id="unlockVideoBtn" data-i18n="ins.unlockBtn">Unlock full access <i class="fi fi-rr-arrow-small-right"></i></button>
                 <p class="paywall-note" data-i18n="ins.paywallNote">Demo only — no real payment is processed here.</p>
               </div>
             </div>
           </div>
           <div class="video-actions" id="videoActionsRow">
-            <button class="btn btn-primary" id="watchedBtn" data-i18n="ins.watchedBtn">I've finished watching this video →</button>
+            <button class="btn btn-primary" id="watchedBtn" data-i18n="ins.watchedBtn">I've finished watching this video <i class="fi fi-rr-arrow-small-right"></i></button>
             <p class="video-missing-note hidden" id="videoMissingNote" data-i18n="ins.videoMissingNote">No video file uploaded yet for this session —
               link it in the VIDEO_SESSIONS config to make it real.</p>
           </div>
@@ -334,7 +336,7 @@
             <div id="quizQuestions"></div>
             <div class="quiz-complete-banner hidden" id="quizCompleteBanner">
               <p data-i18n="ins.quizCompleteMsg">✓ Quiz complete — this session is marked done.</p>
-              <button class="btn btn-primary" id="quizContinueBtn" data-i18n="ins.continueBtn">Continue →</button>
+              <button class="btn btn-primary" id="quizContinueBtn" data-i18n="ins.continueBtn">Continue <i class="fi fi-rr-arrow-small-right"></i></button>
             </div>
           </div>
         </div>
@@ -355,7 +357,7 @@
             real exam. Nothing here affects your certificate.</div>
           <div id="practiceCases"></div>
           <div style="text-align:center; margin-top:20px;">
-            <button class="btn btn-primary hidden" id="practiceDoneBtn" data-i18n="ins.readyForExamBtn">I'm ready — go to the exam →</button>
+            <button class="btn btn-primary hidden" id="practiceDoneBtn" data-i18n="ins.readyForExamBtn">I'm ready — go to the exam <i class="fi fi-rr-arrow-small-right"></i></button>
           </div>
         </div>
       </main>
@@ -450,7 +452,7 @@
           <div id="exReviewList"></div>
           <div style="text-align:center; margin-top:24px; display:flex; gap:12px; justify-content:center;">
             <button class="btn btn-ghost" id="exRetryBtn" data-i18n="ins.retryExam">Retry the exam</button>
-            <button class="btn btn-primary hidden" id="goToCertBtn" data-i18n="ins.getYourCertificate">Get your certificate →</button>
+            <button class="btn btn-primary hidden" id="goToCertBtn" data-i18n="ins.getYourCertificate">Get your certificate <i class="fi fi-rr-arrow-small-right"></i></button>
           </div>
         </div>
       </main>

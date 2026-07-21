@@ -22,7 +22,7 @@
     --border: #DEE7E5;
     --radius: 14px;
     --heading: "Plus Jakarta Sans", sans-serif;
-    --sans: "Inter", sans-serif;
+    --sans: "Roboto", sans-serif;
     --mono: "IBM Plex Mono", monospace;
     background: var(--bg);
     color: var(--ink);

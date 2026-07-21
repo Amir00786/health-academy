@@ -1,5 +1,5 @@
 window.I18N_PAGE_DICT = {
-  'as.back': { en: '← Back to Radiology', ar: '→ العودة إلى الأشعة' },
+  'as.back': { en: '← Back to Radiology', ar: '<i class="fi fi-rr-arrow-small-right"></i> العودة إلى الأشعة' },
   'as.tag': { en: 'Radiology · Anatomy Spotting', ar: 'الأشعة · تحديد التشريح' },
   'as.h1': { en: 'Label it. Time it. Level up.', ar: 'حدّده. وقّته. ارتقِ بمستواك.' },
   'as.desc': { en: 'Pick a system, start a mock test, and label highlighted structures against a 90-minute countdown — exactly like exam day. Every correct label counts toward your all-time total: 50 correct earns Hero, 100 earns Master, 150 earns Legendary.', ar: 'اختر جهازًا، ابدأ اختبارًا تجريبيًا، وحدّد التراكيب المُبرزة ضمن عد تنازلي مدته 90 دقيقة — تمامًا كيوم الامتحان. كل تسمية صحيحة تُحتسب ضمن رصيدك الكلي: 50 صحيحة تمنحك لقب بطل، 100 تمنحك خبير، و150 تمنحك أسطوري.' },

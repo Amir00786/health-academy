@@ -11,12 +11,12 @@
     discussions: { en: '0 Discussions', ar: '0 مناقشات' },
     expandLabel: { en: 'Toggle fullscreen', ar: 'تبديل ملء الشاشة' },
     closeLabel: { en: 'Close', ar: 'إغلاق' },
-    completeContinue: { en: 'Complete & Continue →', ar: '← إتمام والمتابعة' },
+    completeContinue: { en: 'Complete & Continue <i class="fi fi-rr-arrow-small-right"></i>', ar: '← إتمام والمتابعة' },
     quickCheck: { en: 'Quick check', ar: 'تحقق سريع' },
     answerToComplete: { en: 'Answer to complete this lesson', ar: 'أجب لإكمال هذا الدرس' },
     submitAnswers: { en: 'Submit answers', ar: 'إرسال الإجابات' },
     tryAgain: { en: 'Try again', ar: 'حاول مرة أخرى' },
-    continueBtn: { en: 'Continue →', ar: '← متابعة' },
+    continueBtn: { en: 'Continue <i class="fi fi-rr-arrow-small-right"></i>', ar: '← متابعة' },
   };
   function t(key) {
     return STRINGS[key][lang()] || STRINGS[key].en;
@@ -41,7 +41,7 @@
         <video class="lv-video" id="lvVideo" controls></video>
         <div class="lv-video lv-hidden" id="lvYoutube"></div>
         <div class="lv-footer">
-          <button type="button" class="lv-btn lv-btn-primary" id="lvToQuiz" disabled>Complete & Continue →</button>
+          <button type="button" class="lv-btn lv-btn-primary" id="lvToQuiz" disabled>Complete & Continue <i class="fi fi-rr-arrow-small-right"></i></button>
         </div>
       </div>
       <div class="lv-step lv-hidden" id="lvStepQuiz">
@@ -52,7 +52,7 @@
           <div class="lv-quiz-result hidden" id="lvResult"></div>
           <button type="button" class="lv-btn lv-btn-primary" id="lvSubmit">Submit answers</button>
           <button type="button" class="lv-btn lv-btn-ghost lv-hidden" id="lvRetry">Try again</button>
-          <button type="button" class="lv-btn lv-btn-primary lv-hidden" id="lvContinue">Continue →</button>
+          <button type="button" class="lv-btn lv-btn-primary lv-hidden" id="lvContinue">Continue <i class="fi fi-rr-arrow-small-right"></i></button>
         </div>
       </div>
     </div>
@@ -63,12 +63,12 @@
     overlay.querySelector('#lvDiscussions').textContent = t('discussions');
     overlay.querySelector('#lvExpand').setAttribute('aria-label', t('expandLabel'));
     overlay.querySelector('.lv-close').setAttribute('aria-label', t('closeLabel'));
-    overlay.querySelector('#lvToQuiz').textContent = t('completeContinue');
+    overlay.querySelector('#lvToQuiz').innerHTML = t('completeContinue');
     overlay.querySelector('#lvEyebrow').textContent = t('quickCheck');
     overlay.querySelector('#lvQuizTitle').textContent = t('answerToComplete');
     overlay.querySelector('#lvSubmit').textContent = t('submitAnswers');
     overlay.querySelector('#lvRetry').textContent = t('tryAgain');
-    overlay.querySelector('#lvContinue').textContent = t('continueBtn');
+    overlay.querySelector('#lvContinue').innerHTML = t('continueBtn');
   }
   applyStaticStrings();
   document.addEventListener('ih:langchange', applyStaticStrings);

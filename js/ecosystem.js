@@ -2,7 +2,7 @@ window.I18N_PAGE_DICT = {
       'eco.hint': { en: 'Click any planet to explore · Scroll to zoom', ar: 'انقر على أي كوكب للاستكشاف · مرر للتكبير' },
       'eco.comingSoon': { en: 'Coming soon', ar: 'قريبًا' },
       'eco.exploreInside': { en: 'Explore inside', ar: 'استكشف بالداخل' },
-      'eco.openSection': { en: 'Open full section →', ar: 'افتح القسم كاملاً ←' },
+      'eco.openSection': { en: 'Open full section <i class="fi fi-rr-arrow-small-right"></i>', ar: 'افتح القسم كاملاً ←' },
     };
 
 const C=document.getElementById('solarCanvas');
@@ -151,7 +151,7 @@ const planets=[
     tag:'The care cycle',
     tagAr:'دورة الرعاية',
     comingSoon:true,
-    desc:'Every entity connects in one continuous loop: patient arrives → pre-auth submitted → insurer reviews → imaging performed → report written → claim submitted → payment made. Understanding the full loop makes you exceptional at every step.',
+    desc:'Every entity connects in one continuous loop: patient arrives <i class="fi fi-rr-arrow-small-right"></i> pre-auth submitted <i class="fi fi-rr-arrow-small-right"></i> insurer reviews <i class="fi fi-rr-arrow-small-right"></i> imaging performed <i class="fi fi-rr-arrow-small-right"></i> report written <i class="fi fi-rr-arrow-small-right"></i> claim submitted <i class="fi fi-rr-arrow-small-right"></i> payment made. Understanding the full loop makes you exceptional at every step.',
     descAr:'تتصل كل الجهات في حلقة واحدة متواصلة: يصل المريض ← يُقدَّم طلب التصريح المسبق ← تراجعه شركة التأمين ← يُجرى التصوير ← يُكتب التقرير ← تُقدَّم المطالبة ← تتم عملية الدفع. فهم هذه الحلقة كاملة يجعلك متميزًا في كل خطوة.',
     subs:[
       {ico:'🚶',title:'Patient journey',desc:'The full path from symptom to result'},
@@ -431,7 +431,7 @@ function openPanel(p){
   tag.style.border='1px solid '+p.color+'44';
   document.getElementById('p-soon').classList.toggle('show', !!p.comingSoon);
   document.getElementById('p-title').textContent=dispName;
-  document.getElementById('p-desc').textContent=dispDesc;
+  document.getElementById('p-desc').innerHTML=dispDesc;
   document.getElementById('p-subs').innerHTML=dispSubs.map(s=>`
     <div class="sub-item">
       <span class="sub-item-ico">${s.ico}</span>
@@ -442,7 +442,7 @@ function openPanel(p){
     </div>
   `).join('');
   const btn=document.getElementById('p-btn');
-  btn.textContent=isAr?('استكشف '+dispName+' ←'):('Explore '+dispName+' →');
+  btn.innerHTML=isAr?('استكشف '+dispName+' ←'):('Explore '+dispName+' <i class="fi fi-rr-arrow-small-right"></i>');
   btn.style.background=p.color;
   btn.style.color=p.id==='provider'?'#060608':'#060608';
   document.getElementById('panel').classList.add('open');

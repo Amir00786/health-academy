@@ -6,7 +6,7 @@
     --live:#1F9D55; --live-tint:#E7F7EC;
     --danger:#C0392B; --danger-tint:#FDEAEA;
     --border:#DEE7E5;
-    --radius:14px; --heading:"Plus Jakarta Sans", sans-serif; --sans:"Inter", sans-serif; --mono:"IBM Plex Mono", monospace;
+    --radius:14px; --heading:"Plus Jakarta Sans", sans-serif; --sans:"Roboto", sans-serif; --mono:"IBM Plex Mono", monospace;
   }
   *{ box-sizing:border-box; }
   html{ scroll-behavior:smooth; }

@@ -327,11 +327,12 @@ html.is-loading body {
 }
 
 .dash-stat-link {
-  display: block;
+  display: inline-flex;
   margin-top: 0.75rem;
   font-size: 0.78rem;
   font-weight: 700;
   color: #0E5D4F;
+  gap: 5px;
   text-decoration: none;
 }
 

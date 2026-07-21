@@ -5,7 +5,7 @@ window.I18N_PAGE_DICT = {
   'admin.unlock': { en: 'Unlock', ar: 'فتح' },
   'admin.lockNote': { en: 'This is a basic client-side passcode, not real authentication — anyone who inspects the page source can bypass it. Add a real server-side login before relying on this to keep the console private.', ar: 'هذا مجرد رمز مرور أساسي من جهة العميل، وليس مصادقة حقيقية — يمكن لأي شخص يفحص كود الصفحة تجاوزه. أضف نظام تسجيل دخول حقيقي من جهة الخادم قبل الاعتماد على هذا للحفاظ على خصوصية الوحدة.' },
   'admin.roleCeo': { en: 'CEO', ar: 'الرئيس التنفيذي' },
-  'admin.exitLink': { en: '← Exit to public site', ar: '→ الخروج إلى الموقع العام' },
+  'admin.exitLink': { en: '← Exit to public site', ar: '<i class="fi fi-rr-arrow-small-right"></i> الخروج إلى الموقع العام' },
   'admin.demoBannerStrong': { en: 'Demo data.', ar: 'بيانات تجريبية.' },
   'admin.demoBannerText': { en: "This console isn't connected to a real analytics or payments backend yet, so visitor counts, sign-ups, revenue, and traffic sources below show as empty until that's wired up. The Trust & Safety and Mentor review sections below use sample entries to demonstrate the workflow — but the Review / Approve / Reject / Suspend buttons are fully functional and their state is saved in this browser.", ar: 'هذه الوحدة غير متصلة بعد بأي نظام تحليلات أو مدفوعات حقيقي، لذا تظهر أعداد الزوار والتسجيلات والإيرادات ومصادر الزيارات أدناه فارغة حتى يتم ربطها. تستخدم أقسام السلامة والثقة ومراجعة الموجهين أدناه بيانات نموذجية لتوضيح آلية العمل — لكن أزرار مراجعة / موافقة / رفض / تعليق تعمل بشكل كامل وتُحفظ حالتها في هذا المتصفح.' },
   'admin.briefingTitle': { en: "🧭 This week's briefing", ar: '🧭 ملخص هذا الأسبوع' },
@@ -14,7 +14,7 @@ window.I18N_PAGE_DICT = {
   'admin.kpiSignups': { en: 'Sign-ups (30d)', ar: 'التسجيلات (30 يومًا)' },
   'admin.kpiPaidMembers': { en: 'Paid members', ar: 'الأعضاء المدفوعون' },
   'admin.kpiMRR': { en: 'MRR', ar: 'الإيراد الشهري المتكرر' },
-  'admin.funnelTitle': { en: 'Visitor → paid funnel (30d)', ar: 'مسار الزائر ← المشترك المدفوع (30 يومًا)' },
+  'admin.funnelTitle': { en: 'Visitor <i class="fi fi-rr-arrow-small-right"></i> paid funnel (30d)', ar: 'مسار الزائر ← المشترك المدفوع (30 يومًا)' },
   'admin.funnelVisitors': { en: 'Visitors', ar: 'الزوار' },
   'admin.funnelSignedUp': { en: 'Signed up', ar: 'مسجّلون' },
   'admin.funnelActivated': { en: 'Activated', ar: 'مُفعَّلون' },
@@ -307,7 +307,7 @@ window.I18N_PAGE_DICT = {
       row.className = 'mentor-row';
       const statusLabel = label(MEETING_STATUS_LABELS, m.status);
       row.innerHTML =
-        '<div><div class="mentor-name">' + m.studentName + ' → ' + m.mentorName + '</div>' +
+        '<div><div class="mentor-name">' + m.studentName + ' <i class="fi fi-rr-arrow-small-right"></i> ' + m.mentorName + '</div>' +
         '<div class="mentor-meta">' + (m.preferredDate || t('noDateSet')) + (m.note ? ' · ' + m.note : '') + '</div></div>' +
         '<span class="meeting-status status-' + m.status + '">' + statusLabel + '</span>';
       list.appendChild(row);
