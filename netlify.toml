@@ -12,3 +12,6 @@
   from = "/specialty-finder"
   to = "/specialty-finder.html"
   status = 200
+
+[build]
+  publish = "."
