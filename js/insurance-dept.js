@@ -1766,7 +1766,7 @@ const VIDEO_SESSIONS = [
     titleAr:"نظرة عامة", descAr:"تعرّف على كيفية ارتباط المريض ومقدم الخدمة وشركة التأمين والجهة التنظيمية في مطالبة واحدة.",
     bullets:["Patient, provider & payer roles","Claim assignment & review cycles","CHI regulatory oversight","Employer eligibility checks"],
     bulletsAr:["أدوار المريض ومقدم الخدمة وجهة الدفع","تخصيص المطالبات ودورات المراجعة","الإشراف التنظيمي من مجلس ضمان","التحقق من أهلية جهة العمل"],
-    duration:"10:47", videoUrl:"images/medical-approval-specialist-2.mov", isFree:true, quiz: VIDEO1_QUIZ.questions },
+    duration:"10:47", videoUrl:"images/medical-approval-specialist-2.mp4", isFree:true, quiz: VIDEO1_QUIZ.questions },
   { num:3, id:"v3", title:"Health Questionnaire", desc:"Disclosure rules, investigation standards, and what genuinely requires declaration.",
     titleAr:"الاستبيان الصحي", descAr:"قواعد الإفصاح، معايير التحقيق، وما يتطلب التصريح فعليًا.",
     bullets:["What the HQ actually covers","Investigating inconsistent history","Who's exempt from the HQ","Maternity timing edge cases"],
@@ -1788,7 +1788,7 @@ const VIDEO_SESSIONS = [
   */
 ];
 
-const PRACTICE_INTRO_VIDEO = "images/medical-approval-specialist-7.mp4";
+const PRACTICE_INTRO_VIDEO = "images/medical-approval-specialist-7.mov";
 
 const CAPSTONE_SESSIONS = [
   { num:7, id:"practice", title:"Let's Practice Before the Exam", desc:"Apply your knowledge with real-life scenarios and make the right decisions.",
