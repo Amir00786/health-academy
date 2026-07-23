@@ -1761,22 +1761,22 @@ const VIDEO_SESSIONS = [
     titleAr:"ما هو التأمين الطبي؟", descAr:"التعريفات والمصطلحات الأساسية التي يجب أن يعرفها كل أخصائي عن ظهر قلب.",
     bullets:["What medical insurance actually is","The Pre-Auth Department's real role","Self-pay alternatives & who can work in pre-auth","CHI, NPHIES, RCM & key Saudi terms"],
     bulletsAr:["ما هو التأمين الطبي فعليًا","الدور الحقيقي لقسم التصريح المسبق","بدائل الدفع الذاتي ومن يمكنه العمل في التصريح المسبق","مجلس ضمان، نفيس، إدارة الدورة المالية، والمصطلحات السعودية الأساسية"],
-    duration:"37:05", videoUrl:"images/medical-approval-specialist-1.mp4", freePreviewSeconds:300, quiz: [...SECTIONS[0].questions, ...SECTIONS[1].questions] },
+    duration:"37:05", videoUrl:"https://cdn.jsdelivr.net/gh/Amir00786/health-academy@main/images/medical-approval-specialist-1.mp4", freePreviewSeconds:300, quiz: [...SECTIONS[0].questions, ...SECTIONS[1].questions] },
   { num:2, id:"v1", title:"General Overview", desc:"See how patients, providers, insurers, and regulators all connect in one claim.",
     titleAr:"نظرة عامة", descAr:"تعرّف على كيفية ارتباط المريض ومقدم الخدمة وشركة التأمين والجهة التنظيمية في مطالبة واحدة.",
     bullets:["Patient, provider & payer roles","Claim assignment & review cycles","CHI regulatory oversight","Employer eligibility checks"],
     bulletsAr:["أدوار المريض ومقدم الخدمة وجهة الدفع","تخصيص المطالبات ودورات المراجعة","الإشراف التنظيمي من مجلس ضمان","التحقق من أهلية جهة العمل"],
-    duration:"10:47", videoUrl:"images/medical-approval-specialist-2.mp4", isFree:true, quiz: VIDEO1_QUIZ.questions },
+    duration:"10:47", videoUrl:"https://cdn.jsdelivr.net/gh/Amir00786/health-academy@main/images/medical-approval-specialist-2.mp4", isFree:true, quiz: VIDEO1_QUIZ.questions },
   { num:3, id:"v3", title:"Health Questionnaire", desc:"Disclosure rules, investigation standards, and what genuinely requires declaration.",
     titleAr:"الاستبيان الصحي", descAr:"قواعد الإفصاح، معايير التحقيق، وما يتطلب التصريح فعليًا.",
     bullets:["What the HQ actually covers","Investigating inconsistent history","Who's exempt from the HQ","Maternity timing edge cases"],
     bulletsAr:["ما يغطيه الاستبيان الصحي فعليًا","التحقيق في التاريخ الطبي غير المتطابق","من هو المستثنى من الاستبيان الصحي","حالات خاصة بتوقيت الحمل"],
-    duration:"26:18", videoUrl:"images/medical-approval-specialist-3.mp4", freePreviewSeconds:300, quiz: SECTIONS[2].questions },
+    duration:"26:18", videoUrl:"https://github.com/Amir00786/health-academy/releases/download/course-videos-v1/medical-approval-specialist-3.mp4", freePreviewSeconds:300, quiz: SECTIONS[2].questions },
   { num:4, id:"v4", title:"CHI Exclusion Items", desc:"What's excluded, and the difference between reject and refer.",
     titleAr:"بنود الاستبعاد لدى مجلس ضمان", descAr:"ما هو مستبعد من التغطية، والفرق بين الرفض والتحويل.",
     bullets:["Natural disaster exclusions","Life-threatening congenital exceptions","Sports & hazardous activities","Third-party liability coordination"],
     bulletsAr:["استبعادات الكوارث الطبيعية","استثناءات الحالات الخلقية المهددة للحياة","الأنشطة الرياضية والخطرة","التنسيق مع مسؤولية الطرف الثالث"],
-    duration:"39:22", videoUrl:"images/medical-approval-specialist-4.mp4", freePreviewSeconds:300, quiz: SECTIONS[3].questions },
+    duration:"39:22", videoUrl:"https://github.com/Amir00786/health-academy/releases/download/course-videos-v1/medical-approval-specialist-4.mp4", freePreviewSeconds:300, quiz: SECTIONS[3].questions },
   /* v5 and v6 (CHI Inclusion Items & Coverage, Special Terms & Conditions) are
      pending final videos — re-add once the new links/durations are provided.
   { num:5, id:"v5", title:"CHI Inclusion Items & Coverage", desc:"What's actually covered — maternity, chronic conditions, and organ transplants.",
@@ -1788,7 +1788,7 @@ const VIDEO_SESSIONS = [
   */
 ];
 
-const PRACTICE_INTRO_VIDEO = "images/medical-approval-specialist-7.mov";
+const PRACTICE_INTRO_VIDEO = "https://cdn.jsdelivr.net/gh/Amir00786/health-academy@main/images/medical-approval-specialist-7.mov";
 
 const CAPSTONE_SESSIONS = [
   { num:7, id:"practice", title:"Let's Practice Before the Exam", desc:"Apply your knowledge with real-life scenarios and make the right decisions.",
