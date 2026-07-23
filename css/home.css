@@ -571,7 +571,7 @@ h1 .line3 {
 /* ABOUT US */
 .about-section {
   position: relative;
-  background-image: url('../images/bg-offer.webp');
+  background-image: url('../images/bg-offer.png');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -1385,7 +1385,7 @@ h1 .line3 {
   position: relative;
   overflow: hidden;
   background-color: var(--teal);
-  background-image: url('../images/bg-cta.webp');
+  background-image: url('../images/bg-cta.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
