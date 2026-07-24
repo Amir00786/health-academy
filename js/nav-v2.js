@@ -106,3 +106,37 @@
     window.location.href = selectedRole === 'mentor' ? 'mentor-dashboard.html' : 'dashboard.html';
   });
 })();
+
+// Reflect logged-in state in the nav: once a student has signed in, every
+// page should show their name + Logout instead of Sign in/Sign up.
+(function () {
+  var studentName = localStorage.getItem('ih-student-name');
+  var role = localStorage.getItem('ih-student-role');
+  if (!studentName && !role) return;
+
+  var dashboardHref = role === 'mentor' ? 'mentor-dashboard.html' : 'dashboard.html';
+
+  document.querySelectorAll('.auth-actions').forEach(function (container) {
+    var signin = container.querySelector('.nav-signin');
+    var signup = container.querySelector('.nav-signup');
+    if (!signin && !signup) return;
+
+    var welcome = document.createElement('a');
+    welcome.href = dashboardHref;
+    welcome.className = 'btn btn-ghost nav-welcome';
+    welcome.textContent = 'Hi, ' + (studentName || 'Student');
+
+    var logout = document.createElement('button');
+    logout.type = 'button';
+    logout.className = 'btn btn-ghost nav-logout';
+    logout.textContent = 'Logout';
+    logout.addEventListener('click', function () {
+      localStorage.removeItem('ih-student-name');
+      localStorage.removeItem('ih-student-role');
+      window.location.href = 'index.html';
+    });
+
+    if (signin) signin.replaceWith(welcome);
+    if (signup) signup.replaceWith(logout);
+  });
+})();
