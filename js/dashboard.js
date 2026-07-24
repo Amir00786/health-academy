@@ -19,6 +19,8 @@ window.I18N_PAGE_DICT = {
       'dash.favTitle': { en: 'Favorite course', ar: 'الدورة المفضلة' },
       'dash.mentorTitle': { en: 'Select your mentor', ar: 'اختر مرشدك' },
       'dash.guestStudent': { en: 'Guest Student', ar: 'طالب زائر' },
+      'dash.planPremium': { en: '★ Premium Member', ar: '★ عضو مميز' },
+      'dash.planFree': { en: 'Free Plan', ar: 'خطة مجانية' },
       'dash.pricingFreePlusPro': { en: '(Free + $100)', ar: '(مجاني + 100$)' },
       'mentor.trackBoth': { en: 'Both', ar: 'كلاهما' },
       'mentor.demoTitle': { en: 'This runs locally, in this browser.', ar: 'يعمل هذا محليًا، في هذا المتصفح فقط.' },
@@ -120,6 +122,14 @@ window.I18N_PAGE_DICT = {
     document.getElementById('dashNameVal').textContent = name;
     document.getElementById('dashSpecialtyVal').textContent = specialty;
     document.getElementById('dashAvatar').textContent = initials(name);
+
+    const isPremium = localStorage.getItem('ih-pro-access') === 'true';
+    const planField = document.getElementById('dashPlanField');
+    const planVal = document.getElementById('dashPlanVal');
+    planField.classList.toggle('is-premium', isPremium);
+    planVal.textContent = isPremium
+      ? t('dash.planPremium', '★ Premium Member')
+      : t('dash.planFree', 'Free Plan');
   }
 
   document.getElementById('dashNameField').addEventListener('click', () => {

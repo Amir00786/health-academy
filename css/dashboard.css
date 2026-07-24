@@ -198,6 +198,26 @@ html.is-loading body {
   font-weight: 700;
 }
 
+.dash-plan-field {
+  cursor: default;
+  border-bottom: none;
+  padding: 3px 12px;
+  border-radius: 999px;
+  background: rgba(6, 6, 8, 0.06);
+}
+
+.dash-plan-field strong {
+  font-size: 0.8rem;
+}
+
+.dash-plan-field.is-premium {
+  background: rgba(217, 164, 6, 0.15);
+}
+
+.dash-plan-field.is-premium strong {
+  color: #a8790a;
+}
+
 .dash-icons {
   display: flex;
   align-items: center;
