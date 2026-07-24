@@ -1777,15 +1777,16 @@ const VIDEO_SESSIONS = [
     bullets:["Natural disaster exclusions","Life-threatening congenital exceptions","Sports & hazardous activities","Third-party liability coordination"],
     bulletsAr:["استبعادات الكوارث الطبيعية","استثناءات الحالات الخلقية المهددة للحياة","الأنشطة الرياضية والخطرة","التنسيق مع مسؤولية الطرف الثالث"],
     duration:"39:22", videoUrl:"https://github.com/Amir00786/health-academy/releases/download/course-videos-v1/medical-approval-specialist-4.mp4", freePreviewSeconds:300, quiz: SECTIONS[3].questions },
-  /* v5 and v6 (CHI Inclusion Items & Coverage, Special Terms & Conditions) are
-     pending final videos — re-add once the new links/durations are provided.
   { num:5, id:"v5", title:"CHI Inclusion Items & Coverage", desc:"What's actually covered — maternity, chronic conditions, and organ transplants.",
+    titleAr:"بنود الشمول لدى مجلس ضمان", descAr:"ما هو مغطى فعليًا — الحمل والولادة، الحالات المزمنة، وزراعة الأعضاء.",
     bullets:["Maternity marital-status rules","First ANC investigations","Chronic condition coverage limits","Companion & escort benefits"],
-    duration:"31:03", videoUrl:"https://www.youtube.com/watch?v=OdiFPvw4NAs", quiz: SECTIONS[4].questions },
+    bulletsAr:["قواعد الحالة الاجتماعية لتغطية الحمل","فحوصات أول زيارة للعناية السابقة للولادة","حدود تغطية الحالات المزمنة","مزايا المرافق والمصاحب"],
+    duration:"31:03", videoUrl:"https://github.com/Amir00786/health-academy/releases/download/course-videos-v1/medical-approval-specialist-5.mp4", freePreviewSeconds:300, quiz: SECTIONS[4].questions },
   { num:6, id:"v6", title:"Special Terms & Conditions", desc:"Ex gratia, second opinions, and the professional judgment behind every decision.",
+    titleAr:"الشروط والأحكام الخاصة", descAr:"الاستثناءات الإنسانية، الرأي الطبي الثاني، والحكم المهني وراء كل قرار.",
     bullets:["Ex gratia approvals","Global policy limits","When to request a second opinion","The Visit Visa product"],
-    duration:"30:49", videoUrl:"https://www.youtube.com/watch?v=e_vxQGzU_HY", quiz: SECTIONS[5].questions },
-  */
+    bulletsAr:["الموافقات الاستثنائية (Ex gratia)","حدود بوليصة التأمين الإجمالية","متى يُطلب رأي طبي ثانٍ","منتج تأمين تأشيرة الزيارة"],
+    duration:"30:49", videoUrl:"https://github.com/Amir00786/health-academy/releases/download/course-videos-v1/medical-approval-specialist-6.mp4", freePreviewSeconds:300, quiz: SECTIONS[5].questions },
 ];
 
 const PRACTICE_INTRO_VIDEO = "https://cdn.jsdelivr.net/gh/Amir00786/health-academy@main/images/medical-approval-specialist-7.mov";

@@ -58,7 +58,7 @@ window.I18N_PAGE_DICT = {
   // insurance-dept.js. Counting against this whitelist (rather than just the raw size of
   // progress.completedVideos) keeps old browsers' stale completions from a since-removed
   // video (e.g. a since-commented-out v5/v6) from inflating "done" past the real total.
-  const INSURANCE_VIDEO_IDS = ['v2a', 'v1', 'v3', 'v4'];
+  const INSURANCE_VIDEO_IDS = ['v2a', 'v1', 'v3', 'v4', 'v5', 'v6'];
   const INSURANCE_TOTAL_LESSONS = INSURANCE_VIDEO_IDS.length;
 
   function lang() {
